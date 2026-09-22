@@ -43,8 +43,7 @@ The only permission requested is `VIBRATE`, for optional haptic feedback.
 
 ## Screenshots
 
-*(Capture these from a device or an accelerated emulator and drop them in
-`docs/screenshots/`.)*
+*(Not yet captured — see [`docs/screenshots/README.md`](docs/screenshots/README.md).)*
 
 | Screen | File |
 | --- | --- |
