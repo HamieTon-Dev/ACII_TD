@@ -226,10 +226,14 @@ installed, the debug build launched and drew the main menu correctly.
 
 These remain unverified on hardware and should be checked on a real phone:
 
-- **The release build actually running.** It installs and dex-optimises, is
-  correctly signed, and `apkanalyzer` confirms R8 kept the serialization
-  machinery the ProGuard rules exist to protect — but it was never observed on
-  screen. Nothing suggests a problem; it is simply untested at runtime.
+- **The release build actually rendering.** It installs and dex-optimises, is
+  correctly signed, `apkanalyzer` confirms R8 kept the serialization machinery
+  the ProGuard rules exist to protect, and `am start` against it returned
+  success with no crash ever recorded against the package in either the main or
+  the crash log buffer. What could not be done is capture it drawing: the
+  emulator's system process died again before a screenshot completed. Nothing
+  observed suggests a problem, but "the release build draws its first frame" is
+  an unverified claim, not a confirmed one.
 - **Frame pacing and sustained frame rate.** No meaningful number can come from
   a software renderer.
 - **Touch latency and gesture feel.**
