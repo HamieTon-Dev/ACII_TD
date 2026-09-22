@@ -106,10 +106,11 @@ implemented and verified.
 
 ### Verification
 
-- 73 JVM tests, all passing, in two layers: simulation tests that drive the real
+- 85 JVM tests, all passing, in three layers: simulation tests that drive the real
   engine headlessly (balance curve shape, wave generation, a fully played match,
-  save-format round-tripping including corrupt and cross-version payloads) and
-  Compose UI tests under Robolectric that assert on what a player sees and taps.
+  save-format round-tripping including corrupt and cross-version payloads),
+  persistence tests against a real DataStore, and Compose UI tests under
+  Robolectric that assert on what a player sees and taps.
 - Debug APK builds, installs and launches cleanly (10.5 MB).
 - Release APK builds minified, shrunk and signed.
 

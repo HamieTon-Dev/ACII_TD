@@ -168,9 +168,6 @@ class CombatSystem(private val engine: GameEngine, private val random: Random) {
         return best
     }
 
-    /** Whether [agent] currently has anything at all it could shoot. */
-    fun hasTarget(agent: Agent): Boolean = selectTarget(agent) != null
-
     /** Roll a Zero-Day Hunter critical. */
     fun rollCritical(agent: Agent): Boolean =
         agent.type == AgentType.ZERO_DAY_HUNTER &&

@@ -515,12 +515,6 @@ class GameEngine(
 
     fun activeAgentCount(): Int = agents.activeCount()
 
-    fun deployedAgentTypes(): Set<AgentType> {
-        val result = LinkedHashSet<AgentType>()
-        for (agent in agents.items) if (agent.active) result.add(agent.type)
-        return result
-    }
-
     /** Whether a boss is currently alive (drives the HUD's alert border). */
     fun bossOnField(): Boolean {
         for (enemy in enemies.items) if (enemy.active && enemy.isBoss) return true
@@ -530,22 +524,6 @@ class GameEngine(
     fun isBossWave(): Boolean = Balance.isBossWave(currentWave)
 
     fun nextWaveIsBoss(): Boolean = Balance.isBossWave(currentWave + 1)
-
-    /** Reference to the spawn plan, used by the HUD to show wave composition. */
-    fun currentPlan(): WavePlan? = plan
-
-    fun requestAutoStartCountdown() {
-        if (phase == RunPhase.PREPARING && autoStartWaves) {
-            autoStartRemaining = Balance.AUTO_START_DELAY
-        }
-    }
-
-    fun cancelAutoStartCountdown() {
-        autoStartRemaining = 0f
-    }
-
-    /** Debug/test helper: fast-forwards an entire wave. Not reachable from the UI. */
-    internal fun waveElapsed(): Float = waveTimer
 
     companion object {
         /**

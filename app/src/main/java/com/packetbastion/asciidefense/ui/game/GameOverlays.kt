@@ -412,7 +412,3 @@ fun PreparationBanner(
         )
     }
 }
-
-/** Width helper so overlay cards do not stretch on very wide screens. */
-@Composable
-fun rememberOverlayWidth(): Modifier = Modifier.widthIn(max = 520.dp).width(520.dp)

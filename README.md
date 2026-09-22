@@ -121,17 +121,19 @@ before publishing anywhere.
 ./gradlew test
 ```
 
-73 JVM tests run in seconds, in two layers:
+85 JVM tests run in about ten seconds, in three layers:
 
 - **Simulation tests** drive the real engine headlessly — balance curve shape,
   wave generation, a fully played match (placement, economy, targeting modes,
   upgrades, selling, boss waves on 5 and 10, difficulty scaling, unlocks, pool
   limits), and save-format round-tripping.
+- **Persistence tests** exercise the real DataStore path — settings, saved runs,
+  CONTINUE gating, unlock accumulation, statistics folding and a full reset.
 - **UI tests** run the real Compose screens under Robolectric and assert on what
   a player actually sees and taps — menu actions, the deploy flow, upgrade
   panel, settings toggles, and the reset confirmation.
 
-Both layers run on the JVM, so the whole suite is fast enough to run on every
+All three run on the JVM, so the whole suite is fast enough to run on every
 change.
 
 ### Install on a connected device

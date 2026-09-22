@@ -416,7 +416,23 @@ asserts what the generator can produce rather than what one lucky roll did.
 round-trips, payloads from older builds (missing keys), payloads from newer
 builds (unknown keys), and malformed JSON.
 
-### Layer 2 — UI
+### Layer 2 — persistence
+
+`GameRepositoryTest` runs against a real DataStore under Robolectric: defaults,
+settings persistence and clamping, save round-trips, CONTINUE gating (a run
+saved with a dead server is never offered), unlock accumulation, statistics
+folding across runs, and a full reset.
+
+`GameRepository` takes a `DataStore<Preferences>` rather than building one from
+a `Context`, and `GameViewModel` takes a `GameRepository` (defaulting to the
+real one). That seam exists for a concrete reason: Robolectric keeps one process
+across test classes and a view model's coroutines outlive the test that created
+it, so tests sharing the app's single store could observe a previous test's
+write landing after their own setup. Each test now gets its own store file,
+which removes that class of ordering failure by construction rather than by
+timing.
+
+### Layer 3 — UI
 
 `GameUiTest` runs under **Robolectric** with the Compose test rule, composing
 the real screens with the real theme at a landscape qualifier:

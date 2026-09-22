@@ -234,9 +234,6 @@ class EnemySystem(private val engine: GameEngine, private val random: Random) {
         enemy.reset()
     }
 
-    /** True when [enemy] came from PACKET_REPLICATION rather than the wave plan. */
-    fun isEscort(enemy: Enemy): Boolean = enemy in escortIds
-
     fun clearEscorts() = escortIds.clear()
 
     /** Applies a slow, keeping whichever slow is currently the strongest. */
@@ -247,12 +244,6 @@ class EnemySystem(private val engine: GameEngine, private val random: Random) {
         }
         enemy.slowRemaining = maxOf(enemy.slowRemaining, duration)
     }
-
-    /** True when the archetype counts as "fast" for IDS bonus damage. */
-    fun isFast(enemy: Enemy): Boolean = enemy.type.isFastArchetype()
-
-    /** True when the archetype counts as a swarm unit. */
-    fun isSwarm(enemy: Enemy): Boolean = ThreatTrait.SWARM in enemy.type.traits
 
     companion object {
         private const val DISRUPT_RADIUS = 260f

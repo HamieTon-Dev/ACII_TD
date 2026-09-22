@@ -131,8 +131,6 @@ class EffectSystem(private val engine: GameEngine, private val random: Random) {
         spawnText(x, y - 26f, message, GameEngine.COLOR_SUCCESS, 0.95f, scale = 0.85f)
     }
 
-    fun activeEffects(): List<Effect> = engine.effects.items.filter { it.active }
-
     companion object {
         val TERMINAL_MESSAGES = arrayOf(
             "PACKET DROPPED",

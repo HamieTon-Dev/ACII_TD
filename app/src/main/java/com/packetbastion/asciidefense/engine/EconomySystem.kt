@@ -23,8 +23,6 @@ class EconomySystem(private val engine: GameEngine) {
         engine.removeCrypto(amount)
     }
 
-    fun canAfford(amount: Int): Boolean = engine.crypto >= amount
-
     companion object {
         /**
          * Reward for destroying [enemy] on [wave].
