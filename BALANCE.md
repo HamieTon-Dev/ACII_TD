@@ -549,3 +549,97 @@ enemy after it taught the player something untrue. The baseline threat is now
 
 A test asserts `PACKET` cannot come back and that the `[P]` glyph now belongs
 solely to the IPS agent.
+
+---
+
+## 13. Revision: the serpentine map and the unkillable boss
+
+A play report said bosses could not be killed "no matter what I tried", and that
+straight lanes were the reason. Both halves turned out to be right, for a reason
+worth writing down.
+
+### Why bosses were unkillable
+
+Two causes compounded, and only one was about numbers.
+
+**The targeting bug.** Bosses move slower than the trash escorting them. Under
+FIRST targeting — "closest to the server" — every escort in the wave therefore
+outranks the boss permanently. The whole board shot the escorts while the boss
+strolled the entire route untouched. No amount of upgrading fixed it, because
+upgrading does not change *what* gets shot.
+
+`CombatSystem.selectTarget` now gives bosses priority under FIRST and STRONGEST.
+LAST and WEAKEST deliberately keep ignoring bosses, which is what makes them
+useful: they are how a player assigns an agent to escort clean-up.
+
+**Health tuned for coverage that does not exist.** Instrumenting a wave-5 fight
+showed a five-agent board kept the boss under fire for **11 seconds of its
+50-second journey**. Five towers cannot cover a 2,353-unit route. Boss health had
+been set as though they could.
+
+| Constant | Before | After |
+| --- | --- | --- |
+| `BOSS` base health | 520 | **250** |
+| `BOSS` base speed | 30 | **44** |
+| `BOSS` base armour | 3 | **2** |
+| First-cycle term | 1.00 | **0.65** (`BOSS_FIRST_CYCLE_SOFTENING`) |
+| Per-cycle term | +0.26 | **+0.45** (`BOSS_CYCLE_SCALING`) |
+
+```
+bossHealth(wave) = 250 × healthMultiplier(wave) × (0.65 + (cycle − 1) × 0.45)
+```
+
+| Wave | Cycle | Boss HP |
+| --- | ---: | ---: |
+| 5 | 1 | 221 |
+| 10 | 2 | 479 |
+| 20 | 4 | 1,270 |
+| 30 | 6 | 2,436 |
+| 50 | 10 | 5,945 |
+| 100 | 20 | 19,619 |
+
+Three level-5 FIREWALLs now clear the wave-5 boss with the server untouched —
+asserted permanently by `the wave five boss can be killed by a modest board`.
+Wave 30 and beyond climb steeply, which is where difficulty belongs.
+
+### The map
+
+Three straight corridors became **two serpentine routes**.
+
+| | Straight lanes | Serpentine |
+| --- | ---: | ---: |
+| Routes | 3 | 2 |
+| Route length | 1,378 | **2,353** |
+| Best node coverage at base range | 295 units | **732 units** |
+| Deployment nodes | 32 (fixed grid) | 31 (derived) |
+
+A straight lane gives a tower one pass at each target. A route that doubles back
+past the same pocket gives it three or four. That is the whole reason a slow,
+heavy target stops being invulnerable.
+
+The two routes deliberately come close twice — running parallel across the
+middle, then merging at (1150, 383) for the final approach — so a tower in
+either convergence pocket covers both routes at once. That is the decision the
+map is built around.
+
+Boss routes rotate by cycle, so consecutive boss waves never arrive down the
+same route and a board built for one side is not a permanent answer.
+
+### Nodes are derived, not placed
+
+Deployment nodes are no longer a hand-written grid. A candidate grid is filtered
+to positions that clear every route, sit clear of the server, and actually cover
+some route (`MIN_NODE_COVERAGE`). Move a waypoint and the nodes follow. It also
+means no node exists that is useless to build on.
+
+### What the composition test now claims
+
+The old test asserted a mixed board beats stacking one agent type. Measuring it
+with **equal crypto** rather than equal agent count showed that is simply not
+true: focused ANALYST, focused ROOT ADMIN and a counter-led mix all land within a
+few waves of each other.
+
+What is true, and what the suite now guards, is that agent **choice** carries
+real weight — the same budget spent on specialists goes far further than spent
+on the cheap all-rounder. The counter multipliers themselves are asserted
+directly elsewhere.

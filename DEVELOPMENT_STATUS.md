@@ -1,6 +1,6 @@
 # CyOps TD — Development Status
 
-Last updated: build of version 1.2.0.
+Last updated: build of version 1.3.0.
 
 ---
 
@@ -112,7 +112,7 @@ Last updated: build of version 1.2.0.
   `$$serializer` for the save models is present in the release dex, along with
   an unobfuscated `MainActivity` — the failure mode the ProGuard rules exist to
   prevent.
-- **114 JVM tests, all passing** in about a minute, in three layers:
+- **116 JVM tests, all passing** in about a minute, in three layers:
   - Simulation tests that drive the real engine headlessly — balance curve
     shape, wave generation, a fully played match, and save serialization.
   - Compose UI tests under Robolectric that compose the real screens and assert
@@ -123,8 +123,18 @@ Last updated: build of version 1.2.0.
 
 ## IN PROGRESS
 
-Nothing. Version 1.2.0 is feature-complete against the original specification,
-the post-playtest revision below, and the CyOps TD identity pass.
+Nothing. Version 1.3.0 is feature-complete against the original specification,
+the post-playtest revisions below, and the CyOps TD identity pass.
+
+### Revision 1.3.0 — map, boss and language
+
+| Item | Status |
+| --- | --- |
+| Package ID matches the product name (`com.cyopstd.game`) | **DONE** |
+| Enemies are cyberattacks/breaches/intrusions, not "packets" | **DONE** |
+| Wave-5 boss is killable by a modest board | **DONE** — regression tested |
+| Two serpentine routes with two convergence points | **DONE** |
+| Boss takes a different route each boss wave | **DONE** |
 
 ---
 

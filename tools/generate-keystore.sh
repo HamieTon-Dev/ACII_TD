@@ -10,21 +10,18 @@
 #
 # NOTE: do not regenerate a key that has already signed a build someone
 # installed. Android refuses to upgrade an app whose signing key changed, so a
-# new key turns every future build into a manual-uninstall-first situation. The
-# keystore filename stays packetbastion.jks for the same reason the package ID
-# does: app/build.gradle.kts looks for it by that name, and existing local
-# keystores must keep working across the rename.
+# new key turns every future build into a manual-uninstall-first situation.
 
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 KEYSTORE_DIR="$ROOT/keystore"
-KEYSTORE="$KEYSTORE_DIR/packetbastion.jks"   # filename kept: see note below
+KEYSTORE="$KEYSTORE_DIR/cyopstd.jks"
 
 # These match the signingConfig in app/build.gradle.kts.
-STORE_PASS="packetbastion"
-KEY_PASS="packetbastion"
-ALIAS="packetbastion"
+STORE_PASS="cyopstd"
+KEY_PASS="cyopstd"
+ALIAS="cyopstd"
 
 if [ -f "$KEYSTORE" ]; then
     echo "Keystore already exists: $KEYSTORE"

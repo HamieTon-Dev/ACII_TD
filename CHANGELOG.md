@@ -7,6 +7,80 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [1.3.0]
+
+The map, the boss, and the language. Driven by a play report: bosses could not
+be killed "no matter what I tried", and straight lanes were the suspected cause.
+Both halves were right.
+
+### Fixed — bosses were genuinely unkillable
+
+Two causes compounded, and only one was about numbers.
+
+- **Targeting.** Bosses move slower than the trash escorting them, so under
+  FIRST targeting — "closest to the server" — every escort permanently outranked
+  the boss. The whole board shot escorts while the boss walked the route
+  untouched. Upgrading could never fix it, because upgrading does not change
+  what gets shot. Bosses now take priority under FIRST and STRONGEST; LAST and
+  WEAKEST keep ignoring them, which is what makes those modes useful.
+- **Health tuned for coverage that does not exist.** Instrumenting a wave-5
+  fight showed a five-agent board keeps the boss under fire for 11 seconds of
+  its 50-second journey. Boss base health 520 → 250, speed 30 → 44, armour
+  3 → 2, and the first boss cycle is now explicitly softened (×0.65) while the
+  per-cycle climb steepens (+0.26 → +0.45). Wave 5 is 221 HP; wave 100 is
+  19,619.
+
+Three level-5 FIREWALLs now clear the wave-5 boss with the server untouched, and
+a regression test asserts exactly that.
+
+### Changed — two serpentine routes replace three straight lanes
+
+| | Before | After |
+| --- | ---: | ---: |
+| Routes | 3 straight | **2 serpentine** |
+| Route length | 1,378 | **2,353** |
+| Best node coverage | 295 units | **732 units** |
+
+A straight lane gives a tower one pass at each target; a route that doubles back
+past the same pocket gives it three or four. The routes come close twice on
+purpose — running parallel across the middle, then merging for the final
+approach — so a tower in either convergence pocket covers both at once.
+
+Boss routes rotate by cycle, so consecutive boss waves never arrive down the
+same route.
+
+Deployment nodes are now **derived from the routes** rather than hand-placed: a
+candidate grid filtered to positions that clear every route and actually cover
+some of it. Move a waypoint and the nodes follow, and no useless node exists.
+
+Enemy speeds lifted ~20% so the longer routes do not slow the game down.
+
+### Changed — it is a cyberattack, not a packet
+
+A packet is ordinary network traffic, so calling every enemy one was inaccurate
+and confusing. Throughout: `CYBERATTACK INCOMING`, `MAJOR BREACH DETECTED`,
+`ATTACK ORIGIN`, `ATTACKS BLOCKED`, `threats remaining`, `ATTACKS STOPPED`.
+`DDoS PACKET` → `DDoS FLOOD`, `ENCRYPTED PACKET` → `ENCRYPTED PAYLOAD`,
+`INTRUSION` → `BREACH`, `PACKET REPLICATION` → `ATTACK REPLICATION`. Internal
+identifiers followed. The Codex glossary keeps its *packet* entry, because there
+the word is being taught correctly.
+
+### Changed — the package matches the name
+
+Now that this is pre-release, `com.packetbastion.asciidefense` →
+**`com.cyopstd.game`**, along with the source tree, class names, DataStore file
+and keystore. This installs as a new app rather than upgrading v1.2.0.
+
+### Changed — an honest composition test
+
+The old test asserted a mixed board beats stacking one agent type. Measured with
+**equal crypto** rather than equal agent count, that is simply not true: focused
+ANALYST, focused ROOT ADMIN and a counter-led mix all land within a few waves of
+each other. The suite now asserts what is true — the same budget spent on
+specialists goes far further than spent on the cheap all-rounder.
+
+---
+
 ## [1.2.0]
 
 Identity pass. No gameplay changes.

@@ -3,9 +3,9 @@
 **Cyber Operations Tower Defense.** A lightweight, offline-first, ASCII
 cyber-defence game for Android.
 
-Hostile packets stream down three network lanes toward **CORE-SERVER**. You
-deploy Cyber Agents beside the lanes; they detect and destroy what comes past.
-Destroyed packets pay out **◇ Crypto**, which buys more agents and upgrades.
+Cyberattacks advance along two serpentine network routes toward **CORE-SERVER**.
+You deploy Cyber Agents beside the routes; they detect and stop what comes past.
+Every attack you stop pays out **◇ Crypto**, which buys more agents and upgrades.
 Every fifth wave is a boss. Every tenth wave banks **€ Budget**, which outlives
 the run and buys permanent damage upgrades for every match after it. There is no
 final wave — the only question is how far you get.
@@ -13,15 +13,22 @@ final wave — the only question is how far you get.
 ```
         >_<        CyOps TD
 
-PACKET ENTRY
+ ATTACK ORIGIN
+      |
+  A   +--->---->----+                    +---->---->----+
+                    v                    ^              v
+      +----<----<---+                    |              |
+      v                                  |              |
+      +--->---->---->---->---->---->-----+        +-----+------+
+                                                  |  CORE-     |
+      +--->---->---->---->---->---->-----+        |  SERVER    |
+      ^                                  |        +-----+------+
+      +----<----<---+                    |              ^
+                    ^                    v              |
+  B   +--->---->----+                    +---->---->----+
 
-[!] ----- NETWORK LANE 1 ------------>  +================+
-                                        | CORE-SERVER    |
-[M] ----- NETWORK LANE 2 ------------>  | [::::SYSTEM:::]|
-                                        | DATA CORE      |
-[T] ----- NETWORK LANE 3 ------------>  | . .  . .   . . |
-                                        | [==========]   |
-        [F]      [I]      [A]           +================+
+  Two routes. They run side by side across the middle, then merge
+  for the final approach. A tower in either pocket covers both.
 ```
 
 It is built for cybersecurity, IT and networking students, programmers, and
@@ -277,11 +284,11 @@ Agents upgrade to level 10. The glyph changes as they climb:
 | `[B]` | **BOT** | Weak, fast, always arrives in groups. |
 | `[T]` | **TROJAN** | Slow and armoured. Blunts small, fast hits. |
 | `[X]` | **EXPLOIT** | Very fast and hits hard. Detection range matters. |
-| `[E]` | **ENCRYPTED** | Most agents lose over half their damage against it. |
+| `[E]` | **ENCRYPTED PAYLOAD** | Most agents lose over half their damage against it. |
 | `[SQL2]` | **BLIND SQLi** | Armoured and patient. Heavy hits beat it; rapid fire wastes itself. |
 | `«««»»»` | **DDoS** | Fastest thing in the game. Trivial alone, swarms. |
 | `[0]` | **ZERO-DAY** | Rare elite. High health, heavy armour, big payout. |
-| `[!!!]` | **BOSS** | Every fifth wave. Large, slow, devastating on arrival. |
+| `[!!!]` | **BREACH (boss)** | Every fifth wave, alternating routes. Large, slow, devastating on arrival. |
 
 Elite variants of ordinary archetypes appear from wave 5 onward: roughly double
 health, extra armour, extra server damage, and a bigger payout.
