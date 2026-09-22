@@ -404,6 +404,14 @@ assertion** rather than a bare `while` — if a run stalls or the server falls
 early, the test fails with a message instead of hanging the build. A hanging
 test is far worse than a failing one.
 
+Two tests play a fully built board to its death. One asserts that nothing
+degenerates on the way — every wave resolves, no pool overflows, the economy
+stays bounded — so an endless run ends by being overwhelmed rather than by a
+bug. The other builds the same board twice, once stacking a single maxed agent
+and once mixing the types the counter-play table rewards, and asserts the mix
+gets further. If it did not, every counter in the damage table would be
+decoration.
+
 `BalanceTest` asserts the *shape* of the difficulty curves — monotonicity,
 caps, the wave-9-to-10 step, and that reward growth stays below health growth.
 These are the assertions that catch a well-meaning constant tweak quietly

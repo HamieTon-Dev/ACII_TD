@@ -121,12 +121,14 @@ before publishing anywhere.
 ./gradlew test
 ```
 
-85 JVM tests run in about ten seconds, in three layers:
+88 JVM tests run in about fifteen seconds, in three layers:
 
 - **Simulation tests** drive the real engine headlessly — balance curve shape,
   wave generation, a fully played match (placement, economy, targeting modes,
   upgrades, selling, boss waves on 5 and 10, difficulty scaling, unlocks, pool
-  limits), and save-format round-tripping.
+  limits), save-format round-tripping, and endless-mode runs played to their
+  death to confirm that a considered agent mix genuinely out-lasts stacking a
+  single type.
 - **Persistence tests** exercise the real DataStore path — settings, saved runs,
   CONTINUE gating, unlock accumulation, statistics folding and a full reset.
 - **UI tests** run the real Compose screens under Robolectric and assert on what

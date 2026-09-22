@@ -105,7 +105,7 @@ Last updated: build of version 1.0.0.
 - **Debug APK builds and installs.** 10.5 MB.
 - **Release APK builds**, minified and shrunk, signed with a generated
   local key.
-- **85 JVM tests, all passing** in about ten seconds, in three layers:
+- **88 JVM tests, all passing** in about fifteen seconds, in three layers:
   - Simulation tests that drive the real engine headlessly — balance curve
     shape, wave generation, a fully played match, and save serialization.
   - Compose UI tests under Robolectric that compose the real screens and assert

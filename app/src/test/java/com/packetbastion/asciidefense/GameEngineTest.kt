@@ -751,6 +751,141 @@ class GameEngineTest {
         }
     }
 
+    /** Fill every deployment node with [type], maxed out. */
+    private fun GameEngine.deployMonoDefence(type: AgentType) {
+        addCrypto(10_000_000, countAsEarned = false)
+        for (node in WorldGeometry.nodes) {
+            placeAgent(type, node.id)
+            repeat(Balance.MAX_AGENT_LEVEL - 1) { upgradeAgent(node.id) }
+        }
+    }
+
+    /**
+     * Fill every deployment node with a mix built around the counter-play table:
+     * IPS for swarms, ANALYST for elites, CRYPTOGRAPHER for encryption, SANDBOX
+     * for slows, IDS for fast packets, armour-ignoring agents for Trojans, and
+     * an ARCHITECT to buff its neighbours.
+     */
+    private fun GameEngine.deployMixedDefence() {
+        addCrypto(10_000_000, countAsEarned = false)
+        val rotation = listOf(
+            AgentType.IPS,
+            AgentType.ANALYST,
+            AgentType.CRYPTOGRAPHER,
+            AgentType.SANDBOX,
+            AgentType.ZERO_DAY_HUNTER,
+            AgentType.IDS,
+            AgentType.ROOT_ADMIN,
+            AgentType.NETWORK_ARCHITECT
+        )
+        for (node in WorldGeometry.nodes) {
+            placeAgent(rotation[node.id % rotation.size], node.id)
+            repeat(Balance.MAX_AGENT_LEVEL - 1) { upgradeAgent(node.id) }
+        }
+    }
+
+    /**
+     * Play until the server falls, asserting nothing degenerates on the way.
+     * Returns the wave the run died on.
+     */
+    private fun GameEngine.playUntilOverwhelmed(waveCap: Int): Int {
+        for (wave in 1..waveCap) {
+            if (phase == RunPhase.GAME_OVER) return currentWave
+            startNextWave()
+
+            var elapsed = 0f
+            var resolved = false
+            while (elapsed < 400f) {
+                update(0.02f, 1f)
+                elapsed += 0.02f
+                assertTrue(
+                    "enemy pool overflowed on wave $currentWave",
+                    activeEnemyCount() <= GameEngine.MAX_ENEMIES
+                )
+                assertTrue(
+                    "projectile pool overflowed on wave $currentWave",
+                    projectiles.activeCount() <= GameEngine.MAX_PROJECTILES
+                )
+                assertTrue(
+                    "effect pool overflowed on wave $currentWave",
+                    effects.activeCount() <= GameEngine.MAX_EFFECTS
+                )
+                if (phase == RunPhase.PREPARING || phase == RunPhase.GAME_OVER) {
+                    resolved = true
+                    break
+                }
+            }
+            assertTrue("wave $currentWave never resolved", resolved)
+            assertTrue("crypto went out of range", crypto in 0..100_000_000)
+        }
+        return currentWave
+    }
+
+    @Test
+    fun `the endless mode stays structurally sane until the run is overwhelmed`() {
+        // "Endless" is a promise about wave 50 as much as wave 5. This plays a
+        // fully built board to its death and checks that the run ends by being
+        // overwhelmed - not by a wave that never resolves, a pool that
+        // overflows, or an economy that runs away.
+        val engine = newEngine(seed = 21)
+        engine.deployMixedDefence()
+
+        val died = engine.playUntilOverwhelmed(waveCap = 120)
+
+        assertTrue(
+            "a fully built, maxed board should get well past the early game",
+            died >= 30
+        )
+        assertTrue("60 waves of play should defeat many bosses", engine.runBossesDefeated >= 5)
+        assertTrue(engine.runPacketsBlocked > 500)
+    }
+
+    @Test
+    fun `difficulty keeps climbing far into the run`() {
+        fun peakHealthOnWaveDeep(wave: Int): Float {
+            val engine = newEngine(seed = 33)
+            engine.deployMixedDefence()
+            engine.fastForwardTo(wave)
+            engine.startNextWave()
+            var peak = 0f
+            var t = 0f
+            while (t < 60f) {
+                engine.update(0.02f, 1f)
+                t += 0.02f
+                val enemies = engine.enemies.items
+                for (i in enemies.indices) {
+                    val enemy = enemies[i]
+                    if (enemy.active && enemy.maxHealth > peak) peak = enemy.maxHealth
+                }
+            }
+            return peak
+        }
+
+        val at10 = peakHealthOnWaveDeep(10)
+        val at30 = peakHealthOnWaveDeep(30)
+        assertTrue("wave 30 ($at30) must out-scale wave 10 ($at10)", at30 > at10 * 1.5f)
+        assertTrue("scaling must stay finite", at30 < 1_000_000f)
+    }
+
+    @Test
+    fun `mixing agent types beats stacking one, which is the whole point of the counters`() {
+        // If a single maxed agent type went as deep as a considered mix, every
+        // counter in the damage table would be decoration. It should not.
+        val mono = newEngine(seed = 21)
+        mono.deployMonoDefence(AgentType.ANALYST)
+        val monoWave = mono.playUntilOverwhelmed(waveCap = 120)
+
+        val mixed = newEngine(seed = 21)
+        mixed.deployMixedDefence()
+        val mixedWave = mixed.playUntilOverwhelmed(waveCap = 120)
+
+        assertTrue(
+            "a considered mix ($mixedWave) should out-last stacking one agent " +
+                "($monoWave)",
+            mixedWave > monoWave
+        )
+    }
+
     @Test
     fun `a well defended run survives past wave five`() {
         // The stated balance target: a new player should get beyond the first

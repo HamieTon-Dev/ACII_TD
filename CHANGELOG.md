@@ -106,7 +106,7 @@ implemented and verified.
 
 ### Verification
 
-- 85 JVM tests, all passing, in three layers: simulation tests that drive the real
+- 88 JVM tests, all passing, in three layers: simulation tests that drive the real
   engine headlessly (balance curve shape, wave generation, a fully played match,
   save-format round-tripping including corrupt and cross-version payloads),
   persistence tests against a real DataStore, and Compose UI tests under
