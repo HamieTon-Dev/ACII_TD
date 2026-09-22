@@ -7,12 +7,19 @@
 # Replace it with your own upload key before publishing anywhere.
 #
 # The keystore/ directory is git-ignored; the key never enters the repository.
+#
+# NOTE: do not regenerate a key that has already signed a build someone
+# installed. Android refuses to upgrade an app whose signing key changed, so a
+# new key turns every future build into a manual-uninstall-first situation. The
+# keystore filename stays packetbastion.jks for the same reason the package ID
+# does: app/build.gradle.kts looks for it by that name, and existing local
+# keystores must keep working across the rename.
 
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 KEYSTORE_DIR="$ROOT/keystore"
-KEYSTORE="$KEYSTORE_DIR/packetbastion.jks"
+KEYSTORE="$KEYSTORE_DIR/packetbastion.jks"   # filename kept: see note below
 
 # These match the signingConfig in app/build.gradle.kts.
 STORE_PASS="packetbastion"
