@@ -83,8 +83,8 @@ class GameUiTest {
             }
         }
 
-        compose.onNodeWithText("PACKET BASTION").assertIsDisplayed()
-        compose.onNodeWithText("ASCII DEFENSE").assertIsDisplayed()
+        compose.onNodeWithText("CyOps TD").assertIsDisplayed()
+        compose.onNodeWithText("ASCII CYBER DEFENSE").assertIsDisplayed()
         for (action in listOf(
             "PLAY", "CONTINUE", "AGENTS", "CODEX",
             "STATISTICS", "SETTINGS", "ABOUT", "EXIT"

@@ -13,8 +13,8 @@ android {
         applicationId = "com.packetbastion.asciidefense"
         minSdk = 24
         targetSdk = 35
-        versionCode = 2
-        versionName = "1.1.0"
+        versionCode = 3
+        versionName = "1.2.0"
         // Keep the APK small: the game ships no localized resources yet.
         resourceConfigurations += listOf("en")
     }
@@ -103,7 +103,7 @@ android {
         outputs.all {
             val output = this as com.android.build.gradle.internal.api.BaseVariantOutputImpl
             output.outputFileName = if (buildType.name == "release") {
-                "PacketBastion-v${versionName}.apk"
+                "CyOpsTD-v${versionName}.apk"
             } else {
                 "app-${buildType.name}.apk"
             }

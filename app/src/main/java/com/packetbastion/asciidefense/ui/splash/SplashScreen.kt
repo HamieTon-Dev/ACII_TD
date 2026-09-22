@@ -57,13 +57,13 @@ fun SplashScreen(onFinished: () -> Unit) {
             modifier = Modifier.padding(24.dp)
         ) {
             Text(
-                text = "PACKET BASTION",
+                text = "CyOps TD",
                 style = MaterialTheme.typography.displayMedium,
                 color = Palette.Cyan,
                 textAlign = TextAlign.Center
             )
             Text(
-                text = "ASCII DEFENSE",
+                text = "ASCII CYBER DEFENSE",
                 style = MaterialTheme.typography.titleLarge,
                 color = Palette.Green,
                 textAlign = TextAlign.Center

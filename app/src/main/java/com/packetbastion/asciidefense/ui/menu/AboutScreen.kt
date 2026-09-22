@@ -29,7 +29,7 @@ fun AboutScreen(
 ) {
     ScreenScaffold(
         title = "ABOUT",
-        subtitle = "Packet Bastion: ASCII Defense",
+        subtitle = "CyOps TD \u00B7 ASCII Cyber Defense",
         onBack = onBack,
         backgroundAnimation = backgroundAnimation
     ) {

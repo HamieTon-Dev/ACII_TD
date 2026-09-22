@@ -1,4 +1,4 @@
-# Packet Bastion — Architecture
+# CyOps TD — Architecture
 
 This document explains how the game is put together and, where a decision could
 reasonably have gone another way, why it went the way it did.

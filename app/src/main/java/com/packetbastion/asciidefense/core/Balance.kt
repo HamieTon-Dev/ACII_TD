@@ -3,7 +3,7 @@ package com.packetbastion.asciidefense.core
 import kotlin.math.pow
 
 /**
- * Every number that shapes how Packet Bastion *feels* lives here.
+ * Every number that shapes how CyOps TD *feels* lives here.
  *
  * Nothing in this file depends on Android or Compose, so it can be tweaked and
  * unit-tested freely. See BALANCE.md for a prose explanation of each group.

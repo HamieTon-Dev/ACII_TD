@@ -314,7 +314,7 @@ private data class TutorialContent(
 
 private fun tutorialContentFor(step: Int): TutorialContent? = when (step) {
     0 -> TutorialContent(
-        title = "WELCOME TO PACKET BASTION",
+        title = "WELCOME TO CyOps TD",
         body = "Malicious packets are attacking CORE-SERVER on the right. " +
             "Deploy Cyber Agents beside the lanes to stop them before they arrive.",
         showContinue = true

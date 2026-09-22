@@ -1,6 +1,6 @@
-# Packet Bastion: ASCII Defense — Development Status
+# CyOps TD — Development Status
 
-Last updated: build of version 1.0.0.
+Last updated: build of version 1.2.0.
 
 ---
 
@@ -123,8 +123,8 @@ Last updated: build of version 1.0.0.
 
 ## IN PROGRESS
 
-Nothing. Version 1.1.0 is feature-complete against the original specification
-plus the post-playtest revision below.
+Nothing. Version 1.2.0 is feature-complete against the original specification,
+the post-playtest revision below, and the CyOps TD identity pass.
 
 ---
 

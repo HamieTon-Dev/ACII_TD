@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-  Adaptive icon foreground: a cyan defence shield wrapped around a terminal
-  prompt, with a small red hostile packet inbound from the left.
+  Adaptive icon foreground.
+
+  A defence shield in PCB solder-mask green carrying the terminal face >_<,
+  with a small red hostile packet inbound from the left. Copper trace stubs run
+  into the shield from either side so the whole reads as a board, not just a
+  green shape.
+
+  The >_< strokes are drawn as stroked polylines rather than filled outlines:
+  a filled chevron's perpendicular thickness is much smaller than its
+  horizontal offset, which made the arms render spindly at launcher size.
+
   Everything stays inside the 72dp safe zone (18..90 on the 108 viewport).
 -->
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
@@ -10,33 +19,61 @@
     android:viewportWidth="108"
     android:viewportHeight="108">
 
+    <!-- Copper traces feeding the shield, with their end pads. -->
+    <path
+        android:fillColor="#C9A227"
+        android:pathData="M4,44h18v2.4h-18z M4,68h18v2.4h-18z M86,44h18v2.4h-18z M86,68h18v2.4h-18z" />
+    <path
+        android:fillColor="#E0B94A"
+        android:pathData="M24,45.2m-4,0a4,4 0 1,0 8,0a4,4 0 1,0 -8,0 M24,69.2m-4,0a4,4 0 1,0 8,0a4,4 0 1,0 -8,0 M84,45.2m-4,0a4,4 0 1,0 8,0a4,4 0 1,0 -8,0 M84,69.2m-4,0a4,4 0 1,0 8,0a4,4 0 1,0 -8,0" />
+
     <!-- Outer shield glow. -->
     <path
-        android:fillColor="#1A00E5FF"
+        android:fillColor="#2623C55E"
         android:pathData="M54,20 L84,31 L84,56 C84,73 70,84 54,90 C38,84 24,73 24,56 L24,31 Z" />
 
-    <!-- Shield body. -->
+    <!-- Shield body: dark solder mask, bright PCB-green edge. -->
     <path
-        android:fillColor="#0B1524"
-        android:strokeColor="#00E5FF"
-        android:strokeWidth="3"
+        android:fillColor="#07301E"
+        android:strokeColor="#23C55E"
+        android:strokeWidth="3.2"
         android:pathData="M54,25 L79,34 L79,56 C79,70 68,79 54,85 C40,79 29,70 29,56 L29,34 Z" />
 
-    <!-- Terminal prompt chevron ">" in signal green. -->
+    <!-- ">" of the >_< face. -->
     <path
-        android:fillColor="#00FF9C"
-        android:pathData="M41,44 L39,48 L48,54.5 L39,61 L41,65 L54,55.5 L54,53.5 Z" />
+        android:strokeColor="#6EF7A5"
+        android:strokeWidth="4.2"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:pathData="M37,50.5 L43.5,57 L37,63.5" />
 
-    <!-- Prompt underscore "_". -->
+    <!-- "_" of the >_< face, on the text baseline. -->
     <path
-        android:fillColor="#00FF9C"
-        android:pathData="M56,61h13v4.5h-13z" />
+        android:strokeColor="#6EF7A5"
+        android:strokeWidth="4.2"
+        android:strokeLineCap="round"
+        android:pathData="M49,63 L59,63" />
 
-    <!-- Inbound hostile packet approaching from the left. -->
+    <!-- "<" of the >_< face. -->
+    <path
+        android:strokeColor="#6EF7A5"
+        android:strokeWidth="4.2"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:pathData="M71,50.5 L64.5,57 L71,63.5" />
+
+    <!--
+      Inbound hostile packet: the one thing deliberately not green. It sits
+      against the shield's left edge rather than at the viewport edge, so the
+      circular launcher mask cannot clip it away entirely.
+    -->
     <path
         android:fillColor="#FF3B54"
-        android:pathData="M8,51h9v7h-9z" />
+        android:pathData="M19,53.5h9.5v7h-9.5z" />
     <path
         android:fillColor="#80FF3B54"
-        android:pathData="M0,53h6v3h-6z" />
+        android:pathData="M11,55.5h6.5v3h-6.5z" />
+    <path
+        android:fillColor="#40FF3B54"
+        android:pathData="M4,56h5v2h-5z" />
 </vector>

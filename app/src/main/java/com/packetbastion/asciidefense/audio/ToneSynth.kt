@@ -7,7 +7,7 @@ import kotlin.math.sin
 /**
  * Generates the game's sound effects as raw PCM at build-free runtime cost.
  *
- * Packet Bastion ships no audio files at all. Every effect is a short synthesized
+ * CyOps TD ships no audio files at all. Every effect is a short synthesized
  * blip built here and handed to a SoundPool once at startup. That keeps the APK
  * tiny, sidesteps every audio-licensing question, and gives the game a coherent
  * "terminal beep" character that sampled effects would not.

@@ -1,6 +1,7 @@
-# Packet Bastion: ASCII Defense
+# CyOps TD
 
-A lightweight, offline-first, cyber-themed tower defence game for Android.
+**Cyber Operations Tower Defense.** A lightweight, offline-first, ASCII
+cyber-defence game for Android.
 
 Hostile packets stream down three network lanes toward **CORE-SERVER**. You
 deploy Cyber Agents beside the lanes; they detect and destroy what comes past.
@@ -10,6 +11,8 @@ the run and buys permanent damage upgrades for every match after it. There is no
 final wave — the only question is how far you get.
 
 ```
+        >_<        CyOps TD
+
 PACKET ENTRY
 
 [!] ----- NETWORK LANE 1 ------------>  +================+
@@ -77,6 +80,7 @@ exported to other apps. It grants nothing and cannot be held by anything else.
 
 | | |
 | --- | --- |
+| Package ID | `com.packetbastion.asciidefense` (unchanged — see below) |
 | Minimum Android | 7.0 (API 24) |
 | Target / compile SDK | 35 |
 | Orientation | Landscape |
@@ -84,6 +88,15 @@ exported to other apps. It grants nothing and cannot be held by anything else.
 | Android SDK | Build tools 35, platform 35 |
 | Release APK | 1.15 MB on disk, ~1.0 MB download |
 | Debug APK | 10.7 MB (unminified, with tooling) |
+
+> **On the package ID.** The app is named CyOps TD, but its Android package is
+> still `com.packetbastion.asciidefense` from the project's first release. That
+> is deliberate: the package ID is the app's identity to Android, and changing
+> it makes the new build a *different app*. Installing it would not upgrade the
+> old one, and every player's saved run, unlocked agents, statistics and € BUDGET
+> would be orphaned behind an app they would then have to uninstall by hand.
+> A cosmetic rename is not worth anyone's save file. The same reasoning keeps the
+> DataStore filename and the internal class names as they are.
 
 ---
 
@@ -122,7 +135,7 @@ A release build needs a signing key. Generate a local one:
 ./gradlew assembleRelease
 ```
 
-Output: `app/build/outputs/apk/release/PacketBastion-v1.0.0.apk`
+Output: `app/build/outputs/apk/release/CyOpsTD-v1.0.0.apk`
 
 If no keystore is present the release variant still builds, but unsigned —
 Gradle simply skips the signing config. Replace the generated key with your own

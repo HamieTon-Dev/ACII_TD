@@ -26,7 +26,7 @@ import java.io.IOException
 private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "packet_bastion")
 
 /**
- * All persistence for Packet Bastion.
+ * All persistence for CyOps TD.
  *
  * Preferences DataStore holds the scalar settings and statistics; the in-progress
  * run and the structured stat map are stored as JSON strings inside it. That mix

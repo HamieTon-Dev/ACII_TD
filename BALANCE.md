@@ -1,4 +1,4 @@
-# Packet Bastion — Balance Reference
+# CyOps TD — Balance Reference
 
 Every number that shapes how the game feels lives in
 **`app/src/main/java/com/packetbastion/asciidefense/core/Balance.kt`**, plus the

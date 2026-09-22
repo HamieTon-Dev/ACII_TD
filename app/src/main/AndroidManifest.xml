@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
     <!--
-      Packet Bastion is offline-first. The only permission requested is VIBRATE,
+      CyOps TD is offline-first. The only permission requested is VIBRATE,
       used for optional haptic feedback. There is deliberately no INTERNET
       permission: the game never talks to a network.
     -->

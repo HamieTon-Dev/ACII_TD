@@ -76,12 +76,12 @@ fun MainMenuScreen(
                 verticalArrangement = Arrangement.Center
             ) {
                 Text(
-                    text = "PACKET BASTION",
+                    text = "CyOps TD",
                     style = MaterialTheme.typography.displayMedium,
                     color = Palette.Cyan
                 )
                 Text(
-                    text = "ASCII DEFENSE",
+                    text = "ASCII CYBER DEFENSE",
                     style = MaterialTheme.typography.titleLarge,
                     color = Palette.Green
                 )

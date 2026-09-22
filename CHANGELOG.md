@@ -1,9 +1,45 @@
 # Changelog
 
-All notable changes to Packet Bastion: ASCII Defense.
+All notable changes to CyOps TD.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
+
+---
+
+## [1.2.0]
+
+Identity pass. No gameplay changes.
+
+### Changed
+
+- **Renamed to CyOps TD** — Cyber Operations Tower Defense. The launcher name,
+  splash, main menu, tutorial and About screen all follow. The in-game subtitle
+  is now "ASCII CYBER DEFENSE", keeping the ASCII identity in the name.
+- **New launcher icon.** Same shield silhouette, redrawn in PCB solder-mask
+  green with copper traces and via pads, and the terminal face is now `>_<`
+  rather than `>_`. The inbound red packet stays red — it is the one thing on
+  the icon that should not read as "yours".
+- Release APK is now `CyOpsTD-v<version>.apk`; the Gradle project is `CyOpsTD`.
+
+### Not changed, on purpose
+
+- **The package ID stays `com.packetbastion.asciidefense`.** Changing it would
+  make this a different app to Android: it would install alongside the old one
+  instead of upgrading it, and every existing save, unlock, statistic and €
+  balance would be stranded. A cosmetic rename is not worth a player's save
+  file. The DataStore filename and internal class names stay for the same
+  reason.
+
+### Fixed while redrawing the icon
+
+- The `>` and `<` strokes were first drawn as filled outlines, which rendered
+  spindly: a chevron's perpendicular thickness is far smaller than its
+  horizontal offset. They are stroked polylines now.
+- The red packet previously sat at the very edge of the viewport, so the
+  circular launcher mask clipped it away entirely on round-icon launchers. It
+  now sits against the shield edge, inside the safe zone, where it reads as a
+  packet being stopped.
 
 ---
 

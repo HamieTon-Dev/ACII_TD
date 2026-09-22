@@ -11,7 +11,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 
 /**
- * Packet Bastion is a terminal. It is dark, it is monospace, and it does not
+ * CyOps TD is a terminal. It is dark, it is monospace, and it does not
  * follow the system light/dark setting — a cyan-on-black SOC display in "light
  * mode" would be a different game.
  */

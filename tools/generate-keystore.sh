@@ -35,7 +35,7 @@ keytool -genkeypair \
     -validity 10000 \
     -storepass "$STORE_PASS" \
     -keypass "$KEY_PASS" \
-    -dname "CN=Packet Bastion, OU=Development, O=Packet Bastion, L=, ST=, C=US"
+    -dname "CN=CyOps TD, OU=Development, O=CyOps TD, L=, ST=, C=US"
 
 echo
 echo "Created $KEYSTORE"

@@ -33,5 +33,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "PacketBastion"
+rootProject.name = "CyOpsTD"
 include(":app")

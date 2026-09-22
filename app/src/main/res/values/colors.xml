@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="bastion_background">#070B14</color>
-    <color name="bastion_icon_background">#070B14</color>
+    <!-- PCB substrate, used behind the adaptive launcher icon. -->
+    <color name="bastion_icon_background">#04160E</color>
 </resources>
