@@ -35,7 +35,10 @@ private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(na
  * replaced with a default rather than being allowed to crash the game. A player
  * whose save got mangled by a bad shutdown loses that save, not the app.
  */
-class GameRepository(private val context: Context) {
+class GameRepository(private val store: DataStore<Preferences>) {
+
+    /** Production entry point: the app's single shared preferences store. */
+    constructor(context: Context) : this(context.dataStore)
 
     private val json = Json {
         ignoreUnknownKeys = true
@@ -45,7 +48,7 @@ class GameRepository(private val context: Context) {
 
     // ------------------------------------------------------------------ flows
 
-    val settings: Flow<GameSettings> = context.dataStore.data
+    val settings: Flow<GameSettings> = store.data
         .catch { cause -> emitSafely(cause) }
         .map { prefs ->
             GameSettings(
@@ -61,7 +64,7 @@ class GameRepository(private val context: Context) {
             )
         }
 
-    val stats: Flow<PlayerStats> = context.dataStore.data
+    val stats: Flow<PlayerStats> = store.data
         .catch { cause -> emitSafely(cause) }
         .map { prefs ->
             PlayerStats(
@@ -77,7 +80,7 @@ class GameRepository(private val context: Context) {
             )
         }
 
-    val progress: Flow<PlayerProgress> = context.dataStore.data
+    val progress: Flow<PlayerProgress> = store.data
         .catch { cause -> emitSafely(cause) }
         .map { prefs ->
             val stored = prefs[Keys.UNLOCKED_AGENTS]
@@ -91,7 +94,7 @@ class GameRepository(private val context: Context) {
             )
         }
 
-    val savedRun: Flow<SavedRun?> = context.dataStore.data
+    val savedRun: Flow<SavedRun?> = store.data
         .catch { cause -> emitSafely(cause) }
         .map { prefs -> decodeRun(prefs[Keys.SAVED_RUN]) }
 
@@ -200,7 +203,7 @@ class GameRepository(private val context: Context) {
 
     private suspend fun writeSafely(block: (androidx.datastore.preferences.core.MutablePreferences) -> Unit) {
         try {
-            context.dataStore.edit(block)
+            store.edit(block)
         } catch (error: IOException) {
             // Disk full, permissions, or a corrupt file. The run continues in
             // memory; losing a save is survivable, crashing is not.

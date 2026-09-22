@@ -7,8 +7,10 @@ import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onAllNodesWithText
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
+import android.os.Looper
 import androidx.test.core.app.ApplicationProvider
 import com.packetbastion.asciidefense.model.AgentType
+import org.robolectric.Shadows.shadowOf
 import com.packetbastion.asciidefense.state.GameViewModel
 import com.packetbastion.asciidefense.ui.codex.CodexScreen
 import com.packetbastion.asciidefense.ui.menu.AboutScreen
@@ -42,6 +44,22 @@ class GameUiTest {
 
     @get:Rule
     val compose = createComposeRule()
+
+    /**
+     * A view model on a private, empty store.
+     *
+     * Robolectric shares one process across test classes and a view model's
+     * coroutines outlive the test that created them, so sharing the app's real
+     * store lets one test observe another's writes. An isolated store removes
+     * that race rather than trying to time around it.
+     */
+    private fun freshViewModel(): GameViewModel {
+        val application = ApplicationProvider.getApplicationContext<Application>()
+        val viewModel = GameViewModel(application, TestStores.isolatedRepository())
+        // Let the repository collectors deliver their first values.
+        shadowOf(Looper.getMainLooper()).idle()
+        return viewModel
+    }
 
     // ------------------------------------------------------------- main menu
 
@@ -279,8 +297,7 @@ class GameUiTest {
 
     @Test
     fun `a new game starts a live match with the tutorial armed`() {
-        val application = ApplicationProvider.getApplicationContext<Application>()
-        val viewModel = GameViewModel(application)
+        val viewModel = freshViewModel()
 
         viewModel.startNewGame()
 
@@ -296,8 +313,7 @@ class GameUiTest {
 
     @Test
     fun `the deploy flow places an agent and spends crypto`() {
-        val application = ApplicationProvider.getApplicationContext<Application>()
-        val viewModel = GameViewModel(application)
+        val viewModel = freshViewModel()
         viewModel.startNewGame()
 
         val cryptoBefore = viewModel.hud.crypto
@@ -329,8 +345,7 @@ class GameUiTest {
 
     @Test
     fun `tapping a deployed agent opens its panel and tapping away closes it`() {
-        val application = ApplicationProvider.getApplicationContext<Application>()
-        val viewModel = GameViewModel(application)
+        val viewModel = freshViewModel()
         viewModel.startNewGame()
 
         val node = com.packetbastion.asciidefense.core.WorldGeometry.nodes[10]
@@ -347,8 +362,7 @@ class GameUiTest {
 
     @Test
     fun `deploying without enough crypto reports it instead of silently failing`() {
-        val application = ApplicationProvider.getApplicationContext<Application>()
-        val viewModel = GameViewModel(application)
+        val viewModel = freshViewModel()
         viewModel.startNewGame()
 
         // ROOT ADMIN costs far more than the opening purse.
@@ -365,8 +379,7 @@ class GameUiTest {
 
     @Test
     fun `starting a wave advances the counter and clears the tutorial`() {
-        val application = ApplicationProvider.getApplicationContext<Application>()
-        val viewModel = GameViewModel(application)
+        val viewModel = freshViewModel()
         viewModel.startNewGame()
 
         viewModel.toggleDeployPanel()
@@ -383,8 +396,7 @@ class GameUiTest {
 
     @Test
     fun `speed and pause controls change the simulation clock`() {
-        val application = ApplicationProvider.getApplicationContext<Application>()
-        val viewModel = GameViewModel(application)
+        val viewModel = freshViewModel()
         viewModel.startNewGame()
 
         assertEquals(1f, viewModel.currentSpeed, 0.001f)

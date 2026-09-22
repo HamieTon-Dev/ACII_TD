@@ -37,9 +37,15 @@ import kotlinx.coroutines.launch
  * and progress out of DataStore, and turns engine events into sound, haptics and
  * persistence. Screens stay thin: they read state and call methods here.
  */
-class GameViewModel(application: Application) : AndroidViewModel(application) {
+class GameViewModel @JvmOverloads constructor(
+    application: Application,
+    /**
+     * Injectable so tests can supply an isolated store. Production always uses
+     * the default, which is the app's single shared repository.
+     */
+    private val repository: GameRepository = GameRepository(application)
+) : AndroidViewModel(application) {
 
-    private val repository = GameRepository(application)
     private val audio = AudioEngine(application)
     private val haptics = HapticEngine(application)
 
