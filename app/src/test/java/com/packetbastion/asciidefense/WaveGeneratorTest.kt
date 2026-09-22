@@ -15,7 +15,7 @@ class WaveGeneratorTest {
     private fun generator(seed: Int = 42) = WaveGenerator(Random(seed))
 
     @Test
-    fun `waves one and two are plain packets only`() {
+    fun `waves one and two are SQL injections only`() {
         val gen = generator()
         for (wave in 1..2) {
             val plan = gen.generate(wave)
@@ -23,11 +23,24 @@ class WaveGeneratorTest {
             assertTrue(plan.orders.isNotEmpty())
             plan.orders.forEach { order ->
                 assertEquals(
-                    "wave $wave should only send PACKET",
-                    EnemyType.PACKET, order.type
+                    "wave $wave should only send SQL INJECTION",
+                    EnemyType.SQL_INJECTION, order.type
                 )
             }
         }
+    }
+
+    @Test
+    fun `the retired generic PACKET archetype is gone for good`() {
+        // [P] was removed on purpose: a packet is ordinary traffic, so naming an
+        // enemy after it taught the player something untrue. Every archetype is
+        // now named for the attack it carries.
+        val names = EnemyType.entries.map { it.name }
+        assertFalse("PACKET must not come back", "PACKET" in names)
+        val glyphs = EnemyType.entries.map { it.glyph }
+        assertFalse("the [P] glyph belongs to the IPS agent now", "[P]" in glyphs)
+        assertTrue("[SQL]" in glyphs)
+        assertTrue("[SQL2]" in glyphs)
     }
 
     @Test
@@ -137,5 +150,6 @@ class WaveGeneratorTest {
             lateTypes.size > earlyTypes.size
         )
         assertTrue(EnemyType.ZERO_DAY in lateTypes)
+        assertTrue("blind SQLi belongs to the late game", EnemyType.SQL_BLIND in lateTypes)
     }
 }

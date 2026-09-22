@@ -14,7 +14,9 @@ import org.robolectric.Shadows.shadowOf
 import com.packetbastion.asciidefense.state.GameViewModel
 import com.packetbastion.asciidefense.ui.codex.CodexScreen
 import com.packetbastion.asciidefense.ui.menu.AboutScreen
+import com.packetbastion.asciidefense.core.Balance
 import com.packetbastion.asciidefense.ui.menu.AgentsScreen
+import com.packetbastion.asciidefense.ui.menu.FirmwareScreen
 import com.packetbastion.asciidefense.ui.menu.MainMenuScreen
 import com.packetbastion.asciidefense.ui.settings.SettingsScreen
 import com.packetbastion.asciidefense.ui.stats.StatisticsScreen
@@ -71,9 +73,11 @@ class GameUiTest {
                 MainMenuScreen(
                     hasSavedRun = false,
                     stats = PlayerStats(),
+                    budget = 0L,
+                    firmwareLevel = 0,
                     backgroundAnimation = false,
                     onPlay = { played = true },
-                    onContinue = {}, onAgents = {}, onCodex = {},
+                    onContinue = {}, onAgents = {}, onFirmware = {}, onCodex = {},
                     onStatistics = {}, onSettings = {}, onAbout = {}, onExit = {}
                 )
             }
@@ -100,9 +104,11 @@ class GameUiTest {
                 MainMenuScreen(
                     hasSavedRun = false,
                     stats = PlayerStats(),
+                    budget = 0L,
+                    firmwareLevel = 0,
                     backgroundAnimation = false,
                     onPlay = {}, onContinue = { continued++ }, onAgents = {},
-                    onCodex = {}, onStatistics = {}, onSettings = {},
+                    onFirmware = {}, onCodex = {}, onStatistics = {}, onSettings = {},
                     onAbout = {}, onExit = {}
                 )
             }
@@ -124,8 +130,10 @@ class GameUiTest {
                         totalPacketsBlocked = 4210,
                         totalBossesDefeated = 5
                     ),
+                    budget = 340L,
+                    firmwareLevel = 12,
                     backgroundAnimation = false,
-                    onPlay = {}, onContinue = {}, onAgents = {}, onCodex = {},
+                    onPlay = {}, onContinue = {}, onAgents = {}, onFirmware = {}, onCodex = {},
                     onStatistics = {}, onSettings = {}, onAbout = {}, onExit = {}
                 )
             }
@@ -181,7 +189,10 @@ class GameUiTest {
         compose.onNodeWithText("NETWORK TERMS").performClick()
         compose.waitForIdle()
         compose.onNodeWithText("Plain-language glossary").assertIsDisplayed()
-        compose.onAllNodesWithText("DDoS")[0].assertIsDisplayed()
+        // Assert on entries near the top of the list: the glossary is a
+        // LazyColumn, so anything further down is simply not composed yet.
+        compose.onAllNodesWithText("PACKET")[0].assertIsDisplayed()
+        compose.onAllNodesWithText("SQL INJECTION")[0].assertIsDisplayed()
     }
 
     // ------------------------------------------------------------ statistics
@@ -191,6 +202,9 @@ class GameUiTest {
         compose.setContent {
             PacketBastionTheme {
                 StatisticsScreen(
+                    budget = 42L,
+                    firmwareLevel = 8,
+                    lifetimeBudgetEarned = 260L,
                     stats = PlayerStats(
                         highestWave = 18,
                         totalPacketsBlocked = 2222,
@@ -214,6 +228,79 @@ class GameUiTest {
         compose.onNodeWithText("◇ 9100").assertIsDisplayed()
         // The favourite agent is derived from the deployment tallies.
         compose.onNodeWithText("FIREWALL").assertIsDisplayed()
+    }
+
+    // -------------------------------------------------------------- firmware
+
+    @Test
+    fun `firmware screen shows the budget and what it buys`() {
+        compose.setContent {
+            PacketBastionTheme {
+                FirmwareScreen(
+                    budget = 250L,
+                    firmwareLevel = 12,
+                    lifetimeBudgetEarned = 900L,
+                    backgroundAnimation = false,
+                    onBuy = {},
+                    onBack = {}
+                )
+            }
+        }
+
+        compose.onNodeWithText("CORE FIRMWARE").assertIsDisplayed()
+        compose.onNodeWithText("\u20AC 250").assertIsDisplayed()
+        compose.onNodeWithText("12 / ${Balance.MAX_FIRMWARE_LEVEL}").assertIsDisplayed()
+        // Level 12 is +6% damage.
+        compose.onNodeWithText("\u00D71.06").assertIsDisplayed()
+        compose.onNodeWithText("+1").assertIsDisplayed()
+        compose.onNodeWithText("+10").assertIsDisplayed()
+        compose.onNodeWithText("+100").assertIsDisplayed()
+    }
+
+    @Test
+    fun `firmware purchase buttons are inert with no budget`() {
+        var bought = 0
+        compose.setContent {
+            PacketBastionTheme {
+                FirmwareScreen(
+                    budget = 0L,
+                    firmwareLevel = 0,
+                    lifetimeBudgetEarned = 0L,
+                    backgroundAnimation = false,
+                    onBuy = { bought += it },
+                    onBack = {}
+                )
+            }
+        }
+
+        compose.onNodeWithText("+1").performClick()
+        compose.onNodeWithText("+10").performClick()
+        compose.waitForIdle()
+        assertEquals("nothing may be bought without budget", 0, bought)
+        compose.onNodeWithText("0 levels").assertIsDisplayed()
+    }
+
+    @Test
+    fun `main menu surfaces the budget and firmware so they are findable`() {
+        compose.setContent {
+            PacketBastionTheme {
+                MainMenuScreen(
+                    hasSavedRun = false,
+                    stats = PlayerStats(),
+                    budget = 175L,
+                    firmwareLevel = 40,
+                    backgroundAnimation = false,
+                    onPlay = {}, onContinue = {}, onAgents = {}, onFirmware = {},
+                    onCodex = {}, onStatistics = {}, onSettings = {},
+                    onAbout = {}, onExit = {}
+                )
+            }
+        }
+
+        compose.onNodeWithText("FIRMWARE").assertIsDisplayed()
+        compose.onNodeWithText("\u20AC 175 to spend on permanent damage").assertIsDisplayed()
+        // Level 40 is +20% damage, shown on the status panel.
+        compose.onNodeWithText("LV 40  \u00D71.20 DMG").assertIsDisplayed()
     }
 
     // -------------------------------------------------------------- settings

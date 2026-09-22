@@ -7,6 +7,92 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [1.1.0]
+
+A post-playtest revision. A real session reached wave 9 with 24 integrity and
+every agent still at level 1 — which said the problem was the economy, not the
+enemies. Upgrades cost more than a second agent, so the correct play was always
+"buy another level-1 tower", and the board only ever got wider, never stronger.
+
+### Changed — progression
+
+- **Agents now upgrade from level 1 to level 100**, up from 10. Each level is
+  small, frequent and cheap rather than large, rare and expensive. Damage
+  reaches ×20.8 at level 100; range is the one capped stat, because unbounded
+  range would make node placement stop mattering.
+- **Bulk upgrading.** `+1`, `+10` and `MAX` in the management panel. `MAX`
+  spends down to the last affordable level and stops. A hundred individual taps
+  is not a design.
+- The agent glyph now has eight tiers across the climb:
+  `[F]` → `[F+]` → `[F++]` → `[F#]` → `[F##]` → `[F*]` → `[F**]` → `[F***]`.
+
+### Changed — difficulty
+
+- Enemy health scaling reduced (`0.08` → `0.06` linear, `0.010` → `0.008`
+  power). Wave 9 is ×1.66 instead of ×1.88.
+- Fewer packets per wave, a slower spawn floor, and a lower cap (46 → 42).
+- Elites start at wave 7 instead of 5, and cap at 28% instead of 32%.
+- Speed scaling and its ceiling both lowered; wave-number armour arrives every
+  15 waves instead of 12.
+- Starting crypto 90 → 120: a real opening, not a single tower.
+- Ordinary wave clear bonus raised from `8 + wave×2` to `12 + wave×3`.
+
+### Added — boss payout
+
+- **Boss waves now pay a completion bonus**, starting at ◇20 on wave 5 and
+  stepping up ◇15 per boss cycle before the usual wave multiplier. Boss waves
+  are where a run either stabilises or dies, so they are now also where it gets
+  the capital to rebuild.
+
+### Added — € BUDGET and CORE FIRMWARE
+
+- **A second currency that outlives the run.** € BUDGET is banked at every tenth
+  wave, and the award grows with the *square* of the milestone — wave 50 pays
+  €125 where wave 10 pays €5, so one deep run beats five shallow ones.
+- **A FIRMWARE screen**, reachable from the main menu, spends € on CORE FIRMWARE
+  levels. Each level is +0.5% damage to every agent in every match from then on,
+  nominally to level 10,000 — a cost curve that makes the scaling indefinite in
+  practice.
+- Firmware applies before armour and before the counter table, so it helps a
+  Cryptographer against encryption exactly as much as a Firewall against plain
+  traffic. It never touches enemy health, rewards or wave composition.
+- € is surfaced on the main menu status panel and on STATISTICS, and purchases
+  re-read the balance inside the write transaction so two rapid taps cannot
+  spend the same € twice.
+
+### Changed — threat roster
+
+- **`[P] PACKET` is gone.** A packet is ordinary traffic; naming the baseline
+  enemy after it taught the player something untrue. A test now asserts it
+  cannot come back and that `[P]` belongs solely to the IPS agent.
+- **`[SQL] SQL INJECTION`** is the new baseline threat — the most common real
+  attack there is.
+- **`[SQL2] BLIND SQLi`** added as the tougher, armoured later-game variant,
+  entering the pool around wave 11.
+- Codex gains full entries for both, and the PACKET glossary entry now explains
+  that packets are normal traffic.
+
+### Fixed
+
+- **The between-waves banner covered the top lane's deployment nodes**, so you
+  could not see where to place an agent. It is now one line tall, pinned to the
+  very top, dismissible by tapping, and hides itself after 3.5 seconds. The same
+  information lives permanently in the control bar anyway.
+
+### Testing
+
+- 114 JVM tests, all passing. New `ProgressionTest` covers the hundred-level
+  curve, bulk-upgrade affordability, boss payouts, budget milestones and the
+  firmware multiplier end to end; `GameRepositoryTest` gains six tests for €
+  persistence and firmware purchase, including that a purchase can never drive
+  the balance negative.
+- Three test-harness flaws surfaced and were fixed while validating the
+  rebalance: a maxed 32-agent board takes damage from nothing, integrity-lost
+  saturates at 100, and `nodes.take(n)` had been building boards crammed against
+  lane 1 with lanes 2 and 3 undefended.
+
+---
+
 ## [1.0.0]
 
 First complete, playable release. Every system in the original specification is

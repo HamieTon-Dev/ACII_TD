@@ -29,6 +29,9 @@ import com.packetbastion.asciidefense.ui.theme.Palette
 @Composable
 fun StatisticsScreen(
     stats: PlayerStats,
+    budget: Long,
+    firmwareLevel: Int,
+    lifetimeBudgetEarned: Long,
     backgroundAnimation: Boolean,
     onBack: () -> Unit
 ) {

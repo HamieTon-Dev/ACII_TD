@@ -125,6 +125,9 @@ class GameEngine(
     /** Raised when a wave milestone unlocks a new agent. */
     var onAgentUnlocked: ((AgentType) -> Unit)? = null
 
+    /** Raised when a ten-wave milestone awards € BUDGET. */
+    var onBudgetEarned: ((amount: Int, wave: Int) -> Unit)? = null
+
     /** Supplied by the app so the engine knows which agents the player owns. */
     var isAgentUnlocked: (AgentType) -> Boolean = { it.unlockedByDefault }
 
@@ -135,6 +138,16 @@ class GameEngine(
     private val projectileSystem = ProjectileSystem(this, random)
     private val effectSystem = EffectSystem(this, random)
     private val economySystem = EconomySystem(this)
+
+    /**
+     * Permanent damage multiplier bought with € BUDGET between runs. Supplied by
+     * the app; 1f means no firmware. Applied to every shot every agent fires.
+     */
+    var firmwareDamageMultiplier: Float = 1f
+
+    /** € BUDGET earned during this run, from ten-wave milestones. */
+    var runBudgetEarned: Int = 0
+        private set
 
     /** Reduced-effect mode; gameplay maths is untouched, only cosmetics thin out. */
     var batterySaver: Boolean = false
@@ -173,6 +186,7 @@ class GameEngine(
         runServerDamageTaken = 0
         runAgentsDeployed = 0
         runAgentUpgrades = 0
+        runBudgetEarned = 0
         runDeploymentsByType.clear()
     }
 
@@ -368,16 +382,36 @@ class GameEngine(
     private fun completeWave() {
         phase = RunPhase.PREPARING
         activeBossModifiers = emptyList()
+
         val bonus = Balance.waveClearBonus(currentWave)
-        economySystem.award(bonus)
+        val bossBonus = Balance.bossClearBonus(currentWave)
+        economySystem.award(bonus + bossBonus)
+
+        val payout = if (bossBonus > 0) "+${bonus + bossBonus} (BOSS)" else "+$bonus"
         effectSystem.spawnText(
             WorldGeometry.WIDTH * 0.5f,
             WorldGeometry.HEIGHT * 0.34f,
-            "WAVE $currentWave SECURED  +$bonus",
+            "WAVE $currentWave SECURED  \u25C7$payout",
             COLOR_SUCCESS,
             1.6f,
             scale = 1.5f
         )
+
+        // Every tenth wave banks permanent meta-currency.
+        val budget = Balance.budgetAward(currentWave)
+        if (budget > 0) {
+            runBudgetEarned += budget
+            effectSystem.spawnText(
+                WorldGeometry.WIDTH * 0.5f,
+                WorldGeometry.HEIGHT * 0.44f,
+                "\u20AC$budget BUDGET BANKED",
+                COLOR_BUDGET,
+                2.0f,
+                scale = 1.4f
+            )
+            onBudgetEarned?.invoke(budget, currentWave)
+        }
+
         soundListener?.invoke(GameSound.WAVE_CLEARED)
         onWaveCleared?.invoke(currentWave)
         if (autoStartWaves) autoStartRemaining = Balance.AUTO_START_DELAY
@@ -461,25 +495,59 @@ class GameEngine(
         return PlacementResult.SUCCESS
     }
 
-    fun upgradeAgent(nodeId: Int): Boolean {
-        val agent = agentAt(nodeId) ?: return false
-        if (agent.level >= Balance.MAX_AGENT_LEVEL) return false
-        val cost = agent.type.upgradeCost(agent.level)
-        if (crypto < cost) {
-            soundListener?.invoke(GameSound.INSUFFICIENT)
-            return false
+    fun upgradeAgent(nodeId: Int): Boolean = upgradeAgent(nodeId, times = 1) > 0
+
+    /**
+     * Buy up to [times] levels for the agent on [nodeId], stopping at the level
+     * cap or when the crypto runs out. Returns how many levels were actually
+     * bought.
+     *
+     * Bulk upgrading exists because agents go to level 100: tapping UPGRADE
+     * ninety-nine times is not a design, it is an ordeal.
+     */
+    fun upgradeAgent(nodeId: Int, times: Int): Int {
+        val agent = agentAt(nodeId) ?: return 0
+        if (times <= 0) return 0
+
+        var bought = 0
+        while (bought < times && agent.level < Balance.MAX_AGENT_LEVEL) {
+            val cost = agent.type.upgradeCost(agent.level)
+            if (crypto < cost) break
+            economySystem.spend(cost)
+            agent.level++
+            bought++
         }
-        economySystem.spend(cost)
-        agent.level++
+
+        if (bought == 0) {
+            soundListener?.invoke(GameSound.INSUFFICIENT)
+            return 0
+        }
+
         agent.upgradeFlash = 0.6f
-        runAgentUpgrades++
+        runAgentUpgrades += bought
         soundListener?.invoke(GameSound.AGENT_UPGRADED)
-        hapticListener?.invoke(if (agent.level % 5 == 0) HapticCue.MEDIUM else HapticCue.LIGHT)
+        hapticListener?.invoke(if (bought > 1) HapticCue.MEDIUM else HapticCue.LIGHT)
         effectSystem.spawnEffect(
             EffectKind.UPGRADE, agent.x, agent.y - 42f,
             "LV ${agent.level}", COLOR_CRYPTO, 0.9f
         )
-        return true
+        return bought
+    }
+
+    /** How many levels the current crypto balance could buy on [nodeId]. */
+    fun affordableUpgrades(nodeId: Int): Int {
+        val agent = agentAt(nodeId) ?: return 0
+        var budget = crypto
+        var level = agent.level
+        var count = 0
+        while (level < Balance.MAX_AGENT_LEVEL) {
+            val cost = agent.type.upgradeCost(level)
+            if (budget < cost) break
+            budget -= cost
+            level++
+            count++
+        }
+        return count
     }
 
     fun sellAgent(nodeId: Int): Boolean {
@@ -550,6 +618,7 @@ class GameEngine(
         const val COLOR_HOSTILE = 0xFFFF4D6A.toInt()
         const val COLOR_WARNING = 0xFFFF8A3D.toInt()
         const val COLOR_NEUTRAL = 0xFFD7E3F4.toInt()
+        const val COLOR_BUDGET = 0xFF7CE0FF.toInt()
     }
 }
 

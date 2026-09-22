@@ -38,10 +38,13 @@ import com.packetbastion.asciidefense.ui.theme.Palette
 fun MainMenuScreen(
     hasSavedRun: Boolean,
     stats: PlayerStats,
+    budget: Long,
+    firmwareLevel: Int,
     backgroundAnimation: Boolean,
     onPlay: () -> Unit,
     onContinue: () -> Unit,
     onAgents: () -> Unit,
+    onFirmware: () -> Unit,
     onCodex: () -> Unit,
     onStatistics: () -> Unit,
     onSettings: () -> Unit,
@@ -116,6 +119,20 @@ fun MainMenuScreen(
                         if (hasSavedRun) "PRESENT" else "NONE",
                         valueColor = if (hasSavedRun) Palette.Green else Palette.TextMuted
                     )
+                    AsciiRule(color = Palette.Divider)
+                    StatRow(
+                        "\u20AC BUDGET",
+                        budget.toString(),
+                        valueColor = Palette.Cyan
+                    )
+                    StatRow(
+                        "CORE FIRMWARE",
+                        "LV $firmwareLevel  \u00D7${"%.2f".format(
+                            com.packetbastion.asciidefense.core.Balance
+                                .firmwareDamageMultiplier(firmwareLevel)
+                        )} DMG",
+                        valueColor = Palette.Purple
+                    )
                 }
 
                 Spacer(Modifier.height(12.dp))
@@ -153,6 +170,18 @@ fun MainMenuScreen(
                     subtitle = "Review your cyber agent roster",
                     leadingGlyph = "[@]",
                     onClick = onAgents
+                )
+                Spacer(Modifier.height(10.dp))
+                BastionButton(
+                    text = "FIRMWARE",
+                    subtitle = if (budget > 0) {
+                        "\u20AC $budget to spend on permanent damage"
+                    } else {
+                        "Permanent upgrades \u00B7 earn \u20AC every 10 waves"
+                    },
+                    leadingGlyph = "[\u20AC]",
+                    accent = Palette.Crypto,
+                    onClick = onFirmware
                 )
                 Spacer(Modifier.height(10.dp))
                 BastionButton(

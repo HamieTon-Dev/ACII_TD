@@ -5,8 +5,9 @@ A lightweight, offline-first, cyber-themed tower defence game for Android.
 Hostile packets stream down three network lanes toward **CORE-SERVER**. You
 deploy Cyber Agents beside the lanes; they detect and destroy what comes past.
 Destroyed packets pay out **◇ Crypto**, which buys more agents and upgrades.
-Every fifth wave is a boss. There is no final wave — the only question is how
-far you get.
+Every fifth wave is a boss. Every tenth wave banks **€ Budget**, which outlives
+the run and buys permanent damage upgrades for every match after it. There is no
+final wave — the only question is how far you get.
 
 ```
 PACKET ENTRY
@@ -34,8 +35,9 @@ The security terminology is personality and education, not a prerequisite.
 - No advertisements, in-app purchases or subscriptions.
 - No analytics or telemetry.
 - **No real cryptocurrency.** No blockchain, wallet, mining, NFTs or gambling.
-  `◇ Crypto` is a fictional in-game resource, exactly like gold in any other
-  tower defence game. It has no value and cannot leave the device.
+  `◇ Crypto` and `€ Budget` are fictional in-game resources, exactly like gold
+  in any other tower defence game. Neither has value, neither can be bought, and
+  neither can leave the device.
 
 The only permission the game declares is `VIBRATE`, for optional haptic
 feedback. A build of the release APK reports exactly two permissions:
@@ -218,6 +220,7 @@ Everything is touch. There is no keyboard, mouse or hover requirement.
 | Manage an agent | Tap the deployed agent |
 | Upgrade / sell | Buttons in the management panel |
 | Change targeting | **CHANGE** in the panel (advanced agents only) |
+| Upgrade in bulk | `+1` / `+10` / `MAX` in the management panel |
 | Start the wave | **NEXT WAVE** |
 | Pause | **PAUSE**, or the system back gesture |
 | Game speed | **1X / 2X / 3X** |
@@ -256,12 +259,13 @@ Agents upgrade to level 10. The glyph changes as they climb:
 
 | | Threat | Behaviour |
 | --- | --- | --- |
-| `[P]` | **PACKET** | The baseline. Balanced, unremarkable. |
+| `[SQL]` | **SQL INJECTION** | The baseline threat, and the most common real attack there is. |
 | `[M]` | **MALWARE** | Higher health, hits the server for 2. |
 | `[B]` | **BOT** | Weak, fast, always arrives in groups. |
 | `[T]` | **TROJAN** | Slow and armoured. Blunts small, fast hits. |
 | `[X]` | **EXPLOIT** | Very fast and hits hard. Detection range matters. |
 | `[E]` | **ENCRYPTED** | Most agents lose over half their damage against it. |
+| `[SQL2]` | **BLIND SQLi** | Armoured and patient. Heavy hits beat it; rapid fire wastes itself. |
 | `«««»»»` | **DDoS** | Fastest thing in the game. Trivial alone, swarms. |
 | `[0]` | **ZERO-DAY** | Rare elite. High health, heavy armour, big payout. |
 | `[!!!]` | **BOSS** | Every fifth wave. Large, slow, devastating on arrival. |
@@ -280,6 +284,27 @@ isolation. Wave 5's boss deliberately has none.
 The in-game **CODEX** explains every agent, threat and modifier — plus a short
 plain-language glossary of the real networking and security terms the game
 borrows.
+
+---
+
+## Progression
+
+Two currencies, on two timescales.
+
+**◇ Crypto** lives and dies with the run. Destroyed packets pay it out; clearing
+a wave pays a bonus; clearing a **boss** wave pays a much larger one, starting
+at ◇20 and climbing every boss cycle. You spend it on agents and on their
+hundred upgrade levels.
+
+**€ Budget** outlives the run. It is banked at every tenth wave, and the award
+grows with the *square* of the milestone — wave 50 pays €125 where wave 10 pays
+€5, so one deep run is worth far more than five shallow ones. You spend it in
+**FIRMWARE** on CORE FIRMWARE levels, each worth +0.5% damage to every agent in
+every match from then on. The level cap is nominally 10,000; the cost curve
+makes that effectively indefinite.
+
+Firmware applies before armour and before the counter table, so it helps every
+agent equally. It never touches enemy health, rewards or wave composition.
 
 ---
 

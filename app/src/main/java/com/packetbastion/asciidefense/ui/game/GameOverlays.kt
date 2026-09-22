@@ -362,53 +362,57 @@ fun TransientMessage(message: String, modifier: Modifier = Modifier) {
     }
 }
 
-/** "Next wave" prompt shown during the preparation phase. */
+/**
+ * Between-waves prompt.
+ *
+ * Deliberately one line tall. It floats over the battlefield, and the earlier
+ * three-line version covered the top lane's deployment nodes — which is exactly
+ * where you need to see to place an agent. The same information also lives
+ * permanently in the control bar, so this only has to catch the eye, not
+ * explain itself.
+ */
 @Composable
 fun PreparationBanner(
     wave: Int,
     nextIsBoss: Boolean,
     autoStartIn: Int,
+    onDismiss: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    Column(
+    val accent = if (nextIsBoss) Palette.Red else Palette.Cyan
+
+    Row(
         modifier = modifier
-            .background(Palette.Surface.copy(alpha = 0.92f), RoundedCornerShape(6.dp))
-            .border(
-                1.dp,
-                (if (nextIsBoss) Palette.Red else Palette.Cyan).copy(alpha = 0.7f),
-                RoundedCornerShape(6.dp)
-            )
-            .padding(horizontal = 18.dp, vertical = 10.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
+            .background(Palette.Surface.copy(alpha = 0.92f), RoundedCornerShape(4.dp))
+            .border(1.dp, accent.copy(alpha = 0.7f), RoundedCornerShape(4.dp))
+            .clickable(onClick = onDismiss)
+            .padding(horizontal = 14.dp, vertical = 6.dp),
+        verticalAlignment = Alignment.CenterVertically
     ) {
         Text(
             text = if (wave == 0) "PERIMETER READY" else "WAVE $wave SECURED",
-            style = MaterialTheme.typography.titleMedium,
-            color = Palette.Green
+            style = MaterialTheme.typography.labelMedium,
+            color = Palette.Green,
+            maxLines = 1
         )
-        Spacer(Modifier.height(2.dp))
         Text(
-            text = if (nextIsBoss) {
-                "NEXT: WAVE ${wave + 1} — BOSS PACKET INBOUND"
-            } else {
-                "NEXT: WAVE ${wave + 1}"
-            },
-            style = MaterialTheme.typography.bodyMedium,
-            color = if (nextIsBoss) Palette.Red else Palette.TextSecondary
-        )
-        if (autoStartIn > 0) {
-            Spacer(Modifier.height(2.dp))
-            Text(
-                text = "AUTO START IN $autoStartIn",
-                style = MaterialTheme.typography.labelSmall,
-                color = Palette.Crypto
-            )
-        }
-        Spacer(Modifier.height(4.dp))
-        Text(
-            text = "Deploy and upgrade agents, then start the wave.",
+            text = "  \u00B7  ",
             style = MaterialTheme.typography.labelSmall,
             color = Palette.TextMuted
         )
+        Text(
+            text = if (nextIsBoss) "NEXT: WAVE ${wave + 1} \u2014 BOSS" else "NEXT: WAVE ${wave + 1}",
+            style = MaterialTheme.typography.labelMedium,
+            color = if (nextIsBoss) Palette.Red else Palette.TextSecondary,
+            maxLines = 1
+        )
+        if (autoStartIn > 0) {
+            Text(
+                text = "  \u00B7  AUTO $autoStartIn",
+                style = MaterialTheme.typography.labelSmall,
+                color = Palette.Crypto,
+                maxLines = 1
+            )
+        }
     }
 }

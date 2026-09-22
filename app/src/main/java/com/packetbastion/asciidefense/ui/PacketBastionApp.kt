@@ -15,6 +15,7 @@ import com.packetbastion.asciidefense.ui.codex.CodexScreen
 import com.packetbastion.asciidefense.ui.game.GameScreen
 import com.packetbastion.asciidefense.ui.menu.AboutScreen
 import com.packetbastion.asciidefense.ui.menu.AgentsScreen
+import com.packetbastion.asciidefense.ui.menu.FirmwareScreen
 import com.packetbastion.asciidefense.ui.menu.MainMenuScreen
 import com.packetbastion.asciidefense.ui.settings.SettingsScreen
 import com.packetbastion.asciidefense.ui.splash.SplashScreen
@@ -34,6 +35,7 @@ sealed interface Screen {
     data object MainMenu : Screen
     data object Game : Screen
     data object Agents : Screen
+    data object Firmware : Screen
     data object Codex : Screen
     data object Statistics : Screen
     data object Settings : Screen
@@ -60,6 +62,8 @@ fun PacketBastionApp(
                 MainMenuScreen(
                     hasSavedRun = viewModel.hasSavedRun,
                     stats = viewModel.stats,
+                    budget = viewModel.budget,
+                    firmwareLevel = viewModel.firmwareLevel,
                     backgroundAnimation = viewModel.settings.backgroundAnimation,
                     onPlay = {
                         viewModel.playClick()
@@ -74,6 +78,7 @@ fun PacketBastionApp(
                         )
                     },
                     onAgents = { viewModel.playClick(); screen = Screen.Agents },
+                    onFirmware = { viewModel.playClick(); screen = Screen.Firmware },
                     onCodex = { viewModel.playClick(); screen = Screen.Codex },
                     onStatistics = { viewModel.playClick(); screen = Screen.Statistics },
                     onSettings = {
@@ -105,6 +110,18 @@ fun PacketBastionApp(
                 )
             }
 
+            Screen.Firmware -> {
+                BackHandler { screen = Screen.MainMenu }
+                FirmwareScreen(
+                    budget = viewModel.budget,
+                    firmwareLevel = viewModel.firmwareLevel,
+                    lifetimeBudgetEarned = viewModel.lifetimeBudgetEarned,
+                    backgroundAnimation = viewModel.settings.backgroundAnimation,
+                    onBuy = { levels -> viewModel.buyFirmware(levels) },
+                    onBack = { viewModel.playClick(); screen = Screen.MainMenu }
+                )
+            }
+
             Screen.Codex -> {
                 BackHandler { screen = Screen.MainMenu }
                 CodexScreen(
@@ -117,6 +134,9 @@ fun PacketBastionApp(
                 BackHandler { screen = Screen.MainMenu }
                 StatisticsScreen(
                     stats = viewModel.stats,
+                    budget = viewModel.budget,
+                    firmwareLevel = viewModel.firmwareLevel,
+                    lifetimeBudgetEarned = viewModel.lifetimeBudgetEarned,
                     backgroundAnimation = viewModel.settings.backgroundAnimation,
                     onBack = { viewModel.playClick(); screen = Screen.MainMenu }
                 )

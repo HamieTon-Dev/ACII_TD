@@ -229,9 +229,87 @@ class GameRepositoryTest {
         assertEquals(21, repository.stats.first().highestWave)
     }
 
+    // ------------------------------------------------ budget and firmware
+
+    @Test
+    fun `budget starts empty and accumulates`() = runTest {
+        assertEquals(0L, repository.progress.first().budget)
+
+        repository.awardBudget(5)
+        repository.awardBudget(20)
+
+        val progress = repository.progress.first()
+        assertEquals(25L, progress.budget)
+        assertEquals(25L, progress.lifetimeBudgetEarned)
+        assertEquals(0, progress.firmwareLevel)
+    }
+
+    @Test
+    fun `a non-positive award is ignored`() = runTest {
+        repository.awardBudget(0)
+        repository.awardBudget(-40)
+        assertEquals(0L, repository.progress.first().budget)
+    }
+
+    @Test
+    fun `buying firmware spends budget and raises the level`() = runTest {
+        repository.awardBudget(100)
+
+        val bought = repository.buyFirmware(5)
+
+        assertEquals(5, bought)
+        val progress = repository.progress.first()
+        assertEquals(5, progress.firmwareLevel)
+        // Levels 0..4 cost 3,4,5,6,7 = 25.
+        assertEquals(75L, progress.budget)
+        // Lifetime earned is a record of income, so spending must not reduce it.
+        assertEquals(100L, progress.lifetimeBudgetEarned)
+    }
+
+    @Test
+    fun `firmware purchases stop at the budget rather than going negative`() = runTest {
+        repository.awardBudget(10)
+
+        // Levels 0..2 cost 3+4+5 = 12, so 10 buys only two.
+        val bought = repository.buyFirmware(50)
+
+        assertEquals(2, bought)
+        val progress = repository.progress.first()
+        assertEquals(2, progress.firmwareLevel)
+        assertEquals(3L, progress.budget)
+        assertTrue("budget can never go negative", progress.budget >= 0)
+    }
+
+    @Test
+    fun `buying with no budget changes nothing`() = runTest {
+        val bought = repository.buyFirmware(10)
+        assertEquals(0, bought)
+        val progress = repository.progress.first()
+        assertEquals(0, progress.firmwareLevel)
+        assertEquals(0L, progress.budget)
+    }
+
+    @Test
+    fun `firmware survives as permanent progression`() = runTest {
+        repository.awardBudget(1000)
+        repository.buyFirmware(20)
+
+        // A fresh repository over the same store sees the same firmware: this
+        // is the whole point of the meta-currency.
+        val reloaded = repository.progress.first()
+        assertEquals(20, reloaded.firmwareLevel)
+        assertTrue(
+            "firmware must translate into a real damage multiplier",
+            com.packetbastion.asciidefense.core.Balance
+                .firmwareDamageMultiplier(reloaded.firmwareLevel) > 1f
+        )
+    }
+
     @Test
     fun `reset wipes everything back to defaults`() = runTest {
         repository.saveRun(SavedRun(wave = 30, serverHp = 50, crypto = 900))
+        repository.awardBudget(500)
+        repository.buyFirmware(10)
         repository.unlockAgent(AgentType.ROOT_ADMIN)
         repository.setTutorialCompleted(true)
         repository.updateSettings { it.copy(batterySaver = true, musicVolume = 0f) }
@@ -242,6 +320,8 @@ class GameRepositoryTest {
         assertNull(repository.savedRun.first())
         assertFalse(repository.hasSavedRun())
         assertEquals(0, repository.stats.first().highestWave)
+        assertEquals(0L, repository.progress.first().budget)
+        assertEquals(0, repository.progress.first().firmwareLevel)
         assertFalse(repository.progress.first().tutorialCompleted)
         assertFalse(AgentType.ROOT_ADMIN.name in repository.progress.first().unlockedAgents)
         assertTrue(

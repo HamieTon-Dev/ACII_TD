@@ -109,9 +109,12 @@ fun GameScreen(
         ) {
             Battlefield(viewModel, renderer, options)
 
-            // Preparation prompt, centred above the lanes. The unlock banner
-            // uses the same anchor and takes precedence while it is showing.
+            // Preparation prompt. One line tall, pinned to the very top of the
+            // battlefield, and it hides itself after a few seconds so it cannot
+            // sit on top of the lane-1 deployment nodes while you are trying to
+            // place an agent. Tapping it dismisses it immediately.
             if (hud.phase == RunPhase.PREPARING &&
+                viewModel.prepBannerVisible &&
                 viewModel.gameOverSummary == null &&
                 viewModel.unlockBanner == null
             ) {
@@ -119,9 +122,10 @@ fun GameScreen(
                     wave = hud.wave,
                     nextIsBoss = hud.nextWaveIsBoss,
                     autoStartIn = hud.autoStartRemaining,
+                    onDismiss = viewModel::dismissPrepBanner,
                     modifier = Modifier
                         .align(Alignment.TopCenter)
-                        .padding(top = 12.dp)
+                        .padding(top = 2.dp)
                 )
             }
 
@@ -150,7 +154,8 @@ fun GameScreen(
                 AgentManagementPanel(
                     agent = selectedAgent,
                     crypto = hud.crypto,
-                    onUpgrade = viewModel::upgradeSelectedAgent,
+                    affordableLevels = viewModel.affordableUpgradesForSelection(),
+                    onUpgrade = { times -> viewModel.upgradeSelectedAgent(times) },
                     onSell = viewModel::sellSelectedAgent,
                     onCycleTargeting = viewModel::cycleTargetingMode,
                     onClose = viewModel::closeSelection,

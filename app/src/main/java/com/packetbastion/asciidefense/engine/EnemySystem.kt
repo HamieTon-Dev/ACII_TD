@@ -143,7 +143,7 @@ class EnemySystem(private val engine: GameEngine, private val random: Random) {
             enemy.replicateTimer -= dt
             if (enemy.replicateTimer <= 0f) {
                 enemy.replicateTimer = 5.0f
-                val escortType = if (random.nextBoolean()) EnemyType.BOT else EnemyType.PACKET
+                val escortType = if (random.nextBoolean()) EnemyType.BOT else EnemyType.SQL_INJECTION
                 spawnEscort(escortType, enemy.lane, enemy.progress - 30f, engine.currentWave)
                 engine.effectSystem().spawnText(
                     enemy.x, enemy.y - 52f, "REPLICATING",

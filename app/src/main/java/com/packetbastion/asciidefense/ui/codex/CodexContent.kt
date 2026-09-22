@@ -91,12 +91,13 @@ object CodexContent {
     }
 
     private fun counterAdviceFor(type: EnemyType): String = when (type) {
-        EnemyType.PACKET -> "Anything kills these. Do not over-build for them."
+        EnemyType.SQL_INJECTION -> "Anything kills these. Do not over-build for them."
         EnemyType.MALWARE -> "Sustained damage wins. IPS or a levelled FIREWALL."
         EnemyType.BOT -> "IPS does 35% extra to swarms. Position it where lanes converge."
         EnemyType.TROJAN -> "Armour blunts small hits: bring ANALYST or ROOT ADMIN, not IPS."
         EnemyType.EXPLOIT -> "IDS does 45% extra to fast packets and sees them coming first."
         EnemyType.ENCRYPTED -> "Everything except CRYPTOGRAPHER loses over half its damage here."
+        EnemyType.SQL_BLIND -> "Armoured and patient. Heavy single hits beat it; rapid fire wastes itself."
         EnemyType.DDOS -> "Slow them with SANDBOX, then let IPS clear the backlog."
         EnemyType.ZERO_DAY -> "ANALYST does 80% extra to elites. Armour-ignoring agents help."
         EnemyType.BOSS -> "Focus fire. ANALYST and ROOT ADMIN carry boss waves."
@@ -118,8 +119,31 @@ object CodexContent {
             title = "PACKET",
             subtitle = "The unit of network traffic",
             body = "Data sent across a network is chopped into packets: small " +
-                "chunks with a destination address and a payload. Everything you " +
-                "shoot in this game is a packet with hostile intent."
+                "chunks with a destination address and a payload. A packet is not " +
+                "an attack \u2014 almost all of them are ordinary traffic. What you " +
+                "shoot here are packets carrying a specific attack, which is why " +
+                "each one is named for the attack rather than for the packet."
+        ),
+        Entry(
+            glyph = "[SQL]",
+            title = "SQL INJECTION",
+            subtitle = "The most common web attack there is",
+            body = "Applications ask databases questions in SQL. If user input is " +
+                "pasted straight into that question, an attacker can write their " +
+                "own ending to it \u2014 dumping a user table, bypassing a login, or " +
+                "deleting the lot. The fix is old and well known (parameterised " +
+                "queries), which is what makes it so frustrating that it is still " +
+                "the attack you will meet most often."
+        ),
+        Entry(
+            glyph = "[SQL2]",
+            title = "BLIND SQL INJECTION",
+            subtitle = "Injection with the lights off",
+            body = "Same flaw, no feedback. The application returns no error and " +
+                "no data, so the attacker asks yes-or-no questions and watches " +
+                "what changes \u2014 timing, page length, status codes \u2014 to read the " +
+                "database one bit at a time. Slow, patient, and much harder to " +
+                "spot in a log."
         ),
         Entry(
             glyph = "[|]",

@@ -240,22 +240,33 @@ enum class AgentType(
     val unlockedByDefault: Boolean get() = unlockWave <= 0
 
     fun statsAtLevel(level: Int): AgentStats {
-        val steps = (level - 1).coerceAtLeast(0)
+        val steps = (level - 1).coerceIn(0, Balance.MAX_AGENT_LEVEL - 1)
         return AgentStats(
             damage = baseDamage * (1f + Balance.UPGRADE_DAMAGE_GROWTH * steps),
             fireRate = baseFireRate * (1f + Balance.UPGRADE_RATE_GROWTH * steps),
+            // Range alone is capped: unbounded range would make node placement
+            // stop mattering long before level 100.
             range = baseRange * (1f + Balance.UPGRADE_RANGE_GROWTH * steps)
+                .coerceAtMost(Balance.UPGRADE_RANGE_CAP)
         )
     }
 
     /**
-     * Glyph decoration that makes an upgrade visible on the battlefield:
-     * [F] -> [F+] -> [F++] -> [F#] as the agent climbs its ten levels.
+     * Glyph decoration that makes progress visible on the battlefield across a
+     * hundred levels:
+     *
+     * `[F]` -> `[F+]` -> `[F++]` -> `[F#]` -> `[F##]` -> `[F*]` -> `[F**]` -> `[F***]`
+     *
+     * Eight tiers rather than one per level, so the board stays readable while
+     * still telling you at a glance which agent you have been feeding.
      */
     fun renderedGlyph(level: Int): String = when {
-        level >= 9 -> "[$glyph##]"
-        level >= 7 -> "[$glyph#]"
-        level >= 5 -> "[$glyph++]"
+        level >= 80 -> "[$glyph***]"
+        level >= 60 -> "[$glyph**]"
+        level >= 40 -> "[$glyph*]"
+        level >= 25 -> "[$glyph##]"
+        level >= 15 -> "[$glyph#]"
+        level >= 8 -> "[$glyph++]"
         level >= 3 -> "[$glyph+]"
         else -> "[$glyph]"
     }

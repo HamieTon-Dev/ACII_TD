@@ -751,12 +751,40 @@ class GameEngineTest {
         }
     }
 
-    /** Fill every deployment node with [type], maxed out. */
-    private fun GameEngine.deployMonoDefence(type: AgentType) {
+    /**
+     * Deployment nodes ordered so that consecutive picks land in different rows.
+     *
+     * The flat node list runs row-major, so taking the first N gives a board
+     * crammed against lane 1 with lanes 2 and 3 undefended. Walking
+     * column-major spreads a partial board across every lane, which is what any
+     * player would actually do.
+     */
+    private fun spreadNodes(count: Int): List<com.packetbastion.asciidefense.core.NodePosition> {
+        val ordered = ArrayList<com.packetbastion.asciidefense.core.NodePosition>()
+        for (col in 0 until WorldGeometry.NODE_COLUMNS) {
+            for (row in 0 until WorldGeometry.NODE_ROWS) {
+                ordered += WorldGeometry.nodes[row * WorldGeometry.NODE_COLUMNS + col]
+            }
+        }
+        return ordered.take(count)
+    }
+
+    /**
+     * Fill [nodes] deployment nodes with [type] at [level].
+     *
+     * Defaults describe a board a real player could plausibly field around wave
+     * 45, not a god board: filling all 32 nodes at level 100 takes damage from
+     * nothing at all, which makes it useless for comparing compositions.
+     */
+    private fun GameEngine.deployMonoDefence(
+        type: AgentType,
+        nodes: Int = 10,
+        level: Int = 20
+    ) {
         addCrypto(10_000_000, countAsEarned = false)
-        for (node in WorldGeometry.nodes) {
+        for (node in spreadNodes(nodes)) {
             placeAgent(type, node.id)
-            repeat(Balance.MAX_AGENT_LEVEL - 1) { upgradeAgent(node.id) }
+            upgradeAgent(node.id, level - 1)
         }
     }
 
@@ -766,7 +794,7 @@ class GameEngineTest {
      * for slows, IDS for fast packets, armour-ignoring agents for Trojans, and
      * an ARCHITECT to buff its neighbours.
      */
-    private fun GameEngine.deployMixedDefence() {
+    private fun GameEngine.deployMixedDefence(nodes: Int = 10, level: Int = 20) {
         addCrypto(10_000_000, countAsEarned = false)
         val rotation = listOf(
             AgentType.IPS,
@@ -778,9 +806,9 @@ class GameEngineTest {
             AgentType.ROOT_ADMIN,
             AgentType.NETWORK_ARCHITECT
         )
-        for (node in WorldGeometry.nodes) {
-            placeAgent(rotation[node.id % rotation.size], node.id)
-            repeat(Balance.MAX_AGENT_LEVEL - 1) { upgradeAgent(node.id) }
+        spreadNodes(nodes).forEachIndexed { index, node ->
+            placeAgent(rotation[index % rotation.size], node.id)
+            upgradeAgent(node.id, level - 1)
         }
     }
 
@@ -828,7 +856,7 @@ class GameEngineTest {
         // overwhelmed - not by a wave that never resolves, a pool that
         // overflows, or an economy that runs away.
         val engine = newEngine(seed = 21)
-        engine.deployMixedDefence()
+        engine.deployMixedDefence(nodes = WorldGeometry.nodes.size, level = Balance.MAX_AGENT_LEVEL)
 
         val died = engine.playUntilOverwhelmed(waveCap = 120)
 
@@ -844,7 +872,7 @@ class GameEngineTest {
     fun `difficulty keeps climbing far into the run`() {
         fun peakHealthOnWaveDeep(wave: Int): Float {
             val engine = newEngine(seed = 33)
-            engine.deployMixedDefence()
+            engine.deployMixedDefence(nodes = WorldGeometry.nodes.size, level = Balance.MAX_AGENT_LEVEL)
             engine.fastForwardTo(wave)
             engine.startNextWave()
             var peak = 0f
@@ -869,20 +897,32 @@ class GameEngineTest {
 
     @Test
     fun `mixing agent types beats stacking one, which is the whole point of the counters`() {
-        // If a single maxed agent type went as deep as a considered mix, every
-        // counter in the damage table would be decoration. It should not.
-        val mono = newEngine(seed = 21)
-        mono.deployMonoDefence(AgentType.ANALYST)
-        val monoWave = mono.playUntilOverwhelmed(waveCap = 120)
+        // Two dead ends found while writing this: a fully maxed 32-agent board
+        // takes damage from nothing, and integrity lost saturates at 100 the
+        // moment a board is overwhelmed. Neither separates the compositions.
+        // Survival depth on a board a real run could actually pay for does, and
+        // it is summed across seeds so a single unlucky wave cannot flip it.
+        fun depthAcrossSeeds(mixed: Boolean): Int {
+            var total = 0
+            for (seed in 1..3) {
+                val engine = newEngine(seed = seed)
+                if (mixed) {
+                    engine.deployMixedDefence(nodes = 12, level = 25)
+                } else {
+                    engine.deployMonoDefence(AgentType.ANALYST, nodes = 12, level = 25)
+                }
+                total += engine.playUntilOverwhelmed(waveCap = 90)
+            }
+            return total
+        }
 
-        val mixed = newEngine(seed = 21)
-        mixed.deployMixedDefence()
-        val mixedWave = mixed.playUntilOverwhelmed(waveCap = 120)
+        val mixedDepth = depthAcrossSeeds(mixed = true)
+        val monoDepth = depthAcrossSeeds(mixed = false)
 
         assertTrue(
-            "a considered mix ($mixedWave) should out-last stacking one agent " +
-                "($monoWave)",
-            mixedWave > monoWave
+            "a considered mix should out-last stacking one agent " +
+                "(mixed reached $mixedDepth waves across 3 seeds, mono $monoDepth)",
+            mixedDepth > monoDepth
         )
     }
 

@@ -79,6 +79,31 @@ class GameViewModel @JvmOverloads constructor(
     var tutorialCompleted by mutableStateOf(false)
         private set
 
+    /** Unspent € BUDGET. */
+    var budget by mutableStateOf(0L)
+        private set
+
+    /** Purchased CORE FIRMWARE level. */
+    var firmwareLevel by mutableIntStateOf(0)
+        private set
+
+    var lifetimeBudgetEarned by mutableStateOf(0L)
+        private set
+
+    /** The damage multiplier the current firmware level is worth. */
+    val firmwareMultiplier: Float
+        get() = Balance.firmwareDamageMultiplier(firmwareLevel)
+
+    /**
+     * The between-waves banner sits over the battlefield, so it hides itself
+     * rather than covering the top lane's deployment nodes indefinitely.
+     */
+    var prepBannerVisible by mutableStateOf(false)
+        private set
+
+    private var prepBannerExpiry = 0L
+    private var lastPhaseSeen: RunPhase? = null
+
     var hasSavedRun by mutableStateOf(false)
         private set
 
@@ -151,6 +176,10 @@ class GameViewModel @JvmOverloads constructor(
             }
         }
 
+        engine.onBudgetEarned = { amount, _ ->
+            viewModelScope.launch { repository.awardBudget(amount) }
+        }
+
         engine.onGameOver = { onRunEnded() }
     }
 
@@ -168,6 +197,13 @@ class GameViewModel @JvmOverloads constructor(
             repository.progress.collectLatest { loaded ->
                 unlockedAgents = loaded.unlockedAgents + AgentType.starters.map { it.name }
                 tutorialCompleted = loaded.tutorialCompleted
+                budget = loaded.budget
+                firmwareLevel = loaded.firmwareLevel
+                lifetimeBudgetEarned = loaded.lifetimeBudgetEarned
+                // Firmware bought between runs takes effect immediately.
+                engine.firmwareDamageMultiplier = Balance.firmwareDamageMultiplier(
+                    loaded.firmwareLevel
+                )
             }
         }
         collectJobs += viewModelScope.launch {
@@ -190,6 +226,8 @@ class GameViewModel @JvmOverloads constructor(
         engine.autoStartWaves = settings.autoStartWaves
         engine.batterySaver = settings.batterySaver
         engine.showDamageNumbers = settings.damageNumbers
+        engine.firmwareDamageMultiplier = Balance.firmwareDamageMultiplier(firmwareLevel)
+        lastPhaseSeen = null
         selection = BattlefieldSelection()
         showDeployPanel = false
         paused = false
@@ -237,6 +275,8 @@ class GameViewModel @JvmOverloads constructor(
             engine.autoStartWaves = settings.autoStartWaves
             engine.batterySaver = settings.batterySaver
             engine.showDamageNumbers = settings.damageNumbers
+            engine.firmwareDamageMultiplier = Balance.firmwareDamageMultiplier(firmwareLevel)
+            lastPhaseSeen = null
             selection = BattlefieldSelection()
             showDeployPanel = false
             paused = false
@@ -268,6 +308,24 @@ class GameViewModel @JvmOverloads constructor(
         val now = System.currentTimeMillis()
         if (transientMessage != null && now > transientMessageExpiry) transientMessage = null
         if (unlockBanner != null && now > unlockBannerExpiry) unlockBanner = null
+        if (prepBannerVisible && now > prepBannerExpiry) prepBannerVisible = false
+    }
+
+    /** Show the between-waves banner briefly whenever a wave ends. */
+    private fun trackPhaseForBanner(phase: RunPhase) {
+        if (phase == lastPhaseSeen) return
+        lastPhaseSeen = phase
+        if (phase == RunPhase.PREPARING) {
+            prepBannerVisible = true
+            prepBannerExpiry =
+                System.currentTimeMillis() + (Balance.PREP_BANNER_SECONDS * 1000).toLong()
+        } else {
+            prepBannerVisible = false
+        }
+    }
+
+    fun dismissPrepBanner() {
+        prepBannerVisible = false
     }
 
     private fun pushHud() {
@@ -285,6 +343,7 @@ class GameViewModel @JvmOverloads constructor(
             autoStartRemaining = kotlin.math.ceil(engine.autoStartRemaining).toInt()
         )
         if (snapshot != hud) hud = snapshot
+        trackPhaseForBanner(engine.phase)
     }
 
     fun togglePause() {
@@ -416,12 +475,26 @@ class GameViewModel @JvmOverloads constructor(
         selection = BattlefieldSelection()
     }
 
-    fun upgradeSelectedAgent() {
+    fun upgradeSelectedAgent(times: Int = 1) {
         val nodeId = selection.selectedNodeId ?: return
-        if (!engine.upgradeAgent(nodeId)) {
+        if (engine.upgradeAgent(nodeId, times) == 0) {
             showTransient("INSUFFICIENT CRYPTO")
         }
         pushHud()
+    }
+
+    /** Levels the current balance could buy on the selected agent. */
+    fun affordableUpgradesForSelection(): Int {
+        val nodeId = selection.selectedNodeId ?: return 0
+        return engine.affordableUpgrades(nodeId)
+    }
+
+    /** Spend € BUDGET on permanent firmware. */
+    fun buyFirmware(levels: Int) {
+        viewModelScope.launch {
+            val bought = repository.buyFirmware(levels)
+            if (bought == 0) showTransient("INSUFFICIENT \u20AC BUDGET")
+        }
     }
 
     fun sellSelectedAgent() {
@@ -555,6 +628,7 @@ class GameViewModel @JvmOverloads constructor(
                 serverDamageTaken = engine.runServerDamageTaken,
                 agentsDeployed = engine.runAgentsDeployed,
                 agentUpgrades = engine.runAgentUpgrades,
+                budgetEarned = engine.runBudgetEarned,
                 savedAtMillis = System.currentTimeMillis()
             )
         )
@@ -585,6 +659,10 @@ class GameViewModel @JvmOverloads constructor(
             repository.resetAllProgress()
             unlockedAgents = AgentType.starters.map { it.name }.toSet()
             tutorialCompleted = false
+            budget = 0L
+            firmwareLevel = 0
+            lifetimeBudgetEarned = 0L
+            engine.firmwareDamageMultiplier = 1f
             hasSavedRun = false
             stats = PlayerStats()
             settings = GameSettings()

@@ -41,19 +41,22 @@ enum class EnemyType(
     val glyphScale: Float,
     val codexEntry: String
 ) {
-    PACKET(
-        displayName = "PACKET",
-        glyph = "[P]",
+    SQL_INJECTION(
+        displayName = "SQL INJECTION",
+        // Five characters wide against the usual three, so it renders smaller
+        // to stay the same size on the battlefield as everything around it.
+        glyph = "[SQL]",
         baseHealth = 22f,
         baseSpeed = 62f,
         serverDamage = 1,
         baseArmor = 0f,
         traits = setOf(ThreatTrait.STANDARD),
         rewardTier = RewardTier.NORMAL,
-        glyphScale = 1f,
-        codexEntry = "The baseline hostile transmission. A packet is just a small " +
-            "chunk of data with an address on it — these ones are addressed to " +
-            "your server and they are not friendly."
+        glyphScale = 0.72f,
+        codexEntry = "The most common attack on the internet, and the baseline " +
+            "threat here. An attacker types database commands into a field that " +
+            "expected a name or a password; if the application passes that " +
+            "straight through, the database obeys."
     ),
     MALWARE(
         displayName = "MALWARE",
@@ -124,6 +127,21 @@ enum class EnemyType(
         codexEntry = "Its contents are scrambled, so most defences cannot read what " +
             "they are shooting at and only land partial damage. A CRYPTOGRAPHER " +
             "agent cuts straight through the cipher."
+    ),
+    SQL_BLIND(
+        displayName = "BLIND SQLi",
+        glyph = "[SQL2]",
+        baseHealth = 72f,
+        baseSpeed = 56f,
+        serverDamage = 3,
+        baseArmor = 3f,
+        traits = setOf(ThreatTrait.ARMORED),
+        rewardTier = RewardTier.NORMAL,
+        glyphScale = 0.66f,
+        codexEntry = "A blind injection gets no error messages back, so the " +
+            "attacker infers the answer one true-or-false question at a time. " +
+            "It is slower and far more patient than a normal injection, and it " +
+            "arrives hardened against the obvious defences."
     ),
     DDOS(
         displayName = "DDoS PACKET",

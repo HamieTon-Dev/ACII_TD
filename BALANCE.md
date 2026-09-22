@@ -17,7 +17,7 @@ game.
 | Constant | Value | Notes |
 | --- | --- | --- |
 | `SERVER_MAX_HP` | `100` | CORE-SERVER integrity. |
-| `STARTING_CRYPTO` | `90` | Affords two FIREWALLs, or one IDS plus change. |
+| `STARTING_CRYPTO` | `120` | Affords two FIREWALLs, or a FIREWALL plus an IDS. |
 
 `STARTING_CRYPTO` is the single most sensitive number for first-play feel. Below
 ~40 the player cannot open at all; above ~150 the first three waves are free.
@@ -29,13 +29,13 @@ game.
 ### Health
 
 ```
-healthMultiplier(wave) = 1 + wave × 0.08 + wave^1.25 × 0.010
+healthMultiplier(wave) = 1 + wave × 0.06 + wave^1.25 × 0.008
 ```
 
 | Constant | Value |
 | --- | --- |
-| `HEALTH_LINEAR` | `0.08` |
-| `HEALTH_POWER_COEFF` | `0.010` |
+| `HEALTH_LINEAR` | `0.06` |
+| `HEALTH_POWER_COEFF` | `0.008` |
 | `HEALTH_POWER_EXP` | `1.25` |
 
 A linear + gentle-exponential hybrid. The linear term dominates early (keeping
@@ -44,13 +44,13 @@ mode from going flat).
 
 | Wave | Multiplier |
 | --- | --- |
-| 1 | ×1.09 |
-| 5 | ×1.47 |
-| 10 | ×1.98 |
-| 20 | ×3.02 |
-| 30 | ×4.10 |
-| 50 | ×6.71 |
-| 100 | ×12.2 |
+| 1 | ×1.07 |
+| 5 | ×1.36 |
+| 10 | ×1.74 |
+| 20 | ×2.54 |
+| 30 | ×3.36 |
+| 50 | ×5.06 |
+| 100 | ×8.53 |
 
 `BalanceTest` enforces that wave 10 is **less than 15% harder than wave 9** —
 directly addressing "avoid making wave 10 dramatically harder than wave 9".
@@ -402,3 +402,150 @@ crypto allows — and asserts the run clears the first boss.
 3. For play-feel changes, the simulation tests in `GameEngineTest` can be
    pointed at any wave and run headlessly in well under a second, which makes it
    practical to check a change across fifty waves without touching a device.
+
+---
+
+## 12. Revision: difficulty pass and the meta-loop
+
+A play report — wave 9, 24 integrity left, every agent still at level 1 — made
+the problem concrete. The enemies were not the issue; the economy was. Upgrades
+cost more than a second agent, so the correct play was always "buy another
+level-1 tower", and the board never got stronger, only wider.
+
+### What was softened
+
+| | Before | After |
+| --- | --- | --- |
+| `STARTING_CRYPTO` | 90 | **120** |
+| `HEALTH_LINEAR` | 0.08 | **0.06** |
+| `HEALTH_POWER_COEFF` | 0.010 | **0.008** |
+| `SPEED_PER_WAVE` | 0.006 | **0.005** |
+| `SPEED_MAX_MULTIPLIER` | 1.65 | **1.55** |
+| Enemy count | `6 + w×1.15 + w^1.12×0.30` | **`5 + w×0.95 + w^1.10×0.25`** |
+| `MAX_WAVE_ENEMIES` | 46 | **42** |
+| Spawn interval floor | 0.34 s | **0.38 s** |
+| Elite chance begins | wave 5 | **wave 7** |
+| Elite chance cap | 32% | **28%** |
+| Armour from wave number | every 12 waves | **every 15 waves** |
+| Wave clear bonus | `8 + w×2` | **`12 + w×3`** |
+| Boss health per cycle | +30% | **+26%** |
+
+At wave 9 that is ×1.66 health instead of ×1.88, 16 packets instead of 19, and
+roughly four times the accumulated crypto.
+
+### Boss completion bonus
+
+Boss waves are where a run either stabilises or dies, so they are now also where
+it gets the capital to rebuild.
+
+```
+bossClearBonus(wave) = (20 + (cycle − 1) × 15) × rewardMultiplier(wave)
+```
+
+| Constant | Value |
+| --- | --- |
+| `BOSS_CLEAR_BONUS_BASE` | `20` |
+| `BOSS_CLEAR_BONUS_STEP` | `15` |
+
+| Wave | Cycle | Bonus |
+| --- | ---: | ---: |
+| 5 | 1 | ◇ 23 |
+| 10 | 2 | ◇ 47 |
+| 20 | 4 | ◇ 111 |
+| 50 | 10 | ◇ 419 |
+
+Paid on clearing the wave, on top of the ordinary clear bonus.
+
+### Agents now reach level 100
+
+Ten levels made each upgrade a large, rare, expensive decision. A hundred makes
+them small, frequent and cheap — which is the difference between an economy you
+can engage with and one you can only watch.
+
+| Constant | Before | After |
+| --- | --- | --- |
+| `MAX_AGENT_LEVEL` | 10 | **100** |
+| `UPGRADE_DAMAGE_GROWTH` | 0.26 / level | **0.20 / level** |
+| `UPGRADE_RATE_GROWTH` | 0.055 | **0.018** |
+| `UPGRADE_RANGE_GROWTH` | 0.035 | **0.007**, capped at ×1.75 |
+
+```
+statAtLevel(L) = base × (1 + growth × (L − 1))
+upgradeCost(base, level) = base × (0.30 + 0.14 × level)
+```
+
+For a FIREWALL (base ◇40):
+
+| Level → | Cost | Cumulative |
+| --- | ---: | ---: |
+| 1→2 | ◇ 17 | ◇ 57 |
+| 5→6 | ◇ 40 | ◇ 158 |
+| 10→11 | ◇ 68 | ◇ 413 |
+| 25→26 | ◇ 152 | ◇ 1,700 |
+| 50→51 | ◇ 292 | ◇ 5,700 |
+| 99→100 | ◇ 566 | ◇ 28,900 |
+
+Damage reaches ×20.8 at level 100. **Range is the one capped stat** — unbounded
+range would make node placement stop mattering long before level 100.
+
+Because a hundred taps is an ordeal rather than a design, the management panel
+buys in bulk: `+1`, `+10`, and `MAX` (which spends down to the last affordable
+level and stops).
+
+### € BUDGET and CORE FIRMWARE
+
+The meta-loop. € is banked every tenth wave and **survives the run that earned
+it**; it buys a permanent damage multiplier that applies to every agent in every
+future match.
+
+| Constant | Value |
+| --- | --- |
+| `BUDGET_MILESTONE_INTERVAL` | `10` waves |
+| `BUDGET_BASE` | `5` |
+| `MAX_FIRMWARE_LEVEL` | `10,000` |
+| `FIRMWARE_DAMAGE_PER_LEVEL` | `0.005` (+0.5%) |
+
+```
+budgetAward(wave)   = 5 × (wave/10)²          // quadratic in the milestone
+firmwareCost(level) = 3 + level               // € for the next level
+firmwareDamage(L)   = 1 + L × 0.005
+```
+
+The award is **quadratic in the milestone index**, so depth is what pays:
+
+| Wave | € |
+| --- | ---: |
+| 10 | 5 |
+| 20 | 20 |
+| 30 | 45 |
+| 50 | 125 |
+| 100 | 500 |
+
+A run to wave 50 banks € 275 in total — one deep run is worth more than five
+shallow ones.
+
+| Firmware level | Damage | Cumulative € |
+| ---: | ---: | ---: |
+| 10 | ×1.05 | 75 |
+| 50 | ×1.25 | 1,375 |
+| 100 | ×1.50 | 5,250 |
+| 1,000 | ×6.00 | 502,500 |
+| 10,000 | ×51.0 | ~50,000,000 |
+
+The cap is nominal. At that cost curve nobody reaches it, which is the point of
+calling the scaling indefinite.
+
+Firmware is applied **before** armour and before the counter table, so it helps
+a Cryptographer against encryption exactly as much as it helps a Firewall
+against plain traffic. It does not touch enemy health, rewards or wave
+composition — only the player's side of the fight.
+
+### Threat roster change
+
+`[P] PACKET` was removed. A packet is ordinary traffic, so naming the baseline
+enemy after it taught the player something untrue. The baseline threat is now
+`[SQL] SQL INJECTION` — the most common real attack there is — with
+`[SQL2] BLIND SQLi` as a tougher armoured variant entering around wave 11.
+
+A test asserts `PACKET` cannot come back and that the `[P]` glyph now belongs
+solely to the IPS agent.

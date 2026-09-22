@@ -112,7 +112,7 @@ Last updated: build of version 1.0.0.
   `$$serializer` for the save models is present in the release dex, along with
   an unobfuscated `MainActivity` — the failure mode the ProGuard rules exist to
   prevent.
-- **88 JVM tests, all passing** in about fifteen seconds, in three layers:
+- **114 JVM tests, all passing** in about a minute, in three layers:
   - Simulation tests that drive the real engine headlessly — balance curve
     shape, wave generation, a fully played match, and save serialization.
   - Compose UI tests under Robolectric that compose the real screens and assert
@@ -123,7 +123,29 @@ Last updated: build of version 1.0.0.
 
 ## IN PROGRESS
 
-Nothing. Version 1.0.0 is feature-complete against the original specification.
+Nothing. Version 1.1.0 is feature-complete against the original specification
+plus the post-playtest revision below.
+
+---
+
+## REVISION 1.1.0 — post-playtest changes
+
+Driven by a real play session that reached wave 9 with 24 integrity and every
+agent still at level 1.
+
+| # | Change | Status |
+| --- | --- | --- |
+| 1 | Agents upgrade 1→100, damage scaling every level | **DONE** |
+| 2 | Difficulty softened; boss waves pay a bonus from ◇20, climbing per cycle | **DONE** |
+| 3 | `[P]` renamed to `[SQL]` SQL INJECTION | **DONE** |
+| 4 | `[SQL2]` BLIND SQLi added as the later-game variant | **DONE** |
+| 5 | `[P]` removed entirely; glyph now belongs only to the IPS agent | **DONE** |
+| 6 | € BUDGET every 10 waves, tracked, spent on permanent damage firmware | **DONE** |
+| 7 | Between-waves banner no longer covers the top lane | **DONE** |
+
+Supporting work the list implied: bulk upgrade buttons (`+1`/`+10`/`MAX`),
+because a hundred individual taps is an ordeal; a FIRMWARE screen reachable from
+the main menu; € surfaced on both the main menu and STATISTICS.
 
 ---
 

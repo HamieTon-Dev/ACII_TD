@@ -24,7 +24,7 @@ interface Poolable {
 class Enemy : Poolable {
     override var active = false
 
-    var type: EnemyType = EnemyType.PACKET
+    var type: EnemyType = EnemyType.SQL_INJECTION
     var lane: Int = 0
 
     /** Distance travelled along the lane path, in world units. */

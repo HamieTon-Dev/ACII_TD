@@ -153,28 +153,28 @@ class WaveGenerator(private val random: Random = Random.Default) {
      * types, and from wave 6 the pool opens up gradually.
      */
     private fun archetypePool(wave: Int): List<Pair<EnemyType, Int>> = when {
-        wave <= 2 -> listOf(EnemyType.PACKET to 100)
+        wave <= 2 -> listOf(EnemyType.SQL_INJECTION to 100)
 
         wave == 3 -> listOf(
-            EnemyType.PACKET to 62,
+            EnemyType.SQL_INJECTION to 62,
             EnemyType.BOT to 38
         )
 
         wave == 4 -> listOf(
-            EnemyType.PACKET to 48,
+            EnemyType.SQL_INJECTION to 48,
             EnemyType.BOT to 28,
             EnemyType.MALWARE to 24
         )
 
         wave <= 7 -> listOf(
-            EnemyType.PACKET to 38,
+            EnemyType.SQL_INJECTION to 38,
             EnemyType.BOT to 22,
             EnemyType.MALWARE to 26,
             EnemyType.EXPLOIT to 14
         )
 
         wave <= 10 -> listOf(
-            EnemyType.PACKET to 26,
+            EnemyType.SQL_INJECTION to 26,
             EnemyType.BOT to 18,
             EnemyType.MALWARE to 24,
             EnemyType.EXPLOIT to 16,
@@ -182,43 +182,47 @@ class WaveGenerator(private val random: Random = Random.Default) {
         )
 
         wave <= 14 -> listOf(
-            EnemyType.PACKET to 18,
+            EnemyType.SQL_INJECTION to 18,
             EnemyType.BOT to 14,
-            EnemyType.MALWARE to 20,
+            EnemyType.MALWARE to 18,
             EnemyType.EXPLOIT to 16,
-            EnemyType.TROJAN to 18,
-            EnemyType.ENCRYPTED to 14
+            EnemyType.TROJAN to 16,
+            EnemyType.ENCRYPTED to 12,
+            EnemyType.SQL_BLIND to 6
         )
 
         wave <= 20 -> listOf(
-            EnemyType.PACKET to 12,
+            EnemyType.SQL_INJECTION to 12,
             EnemyType.BOT to 12,
-            EnemyType.MALWARE to 18,
-            EnemyType.EXPLOIT to 16,
-            EnemyType.TROJAN to 18,
-            EnemyType.ENCRYPTED to 16,
+            EnemyType.MALWARE to 16,
+            EnemyType.EXPLOIT to 14,
+            EnemyType.TROJAN to 16,
+            EnemyType.ENCRYPTED to 14,
+            EnemyType.SQL_BLIND to 10,
             EnemyType.DDOS to 8
         )
 
         wave <= 30 -> listOf(
-            EnemyType.PACKET to 8,
+            EnemyType.SQL_INJECTION to 8,
             EnemyType.BOT to 10,
-            EnemyType.MALWARE to 16,
-            EnemyType.EXPLOIT to 16,
-            EnemyType.TROJAN to 18,
-            EnemyType.ENCRYPTED to 16,
-            EnemyType.DDOS to 12,
+            EnemyType.MALWARE to 14,
+            EnemyType.EXPLOIT to 14,
+            EnemyType.TROJAN to 16,
+            EnemyType.ENCRYPTED to 14,
+            EnemyType.SQL_BLIND to 12,
+            EnemyType.DDOS to 10,
             EnemyType.ZERO_DAY to 4
         )
 
         else -> listOf(
-            EnemyType.PACKET to 6,
+            EnemyType.SQL_INJECTION to 6,
             EnemyType.BOT to 8,
-            EnemyType.MALWARE to 14,
-            EnemyType.EXPLOIT to 16,
-            EnemyType.TROJAN to 18,
-            EnemyType.ENCRYPTED to 16,
-            EnemyType.DDOS to 14,
+            EnemyType.MALWARE to 12,
+            EnemyType.EXPLOIT to 14,
+            EnemyType.TROJAN to 16,
+            EnemyType.ENCRYPTED to 14,
+            EnemyType.SQL_BLIND to 14,
+            EnemyType.DDOS to 12,
             EnemyType.ZERO_DAY to 8
         )
     }
@@ -226,7 +230,7 @@ class WaveGenerator(private val random: Random = Random.Default) {
     private fun pickWeighted(pool: List<Pair<EnemyType, Int>>): EnemyType {
         var total = 0
         for ((_, weight) in pool) total += weight
-        if (total <= 0) return EnemyType.PACKET
+        if (total <= 0) return EnemyType.SQL_INJECTION
         var roll = random.nextInt(total)
         for ((type, weight) in pool) {
             roll -= weight

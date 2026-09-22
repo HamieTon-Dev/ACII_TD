@@ -37,7 +37,9 @@ import com.packetbastion.asciidefense.ui.theme.Palette
 fun AgentManagementPanel(
     agent: Agent,
     crypto: Int,
-    onUpgrade: () -> Unit,
+    /** How many levels the current balance could buy right now. */
+    affordableLevels: Int,
+    onUpgrade: (times: Int) -> Unit,
     onSell: () -> Unit,
     onCycleTargeting: () -> Unit,
     onClose: () -> Unit,
@@ -178,21 +180,41 @@ fun AgentManagementPanel(
 
         Spacer(Modifier.height(10.dp))
 
-        Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-            CompactButton(
-                text = if (maxed) "MAX" else "UPGRADE",
-                onClick = onUpgrade,
-                enabled = canAfford,
-                accent = Palette.Green,
-                modifier = Modifier.weight(1f)
-            )
-            CompactButton(
-                text = "SELL\n◇ ${type.sellValue(agent.level)}",
-                onClick = onSell,
-                accent = Palette.Orange,
-                modifier = Modifier.weight(1f)
-            )
+        // Agents climb to level 100, so buying one at a time would be an ordeal.
+        // +10 and MAX buy as many levels as the balance allows, then stop.
+        if (!maxed) {
+            Row(horizontalArrangement = Arrangement.spacedBy(6.dp)) {
+                CompactButton(
+                    text = "+1",
+                    onClick = { onUpgrade(1) },
+                    enabled = canAfford,
+                    accent = Palette.Green,
+                    modifier = Modifier.weight(1f)
+                )
+                CompactButton(
+                    text = "+10",
+                    onClick = { onUpgrade(10) },
+                    enabled = canAfford,
+                    accent = Palette.Green,
+                    modifier = Modifier.weight(1f)
+                )
+                CompactButton(
+                    text = if (affordableLevels > 1) "MAX +$affordableLevels" else "MAX",
+                    onClick = { onUpgrade(Balance.MAX_AGENT_LEVEL) },
+                    enabled = canAfford,
+                    accent = Palette.Crypto,
+                    modifier = Modifier.weight(1.3f)
+                )
+            }
+            Spacer(Modifier.height(8.dp))
         }
+
+        CompactButton(
+            text = "SELL  ◇ ${type.sellValue(agent.level)}",
+            onClick = onSell,
+            accent = Palette.Orange,
+            modifier = Modifier.fillMaxWidth()
+        )
 
         Spacer(Modifier.height(8.dp))
 
@@ -205,16 +227,25 @@ fun AgentManagementPanel(
     }
 }
 
-/** `[####------]` level track so progress toward level 10 is always visible. */
+/**
+ * `[####------] 42/100` level track.
+ *
+ * A hundred cells would not fit, so the bar is always [TRACK_CELLS] wide and
+ * each cell stands for several levels.
+ */
 @Composable
 private fun LevelTrack(level: Int) {
-    val filled = level.coerceIn(0, Balance.MAX_AGENT_LEVEL)
+    val clamped = level.coerceIn(0, Balance.MAX_AGENT_LEVEL)
+    val filled = (clamped * TRACK_CELLS) / Balance.MAX_AGENT_LEVEL
     Text(
-        text = "[" + "#".repeat(filled) + "-".repeat(Balance.MAX_AGENT_LEVEL - filled) + "] $filled/${Balance.MAX_AGENT_LEVEL}",
+        text = "[" + "#".repeat(filled) + "-".repeat(TRACK_CELLS - filled) +
+            "] $clamped/${Balance.MAX_AGENT_LEVEL}",
         style = MaterialTheme.typography.bodyMedium,
         color = Palette.Green
     )
 }
+
+private const val TRACK_CELLS = 20
 
 @Composable
 private fun UpgradeStatRow(label: String, current: String, next: String?) {

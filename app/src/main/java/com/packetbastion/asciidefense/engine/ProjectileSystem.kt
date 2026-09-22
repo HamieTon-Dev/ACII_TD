@@ -38,7 +38,9 @@ class ProjectileSystem(private val engine: GameEngine, private val random: Rando
 
         val critical = engine.combatSystem().rollCritical(agent)
         projectile.critical = critical
+        // Persistent CORE FIRMWARE multiplies every shot, in every match.
         projectile.damage = agent.effectiveDamage() *
+            engine.firmwareDamageMultiplier *
             (if (critical) CombatSystem.HUNTER_CRIT_MULTIPLIER else 1f)
 
         projectile.ignoresArmor = when (agent.type) {

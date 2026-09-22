@@ -9,8 +9,10 @@ import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.emptyPreferences
 import androidx.datastore.preferences.core.floatPreferencesKey
 import androidx.datastore.preferences.core.intPreferencesKey
+import androidx.datastore.preferences.core.longPreferencesKey
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
+import com.packetbastion.asciidefense.core.Balance
 import com.packetbastion.asciidefense.model.AgentType
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
@@ -90,7 +92,10 @@ class GameRepository(private val store: DataStore<Preferences>) {
                 ?: emptySet()
             PlayerProgress(
                 unlockedAgents = stored + AgentType.starters.map { it.name },
-                tutorialCompleted = prefs[Keys.TUTORIAL_DONE] ?: false
+                tutorialCompleted = prefs[Keys.TUTORIAL_DONE] ?: false,
+                budget = prefs[Keys.BUDGET] ?: 0L,
+                firmwareLevel = prefs[Keys.FIRMWARE_LEVEL] ?: 0,
+                lifetimeBudgetEarned = prefs[Keys.LIFETIME_BUDGET] ?: 0L
             )
         }
 
@@ -141,6 +146,41 @@ class GameRepository(private val store: DataStore<Preferences>) {
 
     suspend fun setTutorialCompleted(completed: Boolean) {
         writeSafely { prefs -> prefs[Keys.TUTORIAL_DONE] = completed }
+    }
+
+    /** Bank € BUDGET earned by clearing a ten-wave milestone. */
+    suspend fun awardBudget(amount: Int) {
+        if (amount <= 0) return
+        writeSafely { prefs ->
+            prefs[Keys.BUDGET] = (prefs[Keys.BUDGET] ?: 0L) + amount
+            prefs[Keys.LIFETIME_BUDGET] = (prefs[Keys.LIFETIME_BUDGET] ?: 0L) + amount
+        }
+    }
+
+    /**
+     * Buy [levels] of CORE FIRMWARE, spending € BUDGET. Returns how many were
+     * actually bought — the balance is re-read inside the transaction, so two
+     * rapid taps can never spend the same € twice.
+     */
+    suspend fun buyFirmware(levels: Int): Int {
+        if (levels <= 0) return 0
+        var bought = 0
+        writeSafely { prefs ->
+            var balance = prefs[Keys.BUDGET] ?: 0L
+            var level = prefs[Keys.FIRMWARE_LEVEL] ?: 0
+            while (bought < levels && level < Balance.MAX_FIRMWARE_LEVEL) {
+                val cost = Balance.firmwareCost(level)
+                if (balance < cost) break
+                balance -= cost
+                level++
+                bought++
+            }
+            if (bought > 0) {
+                prefs[Keys.BUDGET] = balance
+                prefs[Keys.FIRMWARE_LEVEL] = level
+            }
+        }
+        return bought
     }
 
     /**
@@ -267,6 +307,9 @@ class GameRepository(private val store: DataStore<Preferences>) {
         val TOTAL_UPGRADES = intPreferencesKey("total_upgrades")
         val DEPLOYMENTS_JSON = stringPreferencesKey("deployments_json")
 
+        val BUDGET = longPreferencesKey("budget")
+        val LIFETIME_BUDGET = longPreferencesKey("lifetime_budget")
+        val FIRMWARE_LEVEL = intPreferencesKey("firmware_level")
         val UNLOCKED_AGENTS = stringPreferencesKey("unlocked_agents")
         val TUTORIAL_DONE = booleanPreferencesKey("tutorial_done")
         val SAVED_RUN = stringPreferencesKey("saved_run")

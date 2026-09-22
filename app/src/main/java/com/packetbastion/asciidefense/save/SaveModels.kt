@@ -30,6 +30,7 @@ data class SavedRun(
     val serverDamageTaken: Int = 0,
     val agentsDeployed: Int = 0,
     val agentUpgrades: Int = 0,
+    val budgetEarned: Int = 0,
     val savedAtMillis: Long = 0L
 ) {
     /** A run is only worth offering as CONTINUE if the server is still standing. */
@@ -57,7 +58,13 @@ data class PlayerStats(
 data class PlayerProgress(
     /** AgentType.name values the player has unlocked permanently. */
     val unlockedAgents: Set<String> = emptySet(),
-    val tutorialCompleted: Boolean = false
+    val tutorialCompleted: Boolean = false,
+    /** Unspent meta-currency, earned at every tenth wave. */
+    val budget: Long = 0,
+    /** Purchased CORE FIRMWARE level; a permanent damage multiplier. */
+    val firmwareLevel: Int = 0,
+    /** Lifetime € earned, for the statistics screen. */
+    val lifetimeBudgetEarned: Long = 0
 )
 
 const val SAVE_VERSION = 1
