@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Themed-icon (Android 13+) monochrome layer: shield + prompt silhouette. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:pathData="M54,25 L79,34 L79,56 C79,70 68,79 54,85 C40,79 29,70 29,56 L29,34 Z M54,31 L35,38 L35,56 C35,66 43,74 54,79 C65,74 73,66 73,56 L73,38 Z" />
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:pathData="M45,44 L43,48 L50,54 L43,60 L45,64 L56,55 L56,53 Z" />
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:pathData="M58,60h9v4h-9z" />
+</vector>

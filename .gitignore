@@ -1,0 +1,23 @@
+# Gradle / build output
+.gradle/
+build/
+app/build/
+captures/
+*.apk
+*.aab
+*.ap_
+*.dex
+
+# Local SDK location and signing material
+local.properties
+keystore/
+*.jks
+*.keystore
+
+# IDE
+.idea/
+*.iml
+.DS_Store
+
+# Logs
+*.log

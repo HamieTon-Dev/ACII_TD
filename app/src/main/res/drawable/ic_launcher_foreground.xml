@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Adaptive icon foreground: a cyan defence shield wrapped around a terminal
+  prompt, with a small red hostile packet inbound from the left.
+  Everything stays inside the 72dp safe zone (18..90 on the 108 viewport).
+-->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- Outer shield glow. -->
+    <path
+        android:fillColor="#1A00E5FF"
+        android:pathData="M54,20 L84,31 L84,56 C84,73 70,84 54,90 C38,84 24,73 24,56 L24,31 Z" />
+
+    <!-- Shield body. -->
+    <path
+        android:fillColor="#0B1524"
+        android:strokeColor="#00E5FF"
+        android:strokeWidth="3"
+        android:pathData="M54,25 L79,34 L79,56 C79,70 68,79 54,85 C40,79 29,70 29,56 L29,34 Z" />
+
+    <!-- Terminal prompt chevron ">" in signal green. -->
+    <path
+        android:fillColor="#00FF9C"
+        android:pathData="M41,44 L39,48 L48,54.5 L39,61 L41,65 L54,55.5 L54,53.5 Z" />
+
+    <!-- Prompt underscore "_". -->
+    <path
+        android:fillColor="#00FF9C"
+        android:pathData="M56,61h13v4.5h-13z" />
+
+    <!-- Inbound hostile packet approaching from the left. -->
+    <path
+        android:fillColor="#FF3B54"
+        android:pathData="M8,51h9v7h-9z" />
+    <path
+        android:fillColor="#80FF3B54"
+        android:pathData="M0,53h6v3h-6z" />
+</vector>
