@@ -157,3 +157,57 @@ Deliberately out of scope for 1.0, and the code is structured to accept them:
 5. **No landscape-left/right lock.** The activity uses `sensorLandscape`, so the
    device may flip between the two landscape orientations. This is intentional
    but means a flip mid-wave briefly re-lays-out the HUD.
+
+---
+
+## VERIFICATION LOG
+
+How each item on the acceptance checklist was actually confirmed. "Simulation"
+means a headless JVM test driving the real engine; "UI" means a Robolectric test
+composing the real screens; "Persistence" means a test against a real DataStore;
+"Device" means the debug or release APK on an emulator.
+
+| Item | How it was verified |
+| --- | --- |
+| App launches | Device — installs and launches, no crash in logcat |
+| Main menu works | Device screenshot + UI test asserting every action fires |
+| New game starts | UI test — `matchActive`, wave 0, tutorial armed |
+| Tutorial works | UI test — advances on each real action; cannot be stranded |
+| Agents can be placed | Simulation + UI test — node occupied, agent present |
+| Crypto decreases after deployment | Simulation + UI test — exact cost deducted |
+| Enemies spawn | Simulation — packets on the field within 2s of wave start |
+| Enemies follow lanes | Simulation — x increases, lane and centre-line y hold |
+| Agents target enemies | Simulation — all four targeting modes pick the right packet |
+| Agents fire | Simulation — projectiles observed, out-of-range agent never fires |
+| Enemies take damage | Simulation — health drops; kills credited to the firing agent |
+| Destroyed enemies award Crypto | Simulation — crypto rises above post-deployment balance |
+| Server takes damage | Simulation — undefended wave reduces integrity |
+| Server can reach zero | Simulation — undefended run ends in GAME_OVER at 0 HP |
+| Game Over screen works | Simulation raises the callback; summary rendered by the overlay |
+| Upgrades work | Simulation — level, damage, rate and range all rise; cost deducted |
+| Upgrade cap | Simulation — stops at level 10, further upgrades refused |
+| Selling works | Simulation — node freed, partial refund, never above investment |
+| Boss wave on Wave 5 | Simulation — BOSS_WARNING phase, then a boss on the field |
+| Boss wave on Wave 10 | Simulation — boss spawns and out-scales the wave 5 boss |
+| Difficulty increases | Simulation — wave 12 out-scales wave 2; wave 30 out-scales wave 10 |
+| Endless mode is sound | Simulation — a maxed board played to its death: every wave resolves, no pool overflows, economy stays bounded |
+| Counters matter | Simulation — a mixed board out-lasts a mono-agent board on the same seed |
+| Advanced agents unlock | Simulation — IPS/ANALYST/SANDBOX fire once each at their milestone |
+| Save works | Persistence + simulation — full round-trip through DataStore and engine |
+| Continue works | Persistence — CONTINUE gating, including that a dead run is never offered |
+| Corrupt saves survive | Persistence + serialization — malformed, older and newer payloads |
+| Settings persist | Persistence — all ten settings, with volume clamping |
+| Statistics persist | Persistence — totals fold across runs; best wave only ever rises |
+| Reset progress | Persistence + UI — confirmation required, then everything cleared |
+| Pause works | UI test — the simulation clock freezes |
+| Game speed works | UI + simulation — 2x covers ~2x the ground, sub-stepped |
+| Sound setting works | Volumes persist and clamp; `AudioEngine` is muted at zero |
+| Landscape UI scales | Fixed 1600x760 world letterboxed by `WorldTransform`; UI tests run at a landscape qualifier |
+
+### Not verified on real hardware
+
+Frame pacing, GPU behaviour, touch latency, haptics and audible sound output all
+need a physical device. The build environment's emulator has no KVM
+acceleration, so it renders in software far too slowly to say anything useful
+about performance — it confirmed installation, launch and rendering, and that is
+all it can honestly be credited with.
