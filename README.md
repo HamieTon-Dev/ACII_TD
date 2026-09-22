@@ -37,7 +37,18 @@ The security terminology is personality and education, not a prerequisite.
   `◇ Crypto` is a fictional in-game resource, exactly like gold in any other
   tower defence game. It has no value and cannot leave the device.
 
-The only permission requested is `VIBRATE`, for optional haptic feedback.
+The only permission the game declares is `VIBRATE`, for optional haptic
+feedback. A build of the release APK reports exactly two permissions:
+
+```
+android.permission.VIBRATE
+com.packetbastion.asciidefense.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+```
+
+The second is not a capability request. AndroidX injects it into every app that
+uses `androidx.core`; it is a signature-level permission scoped to this app's own
+package, used so that broadcast receivers registered at runtime are not
+exported to other apps. It grants nothing and cannot be held by anything else.
 
 ---
 
@@ -69,7 +80,8 @@ The only permission requested is `VIBRATE`, for optional haptic feedback.
 | Orientation | Landscape |
 | JDK to build | 17 or newer |
 | Android SDK | Build tools 35, platform 35 |
-| Installed size | ~10 MB debug, smaller release |
+| Release APK | 1.15 MB on disk, ~1.0 MB download |
+| Debug APK | 10.7 MB (unminified, with tooling) |
 
 ---
 

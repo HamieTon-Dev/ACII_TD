@@ -104,7 +104,14 @@ Last updated: build of version 1.0.0.
 ### Stage 16 — Build and test
 - **Debug APK builds and installs.** 10.5 MB.
 - **Release APK builds**, minified and shrunk, signed with a generated
-  local key.
+  local key. Audited with `apkanalyzer`: 1.15 MB on disk (~1.0 MB download),
+  13,967 methods in a single dex, minSdk 24 / targetSdk 35, and exactly two
+  declared permissions — `VIBRATE` plus AndroidX's own signature-level
+  `DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION`. No `INTERNET`.
+- **R8 verified not to have stripped serialization.** Every generated
+  `$$serializer` for the save models is present in the release dex, along with
+  an unobfuscated `MainActivity` — the failure mode the ProGuard rules exist to
+  prevent.
 - **88 JVM tests, all passing** in about fifteen seconds, in three layers:
   - Simulation tests that drive the real engine headlessly — balance curve
     shape, wave generation, a fully played match, and save serialization.
