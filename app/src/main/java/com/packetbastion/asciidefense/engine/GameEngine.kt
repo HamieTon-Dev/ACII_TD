@@ -401,9 +401,15 @@ class GameEngine(
         }
     }
 
-    internal fun notifyEnemyRemoved(wasKilled: Boolean, enemy: Enemy) {
+    /**
+     * One packet from the current wave plan is off the board, either destroyed
+     * or having reached the server. [enemy] is null when a spawn was skipped
+     * because the pool was full — the wave still has to stop counting it, but
+     * there is no entity to credit.
+     */
+    internal fun notifyEnemyRemoved(wasKilled: Boolean, enemy: Enemy?) {
         enemiesRemaining = (enemiesRemaining - 1).coerceAtLeast(0)
-        if (wasKilled) {
+        if (wasKilled && enemy != null) {
             runPacketsBlocked++
             if (enemy.isBoss) runBossesDefeated++
         }

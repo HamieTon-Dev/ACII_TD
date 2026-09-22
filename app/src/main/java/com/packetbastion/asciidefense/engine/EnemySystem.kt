@@ -18,10 +18,10 @@ class EnemySystem(private val engine: GameEngine, private val random: Random) {
 
     fun spawn(order: SpawnOrder, wave: Int) {
         val enemy = engine.enemies.obtain() ?: run {
-            // Pool exhausted: the packet is dropped from the count so the wave
-            // can still finish instead of hanging forever on a spawn that will
-            // never happen.
-            engine.notifyEnemyRemoved(wasKilled = false, enemy = Enemy())
+            // Pool exhausted. The packet is dropped from the wave count so the
+            // wave can still finish, instead of hanging forever waiting on a
+            // spawn that is never going to happen.
+            engine.notifyEnemyRemoved(wasKilled = false, enemy = null)
             return
         }
         configure(enemy, order.type, order.lane, wave, order.elite, order.boss, order.bossModifiers)
