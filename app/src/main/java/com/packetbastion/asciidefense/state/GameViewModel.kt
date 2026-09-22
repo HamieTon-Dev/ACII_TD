@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -53,8 +54,11 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
     var frameTick by mutableIntStateOf(0)
         private set
 
-    /** Seconds of wall-clock time since the run began; drives idle animations. */
-    var renderTime by mutableStateOf(0f)
+    /**
+     * Seconds of wall-clock time since the run began; drives idle animations.
+     * Backed by a float state so the per-frame write does not box.
+     */
+    var renderTime by mutableFloatStateOf(0f)
         private set
 
     var settings by mutableStateOf(GameSettings())
@@ -197,8 +201,12 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
         audio.startAmbient()
     }
 
-    /** Returns false when there is nothing to continue. */
-    fun continueGame(onFailed: () -> Unit = {}) {
+    /**
+     * Resume a saved run. Loading is asynchronous, so the caller is told whether
+     * it succeeded rather than assuming it did — navigating into an empty match
+     * because the save had vanished would be worse than saying so.
+     */
+    fun continueGame(onLoaded: () -> Unit = {}, onFailed: () -> Unit = {}) {
         viewModelScope.launch {
             val run = repository.savedRun.first()
             if (run == null || !run.isResumable) {
@@ -233,6 +241,7 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
             tutorialStep = -1
             pushHud()
             audio.startAmbient()
+            onLoaded()
         }
     }
 
@@ -295,7 +304,9 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
         if (!engine.canStartNextWave()) return
         engine.startNextWave()
         audio.play(GameSound.UI_CLICK)
-        if (tutorialStep == TUTORIAL_START_WAVE) completeTutorial()
+        // Starting a wave is the last tutorial beat, whatever step the player
+        // happens to be on when they do it.
+        if (tutorialStep >= 0) completeTutorial()
         pushHud()
     }
 
@@ -305,7 +316,12 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
         showDeployPanel = !showDeployPanel
         if (showDeployPanel) {
             selection = selection.copy(selectedNodeId = null)
-            if (tutorialStep == TUTORIAL_TAP_AGENTS) tutorialStep = TUTORIAL_SELECT_FIREWALL
+            // The tutorial advances on the action itself, not on having
+            // acknowledged the previous card. A player who ignores the prompts
+            // and just plays must never be left staring at a stale step.
+            if (tutorialStep in TUTORIAL_INTRO..TUTORIAL_TAP_AGENTS) {
+                tutorialStep = TUTORIAL_SELECT_FIREWALL
+            }
         } else {
             selection = selection.copy(pendingAgent = null)
         }
@@ -320,7 +336,9 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
         selection = selection.copy(pendingAgent = type, selectedNodeId = null)
         showDeployPanel = false
         audio.play(GameSound.UI_CLICK)
-        if (tutorialStep == TUTORIAL_SELECT_FIREWALL && type == AgentType.FIREWALL) {
+        // Any agent advances the step; the tutorial suggests FIREWALL, it does
+        // not insist on it.
+        if (tutorialStep in TUTORIAL_INTRO..TUTORIAL_SELECT_FIREWALL) {
             tutorialStep = TUTORIAL_TAP_NODE
         }
     }
@@ -349,7 +367,9 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
             when (engine.placeAgent(pending, node.id)) {
                 PlacementResult.SUCCESS -> {
                     selection = BattlefieldSelection()
-                    if (tutorialStep == TUTORIAL_TAP_NODE) tutorialStep = TUTORIAL_START_WAVE
+                    if (tutorialStep in TUTORIAL_INTRO..TUTORIAL_TAP_NODE) {
+                        tutorialStep = TUTORIAL_START_WAVE
+                    }
                 }
                 PlacementResult.INSUFFICIENT_CRYPTO -> showTransient("INSUFFICIENT CRYPTO")
                 PlacementResult.NODE_OCCUPIED -> showTransient("NODE OCCUPIED")

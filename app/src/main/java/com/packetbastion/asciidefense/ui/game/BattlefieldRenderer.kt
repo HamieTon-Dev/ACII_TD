@@ -408,14 +408,27 @@ class BattlefieldRenderer {
         }
 
         val pending = selection.pendingAgent ?: return
-        // While placing, preview the range on every free node would be noise, so
-        // the preview follows the agent's base range drawn at each open node only
-        // once the player hovers by tapping. Instead we show the radius legend
-        // centred on the entry side so the player can judge coverage.
-        val node = WorldGeometry.nodes.firstOrNull { engine.agentAt(it.id) == null } ?: return
-        if (selection.selectedNodeId == null) {
-            drawScanRing(canvas, node.x, node.y, pending.baseRange, colGreen, preview = true)
+
+        // While placing, a ring on every free node would be unreadable noise. We
+        // draw one representative preview instead, on the free node nearest the
+        // middle of the battlefield, so the player can judge how much lane a
+        // deployment actually covers before committing to a node.
+        var preview: com.packetbastion.asciidefense.core.NodePosition? = null
+        var bestDistanceSq = Float.MAX_VALUE
+        val centreX = WorldGeometry.SERVER_X * 0.5f
+        val centreY = WorldGeometry.HEIGHT * 0.5f
+        for (node in WorldGeometry.nodes) {
+            if (engine.agentAt(node.id) != null) continue
+            val dx = node.x - centreX
+            val dy = node.y - centreY
+            val distanceSq = dx * dx + dy * dy
+            if (distanceSq < bestDistanceSq) {
+                bestDistanceSq = distanceSq
+                preview = node
+            }
         }
+        val node = preview ?: return
+        drawScanRing(canvas, node.x, node.y, pending.baseRange, colGreen, preview = true)
     }
 
     private fun drawScanRing(

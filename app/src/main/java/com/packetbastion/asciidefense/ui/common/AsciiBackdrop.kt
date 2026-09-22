@@ -32,7 +32,9 @@ fun AsciiBackdrop(
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
     density: Int = 46,
-    tint: androidx.compose.ui.graphics.Color = Palette.GridLine
+    tint: androidx.compose.ui.graphics.Color = Palette.GridLine,
+    /** Seconds between backdrop updates. Decoration is throttled on purpose. */
+    frameIntervalSeconds: Float = 0.05f
 ) {
     val density0 = LocalDensity.current
     var time by remember { mutableFloatStateOf(0f) }
@@ -59,12 +61,20 @@ fun AsciiBackdrop(
         }
     }
 
-    LaunchedEffect(enabled) {
+    LaunchedEffect(enabled, frameIntervalSeconds) {
         if (!enabled) return@LaunchedEffect
-        // ~20 FPS is plenty for a backdrop and leaves the CPU for the game.
+        // Decoration does not deserve 60 FPS. Advancing the clock only every
+        // ~50ms means the Canvas invalidates roughly 20 times a second instead
+        // of 60, which matters because this composable is alive behind every
+        // menu in the game.
+        var lastEmitted = 0f
         while (true) {
             androidx.compose.runtime.withFrameNanos { nanos ->
-                time = (nanos / 1_000_000_000.0).toFloat()
+                val now = (nanos / 1_000_000_000.0).toFloat()
+                if (now - lastEmitted >= frameIntervalSeconds) {
+                    lastEmitted = now
+                    time = now
+                }
             }
         }
     }

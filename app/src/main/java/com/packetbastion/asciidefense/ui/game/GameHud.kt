@@ -141,7 +141,6 @@ private fun HudDivider() {
             .width(1.dp)
             .height(34.dp)
             .background(Palette.Divider)
-            .padding(horizontal = 4.dp)
     )
     Spacer(Modifier.width(10.dp))
 }

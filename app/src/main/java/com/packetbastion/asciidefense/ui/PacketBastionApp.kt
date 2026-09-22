@@ -69,9 +69,9 @@ fun PacketBastionApp(
                     onContinue = {
                         viewModel.playClick()
                         viewModel.continueGame(
+                            onLoaded = { screen = Screen.Game },
                             onFailed = { viewModel.showTransient("NO SAVED SESSION") }
                         )
-                        screen = Screen.Game
                     },
                     onAgents = { viewModel.playClick(); screen = Screen.Agents },
                     onCodex = { viewModel.playClick(); screen = Screen.Codex },

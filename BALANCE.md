@@ -1,0 +1,404 @@
+# Packet Bastion — Balance Reference
+
+Every number that shapes how the game feels lives in
+**`app/src/main/java/com/packetbastion/asciidefense/core/Balance.kt`**, plus the
+per-type stat tables in `model/AgentType.kt` and `model/EnemyType.kt`.
+
+Nothing in `Balance.kt` depends on Android, so it can be edited and unit-tested
+freely. `app/src/test/.../BalanceTest.kt` asserts the *shape* of these curves —
+monotonicity, caps, and the relationship between reward growth and difficulty
+growth — so a careless tweak fails the build rather than quietly ruining the
+game.
+
+---
+
+## 1. Server and starting economy
+
+| Constant | Value | Notes |
+| --- | --- | --- |
+| `SERVER_MAX_HP` | `100` | CORE-SERVER integrity. |
+| `STARTING_CRYPTO` | `90` | Affords two FIREWALLs, or one IDS plus change. |
+
+`STARTING_CRYPTO` is the single most sensitive number for first-play feel. Below
+~40 the player cannot open at all; above ~150 the first three waves are free.
+
+---
+
+## 2. Enemy scaling
+
+### Health
+
+```
+healthMultiplier(wave) = 1 + wave × 0.08 + wave^1.25 × 0.010
+```
+
+| Constant | Value |
+| --- | --- |
+| `HEALTH_LINEAR` | `0.08` |
+| `HEALTH_POWER_COEFF` | `0.010` |
+| `HEALTH_POWER_EXP` | `1.25` |
+
+A linear + gentle-exponential hybrid. The linear term dominates early (keeping
+the opening approachable), the power term takes over late (keeping the endless
+mode from going flat).
+
+| Wave | Multiplier |
+| --- | --- |
+| 1 | ×1.09 |
+| 5 | ×1.47 |
+| 10 | ×1.98 |
+| 20 | ×3.02 |
+| 30 | ×4.10 |
+| 50 | ×6.71 |
+| 100 | ×12.2 |
+
+`BalanceTest` enforces that wave 10 is **less than 15% harder than wave 9** —
+directly addressing "avoid making wave 10 dramatically harder than wave 9".
+
+### Speed
+
+```
+speedMultiplier(wave) = min(1 + wave × 0.006, 1.65)
+```
+
+| Constant | Value |
+| --- | --- |
+| `SPEED_PER_WAVE` | `0.006` |
+| `SPEED_MAX_MULTIPLIER` | `1.65` |
+
+Speed is the most punishing stat to scale — it shrinks the player's reaction
+window and their effective tower coverage at the same time. It creeps slowly and
+hard-caps at wave ~108 so late packets stay readable.
+
+### Armour
+
+```
+waveArmorBonus(wave) = floor(wave / 12) × 0.5
+```
+
+Deliberately coarse. It nudges the player toward heavier-hitting agents in the
+late game without invalidating rapid-fire ones (armour is floored — see §6).
+
+---
+
+## 3. Wave composition
+
+### Enemy count
+
+```
+waveEnemyCount(wave) = min(6 + wave × 1.15 + wave^1.12 × 0.30, 46)
+```
+
+| Constant | Value |
+| --- | --- |
+| `MAX_WAVE_ENEMIES` | `46` |
+
+| Wave | Enemies |
+| --- | --- |
+| 1 | 7 |
+| 5 | 13 |
+| 10 | 20 |
+| 20 | 38 |
+| 30+ | 46 (capped) |
+
+Sub-linear and capped **on purpose**. Difficulty past wave 30 comes entirely
+from health, armour, composition and elite density — not from flooding the
+renderer. A phone draws 40 interesting packets far better than 400 boring ones.
+
+### Spawn interval
+
+```
+spawnInterval(wave) = max(1.05 - wave × 0.012, 0.34)   seconds
+```
+
+Reaches the 0.34 s floor at wave ~59. Without a floor, late waves become one
+indivisible blob with no readable structure.
+
+### Elite chance
+
+```
+eliteChance(wave) = clamp((wave - 4) × 0.014, 0, 0.32)
+```
+
+Zero until wave 5 — the player meets their first boss before their first elite,
+one new idea at a time. Caps at 32%, reached around wave 27.
+
+An elite variant of an ordinary archetype gets:
+
+| Stat | Change |
+| --- | --- |
+| Health | ×2.1 |
+| Armour | +1.5 |
+| Server damage | +2 |
+| Speed | ×0.92 |
+
+### Archetype pools
+
+| Waves | Pool (weight) |
+| --- | --- |
+| 1–2 | PACKET 100 |
+| 3 | PACKET 62, BOT 38 |
+| 4 | PACKET 48, BOT 28, MALWARE 24 |
+| 5–7 | PACKET 38, BOT 22, MALWARE 26, EXPLOIT 14 |
+| 8–10 | + TROJAN 16 |
+| 11–14 | + ENCRYPTED 14 |
+| 15–20 | + DDoS 8 |
+| 21–30 | + ZERO-DAY 4 |
+| 31+ | Reweighted toward TROJAN/EXPLOIT/ENCRYPTED/DDoS; ZERO-DAY 8 |
+
+Swarm archetypes (BOT, DDoS) spawn as a burst in one lane, sized 3 → 7 by wave
+band.
+
+---
+
+## 4. Bosses
+
+| Constant | Value |
+| --- | --- |
+| `BOSS_WAVE_INTERVAL` | `5` |
+| `BOSS_WARNING_SECONDS` | `2.6` |
+
+```
+bossHealthMultiplier(wave) = healthMultiplier(wave) × (1 + (cycle - 1) × 0.30)
+bossCycle(wave)            = wave / 5
+```
+
+Bosses scale on their own steeper curve on top of the base curve.
+
+| Wave | Cycle | Boss HP (base 520) |
+| --- | --- | --- |
+| 5 | 1 | ~764 |
+| 10 | 2 | ~1 339 |
+| 20 | 4 | ~3 141 |
+| 50 | 10 | ~13 434 |
+
+### Boss count
+
+| Cycle | Bosses |
+| --- | --- |
+| 1–3 (waves 5–15) | 1 |
+| 4–8 (waves 20–40) | 2 |
+| 9+ (wave 45+) | 3 |
+
+Multiple bosses enter in **distinct lanes**, raising pressure without inflating
+entity count.
+
+### Modifier introduction
+
+| Cycle | Wave | Count | Pool |
+| --- | --- | --- | --- |
+| 1 | 5 | **0** | — (a clean first boss, on purpose) |
+| 2 | 10 | 1 | ARMOR PLATING |
+| 3 | 15 | 1 | + SPEED BURST |
+| 4 | 20 | 2 | + FIREWALL RESISTANCE |
+| 5 | 25 | 2 | + REGENERATION |
+| 6 | 30 | 2 | + ENCRYPTION SHIELD |
+| 7 | 35 | 3 | + PACKET REPLICATION |
+| 8+ | 40+ | 3–4 | All, including AGENT DISRUPTION |
+
+Modifier behaviour:
+
+| Modifier | Effect |
+| --- | --- |
+| ARMOR PLATING | Armour +8 + wave × 0.25 |
+| SPEED BURST | ×2.1 speed for 1.4 s, every 7.5 s |
+| FIREWALL RESISTANCE | Firewall damage ×0.65 |
+| REGENERATION | Heals 1.2% of max HP per second |
+| ENCRYPTION SHIELD | Counts as encrypted (×0.45 from non-Cryptographers) |
+| PACKET REPLICATION | Spawns a BOT or PACKET escort every 5 s |
+| AGENT DISRUPTION | Halves fire rate of agents within 260 units for 3 s, every 8 s |
+
+---
+
+## 5. Economy
+
+### Kill rewards
+
+| Constant | Value |
+| --- | --- |
+| `REWARD_NORMAL` | `1` |
+| `REWARD_ELITE_MIN` / `MAX` | `2` / `3` |
+| `REWARD_BOSS_MIN` | `5` |
+
+```
+reward = baseTier × rewardMultiplier(wave)
+rewardMultiplier(wave) = 1 + wave × 0.030
+bossReward = (5 + cycle × 3) × rewardMultiplier(wave)
+```
+
+Rewards grow at **3% per wave** while enemy health grows far faster. This is the
+central economic tension, and `BalanceTest` asserts it directly:
+
+| | Wave 1 → 50 growth |
+| --- | --- |
+| Enemy health | ×6.2 |
+| Reward | ×2.4 |
+
+If those ever cross, the late game becomes an unlimited-money sandbox and every
+upgrade decision stops mattering.
+
+### Other flows
+
+| Flow | Formula |
+| --- | --- |
+| Wave clear bonus | `8 + wave × 2` |
+| Sell refund | 70% of total invested (`SELL_REFUND_RATIO`) |
+
+Selling always returns less than was invested, at every level — so repositioning
+has a real cost and cannot be used as a free undo.
+
+---
+
+## 6. Agents
+
+### Deployment costs and unlocks
+
+| Agent | Cost | DMG | Rate/s | Range | Unlock |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| FIREWALL | 40 | 9.0 | 1.15 | 168 | start |
+| IDS | 55 | 7.0 | 1.00 | 268 | start |
+| IPS | 70 | 4.4 | 3.30 | 158 | wave 3 |
+| SANDBOX | 80 | 3.0 | 0.85 | 186 | wave 8 |
+| ANALYST | 95 | 30.0 | 0.62 | 200 | wave 5 |
+| CRYPTOGRAPHER | 105 | 14.0 | 1.05 | 205 | wave 10 |
+| ZERO-DAY HUNTER | 150 | 26.0 | 1.15 | 225 | wave 15 |
+| AI SENTINEL | 185 | 15.0 | 1.50 | 235 | wave 20 |
+| NETWORK ARCHITECT | 210 | 8.0 | 0.80 | 230 | wave 50 |
+| QUANTUM DEFENDER | 240 | 34.0 | 1.05 | 245 | wave 30 |
+| ROOT ADMIN | 320 | 78.0 | 0.95 | 255 | wave 40 |
+
+Raw DPS is intentionally *not* monotonic with cost. IPS has the worst
+single-hit damage in the game and is still one of the best purchases in the
+right situation. Cost buys a *role*, not a number.
+
+### Upgrade curve
+
+| Constant | Value |
+| --- | --- |
+| `MAX_AGENT_LEVEL` | `10` |
+| `UPGRADE_DAMAGE_GROWTH` | `0.26` per level |
+| `UPGRADE_RATE_GROWTH` | `0.055` per level |
+| `UPGRADE_RANGE_GROWTH` | `0.035` per level |
+
+```
+statAtLevel(L) = base × (1 + growth × (L - 1))
+```
+
+At level 10: **×3.34 damage**, ×1.50 rate, ×1.32 range — a total DPS multiplier
+of roughly ×5.
+
+Damage scales hardest because it is the stat that keeps pace with enemy health.
+Range scales least: it is the strongest stat in a tower defence game and would
+trivialise node placement if it grew freely.
+
+### Upgrade cost
+
+```
+upgradeCost(baseCost, level) = baseCost × (0.55 + 0.30 × level) × (1 + level × 0.08)
+```
+
+For a FIREWALL (base 40):
+
+| Level → | Cost | Cumulative |
+| --- | ---: | ---: |
+| 1→2 | 36 | 76 |
+| 2→3 | 66 | 142 |
+| 3→4 | 102 | 244 |
+| 5→6 | 191 | 566 |
+| 9→10 | 384 | 1 671 |
+
+Quadratic-ish, so spreading levels across several agents stays competitive with
+maxing one. There is no single dominant strategy.
+
+---
+
+## 7. Damage counter-play
+
+All in `ProjectileSystem.damageMultiplier()`.
+
+| Constant | Value | Meaning |
+| --- | ---: | --- |
+| `CRYPTOGRAPHER_VS_ENCRYPTED` | `3.00` | The hardest counter in the game |
+| `ENCRYPTED_RESISTANCE` | `0.45` | Everything else vs encrypted |
+| `ANALYST_VS_ELITE` | `1.80` | vs elites and bosses |
+| `IDS_VS_FAST` | `1.45` | vs archetypes at ≥100 base speed |
+| `IPS_VS_SWARM` | `1.35` | vs BOT and DDoS |
+| `FIREWALL_RESISTED` | `0.65` | Firewall vs FIREWALL RESISTANCE boss |
+| `MIN_ARMOR_PENETRATION` | `0.18` | Armour floor |
+
+The armour floor matters: `damage = max(damage - armour, raw × 0.18)`. Without
+it, an IPS (4.4 per hit) against a wave-40 Trojan (armour ~11) would deal
+literally nothing. With it, IPS is *weakened* against armour but never bricked.
+A wrong pick should be punished, not invalidated.
+
+### Ability constants
+
+| Ability | Constant | Value |
+| --- | --- | --- |
+| Sandbox slow | duration | 2.2 s |
+| Sandbox slow | factor | 0.60 at L1 → 0.42 at L10 |
+| Hunter crit | chance / multiplier | 25% / ×3 |
+| Sentinel multi-lock | targets | 3 |
+| Quantum chain | bounces / ratio / radius | 2 / 55% / 130 units |
+| Architect aura | damage / rate | +30% / +20% (does not stack) |
+
+---
+
+## 8. Timing and feel
+
+| Constant | Value |
+| --- | --- |
+| `PROJECTILE_SPEED` | 980 world units/s |
+| `DAMAGE_NUMBER_LIFETIME` | 0.75 s |
+| `DEATH_EFFECT_LIFETIME` | 0.45 s |
+| `BOSS_DEATH_EFFECT_LIFETIME` | 1.10 s |
+| `AUTO_START_DELAY` | 4.0 s |
+| `GAME_SPEEDS` | 1×, 2×, 3× |
+| `MAX_FRAME_DELTA` | 0.05 s |
+
+Projectile speed is fast enough that shots read as instant contributions but
+slow enough to be visible — the whole point of the ASCII trails.
+
+---
+
+## 9. Pool caps
+
+| Pool | Capacity |
+| --- | --- |
+| Enemies | 72 |
+| Agents | 32 (one per deployment node) |
+| Projectiles | 140 |
+| Effects | 110 |
+
+These are hard ceilings on worst-case frame cost. When a pool is exhausted the
+spawn is skipped rather than the pool grown.
+
+---
+
+## 10. First-play target
+
+The stated design goal is that a new player realistically survives past wave 5.
+`GameEngineTest.a well defended run survives past wave five` plays that opening
+automatically — two FIREWALLs, then reinvesting into nodes and upgrades as
+crypto allows — and asserts the run clears the first boss.
+
+| Wave | Intended experience |
+| --- | --- |
+| 1 | Easy. Learn the loop. 7 plain packets. |
+| 2 | Slightly larger, same enemy. |
+| 3 | First swarm (BOT). IPS unlocks. |
+| 4 | Mixed types. MALWARE appears. |
+| 5 | **First boss**, no modifiers. ANALYST unlocks. |
+| 6–9 | EXPLOIT, then TROJAN. First elites. |
+| 10 | **Second boss**, first modifier. CRYPTOGRAPHER unlocks. |
+
+---
+
+## 11. Tuning workflow
+
+1. Edit `Balance.kt` (or a stat in `AgentType` / `EnemyType`).
+2. `./gradlew test` — the curve-shape assertions catch structural mistakes
+   immediately.
+3. For play-feel changes, the simulation tests in `GameEngineTest` can be
+   pointed at any wave and run headlessly in well under a second, which makes it
+   practical to check a change across fifty waves without touching a device.

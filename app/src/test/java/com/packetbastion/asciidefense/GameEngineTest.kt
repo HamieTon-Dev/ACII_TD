@@ -340,6 +340,27 @@ class GameEngineTest {
     }
 
     @Test
+    fun `kills are credited to the agent that lands the finishing hit`() {
+        val engine = newEngine()
+        engine.addCrypto(1000, countAsEarned = false)
+        engine.placeAgent(AgentType.IPS, 8)
+        engine.startNextWave()
+
+        var elapsed = 0f
+        while (elapsed < 60f && engine.agentAt(8)!!.lifetimeKills == 0) {
+            engine.update(0.02f, 1f)
+            elapsed += 0.02f
+            if (engine.phase == RunPhase.GAME_OVER) break
+        }
+
+        assertTrue(
+            "the agent doing the shooting should be credited with the kill",
+            engine.agentAt(8)!!.lifetimeKills > 0
+        )
+        assertTrue(engine.runPacketsBlocked > 0)
+    }
+
+    @Test
     fun `an agent out of range never fires`() {
         val engine = newEngine()
         // Node row 0 column 0 is far from lane 3; force everything into lane 3

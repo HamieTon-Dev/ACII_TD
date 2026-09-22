@@ -67,6 +67,30 @@ android {
         buildConfig = true
     }
 
+    testOptions {
+        unitTests {
+            // Robolectric drives the real Compose UI on the JVM, which needs the
+            // merged Android resources on the unit-test classpath.
+            isIncludeAndroidResources = true
+            isReturnDefaultValues = true
+
+            all {
+                it.systemProperty("robolectric.logging.enabled", "false")
+                // Robolectric downloads its android-all runtime itself rather
+                // than through Gradle's repositories, so it needs the mirror
+                // pointed out to it separately (see settings.gradle.kts).
+                it.systemProperty(
+                    "robolectric.dependency.repo.url",
+                    "https://maven-central.storage-download.googleapis.com/maven2"
+                )
+                it.systemProperty("robolectric.dependency.repo.id", "central-mirror")
+                // Each fork re-resolves the runtime; one fork keeps that to a
+                // single download and avoids racing on the shared cache.
+                it.maxParallelForks = 1
+            }
+        }
+    }
+
     packaging {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
@@ -102,5 +126,11 @@ dependencies {
     implementation(libs.androidx.datastore.preferences)
     implementation(libs.kotlinx.serialization.json)
     debugImplementation(libs.androidx.compose.ui.tooling)
+
     testImplementation(libs.junit)
+    testImplementation(libs.robolectric)
+    testImplementation(libs.kotlinx.coroutines.test)
+    testImplementation(platform(libs.androidx.compose.bom))
+    testImplementation(libs.androidx.compose.ui.test.junit4)
+    debugImplementation(libs.androidx.compose.ui.test.manifest)
 }

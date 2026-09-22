@@ -11,8 +11,18 @@ import com.packetbastion.asciidefense.core.WorldGeometry
  * `active == false` means "this instance is parked in the pool, ignore it".
  */
 
-class Enemy {
-    var active = false
+/**
+ * Common contract for anything that lives in an [ObjectPool]. Having this means
+ * the pool never has to type-check its contents, which matters because
+ * `obtain()` and `activeCount()` run in the simulation's hot path.
+ */
+interface Poolable {
+    var active: Boolean
+    fun reset()
+}
+
+class Enemy : Poolable {
+    override var active = false
 
     var type: EnemyType = EnemyType.PACKET
     var lane: Int = 0
@@ -82,7 +92,7 @@ class Enemy {
         return if (length <= 0f) 0f else (progress / length).coerceIn(0f, 1f)
     }
 
-    fun reset() {
+    override fun reset() {
         active = false
         progress = 0f
         slowRemaining = 0f
@@ -99,8 +109,8 @@ class Enemy {
     }
 }
 
-class Agent {
-    var active = false
+class Agent : Poolable {
+    override var active = false
 
     var type: AgentType = AgentType.FIREWALL
     var nodeId: Int = 0
@@ -138,7 +148,7 @@ class Agent {
 
     fun range(): Float = stats().range
 
-    fun reset() {
+    override fun reset() {
         active = false
         level = 1
         cooldownRemaining = 0f
@@ -153,8 +163,8 @@ class Agent {
     }
 }
 
-class Projectile {
-    var active = false
+class Projectile : Poolable {
+    override var active = false
 
     var x: Float = 0f
     var y: Float = 0f
@@ -184,7 +194,7 @@ class Projectile {
     var angle: Float = 0f
     var travelled: Float = 0f
 
-    fun reset() {
+    override fun reset() {
         active = false
         targetEnemy = null
         chainsLeft = 0
@@ -199,8 +209,8 @@ class Projectile {
 /** Short-lived ASCII flourishes: hit sparks, death glyphs, floating numbers. */
 enum class EffectKind { HIT, DEATH, BOSS_DEATH, DAMAGE_NUMBER, TEXT, CRYPTO_GAIN, UPGRADE }
 
-class Effect {
-    var active = false
+class Effect : Poolable {
+    override var active = false
 
     var kind: EffectKind = EffectKind.HIT
     var x: Float = 0f
@@ -214,7 +224,7 @@ class Effect {
 
     val progress: Float get() = if (lifetime <= 0f) 1f else (age / lifetime).coerceIn(0f, 1f)
 
-    fun reset() {
+    override fun reset() {
         active = false
         age = 0f
         text = ""
@@ -224,53 +234,48 @@ class Effect {
 }
 
 /**
- * A fixed-capacity pool. Obtaining an object never allocates once the pool has
- * warmed up; when the pool is exhausted [obtain] returns null and the caller
- * simply skips the spawn, which is a much better failure mode on a phone than
- * unbounded growth.
+ * A fixed-capacity pool of [Poolable] entities.
+ *
+ * Obtaining an object never allocates: the pool is filled once at construction
+ * and `obtain()` hands back the first parked slot. A rotating cursor means the
+ * common case costs a single check rather than a scan from index zero.
+ *
+ * When the pool is exhausted [obtain] returns null and the caller simply skips
+ * the spawn. That is a deliberate failure mode — a phone is far happier refusing
+ * one more packet than growing an unbounded list it then has to simulate and
+ * draw.
  */
-class ObjectPool<T>(capacity: Int, factory: () -> T) {
-    val items: MutableList<T> = ArrayList(capacity)
-    private val maxCapacity = capacity
+class ObjectPool<T : Poolable>(val capacity: Int, factory: () -> T) {
 
-    init {
-        repeat(capacity) { items.add(factory()) }
+    val items: List<T> = ArrayList<T>(capacity).apply {
+        repeat(capacity) { add(factory()) }
     }
 
-    private val isActive: (T) -> Boolean = { item ->
-        when (item) {
-            is Enemy -> item.active
-            is Agent -> item.active
-            is Projectile -> item.active
-            is Effect -> item.active
-            else -> false
-        }
-    }
+    /** Where the last successful obtain landed; the next search starts here. */
+    private var cursor = 0
 
     fun obtain(): T? {
-        for (i in items.indices) {
-            val item = items[i]
-            if (!isActive(item)) return item
+        val size = items.size
+        if (size == 0) return null
+        for (offset in 0 until size) {
+            val index = (cursor + offset) % size
+            val item = items[index]
+            if (!item.active) {
+                cursor = (index + 1) % size
+                return item
+            }
         }
         return null
     }
 
     fun activeCount(): Int {
         var count = 0
-        for (i in items.indices) if (isActive(items[i])) count++
+        for (i in items.indices) if (items[i].active) count++
         return count
     }
 
     fun clear() {
-        for (i in items.indices) {
-            when (val item = items[i]) {
-                is Enemy -> item.reset()
-                is Agent -> item.reset()
-                is Projectile -> item.reset()
-                is Effect -> item.reset()
-            }
-        }
+        for (i in items.indices) items[i].reset()
+        cursor = 0
     }
-
-    val capacity: Int get() = maxCapacity
 }

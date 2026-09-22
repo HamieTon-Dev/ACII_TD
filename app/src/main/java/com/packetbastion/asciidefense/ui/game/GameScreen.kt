@@ -109,8 +109,12 @@ fun GameScreen(
         ) {
             Battlefield(viewModel, renderer, options)
 
-            // Preparation prompt, centred above the lanes.
-            if (hud.phase == RunPhase.PREPARING && viewModel.gameOverSummary == null) {
+            // Preparation prompt, centred above the lanes. The unlock banner
+            // uses the same anchor and takes precedence while it is showing.
+            if (hud.phase == RunPhase.PREPARING &&
+                viewModel.gameOverSummary == null &&
+                viewModel.unlockBanner == null
+            ) {
                 PreparationBanner(
                     wave = hud.wave,
                     nextIsBoss = hud.nextWaveIsBoss,
