@@ -127,14 +127,17 @@ enum class EnemyType(
     ),
     DDOS(
         displayName = "DDoS PACKET",
-        glyph = "<<>>",
+        // Guillemets are Latin-1 Supplement, so every Android monospace face has
+        // them. The glyph is six characters wide where most are three, hence the
+        // reduced scale: it renders at a comparable size on the battlefield.
+        glyph = "\u00AB\u00AB\u00AB\u00BB\u00BB\u00BB",
         baseHealth = 9f,
         baseSpeed = 132f,
         serverDamage = 1,
         baseArmor = 0f,
         traits = setOf(ThreatTrait.SWARM),
         rewardTier = RewardTier.NORMAL,
-        glyphScale = 0.9f,
+        glyphScale = 0.62f,
         codexEntry = "Distributed Denial of Service: the attack is the volume. Each " +
             "packet is trivial, but they arrive faster than anything else in the " +
             "game and there are always more."

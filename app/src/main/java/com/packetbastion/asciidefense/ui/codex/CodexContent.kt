@@ -178,7 +178,7 @@ object CodexContent {
                 "against, which is what makes them so dangerous."
         ),
         Entry(
-            glyph = "<<>>",
+            glyph = "\u00AB\u00AB\u00BB\u00BB",
             title = "DDoS",
             subtitle = "Distributed Denial of Service",
             body = "Thousands of machines send traffic at one target at once. No " +

@@ -251,7 +251,7 @@ Agents upgrade to level 10. The glyph changes as they climb:
 | `[T]` | **TROJAN** | Slow and armoured. Blunts small, fast hits. |
 | `[X]` | **EXPLOIT** | Very fast and hits hard. Detection range matters. |
 | `[E]` | **ENCRYPTED** | Most agents lose over half their damage against it. |
-| `<<>>` | **DDoS** | Fastest thing in the game. Trivial alone, swarms. |
+| `«««»»»` | **DDoS** | Fastest thing in the game. Trivial alone, swarms. |
 | `[0]` | **ZERO-DAY** | Rare elite. High health, heavy armour, big payout. |
 | `[!!!]` | **BOSS** | Every fifth wave. Large, slow, devastating on arrival. |
 
