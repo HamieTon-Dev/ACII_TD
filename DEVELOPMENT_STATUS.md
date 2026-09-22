@@ -176,7 +176,10 @@ composing the real screens; "Persistence" means a test against a real DataStore;
 
 | Item | How it was verified |
 | --- | --- |
-| App launches | Device — installs and launches, no crash in logcat |
+| Debug APK installs and launches | Device — installed, launched, main menu rendered correctly, no app crash in logcat |
+| Release APK installs | Device — installed and dex-optimised successfully |
+| Release APK survives R8 | `apkanalyzer` — every generated `$$serializer` and an unobfuscated `MainActivity` present in the release dex |
+| Release APK is signed | `apksigner verify` — valid signature, v1/v2 |
 | Main menu works | Device screenshot + UI test asserting every action fires |
 | New game starts | UI test — `matchActive`, wave 0, tutorial armed |
 | Tutorial works | UI test — advances on each real action; cannot be stranded |
@@ -213,8 +216,29 @@ composing the real screens; "Persistence" means a test against a real DataStore;
 
 ### Not verified on real hardware
 
-Frame pacing, GPU behaviour, touch latency, haptics and audible sound output all
-need a physical device. The build environment's emulator has no KVM
-acceleration, so it renders in software far too slowly to say anything useful
-about performance — it confirmed installation, launch and rendering, and that is
-all it can honestly be credited with.
+The build environment's emulator has no KVM acceleration. It renders in
+software, and under the load of a 60 FPS canvas game its own `system_server`
+repeatedly ANR'd and then died outright, taking SystemUI and the telephony and
+Bluetooth processes with it (`DeadSystemException`). No crash was ever logged
+against `com.packetbastion.asciidefense` — the app was not even running when the
+system fell over. What the emulator could be pushed to do, it did: both APKs
+installed, the debug build launched and drew the main menu correctly.
+
+These remain unverified on hardware and should be checked on a real phone:
+
+- **The release build actually running.** It installs and dex-optimises, is
+  correctly signed, and `apkanalyzer` confirms R8 kept the serialization
+  machinery the ProGuard rules exist to protect — but it was never observed on
+  screen. Nothing suggests a problem; it is simply untested at runtime.
+- **Frame pacing and sustained frame rate.** No meaningful number can come from
+  a software renderer.
+- **Touch latency and gesture feel.**
+- **Haptics** — no vibrator to feel.
+- **Audible sound output** — the emulator ran with `-no-audio`. The synthesis
+  itself is deterministic and the WAV container is built by hand, but nobody has
+  heard it.
+
+Interactive gameplay itself is covered by the test suite rather than by the
+emulator: the Robolectric UI tests drive the real deploy flow, pause, speed and
+settings against the real view model, and the simulation tests play entire
+matches through the shipping game loop.
