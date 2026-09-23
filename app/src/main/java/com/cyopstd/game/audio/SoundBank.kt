@@ -135,14 +135,4 @@ object SoundBank {
             )
         )
     )
-
-    /** A two-second drone that loops as low-key background "music". */
-    val AMBIENT = Recipe(
-        duration = 2.0f,
-        voices = listOf(
-            ToneSynth.Voice(ToneSynth.Wave.SINE, 55f, 55f, 0.42f, decay = 0.05f),
-            ToneSynth.Voice(ToneSynth.Wave.SINE, 82.5f, 82.5f, 0.22f, decay = 0.05f),
-            ToneSynth.Voice(ToneSynth.Wave.TRIANGLE, 110f, 110f, 0.10f, decay = 0.05f)
-        )
-    )
 }

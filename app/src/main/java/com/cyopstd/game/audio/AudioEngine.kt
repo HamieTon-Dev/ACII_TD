@@ -11,12 +11,16 @@ import kotlinx.coroutines.launch
 import java.io.File
 
 /**
- * Plays the synthesized effect bank through a SoundPool.
+ * Plays the synthesized effect bank through a SoundPool, and owns the
+ * background music.
  *
  * Sounds are generated once on a background thread at startup, written to the
  * app's cache directory as tiny WAV files, and loaded into the pool. Nothing is
  * ever downloaded and nothing is bundled, so there is no audio licensing
  * surface at all.
+ *
+ * The music takes a different path — see [MusicEngine] — because a long track
+ * and a 70-millisecond blip want completely different playback machinery.
  *
  * Every entry point is null- and failure-tolerant: a device that cannot give us
  * a SoundPool simply plays a silent game.
@@ -37,14 +41,14 @@ class AudioEngine(private val context: Context) {
     private var ready: Boolean = false
 
     /**
-     * Ambient "network hum" loop, built from the same synth. It stands in for a
-     * music track without shipping one: a slow, low drone that suits a SOC wall
-     * display and costs a few kilobytes of cache.
+     * The background track. Synthesized rather than shipped, like everything
+     * else here, but long-form and streamed from disk instead of looped out of
+     * a sample pool.
      */
-    private var ambientStreamId: Int = 0
-    private var ambientSoundId: Int = -1
+    private val music = MusicEngine(context)
 
     fun initialize(scope: CoroutineScope) {
+        music.prepare(scope)
         if (soundPool != null) return
         val attributes = AudioAttributes.Builder()
             .setUsage(AudioAttributes.USAGE_GAME)
@@ -90,17 +94,9 @@ class AudioEngine(private val context: Context) {
             }
         }
 
-        val ambientFile = File(dir, "ambient_hum.wav")
-        try {
-            if (!ambientFile.exists() || ambientFile.length() < 64L) {
-                ambientFile.writeBytes(
-                    ToneSynth.renderWav(SoundBank.AMBIENT.duration, SoundBank.AMBIENT.voices)
-                )
-            }
-            ambientSoundId = pool.load(ambientFile.absolutePath, 0)
-        } catch (error: Exception) {
-            Log.w(TAG, "Failed to prepare ambient loop", error)
-        }
+        // An earlier version looped a two-second drone out of the sound pool.
+        // Clear it out so upgrading players do not keep the file forever.
+        File(dir, "ambient_hum.wav").delete()
     }
 
     fun play(sound: GameSound) {
@@ -118,49 +114,24 @@ class AudioEngine(private val context: Context) {
 
     private fun Float?.orDefault(): Float = this ?: 1f
 
-    fun startAmbient() {
-        if (!ready || musicVolume <= 0.01f) return
-        val pool = soundPool ?: return
-        if (ambientSoundId < 0 || ambientSoundId !in loaded) return
-        if (ambientStreamId != 0) return
-        try {
-            val volume = (musicVolume * 0.30f).coerceIn(0f, 1f)
-            ambientStreamId = pool.play(ambientSoundId, volume, volume, 0, -1, 1f)
-        } catch (error: Exception) {
-            Log.w(TAG, "Could not start ambient loop", error)
-        }
+    /** Starts (or resumes) the background track, if music is turned up. */
+    fun startMusic() {
+        if (musicVolume <= 0.01f) return
+        music.start()
     }
 
-    fun stopAmbient() {
-        val pool = soundPool ?: return
-        if (ambientStreamId == 0) return
-        try {
-            pool.stop(ambientStreamId)
-        } catch (error: Exception) {
-            Log.w(TAG, "Could not stop ambient loop", error)
-        }
-        ambientStreamId = 0
+    fun stopMusic() {
+        music.pause()
     }
 
     fun applyVolumes(music: Float, sfx: Float) {
         musicVolume = music
         sfxVolume = sfx
-        val pool = soundPool
-        if (pool != null && ambientStreamId != 0) {
-            val volume = (music * 0.30f).coerceIn(0f, 1f)
-            try {
-                pool.setVolume(ambientStreamId, volume, volume)
-            } catch (error: Exception) {
-                Log.w(TAG, "Could not adjust ambient volume", error)
-            }
-            if (music <= 0.01f) stopAmbient()
-        } else if (music > 0.01f) {
-            startAmbient()
-        }
+        this.music.setVolume(music)
     }
 
     fun release() {
-        stopAmbient()
+        music.release()
         try {
             soundPool?.release()
         } catch (error: Exception) {

@@ -540,6 +540,29 @@ a Cryptographer against encryption exactly as much as it helps a Firewall
 against plain traffic. It does not touch enemy health, rewards or wave
 composition — only the player's side of the fight.
 
+#### Why one firmware level is invisible
+
+A playtest reported buying one firmware level and not noticing a difference.
+That is the tuning working as written, not a fault: **one level is +0.5%**. A
+Firewall dealing 12 damage a shot goes to 12.06. Nothing on screen changes —
+not the shots-to-kill on any enemy, not the wave clear time. The multiplier is
+designed to be bought in dozens, not in ones, and the cost curve assumes it:
+€ 80, the total banked by a run reaching wave 40, buys 10 levels and ×1.05.
+
+Two consequences worth stating plainly:
+
+- **The system is a long-haul curve, not a purchase you feel.** It is meant to
+  be the thing that makes run forty easier than run four. Across the first
+  several deep runs it is worth a few percent, and it stays worth a few percent
+  until the hundreds.
+- **The readout rounds the first few levels away.** Both the menu and the
+  firmware screen print the multiplier with two decimals, so level 1 (×1.005)
+  displays as `×1.00` and level 2 as `×1.01` — the player pays € 3 and watches
+  a number not move. The arithmetic underneath is correct; only the display is
+  lying by omission.
+
+The system was left unchanged pending a decision on both points.
+
 ### Threat roster change
 
 `[P] PACKET` was removed. A packet is ordinary traffic, so naming the baseline

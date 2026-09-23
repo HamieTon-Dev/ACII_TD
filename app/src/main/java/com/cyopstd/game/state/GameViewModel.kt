@@ -242,7 +242,7 @@ class GameViewModel @JvmOverloads constructor(
             repository.recordGameStarted()
             repository.clearSavedRun()
         }
-        audio.startAmbient()
+        audio.startMusic()
     }
 
     /**
@@ -286,7 +286,7 @@ class GameViewModel @JvmOverloads constructor(
             matchActive = true
             tutorialStep = -1
             pushHud()
-            audio.startAmbient()
+            audio.startMusic()
             onLoaded()
         }
     }
@@ -543,7 +543,7 @@ class GameViewModel @JvmOverloads constructor(
         if (runRecorded) return
         runRecorded = true
         matchActive = false
-        audio.stopAmbient()
+        audio.stopMusic()
 
         val isRecord = engine.currentWave > stats.highestWave
         gameOverSummary = GameOverSummary(
@@ -596,7 +596,7 @@ class GameViewModel @JvmOverloads constructor(
         }
         matchActive = false
         paused = false
-        audio.stopAmbient()
+        audio.stopMusic()
     }
 
     /** Called from onStop so an app kill never costs the player their run. */
@@ -642,7 +642,7 @@ class GameViewModel @JvmOverloads constructor(
     fun abandonMatch() {
         matchActive = false
         gameOverSummary = null
-        audio.stopAmbient()
+        audio.stopMusic()
     }
 
     // ---------------------------------------------------------------- settings
@@ -678,12 +678,12 @@ class GameViewModel @JvmOverloads constructor(
     }
 
     fun onAppPaused() {
-        audio.stopAmbient()
+        audio.stopMusic()
         saveIfActive()
     }
 
     fun onAppResumed() {
-        if (matchActive && settings.musicVolume > 0.01f) audio.startAmbient()
+        if (matchActive && settings.musicVolume > 0.01f) audio.startMusic()
     }
 
     override fun onCleared() {

@@ -80,8 +80,9 @@ Last updated: build of version 1.4.0.
 ### Stage 12 — Settings, audio, haptics
 - All ten required settings implemented and persisted; reset requires
   confirmation.
-- **All audio is synthesized at runtime** (`audio/ToneSynth.kt`) — the APK ships
-  no sound files and carries no audio licensing surface.
+- **All audio is synthesized at runtime** — effects by `audio/ToneSynth.kt` and
+  the 3m33s lo-fi chiptune by `audio/ChiptuneComposer.kt`. The APK ships no
+  sound files and carries no audio licensing surface.
 - Haptics rate-limited and disableable.
 
 ### Stage 13 — Tutorial and Codex
@@ -271,8 +272,13 @@ These remain unverified on hardware and should be checked on a real phone:
 - **Touch latency and gesture feel.**
 - **Haptics** — no vibrator to feel.
 - **Audible sound output** — the emulator ran with `-no-audio`. The synthesis
-  itself is deterministic and the WAV container is built by hand, but nobody has
-  heard it.
+  is deterministic and the WAV containers are built by hand, and the music
+  render has been inspected numerically (length, peak, per-section levels,
+  loop-seam continuity, and an FFT confirming the intended chords are actually
+  present), but nobody has *heard* it through the app.
+- **`MediaPlayer` music playback.** The track itself is verified by a JVM test
+  and its cache handling by a Robolectric test, but `MediaPlayer.prepare`,
+  looping and volume changes have not run on real hardware.
 
 Interactive gameplay itself is covered by the test suite rather than by the
 emulator: the Robolectric UI tests drive the real deploy flow, pause, speed and

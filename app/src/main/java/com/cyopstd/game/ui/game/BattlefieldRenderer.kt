@@ -79,6 +79,15 @@ class BattlefieldRenderer {
     /** Scratch buffer used for drawing single characters without allocating. */
     private val charBuffer = CharArray(1)
 
+    // The backdrop colour band, and the only state the renderer keeps beyond
+    // its Paints. Every five waves the band changes; rather than snapping, the
+    // old and new colours are cross-faded over a couple of seconds so the shift
+    // registers as the room's light changing rather than as a flicker.
+    private var tintBand = -1
+    private var tintFrom = Palette.backdropBands[0].toArgb()
+    private var tintTo = Palette.backdropBands[0].toArgb()
+    private var tintStartedAt = 0f
+
     fun draw(
         canvas: android.graphics.Canvas,
         engine: GameEngine,
@@ -87,7 +96,10 @@ class BattlefieldRenderer {
         selection: BattlefieldSelection,
         time: Float
     ) {
-        canvas.drawColor(colBackground)
+        val tint = backdropTint(engine.currentWave, time)
+        // The letterbox picks up a trace of the same shift so the shift reads
+        // as lighting rather than as a coloured rectangle on a black screen.
+        canvas.drawColor(blend(colBackground, tint, 0.35f))
 
         val save = canvas.save()
         canvas.translate(transform.offsetX, transform.offsetY)
@@ -125,13 +137,15 @@ class BattlefieldRenderer {
         options: BattlefieldRenderOptions,
         time: Float
     ) {
-        fillPaint.color = colSurfaceSunken
+        val tint = backdropTint(engine.currentWave, time)
+        fillPaint.color = tint
         fillPaint.alpha = 255
         canvas.drawRect(0f, 0f, WorldGeometry.WIDTH, WorldGeometry.HEIGHT, fillPaint)
 
         // Static grid: always drawn, it costs almost nothing and gives the
-        // battlefield a sense of scale.
-        strokePaint.color = colGrid
+        // battlefield a sense of scale. It leans towards the current tint so
+        // it never fights the backdrop it sits on.
+        strokePaint.color = blend(colGrid, tint, 0.45f)
         strokePaint.alpha = 70
         strokePaint.strokeWidth = 1f
         var x = 0f
@@ -161,6 +175,36 @@ class BattlefieldRenderer {
             canvas.drawText(charBuffer, 0, 1, px, seedY, thinTextPaint)
         }
         thinTextPaint.alpha = 255
+    }
+
+    /**
+     * The backdrop colour for [wave], eased across band changes.
+     *
+     * Returns the plain band colour whenever a transition is not running, so
+     * the common case costs a divide and an array lookup.
+     */
+    private fun backdropTint(wave: Int, time: Float): Int {
+        val band = (wave - 1).coerceAtLeast(0) / Palette.BACKDROP_BAND_WAVES
+        if (band != tintBand) {
+            tintFrom = if (tintBand < 0) Palette.backdropBand(wave).toArgb() else tintTo
+            tintTo = Palette.backdropBand(wave).toArgb()
+            tintBand = band
+            tintStartedAt = time
+        }
+        val elapsed = time - tintStartedAt
+        if (elapsed >= TINT_FADE_SECONDS) return tintTo
+        val linear = (elapsed / TINT_FADE_SECONDS).coerceIn(0f, 1f)
+        // Smoothstep: no visible start or stop to the fade.
+        return blend(tintFrom, tintTo, linear * linear * (3f - 2f * linear))
+    }
+
+    /** Mix [target] into [base] by [amount], ignoring alpha (both are opaque). */
+    private fun blend(base: Int, target: Int, amount: Float): Int {
+        val t = amount.coerceIn(0f, 1f)
+        val r = ((base shr 16 and 0xFF) + ((target shr 16 and 0xFF) - (base shr 16 and 0xFF)) * t).toInt()
+        val g = ((base shr 8 and 0xFF) + ((target shr 8 and 0xFF) - (base shr 8 and 0xFF)) * t).toInt()
+        val b = ((base and 0xFF) + ((target and 0xFF) - (base and 0xFF)) * t).toInt()
+        return (0xFF shl 24) or (r shl 16) or (g shl 8) or b
     }
 
     // ---------------------------------------------------------------- lanes
@@ -859,6 +903,9 @@ class BattlefieldRenderer {
         const val LED_ROWS = 5
         const val LED_COLUMNS = 8
         const val BACKDROP_GLYPHS = 42
+
+        /** How long a backdrop colour change takes to cross-fade. */
+        const val TINT_FADE_SECONDS = 2.5f
 
         val BOSS_EXPLOSION = arrayOf(
             "*",

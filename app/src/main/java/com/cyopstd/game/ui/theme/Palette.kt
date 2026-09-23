@@ -49,6 +49,34 @@ object Palette {
         Color(0xFF14304A)
     )
 
+    /**
+     * The backdrop shifts to the next of these every five waves, so a long run
+     * does not spend an hour on one shade of navy. Deliberately constrained:
+     * every entry is a near-black cool tone (navy, pine, indigo, slate, ocean,
+     * steel, moss, twilight) with no red, orange, magenta or purple in it, so
+     * the shift can never be mistaken for an enemy's colour, and none is light
+     * enough to wash out the ASCII drawn on top of it.
+     */
+    val backdropBands = arrayOf(
+        Color(0xFF060A11),  // midnight navy   - where the game starts
+        Color(0xFF07110F),  // deep pine
+        Color(0xFF080D18),  // indigo slate
+        Color(0xFF0A1111),  // graphite teal
+        Color(0xFF05101A),  // deep ocean
+        Color(0xFF0D1014),  // cool steel
+        Color(0xFF08130C),  // moss
+        Color(0xFF0A0C1A)   // twilight indigo
+    )
+
+    /** How many waves share one backdrop colour. */
+    const val BACKDROP_BAND_WAVES = 5
+
+    /** The backdrop colour for [wave], cycling once the bands run out. */
+    fun backdropBand(wave: Int): Color {
+        val band = (wave - 1).coerceAtLeast(0) / BACKDROP_BAND_WAVES
+        return backdropBands[band % backdropBands.size]
+    }
+
     /** Server integrity bar colour, by remaining fraction. */
     fun healthColor(fraction: Float): Color = when {
         fraction > 0.6f -> Green

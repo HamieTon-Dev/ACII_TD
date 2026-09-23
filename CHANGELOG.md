@@ -7,6 +7,78 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [1.5.0]
+
+### Added — a real soundtrack instead of a two-second loop
+
+The background "music" was a two-second drone looped through the sound pool.
+It is now a **3 minute 33 second lo-fi chiptune**, composed and synthesized at
+runtime by `audio/ChiptuneComposer.kt`. The APK still ships no audio files.
+
+- Eight eight-bar sections, each with its own chord progression, melodic
+  density and drum intensity: the intro is pad and bass alone, the melody
+  arrives in section two, section five drops to a breakdown, and the outro
+  thins back down so the track folds into its own beginning.
+- Pulse lead, detuned pulse pad, triangle bass and a soft kit — the classic
+  8-bit voices. The melody is confined to the A-minor pentatonic and steps at
+  most two scale degrees at a time, snapping to a chord tone on strong beats,
+  so it sounds composed rather than generated.
+- The lo-fi half: a 16 kHz sample rate, a two-pole low-pass at 2.6 kHz that
+  takes the edge off every square wave, a slow tape-wow pitch drift, soft
+  saturation instead of clipping, and a noise floor quiet enough to be felt
+  rather than heard.
+- Playback moved from `SoundPool` to `MediaPlayer` (`audio/MusicEngine.kt`).
+  `SoundPool` decodes a clip fully into memory and is meant for one-shots; a
+  three-minute track wants to stream from disk and loop natively without a gap.
+  The music pauses and resumes where it left off rather than restarting.
+- Rendered one section at a time straight to disk, so peak memory is ~2 MB
+  rather than the ~20 MB the whole track would need at once, and cached in
+  `cacheDir/music` keyed by `TRACK_VERSION` — a second or two on first launch,
+  free afterwards.
+- Both ends fade through silence, so the loop seam cannot click.
+
+Verified numerically rather than by assertion: the rendered track is 213.3 s,
+peaks at 0.84 with no sample at the rail, carries 8% of its energy above 4 kHz
+(the low-pass is doing its job), and an FFT of the busy sections shows exactly
+the intended chords — a G bass at 98 Hz under B/D/G partials, with the detuned
+pad visible as a 1 Hz beat against itself.
+
+Two bugs were found and fixed during that verification:
+
+- **The render was not deterministic.** The noise generator is object state, so
+  a second render continued where the first left off and produced a different
+  track. It is now reset per render, and a test compares two renders byte for
+  byte.
+- **The bass was written an octave too low** (55 Hz), where a phone speaker
+  reproduces nothing at all. It now sits between 82 and 147 Hz.
+
+### Added — the backdrop shifts every five waves
+
+A long run no longer spends an hour on one shade of navy.
+
+- Eight backdrop colours in `Palette.backdropBands`, one per five waves,
+  cycling after forty. Every one is a near-black cool tone — navy, pine,
+  indigo, slate, ocean, steel, moss, twilight.
+- **None of them can be mistaken for an enemy.** A test asserts every band is
+  more than 0.6 away in RGB from red, deep red, magenta, orange and purple, and
+  that no band is ever warm (red channel never exceeds blue). Another asserts
+  every band stays dark enough to read ASCII on.
+- The change cross-fades over 2.5 seconds on a smoothstep curve rather than
+  snapping, so it reads as the room's light changing. Consecutive bands are
+  held between 0.015 and 0.14 apart in RGB by a test: far enough to notice over
+  a couple of waves, close enough that it never draws attention to itself.
+- The grid lines and the letterbox pick up a fraction of the current tint so
+  nothing fights the backdrop it sits on.
+
+### Notes
+
+The € **CORE FIRMWARE** system was reviewed and deliberately left unchanged —
+see the discussion in `BALANCE.md`. It is wired correctly and does exactly what
+it claims; one firmware level is simply a 0.5% damage increase, which is below
+what anyone can perceive in a single test.
+
+---
+
 ## [1.4.0]
 
 ### Fixed — pockets that looked buildable but were not

@@ -348,8 +348,42 @@ otherwise make.
 
 This does three things at once: it keeps the APK tiny, it removes every audio
 licensing question, and it gives the game a coherent "terminal beep" character
-that a bag of sampled effects would not. Background "music" is a two-second
-low drone looped at low volume — a SOC room hum rather than a soundtrack.
+that a bag of sampled effects would not.
+
+### Music
+
+The music is generated too, but it does not go through any of the above.
+`ChiptuneComposer` writes a **3 minute 33 second lo-fi chiptune** — eight
+eight-bar sections, each with its own chord progression, melodic density and
+drum intensity, so the track develops instead of repeating. The first version
+of the game looped a two-second drone out of the sound pool, which is exactly
+the thing that grates after ten minutes of play.
+
+The composer works in two passes. First it *composes*: it walks the
+arrangement, picks the chord for each bar, and emits note events for a pulse
+lead, a detuned pulse pad, a triangle bass and a small drum kit. The melody is
+constrained to the A-minor pentatonic and steps at most two scale degrees at a
+time, snapping to a chord tone on strong beats — that constraint is what makes
+a generated line sound like a tune rather than like random notes. Then it
+*renders*: each note is synthesized into the mix with its own envelope, and the
+mix goes through a master chain of a two-pole low-pass at 2.6 kHz, a high-pass
+at 38 Hz, soft saturation and a very quiet noise floor.
+
+Four things make it "lo-fi" rather than merely chiptune: the 16 kHz sample
+rate, the low-pass that shaves the harsh square-wave harmonics, a slow two-rate
+tape-wow pitch drift, and the detuned pad voice beating gently against itself.
+
+Rendering is blocked one section at a time and streamed straight to disk, so
+peak memory is about 2 MB rather than the 20 MB the whole track would need.
+Playback is a `MediaPlayer` (`MusicEngine`), not the `SoundPool` — `SoundPool`
+decodes fully into memory and is built for one-shots, while `MediaPlayer`
+streams from disk and loops natively without a gap. The render is cached under
+`cacheDir/music` and keyed by `TRACK_VERSION`, so the cost is a second or two
+on first launch and nothing afterwards. Both ends of the track fade through
+silence, so the loop seam cannot click.
+
+The composer has no Android dependency and no unseeded randomness, so the track
+is byte-identical everywhere and a JVM test renders and inspects it directly.
 
 The engine never touches `SoundPool` or the `Vibrator`. It raises a `GameSound`
 or `HapticCue`, and the view model decides whether the player's settings allow

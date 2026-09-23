@@ -213,6 +213,8 @@ app/src/main/java/com/packetbastion/asciidefense/
 ├── audio/
 │   ├── ToneSynth.kt             PCM/WAV synthesis — the game ships no audio
 │   ├── SoundBank.kt             Synthesis recipe per effect
+│   ├── ChiptuneComposer.kt      Generates the 3m33s lo-fi chiptune track
+│   ├── MusicEngine.kt           MediaPlayer playback and render cache
 │   ├── AudioEngine.kt           SoundPool playback
 │   └── HapticEngine.kt          Rate-limited vibration
 └── ui/
