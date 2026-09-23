@@ -12,7 +12,10 @@ import androidx.compose.ui.geometry.Offset
 import com.cyopstd.game.audio.AudioEngine
 import com.cyopstd.game.audio.HapticEngine
 import com.cyopstd.game.core.Balance
+import android.util.Log
 import com.cyopstd.game.ads.AdGateway
+import com.cyopstd.game.ads.AdMobGateway
+import com.cyopstd.game.ads.PlayServices
 import com.cyopstd.game.ads.AdPolicy
 import com.cyopstd.game.ads.NoAdGateway
 import com.cyopstd.game.core.GameMode
@@ -25,6 +28,7 @@ import com.cyopstd.game.store.BillingStatus
 import com.cyopstd.game.store.CosmeticChoice
 import com.cyopstd.game.store.Entitlements
 import com.cyopstd.game.store.NoBillingGateway
+import com.cyopstd.game.store.PlayBillingGateway
 import com.cyopstd.game.store.Sku
 import com.cyopstd.game.core.WorldGeometry
 import com.cyopstd.game.engine.GameEngine
@@ -211,7 +215,37 @@ class GameViewModel @JvmOverloads constructor(
      * the Play Console — see PROGRESS.md. Swapping in the real one is the only
      * change needed here; nothing else in the view model knows the difference.
      */
-    private val billing: BillingGateway = NoBillingGateway()
+    /**
+     * Real Play Billing when the app can reach Play, the no-op gateway when it
+     * cannot. `PlayBillingGateway` reports what Play says is owned;
+     * [GameRepository.applyPurchase] decides what that means, guarded by order
+     * id so Play re-reporting a purchase cannot pay out twice.
+     */
+    private val billing: BillingGateway = runCatching {
+        PlayBillingGateway(
+            context = application,
+            scope = viewModelScope,
+            onPurchaseConfirmed = { sku, orderId ->
+                viewModelScope.launch { repository.applyPurchase(sku, orderId) }
+            }
+        )
+    }.getOrElse {
+        Log.w("CyOpsStore", "Play Billing unavailable; the store will say so", it)
+        NoBillingGateway()
+    }
+
+    /**
+     * Hands the current Activity to the gateways that need one.
+     *
+     * Billing cannot launch a purchase flow without it and AdMob cannot show
+     * an interstitial without it, but neither may hold one: both keep a weak
+     * reference, so a rotated-away Activity is collected rather than leaked.
+     */
+    fun attachActivity(activity: android.app.Activity) {
+        (billing as? PlayBillingGateway)?.attach(activity)
+        (ads as? AdMobGateway)?.attach(activity)
+        ads.preload()
+    }
 
     var entitlements by mutableStateOf(Entitlements())
         private set
@@ -223,11 +257,18 @@ class GameViewModel @JvmOverloads constructor(
     // -------------------------------------------------------------------- ads
 
     /**
-     * [NoAdGateway] until AdMob is configured — see PROGRESS.md. Swapping in
-     * the real one is the only change needed; nothing else knows the
-     * difference, and with the no-op the game plays exactly as it does today.
+     * Real AdMob when this build has ids, the no-op gateway otherwise.
+     *
+     * Selected rather than hard-coded so a checkout with no AdMob account
+     * still builds and plays: the absence of monetisation must never be a
+     * crash, and it must never quietly become Google's *test* ads shown to
+     * real players either.
      */
-    private val ads: AdGateway = NoAdGateway()
+    private val ads: AdGateway = if (PlayServices.adsConfigured) {
+        AdMobGateway(application, PlayServices.adMobInterstitialId)
+    } else {
+        NoAdGateway()
+    }
     private val adPolicy = AdPolicy()
 
     /** True while an interstitial is on screen and the game is waiting on it. */
@@ -362,16 +403,10 @@ class GameViewModel @JvmOverloads constructor(
         collectJobs += viewModelScope.launch {
             billing.status.collectLatest { billingStatus = it }
         }
-        collectJobs += viewModelScope.launch {
-            billing.purchases.collectLatest { owned ->
-                for (sku in owned) {
-                    // Order ids come from Play; without one there is nothing to
-                    // guard a consumable against being credited twice, so a
-                    // gateway that cannot supply one must not grant budget.
-                    repository.applyPurchase(sku, orderId = "")
-                }
-            }
-        }
+        // Purchases are applied by the gateway's own confirmation callback,
+        // which carries the order id. This collector exists only so the store
+        // screen can show what is owned while Play is still answering.
+        (billing as? PlayBillingGateway)?.connect()
     }
 
     init {
@@ -906,6 +941,7 @@ class GameViewModel @JvmOverloads constructor(
         super.onCleared()
         collectJobs.forEach { it.cancel() }
         audio.release()
+        billing.release()
     }
 
     companion object {

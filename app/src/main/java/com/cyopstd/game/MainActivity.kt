@@ -41,6 +41,11 @@ class MainActivity : ComponentActivity() {
 
         hideSystemBars()
 
+        // Billing needs an Activity to launch a purchase flow and AdMob needs
+        // one to show an interstitial. Both hold it weakly, so handing it over
+        // here does not outlive this Activity.
+        viewModel.attachActivity(this)
+
         setContent {
             CyOpsTheme {
                 CyOpsApp(

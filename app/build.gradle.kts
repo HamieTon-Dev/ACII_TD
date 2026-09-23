@@ -13,13 +13,40 @@ android {
         applicationId = "com.cyopstd.game"
         minSdk = 24
         targetSdk = 35
-        versionCode = 16
-        versionName = "1.12.0"
+        versionCode = 17
+        versionName = "1.13.0"
 
         // Stamped into the APK so the build identifier on screen is the real
         // one, not a string someone remembered to update. Reported by
         // BuildStamp and shown on every screen.
         buildConfigField("String", "BUILD_STAMP", "\"${'$'}{System.currentTimeMillis() / 1000}\"")
+
+        // --- Google Play configuration ---------------------------------------
+        //
+        // Supplied per build rather than hard-coded, and EMPTY BY DEFAULT on
+        // purpose: an unset id selects the no-op gateway, so a checkout with no
+        // Play Console behind it builds and runs exactly as before. Set them in
+        // a local gradle.properties (which is not committed) or in CI:
+        //
+        //     cyops.admob.appId=ca-app-pub-XXXXXXXX~YYYYYYYY
+        //     cyops.admob.interstitialId=ca-app-pub-XXXXXXXX/ZZZZZZZZ
+        //
+        // The AdMob *application* id must also reach the manifest, which is why
+        // it is a manifest placeholder as well as a BuildConfig field.
+        val admobAppId = (project.findProperty("cyops.admob.appId") as String?).orEmpty()
+        val admobInterstitial =
+            (project.findProperty("cyops.admob.interstitialId") as String?).orEmpty()
+
+        buildConfigField("String", "ADMOB_APP_ID", "\"${'$'}admobAppId\"")
+        buildConfigField("String", "ADMOB_INTERSTITIAL_ID", "\"${'$'}admobInterstitial\"")
+
+        // The SDK refuses to initialise without a syntactically valid id, so an
+        // unconfigured build gets Google's documented sample application id.
+        // Nothing is ever requested from it, because AdGateways.create() returns
+        // the no-op gateway when the real ids are absent.
+        manifestPlaceholders["admobAppId"] = admobAppId.ifEmpty {
+            "ca-app-pub-3940256099942544~3347511713"
+        }
         // Keep the APK small: the game ships no localized resources yet.
         resourceConfigurations += listOf("en")
     }
@@ -130,6 +157,12 @@ dependencies {
     implementation(libs.androidx.navigation.compose)
     implementation(libs.androidx.datastore.preferences)
     implementation(libs.kotlinx.serialization.json)
+
+    // Google Play. Both are optional at runtime: the app selects a no-op
+    // gateway when the ids below are unset, so a build with no Play Console
+    // behind it still runs and still plays.
+    implementation(libs.billing.ktx)
+    implementation(libs.play.services.ads)
     debugImplementation(libs.androidx.compose.ui.tooling)
 
     testImplementation(libs.junit)

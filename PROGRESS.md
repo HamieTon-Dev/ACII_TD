@@ -225,7 +225,26 @@ interface, ship a no-op implementation, and **do not claim they work**:
    `LeaderboardEntry` so nothing can re-implement it differently. The board is
    a history of runs, not a table of players — beating your own record keeps
    both. Capped at 25. 6 tests.
-9. ⬜ Real Play Billing / AdMob / Play Games wiring — **blocked on the owner.**
+9. ✅ **Play Billing and AdMob are wired** (v1.13.0). See `RELEASING.md` for
+   the exact product ids to create and what is still account setup.
+   - `store/PlayBillingGateway.kt` — grants on what Play reports as *owned*,
+     not on the buy flow returning, so purchases made on another device,
+     restores, and pending payments that settle hours later all land.
+     Acknowledges permanents and consumes consumables (Play auto-refunds
+     anything unacknowledged after three days). Order ids flow into
+     `applyPurchase` so a re-report cannot pay out twice.
+   - `ads/AdMobGateway.kt` — every path calls the continuation exactly once,
+     guarded against the SDK delivering both a dismissal and a failure. The
+     game can never be stuck waiting on an ad.
+   - `ads/PlayServices.kt` — selects real gateways only when both AdMob ids are
+     set *and* neither is Google's sample id. Empty by default, so a checkout
+     with no AdMob account builds and plays.
+   - Both gateways hold the Activity **weakly**; `MainActivity` re-attaches on
+     resume so a recreated Activity does not leave them holding a dead
+     reference.
+   - APK 1.18 MB → 3.02 MB.
+
+   ~~blocked on the owner~~ — what remains is account setup only:
    All three SDKs were confirmed to resolve through the proxy:
    `com.android.billingclient:billing-ktx:7.1.1`,
    `com.google.android.gms:play-services-ads:23.6.0`,
