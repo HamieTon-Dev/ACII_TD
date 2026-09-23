@@ -186,8 +186,16 @@ interface, ship a no-op implementation, and **do not claim they work**:
    `StoreState` and `PlayerIdentity`. 9 tests in `StoreTest.kt`.
 5. ⬜ Store screen UI, driven by the catalog. Add `Screen.Store` to
    `ui/CyOpsApp.kt` and a MAIN MENU entry.
-6. ⬜ Skins: agent spectrum cycle, 3 core-server skins, 3 living backgrounds.
-   All renderer work in `ui/game/BattlefieldRenderer.kt` — rasterize and look.
+6. 🟨 Skins — **core-server skins done and rendered for selection.**
+   `ui/theme/CoreSkin.kt` holds six looks as pure data (four colours plus a
+   signature flourish), so a new one is a table entry rather than a branch.
+   `BattlefieldRenderer.coreSkin` applies it; `drawCoreFlourish` draws the
+   mark *under* the rack's text and LEDs, so a skin can never make the
+   identity, integrity or load readouts harder to read. Damage and critical
+   integrity still override the skin's accent, for the same reason.
+   Options rendered: TERMINAL (free), OBSIDIAN, REACTOR, MERIDIAN, GLACIER,
+   VOID. **Sent to the owner to choose from.**
+   Still to do: agent spectrum cycle, living backgrounds.
 7. ✅ **5× speed** exists and is gated: `Balance.GAME_SPEEDS` is now
    `[1,2,3,5]` with `Balance.speedCount(fifthUnlocked)`, and
    `GameViewModel.fifthSpeedUnlocked` gates cycling. Still needs wiring from

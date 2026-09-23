@@ -9,6 +9,7 @@ import com.cyopstd.game.model.AgentType
 import com.cyopstd.game.model.EffectKind
 import com.cyopstd.game.model.Enemy
 import com.cyopstd.game.model.EnemyType
+import com.cyopstd.game.ui.theme.CoreSkin
 import com.cyopstd.game.ui.theme.Palette
 import androidx.compose.ui.graphics.toArgb
 import kotlin.math.abs
@@ -122,6 +123,9 @@ class BattlefieldRenderer {
     // its Paints. Every five waves the band changes; rather than snapping, the
     // old and new colours are cross-faded over a couple of seconds so the shift
     // registers as the room's light changing rather than as a flicker.
+    /** The CORE-SERVER look, set from the player's store selection. */
+    var coreSkin: CoreSkin = CoreSkin.DEFAULT
+
     private var tintBand = -1
     private var tintFrom = Palette.backdropBands[0].toArgb()
     private var tintTo = Palette.backdropBands[0].toArgb()
@@ -425,16 +429,21 @@ class BattlefieldRenderer {
         val hpFraction = if (engine.serverMaxHp <= 0) 0f
         else engine.serverHp.toFloat() / engine.serverMaxHp
         val damaged = engine.serverHitFlash > 0f
+        // Damage and critical integrity override the skin on purpose: a skin
+        // may never make "the core is being hit" harder to read than it is on
+        // the default one.
         val accent = when {
             damaged -> colRed
             hpFraction <= 0.3f -> colOrange
-            else -> colCyan
+            else -> coreSkin.accent.toArgb()
         }
 
         // Chassis.
-        fillPaint.color = Palette.Surface.toArgb()
-        fillPaint.alpha = 235
+        fillPaint.color = coreSkin.chassis.toArgb()
+        fillPaint.alpha = 240
         canvas.drawRect(left, top, right, bottom, fillPaint)
+
+        drawCoreFlourish(canvas, left, top, right, bottom, time)
 
         strokePaint.color = accent
         strokePaint.alpha = if (damaged) 255 else 190
@@ -462,7 +471,7 @@ class BattlefieldRenderer {
         leftTextPaint.textSize = 19f
         leftTextPaint.color = accent
         canvas.drawText("| [::::SYSTEM:::]|", left + 14f, top + 84f, leftTextPaint)
-        leftTextPaint.color = colSecondary
+        leftTextPaint.color = coreSkin.trim.toArgb()
         canvas.drawText("| DATA CORE      |", left + 14f, top + 110f, leftTextPaint)
 
         // Activity LEDs: rows of "." that blink on independent intervals. They
@@ -480,7 +489,7 @@ class BattlefieldRenderer {
                 val lit = pulse > (0.55f - load * 0.35f)
                 thinTextPaint.color = when {
                     damaged && lit -> colRed
-                    lit -> colGreen
+                    lit -> coreSkin.led.toArgb()
                     else -> colMuted
                 }
                 thinTextPaint.alpha = if (lit) 235 else 70
@@ -529,6 +538,98 @@ class BattlefieldRenderer {
             canvas.drawText("!! INTEGRITY LOW !!", (left + right) * 0.5f, top - 14f, textPaint)
             textPaint.alpha = 255
         }
+    }
+
+    /**
+     * The mark that makes a skin recognisable at a glance.
+     *
+     * Drawn under the rack's text and LEDs rather than over them, so a skin can
+     * change how the core *looks* without ever making its readouts — identity,
+     * integrity, the load lights — harder to read.
+     */
+    private fun drawCoreFlourish(
+        canvas: android.graphics.Canvas,
+        left: Float,
+        top: Float,
+        right: Float,
+        bottom: Float,
+        time: Float
+    ) {
+        val cx = (left + right) * 0.5f
+        val cy = (top + bottom) * 0.5f
+        val accent = coreSkin.accent.toArgb()
+
+        when (coreSkin.flourish) {
+            CoreSkin.Flourish.NONE -> Unit
+
+            CoreSkin.Flourish.FACETS -> {
+                // Black glass: a few long diagonal highlights.
+                strokePaint.color = accent
+                strokePaint.strokeWidth = 1.2f
+                for (i in 0 until 5) {
+                    strokePaint.alpha = 26 - i * 3
+                    val offset = -140f + i * 90f
+                    canvas.drawLine(left + offset, bottom, left + offset + 190f, top, strokePaint)
+                }
+            }
+
+            CoreSkin.Flourish.RING -> {
+                // Containment: concentric rings that breathe.
+                val pulse = 0.5f + 0.5f * sin(time * 1.6f)
+                for (i in 0 until 4) {
+                    strokePaint.color = accent
+                    strokePaint.alpha = (58 - i * 11).coerceAtLeast(8)
+                    strokePaint.strokeWidth = 1.6f
+                    canvas.drawCircle(cx, cy, 52f + i * 26f + pulse * 7f, strokePaint)
+                }
+            }
+
+            CoreSkin.Flourish.TRACES -> {
+                // Gold PCB traces: right-angled runs, like a board.
+                strokePaint.color = accent
+                strokePaint.strokeWidth = 1.4f
+                strokePaint.alpha = 40
+                var y = top + 34f
+                var step = 0
+                while (y < bottom - 24f) {
+                    val inset = 18f + (step % 3) * 26f
+                    canvas.drawLine(left + inset, y, right - inset, y, strokePaint)
+                    canvas.drawLine(right - inset, y, right - inset, y + 30f, strokePaint)
+                    y += 62f
+                    step++
+                }
+            }
+
+            CoreSkin.Flourish.FROST -> {
+                // Ice: short radiating needles from the centre.
+                strokePaint.color = accent
+                strokePaint.strokeWidth = 1.3f
+                for (i in 0 until 18) {
+                    val angle = i * (TWO_PI_F / 18f) + time * 0.06f
+                    val inner = 40f
+                    val outer = 104f + 26f * sin(i * 2.1f)
+                    strokePaint.alpha = 34
+                    canvas.drawLine(
+                        cx + cos(angle) * inner, cy + sin(angle) * inner,
+                        cx + cos(angle) * outer, cy + sin(angle) * outer,
+                        strokePaint
+                    )
+                }
+            }
+
+            CoreSkin.Flourish.STARFIELD -> {
+                // Deep space: a fixed field of faint points that twinkle.
+                fillPaint.color = accent
+                for (i in 0 until 46) {
+                    val px = left + 16f + (i * 97 % (WorldGeometry.SERVER_WIDTH - 32f).toInt())
+                    val py = top + 16f + (i * 53 % (WorldGeometry.SERVER_HEIGHT - 32f).toInt())
+                    fillPaint.alpha = (30 + 55 * abs(sin(time * 0.8f + i))).toInt().coerceIn(0, 255)
+                    canvas.drawCircle(px, py, 1.5f, fillPaint)
+                }
+            }
+        }
+        strokePaint.alpha = 255
+        fillPaint.alpha = 255
     }
 
     // ----------------------------------------------------------------- nodes
@@ -1170,6 +1271,8 @@ class BattlefieldRenderer {
 
         /** Corner rounding on a threat chip. */
         const val CHIP_RADIUS = 5f
+
+        const val TWO_PI_F = 6.2831855f
 
         /** World units a threat fades in over as it enters the field. */
         const val CHIP_FADE_IN = 70f
