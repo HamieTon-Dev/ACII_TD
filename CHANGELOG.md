@@ -7,6 +7,97 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [1.8.0]
+
+### Fixed — paying more now buys more
+
+Audited the whole roster against price. The finding was worse than "the
+expensive units feel similar": **the curve was inverted.**
+
+| | old dps/crypto | new |
+| --- | ---: | ---: |
+| FIREWALL (40 ◇) | 0.259 | 0.259 |
+| CRYPTOGRAPHER (105 ◇) | 0.140 | 0.260 |
+| ZERO-DAY HUNTER (150 ◇) | 0.199 | 0.322 |
+| QUANTUM DEFENDER (240 ◇) | 0.149 | 0.262 |
+| **ROOT ADMIN (320 ◇)** | **0.232** | **0.362** |
+
+The 320-crypto ROOT ADMIN returned *less damage per crypto than the 40-crypto
+starter*. The CRYPTOGRAPHER cost more than the ANALYST and hit for less than
+half as much. Saving up was a worse plan than buying starters — the opposite of
+what a tower defence should reward.
+
+Reach had the same problem: 168 at the bottom to 255 at the top, +52% for eight
+times the price, and the longest range in the game belonged to a 55-crypto unit.
+
+**Nothing was cut.** Every change is a raise:
+
+| Agent | Damage | Range |
+| --- | --- | --- |
+| TARPIT | 0.6 → **1.2** (restored) | 200 |
+| IDS | 7 → **9** | 268 → **290** |
+| IPS | 4.4 → **5.4** | 158 → **170** |
+| SANDBOX | 3 → **5** | 186 → **196** |
+| ANALYST | 30 → **38** | 200 → **212** |
+| CRYPTOGRAPHER | 14 → **26** | 205 → **220** |
+| ZERO-DAY HUNTER | 26 → **42** | 225 → **242** |
+| AI SENTINEL | 15 → **22** | 235 → **256** |
+| NETWORK ARCHITECT | 8 → **16** | 230 → **264** |
+| QUANTUM DEFENDER | 34 → **60** | 245 → **278** |
+| ROOT ADMIN | 78 → **122** | 255 → **285** |
+
+Three tests now hold the shape: damage-per-crypto never falls below the
+starter's, output rises with price across every damage dealer, and reach rises
+with price (the IDS is the declared exception — a cheap unit whose whole
+identity is seeing furthest).
+
+### Changed — no agent's damage is a dice roll
+
+The ZERO-DAY HUNTER rolled a **25% chance of a 3× critical**. It was the only
+randomness anywhere in agent damage, and it meant the same tower against the
+same threat could deal wildly different damage.
+
+It is gone. The hunter's damage is flat and higher (26 → 42), which is worth
+*more* than the old average (48.3 dps against 44.9), and every shot is now
+identical. The visual emphasis is kept — its shots were the only ones drawn
+heavy, and now they always are, because they always deserve it. The projectile
+flag was renamed `critical` → `heavy` to stop the code claiming something that
+is no longer true.
+
+A test runs the same scenario under five different generators and asserts the
+hunter deals exactly one distinct damage value, identical across all of them.
+
+### Changed — TARPIT slows every threat in range
+
+Confirmed as an aura, as intended: everything inside the radius, not just what
+it shoots. Its damage is restored to 1.2, and the cheap-unit cheese did **not**
+return — four tarpits still leak more than two FIREWALLs at the same price,
+because the damage raise applies to the FIREWALL's tier too.
+
+Node eligibility follows the longest range in the roster, so raising reach
+opened 79 → 81 spots. A test ties the two together: no spot may exist that is
+further from a route than the furthest-seeing agent can reach.
+
+### Balance check
+
+Scripted runs (a deliberately unsophisticated buyer: best affordable agent on
+the best free spot, then upgrades):
+
+| | waves reached |
+| --- | --- |
+| Starter agents only | 22–25 |
+| Full roster | 22–28 |
+| Full roster, ×1.5 firmware | 29–32 |
+| Full roster, ×3 firmware | 37–50 |
+
+**One issue remains and is deliberately not fixed here** — see `BALANCE.md`.
+The SANDBOX (80 ◇) is outclassed by the TARPIT (20 ◇): it slows deeper in one
+spot, but the tarpit's aura covers everything in range continuously for a
+quarter of the price. It is the weakest buy on the board and wants a rethink
+rather than a number tweak.
+
+---
+
 ## [1.7.0]
 
 ### Added — TARPIT, a 20 ◇ support unit

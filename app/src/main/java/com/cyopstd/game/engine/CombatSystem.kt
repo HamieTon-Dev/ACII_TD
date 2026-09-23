@@ -234,11 +234,6 @@ class CombatSystem(private val engine: GameEngine, private val random: Random) {
         return best
     }
 
-    /** Roll a Zero-Day Hunter critical. */
-    fun rollCritical(agent: Agent): Boolean =
-        agent.type == AgentType.ZERO_DAY_HUNTER &&
-            random.nextFloat() < HUNTER_CRIT_CHANCE
-
     companion object {
         /** How long a tarpit's slow outlives leaving its radius. */
         const val TARPIT_FIELD_LINGER = 0.25f
@@ -250,8 +245,6 @@ class CombatSystem(private val engine: GameEngine, private val random: Random) {
         const val FIRE_FLASH_SECONDS = 0.13f
         const val SENTINEL_TARGETS = 3
         const val MAX_MULTI_TARGETS = 4
-        const val HUNTER_CRIT_CHANCE = 0.25f
-        const val HUNTER_CRIT_MULTIPLIER = 3f
         const val ARCHITECT_DAMAGE_BONUS = 0.30f
         const val ARCHITECT_RATE_BONUS = 0.20f
     }

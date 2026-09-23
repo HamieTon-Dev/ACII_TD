@@ -572,6 +572,53 @@ gain. A test walks 400 consecutive levels and asserts no two print the same.
 The **tuning** was left alone: +0.5% a level is the intended curve, and the
 cost table is built around buying it in dozens.
 
+### The price curve
+
+Damage per crypto, at base level:
+
+| Agent | Cost | DPS | Range | DPS/◇ |
+| --- | ---: | ---: | ---: | ---: |
+| TARPIT | 20 | 1.9 | 200 | 0.096 |
+| FIREWALL | 40 | 10.4 | 168 | 0.259 |
+| IDS | 55 | 9.0 | 290 | 0.164 |
+| IPS | 70 | 17.8 | 170 | 0.255 |
+| SANDBOX | 80 | 4.3 | 196 | 0.053 |
+| ANALYST | 95 | 23.6 | 212 | 0.248 |
+| CRYPTOGRAPHER | 105 | 27.3 | 220 | 0.260 |
+| ZERO-DAY HUNTER | 150 | 48.3 | 242 | 0.322 |
+| AI SENTINEL | 185 | 33.0 | 256 | 0.178 ×3 targets |
+| NETWORK ARCHITECT | 210 | 12.8 | 264 | 0.061 + aura |
+| QUANTUM DEFENDER | 240 | 63.0 | 278 | 0.262 + chains |
+| ROOT ADMIN | 320 | 115.9 | 285 | 0.362 |
+
+Among the pure damage dealers the figure now climbs with price — 0.259 at the
+FIREWALL to 0.362 at the ROOT ADMIN — so saving up is rewarded. Before 1.8.0 it
+*fell*: the ROOT ADMIN returned 0.232 against the FIREWALL's 0.259.
+
+The three units below the line are priced for what they do to other things: the
+TARPIT and SANDBOX slow, the NETWORK ARCHITECT buffs every agent in range by
++30% damage and +20% fire rate.
+
+### Known issue: the SANDBOX is outclassed
+
+At 80 ◇ the SANDBOX slows to 0.60× on hit and deals 4.3 dps. The TARPIT costs
+**a quarter as much** and slows to 0.72× as a *continuous field*, which in
+practice holds far more threats at once than an on-hit slow can. Four tarpits
+cost the same as one sandbox, cover four areas, and out-damage it.
+
+The sandbox's only remaining edge is depth of slow in one spot. It is the
+weakest buy on the board. This wants a rethink of what the unit is for — a
+stronger effect, a different one, or a lower price — rather than another
+number nudge, so it is recorded here rather than patched.
+
+### No randomness in damage
+
+Every agent deals exactly the same damage on every shot. The one exception was
+the ZERO-DAY HUNTER's 25%/3× critical, removed in 1.8.0 in favour of flat
+damage worth more than the old average. Randomness in the game is confined to
+wave composition, elite rolls and cosmetic jitter — never to what a tower hits
+for.
+
 ### TARPIT
 
 | | |

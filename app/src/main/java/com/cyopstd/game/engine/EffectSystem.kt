@@ -21,8 +21,8 @@ class EffectSystem(private val engine: GameEngine, private val random: Random) {
         }
     }
 
-    fun spawnHit(x: Float, y: Float, critical: Boolean) {
-        if (engine.batterySaver && !critical) return
+    fun spawnHit(x: Float, y: Float, heavy: Boolean) {
+        if (engine.batterySaver && !heavy) return
         val effect = engine.effects.obtain() ?: return
         effect.reset()
         effect.active = true
@@ -30,9 +30,9 @@ class EffectSystem(private val engine: GameEngine, private val random: Random) {
         effect.x = x + random.nextFloat() * 10f - 5f
         effect.y = y + random.nextFloat() * 10f - 5f
         effect.lifetime = 0.18f
-        effect.colorArgb = if (critical) GameEngine.COLOR_WARNING else GameEngine.COLOR_NEUTRAL
-        effect.scale = if (critical) 1.3f else 1f
-        effect.text = if (critical) "**" else "*"
+        effect.colorArgb = if (heavy) GameEngine.COLOR_WARNING else GameEngine.COLOR_NEUTRAL
+        effect.scale = if (heavy) 1.3f else 1f
+        effect.text = if (heavy) "**" else "*"
     }
 
     fun spawnDeath(x: Float, y: Float, boss: Boolean) {
@@ -48,9 +48,9 @@ class EffectSystem(private val engine: GameEngine, private val random: Random) {
         effect.scale = if (boss) 2.2f else 1f
     }
 
-    fun spawnDamageNumber(x: Float, y: Float, amount: Float, critical: Boolean) {
+    fun spawnDamageNumber(x: Float, y: Float, amount: Float, heavy: Boolean) {
         if (!engine.showDamageNumbers) return
-        if (engine.batterySaver && !critical) return
+        if (engine.batterySaver && !heavy) return
         val effect = engine.effects.obtain() ?: return
         effect.reset()
         effect.active = true
@@ -59,10 +59,10 @@ class EffectSystem(private val engine: GameEngine, private val random: Random) {
         effect.y = y - 12f
         effect.velocityY = -46f
         effect.lifetime = Balance.DAMAGE_NUMBER_LIFETIME
-        effect.colorArgb = if (critical) GameEngine.COLOR_WARNING else GameEngine.COLOR_NEUTRAL
-        effect.scale = if (critical) 1.35f else 1f
+        effect.colorArgb = if (heavy) GameEngine.COLOR_WARNING else GameEngine.COLOR_NEUTRAL
+        effect.scale = if (heavy) 1.35f else 1f
         val rounded = amount.toInt().coerceAtLeast(1)
-        effect.text = if (critical) "$rounded!" else "$rounded"
+        effect.text = if (heavy) "$rounded!" else "$rounded"
     }
 
     fun spawnCryptoGain(x: Float, y: Float, amount: Int) {

@@ -226,7 +226,7 @@ object WorldGeometry {
      * work from it; the deploy overlay then dims the ones the agent actually
      * in hand cannot reach, so nobody pays for a tower that shoots at nothing.
      */
-    private const val ELIGIBILITY_RANGE = 268f
+    private const val ELIGIBILITY_RANGE = 290f
 
     private const val COVERAGE_STEP = 4f
 

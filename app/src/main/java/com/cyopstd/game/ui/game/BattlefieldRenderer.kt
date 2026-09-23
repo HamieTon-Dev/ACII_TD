@@ -984,8 +984,8 @@ class BattlefieldRenderer {
             canvas.translate(projectile.x, projectile.y)
             canvas.rotate(Math.toDegrees(projectile.angle.toDouble()).toFloat())
 
-            textPaint.textSize = if (projectile.critical) 22f else 18f
-            textPaint.color = if (projectile.critical) colOrange else color
+            textPaint.textSize = if (projectile.heavy) 22f else 18f
+            textPaint.color = if (projectile.heavy) colOrange else color
             textPaint.alpha = 255
             canvas.drawText(projectile.style.trail, 0f, 6f, textPaint)
 

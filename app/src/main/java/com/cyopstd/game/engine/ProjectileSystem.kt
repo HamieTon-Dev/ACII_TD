@@ -36,12 +36,12 @@ class ProjectileSystem(private val engine: GameEngine, private val random: Rando
         projectile.sourceNodeId = agent.nodeId
         projectile.speed = Balance.PROJECTILE_SPEED
 
-        val critical = engine.combatSystem().rollCritical(agent)
-        projectile.critical = critical
+        // The ZERO-DAY HUNTER used to roll a 25% chance of a 3x critical. Its
+        // damage is now flat and higher, so every shot is a heavy one -- the
+        // emphasis is kept, the dice are gone.
+        projectile.heavy = agent.type == AgentType.ZERO_DAY_HUNTER
         // Persistent CORE FIRMWARE multiplies every shot, in every match.
-        projectile.damage = agent.effectiveDamage() *
-            engine.firmwareDamageMultiplier *
-            (if (critical) CombatSystem.HUNTER_CRIT_MULTIPLIER else 1f)
+        projectile.damage = agent.effectiveDamage() * engine.firmwareDamageMultiplier
 
         projectile.ignoresArmor = when (agent.type) {
             AgentType.ZERO_DAY_HUNTER, AgentType.ROOT_ADMIN -> true
@@ -101,7 +101,7 @@ class ProjectileSystem(private val engine: GameEngine, private val random: Rando
 
     private fun onImpact(projectile: Projectile) {
         val target = projectile.targetEnemy
-        engine.effectSystem().spawnHit(projectile.x, projectile.y, projectile.critical)
+        engine.effectSystem().spawnHit(projectile.x, projectile.y, projectile.heavy)
 
         if (target == null || !target.active || target.health <= 0f) return
 
@@ -110,7 +110,7 @@ class ProjectileSystem(private val engine: GameEngine, private val random: Rando
             rawDamage = projectile.damage,
             sourceType = projectile.sourceType,
             ignoresArmor = projectile.ignoresArmor,
-            critical = projectile.critical,
+            heavy = projectile.heavy,
             sourceNodeId = projectile.sourceNodeId
         )
 
@@ -144,10 +144,10 @@ class ProjectileSystem(private val engine: GameEngine, private val random: Rando
                 rawDamage = chainDamage,
                 sourceType = projectile.sourceType,
                 ignoresArmor = false,
-                critical = false,
+                heavy = false,
                 sourceNodeId = projectile.sourceNodeId
             )
-            engine.effectSystem().spawnHit(enemy.x, enemy.y, critical = false)
+            engine.effectSystem().spawnHit(enemy.x, enemy.y, heavy = false)
             remaining--
         }
     }
@@ -161,7 +161,7 @@ class ProjectileSystem(private val engine: GameEngine, private val random: Rando
         rawDamage: Float,
         sourceType: AgentType,
         ignoresArmor: Boolean,
-        critical: Boolean,
+        heavy: Boolean,
         sourceNodeId: Int = -1
     ) {
         if (!enemy.active || enemy.health <= 0f) return
@@ -179,7 +179,7 @@ class ProjectileSystem(private val engine: GameEngine, private val random: Rando
         enemy.health -= damage
         enemy.hitFlash = HIT_FLASH_SECONDS
 
-        engine.effectSystem().spawnDamageNumber(enemy.x, enemy.y, damage, critical)
+        engine.effectSystem().spawnDamageNumber(enemy.x, enemy.y, damage, heavy)
 
         if (enemy.health <= 0f) {
             enemy.health = 0f

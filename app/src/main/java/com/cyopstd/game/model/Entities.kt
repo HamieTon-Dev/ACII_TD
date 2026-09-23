@@ -200,7 +200,8 @@ class Projectile : Poolable {
     var slowDuration: Float = 0f
 
     var ignoresArmor: Boolean = false
-    var critical: Boolean = false
+    /** Drawn with emphasis: a heavy hit rather than a routine one. */
+    var heavy: Boolean = false
     /** Remaining chain bounces (Quantum Defender). */
     var chainsLeft: Int = 0
 
@@ -211,7 +212,7 @@ class Projectile : Poolable {
         active = false
         targetEnemy = null
         chainsLeft = 0
-        critical = false
+        heavy = false
         ignoresArmor = false
         slowFactor = 1f
         slowDuration = 0f
