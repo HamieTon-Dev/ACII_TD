@@ -32,6 +32,25 @@ object PlayServices {
             adMobAppId != SAMPLE_APP_ID &&
             adMobInterstitialId != SAMPLE_INTERSTITIAL_ID
 
+    /** The Play Games Services project id, as supplied at build time. */
+    val gamesAppId: String get() = BuildConfig.GAMES_APP_ID
+
+    /**
+     * True when this build has a real Play Games project behind it.
+     *
+     * Play Games project ids are numeric, so the shape check is exact rather
+     * than a guess. An unconfigured build selects the no-op cloud-save gateway
+     * and never calls `PlayGamesSdk.initialize`, which would otherwise throw on
+     * the placeholder id the manifest has to carry.
+     */
+    val cloudSaveConfigured: Boolean
+        get() = gamesAppId.isNotBlank() &&
+            gamesAppId.all { it.isDigit() } &&
+            gamesAppId != PLACEHOLDER_GAMES_APP_ID
+
+    /** What `resValue` writes when no id is configured. Never a real project. */
+    const val PLACEHOLDER_GAMES_APP_ID = "0"
+
     private const val ADMOB_PREFIX = "ca-app-pub-"
 
     /** Google's documented samples. Never to be shipped as if they were ours. */

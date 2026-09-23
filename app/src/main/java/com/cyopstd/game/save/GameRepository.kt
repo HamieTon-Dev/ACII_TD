@@ -328,6 +328,7 @@ class GameRepository(private val store: DataStore<Preferences>) {
         val USERNAME = stringPreferencesKey("username")
         val BEST_DAMAGE = longPreferencesKey("best_damage")
         val LEADERBOARD = stringPreferencesKey("leaderboard_json")
+        val LAST_CLOUD_SYNC = longPreferencesKey("last_cloud_sync")
     }
 
     // ------------------------------------------- store, identity, leaderboard
@@ -447,6 +448,95 @@ class GameRepository(private val store: DataStore<Preferences>) {
             return
         }
         store.edit { prefs -> prefs[Keys.LEADERBOARD] = encoded }
+    }
+
+    // ------------------------------------------------------------ cloud save
+
+    /** When the account's copy was last confirmed, or null if never. */
+    val lastCloudSync: Flow<Long?> = store.data
+        .catch { emit(emptyPreferences()) }
+        .map { prefs -> prefs[Keys.LAST_CLOUD_SYNC]?.takeIf { it > 0L } }
+
+    suspend fun setLastCloudSync(millis: Long) = store.edit { prefs ->
+        prefs[Keys.LAST_CLOUD_SYNC] = millis
+    }.let { }
+
+    // ---------------------------------------------- cloud save: the payload
+
+    /**
+     * Everything worth carrying to another device, in one snapshot.
+     *
+     * Read through the same flows the game reads, so a cloud save can never
+     * disagree with what the player is looking at.
+     */
+    suspend fun exportCloudSave(device: String): CloudSave = CloudSave(
+        schema = CloudSave.SCHEMA,
+        savedAtMillis = System.currentTimeMillis(),
+        device = device,
+        stats = stats.first(),
+        progress = progress.first(),
+        identity = identity.first(),
+        cosmetics = storeState.first().cosmetics,
+        run = savedRun.first(),
+        leaderboard = leaderboard()
+    )
+
+    /**
+     * Writes a merged save back.
+     *
+     * One `edit` for the whole payload, because a half-applied restore is the
+     * worst outcome available here: a player with someone else's wave count and
+     * their own wallet, or a firmware level they did not pay for. Either the
+     * save lands or none of it does.
+     *
+     * Entitlements are untouched on purpose — Play owns those, and a save file
+     * must never be able to grant paid content.
+     */
+    suspend fun importCloudSave(save: CloudSave) {
+        val runJson = save.run?.let {
+            try {
+                json.encodeToString(SavedRun.serializer(), it)
+            } catch (error: Exception) {
+                Log.w(TAG, "Restored run could not be encoded; dropping it", error)
+                null
+            }
+        }
+        val boardJson = try {
+            Json.encodeToString(LeaderboardSerializer, save.leaderboard)
+        } catch (error: Exception) {
+            Log.w(TAG, "Restored leaderboard could not be encoded; dropping it", error)
+            null
+        }
+
+        writeSafely { prefs ->
+            prefs[Keys.HIGHEST_WAVE] = save.stats.highestWave
+            prefs[Keys.TOTAL_PACKETS] = save.stats.totalAttacksBlocked.toInt()
+            prefs[Keys.TOTAL_BOSSES] = save.stats.totalBossesDefeated.toInt()
+            prefs[Keys.TOTAL_CRYPTO] = save.stats.totalCryptoEarned.toInt()
+            prefs[Keys.TOTAL_GAMES] = save.stats.totalGamesPlayed.toInt()
+            prefs[Keys.TOTAL_SERVER_DAMAGE] = save.stats.totalServerDamageTaken.toInt()
+            prefs[Keys.TOTAL_DEPLOYED] = save.stats.totalAgentsDeployed.toInt()
+            prefs[Keys.TOTAL_UPGRADES] = save.stats.totalAgentUpgrades.toInt()
+            prefs[Keys.DEPLOYMENTS_JSON] = encodeDeployments(save.stats.deploymentsByAgent)
+
+            prefs[Keys.BUDGET] = save.progress.budget
+            prefs[Keys.LIFETIME_BUDGET] = save.progress.lifetimeBudgetEarned
+            prefs[Keys.FIRMWARE_LEVEL] = save.progress.firmwareLevel
+            prefs[Keys.UNLOCKED_AGENTS] = save.progress.unlockedAgents.joinToString("|")
+            prefs[Keys.TUTORIAL_DONE] = save.progress.tutorialCompleted
+
+            if (save.identity.username.isNotBlank()) {
+                prefs[Keys.USERNAME] = save.identity.username
+            }
+            prefs[Keys.BEST_DAMAGE] = save.identity.bestDamage
+
+            save.cosmetics.coreSkinId?.let { prefs[Keys.CORE_SKIN] = it }
+            save.cosmetics.backgroundId?.let { prefs[Keys.BACKGROUND_SKIN] = it }
+            prefs[Keys.SPECTRUM_AGENTS] = save.cosmetics.spectrumAgents
+
+            if (runJson != null) prefs[Keys.SAVED_RUN] = runJson else prefs.remove(Keys.SAVED_RUN)
+            if (boardJson != null) prefs[Keys.LEADERBOARD] = boardJson
+        }
     }
 
     private fun String?.toIdSet(): Set<String> =

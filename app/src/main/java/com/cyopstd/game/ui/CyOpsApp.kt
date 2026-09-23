@@ -172,8 +172,14 @@ fun CyOpsApp(
                     budget = viewModel.budget,
                     status = viewModel.billingStatus,
                     adsConfigured = PlayServices.adsConfigured,
+                    cloudStatus = viewModel.cloudStatus,
+                    cloudAccount = viewModel.cloudAccount,
+                    lastCloudSync = viewModel.lastCloudSync,
+                    cloudBusy = viewModel.cloudBusy,
                     backgroundAnimation = viewModel.settings.backgroundAnimation,
                     onRestore = { viewModel.restorePurchases() },
+                    onLinkCloud = { viewModel.linkCloudSave() },
+                    onSyncCloud = { viewModel.syncCloudSave() },
                     onOpenOrders = {
                         viewModel.playClick()
                         if (!PlayLinks.open(context, PlayLinks.orderHistoryUris())) {

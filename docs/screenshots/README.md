@@ -36,7 +36,8 @@ few frames per second.
 | File | What it shows |
 | --- | --- |
 | `menu-google-play.png` | Main menu with the GOOGLE PLAY entry and the AURORA living background |
-| `google-play-account.png` | The Google Play account screen, connected, with several products owned |
+| `cloud-save-unlinked.png` | The Google Play account screen before a Google account is linked |
+| `cloud-save-linked.png` | The same screen once progress is following the account |
 
 Treat them as accurate for layout, wording and colour, and as *unverified* for
 anything that depends on a real device: system font fallback, animation and

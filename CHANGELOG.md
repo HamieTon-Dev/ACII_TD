@@ -7,6 +7,108 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [1.15.0]
+
+### Added — progress that survives the phone
+
+Linking a Google account now carries a player's waves, agents, € and firmware
+to any device they sign into. MAIN MENU → GOOGLE PLAY → CLOUD SAVE.
+
+It is built on **Play Games Services Saved Games**, which means the save lives
+in the player's own Google account — the app-private part of their Drive that
+only this game can read. That is why linking shows Google's prompt asking for
+permission to manage this game's saved data, and the panel says so *before* the
+prompt appears rather than after, because that prompt is where a player decides
+whether to trust this.
+
+The alternative was a custom backend, and it was rejected on purpose: an
+account system, a password reset flow, a privacy policy to write and honour, a
+server to keep alive, and one more way for a player to lose everything. Saved
+Games costs nothing to run and is the mechanism players already recognise.
+
+Syncing happens when the player leaves the app and when a run ends — the two
+moments where the local save has just been written and nobody is waiting. It
+never prompts an unlinked player.
+
+**What travels:** progress, unlocks, the callsign, the run history.
+**What does not:** purchases, because Google Play is the source of truth for
+those and a save file that could grant paid content would be a way to steal it;
+and device settings, because volume and haptics belong to a device, not a
+player.
+
+### The rules for when two devices disagree
+
+This is the part of cloud save that can actually cost someone something, so the
+rules are written down and tested rather than left to whichever device syncs
+last:
+
+| | |
+| --- | --- |
+| Lifetime counters (waves, attacks blocked, bosses, € *earned*) | the maximum of both |
+| Unlocks, tutorial, run history | union — nothing is ever taken away |
+| The wallet: unspent € **and** the firmware level it bought | as one piece, from whichever save is further along |
+| The run in progress | that same save's |
+| Callsign | a claimed name is never replaced by an empty one |
+
+The wallet rule is the one with teeth. Spend 500 € on firmware, then sync
+against a save from before the purchase, and taking the maximum of each field
+independently would hand back the money *and* keep the firmware. A ledger moves
+as one piece or not at all. There is a test that states this as a property
+rather than an example: whatever pair of saves goes in, the € and the firmware
+that come out must both have come from the same save.
+
+Two more properties are tested because they are what makes syncing safe to do
+repeatedly: the merge gives the same answer whichever device performs it (so two
+phones cannot ping-pong), and merging an already-merged save changes nothing (so
+launching the game does not shuffle anyone's numbers).
+
+### Fixed — the pause-time upload raced the pause-time save
+
+Leaving the app wrote the run and pushed the snapshot in two separate
+coroutines, so the upload could read the save before the run landed in it. The
+failure was silent and would only ever show up on the *other* device, as a run
+that had quietly gone missing. Both now happen in order, in one coroutine.
+
+### Fixed — linking a new phone would have wiped the account's wallet
+
+Found by writing the test for it rather than by reading the code, and it is the
+worst bug this feature could have had. "Further along" was originally "newer",
+and a save is stamped with the time it is *exported* — so a freshly installed
+phone, with nothing played on it, always looked newer than the account it was
+about to read from. Linking it would have taken the account's € and its run in
+progress and replaced them with nothing.
+
+Ordering is now by how much play a save represents (the sum of its lifetime
+counters, each of which only grows), with the clock as a tiebreak only. That
+also fixes a second problem nobody had hit yet: device clocks disagree, and a
+phone set to the wrong year would otherwise have won every merge it took part
+in. The same number is handed to Play Games as the snapshot's progress value, so
+Google's own conflict resolution cannot disagree with ours.
+
+### Added — a failure that costs nothing
+
+Every path is pull, merge, apply, push — never push-then-pull. The merged save
+is written locally *before* it is uploaded, so losing the network on the way up
+leaves the player holding the better of the two saves rather than the worse one.
+A failed sync says "GOOGLE UNREACHABLE — SAVE KEPT ON DEVICE" and the game
+carries on.
+
+### Fixed — an already-linked player was offered a link button
+
+While linked-but-offline, the panel offered LINK GOOGLE ACCOUNT, which would
+have sent someone who is already linked back through a sign-in they do not need.
+That state now offers SYNC NOW, which is the thing that actually helps. Caught
+by a test, not by reading the code.
+
+### Note for a build with no Play Games project
+
+Unconfigured — which is how this repository ships — the no-op gateway is
+selected, the panel says NOT IN THIS BUILD, and saves stay on the device.
+Android's own Auto Backup still restores them on a fresh install onto a phone
+signed into the same Google account, so even that build is not a dead end.
+
+---
+
 ## [1.14.0]
 
 ### Added — the Google Play account screen

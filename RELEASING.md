@@ -88,7 +88,66 @@ purchases can be exercised end to end without being charged.
 
 ---
 
-## 3. AdMob
+## 3. Play Games Services — this is what carries progress between devices
+
+Cloud save is built on Play Games *Saved Games*, so a player's waves, agents,
+€ and firmware live in their own Google account rather than on a server this
+project would have to run. Setting it up is Play Console work:
+
+1. **Play Console → Grow → Play Games Services → Setup and management →
+   Configuration.** Create a new Play Games Services project and link it to
+   this app (`com.cyopstd.game`).
+2. **Turn on *Saved Games*** in the project's properties. Without it the
+   snapshot API returns an error on every call and cloud save silently does
+   nothing.
+3. **Credentials.** Add an Android credential for the app, signed with the same
+   key as the release build (or the Play App Signing key). This creates the
+   OAuth client Google uses for the consent prompt.
+4. **Testers.** Add your account under *Testers* while the project is
+   unpublished, or sign-in fails with a generic error that looks like a bug in
+   the game.
+5. Copy the **numeric project id** from the configuration page and build with:
+
+```bash
+./gradlew :app:assembleRelease -Pcyops.games.appId=1234567890
+```
+
+An unset id selects `NoCloudSaveGateway`: the game keeps every save on the
+device, the CLOUD SAVE panel says "NOT IN THIS BUILD", and nothing crashes. The
+id must be numeric — `PlayServices.cloudSaveConfigured` checks that, because the
+manifest has to carry a placeholder (`0`) for the SDK to parse at all, and
+initialising against a placeholder throws.
+
+**What the player is asked.** The first link shows Google's own consent prompt
+for managing this game's saved data in their account. The game never sees their
+password, their email, their Drive files or anything else; saved games are
+stored in the app-private area of their Drive that only this app can read. The
+CLOUD SAVE panel says so *before* the prompt appears, which is deliberate.
+
+**What travels and what does not.** Progress, unlocks, the callsign and the run
+history travel. **Entitlements do not** — Google Play is the source of truth for
+purchases, and a save file that could grant paid content would be a way to steal
+it. Device settings (volume, haptics, battery saver) do not travel either; they
+belong to a device, not to a player.
+
+**Conflicts** are resolved by `CloudSaveMerge`, whose rules are in
+`save/CloudSave.kt` and covered by 17 tests: lifetime counters take the maximum,
+unlocks are unioned, and the wallet (unspent € plus the firmware it was spent
+on) moves as one piece from whichever save is *further along* — taking the max
+of each independently would let a player mint currency by restoring an old save.
+"Further along" is measured by lifetime counters rather than by a clock, because
+a save is stamped when it is exported: ordering by time let a freshly installed
+phone overwrite the account it was about to read from, and let a device with a
+wrong clock win every merge.
+
+**If you never set this up**, Android's own Auto Backup still restores the save
+when a player reinstalls on a device signed into the same Google account
+(`allowBackup` and the rules in `res/xml/`). That is the floor; Play Games is
+the version that works across two devices at once.
+
+---
+
+## 4. AdMob
 
 1. Create the app in AdMob and link it to the Play listing.
 2. Create one **Interstitial** ad unit.
@@ -104,13 +163,17 @@ show, not how it behaves once AdMob has it on screen.
 
 ---
 
-## 4. Store listing obligations
+## 5. Store listing obligations
 
 Adding billing, ads and a network permission changes what must be declared:
 
 - **Privacy policy** — required. The AdMob SDK collects an advertising id.
-- **Data safety form** — declare the advertising id, and that the app contains
-  ads and in-app purchases.
+- **Data safety form** — declare the advertising id, that the app contains ads
+  and in-app purchases, and — once a games project is configured — that the app
+  transfers *App activity / other user-generated content* (the saved game) to
+  the player's own Google account. It is optional, it is used only to restore
+  progress, and it is not shared with anyone else, which is exactly what the
+  form asks.
 - **Ads declaration** — yes.
 - **Target audience** — if the listing ever targets children, the AdMob setup
   and the data safety answers both change. Decide before the first publish.
@@ -123,18 +186,21 @@ writing the store listing, so the two say the same thing.
 
 ---
 
-## 5. What has and has not been proven
+## 6. What has and has not been proven
 
-**Verified here:** the app builds and signs; 219 tests pass; the Play SDKs
+**Verified here:** the app builds and signs; 247 tests pass; the Play SDKs
 resolve, link and survive R8 (billing and ads classes are present in the
 release DEX); the merged manifest carries INTERNET, `AD_ID` and the
 `com.android.vending.BILLING` permission the billing library adds.
 
 **Not verified here, and cannot be:** no purchase has been made, no ad has been
-shown, and no money has moved. There is no Play Console behind this build and
-no emulator with Play Services in this container. Billing and ads must be
-exercised on a real device against a real Play Console before release —
-start with an internal testing track and a licence-test account.
+shown, no account has been linked, no snapshot has been written, and no money
+has moved. There is no Play Console behind this build and
+no emulator with Play Services in this container. Billing, ads and cloud save must all be
+exercised on a real device against a real Play Console before release — start
+with an internal testing track and a licence-test account. For cloud save, the
+test that matters is two devices: play on one, link both, and confirm the
+second one shows the first one's progress.
 
 **Also still unproven from earlier:** the release APK has never been observed
 drawing a frame (the container emulator has no KVM), and the audio has never

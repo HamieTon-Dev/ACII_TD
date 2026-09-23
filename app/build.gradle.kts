@@ -13,8 +13,8 @@ android {
         applicationId = "com.cyopstd.game"
         minSdk = 24
         targetSdk = 35
-        versionCode = 18
-        versionName = "1.14.0"
+        versionCode = 19
+        versionName = "1.15.0"
 
         // Stamped into the APK so the build identifier on screen is the real
         // one, not a string someone remembered to update. Reported by
@@ -39,6 +39,23 @@ android {
 
         buildConfigField("String", "ADMOB_APP_ID", "\"${'$'}admobAppId\"")
         buildConfigField("String", "ADMOB_INTERSTITIAL_ID", "\"${'$'}admobInterstitial\"")
+
+        // Play Games Services, which is what carries a player's progress
+        // between devices:
+        //
+        //     cyops.games.appId=1234567890
+        //
+        // The numeric project id from the Play Console's Play Games Services
+        // setup. Empty selects the no-op cloud-save gateway, and the game then
+        // keeps every save on the device exactly as it always has.
+        val gamesAppId = (project.findProperty("cyops.games.appId") as String?).orEmpty()
+        buildConfigField("String", "GAMES_APP_ID", "\"${'$'}gamesAppId\"")
+        // The Games SDK insists this be a string *resource*, and refuses to
+        // initialise without one. "0" is a syntactically valid placeholder that
+        // is never used: CloudSaveGateways.create() returns the no-op gateway
+        // unless a real id is configured, and only the real gateway ever calls
+        // PlayGamesSdk.initialize().
+        resValue("string", "games_app_id", gamesAppId.ifEmpty { "0" })
 
         // The SDK refuses to initialise without a syntactically valid id, so an
         // unconfigured build gets Google's documented sample application id.
@@ -163,6 +180,7 @@ dependencies {
     // behind it still runs and still plays.
     implementation(libs.billing.ktx)
     implementation(libs.play.services.ads)
+    implementation(libs.play.services.games)
     debugImplementation(libs.androidx.compose.ui.tooling)
 
     testImplementation(libs.junit)

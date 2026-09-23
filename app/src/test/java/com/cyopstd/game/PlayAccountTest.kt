@@ -3,14 +3,18 @@ package com.cyopstd.game
 import androidx.compose.ui.test.assertIsEnabled
 import androidx.compose.ui.test.assertIsNotEnabled
 import androidx.compose.ui.test.junit4.createComposeRule
+import androidx.compose.ui.test.assertCountEquals
+import androidx.compose.ui.test.onAllNodesWithText
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
+import com.cyopstd.game.save.CloudSaveStatus
 import com.cyopstd.game.save.PlayerIdentity
 import com.cyopstd.game.store.BillingStatus
 import com.cyopstd.game.store.Entitlements
 import com.cyopstd.game.store.PlayLinks
 import com.cyopstd.game.store.Sku
 import com.cyopstd.game.ui.menu.PlayAccountScreen
+import com.cyopstd.game.ui.menu.relativeTime
 import com.cyopstd.game.ui.theme.CyOpsTheme
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
@@ -42,8 +46,13 @@ class PlayAccountTest {
         identity: PlayerIdentity = PlayerIdentity(),
         status: BillingStatus = BillingStatus.READY,
         adsConfigured: Boolean = true,
+        cloudStatus: CloudSaveStatus = CloudSaveStatus.NOT_LINKED,
+        cloudAccount: String? = null,
+        lastCloudSync: Long? = null,
         onRestore: () -> Unit = {},
-        onCallsign: () -> Unit = {}
+        onCallsign: () -> Unit = {},
+        onLinkCloud: () -> Unit = {},
+        onSyncCloud: () -> Unit = {}
     ) {
         compose.setContent {
             CyOpsTheme {
@@ -53,8 +62,14 @@ class PlayAccountTest {
                     budget = 250,
                     status = status,
                     adsConfigured = adsConfigured,
+                    cloudStatus = cloudStatus,
+                    cloudAccount = cloudAccount,
+                    lastCloudSync = lastCloudSync,
+                    cloudBusy = false,
                     backgroundAnimation = false,
                     onRestore = onRestore,
+                    onLinkCloud = onLinkCloud,
+                    onSyncCloud = onSyncCloud,
                     onOpenOrders = {},
                     onOpenListing = {},
                     onCallsign = onCallsign,
@@ -141,6 +156,72 @@ class PlayAccountTest {
         show(identity = PlayerIdentity(), onCallsign = { taps++ })
         compose.onNodeWithText("REGISTER CALLSIGN").performClick()
         assertEquals(1, taps)
+    }
+
+    @Test
+    fun `an unlinked player is told progress stays on this device`() {
+        show(cloudStatus = CloudSaveStatus.NOT_LINKED)
+
+        compose.onNodeWithText("NOT LINKED").assertExists()
+        compose.onNodeWithText("LINK GOOGLE ACCOUNT").assertIsEnabled()
+        // The claim that matters while unlinked. If this ever disappears while
+        // progress is still local, the screen is lying by omission.
+        compose.onNodeWithText("THIS DEVICE UNTIL LINKED").assertExists()
+    }
+
+    @Test
+    fun `linking is offered before the permission prompt appears, not after`() {
+        show(cloudStatus = CloudSaveStatus.NOT_LINKED)
+        // Google's consent dialog is where a player decides whether to trust
+        // this, so the screen says what will be asked for beforehand.
+        compose.onAllNodesWithText(
+            "manage this game's saved data",
+            substring = true
+        ).assertCountEquals(1)
+    }
+
+    @Test
+    fun `a linked player is told their progress follows the account`() {
+        var synced = 0
+        show(
+            cloudStatus = CloudSaveStatus.LINKED,
+            cloudAccount = "NULLSEC",
+            onSyncCloud = { synced++ }
+        )
+
+        compose.onNodeWithText("LINKED").assertExists()
+        compose.onNodeWithText("NULLSEC").assertExists()
+        compose.onAllNodesWithText("YOUR GOOGLE ACCOUNT").assertCountEquals(3)
+
+        compose.onNodeWithText("SYNC NOW").performClick()
+        assertEquals(1, synced)
+    }
+
+    @Test
+    fun `an offline cloud says nothing was lost`() {
+        show(cloudStatus = CloudSaveStatus.ERROR)
+        compose.onNodeWithText("LINKED \u00B7 OFFLINE").assertExists()
+        // Still pressable: this state is a missing network, not a broken link.
+        compose.onNodeWithText("SYNC NOW").assertIsEnabled()
+    }
+
+    @Test
+    fun `a build without Play Games offers no dead button`() {
+        show(cloudStatus = CloudSaveStatus.UNAVAILABLE)
+        compose.onNodeWithText("NOT IN THIS BUILD").assertExists()
+        compose.onNodeWithText("LINK GOOGLE ACCOUNT").assertIsNotEnabled()
+    }
+
+    @Test
+    fun `the sync time reads as a human would say it`() {
+        val now = 1_700_000_000_000L
+        assertEquals("JUST NOW", relativeTime(now - 30_000, now))
+        assertEquals("5 MIN AGO", relativeTime(now - 5 * 60_000, now))
+        assertEquals("3 HR AGO", relativeTime(now - 3 * 3_600_000L, now))
+        assertEquals("2 DAYS AGO", relativeTime(now - 2 * 86_400_000L, now))
+        assertEquals("OVER A MONTH AGO", relativeTime(now - 400 * 86_400_000L, now))
+        // A clock that jumped backwards must not print a negative age.
+        assertEquals("JUST NOW", relativeTime(now + 60_000, now))
     }
 
     @Test

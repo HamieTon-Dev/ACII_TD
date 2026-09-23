@@ -39,18 +39,40 @@ The security terminology is personality and education, not a prerequisite.
 
 ## What this game does not do
 
-- **Nothing about your play leaves the device.** No analytics, no telemetry, no
-  crash reporter, no cloud save. Waves, agents, € and firmware are stored
-  locally and are never uploaded.
-- **No account and no login.** There is nothing to sign into. Purchases belong
-  to the Google account already signed into the Play Store on the device, which
-  is why the only account control in the game is RESTORE.
+- **No analytics, no telemetry, no crash reporter.** Nothing about how you play
+  is measured or sent anywhere. The one thing that can leave the device is the
+  save itself, and only if you ask for it (see *Keeping your progress*).
+- **No account and no login.** There is no CyOps account and no password.
+  Purchases belong to the Google account already signed into the Play Store on
+  the device. Progress can optionally be linked to a Google account too — see
+  below — but that is Google's sign-in, not one this game invented.
 - **No real cryptocurrency.** No blockchain, wallet, mining, NFTs or gambling.
   `◇ Crypto` and `€ Budget` are fictional in-game resources, exactly like gold
   in any other tower defence game. Neither has value and neither can leave the
   device.
 - **Nothing that costs money is required.** Every agent, wave, boss and mode is
   reachable by playing. The store sells cosmetics, convenience and € shortcuts.
+
+## Keeping your progress
+
+Progress is stored on the device by default and nothing is uploaded.
+
+Two things can carry it to a new phone:
+
+- **Android Auto Backup**, which needs nothing from you. Reinstall on a device
+  signed into the same Google account and Android restores the save.
+- **Cloud save**, under MAIN MENU → GOOGLE PLAY → CLOUD SAVE. Linking a Google
+  account keeps waves, agents, € and firmware in that account, so two devices
+  can share one set of progress. Google asks for permission to manage this
+  game's saved data — that is Play Games' saved-game storage in the private
+  part of your Drive that only this app can read. It is optional and the game is
+  complete without it.
+
+When two devices disagree, the merge rules are fixed and written down: lifetime
+records take the better of the two, unlocks are never removed, and the wallet —
+unspent € together with the firmware it bought — comes from whichever save is
+newer, as one piece. Purchases deliberately do *not* travel inside a save;
+Google Play carries those, which is both safer and more accurate.
 
 ## What it does ask for
 
@@ -77,9 +99,10 @@ and never at all once REMOVE ADS is bought.
 ## Screenshots
 
 *(No device captures yet — see [`docs/screenshots/README.md`](docs/screenshots/README.md).
-Two screens are available as rendered previews, rasterized from the real
-Compose code under Robolectric: [`menu-google-play.png`](docs/screenshots/menu-google-play.png)
-and [`google-play-account.png`](docs/screenshots/google-play-account.png).)*
+Three screens are available as rendered previews, rasterized from the real
+Compose code under Robolectric: [`menu-google-play.png`](docs/screenshots/menu-google-play.png),
+[`cloud-save-unlinked.png`](docs/screenshots/cloud-save-unlinked.png) and
+[`cloud-save-linked.png`](docs/screenshots/cloud-save-linked.png).)*
 
 | Screen | File |
 | --- | --- |

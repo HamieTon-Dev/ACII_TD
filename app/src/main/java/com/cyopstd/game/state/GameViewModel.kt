@@ -37,8 +37,14 @@ import com.cyopstd.game.engine.PlacementResult
 import com.cyopstd.game.engine.RunPhase
 import com.cyopstd.game.model.AgentType
 import com.cyopstd.game.model.TargetingMode
+import com.cyopstd.game.save.CloudSaveGateway
+import com.cyopstd.game.save.CloudSaveStatus
+import com.cyopstd.game.save.CloudSaveSync
+import com.cyopstd.game.save.CloudSyncResult
 import com.cyopstd.game.save.GameRepository
 import com.cyopstd.game.save.GameSettings
+import com.cyopstd.game.save.NoCloudSaveGateway
+import com.cyopstd.game.save.PlayGamesCloudSave
 import com.cyopstd.game.save.PlayerStats
 import com.cyopstd.game.save.SavedAgent
 import com.cyopstd.game.save.SavedRun
@@ -245,6 +251,13 @@ class GameViewModel @JvmOverloads constructor(
         (billing as? PlayBillingGateway)?.attach(activity)
         (ads as? AdMobGateway)?.attach(activity)
         ads.preload()
+        (cloud as? PlayGamesCloudSave)?.let { games ->
+            games.attach(activity)
+            // Refresh rather than sign in: a player who has linked before is
+            // signed in again silently by Play Games, and one who has not must
+            // not be met by a dialog they did not ask for.
+            viewModelScope.launch { games.refresh() }
+        }
     }
 
     var entitlements by mutableStateOf(Entitlements())
@@ -253,6 +266,106 @@ class GameViewModel @JvmOverloads constructor(
     /** The tag shown on the persistent identity strip. */
     var playerTag by mutableStateOf("")
         private set
+
+    // ------------------------------------------------------------ cloud save
+
+    /**
+     * Where progress goes so it can outlive this device.
+     *
+     * Real Play Games only when the build has a games project id; otherwise the
+     * no-op gateway, and saves stay local exactly as they always have. Android's
+     * own Auto Backup still carries them to a new phone on a fresh install, so
+     * even the unconfigured build is not a dead end.
+     */
+    private val cloud: CloudSaveGateway = if (PlayServices.cloudSaveConfigured) {
+        runCatching {
+            PlayGamesCloudSave(application, android.os.Build.MODEL ?: "this device")
+        }.getOrElse {
+            Log.w("CyOpsCloud", "Play Games unavailable; saves stay on the device", it)
+            NoCloudSaveGateway()
+        }
+    } else {
+        NoCloudSaveGateway()
+    }
+
+    private val cloudSync =
+        CloudSaveSync(repository, cloud, android.os.Build.MODEL ?: "this device")
+
+    var cloudStatus by mutableStateOf(CloudSaveStatus.UNAVAILABLE)
+        private set
+
+    var cloudAccount by mutableStateOf<String?>(null)
+        private set
+
+    /** Epoch millis of the last successful sync, or null if there has not been one. */
+    var lastCloudSync by mutableStateOf<Long?>(null)
+        private set
+
+    /** True while a sync is in flight, so the screen can say so. */
+    var cloudBusy by mutableStateOf(false)
+        private set
+
+    /**
+     * Links a Google account, then reconciles the two saves.
+     *
+     * This is the button that shows Google's consent prompt for managing this
+     * game's saved data. Declining is a normal outcome and leaves a completely
+     * playable game behind.
+     */
+    fun linkCloudSave() {
+        if (cloudBusy) return
+        playClick()
+        viewModelScope.launch {
+            cloudBusy = true
+            announce(cloudSync.link())
+            cloudBusy = false
+        }
+    }
+
+    /** SYNC NOW. Pull, merge, apply, push. */
+    fun syncCloudSave() {
+        if (cloudBusy) return
+        playClick()
+        viewModelScope.launch {
+            cloudBusy = true
+            announce(cloudSync.sync())
+            cloudBusy = false
+        }
+    }
+
+    /**
+     * A sync nobody asked for: leaving the app, or finishing a run.
+     *
+     * Silent on purpose. It does nothing when no account is linked, and it
+     * never reports failure to the player — the local save is already written
+     * by the time this runs, so a failed upload costs nothing and interrupting
+     * someone to tell them about it would.
+     */
+    private suspend fun syncCloudQuietly() {
+        if (cloudStatus != CloudSaveStatus.LINKED) return
+        if (cloudSync.syncQuietly() != CloudSyncResult.FAILED) {
+            lastCloudSync = System.currentTimeMillis()
+            repository.setLastCloudSync(lastCloudSync!!)
+        }
+    }
+
+    private suspend fun announce(result: CloudSyncResult) {
+        when (result) {
+            CloudSyncResult.MERGED -> {
+                lastCloudSync = System.currentTimeMillis()
+                repository.setLastCloudSync(lastCloudSync!!)
+                showTransient("PROGRESS SYNCED")
+            }
+            CloudSyncResult.UPLOADED -> {
+                lastCloudSync = System.currentTimeMillis()
+                repository.setLastCloudSync(lastCloudSync!!)
+                showTransient("PROGRESS SAVED TO YOUR ACCOUNT")
+            }
+            CloudSyncResult.DECLINED -> showTransient("NOT LINKED")
+            CloudSyncResult.FAILED -> showTransient("GOOGLE UNREACHABLE \u2014 SAVE KEPT ON DEVICE")
+            CloudSyncResult.UNAVAILABLE -> showTransient("CLOUD SAVE NOT AVAILABLE")
+        }
+    }
 
     // -------------------------------------------------------------------- ads
 
@@ -402,6 +515,15 @@ class GameViewModel @JvmOverloads constructor(
         }
         collectJobs += viewModelScope.launch {
             billing.status.collectLatest { billingStatus = it }
+        }
+        collectJobs += viewModelScope.launch {
+            cloud.status.collectLatest { cloudStatus = it }
+        }
+        collectJobs += viewModelScope.launch {
+            cloud.accountName.collectLatest { cloudAccount = it }
+        }
+        collectJobs += viewModelScope.launch {
+            repository.lastCloudSync.collectLatest { lastCloudSync = it }
         }
         // Purchases are applied by the gateway's own confirmation callback,
         // which carries the order id. This collector exists only so the store
@@ -819,6 +941,9 @@ class GameViewModel @JvmOverloads constructor(
                 countAsGamePlayed = false
             )
             repository.clearSavedRun()
+            // A finished run is the other moment worth carrying up: it is the
+            // one a player would be most upset to repeat on another device.
+            syncCloudQuietly()
         }
     }
 
@@ -930,7 +1055,14 @@ class GameViewModel @JvmOverloads constructor(
 
     fun onAppPaused() {
         audio.setInMatch(false)
-        saveIfActive()
+        // One coroutine, in order: the run is written first and the upload
+        // reads it afterwards. Launching both separately raced, and the race
+        // was silent — the pushed snapshot would simply be missing the run the
+        // player had just walked away from.
+        viewModelScope.launch {
+            if (matchActive && engine.phase != RunPhase.GAME_OVER) persistRun()
+            syncCloudQuietly()
+        }
     }
 
     fun onAppResumed() {
@@ -942,6 +1074,7 @@ class GameViewModel @JvmOverloads constructor(
         collectJobs.forEach { it.cancel() }
         audio.release()
         billing.release()
+        cloud.release()
     }
 
     companion object {

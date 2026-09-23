@@ -1,6 +1,7 @@
 package com.cyopstd.game
 
 import com.cyopstd.game.ads.PlayServices
+import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
 import org.junit.Test
@@ -36,6 +37,26 @@ class PlayServicesTest {
             "the sample ids look real but must not be treated as configured",
             PlayServices.adMobAppId == PlayServices.SAMPLE_APP_ID &&
                 PlayServices.adsConfigured
+        )
+    }
+
+    @Test
+    fun `an unconfigured build never claims to have cloud save`() {
+        // As checked in: no Play Games project id. The no-op gateway is
+        // selected and PlayGamesSdk.initialize() is never called, which
+        // matters because it throws on the placeholder id the manifest has to
+        // carry for the SDK to even parse.
+        assertFalse(PlayServices.cloudSaveConfigured)
+    }
+
+    @Test
+    fun `the placeholder games id is never mistaken for a real project`() {
+        assertEquals("0", PlayServices.PLACEHOLDER_GAMES_APP_ID)
+        assertFalse(
+            "the placeholder must not enable cloud save",
+            PlayServices.PLACEHOLDER_GAMES_APP_ID.isNotBlank() &&
+                PlayServices.gamesAppId == PlayServices.PLACEHOLDER_GAMES_APP_ID &&
+                PlayServices.cloudSaveConfigured
         )
     }
 

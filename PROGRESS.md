@@ -4,7 +4,7 @@
 reads first. It records where the project actually stands, what is proven and
 what is not, and what comes next.
 
-_Last updated: v1.14.0 — Google Play account screen + themed menu backdrop. See `CHANGELOG.md` for the full per-version history._
+_Last updated: v1.15.0 — cloud save on Play Games Saved Games. See `CHANGELOG.md` for the full per-version history._
 
 ---
 
@@ -12,7 +12,7 @@ _Last updated: v1.14.0 — Google Play account screen + themed menu backdrop. Se
 
 ```bash
 cd /home/user/ACII_TD
-./gradlew :app:testDebugUnitTest      # 219 tests, all passing
+./gradlew :app:testDebugUnitTest      # 247 tests, all passing
 ./gradlew :app:assembleRelease        # -> app/build/outputs/apk/release/CyOpsTD-v<ver>.apk
 ```
 
@@ -102,6 +102,7 @@ rather than loosened.
 | 1.12 | Local leaderboard + callsign; one interstitial after a lost run |
 | 1.13 | Real Play Billing + AdMob, selected only when configured. 3.02 MB |
 | 1.14 | GOOGLE PLAY account screen; living backgrounds reach the menus |
+| 1.15 | Cloud save: progress follows a linked Google account across devices |
 
 ---
 
@@ -171,18 +172,21 @@ interface, ship a no-op implementation, and **do not claim they work**:
    Still needed from the owner: an AdMob account and unit ids. Note that
    **"skip after 30 seconds" is not ours to set** — skip timing belongs to the
    ad format and the network.
-3. **Online leaderboard with unique usernames** — a *unique* username registry
-   needs a server. Two honest options, and the user must pick:
-   - **Play Games Services leaderboards** (no backend; identity and display
-     name come from the player's Play Games profile, so custom usernames are
-     not possible), or
-   - a **custom backend** (Firebase or similar) — which is real hosting,
-     ongoing cost, and a privacy policy.
-   Until then: implement a **local** leaderboard + username, stored in
-   DataStore, with the sync layer behind an interface.
+3. **Online leaderboard with unique usernames** — still needs a server for
+   *global* ranking, and that has not changed. What did change in 1.15.0: the
+   local board is now part of the cloud save, so a linked player's run history
+   follows them between devices, with their own callsign, without a backend.
+   What remains impossible without one is comparing against *other players* and
+   guaranteeing a name is unique across them. `LeaderboardGateway` is still the
+   seam if that is ever wanted.
 4. **"Borrow the living background from OmniByte"** — that project is **not
-   accessible from this session** (`list_repos` returns empty). Either the user
-   adds the repo to the session, or the background is written from scratch.
+   accessible from this session** (`add_repo` reports no access). The five
+   living backgrounds were written from scratch instead, and shipped in 1.11.0.
+
+5. **Cloud save** — ✅ built in 1.15.0 on Play Games Saved Games. What is
+   blocked is only the Play Console side: a games project, *Saved Games*
+   switched on, and a numeric project id passed at build time. See §6i and
+   `RELEASING.md` §3.
 
 ### 6d. Order of work — STATUS
 
@@ -388,11 +392,63 @@ product that grants it, that owning one does let it through, and that every
 purchasable cosmetic has a catalog entry. That last test immediately caught two
 backgrounds with no product to sell them.
 
+### 6i. CLOUD SAVE — how it works (v1.15.0)
+
+**Mechanism:** Play Games Services *Saved Games* (`play-services-games-v2`).
+The save lives in the player's own Google account, in the app-private Drive area
+only this app can read — which is why linking shows Google's prompt about
+managing this game's saved data. No server, no account system, no privacy policy
+to write beyond declaring it, nothing to keep alive.
+
+**Files:**
+- `save/CloudSave.kt` — the payload *and* `CloudSaveMerge`, which holds every
+  rule for what a player keeps when two devices disagree. Pure, and therefore
+  the only part that can be tested here.
+- `save/CloudSaveGateway.kt` — interface + `NoCloudSaveGateway`.
+- `save/PlayGamesCloudSave.kt` — the real one. Moves bytes; decides nothing.
+- `save/CloudSaveSync.kt` — pull, merge, apply, push, in that order.
+- `GameRepository.exportCloudSave` / `importCloudSave` — one atomic write, so a
+  restore cannot land half-applied.
+
+**Merge rules** (all tested): lifetime counters take the max; unlocks are
+unioned; the wallet (unspent € + the firmware it bought) moves as one piece from
+whichever save is *further along*; the in-progress run comes from that same
+save; a claimed callsign is never replaced by an empty one.
+
+"Further along" is `CloudSave.progressValue`, the sum of the lifetime counters,
+**not** the timestamp. This was a real bug, caught by testing the fresh-install
+case: a save is stamped when it is exported, so a newly installed phone always
+looked newer than the account it was about to read from, and linking it would
+have replaced the account's € and its in-progress run with nothing. Clocks also
+disagree between devices. The same value is given to Play as the snapshot's
+progress value so Google's own conflict resolution agrees. The merge is order-independent and
+idempotent, which is what stops two phones ping-ponging.
+
+**Deliberately excluded:** entitlements (Play owns purchases; a save file that
+could grant paid content would be a way to steal it) and settings (they belong
+to a device).
+
+**Configuration:** `-Pcyops.games.appId=<numeric project id>`. Unset selects the
+no-op gateway. See `RELEASING.md` §3 for the Play Console steps, including that
+*Saved Games* must be switched on in the games project or every snapshot call
+fails.
+
+**Unproven, and cannot be proven here:** no account has been linked and no
+snapshot has ever been written. The container has no Play Services. The test
+that matters on a real device is two devices, not one.
+
+---
+
 ### 6e. Decisions needed from the user
 
-- Leaderboard: Play Games (no custom usernames, no backend) **or** a custom
-  backend (real hosting + privacy policy)? Local for now, behind
-  `LeaderboardGateway` — swapping it touches one file and no screen.
+- ~~Leaderboard: Play Games or a custom backend?~~ **Resolved in 1.15.0 by
+  accident, and worth stating.** The board stays local *and* now travels: it is
+  part of the cloud save payload, so a linked player's run history follows them
+  between devices without a backend and without giving up the custom callsigns
+  the owner asked for. Play Games' own leaderboards would have forced gamer tags
+  and would not work offline. `LeaderboardGateway` still exists, so a real
+  cross-player board remains a one-file change if it is ever wanted — that is
+  the only thing the local board cannot do.
 - `core_skin_pack` is still priced at the originally specified $2.50 while now
   covering six skins rather than three. Worth revisiting before publish.
 - OmniByte living background: the repo is unreachable from this session

@@ -15,6 +15,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import com.cyopstd.game.save.CloudSaveStatus
 import com.cyopstd.game.save.PlayerIdentity
 import com.cyopstd.game.store.BillingStatus
 import com.cyopstd.game.store.Entitlements
@@ -50,8 +51,14 @@ fun PlayAccountScreen(
     budget: Long,
     status: BillingStatus,
     adsConfigured: Boolean,
+    cloudStatus: CloudSaveStatus,
+    cloudAccount: String?,
+    lastCloudSync: Long?,
+    cloudBusy: Boolean,
     backgroundAnimation: Boolean,
     onRestore: () -> Unit,
+    onLinkCloud: () -> Unit,
+    onSyncCloud: () -> Unit,
     onOpenOrders: () -> Unit,
     onOpenListing: () -> Unit,
     onCallsign: () -> Unit,
@@ -73,6 +80,17 @@ fun PlayAccountScreen(
                     .weight(1f)
                     .verticalScroll(rememberScrollState())
             ) {
+                CloudSavePanel(
+                    cloudStatus = cloudStatus,
+                    account = cloudAccount,
+                    lastSync = lastCloudSync,
+                    busy = cloudBusy,
+                    onLink = onLinkCloud,
+                    onSync = onSyncCloud
+                )
+
+                Spacer(Modifier.height(12.dp))
+
                 TerminalPanel(title = "CONNECTION", accent = statusAccent(status)) {
                     StatRow(
                         "GOOGLE PLAY BILLING",
@@ -104,11 +122,11 @@ fun PlayAccountScreen(
 
                 TerminalPanel(title = "HOW SIGN-IN WORKS", accent = Palette.Green) {
                     Text(
-                        text = "There is no CyOps account and nothing to log into. " +
+                        text = "There is still no CyOps account and no password. " +
                             "Purchases follow the Google account signed into the " +
-                            "Play Store on this device, so reinstalling the game " +
-                            "or moving to a new phone keeps them — sign into Play " +
-                            "with the same account and press RESTORE.",
+                            "Play Store on this device. Progress follows the " +
+                            "Google account you link above — a separate, optional " +
+                            "choice: the game is complete without it.",
                         style = MaterialTheme.typography.bodyMedium,
                         color = Palette.TextSecondary
                     )
@@ -122,14 +140,27 @@ fun PlayAccountScreen(
                     )
                     StatRow(
                         "WAVES, € AND FIRMWARE",
-                        "THIS DEVICE ONLY",
-                        valueColor = Palette.Orange
+                        if (cloudStatus == CloudSaveStatus.LINKED) {
+                            "YOUR GOOGLE ACCOUNT"
+                        } else {
+                            "THIS DEVICE ONLY"
+                        },
+                        valueColor = if (cloudStatus == CloudSaveStatus.LINKED) {
+                            Palette.Green
+                        } else {
+                            Palette.Orange
+                        }
                     )
                     Spacer(Modifier.height(6.dp))
                     Caption(
-                        "Run progress is stored on the device, not in the cloud. A " +
-                            "factory reset or an uninstall clears it; purchases " +
-                            "survive both."
+                        if (cloudStatus == CloudSaveStatus.LINKED) {
+                            "Linked. Sign into the same Google account on another " +
+                                "phone or tablet and your progress is there."
+                        } else {
+                            "Unlinked, run progress lives only on this device. An " +
+                                "uninstall or a factory reset clears it; purchases " +
+                                "survive both."
+                        }
                     )
                 }
 
@@ -149,6 +180,19 @@ fun PlayAccountScreen(
                             else -> "NOT IN THIS BUILD"
                         },
                         valueColor = if (entitlements.adsRemoved) Palette.Green else Palette.TextPrimary
+                    )
+                    StatRow(
+                        "SAVED PROGRESS",
+                        when (cloudStatus) {
+                            CloudSaveStatus.LINKED -> "YOUR GOOGLE ACCOUNT"
+                            CloudSaveStatus.UNAVAILABLE -> "THIS DEVICE ONLY"
+                            else -> "THIS DEVICE UNTIL LINKED"
+                        },
+                        valueColor = if (cloudStatus == CloudSaveStatus.LINKED) {
+                            Palette.Green
+                        } else {
+                            Palette.TextPrimary
+                        }
                     )
                     StatRow("LEADERBOARD", "ON THIS DEVICE", valueColor = Palette.TextPrimary)
                     StatRow("ANALYTICS", "NONE", valueColor = Palette.Green)
@@ -257,6 +301,120 @@ fun PlayAccountScreen(
                 }
             }
         }
+    }
+}
+
+/**
+ * Linking a Google account so progress survives the device.
+ *
+ * The copy here is deliberately specific about the permission prompt, because
+ * that prompt is the moment a player decides whether to trust this. Google asks
+ * to manage *this game's* saved data in their account — not their mail, not
+ * their files, not their contacts — and someone told that in advance is far
+ * more likely to agree than someone who meets it cold.
+ */
+@Composable
+private fun CloudSavePanel(
+    cloudStatus: CloudSaveStatus,
+    account: String?,
+    lastSync: Long?,
+    busy: Boolean,
+    onLink: () -> Unit,
+    onSync: () -> Unit
+) {
+    val linked = cloudStatus == CloudSaveStatus.LINKED
+    // ERROR means *linked, and the last call failed* — almost always a missing
+    // network. Offering LINK GOOGLE ACCOUNT there would send a player who is
+    // already linked back through a sign-in they do not need; what they need is
+    // to try the sync again.
+    val hasAccount = linked || cloudStatus == CloudSaveStatus.ERROR
+    TerminalPanel(
+        title = "CLOUD SAVE",
+        accent = if (linked) Palette.Green else Palette.Crypto
+    ) {
+        StatRow(
+            "PROGRESS BACKUP",
+            when {
+                busy -> "WORKING…"
+                cloudStatus == CloudSaveStatus.LINKED -> "LINKED"
+                cloudStatus == CloudSaveStatus.CONNECTING -> "LINKING…"
+                cloudStatus == CloudSaveStatus.ERROR -> "LINKED · OFFLINE"
+                cloudStatus == CloudSaveStatus.UNAVAILABLE -> "NOT IN THIS BUILD"
+                else -> "NOT LINKED"
+            },
+            valueColor = when (cloudStatus) {
+                CloudSaveStatus.LINKED -> Palette.Green
+                CloudSaveStatus.ERROR -> Palette.Orange
+                CloudSaveStatus.UNAVAILABLE -> Palette.TextMuted
+                else -> Palette.Crypto
+            }
+        )
+        if (hasAccount && account != null) {
+            StatRow("ACCOUNT", account, valueColor = Palette.Cyan)
+        }
+        StatRow(
+            "LAST SYNC",
+            lastSync?.let { relativeTime(it) } ?: "NEVER",
+            valueColor = if (lastSync == null) Palette.TextMuted else Palette.TextPrimary
+        )
+
+        Spacer(Modifier.height(6.dp))
+        Text(
+            text = when (cloudStatus) {
+                CloudSaveStatus.LINKED ->
+                    "Your waves, agents, € and firmware are saved to your " +
+                        "Google account. Sign into it on another device and they " +
+                        "are there. It syncs when you leave the game and when a " +
+                        "run ends."
+                CloudSaveStatus.ERROR ->
+                    "Linked, but Google could not be reached. Nothing is lost — " +
+                        "the save on this device is the one being played, and the " +
+                        "next sync catches the account up."
+                CloudSaveStatus.UNAVAILABLE ->
+                    "This build has no Play Games project configured, so progress " +
+                        "stays on this device. Android's own backup still restores " +
+                        "it when you reinstall on a phone signed into the same " +
+                        "Google account."
+                else ->
+                    "Link your Google account to keep your progress on any phone " +
+                        "or tablet. Google will ask for permission to manage this " +
+                        "game's saved data in your account — that is the " +
+                        "saved-game storage, and it is all this uses."
+            },
+            style = MaterialTheme.typography.bodyMedium,
+            color = Palette.TextSecondary
+        )
+
+        Spacer(Modifier.height(10.dp))
+        CompactButton(
+            text = if (hasAccount) "SYNC NOW" else "LINK GOOGLE ACCOUNT",
+            onClick = if (hasAccount) onSync else onLink,
+            enabled = !busy && cloudStatus != CloudSaveStatus.UNAVAILABLE,
+            accent = if (linked) Palette.Cyan else Palette.Green,
+            modifier = Modifier.fillMaxWidth()
+        )
+        if (!hasAccount && cloudStatus != CloudSaveStatus.UNAVAILABLE) {
+            Spacer(Modifier.height(6.dp))
+            Caption(
+                "Optional. Everything in the game works without linking, and " +
+                    "nothing but your progress is ever uploaded."
+            )
+        }
+    }
+}
+
+/** Coarse on purpose: nobody needs their last sync to the second. */
+internal fun relativeTime(
+    millis: Long,
+    now: Long = System.currentTimeMillis()
+): String {
+    val seconds = (now - millis) / 1000
+    return when {
+        seconds < 90 -> "JUST NOW"
+        seconds < 3_600 -> "${seconds / 60} MIN AGO"
+        seconds < 86_400 -> "${seconds / 3_600} HR AGO"
+        seconds < 86_400 * 30 -> "${seconds / 86_400} DAYS AGO"
+        else -> "OVER A MONTH AGO"
     }
 }
 
