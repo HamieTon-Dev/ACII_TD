@@ -170,22 +170,45 @@ interface, ship a no-op implementation, and **do not claim they work**:
    accessible from this session** (`list_repos` returns empty). Either the user
    adds the repo to the session, or the background is written from scratch.
 
-### 6d. Suggested order of work
+### 6d. Order of work — STATUS
 
 1. ✅ This file.
-2. Splash screen + ASCII HAMIETON-DEV logo, then menu.
-3. Menu music (second chiptune arrangement), started on the menu.
-4. `Entitlements` model + `BillingGateway` interface + no-op implementation +
-   DataStore persistence + restore-purchases plumbing.
-5. Store screen listing every SKU (no-ads, € packs, skins, skin packs, starter
-   pack, 5× speed), driven by the entitlement model.
-6. Skins: agent spectrum cycle, core-server skins, living backgrounds.
-7. 5× speed unlock.
-8. Username + local leaderboard (highest wave sets rank, damage as secondary).
-9. Real Google Play Billing / AdMob / Play Games wiring — **only once the user
-   supplies the Play Console setup and IDs.**
-10. Update `README.md` and `DEVELOPMENT_STATUS.md` to stop advertising
+2. ✅ **Splash**: ASCII HAMIETON-DEV shield mark above the title
+   (`ui/splash/SplashScreen.kt`).
+3. ⬜ Menu music — a second `ChiptuneComposer` arrangement, classic 8-bit,
+   distinct from the in-game lo-fi track. Follow the existing composer's shape:
+   `ARRANGEMENT` + `writeWav`, and add a `MusicEngine` track selector.
+4. ✅ **Store model**: `store/Sku.kt` (full catalog), `store/Entitlements.kt`,
+   `store/BillingGateway.kt` (interface + `NoBillingGateway`),
+   `store/StoreRepository.kt` (interface). Persistence added to
+   `save/GameRepository.kt` — `storeState`, `applyPurchase`, cosmetic choice,
+   `identity`, `setUsername`, `recordDamage`. `save/SaveModels.kt` gained
+   `StoreState` and `PlayerIdentity`. 9 tests in `StoreTest.kt`.
+5. ⬜ Store screen UI, driven by the catalog. Add `Screen.Store` to
+   `ui/CyOpsApp.kt` and a MAIN MENU entry.
+6. ⬜ Skins: agent spectrum cycle, 3 core-server skins, 3 living backgrounds.
+   All renderer work in `ui/game/BattlefieldRenderer.kt` — rasterize and look.
+7. ✅ **5× speed** exists and is gated: `Balance.GAME_SPEEDS` is now
+   `[1,2,3,5]` with `Balance.speedCount(fifthUnlocked)`, and
+   `GameViewModel.fifthSpeedUnlocked` gates cycling. Still needs wiring from
+   the store state into the view model.
+8. ⬜ Username + local leaderboard screen. The model and persistence exist;
+   the UI does not.
+9. ⬜ Real Play Billing / AdMob / Play Games wiring — **blocked on the owner.**
+   All three SDKs were confirmed to resolve through the proxy:
+   `com.android.billingclient:billing-ktx:7.1.1`,
+   `com.google.android.gms:play-services-ads:23.6.0`,
+   `com.google.android.gms:play-services-games-v2:20.1.2`.
+   They are deliberately **not** in `app/build.gradle.kts` yet — adding them
+   pulls in the INTERNET permission and roughly 5× the APK size, and none of it
+   can be tested here.
+10. ⬜ Update `README.md` / `DEVELOPMENT_STATUS.md` to stop advertising
     "no ads, no IAP, no accounts, no INTERNET permission".
+
+**Implementation note for whoever picks this up:** `NoBillingGateway` is the
+shipped gateway. The game must stay fully playable with it — that is the
+property that matters, because billing fails on devices without Play Services,
+without a network, and for every player who never opens the store.
 
 ### 6e. Decisions needed from the user
 

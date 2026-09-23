@@ -302,7 +302,23 @@ object Balance {
     const val PREP_BANNER_SECONDS = 3.5f
 
     /** Available game-speed multipliers. */
-    val GAME_SPEEDS = floatArrayOf(1f, 2f, 3f)
+    /**
+     * Simulation speeds, in order.
+     *
+     * The fifth is sold separately, so the list the player may actually cycle
+     * through depends on what they own — see [speedsFor]. The array stays whole
+     * here because the simulation still has to be able to *run* at 5x for
+     * anyone who owns it, and because sub-stepping is sized against the fastest
+     * speed that exists rather than the fastest currently unlocked.
+     */
+    val GAME_SPEEDS = floatArrayOf(1f, 2f, 3f, 5f)
+
+    /** Index of the first speed that has to be bought. */
+    const val PAID_SPEED_INDEX = 3
+
+    /** How many speeds this player may cycle through. */
+    fun speedCount(fifthUnlocked: Boolean): Int =
+        if (fifthUnlocked) GAME_SPEEDS.size else PAID_SPEED_INDEX
 
     /** Hard cap on simulation step to keep physics stable after a stall. */
     const val MAX_FRAME_DELTA = 0.05f

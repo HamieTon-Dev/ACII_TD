@@ -19,7 +19,9 @@ import androidx.compose.runtime.withFrameNanos
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.cyopstd.game.ui.common.AsciiBackdrop
 import com.cyopstd.game.ui.theme.Palette
 
@@ -56,6 +58,26 @@ fun SplashScreen(onFinished: () -> Unit) {
             verticalArrangement = Arrangement.Center,
             modifier = Modifier.padding(24.dp)
         ) {
+            // The publisher mark comes first and on its own: the studio
+            // signs the game, it is not part of the title.
+            Text(
+                text = HAMIETON_MARK,
+                style = MaterialTheme.typography.bodySmall,
+                color = Palette.Green,
+                textAlign = TextAlign.Center,
+                lineHeight = 13.sp,
+                fontSize = 11.sp
+            )
+            Spacer(Modifier.height(4.dp))
+            Text(
+                text = "HAMIETON-DEV",
+                style = MaterialTheme.typography.titleMedium,
+                color = Palette.GreenDim,
+                textAlign = TextAlign.Center
+            )
+
+            Spacer(Modifier.height(22.dp))
+
             Text(
                 text = "CyOps TD",
                 style = MaterialTheme.typography.displayMedium,
@@ -107,3 +129,23 @@ private fun bootLineFor(progress: Float): String = when {
 
 private const val SPLASH_SECONDS = 1.9f
 private const val BAR_CELLS = 20
+
+/**
+ * The publisher mark, drawn in the same monospace ASCII the rest of the game
+ * speaks rather than shipped as an image. It is the launcher icon's shield and
+ * `>_<` glyph, rendered in text.
+ *
+ * Every line is padded to the same width on purpose: in a proportional font
+ * this would still be a mess, but the theme sets monospace throughout, and a
+ * ragged-width block reads as a rendering fault rather than as a logo.
+ */
+private val HAMIETON_MARK = """
+    /\===============/\
+   ||               ||
+   ||     >_<       ||
+    \\             //
+     \\===========//
+       \\=======//
+         \\===//
+           \_/
+""".trimIndent()

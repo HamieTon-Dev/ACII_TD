@@ -68,3 +68,46 @@ data class PlayerProgress(
 )
 
 const val SAVE_VERSION = 1
+
+/**
+ * Everything the store screen needs in one snapshot.
+ *
+ * [redeemedOrders] is carried alongside the entitlements because it is the only
+ * thing preventing a consumable from paying out repeatedly: Play re-reports
+ * owned products on every connect and every restore.
+ */
+@Serializable
+data class StoreState(
+    val entitlements: com.cyopstd.game.store.Entitlements =
+        com.cyopstd.game.store.Entitlements(),
+    val cosmetics: com.cyopstd.game.store.CosmeticChoice =
+        com.cyopstd.game.store.CosmeticChoice(),
+    val redeemedOrders: Set<String> = emptySet()
+)
+
+/** Who the player is on the leaderboard, and what they have to show for it. */
+@Serializable
+data class PlayerIdentity(
+    val username: String = "",
+    val highestWave: Int = 0,
+    val bestDamage: Long = 0
+) {
+    val registered: Boolean get() = username.isNotBlank()
+
+    companion object {
+        const val MIN_LENGTH = 3
+        const val MAX_LENGTH = 16
+
+        /**
+         * Usernames are uppercase, ASCII, and free of anything the ASCII UI
+         * cannot render in a monospace cell. Applied on the way in so a stored
+         * name never needs sanitising again on the way out.
+         */
+        fun sanitize(raw: String): String = raw
+            .uppercase()
+            .filter { it in 'A'..'Z' || it in '0'..'9' || it == '_' || it == '-' }
+            .take(MAX_LENGTH)
+
+        fun isValid(raw: String): Boolean = sanitize(raw).length >= MIN_LENGTH
+    }
+}

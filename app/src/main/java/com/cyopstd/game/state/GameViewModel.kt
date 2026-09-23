@@ -116,6 +116,13 @@ class GameViewModel @JvmOverloads constructor(
     var speedIndex by mutableIntStateOf(0)
         private set
 
+    /**
+     * Whether the fifth simulation speed is available. Set from the store, and
+     * deliberately not private: the store is the owner of this fact, not the
+     * view model.
+     */
+    var fifthSpeedUnlocked by mutableStateOf(false)
+
     var showDeployPanel by mutableStateOf(false)
         private set
 
@@ -356,12 +363,12 @@ class GameViewModel @JvmOverloads constructor(
     }
 
     fun cycleSpeed() {
-        speedIndex = (speedIndex + 1) % Balance.GAME_SPEEDS.size
+        speedIndex = (speedIndex + 1) % Balance.speedCount(fifthSpeedUnlocked)
         audio.play(GameSound.UI_CLICK)
     }
 
     fun applySpeedIndex(index: Int) {
-        speedIndex = index.coerceIn(0, Balance.GAME_SPEEDS.lastIndex)
+        speedIndex = index.coerceIn(0, Balance.speedCount(fifthSpeedUnlocked) - 1)
         audio.play(GameSound.UI_CLICK)
     }
 

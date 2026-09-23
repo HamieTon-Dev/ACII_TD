@@ -14,6 +14,9 @@ import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
 import com.cyopstd.game.core.Balance
 import com.cyopstd.game.model.AgentType
+import com.cyopstd.game.store.CosmeticChoice
+import com.cyopstd.game.store.Entitlements
+import com.cyopstd.game.store.Sku
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.first
@@ -313,10 +316,116 @@ class GameRepository(private val store: DataStore<Preferences>) {
         val UNLOCKED_AGENTS = stringPreferencesKey("unlocked_agents")
         val TUTORIAL_DONE = booleanPreferencesKey("tutorial_done")
         val SAVED_RUN = stringPreferencesKey("saved_run")
+
+        // --- store, identity and the local leaderboard ---------------------
+        val OWNED_PRODUCTS = stringPreferencesKey("owned_products")
+        /** Order ids already credited, so a consumable pays out exactly once. */
+        val REDEEMED_ORDERS = stringPreferencesKey("redeemed_orders")
+        val CORE_SKIN = stringPreferencesKey("core_skin")
+        val BACKGROUND_SKIN = stringPreferencesKey("background_skin")
+        val SPECTRUM_AGENTS = booleanPreferencesKey("spectrum_agents")
+        val USERNAME = stringPreferencesKey("username")
+        val BEST_DAMAGE = longPreferencesKey("best_damage")
     }
+
+    // ------------------------------------------- store, identity, leaderboard
+
+    /**
+     * Products this player owns, and the cosmetic they have chosen.
+     *
+     * Stored in the same DataStore as the rest of the save on purpose: crediting
+     * a € pack has to move the *same* budget the game reads, and two stores
+     * would be two writes that can disagree.
+     */
+    val storeState: Flow<StoreState> = store.data
+        .catch { error ->
+            Log.w(TAG, "Store state unreadable; starting from nothing owned", error)
+            emit(emptyPreferences())
+        }
+        .map { prefs ->
+            val owned = prefs[Keys.OWNED_PRODUCTS].toIdSet()
+            val entitlements = Entitlements(owned)
+            StoreState(
+                entitlements = entitlements,
+                cosmetics = CosmeticChoice(
+                    coreSkinId = prefs[Keys.CORE_SKIN],
+                    backgroundId = prefs[Keys.BACKGROUND_SKIN],
+                    spectrumAgents = prefs[Keys.SPECTRUM_AGENTS] ?: true
+                ).resolvedAgainst(entitlements),
+                redeemedOrders = prefs[Keys.REDEEMED_ORDERS].toIdSet()
+            )
+        }
+
+    /**
+     * Record a confirmed purchase and apply what it grants.
+     *
+     * Returns the € credited, which is zero when this order was already
+     * applied. Play re-reports owned products on every connect and every
+     * restore, so crediting on each report would hand out free currency for
+     * the life of the install. The order id is the guard, and it is kept even
+     * for permanent products so the same rule covers everything.
+     */
+    suspend fun applyPurchase(sku: Sku, orderId: String): Int {
+        var credited = 0
+        store.edit { prefs ->
+            val redeemed = prefs[Keys.REDEEMED_ORDERS].toIdSet()
+            val alreadyApplied = orderId.isNotEmpty() && orderId in redeemed
+
+            val owned = prefs[Keys.OWNED_PRODUCTS].toIdSet()
+            prefs[Keys.OWNED_PRODUCTS] = (owned + Sku.unlockedBy(sku)).joinToString(SEPARATOR)
+
+            if (!alreadyApplied && sku.grantsBudget > 0) {
+                prefs[Keys.BUDGET] = (prefs[Keys.BUDGET] ?: 0L) + sku.grantsBudget
+                prefs[Keys.LIFETIME_BUDGET] =
+                    (prefs[Keys.LIFETIME_BUDGET] ?: 0L) + sku.grantsBudget
+                credited = sku.grantsBudget
+            }
+            if (orderId.isNotEmpty()) {
+                prefs[Keys.REDEEMED_ORDERS] = (redeemed + orderId).joinToString(SEPARATOR)
+            }
+        }
+        return credited
+    }
+
+    suspend fun chooseCoreSkin(id: String?) = store.edit { prefs ->
+        if (id == null) prefs.remove(Keys.CORE_SKIN) else prefs[Keys.CORE_SKIN] = id
+    }.let { }
+
+    suspend fun chooseBackground(id: String?) = store.edit { prefs ->
+        if (id == null) prefs.remove(Keys.BACKGROUND_SKIN) else prefs[Keys.BACKGROUND_SKIN] = id
+    }.let { }
+
+    suspend fun setSpectrumAgents(enabled: Boolean) = store.edit { prefs ->
+        prefs[Keys.SPECTRUM_AGENTS] = enabled
+    }.let { }
+
+    // ------------------------------------------------- identity, leaderboard
+
+    val identity: Flow<PlayerIdentity> = store.data
+        .catch { emit(emptyPreferences()) }
+        .map { prefs ->
+            PlayerIdentity(
+                username = prefs[Keys.USERNAME].orEmpty(),
+                highestWave = prefs[Keys.HIGHEST_WAVE] ?: 0,
+                bestDamage = prefs[Keys.BEST_DAMAGE] ?: 0L
+            )
+        }
+
+    suspend fun setUsername(name: String) = store.edit { prefs ->
+        prefs[Keys.USERNAME] = PlayerIdentity.sanitize(name)
+    }.let { }
+
+    /** Records a run's damage total if it beats the player's best. */
+    suspend fun recordDamage(total: Long) = store.edit { prefs ->
+        if (total > (prefs[Keys.BEST_DAMAGE] ?: 0L)) prefs[Keys.BEST_DAMAGE] = total
+    }.let { }
+
+    private fun String?.toIdSet(): Set<String> =
+        this?.split(SEPARATOR)?.filter { it.isNotBlank() }?.toSet() ?: emptySet()
 
     private companion object {
         const val TAG = "CyOpsSave"
+        const val SEPARATOR = "\u001F"
         val DeploymentMapSerializer = MapSerializer(String.serializer(), Int.serializer())
     }
 }
