@@ -4,7 +4,7 @@
 reads first. It records where the project actually stands, what is proven and
 what is not, and what comes next.
 
-_Last updated: v1.15.0 — cloud save on Play Games Saved Games. See `CHANGELOG.md` for the full per-version history._
+_Last updated: v1.16.0 — LOADOUT, RUN MODE, and three unreachable controls fixed. See `CHANGELOG.md` for the full per-version history._
 
 ---
 
@@ -12,7 +12,7 @@ _Last updated: v1.15.0 — cloud save on Play Games Saved Games. See `CHANGELOG.
 
 ```bash
 cd /home/user/ACII_TD
-./gradlew :app:testDebugUnitTest      # 247 tests, all passing
+./gradlew :app:testDebugUnitTest      # 260 tests, all passing
 ./gradlew :app:assembleRelease        # -> app/build/outputs/apk/release/CyOpsTD-v<ver>.apk
 ```
 
@@ -103,6 +103,7 @@ rather than loosened.
 | 1.13 | Real Play Billing + AdMob, selected only when configured. 3.02 MB |
 | 1.14 | GOOGLE PLAY account screen; living backgrounds reach the menus |
 | 1.15 | Cloud save: progress follows a linked Google account across devices |
+| 1.16 | LOADOUT (equip skins), RUN MODE (pick HACK:AI), locked 5× speed fixed |
 
 ---
 
@@ -439,6 +440,23 @@ that matters on a real device is two devices, not one.
 
 ---
 
+### 6j. THE LESSON FROM v1.16.0 — check every feature has a control
+
+Three features were built, persisted, read by the renderer or the engine, and
+**had no way for a player to reach them**:
+
+- six core skins, five living backgrounds and the SPECTRUM palette could be
+  bought but not equipped (no LOADOUT screen existed);
+- `GameMode.HACK_AI` could not be selected, so every run since 1.9 was
+  STANDARD;
+- the paid fifth speed was drawn as a live button that silently selected 3×.
+
+All three passed their own unit tests, because the tests exercised the layer
+and not the path. The check that finds this class of bug is one question, asked
+per feature: **where does a player press this?** It is now a step in §7.
+
+---
+
 ### 6e. Decisions needed from the user
 
 - ~~Leaderboard: Play Games or a custom backend?~~ **Resolved in 1.15.0 by
@@ -467,4 +485,10 @@ that matters on a real device is two devices, not one.
   If something is unverified, say so — `DEVELOPMENT_STATUS.md` exists for this.
 - Never cut a number to fix balance if raising another will do; the owner has
   said so explicitly.
+- For every feature: name the control a player presses to reach it. A feature
+  whose state is stored and read but never set is not finished, however many
+  tests its own layer has (see §6j).
+- A control that cannot act must say so. Never let a button quietly do
+  something *else* — that is worse than a dead button, because it also
+  misreports the state it appears to have set.
 - No randomness in agent damage.

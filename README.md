@@ -99,8 +99,9 @@ and never at all once REMOVE ADS is bought.
 ## Screenshots
 
 *(No device captures yet — see [`docs/screenshots/README.md`](docs/screenshots/README.md).
-Three screens are available as rendered previews, rasterized from the real
-Compose code under Robolectric: [`menu-google-play.png`](docs/screenshots/menu-google-play.png),
+Four screens are available as rendered previews, rasterized from the real
+Compose code under Robolectric: [`menu-run-modes.png`](docs/screenshots/menu-run-modes.png),
+[`loadout.png`](docs/screenshots/loadout.png),
 [`cloud-save-unlinked.png`](docs/screenshots/cloud-save-unlinked.png) and
 [`cloud-save-linked.png`](docs/screenshots/cloud-save-linked.png).)*
 

@@ -465,12 +465,28 @@ class GameViewModel @JvmOverloads constructor(
         billing.restore()
     }
 
+    /**
+     * Equips a look.
+     *
+     * Each of these is written straight through to the repository rather than
+     * held in memory first: the choice has to survive the process, and the
+     * repository already resolves a selection the player does not own (a
+     * refund, or a restore onto another account) so nothing downstream has to
+     * check entitlements again.
+     */
     fun chooseCoreSkin(id: String?) {
+        playClick()
         viewModelScope.launch { repository.chooseCoreSkin(id) }
     }
 
     fun chooseBackground(id: String?) {
+        playClick()
         viewModelScope.launch { repository.chooseBackground(id) }
+    }
+
+    fun setSpectrumAgents(enabled: Boolean) {
+        playClick()
+        viewModelScope.launch { repository.setSpectrumAgents(enabled) }
     }
 
     /**
@@ -717,6 +733,15 @@ class GameViewModel @JvmOverloads constructor(
     }
 
     fun applySpeedIndex(index: Int) {
+        // A locked speed says so rather than quietly becoming a different one.
+        // Coercing into range meant tapping 5x on a save that does not own it
+        // selected 3x and looked like the button had worked -- which is worse
+        // than a button that does nothing, because it also lies about what
+        // speed the match is running at.
+        if (index >= Balance.speedCount(fifthSpeedUnlocked)) {
+            showTransient("5\u00D7 SPEED IS IN THE STORE")
+            return
+        }
         speedIndex = index.coerceIn(0, Balance.speedCount(fifthSpeedUnlocked) - 1)
         audio.play(GameSound.UI_CLICK)
     }

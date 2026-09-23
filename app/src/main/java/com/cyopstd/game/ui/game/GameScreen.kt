@@ -308,11 +308,16 @@ private fun ControlBar(viewModel: GameViewModel) {
         // current speed is always visible instead of having to be remembered.
         Row(horizontalArrangement = Arrangement.spacedBy(4.dp)) {
             Balance.GAME_SPEEDS.forEachIndexed { index, speed ->
+                // A speed nobody has bought is shown, not hidden: it is a thing
+                // the store sells, and a row that silently loses a button when
+                // you do not own it cannot tell you that. It is marked and it
+                // is inert.
+                val unlocked = index < Balance.speedCount(viewModel.fifthSpeedUnlocked)
                 CompactButton(
-                    text = "${speed.toInt()}X",
+                    text = if (unlocked) "${speed.toInt()}X" else "${speed.toInt()}X\u2022",
                     onClick = { viewModel.applySpeedIndex(index) },
                     selected = viewModel.speedIndex == index,
-                    accent = Palette.Purple
+                    accent = if (unlocked) Palette.Purple else Palette.TextMuted
                 )
             }
         }

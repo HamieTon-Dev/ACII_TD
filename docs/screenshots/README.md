@@ -35,7 +35,8 @@ few frames per second.
 
 | File | What it shows |
 | --- | --- |
-| `menu-google-play.png` | Main menu with the GOOGLE PLAY entry and the AURORA living background |
+| `menu-run-modes.png` | Main menu with the RUN MODE panel, HACK:AI selected |
+| `loadout.png` | LOADOUT, with some skins owned and the rest locked |
 | `cloud-save-unlinked.png` | The Google Play account screen before a Google account is linked |
 | `cloud-save-linked.png` | The same screen once progress is following the account |
 

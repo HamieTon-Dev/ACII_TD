@@ -1,6 +1,8 @@
 package com.cyopstd.game.ui.menu
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -20,6 +22,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.cyopstd.game.core.GameMode
 import com.cyopstd.game.save.PlayerStats
 import com.cyopstd.game.ui.common.AsciiBackdrop
 import com.cyopstd.game.ui.common.AsciiRule
@@ -42,13 +45,17 @@ fun MainMenuScreen(
     budget: Long,
     firmwareLevel: Int,
     adsRemoved: Boolean,
+    availableModes: List<GameMode>,
+    selectedMode: GameMode,
     backgroundAnimation: Boolean,
+    onSelectMode: (GameMode) -> Unit,
     onPlay: () -> Unit,
     onContinue: () -> Unit,
     onAgents: () -> Unit,
     onFirmware: () -> Unit,
     onCodex: () -> Unit,
     onStore: () -> Unit,
+    onLoadout: () -> Unit,
     onPlayAccount: () -> Unit,
     onLeaderboard: () -> Unit,
     onStatistics: () -> Unit,
@@ -138,6 +145,21 @@ fun MainMenuScreen(
                 }
 
                 Spacer(Modifier.height(12.dp))
+
+                TerminalPanel(title = "RUN MODE", accent = Palette.Red) {
+                    for (mode in GameMode.entries) {
+                        val unlocked = mode in availableModes
+                        ModeRow(
+                            mode = mode,
+                            selected = mode == selectedMode,
+                            unlocked = unlocked,
+                            highestWave = stats.highestWave,
+                            onClick = { onSelectMode(mode) }
+                        )
+                    }
+                }
+
+                Spacer(Modifier.height(12.dp))
                 // This line used to read "OFFLINE · NO ACCOUNT · NO ADS · NO
                 // PURCHASES". Three quarters of that stopped being true the
                 // moment billing and ads were wired in, and a menu that lies
@@ -157,7 +179,13 @@ fun MainMenuScreen(
             ) {
                 BastionButton(
                     text = "PLAY",
-                    subtitle = "Start a new defence run",
+                    subtitle = if (selectedMode == GameMode.STANDARD) {
+                        "Start a new defence run"
+                    } else {
+                        // Choosing the hard mode and forgetting is a wasted
+                        // run, so the button says which one is about to start.
+                        "Start a run on ${selectedMode.runName}"
+                    },
                     leadingGlyph = "[>]",
                     accent = Palette.Green,
                     onClick = onPlay
@@ -196,6 +224,14 @@ fun MainMenuScreen(
                     leadingGlyph = "[$]",
                     accent = Palette.Green,
                     onClick = onStore
+                )
+                Spacer(Modifier.height(10.dp))
+                BastionButton(
+                    text = "LOADOUT",
+                    subtitle = "Equip the skins and backgrounds you own",
+                    leadingGlyph = "[#]",
+                    accent = Palette.Purple,
+                    onClick = onLoadout
                 )
                 Spacer(Modifier.height(10.dp))
                 BastionButton(
@@ -252,6 +288,71 @@ fun MainMenuScreen(
                 )
                 Spacer(Modifier.height(8.dp))
             }
+        }
+    }
+}
+
+/**
+ * One selectable difficulty.
+ *
+ * A locked mode is shown rather than hidden, with the wave that unlocks it:
+ * HACK:AI is the thing to aim at after wave 100, and a player cannot aim at
+ * something they have never seen. It is inert until earned.
+ */
+@Composable
+private fun ModeRow(
+    mode: GameMode,
+    selected: Boolean,
+    unlocked: Boolean,
+    highestWave: Int,
+    onClick: () -> Unit
+) {
+    val accent = when {
+        !unlocked -> Palette.TextMuted
+        selected -> Palette.Green
+        else -> Palette.CyanDim
+    }
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(vertical = 3.dp)
+            .background(
+                if (selected) Palette.SurfaceRaised else androidx.compose.ui.graphics.Color.Transparent,
+                androidx.compose.foundation.shape.RoundedCornerShape(4.dp)
+            )
+            .border(
+                androidx.compose.foundation.BorderStroke(
+                    1.dp,
+                    accent.copy(alpha = if (selected) 0.8f else 0.3f)
+                ),
+                androidx.compose.foundation.shape.RoundedCornerShape(4.dp)
+            )
+            .clickable(enabled = unlocked, role = androidx.compose.ui.semantics.Role.RadioButton) {
+                onClick()
+            }
+            .padding(horizontal = 10.dp, vertical = 8.dp),
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Text(
+            text = if (selected) "[*]" else if (unlocked) "[ ]" else "[X]",
+            style = MaterialTheme.typography.labelMedium,
+            color = accent
+        )
+        Spacer(Modifier.width(8.dp))
+        Column(Modifier.weight(1f)) {
+            Text(
+                text = mode.runName,
+                style = MaterialTheme.typography.titleSmall,
+                color = if (unlocked) Palette.TextPrimary else Palette.TextMuted
+            )
+            Caption(
+                when {
+                    !unlocked -> "LOCKED \u00B7 clear wave ${mode.unlockAtWave} (best: $highestWave)"
+                    mode == GameMode.STANDARD -> "The standard curve."
+                    else -> "Tougher threats, closer together, less integrity. " +
+                        "Richer rewards."
+                }
+            )
         }
     }
 }

@@ -15,6 +15,7 @@ import com.cyopstd.game.state.GameViewModel
 import com.cyopstd.game.ui.codex.CodexScreen
 import com.cyopstd.game.ui.menu.AboutScreen
 import com.cyopstd.game.core.Balance
+import com.cyopstd.game.core.GameMode
 import com.cyopstd.game.ui.menu.AgentsScreen
 import com.cyopstd.game.ui.menu.FirmwareScreen
 import com.cyopstd.game.ui.menu.MainMenuScreen
@@ -76,9 +77,12 @@ class GameUiTest {
                     budget = 0L,
                     firmwareLevel = 0,
                     adsRemoved = false,
+                    availableModes = listOf(GameMode.STANDARD),
+                    selectedMode = GameMode.STANDARD,
                     backgroundAnimation = false,
+                    onSelectMode = {},
                     onPlay = { played = true },
-                    onContinue = {}, onAgents = {}, onFirmware = {}, onCodex = {}, onStore = {}, onPlayAccount = {}, onLeaderboard = {},
+                    onContinue = {}, onAgents = {}, onFirmware = {}, onCodex = {}, onStore = {}, onLoadout = {}, onPlayAccount = {}, onLeaderboard = {},
                     onStatistics = {}, onSettings = {}, onAbout = {}, onExit = {}
                 )
             }
@@ -108,9 +112,12 @@ class GameUiTest {
                     budget = 0L,
                     firmwareLevel = 0,
                     adsRemoved = false,
+                    availableModes = listOf(GameMode.STANDARD),
+                    selectedMode = GameMode.STANDARD,
                     backgroundAnimation = false,
+                    onSelectMode = {},
                     onPlay = {}, onContinue = { continued++ }, onAgents = {},
-                    onFirmware = {}, onCodex = {}, onStore = {}, onPlayAccount = {}, onLeaderboard = {}, onStatistics = {}, onSettings = {},
+                    onFirmware = {}, onCodex = {}, onStore = {}, onLoadout = {}, onPlayAccount = {}, onLeaderboard = {}, onStatistics = {}, onSettings = {},
                     onAbout = {}, onExit = {}
                 )
             }
@@ -135,8 +142,11 @@ class GameUiTest {
                     budget = 340L,
                     firmwareLevel = 12,
                     adsRemoved = false,
+                    availableModes = listOf(GameMode.STANDARD),
+                    selectedMode = GameMode.STANDARD,
                     backgroundAnimation = false,
-                    onPlay = {}, onContinue = {}, onAgents = {}, onFirmware = {}, onCodex = {}, onStore = {}, onPlayAccount = {}, onLeaderboard = {},
+                    onSelectMode = {},
+                    onPlay = {}, onContinue = {}, onAgents = {}, onFirmware = {}, onCodex = {}, onStore = {}, onLoadout = {}, onPlayAccount = {}, onLeaderboard = {},
                     onStatistics = {}, onSettings = {}, onAbout = {}, onExit = {}
                 )
             }
@@ -297,9 +307,12 @@ class GameUiTest {
                     budget = 175L,
                     firmwareLevel = 40,
                     adsRemoved = false,
+                    availableModes = listOf(GameMode.STANDARD),
+                    selectedMode = GameMode.STANDARD,
                     backgroundAnimation = false,
+                    onSelectMode = {},
                     onPlay = {}, onContinue = {}, onAgents = {}, onFirmware = {},
-                    onCodex = {}, onStore = {}, onPlayAccount = {}, onLeaderboard = {}, onStatistics = {}, onSettings = {},
+                    onCodex = {}, onStore = {}, onLoadout = {}, onPlayAccount = {}, onLeaderboard = {}, onStatistics = {}, onSettings = {},
                     onAbout = {}, onExit = {}
                 )
             }

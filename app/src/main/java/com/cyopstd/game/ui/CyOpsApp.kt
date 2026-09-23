@@ -17,6 +17,7 @@ import com.cyopstd.game.ui.menu.AboutScreen
 import com.cyopstd.game.ui.menu.AgentsScreen
 import com.cyopstd.game.ui.menu.FirmwareScreen
 import com.cyopstd.game.ui.menu.LeaderboardScreen
+import com.cyopstd.game.ui.menu.LoadoutScreen
 import com.cyopstd.game.ui.menu.PlayAccountScreen
 import com.cyopstd.game.ui.menu.StoreScreen
 import com.cyopstd.game.ui.menu.MainMenuScreen
@@ -49,6 +50,7 @@ sealed interface Screen {
     data object Firmware : Screen
     data object Codex : Screen
     data object Store : Screen
+    data object Loadout : Screen
     data object PlayAccount : Screen
     data object Leaderboard : Screen
     data object Statistics : Screen
@@ -85,7 +87,10 @@ fun CyOpsApp(
                     budget = viewModel.budget,
                     firmwareLevel = viewModel.firmwareLevel,
                     adsRemoved = viewModel.entitlements.adsRemoved,
+                    availableModes = viewModel.availableModes,
+                    selectedMode = viewModel.selectedMode,
                     backgroundAnimation = viewModel.settings.backgroundAnimation,
+                    onSelectMode = { viewModel.selectMode(it) },
                     onPlay = {
                         viewModel.playClick()
                         viewModel.startNewGame()
@@ -102,6 +107,7 @@ fun CyOpsApp(
                     onFirmware = { viewModel.playClick(); screen = Screen.Firmware },
                     onCodex = { viewModel.playClick(); screen = Screen.Codex },
                     onStore = { viewModel.playClick(); screen = Screen.Store },
+                    onLoadout = { viewModel.playClick(); screen = Screen.Loadout },
                     onPlayAccount = { viewModel.playClick(); screen = Screen.PlayAccount },
                     onLeaderboard = {
                         viewModel.playClick()
@@ -160,6 +166,20 @@ fun CyOpsApp(
                     backgroundAnimation = viewModel.settings.backgroundAnimation,
                     onBuy = { sku -> viewModel.buy(sku) },
                     onRestore = { viewModel.restorePurchases() },
+                    onBack = { viewModel.playClick(); screen = Screen.MainMenu }
+                )
+            }
+
+            Screen.Loadout -> {
+                BackHandler { screen = Screen.MainMenu }
+                LoadoutScreen(
+                    entitlements = viewModel.entitlements,
+                    cosmetics = viewModel.cosmetics,
+                    backgroundAnimation = viewModel.settings.backgroundAnimation,
+                    onChooseCoreSkin = { viewModel.chooseCoreSkin(it) },
+                    onChooseBackground = { viewModel.chooseBackground(it) },
+                    onSpectrumAgents = { viewModel.setSpectrumAgents(it) },
+                    onOpenStore = { viewModel.playClick(); screen = Screen.Store },
                     onBack = { viewModel.playClick(); screen = Screen.MainMenu }
                 )
             }

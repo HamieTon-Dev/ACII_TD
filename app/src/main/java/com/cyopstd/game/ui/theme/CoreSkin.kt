@@ -109,14 +109,29 @@ enum class CoreSkin(
     enum class Chase { LOOP, LOOP_HOLOGRAPHIC, RING_HOLOGRAPHIC }
 
     /** The extra mark that makes a skin recognisable at a glance. */
-    enum class Flourish {
-        NONE, RING, TRACES, FROST, STARFIELD,
+    /**
+     * The mark drawn inside the rack, and how to describe it.
+     *
+     * The blurb lives here rather than on each skin because it describes the
+     * *mark*, and a player choosing a skin in the LOADOUT screen is choosing
+     * between marks. A name alone ("MERIDIAN") says nothing about what will
+     * appear on their board.
+     */
+    enum class Flourish(val blurb: String) {
+        NONE("A clean rack, no mark."),
+        RING("A pulsing containment ring."),
+        TRACES("Circuit traces running under the readouts."),
+        FROST("Frost creeping in from the edges."),
+        STARFIELD("A slow drift of distant points."),
+
         /** CRT phosphor scanlines. */
-        SCANLINES,
+        SCANLINES("CRT phosphor scanlines."),
+
         /** Falling code columns inside the rack. */
-        CASCADE,
+        CASCADE("Falling code columns inside the rack."),
+
         /** A receding perspective grid. */
-        GRID
+        GRID("A receding perspective grid, with a chase strip below.")
     }
 
     companion object {

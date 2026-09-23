@@ -7,6 +7,56 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [1.16.0]
+
+### Added — LOADOUT, because a skin you cannot wear is not a skin
+
+The store sold six core skins, five living backgrounds and an agent palette,
+and there was **nowhere to put any of them on**. The choice was stored, the
+renderer read it, and nothing in the game could set it: a player could spend
+five pounds and see no difference. That is the worst version of a store, and it
+shipped that way for four releases.
+
+MAIN MENU → LOADOUT now lists every look, owned or not, with a colour swatch
+beside each one — a name tells you nothing about a colour scheme, and choosing a
+look you cannot see is guesswork. Two rules hold it together:
+
+- **Everything is listed, locked included.** A grid with the locked items hidden
+  cannot tell a player what the store is even for. A locked row says what it is
+  and stays inert when tapped; it is not a second checkout.
+- **The free option is never locked.** TERMINAL and STATIC are always
+  selectable, so there is always a way back to the plain game.
+
+### Added — RUN MODE, because HACK:AI could not be selected either
+
+`GameMode.HACK_AI` has existed since 1.9: tougher threats, closer together, less
+integrity to give, richer rewards, unlocked by clearing wave 100. The engine
+accepted it, the renderer named it at the top of a run, the view model held a
+selection — and no control anywhere could change that selection, so every run
+ever played was STANDARD.
+
+The main menu now has a RUN MODE panel. HACK:AI is **visible while locked**,
+with the wave that unlocks it and how far the player has got, because something
+to aim at is worth more than a surprise. PLAY names the mode it is about to
+start, since choosing a hard mode and forgetting is a wasted run.
+
+There is a test that asserts every mode in `GameMode` appears on the menu — the
+specific failure that let HACK:AI sit unreachable for four releases.
+
+### Fixed — tapping 5× without owning it selected 3×
+
+The speed row drew all four speeds and `applySpeedIndex` coerced into range, so
+on a save that has not bought the fifth speed, pressing 5× quietly selected 3×
+and highlighted it. That is worse than a dead button: it also misreports what
+speed the match is running at. The locked speed is now marked and inert, and
+says where to find it.
+
+Three controls in one release that were wired end to end with nothing able to
+reach them, all found the same way — by asking, for each thing the store sells
+or the engine supports, *where does a player press this?*
+
+---
+
 ## [1.15.0]
 
 ### Added — progress that survives the phone
