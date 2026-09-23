@@ -13,8 +13,13 @@ android {
         applicationId = "com.cyopstd.game"
         minSdk = 24
         targetSdk = 35
-        versionCode = 13
-        versionName = "1.9.1"
+        versionCode = 14
+        versionName = "1.10.0"
+
+        // Stamped into the APK so the build identifier on screen is the real
+        // one, not a string someone remembered to update. Reported by
+        // BuildStamp and shown on every screen.
+        buildConfigField("String", "BUILD_STAMP", "\"${'$'}{System.currentTimeMillis() / 1000}\"")
         // Keep the APK small: the game ships no localized resources yet.
         resourceConfigurations += listOf("en")
     }

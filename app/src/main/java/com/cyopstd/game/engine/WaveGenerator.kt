@@ -1,6 +1,7 @@
 package com.cyopstd.game.engine
 
 import com.cyopstd.game.core.Balance
+import com.cyopstd.game.core.GameMode
 import com.cyopstd.game.core.WorldGeometry
 import com.cyopstd.game.model.BossModifier
 import com.cyopstd.game.model.EnemyType
@@ -36,6 +37,12 @@ data class WavePlan(
  */
 class WaveGenerator(private val random: Random = Random.Default) {
 
+    /**
+     * The mode the plan is built for. Scales the gap between spawns, so a
+     * harder mode presses harder rather than merely hitting harder.
+     */
+    var mode: GameMode = GameMode.STANDARD
+
     fun generate(wave: Int): WavePlan {
         if (Balance.isBossWave(wave)) return generateBossWave(wave)
         return generateStandardWave(wave)
@@ -45,7 +52,7 @@ class WaveGenerator(private val random: Random = Random.Default) {
 
     private fun generateStandardWave(wave: Int): WavePlan {
         val count = Balance.waveEnemyCount(wave)
-        val interval = Balance.spawnInterval(wave)
+        val interval = Balance.spawnInterval(wave) * mode.spawnIntervalScale
         val eliteChance = Balance.eliteChance(wave)
         val pool = archetypePool(wave)
 
@@ -119,7 +126,7 @@ class WaveGenerator(private val random: Random = Random.Default) {
                 elite = random.nextFloat() < Balance.eliteChance(wave),
                 boss = false
             )
-            time += max(0.30f, Balance.spawnInterval(wave) * 0.85f)
+            time += max(0.30f, Balance.spawnInterval(wave) * mode.spawnIntervalScale * 0.85f)
         }
 
         // Boss routes rotate by cycle, so consecutive boss waves never arrive

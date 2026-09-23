@@ -62,7 +62,9 @@ class EnemySystem(private val engine: GameEngine, private val random: Random) {
         // A boss fills the corridor on its own and stays on the centreline.
         enemy.laneOffset = if (boss) 0f else LANE_SLOTS[laneSlotCursor++ % LANE_SLOTS.size]
 
-        val healthScale = if (boss) Balance.bossHealthMultiplier(wave) else Balance.healthMultiplier(wave)
+        val healthScale =
+            (if (boss) Balance.bossHealthMultiplier(wave) else Balance.healthMultiplier(wave)) *
+                engine.mode.healthScale
         var health = type.baseHealth * healthScale.toFloat()
         var armor = type.baseArmor + Balance.waveArmorBonus(wave).toFloat()
         var speed = type.baseSpeed * Balance.speedMultiplier(wave).toFloat()
@@ -92,7 +94,8 @@ class EnemySystem(private val engine: GameEngine, private val random: Random) {
         enemy.armor = armor
         enemy.baseSpeed = speed
         enemy.serverDamage = damage
-        enemy.reward = EconomySystem.rewardFor(enemy, wave, random)
+        enemy.reward = (EconomySystem.rewardFor(enemy, wave, random) * engine.mode.rewardScale)
+            .toInt().coerceAtLeast(1)
 
         placeOnPath(enemy)
     }

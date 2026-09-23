@@ -12,6 +12,7 @@ import androidx.compose.ui.geometry.Offset
 import com.cyopstd.game.audio.AudioEngine
 import com.cyopstd.game.audio.HapticEngine
 import com.cyopstd.game.core.Balance
+import com.cyopstd.game.core.GameMode
 import com.cyopstd.game.store.BillingGateway
 import com.cyopstd.game.store.BillingStatus
 import com.cyopstd.game.store.CosmeticChoice
@@ -208,6 +209,24 @@ class GameViewModel @JvmOverloads constructor(
     var entitlements by mutableStateOf(Entitlements())
         private set
 
+    /** The tag shown on the persistent identity strip. */
+    var playerTag by mutableStateOf("")
+        private set
+
+    /** Modes this player has earned the right to play. */
+    var availableModes by mutableStateOf(listOf(GameMode.STANDARD))
+        private set
+
+    /** The mode the next run will start in. */
+    var selectedMode by mutableStateOf(GameMode.STANDARD)
+        private set
+
+    fun selectMode(mode: GameMode) {
+        if (mode !in availableModes) return
+        playClick()
+        selectedMode = mode
+    }
+
     var cosmetics by mutableStateOf(CosmeticChoice())
         private set
 
@@ -245,6 +264,19 @@ class GameViewModel @JvmOverloads constructor(
      * NullPointerException before the view model finished being built.
      */
     private fun observeStore() {
+        collectJobs += viewModelScope.launch {
+            repository.identity.collectLatest { identity ->
+                playerTag = if (identity.registered) {
+                    "AGENT ${identity.username}"
+                } else {
+                    "AGENT UNREGISTERED"
+                }
+                availableModes = GameMode.entries.filter { it.unlockedBy(identity.highestWave) }
+                // A mode can only be lost by a progress reset, but if it is,
+                // the selection must not survive it.
+                if (selectedMode !in availableModes) selectedMode = GameMode.STANDARD
+            }
+        }
         collectJobs += viewModelScope.launch {
             repository.storeState.collectLatest { state ->
                 entitlements = state.entitlements
@@ -319,6 +351,9 @@ class GameViewModel @JvmOverloads constructor(
     // ----------------------------------------------------------- run control
 
     fun startNewGame() {
+        // Selected before the run starts: the mode sets starting integrity, so
+        // it has to be in place before startNewRun reads it.
+        engine.selectMode(selectedMode)
         engine.startNewRun()
         engine.autoStartWaves = settings.autoStartWaves
         engine.batterySaver = settings.batterySaver

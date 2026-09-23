@@ -1,6 +1,7 @@
 package com.cyopstd.game.engine
 
 import com.cyopstd.game.core.Balance
+import com.cyopstd.game.core.GameMode
 import com.cyopstd.game.core.WorldGeometry
 import com.cyopstd.game.model.Agent
 import com.cyopstd.game.model.AgentType
@@ -47,6 +48,15 @@ class GameEngine(
         private set
 
     var currentWave: Int = 0
+        private set
+
+    /**
+     * The difficulty this run is played at.
+     *
+     * Applied as multipliers over the shared curves, so the hard mode inherits
+     * every balance change made to the normal one.
+     */
+    var mode: GameMode = GameMode.STANDARD
         private set
 
     var serverMaxHp: Int = Balance.SERVER_MAX_HP
@@ -157,6 +167,12 @@ class GameEngine(
 
     // --------------------------------------------------------------- lifecycle
 
+    /** Sets the mode for the next run. Takes effect on [startNewRun]. */
+    fun selectMode(next: GameMode) {
+        mode = next
+        waveGenerator.mode = next
+    }
+
     fun startNewRun() {
         enemies.clear()
         agents.clear()
@@ -166,7 +182,7 @@ class GameEngine(
 
         phase = RunPhase.PREPARING
         currentWave = 0
-        serverMaxHp = Balance.SERVER_MAX_HP
+        serverMaxHp = mode.serverHp
         serverHp = serverMaxHp
         crypto = Balance.STARTING_CRYPTO
         elapsedTime = 0f

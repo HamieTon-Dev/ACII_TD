@@ -228,13 +228,22 @@ Additions on top of §6b–6d:
   exactly what it is for.
 - **Simulate and show every function working**, with images, so the owner can
   say which need changing.
-- **`Hack:AI` — a hard mode**, unlocked only by clearing wave 100 on the normal
-  level.
-- **Run names.** The first mode gets a name shown at the top of a run;
-  `Hack:AI` is named there too, in very small type.
-- **Persistent identity strip**: a player ID tag at the bottom of the screen and
-  a build identification number, both small, on *every* screen and menu. The
-  build ID must be legible and high resolution.
+- ✅ **`Hack:AI` hard mode** — `core/GameMode.kt`. Built as multipliers over the
+  shared curves, never a second balance table, so every rebalance of the normal
+  game carries into the hard one and the two cannot drift. Health ×2.35, spawn
+  gap ×0.72, starting integrity 70 instead of 100, rewards ×1.5 so a harder run
+  is not also a poorer one. Unlocked only by reaching wave 100. Five tests.
+- ✅ **Run names** drawn centred at the top of the field, smaller and dimmer
+  than the corner readouts: `NETWORK DEFENCE` in muted grey, `HACK:AI` in
+  orange.
+- ✅ **Persistent identity strip** — `ui/common/IdentityStrip.kt`, drawn last in
+  `CyOpsApp` over whatever screen is showing, so there is no screen it can be
+  missing from. Player tag left, build id right. The build id is
+  `version (code) · hash`, where the hash comes from a `BUILD_STAMP`
+  `buildConfigField` set at compile time — so two builds of the same version
+  string are still distinguishable, which is the point of having it during
+  testing. It is set at 10sp Medium rather than scaled down to nothing:
+  a build id exists to be read off a photo of a bug report.
 - The owner has explicitly accepted that this makes the game **no longer
   lightweight**. The foundation stays lean; the additions need not.
 - **Report progress after every step and keep this log current.**

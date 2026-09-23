@@ -2,6 +2,7 @@ package com.cyopstd.game.ui.game
 
 import android.graphics.Paint
 import android.graphics.Typeface
+import com.cyopstd.game.core.GameMode
 import com.cyopstd.game.core.WorldGeometry
 import com.cyopstd.game.engine.GameEngine
 import com.cyopstd.game.engine.RunPhase
@@ -287,6 +288,20 @@ class BattlefieldRenderer {
             leftTextPaint
         )
         leftTextPaint.alpha = 255
+
+        // The run's name, centred between the two corner readouts and set
+        // smaller than either: it identifies the run without competing with
+        // the numbers that change during it.
+        textPaint.textSize = RUN_NAME_TEXT
+        textPaint.color = if (engine.mode == GameMode.STANDARD) colMuted else colOrange
+        textPaint.alpha = RUN_NAME_ALPHA
+        canvas.drawText(
+            engine.mode.runName,
+            WorldGeometry.WIDTH * 0.5f,
+            FIELD_STATUS_BASELINE - 2f,
+            textPaint
+        )
+        textPaint.alpha = 255
 
         rightTextPaint.textSize = FIELD_STATUS_TEXT
         rightTextPaint.color = colCrypto
@@ -1568,6 +1583,10 @@ class BattlefieldRenderer {
         const val FIELD_STATUS_BASELINE = 29f
         const val FIELD_STATUS_MARGIN = 14f
         const val FIELD_STATUS_ALPHA = 170
+
+        /** The run name: smaller and dimmer than the corner readouts. */
+        const val RUN_NAME_TEXT = 15f
+        const val RUN_NAME_ALPHA = 130
 
         /** Corner rounding on a threat chip. */
         const val CHIP_RADIUS = 5f

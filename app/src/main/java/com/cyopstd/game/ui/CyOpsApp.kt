@@ -21,6 +21,8 @@ import com.cyopstd.game.ui.menu.MainMenuScreen
 import com.cyopstd.game.ui.settings.SettingsScreen
 import com.cyopstd.game.ui.splash.SplashScreen
 import com.cyopstd.game.ui.stats.StatisticsScreen
+import androidx.compose.ui.Alignment
+import com.cyopstd.game.ui.common.IdentityStrip
 import com.cyopstd.game.ui.theme.Palette
 
 /**
@@ -182,5 +184,12 @@ fun CyOpsApp(
                 )
             }
         }
+
+        // Drawn last, over whatever screen is showing, so there is no screen
+        // the build identifier can be missing from.
+        IdentityStrip(
+            playerTag = viewModel.playerTag,
+            modifier = Modifier.align(Alignment.BottomCenter)
+        )
     }
 }
