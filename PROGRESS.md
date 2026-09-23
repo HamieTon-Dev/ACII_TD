@@ -277,6 +277,16 @@ cost for the least gain and nothing about them can be tested here.
 | OBSIDIAN | glass facets | rejected — facets near-invisible |
 | PCB | copper traces + solder pads | rejected |
 
+Rack hardware, applied to every skin (v1.9.1+):
+
+- **Two LED colours, not one.** A real rack sits mostly green for link and
+  power with amber scattered for activity and warnings. Which light is which
+  is fixed per position, never random per frame — an LED that changes colour
+  is not an LED.
+- **A racetrack chase strip** along the bottom of the rack: two comets running
+  opposite sides of the loop with fading tails, speeding up with board load,
+  modelled on an addressable LED ring.
+
 Seven paid skins. **Pricing needs a decision:** `CORE_SKIN_PACK` is still at the
 originally specified $2.50, but it now unlocks seven skins rather than three.
 

@@ -595,9 +595,14 @@ class BattlefieldRenderer {
         leftTextPaint.color = coreSkin.trim.toArgb()
         canvas.drawText("| DATA CORE      |", left + 14f, top + 110f, leftTextPaint)
 
-        // Activity LEDs: rows of "." that blink on independent intervals. They
-        // get busier the more packets are in flight, which turns the server into
-        // an at-a-glance load indicator.
+        // Activity LEDs. They get busier the more traffic is on the board,
+        // which turns the rack into an at-a-glance load indicator.
+        //
+        // Two colours, not one. A real rack sits mostly green — link and power
+        // — with amber scattered through it for activity and warnings, and
+        // that mix is most of what makes it read as hardware. Which light is
+        // which is fixed per position rather than random per frame, because
+        // an LED that changes colour is not an LED.
         val load = (engine.activeEnemyCount() / 14f).coerceIn(0f, 1.6f)
         val blinkRate = 1.4f + load * 3.4f
         thinTextPaint.textSize = 20f
@@ -608,8 +613,11 @@ class BattlefieldRenderer {
                 val seed = row * 7.31f + col * 3.77f
                 val pulse = sin(time * blinkRate + seed)
                 val lit = pulse > (0.55f - load * 0.35f)
+                // Roughly one light in three is the second colour.
+                val amber = (row * LED_COLUMNS + col) % 3 == 1
                 thinTextPaint.color = when {
                     damaged && lit -> colRed
+                    lit && amber -> coreSkin.ledAlt.toArgb()
                     lit -> coreSkin.led.toArgb()
                     else -> colMuted
                 }
@@ -619,6 +627,8 @@ class BattlefieldRenderer {
             }
         }
         thinTextPaint.alpha = 255
+
+        drawRacetrack(canvas, left, right, bottom - 96f, damaged, load, time)
 
         // Integrity bar: [==========]
         val barLeft = left + 26f
@@ -806,6 +816,54 @@ class BattlefieldRenderer {
         }
         canvas.restoreToCount(clip)
         strokePaint.alpha = 255
+        fillPaint.alpha = 255
+    }
+
+    /**
+     * The chase strip along the bottom of the rack.
+     *
+     * A run of LEDs with a lit comet travelling along it and fading behind,
+     * like the addressable strips these racks are actually built with. It
+     * speeds up with load, so it carries the same information as the LED grid
+     * in a form the eye catches from across the screen.
+     */
+    private fun drawRacetrack(
+        canvas: android.graphics.Canvas,
+        left: Float,
+        right: Float,
+        y: Float,
+        damaged: Boolean,
+        load: Float,
+        time: Float
+    ) {
+        val count = RACETRACK_LEDS
+        val span = (right - left) - 52f
+        val gap = span / (count - 1)
+        // Two comets on opposite sides of the loop, so the strip reads as a
+        // circuit rather than as a single dot sliding back and forth.
+        val head = (time * (0.32f + load * 0.30f)) % 1f
+
+        for (i in 0 until count) {
+            val x = left + 26f + i * gap
+            val at = i / (count - 1f)
+            // Distance behind either comet, wrapped, so the tail crosses the end.
+            var best = 1f
+            for (comet in 0 until 2) {
+                val h = (head + comet * 0.5f) % 1f
+                var d = h - at
+                if (d < 0f) d += 1f
+                if (d < best) best = d
+            }
+            val glow = (1f - best * RACETRACK_TAIL).coerceIn(0f, 1f)
+
+            fillPaint.color = when {
+                damaged -> colRed
+                glow > 0.55f -> coreSkin.led.toArgb()
+                else -> coreSkin.ledAlt.toArgb()
+            }
+            fillPaint.alpha = (24 + 231 * glow * glow).toInt().coerceIn(0, 255)
+            canvas.drawCircle(x, y, 2.4f + 2.2f * glow, fillPaint)
+        }
         fillPaint.alpha = 255
     }
 
@@ -1431,6 +1489,11 @@ class BattlefieldRenderer {
     }
 
     private companion object {
+        const val RACETRACK_LEDS = 22
+
+        /** How quickly a racetrack comet fades behind itself. */
+        const val RACETRACK_TAIL = 7f
+
         const val LED_ROWS = 5
         const val LED_COLUMNS = 8
         const val BACKDROP_GLYPHS = 42

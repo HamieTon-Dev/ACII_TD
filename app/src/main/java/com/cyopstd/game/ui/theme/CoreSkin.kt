@@ -19,8 +19,16 @@ enum class CoreSkin(
     val chassis: Color,
     /** Border, rules and the identity line. */
     val accent: Color,
-    /** The activity LED grid. */
+    /** Activity LEDs: the "link is up" colour. */
     val led: Color,
+    /**
+     * Activity LEDs: the second colour.
+     *
+     * A real rack is not a field of identical lights — link and power sit
+     * green while activity and warning sit amber, and the mix is most of what
+     * makes it read as hardware rather than as decoration.
+     */
+    val ledAlt: Color,
     /** Secondary text and the quieter details. */
     val trim: Color,
     val flourish: Flourish
@@ -31,6 +39,7 @@ enum class CoreSkin(
         chassis = Color(0xFF0C1322),
         accent = Color(0xFF00E5FF),
         led = Color(0xFF00FF9C),
+        ledAlt = Color(0xFFFFA23D),
         trim = Color(0xFF93A6C4),
         flourish = Flourish.NONE
     ),
@@ -41,6 +50,7 @@ enum class CoreSkin(
         chassis = Color(0xFF17100A),
         accent = Color(0xFFFFB13D),
         led = Color(0xFFFFD98A),
+        ledAlt = Color(0xFF8CFF9E),
         trim = Color(0xFFB48A5C),
         flourish = Flourish.RING
     ),
@@ -51,6 +61,7 @@ enum class CoreSkin(
         chassis = Color(0xFF0B0A1E),
         accent = Color(0xFFE8C877),
         led = Color(0xFFF2E0A8),
+        ledAlt = Color(0xFF9BFFB0),
         trim = Color(0xFF8E85C0),
         flourish = Flourish.TRACES
     ),
@@ -61,6 +72,7 @@ enum class CoreSkin(
         chassis = Color(0xFF071620),
         accent = Color(0xFFAEE7FF),
         led = Color(0xFFE6F8FF),
+        ledAlt = Color(0xFFFFC98A),
         trim = Color(0xFF6FA8C0),
         flourish = Flourish.FROST
     ),
@@ -71,6 +83,7 @@ enum class CoreSkin(
         chassis = Color(0xFF031008),
         accent = Color(0xFF3BFF7A),
         led = Color(0xFF9CFFC2),
+        ledAlt = Color(0xFFFFB851),
         trim = Color(0xFF3F8F5C),
         flourish = Flourish.SCANLINES
     ),
@@ -81,6 +94,7 @@ enum class CoreSkin(
         chassis = Color(0xFF020C06),
         accent = Color(0xFF27F58C),
         led = Color(0xFF7BFFC0),
+        ledAlt = Color(0xFFFFC266),
         trim = Color(0xFF2E7F58),
         flourish = Flourish.CASCADE
     ),
@@ -88,10 +102,11 @@ enum class CoreSkin(
     NEONGRID(
         productId = "core_skin_neongrid",
         displayName = "NEONGRID",
-        chassis = Color(0xFF04121F),
-        accent = Color(0xFF4AD9FF),
-        led = Color(0xFFBDEEFF),
-        trim = Color(0xFF4093C4),
+        chassis = Color(0xFF030E24),
+        accent = Color(0xFF3A86FF),
+        led = Color(0xFF7FE3FF),
+        ledAlt = Color(0xFFFFB05C),
+        trim = Color(0xFF4A79C8),
         flourish = Flourish.GRID
     ),
 
@@ -101,6 +116,7 @@ enum class CoreSkin(
         chassis = Color(0xFF0D0716),
         accent = Color(0xFFC77BFF),
         led = Color(0xFFE9C6FF),
+        ledAlt = Color(0xFF8CFFB4),
         trim = Color(0xFF7D6296),
         flourish = Flourish.STARFIELD
     );
