@@ -48,6 +48,7 @@ fun MainMenuScreen(
     onFirmware: () -> Unit,
     onCodex: () -> Unit,
     onStore: () -> Unit,
+    onLeaderboard: () -> Unit,
     onStatistics: () -> Unit,
     onSettings: () -> Unit,
     onAbout: () -> Unit,
@@ -189,6 +190,14 @@ fun MainMenuScreen(
                     leadingGlyph = "[$]",
                     accent = Palette.Green,
                     onClick = onStore
+                )
+                Spacer(Modifier.height(10.dp))
+                BastionButton(
+                    text = "LEADERBOARD",
+                    subtitle = "Ranked by deepest wave reached",
+                    leadingGlyph = "[#]",
+                    accent = Palette.Crypto,
+                    onClick = onLeaderboard
                 )
                 Spacer(Modifier.height(10.dp))
                 BastionButton(

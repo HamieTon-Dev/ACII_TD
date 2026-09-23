@@ -118,6 +118,16 @@ class GameEngine(
     /** Deployment counts per agent type, used to work out the "favourite agent". */
     val runDeploymentsByType: MutableMap<AgentType, Int> = LinkedHashMap()
 
+    /**
+     * Total damage every agent has dealt this run.
+     *
+     * Accumulated as shots are fired rather than summed from agents on demand,
+     * because agents can be sold: a total derived from what is still standing
+     * would quietly forget everything a sold tower ever did.
+     */
+    var runDamageDealt: Double = 0.0
+        internal set
+
     /** Highest wave reached in this run (equals currentWave, kept for clarity). */
     val runHighestWave: Int get() = currentWave
 
@@ -182,6 +192,7 @@ class GameEngine(
 
         phase = RunPhase.PREPARING
         currentWave = 0
+        runDamageDealt = 0.0
         serverMaxHp = mode.serverHp
         serverHp = serverMaxHp
         crypto = Balance.STARTING_CRYPTO

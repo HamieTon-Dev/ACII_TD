@@ -54,6 +54,7 @@ class ProjectileSystem(private val engine: GameEngine, private val random: Rando
 
         projectile.angle = atan2(target.y - agent.y, target.x - agent.x)
         agent.lifetimeDamage += projectile.damage
+        engine.runDamageDealt += projectile.damage.toDouble()
     }
 
     fun update(dt: Float) {

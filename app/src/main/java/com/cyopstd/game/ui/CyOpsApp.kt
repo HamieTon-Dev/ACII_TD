@@ -16,6 +16,7 @@ import com.cyopstd.game.ui.game.GameScreen
 import com.cyopstd.game.ui.menu.AboutScreen
 import com.cyopstd.game.ui.menu.AgentsScreen
 import com.cyopstd.game.ui.menu.FirmwareScreen
+import com.cyopstd.game.ui.menu.LeaderboardScreen
 import com.cyopstd.game.ui.menu.StoreScreen
 import com.cyopstd.game.ui.menu.MainMenuScreen
 import com.cyopstd.game.ui.settings.SettingsScreen
@@ -41,6 +42,7 @@ sealed interface Screen {
     data object Firmware : Screen
     data object Codex : Screen
     data object Store : Screen
+    data object Leaderboard : Screen
     data object Statistics : Screen
     data object Settings : Screen
     data object About : Screen
@@ -85,6 +87,11 @@ fun CyOpsApp(
                     onFirmware = { viewModel.playClick(); screen = Screen.Firmware },
                     onCodex = { viewModel.playClick(); screen = Screen.Codex },
                     onStore = { viewModel.playClick(); screen = Screen.Store },
+                    onLeaderboard = {
+                        viewModel.playClick()
+                        viewModel.refreshLeaderboard()
+                        screen = Screen.Leaderboard
+                    },
                     onStatistics = { viewModel.playClick(); screen = Screen.Statistics },
                     onSettings = {
                         viewModel.playClick()
@@ -137,6 +144,17 @@ fun CyOpsApp(
                     backgroundAnimation = viewModel.settings.backgroundAnimation,
                     onBuy = { sku -> viewModel.buy(sku) },
                     onRestore = { viewModel.restorePurchases() },
+                    onBack = { viewModel.playClick(); screen = Screen.MainMenu }
+                )
+            }
+
+            Screen.Leaderboard -> {
+                BackHandler { screen = Screen.MainMenu }
+                LeaderboardScreen(
+                    identity = viewModel.identity,
+                    entries = viewModel.leaderboardEntries,
+                    backgroundAnimation = viewModel.settings.backgroundAnimation,
+                    onRegister = { viewModel.registerUsername(it) },
                     onBack = { viewModel.playClick(); screen = Screen.MainMenu }
                 )
             }

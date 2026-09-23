@@ -21,6 +21,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
+import kotlinx.serialization.builtins.ListSerializer
 import kotlinx.serialization.builtins.MapSerializer
 import kotlinx.serialization.builtins.serializer
 import kotlinx.serialization.json.Json
@@ -326,6 +327,7 @@ class GameRepository(private val store: DataStore<Preferences>) {
         val SPECTRUM_AGENTS = booleanPreferencesKey("spectrum_agents")
         val USERNAME = stringPreferencesKey("username")
         val BEST_DAMAGE = longPreferencesKey("best_damage")
+        val LEADERBOARD = stringPreferencesKey("leaderboard_json")
     }
 
     // ------------------------------------------- store, identity, leaderboard
@@ -420,6 +422,33 @@ class GameRepository(private val store: DataStore<Preferences>) {
         if (total > (prefs[Keys.BEST_DAMAGE] ?: 0L)) prefs[Keys.BEST_DAMAGE] = total
     }.let { }
 
+    /**
+     * The local leaderboard.
+     *
+     * Decoded defensively like every other stored blob: a board that failed to
+     * parse must cost the player their scores, not their ability to open the
+     * screen.
+     */
+    suspend fun leaderboard(): List<LeaderboardEntry> {
+        val raw = store.data.first()[Keys.LEADERBOARD] ?: return emptyList()
+        return try {
+            Json.decodeFromString(LeaderboardSerializer, raw)
+        } catch (error: Exception) {
+            Log.w(TAG, "Leaderboard unreadable; starting a fresh board", error)
+            emptyList()
+        }
+    }
+
+    suspend fun saveLeaderboard(entries: List<LeaderboardEntry>) {
+        val encoded = try {
+            Json.encodeToString(LeaderboardSerializer, entries)
+        } catch (error: Exception) {
+            Log.w(TAG, "Could not encode the leaderboard", error)
+            return
+        }
+        store.edit { prefs -> prefs[Keys.LEADERBOARD] = encoded }
+    }
+
     private fun String?.toIdSet(): Set<String> =
         this?.split(SEPARATOR)?.filter { it.isNotBlank() }?.toSet() ?: emptySet()
 
@@ -427,5 +456,6 @@ class GameRepository(private val store: DataStore<Preferences>) {
         const val TAG = "CyOpsSave"
         const val SEPARATOR = "\u001F"
         val DeploymentMapSerializer = MapSerializer(String.serializer(), Int.serializer())
+        val LeaderboardSerializer = ListSerializer(LeaderboardEntry.serializer())
     }
 }

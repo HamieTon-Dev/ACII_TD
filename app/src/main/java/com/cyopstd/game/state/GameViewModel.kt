@@ -13,6 +13,10 @@ import com.cyopstd.game.audio.AudioEngine
 import com.cyopstd.game.audio.HapticEngine
 import com.cyopstd.game.core.Balance
 import com.cyopstd.game.core.GameMode
+import com.cyopstd.game.save.LeaderboardEntry
+import com.cyopstd.game.save.LeaderboardGateway
+import com.cyopstd.game.save.LocalLeaderboard
+import com.cyopstd.game.save.PlayerIdentity
 import com.cyopstd.game.store.BillingGateway
 import com.cyopstd.game.store.BillingStatus
 import com.cyopstd.game.store.CosmeticChoice
@@ -213,6 +217,29 @@ class GameViewModel @JvmOverloads constructor(
     var playerTag by mutableStateOf("")
         private set
 
+    // ------------------------------------------------------------ leaderboard
+
+    private val leaderboard: LeaderboardGateway = LocalLeaderboard(repository)
+
+    var identity by mutableStateOf(PlayerIdentity())
+        private set
+
+    var leaderboardEntries by mutableStateOf(emptyList<LeaderboardEntry>())
+        private set
+
+    fun registerUsername(name: String) {
+        if (!PlayerIdentity.isValid(name)) return
+        playClick()
+        viewModelScope.launch {
+            repository.setUsername(name)
+            refreshLeaderboard()
+        }
+    }
+
+    fun refreshLeaderboard() {
+        viewModelScope.launch { leaderboardEntries = leaderboard.top() }
+    }
+
     /** Modes this player has earned the right to play. */
     var availableModes by mutableStateOf(listOf(GameMode.STANDARD))
         private set
@@ -266,6 +293,7 @@ class GameViewModel @JvmOverloads constructor(
     private fun observeStore() {
         collectJobs += viewModelScope.launch {
             repository.identity.collectLatest { identity ->
+                this@GameViewModel.identity = identity
                 playerTag = if (identity.registered) {
                     "AGENT ${identity.username}"
                 } else {
@@ -689,6 +717,19 @@ class GameViewModel @JvmOverloads constructor(
         )
 
         viewModelScope.launch {
+            // Submitted before the stats write so a crash between the two
+            // loses the aggregate, not the run itself.
+            repository.recordDamage(engine.runDamageDealt.toLong())
+            leaderboard.submit(
+                LeaderboardEntry(
+                    username = identity.username,
+                    wave = engine.currentWave,
+                    damage = engine.runDamageDealt.toLong(),
+                    modeId = engine.mode.id,
+                    at = System.currentTimeMillis() / 1000
+                )
+            )
+            refreshLeaderboard()
             repository.recordRunResult(
                 waveReached = engine.currentWave,
                 attacksBlocked = engine.runAttacksBlocked,
