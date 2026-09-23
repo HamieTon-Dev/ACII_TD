@@ -6,6 +6,8 @@ import com.cyopstd.game.store.CosmeticChoice
 import com.cyopstd.game.store.Entitlements
 import com.cyopstd.game.store.Sku
 import com.cyopstd.game.store.SkuKind
+import com.cyopstd.game.ui.theme.CoreSkin
+import com.cyopstd.game.ui.theme.LivingBackground
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
@@ -38,7 +40,7 @@ class StoreTest {
         for (skin in Sku.coreSkins) {
             assertTrue("${skin.id} was not granted by the pack", owned.owns(skin))
         }
-        assertEquals(3, owned.coreSkins.size)
+        assertEquals(Sku.coreSkins.size, owned.coreSkins.size)
 
         val starter = Entitlements().plus(Sku.STARTER_PACK)
         assertTrue(starter.adsRemoved)
@@ -147,4 +149,71 @@ class StoreTest {
         assertTrue(PlayerIdentity.isValid("abc"))
         assertFalse("an empty identity is not registered", PlayerIdentity().registered)
     }
+    @Test
+    fun `every paid cosmetic is locked behind owning it`() {
+        // The guarantee: nothing that costs money can be selected, or reach
+        // the renderer, without the product that grants it. Checked against
+        // the real skin tables rather than a hand-written list, so a cosmetic
+        // added later cannot quietly ship unlocked.
+        val nothingOwned = Entitlements()
+
+        for (skin in CoreSkin.purchasable) {
+            val chosen = CosmeticChoice(coreSkinId = skin.productId)
+                .resolvedAgainst(nothingOwned)
+            assertEquals(
+                "${skin.displayName} was selectable without being owned",
+                null, chosen.coreSkinId
+            )
+            assertEquals(
+                "${skin.displayName} reached the renderer unowned",
+                CoreSkin.DEFAULT, CoreSkin.forProduct(chosen.coreSkinId)
+            )
+        }
+
+        for (background in LivingBackground.purchasable) {
+            val chosen = CosmeticChoice(backgroundId = background.productId)
+                .resolvedAgainst(nothingOwned)
+            assertEquals(
+                "${background.displayName} was selectable without being owned",
+                null, chosen.backgroundId
+            )
+            assertEquals(
+                LivingBackground.NONE, LivingBackground.forProduct(chosen.backgroundId)
+            )
+        }
+
+        assertFalse("the agent skin was on without being owned",
+            CosmeticChoice(spectrumAgents = true).resolvedAgainst(nothingOwned).spectrumAgents)
+    }
+
+    @Test
+    fun `owning a cosmetic lets it through`() {
+        // The other half: the lock must not be so tight that a paying player
+        // cannot use what they bought.
+        val skin = CoreSkin.purchasable.first()
+        val owned = Entitlements(setOf(skin.productId!!))
+        val chosen = CosmeticChoice(coreSkinId = skin.productId).resolvedAgainst(owned)
+        assertEquals(skin.productId, chosen.coreSkinId)
+        assertEquals(skin, CoreSkin.forProduct(chosen.coreSkinId))
+    }
+
+    @Test
+    fun `every purchasable cosmetic has a product in the catalog`() {
+        // A skin with no product id in the store is unreachable; a product id
+        // with no skin sells nothing. Both are silent failures.
+        for (skin in CoreSkin.purchasable) {
+            assertTrue(
+                "core skin ${skin.displayName} has no catalog entry (${skin.productId})",
+                Sku.byId(skin.productId!!) != null
+            )
+        }
+        for (background in LivingBackground.purchasable) {
+            assertTrue(
+                "background ${background.displayName} has no catalog entry " +
+                    "(${background.productId})",
+                Sku.byId(background.productId!!) != null
+            )
+        }
+    }
+
 }

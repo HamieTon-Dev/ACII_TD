@@ -88,19 +88,11 @@ enum class Sku(
     ),
 
     // ------------------------------------------------------- core-server skins
-    CORE_SKIN_OBSIDIAN(
-        id = "core_skin_obsidian",
-        kind = SkuKind.PERMANENT,
-        title = "CORE: OBSIDIAN",
-        summary = "Black glass and a cold white core.",
-        fallbackPrice = "$1.00"
-    ),
-
     CORE_SKIN_REACTOR(
         id = "core_skin_reactor",
         kind = SkuKind.PERMANENT,
         title = "CORE: REACTOR",
-        summary = "A containment ring around a running reaction.",
+        summary = "Amber containment rings around a running reaction.",
         fallbackPrice = "$1.00"
     ),
 
@@ -112,14 +104,58 @@ enum class Sku(
         fallbackPrice = "$1.00"
     ),
 
+    CORE_SKIN_GLACIER(
+        id = "core_skin_glacier",
+        kind = SkuKind.PERMANENT,
+        title = "CORE: GLACIER",
+        summary = "Ice needles radiating from a frozen core.",
+        fallbackPrice = "$1.00"
+    ),
+
+    CORE_SKIN_VOID(
+        id = "core_skin_void",
+        kind = SkuKind.PERMANENT,
+        title = "CORE: VOID",
+        summary = "A violet starfield behind the rack.",
+        fallbackPrice = "$1.00"
+    ),
+
+    CORE_SKIN_MAINFRAME(
+        id = "core_skin_mainframe",
+        kind = SkuKind.PERMANENT,
+        title = "CORE: MAINFRAME",
+        summary = "CRT phosphor green, scanlines and a refresh sweep.",
+        fallbackPrice = "$1.00"
+    ),
+
+    CORE_SKIN_CASCADE(
+        id = "core_skin_cascade",
+        kind = SkuKind.PERMANENT,
+        title = "CORE: CASCADE",
+        summary = "Code falling inside the rack itself.",
+        fallbackPrice = "$1.00"
+    ),
+
+    CORE_SKIN_NEONGRID(
+        id = "core_skin_neongrid",
+        kind = SkuKind.PERMANENT,
+        title = "CORE: NEONGRID",
+        summary = "A bright cyan grid receding into the core.",
+        fallbackPrice = "$1.00"
+    ),
+
     CORE_SKIN_PACK(
         id = "core_skin_pack",
         kind = SkuKind.PERMANENT,
         title = "ALL CORE SKINS",
-        summary = "All three CORE-SERVER skins, plus €200.",
+        summary = "All seven CORE-SERVER skins, plus \u20AC200.",
         fallbackPrice = "$2.50",
         grantsBudget = 200,
-        alsoUnlocks = listOf("core_skin_obsidian", "core_skin_reactor", "core_skin_meridian")
+        alsoUnlocks = listOf(
+            "core_skin_reactor", "core_skin_meridian", "core_skin_glacier",
+            "core_skin_void", "core_skin_mainframe", "core_skin_cascade",
+            "core_skin_neongrid"
+        )
     ),
 
     // ------------------------------------------------------ living backgrounds
@@ -145,6 +181,22 @@ enum class Sku(
         title = "LIVING: AURORA",
         summary = "Cold light moving behind everything.",
         fallbackPrice = "$4.99"
+    ),
+
+    BG_RAINFALL(
+        id = "bg_rainfall",
+        kind = SkuKind.PERMANENT,
+        title = "LIVING: RAINFALL",
+        summary = "Sparse columns of falling characters behind the field.",
+        fallbackPrice = "$1.99"
+    ),
+
+    BG_PULSE(
+        id = "bg_pulse",
+        kind = SkuKind.PERMANENT,
+        title = "LIVING: PULSE",
+        summary = "Rings travelling outward from the core.",
+        fallbackPrice = "$2.99"
     ),
 
     BG_PACK(
@@ -179,9 +231,13 @@ enum class Sku(
                 addAll(sku.alsoUnlocks)
             }
 
-        val coreSkins: List<Sku> =
-            listOf(CORE_SKIN_OBSIDIAN, CORE_SKIN_REACTOR, CORE_SKIN_MERIDIAN)
+        val coreSkins: List<Sku> = listOf(
+            CORE_SKIN_REACTOR, CORE_SKIN_MERIDIAN, CORE_SKIN_GLACIER,
+            CORE_SKIN_VOID, CORE_SKIN_MAINFRAME, CORE_SKIN_CASCADE,
+            CORE_SKIN_NEONGRID
+        )
 
-        val backgrounds: List<Sku> = listOf(BG_DRIFT, BG_LATTICE, BG_AURORA)
+        val backgrounds: List<Sku> =
+            listOf(BG_DRIFT, BG_LATTICE, BG_AURORA, BG_RAINFALL, BG_PULSE)
     }
 }

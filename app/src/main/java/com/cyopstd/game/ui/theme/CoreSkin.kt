@@ -35,16 +35,6 @@ enum class CoreSkin(
         flourish = Flourish.NONE
     ),
 
-    OBSIDIAN(
-        productId = "core_skin_obsidian",
-        displayName = "OBSIDIAN",
-        chassis = Color(0xFF07070A),
-        accent = Color(0xFFDCE3EE),
-        led = Color(0xFFB9C6DA),
-        trim = Color(0xFF6C7686),
-        flourish = Flourish.FACETS
-    ),
-
     REACTOR(
         productId = "core_skin_reactor",
         displayName = "REACTOR",
@@ -75,6 +65,36 @@ enum class CoreSkin(
         flourish = Flourish.FROST
     ),
 
+    MAINFRAME(
+        productId = "core_skin_mainframe",
+        displayName = "MAINFRAME",
+        chassis = Color(0xFF031008),
+        accent = Color(0xFF3BFF7A),
+        led = Color(0xFF9CFFC2),
+        trim = Color(0xFF3F8F5C),
+        flourish = Flourish.SCANLINES
+    ),
+
+    CASCADE(
+        productId = "core_skin_cascade",
+        displayName = "CASCADE",
+        chassis = Color(0xFF020C06),
+        accent = Color(0xFF27F58C),
+        led = Color(0xFF7BFFC0),
+        trim = Color(0xFF2E7F58),
+        flourish = Flourish.CASCADE
+    ),
+
+    NEONGRID(
+        productId = "core_skin_neongrid",
+        displayName = "NEONGRID",
+        chassis = Color(0xFF04121F),
+        accent = Color(0xFF4AD9FF),
+        led = Color(0xFFBDEEFF),
+        trim = Color(0xFF4093C4),
+        flourish = Flourish.GRID
+    ),
+
     VOID(
         productId = "core_skin_void",
         displayName = "VOID",
@@ -86,7 +106,15 @@ enum class CoreSkin(
     );
 
     /** The extra mark that makes a skin recognisable at a glance. */
-    enum class Flourish { NONE, FACETS, RING, TRACES, FROST, STARFIELD }
+    enum class Flourish {
+        NONE, RING, TRACES, FROST, STARFIELD,
+        /** CRT phosphor scanlines. */
+        SCANLINES,
+        /** Falling code columns inside the rack. */
+        CASCADE,
+        /** A receding perspective grid. */
+        GRID
+    }
 
     companion object {
         /** The skin for a chosen product id, falling back to the free one. */

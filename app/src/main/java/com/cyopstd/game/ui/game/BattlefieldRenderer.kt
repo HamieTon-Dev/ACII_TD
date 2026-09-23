@@ -10,6 +10,7 @@ import com.cyopstd.game.model.EffectKind
 import com.cyopstd.game.model.Enemy
 import com.cyopstd.game.model.EnemyType
 import com.cyopstd.game.ui.theme.CoreSkin
+import com.cyopstd.game.ui.theme.LivingBackground
 import com.cyopstd.game.ui.theme.Palette
 import androidx.compose.ui.graphics.toArgb
 import kotlin.math.abs
@@ -126,6 +127,9 @@ class BattlefieldRenderer {
     /** The CORE-SERVER look, set from the player's store selection. */
     var coreSkin: CoreSkin = CoreSkin.DEFAULT
 
+    /** The animated backdrop, set from the player's store selection. */
+    var livingBackground: LivingBackground = LivingBackground.NONE
+
     private var tintBand = -1
     private var tintFrom = Palette.backdropBands[0].toArgb()
     private var tintTo = Palette.backdropBands[0].toArgb()
@@ -207,6 +211,8 @@ class BattlefieldRenderer {
         canvas.drawRect(0f, 0f, WorldGeometry.WIDTH, WorldGeometry.HEIGHT, vignette)
 
         if (!options.backgroundAnimation || options.batterySaver) return
+
+        drawLivingBackground(canvas, engine, time)
 
         // Drifting binary chatter, sparse enough to stay behind the gameplay.
         thinTextPaint.textSize = 15f
@@ -290,6 +296,121 @@ class BattlefieldRenderer {
             rightTextPaint
         )
         rightTextPaint.alpha = 255
+    }
+
+    /**
+     * The player's animated backdrop, if they own one.
+     *
+     * Drawn inside the backdrop pass, so the lanes, threats, agents and the
+     * core all paint over it. Every effect is capped by the background's own
+     * [LivingBackground.intensity], which is in the low tens out of 255 — the
+     * point is something you notice in a quiet moment between waves, not
+     * something you have to see past during one.
+     */
+    private fun drawLivingBackground(
+        canvas: android.graphics.Canvas,
+        engine: GameEngine,
+        time: Float
+    ) {
+        val skin = livingBackground
+        if (skin == LivingBackground.NONE) return
+        val tint = skin.tint.toArgb()
+        val peak = skin.intensity
+        val w = WorldGeometry.WIDTH
+        val h = WorldGeometry.HEIGHT
+
+        when (skin) {
+            LivingBackground.NONE -> Unit
+
+            LivingBackground.DRIFT -> {
+                strokePaint.color = tint
+                strokePaint.strokeWidth = 2f
+                for (i in 0 until 26) {
+                    val span = w + 420f
+                    val x = ((i * 137f) + time * skin.speed * span) % span - 210f
+                    val y = (i * 311f) % h
+                    strokePaint.alpha = (peak * (0.4f + 0.6f * abs(sin(i * 1.7f)))).toInt()
+                    canvas.drawLine(x, y, x + 150f, y + 84f, strokePaint)
+                }
+            }
+
+            LivingBackground.LATTICE -> {
+                // Grid nodes that swell with how much traffic is on the board.
+                val load = (engine.activeEnemyCount() / 16f).coerceIn(0f, 1f)
+                fillPaint.color = tint
+                var gx = 60f
+                var index = 0
+                while (gx < w) {
+                    var gy = 60f
+                    while (gy < h) {
+                        val phase = sin(time * skin.speed * 6.28f + index * 0.7f)
+                        val radius = 2.2f + 2.4f * (0.5f + 0.5f * phase) * (0.6f + load)
+                        fillPaint.alpha = (peak * (0.45f + 0.55f * (0.5f + 0.5f * phase))).toInt()
+                        canvas.drawCircle(gx, gy, radius, fillPaint)
+                        gy += 100f
+                        index++
+                    }
+                    gx += 100f
+                }
+                strokePaint.color = tint
+                strokePaint.alpha = (peak * 0.35f).toInt()
+                strokePaint.strokeWidth = 1f
+                var ly = 60f
+                while (ly < h) {
+                    canvas.drawLine(60f, ly, w - 60f, ly, strokePaint)
+                    ly += 100f
+                }
+            }
+
+            LivingBackground.AURORA -> {
+                // Wide soft bands. Drawn as a few thick, very faint strokes
+                // that slide across each other.
+                strokePaint.strokeWidth = 86f
+                for (i in 0 until 5) {
+                    val drift = sin(time * skin.speed * 6.28f + i * 1.3f)
+                    val y = h * (0.18f + i * 0.17f) + drift * 46f
+                    strokePaint.color = tint
+                    strokePaint.alpha = (peak * (0.35f + 0.4f * (0.5f + 0.5f * drift))).toInt()
+                    canvas.drawLine(0f, y, w, y + drift * 30f, strokePaint)
+                }
+                strokePaint.strokeWidth = 2f
+            }
+
+            LivingBackground.RAINFALL -> {
+                thinTextPaint.textSize = 14f
+                thinTextPaint.color = tint
+                for (col in 0 until 34) {
+                    val x = 24f + col * 46f
+                    val speed = 90f + (col % 5) * 46f
+                    val head = (time * speed * skin.speed * 4f + col * 73f) % (h + 190f)
+                    for (n in 0 until 6) {
+                        val y = head - n * 26f
+                        if (y < 0f || y > h) continue
+                        thinTextPaint.alpha = (peak * (1f - n / 6f)).toInt().coerceAtLeast(0)
+                        charBuffer[0] = if (((col + n + (time * 3).toInt()) % 2) == 0) '1' else '0'
+                        canvas.drawText(charBuffer, 0, 1, x, y, thinTextPaint)
+                    }
+                }
+                thinTextPaint.alpha = 255
+            }
+
+            LivingBackground.PULSE -> {
+                // Rings leaving the core, so the eye is drawn towards the thing
+                // being defended rather than away from it.
+                val cx = WorldGeometry.SERVER_X
+                val cy = WorldGeometry.CORE_Y
+                strokePaint.color = tint
+                strokePaint.strokeWidth = 2f
+                for (i in 0 until 5) {
+                    val phase = (time * skin.speed + i / 5f) % 1f
+                    strokePaint.alpha = (peak * (1f - phase)).toInt().coerceAtLeast(0)
+                    canvas.drawCircle(cx, cy, 90f + phase * 1250f, strokePaint)
+                }
+            }
+        }
+        strokePaint.alpha = 255
+        fillPaint.alpha = 255
+        strokePaint.strokeWidth = 2f
     }
 
     // ---------------------------------------------------------------- lanes
@@ -559,19 +680,16 @@ class BattlefieldRenderer {
         val cy = (top + bottom) * 0.5f
         val accent = coreSkin.accent.toArgb()
 
+        // Clipped to the rack. A flourish is decoration on a specific object,
+        // and several of them (traces, grids, rings) are drawn with maths that
+        // naturally overruns the box -- PCB's trace stubs were escaping below
+        // the chassis. Clipping means a new skin cannot leak onto the
+        // battlefield no matter how its pattern is generated.
+        val clip = canvas.save()
+        canvas.clipRect(left, top, right, bottom)
+
         when (coreSkin.flourish) {
             CoreSkin.Flourish.NONE -> Unit
-
-            CoreSkin.Flourish.FACETS -> {
-                // Black glass: a few long diagonal highlights.
-                strokePaint.color = accent
-                strokePaint.strokeWidth = 1.2f
-                for (i in 0 until 5) {
-                    strokePaint.alpha = 26 - i * 3
-                    val offset = -140f + i * 90f
-                    canvas.drawLine(left + offset, bottom, left + offset + 190f, top, strokePaint)
-                }
-            }
 
             CoreSkin.Flourish.RING -> {
                 // Containment: concentric rings that breathe.
@@ -617,6 +735,64 @@ class BattlefieldRenderer {
                 }
             }
 
+            CoreSkin.Flourish.SCANLINES -> {
+                // CRT phosphor: tight horizontal lines plus a bright band that
+                // sweeps down the rack like a refresh.
+                strokePaint.color = accent
+                strokePaint.strokeWidth = 1f
+                var y = top + 4f
+                while (y < bottom) {
+                    strokePaint.alpha = 22
+                    canvas.drawLine(left + 3f, y, right - 3f, y, strokePaint)
+                    y += 4f
+                }
+                val sweep = top + ((time * 46f) % (bottom - top))
+                for (k in 0 until 10) {
+                    strokePaint.alpha = (52 - k * 5).coerceAtLeast(0)
+                    canvas.drawLine(left + 3f, sweep + k, right - 3f, sweep + k, strokePaint)
+                }
+            }
+
+            CoreSkin.Flourish.CASCADE -> {
+                // Code falling inside the rack itself.
+                thinTextPaint.textSize = 13f
+                thinTextPaint.color = accent
+                for (col in 0 until 8) {
+                    val cxx = left + 22f + col * 30f
+                    val head = ((time * (34f + col * 9f)) + col * 57f) %
+                        (WorldGeometry.SERVER_HEIGHT + 120f)
+                    for (n in 0 until 9) {
+                        val yy = top + head - n * 17f
+                        if (yy < top + 6f || yy > bottom - 6f) continue
+                        thinTextPaint.alpha = (58 - n * 6).coerceAtLeast(0)
+                        charBuffer[0] = CASCADE_GLYPHS[(col * 7 + n + (time * 4).toInt()) %
+                            CASCADE_GLYPHS.size]
+                        canvas.drawText(charBuffer, 0, 1, cxx, yy, thinTextPaint)
+                    }
+                }
+                thinTextPaint.alpha = 255
+            }
+
+            CoreSkin.Flourish.GRID -> {
+                // A grid receding towards a vanishing point at the core.
+                strokePaint.color = accent
+                strokePaint.strokeWidth = 1.3f
+                val vx = (left + right) * 0.5f
+                val vy = (top + bottom) * 0.5f
+                for (i in -4..4) {
+                    strokePaint.alpha = 46
+                    canvas.drawLine(vx, vy, vx + i * 120f, bottom, strokePaint)
+                    canvas.drawLine(vx, vy, vx + i * 120f, top, strokePaint)
+                }
+                for (i in 1 until 7) {
+                    val t = i / 7f
+                    val spread = t * t * (bottom - vy)
+                    strokePaint.alpha = (52 * (1f - t * 0.6f)).toInt()
+                    canvas.drawLine(left + 3f, vy + spread, right - 3f, vy + spread, strokePaint)
+                    canvas.drawLine(left + 3f, vy - spread, right - 3f, vy - spread, strokePaint)
+                }
+            }
+
             CoreSkin.Flourish.STARFIELD -> {
                 // Deep space: a fixed field of faint points that twinkle.
                 fillPaint.color = accent
@@ -628,6 +804,7 @@ class BattlefieldRenderer {
                 }
             }
         }
+        canvas.restoreToCount(clip)
         strokePaint.alpha = 255
         fillPaint.alpha = 255
     }
@@ -1273,6 +1450,11 @@ class BattlefieldRenderer {
         const val CHIP_RADIUS = 5f
 
         const val TWO_PI_F = 6.2831855f
+
+        /** Glyphs the CASCADE core skin rains inside the rack. */
+        val CASCADE_GLYPHS = charArrayOf(
+            '0', '1', '<', '>', '/', '\\', '#', '$', '%', '&', '=', '+', '*'
+        )
 
         /** World units a threat fades in over as it enters the field. */
         const val CHIP_FADE_IN = 70f

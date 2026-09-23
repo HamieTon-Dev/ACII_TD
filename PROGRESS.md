@@ -4,7 +4,7 @@
 reads first. It records where the project actually stands, what is proven and
 what is not, and what comes next.
 
-_Last updated: v1.9.1 — see `CHANGELOG.md` for the full per-version history._
+_Last updated: v1.9.1 + cosmetics_ — see `CHANGELOG.md` for the full per-version history._
 
 ---
 
@@ -238,6 +238,59 @@ Additions on top of §6b–6d:
 - The owner has explicitly accepted that this makes the game **no longer
   lightweight**. The foundation stays lean; the additions need not.
 - **Report progress after every step and keep this log current.**
+
+### 6g. DECISIONS — resolved
+
+**OmniByte living background: RESOLVED — writing fresh.** `list_repos` returns
+empty and `add_repo HamieTon-Dev/OmniByte` fails with *"you don't have access"*.
+That is the same org-level GitHub block that stops the push to this repo, so no
+asset from that project is reachable from here. Backgrounds are original work.
+
+**Leaderboard: RECOMMENDED — Play Games Services, with a local display name.**
+A *unique* username needs a server to enforce uniqueness, which means hosting,
+cost and a privacy policy. Play Games gives ranking and submission for free but
+shows the player's Play profile name. The middle path, which is what is built:
+a **local username** (already in `GameRepository.identity`) shown in-game on the
+run and on the ID strip, and Play Games for the global board. Full custom
+usernames stay possible later by swapping the sync layer behind an interface.
+**Still the owner's call.**
+
+**Play SDKs: RECOMMENDED — stage them.** Add billing first, since it unlocks
+everything on the list; add ads afterwards. Ads carry the most size and privacy
+cost for the least gain and nothing about them can be tested here.
+**Still the owner's call.**
+
+### 6h. COSMETIC OPTIONS — logged
+
+**CORE-SERVER skins.** Rendered for selection in two rounds.
+
+| Skin | Flourish | Status |
+| --- | --- | --- |
+| TERMINAL | none | free default |
+| REACTOR | amber containment rings | **chosen** |
+| MERIDIAN | gold traces on indigo | **chosen** |
+| GLACIER | ice needles | **chosen** |
+| VOID | violet starfield | **chosen** |
+| MAINFRAME | CRT scanlines + refresh sweep | **chosen** |
+| CASCADE | falling code inside the rack | **chosen** |
+| NEONGRID | receding grid, bright cyan | **chosen** (brightened on request) |
+| OBSIDIAN | glass facets | rejected — facets near-invisible |
+| PCB | copper traces + solder pads | rejected |
+
+Seven paid skins. **Pricing needs a decision:** `CORE_SKIN_PACK` is still at the
+originally specified $2.50, but it now unlocks seven skins rather than three.
+
+**Living backgrounds.** Implemented, *not yet shown for selection*: DRIFT,
+LATTICE, AURORA, RAINFALL, PULSE. All are built to one budget — cool
+desaturated colours that cannot be mistaken for a threat, alpha in the low
+tens, slow motion, drawn under the lanes so gameplay always paints over them.
+
+**Locking is tested, not assumed.** `StoreTest` walks `CoreSkin.purchasable`
+and `LivingBackground.purchasable` from the real tables — not a hand-written
+list — and asserts none can be selected or reach the renderer without the
+product that grants it, that owning one does let it through, and that every
+purchasable cosmetic has a catalog entry. That last test immediately caught two
+backgrounds with no product to sell them.
 
 ### 6e. Decisions needed from the user
 
