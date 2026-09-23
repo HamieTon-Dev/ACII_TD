@@ -385,6 +385,12 @@ silence, so the loop seam cannot click.
 The composer has no Android dependency and no unseeded randomness, so the track
 is byte-identical everywhere and a JVM test renders and inspects it directly.
 
+Wave and crypto appear twice on purpose: once in the Compose HUD strip, and
+once as small dim readouts in the battlefield's top corners, drawn by the
+renderer straight from `engine.currentWave` and `engine.crypto`. They are drawn
+before the lanes so gameplay always paints over them, and they live in the band
+above lane 1 so they can never cover a deployment node.
+
 The engine never touches `SoundPool` or the `Vibrator`. It raises a `GameSound`
 or `HapticCue`, and the view model decides whether the player's settings allow
 it to be heard or felt.

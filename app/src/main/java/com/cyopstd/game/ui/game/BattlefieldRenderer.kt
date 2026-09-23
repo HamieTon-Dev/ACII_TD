@@ -45,6 +45,11 @@ class BattlefieldRenderer {
         textAlign = Paint.Align.LEFT
     }
 
+    private val rightTextPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
+        typeface = Typeface.MONOSPACE
+        textAlign = Paint.Align.RIGHT
+    }
+
     private val fillPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
         style = Paint.Style.FILL
     }
@@ -116,6 +121,7 @@ class BattlefieldRenderer {
         }
 
         drawBackdrop(canvas, engine, options, time)
+        drawFieldStatus(canvas, engine)
         drawLanes(canvas, engine, options, time)
         drawServer(canvas, engine, time)
         drawDeploymentNodes(canvas, engine, selection, time)
@@ -205,6 +211,44 @@ class BattlefieldRenderer {
         val g = ((base shr 8 and 0xFF) + ((target shr 8 and 0xFF) - (base shr 8 and 0xFF)) * t).toInt()
         val b = ((base and 0xFF) + ((target and 0xFF) - (base and 0xFF)) * t).toInt()
         return (0xFF shl 24) or (r shl 16) or (g shl 8) or b
+    }
+
+    /**
+     * Wave and crypto, small and dim, in the corners of the field itself.
+     *
+     * The same two numbers are already in the Compose strip above the
+     * battlefield. They are repeated here because those are the two you check
+     * constantly while placing agents, and looking away from the lanes to read
+     * them costs you the thing you were watching.
+     *
+     * Everything about this is chosen to stay out of the way: it sits in the
+     * dead band above the top lane (which starts at y=73), it is drawn before
+     * the lanes and everything on them so gameplay always paints over it, and
+     * it runs at two-thirds alpha so it reads as a watermark rather than as
+     * another panel.
+     */
+    private fun drawFieldStatus(canvas: android.graphics.Canvas, engine: GameEngine) {
+        leftTextPaint.textSize = FIELD_STATUS_TEXT
+        leftTextPaint.color = colSecondary
+        leftTextPaint.alpha = FIELD_STATUS_ALPHA
+        canvas.drawText(
+            "WAVE ${engine.currentWave}",
+            FIELD_STATUS_MARGIN,
+            FIELD_STATUS_BASELINE,
+            leftTextPaint
+        )
+        leftTextPaint.alpha = 255
+
+        rightTextPaint.textSize = FIELD_STATUS_TEXT
+        rightTextPaint.color = colCrypto
+        rightTextPaint.alpha = FIELD_STATUS_ALPHA
+        canvas.drawText(
+            "\u25C7 ${engine.crypto}",
+            WorldGeometry.WIDTH - FIELD_STATUS_MARGIN,
+            FIELD_STATUS_BASELINE,
+            rightTextPaint
+        )
+        rightTextPaint.alpha = 255
     }
 
     // ---------------------------------------------------------------- lanes
@@ -906,6 +950,14 @@ class BattlefieldRenderer {
 
         /** How long a backdrop colour change takes to cross-fade. */
         const val TINT_FADE_SECONDS = 2.5f
+
+        // The in-field wave and crypto readouts. The baseline is set so the
+        // text clears both the top of the field and the ATTACK ORIGIN label
+        // below it, and so the whole thing stays above the top lane at y=73.
+        const val FIELD_STATUS_TEXT = 24f
+        const val FIELD_STATUS_BASELINE = 29f
+        const val FIELD_STATUS_MARGIN = 14f
+        const val FIELD_STATUS_ALPHA = 170
 
         val BOSS_EXPLOSION = arrayOf(
             "*",

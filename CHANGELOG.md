@@ -7,6 +7,31 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [1.5.2]
+
+### Added — wave and crypto on the field itself
+
+Small, dim readouts in the top corners of the battlefield: `WAVE 17` at the
+left, `◇ 1480` at the right. The same two numbers are already in the strip
+above the field; they are repeated here because those are the two you check
+constantly while placing agents, and looking away from the lanes to read them
+costs you the thing you were watching.
+
+Everything about the placement keeps them out of the way. They sit in the dead
+band above the top lane (which starts at y=73 in world units), they are drawn
+*before* the lanes and everything on them so gameplay always paints over them,
+and they run at two-thirds alpha so they read as a watermark rather than as
+another panel.
+
+Verified by rasterizing the real renderer under Robolectric's native graphics
+and diffing frames that differ only in the number being drawn. That locates the
+ink exactly: the wave readout occupies `(85,12)-(96,28)` and the crypto readout
+`(1471,12)-(1583,28)` — both comfortably clear of the `ATTACK ORIGIN` label
+below them and of lane 1, and **nothing else in the 1,216,000-pixel frame
+changes** when either number does. Tests assert all of it.
+
+---
+
 ## [1.5.1]
 
 ### Fixed — buying firmware now visibly does something
