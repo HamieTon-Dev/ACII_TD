@@ -32,6 +32,8 @@ import com.cyopstd.game.core.Balance
 import com.cyopstd.game.engine.RunPhase
 import com.cyopstd.game.state.GameViewModel
 import com.cyopstd.game.ui.common.CompactButton
+import com.cyopstd.game.ui.theme.CoreSkin
+import com.cyopstd.game.ui.theme.LivingBackground
 import com.cyopstd.game.ui.theme.Palette
 
 /**
@@ -56,6 +58,13 @@ fun GameScreen(
     val settings = viewModel.settings
     val selection = viewModel.selection
     val renderer = remember { BattlefieldRenderer() }
+
+    // Cosmetics are resolved against ownership before they reach here, so the
+    // renderer can trust the choice without consulting entitlements itself.
+    val cosmetics = viewModel.cosmetics
+    renderer.coreSkin = CoreSkin.forProduct(cosmetics.coreSkinId)
+    renderer.livingBackground = LivingBackground.forProduct(cosmetics.backgroundId)
+    renderer.spectrumAgents = cosmetics.spectrumAgents
 
     val options = remember(settings) {
         BattlefieldRenderOptions(

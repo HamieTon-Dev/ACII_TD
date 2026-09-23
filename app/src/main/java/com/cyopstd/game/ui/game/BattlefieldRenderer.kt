@@ -133,6 +133,15 @@ class BattlefieldRenderer {
     /** The animated backdrop, set from the player's store selection. */
     var livingBackground: LivingBackground = LivingBackground.NONE
 
+    /**
+     * The SPECTRUM agent skin: agents drift through the colour wheel instead
+     * of sitting at their fixed class colour.
+     */
+    var spectrumAgents: Boolean = false
+
+    /** Seconds of animation, handed to the spectrum skin each frame. */
+    private var frameTime: Float = 0f
+
     private var tintBand = -1
     private var tintFrom = Palette.backdropBands[0].toArgb()
     private var tintTo = Palette.backdropBands[0].toArgb()
@@ -146,6 +155,7 @@ class BattlefieldRenderer {
         selection: BattlefieldSelection,
         time: Float
     ) {
+        frameTime = time
         val tint = backdropTint(engine.currentWave, time)
         // The letterbox picks up a trace of the same shift so the shift reads
         // as lighting rather than as a coloured rectangle on a black screen.
@@ -465,8 +475,13 @@ class BattlefieldRenderer {
             strokePaint.strokeJoin = android.graphics.Paint.Join.ROUND
             canvas.drawPath(lanePath, strokePaint)
 
-            // Corridor interior.
-            strokePaint.color = Palette.laneTints[lane % Palette.laneTints.size].toArgb()
+            // Corridor interior. The living background pulls it towards its
+            // own palette rather than replacing it, so the corridor keeps its
+            // value and stays readable against the backdrop.
+            val base = Palette.laneTints[lane % Palette.laneTints.size].toArgb()
+            strokePaint.color = livingBackground.laneTint
+                ?.let { blend(base, it.toArgb(), LANE_TINT_STRENGTH) }
+                ?: base
             strokePaint.alpha = 255
             strokePaint.strokeWidth = WorldGeometry.LANE_HEIGHT - 4f
             canvas.drawPath(lanePath, strokePaint)
@@ -1531,7 +1546,48 @@ class BattlefieldRenderer {
 
     // ---------------------------------------------------------------- colors
 
-    private fun agentColor(type: AgentType): Int = when (type) {
+    /**
+     * An agent's colour.
+     *
+     * With the SPECTRUM skin on, every agent drifts slowly around the colour
+     * wheel — but each *class* keeps its own offset, so a FIREWALL and an IDS
+     * are still different colours at any instant. That matters more than the
+     * effect does: colour is how the board is read at a glance, and a skin
+     * that made every agent the same colour at once would be a skin that costs
+     * the player information they paid nothing to lose.
+     */
+    private fun agentColor(type: AgentType): Int {
+        if (!spectrumAgents) return classColor(type)
+        val offset = type.ordinal / AgentType.entries.size.toFloat()
+        return spectrum(frameTime * SPECTRUM_SPEED + offset)
+    }
+
+    /**
+     * A point on the colour wheel, as a saturated, bright colour.
+     *
+     * Hand-rolled rather than via HSV so it allocates nothing: this is called
+     * once per agent per frame.
+     */
+    private fun spectrum(position: Float): Int {
+        val h = ((position % 1f) + 1f) % 1f * 6f
+        val sector = h.toInt()
+        val f = h - sector
+        val top = 255
+        val bottom = 70
+        val rise = (bottom + (top - bottom) * f).toInt()
+        val fall = (top - (top - bottom) * f).toInt()
+        val (r, g, b) = when (sector) {
+            0 -> Triple(top, rise, bottom)
+            1 -> Triple(fall, top, bottom)
+            2 -> Triple(bottom, top, rise)
+            3 -> Triple(bottom, fall, top)
+            4 -> Triple(rise, bottom, top)
+            else -> Triple(top, bottom, fall)
+        }
+        return (0xFF shl 24) or (r shl 16) or (g shl 8) or b
+    }
+
+    private fun classColor(type: AgentType): Int = when (type) {
         AgentType.TARPIT -> colBlue
         AgentType.FIREWALL -> colGreen
         AgentType.IDS -> colCyan
@@ -1587,6 +1643,12 @@ class BattlefieldRenderer {
         /** The run name: smaller and dimmer than the corner readouts. */
         const val RUN_NAME_TEXT = 15f
         const val RUN_NAME_ALPHA = 130
+
+        /** Turns of the colour wheel per second for the SPECTRUM agent skin. */
+        const val SPECTRUM_SPEED = 0.045f
+
+        /** How far a living background pulls the corridor towards its palette. */
+        const val LANE_TINT_STRENGTH = 0.72f
 
         /** Corner rounding on a threat chip. */
         const val CHIP_RADIUS = 5f

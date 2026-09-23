@@ -2,6 +2,7 @@ package com.cyopstd.game
 
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
+import com.cyopstd.game.ui.theme.LivingBackground
 import com.cyopstd.game.ui.theme.Palette
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotEquals
@@ -93,4 +94,50 @@ class PaletteTest {
     )
 
     private fun hex(color: Color): String = "#%06X".format(color.toArgb() and 0xFFFFFF)
+    @Test
+    fun `no theme tints a lane into enemy territory`() {
+        // The corridors are the largest coloured shape on the board, so a
+        // theme that pulled one towards a threat colour would be worse than a
+        // theme that did nothing. Same rule as the backdrop bands.
+        for (background in LivingBackground.entries) {
+            val tint = background.laneTint ?: continue
+            for ((name, enemy) in enemyColours) {
+                val distance = distance(tint, enemy)
+                assertTrue(
+                    "${background.displayName} tints lanes to ${hex(tint)}, only " +
+                        "$distance from $name",
+                    distance > 0.6f
+                )
+            }
+            assertTrue(
+                "${background.displayName} tints lanes a warm colour",
+                tint.red <= tint.blue + 0.01f
+            )
+            val luminance = 0.2126f * tint.red + 0.7152f * tint.green + 0.0722f * tint.blue
+            assertTrue(
+                "${background.displayName} tints lanes too bright ($luminance)",
+                luminance < 0.22f
+            )
+        }
+    }
+
+    @Test
+    fun `a living background stays quiet enough to play over`() {
+        for (background in LivingBackground.entries) {
+            if (background == LivingBackground.NONE) {
+                assertEquals(0, background.intensity)
+                continue
+            }
+            // Alpha out of 255. These are ambience, not scenery.
+            assertTrue(
+                "${background.displayName} runs at alpha ${background.intensity}",
+                background.intensity in 1..48
+            )
+            assertTrue(
+                "${background.displayName} moves at ${background.speed}/s",
+                background.speed in 0.01f..0.6f
+            )
+        }
+    }
+
 }

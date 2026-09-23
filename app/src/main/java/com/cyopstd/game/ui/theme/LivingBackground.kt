@@ -22,7 +22,18 @@ enum class LivingBackground(
     /** Peak alpha, 0..255. Deliberately small. */
     val intensity: Int,
     /** Cycles per second of the slowest motion in the effect. */
-    val speed: Float
+    val speed: Float,
+    /**
+     * What the route corridors are tinted towards.
+     *
+     * A theme that recoloured everything *except* the lanes read as
+     * half-applied — the corridors are the largest coloured shape on the
+     * board. The tint is a pull towards this colour rather than a replacement,
+     * so the corridor keeps its own value and stays distinguishable from the
+     * backdrop, and every entry is a cool desaturated tone for the same reason
+     * the backdrop bands are: a lane must never be mistakeable for a threat.
+     */
+    val laneTint: Color? = null
 ) {
     NONE(
         productId = null,
@@ -39,7 +50,8 @@ enum class LivingBackground(
         description = "Slow diagonal data currents crossing the field.",
         tint = Color(0xFF2A6E8C),
         intensity = 34,
-        speed = 0.055f
+        speed = 0.055f,
+        laneTint = Color(0xFF14384F)
     ),
 
     LATTICE(
@@ -48,7 +60,8 @@ enum class LivingBackground(
         description = "A circuit lattice that breathes with the wave.",
         tint = Color(0xFF2E7D63),
         intensity = 40,
-        speed = 0.18f
+        speed = 0.18f,
+        laneTint = Color(0xFF123E35)
     ),
 
     AURORA(
@@ -57,7 +70,8 @@ enum class LivingBackground(
         description = "Broad bands of cold light moving behind everything.",
         tint = Color(0xFF3C6BA8),
         intensity = 30,
-        speed = 0.04f
+        speed = 0.04f,
+        laneTint = Color(0xFF1B3A66)
     ),
 
     RAINFALL(
@@ -66,7 +80,8 @@ enum class LivingBackground(
         description = "Sparse columns of falling characters.",
         tint = Color(0xFF2F7F72),
         intensity = 36,
-        speed = 0.5f
+        speed = 0.5f,
+        laneTint = Color(0xFF113B33)
     ),
 
     PULSE(
@@ -75,7 +90,8 @@ enum class LivingBackground(
         description = "Rings travelling outward from the core.",
         tint = Color(0xFF4A5FA8),
         intensity = 32,
-        speed = 0.22f
+        speed = 0.22f,
+        laneTint = Color(0xFF26325F)
     );
 
     companion object {
