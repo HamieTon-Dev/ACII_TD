@@ -23,6 +23,7 @@ import androidx.compose.ui.unit.dp
 import com.cyopstd.game.save.PlayerStats
 import com.cyopstd.game.ui.common.AsciiBackdrop
 import com.cyopstd.game.ui.common.AsciiRule
+import com.cyopstd.game.ui.common.FirmwareFormat
 import com.cyopstd.game.ui.common.BastionButton
 import com.cyopstd.game.ui.common.Caption
 import com.cyopstd.game.ui.common.StatRow
@@ -127,10 +128,7 @@ fun MainMenuScreen(
                     )
                     StatRow(
                         "CORE FIRMWARE",
-                        "LV $firmwareLevel  \u00D7${"%.2f".format(
-                            com.cyopstd.game.core.Balance
-                                .firmwareDamageMultiplier(firmwareLevel)
-                        )} DMG",
+                        "LV $firmwareLevel  ${FirmwareFormat.multiplier(firmwareLevel)} DMG",
                         valueColor = Palette.Purple
                     )
                 }

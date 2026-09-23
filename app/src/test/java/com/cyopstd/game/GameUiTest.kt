@@ -250,8 +250,12 @@ class GameUiTest {
         compose.onNodeWithText("CORE FIRMWARE").assertIsDisplayed()
         compose.onNodeWithText("\u20AC 250").assertIsDisplayed()
         compose.onNodeWithText("12 / ${Balance.MAX_FIRMWARE_LEVEL}").assertIsDisplayed()
-        // Level 12 is +6% damage.
-        compose.onNodeWithText("\u00D71.06").assertIsDisplayed()
+        // Level 12 is +6% damage. Three decimals, so that every level bought
+        // moves the number the player is looking at.
+        compose.onNodeWithText("\u00D71.060").assertIsDisplayed()
+        compose.onNodeWithText("+0.5%").assertIsDisplayed()
+        // And the screen says where the next purchase lands before it is made.
+        compose.onNodeWithText("\u00D71.065").assertIsDisplayed()
         compose.onNodeWithText("+1").assertIsDisplayed()
         compose.onNodeWithText("+10").assertIsDisplayed()
         compose.onNodeWithText("+100").assertIsDisplayed()
@@ -300,7 +304,7 @@ class GameUiTest {
         compose.onNodeWithText("FIRMWARE").assertIsDisplayed()
         compose.onNodeWithText("\u20AC 175 to spend on permanent damage").assertIsDisplayed()
         // Level 40 is +20% damage, shown on the status panel.
-        compose.onNodeWithText("LV 40  \u00D71.20 DMG").assertIsDisplayed()
+        compose.onNodeWithText("LV 40  \u00D71.200 DMG").assertIsDisplayed()
     }
 
     // -------------------------------------------------------------- settings

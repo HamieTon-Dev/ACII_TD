@@ -7,6 +7,32 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [1.5.1]
+
+### Fixed — buying firmware now visibly does something
+
+The € firmware system was working correctly; its **readout** was not, in two
+ways that between them made a working upgrade look broken.
+
+- The multiplier printed with two decimals, so buying level 1 moved `×1.00` to
+  `×1.00` and level 2 to `×1.01`. It now prints with **three decimals**. The
+  step is 0.005, so every single level changes the last digit and no purchase
+  is ever invisible. A test walks 400 consecutive levels and asserts no two of
+  them print the same string.
+- `PER LEVEL` was computed as `(FIRMWARE_DAMAGE_PER_LEVEL * 100).toInt()`,
+  which truncates 0.5 to zero — the screen literally read **`+0%`**. It now
+  reads `+0.5%`.
+
+Both screens now go through one `FirmwareFormat` helper so they cannot drift
+apart again, and the install panel gained two things worth knowing *before*
+spending: which multiplier the next level takes you to, and the total gain a
+bulk purchase buys (`12 levels  +6%`).
+
+The **tuning is unchanged** — +0.5% a level is the intended curve, and the cost
+table assumes it is bought in dozens.
+
+---
+
 ## [1.5.0]
 
 ### Added — a real soundtrack instead of a two-second loop

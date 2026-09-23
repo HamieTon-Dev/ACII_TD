@@ -18,6 +18,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.cyopstd.game.core.Balance
 import com.cyopstd.game.ui.common.AsciiRule
+import com.cyopstd.game.ui.common.FirmwareFormat
 import com.cyopstd.game.ui.common.Caption
 import com.cyopstd.game.ui.common.CompactButton
 import com.cyopstd.game.ui.common.ScreenScaffold
@@ -42,7 +43,6 @@ fun FirmwareScreen(
     onBuy: (levels: Int) -> Unit,
     onBack: () -> Unit
 ) {
-    val multiplier = Balance.firmwareDamageMultiplier(firmwareLevel)
     val nextCost = Balance.firmwareCost(firmwareLevel)
     val affordable = Balance.firmwareLevelsAffordable(firmwareLevel, budget)
     val maxed = firmwareLevel >= Balance.MAX_FIRMWARE_LEVEL
@@ -95,12 +95,12 @@ fun FirmwareScreen(
                     )
                     StatRow(
                         "AGENT DAMAGE",
-                        "×${"%.2f".format(multiplier)}",
+                        FirmwareFormat.multiplier(firmwareLevel),
                         valueColor = Palette.Crypto
                     )
                     StatRow(
                         "PER LEVEL",
-                        "+${(Balance.FIRMWARE_DAMAGE_PER_LEVEL * 100).toInt()}%",
+                        FirmwareFormat.perLevel(),
                         valueColor = Palette.TextSecondary
                     )
                     AsciiRule(color = Palette.Divider)
@@ -130,8 +130,18 @@ fun FirmwareScreen(
                             valueColor = if (canAffordOne) Palette.Crypto else Palette.Red
                         )
                         StatRow(
+                            "TAKES YOU TO",
+                            FirmwareFormat.multiplier(firmwareLevel + 1),
+                            valueColor = if (canAffordOne) Palette.Crypto else Palette.TextMuted
+                        )
+                        StatRow(
                             "AFFORDABLE NOW",
-                            "$affordable level${if (affordable == 1) "" else "s"}",
+                            if (affordable > 0) {
+                                "$affordable level${if (affordable == 1) "" else "s"}" +
+                                    "  ${FirmwareFormat.gain(affordable)}"
+                            } else {
+                                "0 levels"
+                            },
                             valueColor = if (affordable > 0) Palette.Green else Palette.TextMuted
                         )
 

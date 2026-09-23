@@ -555,13 +555,22 @@ Two consequences worth stating plainly:
   be the thing that makes run forty easier than run four. Across the first
   several deep runs it is worth a few percent, and it stays worth a few percent
   until the hundreds.
-- **The readout rounds the first few levels away.** Both the menu and the
-  firmware screen print the multiplier with two decimals, so level 1 (×1.005)
-  displays as `×1.00` and level 2 as `×1.01` — the player pays € 3 and watches
-  a number not move. The arithmetic underneath is correct; only the display is
-  lying by omission.
+- **The readout used to round the first few levels away.** Both screens printed
+  the multiplier with two decimals, so level 1 (×1.005) displayed as `×1.00`
+  and level 2 as `×1.01` — the player paid € 3 and watched a number not move.
+  Worse, the per-level figure was computed as `(0.005 * 100).toInt()`, which
+  truncates to zero and told the player outright that an upgrade does nothing.
+  Both were display faults; the arithmetic underneath was always correct.
 
-The system was left unchanged pending a decision on both points.
+**Fixed in 1.5.1.** The multiplier now prints with three decimals, which is the
+right precision for this constant specifically: the step is 0.005, so *every
+single level changes the last digit* and no purchase is ever invisible. The
+per-level figure prints as `+0.5%`, the install panel says which multiplier the
+next level takes you to before you buy it, and a bulk purchase states its total
+gain. A test walks 400 consecutive levels and asserts no two print the same.
+
+The **tuning** was left alone: +0.5% a level is the intended curve, and the
+cost table is built around buying it in dozens.
 
 ### Threat roster change
 
