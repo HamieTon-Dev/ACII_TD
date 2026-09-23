@@ -4,7 +4,7 @@
 reads first. It records where the project actually stands, what is proven and
 what is not, and what comes next.
 
-_Last updated: v1.8.0 — see `CHANGELOG.md` for the full per-version history._
+_Last updated: v1.9.1 — see `CHANGELOG.md` for the full per-version history._
 
 ---
 
@@ -209,6 +209,27 @@ interface, ship a no-op implementation, and **do not claim they work**:
 shipped gateway. The game must stay fully playable with it — that is the
 property that matters, because billing fails on devices without Play Services,
 without a network, and for every player who never opens the store.
+
+### 6f. EXPANDED REQUEST (restated at v1.9.1)
+
+Additions on top of §6b–6d:
+
+- **Show images, let the owner choose.** Render option sheets for agent skins,
+  living backgrounds and core-server skins and hand them over *before*
+  committing to a final set. Use the rasterization technique from §3 — this is
+  exactly what it is for.
+- **Simulate and show every function working**, with images, so the owner can
+  say which need changing.
+- **`Hack:AI` — a hard mode**, unlocked only by clearing wave 100 on the normal
+  level.
+- **Run names.** The first mode gets a name shown at the top of a run;
+  `Hack:AI` is named there too, in very small type.
+- **Persistent identity strip**: a player ID tag at the bottom of the screen and
+  a build identification number, both small, on *every* screen and menu. The
+  build ID must be legible and high resolution.
+- The owner has explicitly accepted that this makes the game **no longer
+  lightweight**. The foundation stays lean; the additions need not.
+- **Report progress after every step and keep this log current.**
 
 ### 6e. Decisions needed from the user
 
