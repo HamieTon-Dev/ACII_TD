@@ -62,11 +62,12 @@ class WaveGenerator(private val random: Random = Random.Default) {
             val burst = if (type.isSwarm()) swarmSize(wave) else 1
             val lane = random.nextInt(WorldGeometry.LANE_COUNT)
 
+            val burstDelay = Balance.swarmBurstDelay(type.baseSpeed)
             for (b in 0 until burst) {
                 if (index >= count) break
                 val elite = !type.isBoss && random.nextFloat() < eliteChance
                 orders += SpawnOrder(
-                    time = time + b * 0.16f,
+                    time = time + b * burstDelay,
                     type = type,
                     lane = if (burst > 1) lane else random.nextInt(WorldGeometry.LANE_COUNT),
                     elite = elite,

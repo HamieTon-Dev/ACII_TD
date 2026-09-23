@@ -572,6 +572,18 @@ gain. A test walks 400 consecutive levels and asserts no two print the same.
 The **tuning** was left alone: +0.5% a level is the intended curve, and the
 cost table is built around buying it in dozens.
 
+### Deployment spots
+
+48 spots became 79 in 1.6.0. The additions are the mid-map corridor between
+the two routes — strong ground, covering both at once — and the outer band
+down the right-hand side, which is weak ground that only a long-ranged agent
+can use at all. A spot is offered if *any* agent can work from it, and the
+deploy overlay dims the ones the agent in hand cannot reach.
+
+Net effect on difficulty: mildly easier, concentrated in the mid-map corridor.
+The outer-band spots cost the same as any other and cover far less, so they are
+a choice rather than a free upgrade.
+
 ### Threat roster change
 
 `[P] PACKET` was removed. A packet is ordinary traffic, so naming the baseline

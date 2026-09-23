@@ -385,6 +385,15 @@ silence, so the loop seam cannot click.
 The composer has no Android dependency and no unseeded randomness, so the track
 is byte-identical everywhere and a JVM test renders and inspects it directly.
 
+Threats are drawn as opaque *chips* rather than as bare text, and sorted back
+to front by progress along the route before drawing. Both exist for the same
+reason: a threat tag is up to sixty world units wide, and a fast archetype
+constantly overtakes a slow one, so bare text drawn over bare text composited
+into something unreadable. An opaque plate turns an overlap into occlusion.
+The plate is fully opaque — at 92% the chip behind still bled through — and
+tinted a little towards the threat's colour so it reads as a unit rather than
+as a hole cut in the lane.
+
 Wave and crypto appear twice on purpose: once in the Compose HUD strip, and
 once as small dim readouts in the battlefield's top corners, drawn by the
 renderer straight from `engine.currentWave` and `engine.crypto`. They are drawn

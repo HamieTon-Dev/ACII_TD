@@ -68,6 +68,7 @@ class BattlefieldRenderer {
     private val colBackground = Palette.Background.toArgb()
     private val colSurfaceSunken = Palette.SurfaceSunken.toArgb()
     private val colGrid = Palette.GridLine.toArgb()
+    private val colDivider = Palette.Divider.toArgb()
     private val colCyan = Palette.Cyan.toArgb()
     private val colCyanDim = Palette.CyanDim.toArgb()
     private val colGreen = Palette.Green.toArgb()
@@ -83,6 +84,39 @@ class BattlefieldRenderer {
 
     /** Scratch buffer used for drawing single characters without allocating. */
     private val charBuffer = CharArray(1)
+
+    /** Reused so the per-frame chip drawing allocates nothing. */
+    private val scratchRect = android.graphics.RectF()
+
+    /**
+     * Glyph widths, measured once per threat type. The width only depends on
+     * the type's glyph and scale, both constant, so measuring on every frame
+     * for every enemy on the field would be pure waste.
+     */
+    private val glyphWidths = FloatArray(EnemyType.entries.size) { -1f }
+
+    /** Enemy draw order, back to front. Grown once, never reallocated. */
+    private var enemyOrder = IntArray(0)
+
+    /**
+     * Vignette over the backdrop, built once.
+     *
+     * The field is wider than the action in it, and a flat fill across 1600
+     * units of near-black reads as an empty document rather than as a place.
+     * Darkening the periphery settles the eye on the routes and the core
+     * without putting anything new on screen to read.
+     */
+    private val vignette = Paint(Paint.ANTI_ALIAS_FLAG).apply {
+        style = Paint.Style.FILL
+        shader = android.graphics.RadialGradient(
+            WorldGeometry.WIDTH * 0.46f,
+            WorldGeometry.HEIGHT * 0.5f,
+            WorldGeometry.WIDTH * 0.62f,
+            intArrayOf(0x00000000, 0x00000000, 0x66000000.toInt()),
+            floatArrayOf(0f, 0.55f, 1f),
+            android.graphics.Shader.TileMode.CLAMP
+        )
+    }
 
     // The backdrop colour band, and the only state the renderer keeps beyond
     // its Paints. Every five waves the band changes; rather than snapping, the
@@ -164,6 +198,8 @@ class BattlefieldRenderer {
             canvas.drawLine(0f, y, WorldGeometry.WIDTH, y, strokePaint)
             y += 80f
         }
+
+        canvas.drawRect(0f, 0f, WorldGeometry.WIDTH, WorldGeometry.HEIGHT, vignette)
 
         if (!options.backgroundAnimation || options.batterySaver) return
 
@@ -299,12 +335,18 @@ class BattlefieldRenderer {
             drawLaneLabel(canvas, lane)
         }
 
-        // Entry marker.
+        // Entry marker, sitting in the gap between the field status line above
+        // it and the top lane below it.
         val entry = WorldGeometry.entryPoint(0)
-        leftTextPaint.textSize = 18f
+        leftTextPaint.textSize = 17f
         leftTextPaint.color = colRed
-        leftTextPaint.alpha = 210
-        canvas.drawText("ATTACK ORIGIN", 12f, entry.y - 44f, leftTextPaint)
+        leftTextPaint.alpha = 200
+        canvas.drawText(
+            "ATTACK ORIGIN",
+            FIELD_STATUS_MARGIN,
+            entry.y - WorldGeometry.LANE_HEIGHT * 0.5f - 12f,
+            leftTextPaint
+        )
         leftTextPaint.alpha = 255
     }
 
@@ -342,15 +384,25 @@ class BattlefieldRenderer {
     }
 
     /** Route label, placed just off the corridor at the entry. */
+    /**
+     * The route's name, painted inside its own corridor like a road marking.
+     *
+     * There is nowhere outside the corridor to put it. Above the lane it
+     * collides with the ATTACK ORIGIN marker; below, it lands inside the first
+     * deployment node's bracket, because a node must clear the route by 58
+     * units and the gap between the lane edge and the top of that bracket is
+     * only eight. Inside the corridor nothing else is ever drawn, and threats
+     * passing over it occlude it cleanly now that they carry opaque chips.
+     */
     private fun drawLaneLabel(canvas: android.graphics.Canvas, lane: Int) {
         val entry = WorldGeometry.entryPoint(lane)
-        leftTextPaint.textSize = 15f
+        leftTextPaint.textSize = 14f
         leftTextPaint.color = colCyanDim
-        leftTextPaint.alpha = 200
+        leftTextPaint.alpha = 165
         canvas.drawText(
             "ROUTE ${'A' + lane}",
-            18f,
-            entry.y - WorldGeometry.LANE_HEIGHT * 0.5f - 8f,
+            FIELD_STATUS_MARGIN + 2f,
+            entry.y + 5f,
             leftTextPaint
         )
         leftTextPaint.alpha = 255
@@ -486,26 +538,30 @@ class BattlefieldRenderer {
         selection: BattlefieldSelection,
         time: Float
     ) {
-        val placing = selection.pendingAgent != null
-        val affordable = selection.pendingAgent?.let { engine.crypto >= it.cost } ?: false
+        val pending = selection.pendingAgent
+        val placing = pending != null
+        val affordable = pending?.let { engine.crypto >= it.cost } ?: false
 
         for (node in WorldGeometry.nodes) {
-            val occupied = engine.agentAt(node.id) != null
-            if (occupied) continue
+            if (engine.agentAt(node.id) != null) continue
 
-            val highlighted = placing && !occupied
+            // A spot the agent being placed could not actually shoot from is
+            // shown, but shown as unusable, so the deploy overlay reads as
+            // advice rather than as a field of identical brackets.
+            val inReach = pending == null || node.laneDistance <= pending.baseRange
             val pulse = 0.6f + 0.4f * sin(time * 4.4f + node.id * 0.6f)
 
-            strokePaint.strokeWidth = if (highlighted) 2.4f else 1.4f
+            strokePaint.strokeWidth = if (placing && inReach) 2.4f else 1.4f
             strokePaint.color = when {
-                highlighted && affordable -> colGreen
-                highlighted -> colOrange
-                else -> colCyanDim
+                !placing -> colCyanDim
+                !inReach -> colMuted
+                affordable -> colGreen
+                else -> colOrange
             }
-            strokePaint.alpha = if (highlighted) {
-                (140 + 115 * pulse).toInt().coerceIn(0, 255)
-            } else {
-                55
+            strokePaint.alpha = when {
+                !placing -> 55
+                !inReach -> 45
+                else -> (140 + 115 * pulse).toInt().coerceIn(0, 255)
             }
 
             val r = WorldGeometry.NODE_RADIUS
@@ -519,11 +575,12 @@ class BattlefieldRenderer {
             canvas.drawLine(node.x + r, node.y + r, node.x + r - 10f, node.y + r, strokePaint)
             canvas.drawLine(node.x + r, node.y + r, node.x + r, node.y + r - 10f, strokePaint)
 
-            if (highlighted) {
+            if (placing) {
                 thinTextPaint.textSize = 18f
                 thinTextPaint.color = strokePaint.color
                 thinTextPaint.alpha = strokePaint.alpha
-                canvas.drawText("+", node.x, node.y + 7f, thinTextPaint)
+                // A cross marks a spot worth taking; a dash, one that is not.
+                canvas.drawText(if (inReach) "+" else "-", node.x, node.y + 7f, thinTextPaint)
                 thinTextPaint.alpha = 255
             }
         }
@@ -680,88 +737,219 @@ class BattlefieldRenderer {
 
     // --------------------------------------------------------------- enemies
 
+    /**
+     * Threats on the field.
+     *
+     * Each one is drawn as a **chip**: an opaque plate with a coloured border
+     * and the ASCII tag inside it. That plate is the whole point. A label like
+     * `[SQL2]` is sixty units wide, and when two threats close up on each other
+     * — which happens constantly, because a fast type catches a slow one — bare
+     * text drawn over bare text turns into unreadable mush like `[BBBIB]`.
+     * With an opaque chip the nearer one simply covers the one behind it, which
+     * reads as depth rather than as damage.
+     *
+     * For that to look deliberate rather than arbitrary, the chips are drawn
+     * back to front by progress along the route, so the threat closest to the
+     * core is always the one on top.
+     */
     private fun drawEnemies(canvas: android.graphics.Canvas, engine: GameEngine, time: Float) {
-        for (enemy in engine.enemies.items) {
-            if (!enemy.active) continue
+        val items = engine.enemies.items
+        if (enemyOrder.size < items.size) enemyOrder = IntArray(items.size)
 
-            val baseColor = enemyColor(enemy)
-            val flashing = enemy.hitFlash > 0f
-            val glyphSize = 26f * enemy.type.glyphScale
+        var count = 0
+        for (i in items.indices) if (items[i].active) enemyOrder[count++] = i
 
-            if (enemy.isBoss) {
-                // Boss chassis: a heavier frame so it is unmistakable.
-                val w = 74f
-                val h = 46f
-                fillPaint.color = Palette.RedDeep.toArgb()
-                fillPaint.alpha = 120
-                canvas.drawRect(enemy.x - w, enemy.y - h, enemy.x + w, enemy.y + h, fillPaint)
-                strokePaint.color = colRed
-                strokePaint.alpha = 230
-                strokePaint.strokeWidth = 3f
-                canvas.drawRect(enemy.x - w, enemy.y - h, enemy.x + w, enemy.y + h, strokePaint)
-
-                val pulse = 0.5f + 0.5f * sin(time * 5.5f + enemy.phase)
-                glowPaint.color = colRed
-                glowPaint.alpha = (60 + 110 * pulse).toInt().coerceIn(0, 255)
-                glowPaint.strokeWidth = 5f
-                canvas.drawRect(enemy.x - w - 5f, enemy.y - h - 5f, enemy.x + w + 5f, enemy.y + h + 5f, glowPaint)
-            } else if (enemy.isElite) {
-                strokePaint.color = colMagenta
-                strokePaint.alpha = 170
-                strokePaint.strokeWidth = 1.6f
-                canvas.drawCircle(enemy.x, enemy.y, 24f, strokePaint)
+        // Insertion sort: the list is small, nearly sorted frame to frame, and
+        // this allocates nothing, which a Comparator-based sort would not.
+        for (i in 1 until count) {
+            val value = enemyOrder[i]
+            val progress = items[value].progress
+            var j = i - 1
+            while (j >= 0 && items[enemyOrder[j]].progress > progress) {
+                enemyOrder[j + 1] = enemyOrder[j]
+                j--
             }
-
-            // Slowed packets get a containment bracket so the effect is visible.
-            if (enemy.slowRemaining > 0f) {
-                thinTextPaint.textSize = 16f
-                thinTextPaint.color = colBlue
-                thinTextPaint.alpha = 200
-                canvas.drawText("[", enemy.x - 30f, enemy.y + 6f, thinTextPaint)
-                canvas.drawText("]", enemy.x + 30f, enemy.y + 6f, thinTextPaint)
-                thinTextPaint.alpha = 255
-            }
-
-            textPaint.textSize = glyphSize
-            textPaint.color = if (flashing) colText else baseColor
-            textPaint.alpha = 255
-            canvas.drawText(enemy.type.glyph, enemy.x, enemy.y + glyphSize * 0.34f, textPaint)
-
-            // Encrypted marker: a lock-ish ASCII tag above the glyph.
-            if (enemy.encrypted) {
-                thinTextPaint.textSize = 13f
-                thinTextPaint.color = colPurple
-                thinTextPaint.alpha = 220
-                canvas.drawText("{#}", enemy.x, enemy.y - glyphSize * 0.75f, thinTextPaint)
-                thinTextPaint.alpha = 255
-            }
-
-            drawEnemyHealthBar(canvas, enemy)
+            enemyOrder[j + 1] = value
         }
+
+        for (k in 0 until count) {
+            val enemy = items[enemyOrder[k]]
+            if (enemy.isBoss) drawBoss(canvas, enemy, time) else drawThreatChip(canvas, enemy)
+        }
+        textPaint.alpha = 255
+        thinTextPaint.alpha = 255
     }
 
-    private fun drawEnemyHealthBar(canvas: android.graphics.Canvas, enemy: Enemy) {
-        if (enemy.health >= enemy.maxHealth && !enemy.isBoss) return
-        val fraction = (enemy.health / enemy.maxHealth).coerceIn(0f, 1f)
-        val halfWidth = if (enemy.isBoss) 72f else 24f
-        val barY = enemy.y - (if (enemy.isBoss) 58f else 26f)
-        val height = if (enemy.isBoss) 8f else 4f
+    private fun drawThreatChip(canvas: android.graphics.Canvas, enemy: Enemy) {
+        val glyphSize = 26f * enemy.type.glyphScale
+        val halfWidth = glyphWidth(enemy.type, glyphSize) * 0.5f + 9f
+        val halfHeight = glyphSize * 0.62f + 3f
 
-        fillPaint.color = colSurfaceSunken
-        fillPaint.alpha = 220
-        canvas.drawRect(enemy.x - halfWidth, barY, enemy.x + halfWidth, barY + height, fillPaint)
+        // Threats walk in from off the left edge. The fade is measured from
+        // the chip's own leading edge rather than its centre, so a chip is
+        // still invisible while any part of it would be clipped by the edge of
+        // the field, and reaches full opacity exactly as it clears.
+        val entering = ((enemy.x - halfWidth) / CHIP_FADE_IN).coerceIn(0f, 1f)
+        if (entering <= 0.02f) return
+
+        val flashing = enemy.hitFlash > 0f
+        val baseColor = enemyColor(enemy)
+        val borderColor = if (enemy.slowRemaining > 0f) colBlue else baseColor
+
+        scratchRect.set(
+            enemy.x - halfWidth, enemy.y - halfHeight,
+            enemy.x + halfWidth, enemy.y + halfHeight
+        )
+
+        // Fully opaque, and tinted a little towards the threat's own colour so
+        // the plate reads as a unit rather than as a hole cut in the lane.
+        // Anything less than opaque lets the chip behind bleed through, which
+        // is the whole smearing problem back again, only fainter.
+        fillPaint.color = blend(colBackground, baseColor, 0.13f)
+        fillPaint.alpha = (255 * entering).toInt()
+        canvas.drawRoundRect(scratchRect, CHIP_RADIUS, CHIP_RADIUS, fillPaint)
+
+        strokePaint.color = borderColor
+        strokePaint.alpha = ((if (flashing) 255 else 195) * entering).toInt()
+        strokePaint.strokeWidth = 1.6f
+        canvas.drawRoundRect(scratchRect, CHIP_RADIUS, CHIP_RADIUS, strokePaint)
+
+        // Elites get a second outline rather than the old circle, which sat at
+        // a fixed radius and so cut through the wider tags.
+        if (enemy.isElite) {
+            scratchRect.inset(-3.5f, -3.5f)
+            strokePaint.color = colMagenta
+            strokePaint.alpha = (185 * entering).toInt()
+            strokePaint.strokeWidth = 1.4f
+            canvas.drawRoundRect(scratchRect, CHIP_RADIUS + 2f, CHIP_RADIUS + 2f, strokePaint)
+            scratchRect.inset(3.5f, 3.5f)
+        }
+
+        textPaint.textSize = glyphSize
+        textPaint.color = if (flashing) colText else baseColor
+        textPaint.alpha = (255 * entering).toInt()
+        canvas.drawText(enemy.type.glyph, enemy.x, enemy.y + glyphSize * 0.34f, textPaint)
+
+        if (enemy.encrypted) {
+            // Tucked against the chip's top edge. Any higher and it collides
+            // with whatever chip is drawn behind and above this one.
+            thinTextPaint.textSize = 12f
+            thinTextPaint.color = colPurple
+            thinTextPaint.alpha = (230 * entering).toInt()
+            canvas.drawText("{#}", enemy.x, enemy.y - halfHeight - 2f, thinTextPaint)
+        }
+
+        drawHealthTrack(
+            canvas,
+            centerX = enemy.x,
+            top = enemy.y + halfHeight + 3f,
+            halfWidth = halfWidth,
+            height = 4f,
+            fraction = (enemy.health / enemy.maxHealth).coerceIn(0f, 1f),
+            alpha = entering,
+            always = false
+        )
+    }
+
+    private fun drawBoss(canvas: android.graphics.Canvas, enemy: Enemy, time: Float) {
+        val halfWidth = 74f
+        val halfHeight = 46f
+        scratchRect.set(
+            enemy.x - halfWidth, enemy.y - halfHeight,
+            enemy.x + halfWidth, enemy.y + halfHeight
+        )
+
+        fillPaint.color = Palette.RedDeep.toArgb()
+        fillPaint.alpha = 150
+        canvas.drawRoundRect(scratchRect, 6f, 6f, fillPaint)
+
+        strokePaint.color = colRed
+        strokePaint.alpha = 235
+        strokePaint.strokeWidth = 3f
+        canvas.drawRoundRect(scratchRect, 6f, 6f, strokePaint)
+
+        val pulse = 0.5f + 0.5f * sin(time * 5.5f + enemy.phase)
+        scratchRect.inset(-6f, -6f)
+        glowPaint.color = colRed
+        glowPaint.alpha = (55 + 105 * pulse).toInt().coerceIn(0, 255)
+        glowPaint.strokeWidth = 5f
+        canvas.drawRoundRect(scratchRect, 9f, 9f, glowPaint)
+        scratchRect.inset(6f, 6f)
+
+        val glyphSize = 26f * enemy.type.glyphScale
+        textPaint.textSize = glyphSize
+        textPaint.color = if (enemy.hitFlash > 0f) colText else enemyColor(enemy)
+        textPaint.alpha = 255
+        canvas.drawText(enemy.type.glyph, enemy.x, enemy.y + glyphSize * 0.34f, textPaint)
+
+        if (enemy.encrypted) {
+            thinTextPaint.textSize = 14f
+            thinTextPaint.color = colPurple
+            thinTextPaint.alpha = 230
+            canvas.drawText("{#}", enemy.x, enemy.y - halfHeight - 16f, thinTextPaint)
+        }
+
+        drawHealthTrack(
+            canvas,
+            centerX = enemy.x,
+            top = enemy.y - halfHeight - 13f,
+            halfWidth = halfWidth,
+            height = 7f,
+            fraction = (enemy.health / enemy.maxHealth).coerceIn(0f, 1f),
+            alpha = 1f,
+            always = true
+        )
+    }
+
+    /**
+     * A health bar that is actually a bar.
+     *
+     * The previous version drew its empty track in the sunken surface colour,
+     * which is a shade off the backdrop and therefore invisible. All you saw
+     * was the coloured fill — a short orange stub floating to the left of its
+     * threat, reading as a rendering fault rather than as a health bar. The
+     * track is now drawn in the divider colour, so the bar has a visible
+     * length to be a fraction of.
+     */
+    private fun drawHealthTrack(
+        canvas: android.graphics.Canvas,
+        centerX: Float,
+        top: Float,
+        halfWidth: Float,
+        height: Float,
+        fraction: Float,
+        alpha: Float,
+        always: Boolean
+    ) {
+        if (!always && fraction >= 0.999f) return
+
+        fillPaint.color = colDivider
+        fillPaint.alpha = (230 * alpha).toInt()
+        canvas.drawRect(centerX - halfWidth, top, centerX + halfWidth, top + height, fillPaint)
 
         fillPaint.color = when {
-            fraction > 0.55f -> colRed
+            fraction > 0.55f -> colGreen
             fraction > 0.25f -> colOrange
-            else -> colCrypto
+            else -> colRed
         }
-        fillPaint.alpha = 255
+        fillPaint.alpha = (255 * alpha).toInt()
         canvas.drawRect(
-            enemy.x - halfWidth, barY,
-            enemy.x - halfWidth + halfWidth * 2f * fraction, barY + height,
+            centerX - halfWidth,
+            top,
+            centerX - halfWidth + halfWidth * 2f * fraction,
+            top + height,
             fillPaint
         )
+    }
+
+    /** Measured once per threat type; the glyph and its scale never change. */
+    private fun glyphWidth(type: EnemyType, size: Float): Float {
+        val cached = glyphWidths[type.ordinal]
+        if (cached >= 0f) return cached
+        textPaint.textSize = size
+        val measured = textPaint.measureText(type.glyph)
+        glyphWidths[type.ordinal] = measured
+        return measured
     }
 
     // ------------------------------------------------------------ projectiles
@@ -958,6 +1146,12 @@ class BattlefieldRenderer {
         const val FIELD_STATUS_BASELINE = 29f
         const val FIELD_STATUS_MARGIN = 14f
         const val FIELD_STATUS_ALPHA = 170
+
+        /** Corner rounding on a threat chip. */
+        const val CHIP_RADIUS = 5f
+
+        /** World units a threat fades in over as it enters the field. */
+        const val CHIP_FADE_IN = 70f
 
         val BOSS_EXPLOSION = arrayOf(
             "*",

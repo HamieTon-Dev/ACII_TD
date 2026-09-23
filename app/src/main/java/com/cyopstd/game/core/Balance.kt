@@ -62,6 +62,22 @@ object Balance {
     fun spawnInterval(wave: Int): Float =
         (1.15f - wave * 0.010f).coerceAtLeast(0.38f)
 
+    /**
+     * World units between consecutive members of a swarm burst.
+     *
+     * Expressed as a distance rather than a delay because that is what it is
+     * really about: a swarm should arrive as a visible column, and at 0.16 s
+     * apart a BOT covers 14 units, less than a quarter of the width of its own
+     * chip, so the whole burst drew on one spot. The delay is derived from this
+     * and the archetype's speed, which keeps the spacing right whether the type
+     * is quick or slow.
+     */
+    const val SWARM_BURST_SPACING = 46f
+
+    /** Seconds between two members of a swarm burst travelling at [speed]. */
+    fun swarmBurstDelay(speed: Float): Float =
+        if (speed <= 1f) 0.5f else SWARM_BURST_SPACING / speed
+
     /** Probability that a given spawn is upgraded to an elite variant. */
     fun eliteChance(wave: Int): Float =
         ((wave - 6) * 0.012f).coerceIn(0f, 0.28f)

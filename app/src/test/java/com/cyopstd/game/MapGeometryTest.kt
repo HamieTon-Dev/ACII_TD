@@ -1,6 +1,7 @@
 package com.cyopstd.game
 
 import com.cyopstd.game.core.WorldGeometry
+import com.cyopstd.game.model.AgentType
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
 import org.junit.Test
@@ -15,6 +16,11 @@ import kotlin.math.hypot
  * offered places to build that could not be built on.
  */
 class MapGeometryTest {
+
+    /** The x-span over which route A runs at A3 and route B runs at B1. */
+    private val CONVERGENCE_LEFT = 150f
+    private val CONVERGENCE_RIGHT = 720f
+
 
     private val requiredClearance =
         WorldGeometry.LANE_HEIGHT / 2f + WorldGeometry.NODE_RADIUS + 5f
@@ -44,11 +50,41 @@ class MapGeometryTest {
             "the two routes should run close together across the middle",
             gap < 2 * requiredClearance
         )
-        // And nothing should have been placed in it regardless.
+        // And nothing may be placed in it. Note the x bound: A3 and B1 are
+        // only a route apart across the middle of the map. Further right both
+        // routes have turned inward and that same band of y is a wide-open
+        // corridor 130 units from anything, which is prime building ground --
+        // checking y alone would forbid the best spots on the board.
         val inConvergence = WorldGeometry.nodes.count {
-            it.y > WorldGeometry.A3 && it.y < WorldGeometry.B1
+            it.y > WorldGeometry.A3 && it.y < WorldGeometry.B1 &&
+                it.x > CONVERGENCE_LEFT && it.x < CONVERGENCE_RIGHT
         }
         assertEquals("no node may sit inside the convergence", 0, inConvergence)
+    }
+
+    @Test
+    fun `the mid-map corridor between the routes is buildable`() {
+        // The counterpart to the test above: right of the convergence the two
+        // routes are far apart, and that band is where the strongest spots on
+        // the map are -- a tower there covers both routes at once.
+        val corridor = WorldGeometry.nodes.filter {
+            it.y > WorldGeometry.A3 && it.y < WorldGeometry.B1 && it.x >= CONVERGENCE_RIGHT
+        }
+        assertTrue("the mid-map corridor has no nodes", corridor.isNotEmpty())
+
+        val all = WorldGeometry.nodes
+            .map { WorldGeometry.laneCoverage(it.x, it.y, 168f) }
+            .sorted()
+        val median = all[all.size / 2]
+        val bestInCorridor = corridor.maxOf { WorldGeometry.laneCoverage(it.x, it.y, 168f) }
+        assertTrue(
+            "the corridor's best spot covers $bestInCorridor, median is $median",
+            bestInCorridor > median * 1.5f
+        )
+        assertTrue(
+            "the corridor's best spot covers only $bestInCorridor units",
+            bestInCorridor >= 400f
+        )
     }
 
     @Test
@@ -78,13 +114,50 @@ class MapGeometryTest {
     }
 
     @Test
-    fun `no node is useless to build on`() {
+    fun `no node is useless to every agent`() {
+        // A spot is offered if *some* agent can work from it. Judging that by
+        // the shortest range instead emptied the whole outer band of the map,
+        // where both routes have turned in towards the core and everything is
+        // 170-200 units from anything -- ground an ANALYST covers perfectly
+        // well. What must never exist is a spot no agent at all can use.
+        val longestRange = AgentType.entries.maxOf { it.baseRange }
         for (node in WorldGeometry.nodes) {
-            val coverage = WorldGeometry.laneCoverage(node.x, node.y, 168f)
+            val coverage = WorldGeometry.laneCoverage(node.x, node.y, longestRange)
             assertTrue(
-                "node ${node.id} covers only $coverage units of route",
+                "node ${node.id} covers only $coverage units at any range",
                 coverage >= 90f
             )
+        }
+    }
+
+    @Test
+    fun `a node beyond an agent's reach is knowable before it is paid for`() {
+        // The above only holds because the deploy overlay can tell the player
+        // which spots the agent in hand actually reaches. That depends on
+        // laneDistance being both present and honest.
+        for (node in WorldGeometry.nodes) {
+            assertEquals(
+                "node ${node.id} reports the wrong distance to the route",
+                WorldGeometry.distanceToNearestLane(node.x, node.y),
+                node.laneDistance,
+                0.01f
+            )
+        }
+
+        val shortest = AgentType.entries.minOf { it.baseRange }
+        for (node in WorldGeometry.nodes) {
+            val coverage = WorldGeometry.laneCoverage(node.x, node.y, shortest)
+            // Anything the shortest-ranged agent cannot cover must be reported
+            // as out of its reach, or the overlay would wave it through.
+            if (coverage <= 0f) {
+                // >= rather than >: a route exactly at the range limit is
+                // touched at a single point, which is zero length of cover.
+                assertTrue(
+                    "node ${node.id} covers nothing at range $shortest yet " +
+                        "claims to be ${node.laneDistance} away",
+                    node.laneDistance >= shortest
+                )
+            }
         }
     }
 

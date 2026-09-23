@@ -4,6 +4,7 @@ import android.graphics.Bitmap
 import android.graphics.Canvas
 import com.cyopstd.game.core.WorldGeometry
 import com.cyopstd.game.engine.GameEngine
+import com.cyopstd.game.model.EnemyType
 import com.cyopstd.game.ui.game.BattlefieldRenderOptions
 import com.cyopstd.game.ui.game.BattlefieldRenderer
 import com.cyopstd.game.ui.game.BattlefieldSelection
@@ -50,6 +51,23 @@ class FieldStatusRenderTest {
             agentUpgrades = 0
         )
 
+        val bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888)
+        BattlefieldRenderer().draw(
+            canvas = Canvas(bitmap),
+            engine = engine,
+            transform = WorldTransform(WorldGeometry.WIDTH, WorldGeometry.HEIGHT),
+            options = BattlefieldRenderOptions(backgroundAnimation = false),
+            selection = BattlefieldSelection(),
+            time = 0f
+        )
+        return bitmap
+    }
+
+    /** A frame of a fresh run, after [configure] has set the scene. */
+    private fun scene(configure: (GameEngine) -> Unit): Bitmap {
+        val engine = GameEngine()
+        engine.startNewRun()
+        configure(engine)
         val bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888)
         BattlefieldRenderer().draw(
             canvas = Canvas(bitmap),
@@ -121,6 +139,72 @@ class FieldStatusRenderTest {
         for ((name, ink) in listOf("wave" to waveInk, "crypto" to cryptoInk)) {
             assertTrue("$name ink descends to y=${ink.maxY}", ink.maxY < 38)
         }
+    }
+
+    @Test
+    fun `an overlapping threat chip occludes rather than smears`() {
+        // The defect this exists for: a threat tag is up to sixty units wide,
+        // and a fast archetype constantly catches a slow one. Drawn as bare
+        // text, two overlapping tags composited into unreadable mush -- four
+        // bots reading as "[BBBIB]". An opaque chip means the nearer one
+        // simply covers the one behind it.
+        //
+        // The leading threat is spawned first in both scenes, so it takes the
+        // same lane slot and lands on exactly the same pixels in each.
+        var frontX = 0f
+        var frontY = 0f
+        val alone = scene { engine ->
+            engine.enemySystem().spawnEscort(EnemyType.BOT, 0, 600f, 5)
+            val front = engine.enemies.items.first { it.active }
+            frontX = front.x
+            frontY = front.y
+        }
+        val crowded = scene { engine ->
+            engine.enemySystem().spawnEscort(EnemyType.BOT, 0, 600f, 5)
+            engine.enemySystem().spawnEscort(EnemyType.SQL_INJECTION, 0, 578f, 5)
+        }
+
+        // A box well inside the leading chip, clear of its own border.
+        val x0 = (frontX - 14f).toInt()
+        val x1 = (frontX + 14f).toInt()
+        val y0 = (frontY - 9f).toInt()
+        val y1 = (frontY + 9f).toInt()
+
+        var differing = 0
+        var inspected = 0
+        for (y in y0..y1) {
+            for (x in x0..x1) {
+                inspected++
+                if (alone.getPixel(x, y) != crowded.getPixel(x, y)) differing++
+            }
+        }
+
+        assertTrue("the chip interior was not sampled", inspected > 300)
+        assertTrue(
+            "$differing of $inspected pixels inside the leading chip bled " +
+                "through from the threat behind it",
+            differing == 0
+        )
+    }
+
+    @Test
+    fun `a threat entering the field is never drawn clipped`() {
+        // Threats walk in from sixty units off the left edge. Before the fade
+        // was measured from the chip's leading edge they slid in as a
+        // hard-clipped half-chip sitting against the frame.
+        val bare = scene { }
+        val entering = scene { engine ->
+            engine.enemySystem().spawnEscort(EnemyType.SQL_BLIND, 0, 0f, 5)
+        }
+        // Column zero must be untouched: nothing may be painted against the
+        // edge of the field by a threat that has not finished arriving.
+        var painted = 0
+        for (y in 0 until height) {
+            for (x in 0 until 3) {
+                if (bare.getPixel(x, y) != entering.getPixel(x, y)) painted++
+            }
+        }
+        assertTrue("$painted pixels of a clipped chip on the field edge", painted == 0)
     }
 
     @Test

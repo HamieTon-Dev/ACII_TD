@@ -41,6 +41,9 @@ class EnemySystem(private val engine: GameEngine, private val random: Random) {
 
     private val escortIds = HashSet<Enemy>()
 
+    /** Rotates through the corridor so consecutive spawns never coincide. */
+    private var laneSlotCursor = 0
+
     private fun configure(
         enemy: Enemy,
         type: EnemyType,
@@ -56,6 +59,8 @@ class EnemySystem(private val engine: GameEngine, private val random: Random) {
         enemy.lane = lane.coerceIn(0, WorldGeometry.LANE_COUNT - 1)
         enemy.progress = 0f
         enemy.phase = random.nextFloat() * 6.283f
+        // A boss fills the corridor on its own and stays on the centreline.
+        enemy.laneOffset = if (boss) 0f else LANE_SLOTS[laneSlotCursor++ % LANE_SLOTS.size]
 
         val healthScale = if (boss) Balance.bossHealthMultiplier(wave) else Balance.healthMultiplier(wave)
         var health = type.baseHealth * healthScale.toFloat()
@@ -188,9 +193,12 @@ class EnemySystem(private val engine: GameEngine, private val random: Random) {
      */
     private fun placeOnPath(enemy: Enemy) {
         WorldGeometry.positionAt(enemy.lane, enemy.progress, pathScratch)
-        enemy.x = pathScratch[0]
-        enemy.y = pathScratch[1]
-        enemy.heading = pathScratch[2]
+        val heading = pathScratch[2]
+        enemy.heading = heading
+        // Perpendicular to the direction of travel, so the offset holds through
+        // every bend in the serpentine rather than flipping sides at a corner.
+        enemy.x = pathScratch[0] - kotlin.math.sin(heading) * enemy.laneOffset
+        enemy.y = pathScratch[1] + kotlin.math.cos(heading) * enemy.laneOffset
     }
 
     private fun onReachedServer(enemy: Enemy) {
@@ -245,6 +253,15 @@ class EnemySystem(private val engine: GameEngine, private val random: Random) {
     }
 
     companion object {
+        /**
+         * Sideways slots across the corridor, cycled per spawn.
+         *
+         * Kept under 11 units so a threat chip still sits inside the 54-unit
+         * corridor, and ordered so that consecutive spawns land on opposite
+         * sides rather than drifting across one at a time.
+         */
+        private val LANE_SLOTS = floatArrayOf(0f, 10f, -10f, 5f, -5f)
+
         private const val DISRUPT_RADIUS = 260f
         private const val DISRUPT_RADIUS_SQ = DISRUPT_RADIUS * DISRUPT_RADIUS
     }

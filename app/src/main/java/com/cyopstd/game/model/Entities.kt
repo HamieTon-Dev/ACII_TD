@@ -35,6 +35,16 @@ class Enemy : Poolable {
     /** Direction of travel in radians, derived from the route. */
     var heading: Float = 0f
 
+    /**
+     * Sideways offset from the route's centreline, in world units.
+     *
+     * Threats do not all walk the exact centre of the corridor. Without this
+     * a swarm burst — several of the same type spawned within a fraction of a
+     * second — sits at one point and draws as a single smeared chip. Fanning
+     * them across the corridor makes a swarm read as a crowd.
+     */
+    var laneOffset: Float = 0f
+
     var maxHealth: Float = 1f
     var health: Float = 1f
 

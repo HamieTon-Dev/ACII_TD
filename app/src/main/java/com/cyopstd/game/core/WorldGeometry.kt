@@ -212,8 +212,21 @@ object WorldGeometry {
     /** A node must cover at least this much route, or it is not worth offering. */
     private const val MIN_NODE_COVERAGE = 90f
 
-    /** Reference range used when judging a candidate node — the FIREWALL's. */
+    /** Reference range used when *ranking* candidate nodes — the FIREWALL's. */
     private const val REFERENCE_RANGE = 168f
+
+    /**
+     * Range a spot is judged *eligible* at — the longest any agent reaches.
+     *
+     * Judging eligibility at the shortest agent's range emptied the whole outer
+     * band of the map: down the right-hand side both routes have turned inward
+     * toward the core, so a spot out there is 170-200 units from anything, and
+     * every one of them was silently dropped even though an ANALYST posted
+     * there covers 400 units of route. A spot is offered if *some* agent can
+     * work from it; the deploy overlay then dims the ones the agent actually
+     * in hand cannot reach, so nobody pays for a tower that shoots at nothing.
+     */
+    private const val ELIGIBILITY_RANGE = 268f
 
     private const val COVERAGE_STEP = 4f
 
@@ -225,6 +238,19 @@ object WorldGeometry {
     private const val MARGIN_ROW_OFFSET = 62f
 
     /**
+     * A second margin row, tucked closer to where the routes run.
+     *
+     * The outer margin rows are placed relative to the serpentine's extremes,
+     * which is right at the left of the map and much too far out at the right,
+     * where both routes have turned inward towards the core: a tower on the
+     * outer row there is 180 units from anything it could shoot. These inner
+     * rows are close enough to matter. They simply do not exist down the left
+     * of the map, because the clearance filter rejects them where the outer
+     * route actually runs — which is exactly the behaviour wanted.
+     */
+    private const val INNER_MARGIN_OFFSET = 36f
+
+    /**
      * Candidate rows, derived from the map rather than spread evenly.
      *
      * A uniform grid put rows wherever the arithmetic landed, which meant the
@@ -234,12 +260,14 @@ object WorldGeometry {
      */
     private val candidateRows: FloatArray = floatArrayOf(
         A1 - MARGIN_ROW_OFFSET,      // above the upper route
+        A1 - INNER_MARGIN_OFFSET,    // ...and closer in, where the route allows
         (A1 + A2) / 2f,              // upper route's top pocket
         (A2 + A3) / 2f,              // upper route's lower pocket
-        // The A3/B1 convergence is deliberately too tight to build inside.
+        CORE_Y,                      // the mid-map band between the two routes
         (B1 + B2) / 2f,              // lower route's upper pocket
         (B2 + B3) / 2f,              // lower route's bottom pocket
-        B3 + MARGIN_ROW_OFFSET       // below the lower route
+        B3 + INNER_MARGIN_OFFSET,    // below the lower route, closer in
+        B3 + MARGIN_ROW_OFFSET       // ...and the outer margin
     )
 
     /**
@@ -258,8 +286,13 @@ object WorldGeometry {
             if (x > SERVER_X - 55f) continue
             for ((row, y) in candidateRows.withIndex()) {
                 if (distanceToNearestLane(x, y) < NODE_CLEARANCE) continue
-                if (laneCoverage(x, y, REFERENCE_RANGE) < MIN_NODE_COVERAGE) continue
-                add(NodePosition(id = id++, column = col, row = row, x = x, y = y))
+                if (laneCoverage(x, y, ELIGIBILITY_RANGE) < MIN_NODE_COVERAGE) continue
+                add(
+                    NodePosition(
+                        id = id++, column = col, row = row, x = x, y = y,
+                        laneDistance = distanceToNearestLane(x, y)
+                    )
+                )
             }
         }
     }.toTypedArray()
@@ -280,5 +313,15 @@ data class NodePosition(
     val column: Int,
     val row: Int,
     val x: Float,
-    val y: Float
+    val y: Float,
+    /**
+     * How far this spot is from the nearest route.
+     *
+     * Every node covers *something* at the reference range, but a short-ranged
+     * agent dropped on a distant one would sit there shooting at nothing. The
+     * deploy overlay compares this against the agent being placed so the
+     * player can see which spots actually work for it, rather than finding out
+     * after paying.
+     */
+    val laneDistance: Float
 )

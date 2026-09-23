@@ -7,6 +7,87 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [1.6.0]
+
+### Added — deployment spots where the map was empty
+
+A playtest screenshot marked seventeen places that looked like they should be
+buildable. Checking each against the geometry, seven already were; the other
+ten were being dropped, and for two distinct reasons — both of which turned
+out to be real gaps in the derivation rather than deliberate design.
+
+- **No candidate row existed across the middle of the map.** The A3/B1
+  convergence is deliberately too tight to build inside, and that had been
+  generalised into "no row anywhere in that band of y". But A3 and B1 are only
+  a route apart across the *middle* of the board; further right both routes
+  have turned inward towards the core and the same band is a wide-open
+  corridor 130 units clear of either one. A row at `CORE_Y` now runs through
+  it. The spots it opens cover **both routes at once** and are among the
+  strongest on the board.
+- **Eligibility was judged at the shortest agent's range.** Down the right
+  side of the map both routes have turned in, so everything in the outer band
+  is 170–200 units from anything and every spot out there was silently
+  dropped — even though an ANALYST posted at one covers 400 units of route. A
+  spot is now offered if *some* agent can work from it.
+- Two inner margin rows were added, closer in than the outer ones, which exist
+  only where the routes have moved away; the clearance filter rejects them
+  down the left of the map, which is exactly the wanted behaviour.
+
+Deployment spots went from 48 to 79, and **every one of the seventeen marked
+places now has a spot within 36 units of it**, most within 15.
+
+Because spots now exist that a short-ranged agent cannot use, the deploy
+overlay had to earn them: while placing, a spot the agent in hand cannot reach
+is dimmed and marked `-` instead of `+`. Nobody pays for a tower that would
+shoot at nothing.
+
+Two map invariants were tightened rather than loosened to accommodate this.
+"No node is useless" became "no node is useless *to every agent*", checked at
+the longest range any agent has, and is now backed by a second test that the
+out-of-reach ones are knowable before they are paid for. The convergence test
+gained the x bound it always needed — checking y alone would have forbidden
+the best ground on the map.
+
+### Changed — the battlefield reads like a game now
+
+- **Threats are drawn as chips**: an opaque plate with a coloured border and
+  the ASCII tag inside, drawn back to front by progress along the route. This
+  is the headline fix. A tag is up to sixty units wide and a fast archetype
+  constantly catches a slow one, so bare text over bare text composited into
+  unreadable mush — four bots genuinely rendering as `[BBBIB]`. The nearer
+  threat now simply covers the one behind, which reads as depth.
+- **Swarm bursts no longer stack.** Members were spawned 0.16 s apart, and at
+  89 units/second a BOT covers 14 units in that time — less than a quarter of
+  its own chip. The gap is now expressed as a *distance* (`SWARM_BURST_SPACING`)
+  and divided by the archetype's speed, so it holds for quick and slow types
+  alike. Threats also take rotating lateral slots across the corridor, so a
+  burst arrives as a staggered column instead of a single smear.
+- **Health bars are bars again.** The empty track was drawn in the sunken
+  surface colour, a shade off the backdrop and therefore invisible, so all you
+  saw was the coloured fill — a short stub floating beside its threat, reading
+  as a rendering fault. The track is now drawn in the divider colour.
+- **Threats entering the field fade in** over 70 units, measured from the
+  chip's leading edge, so one is never drawn clipped against the frame.
+- **`ATTACK ORIGIN` and `ROUTE A` no longer overlap.** The route names moved
+  inside their own corridors, painted like road markings — the only place they
+  fit, since the gap between a lane edge and the first deployment bracket is
+  eight units.
+- Elites are marked with a second outline rather than a fixed-radius circle,
+  which used to cut through the wider tags.
+- A vignette settles the backdrop so 1600 units of near-black reads as a place
+  rather than as an empty document.
+
+All of it was verified by rasterizing the real renderer under Robolectric's
+native graphics and looking at the output. That is also what caught the last
+defect: the chip plate was 92% opaque, so 7% of the chip behind still bled
+through — the same smearing, only fainter. Chips are now fully opaque, tinted
+slightly towards the threat's colour so the plate reads as a unit rather than
+a hole cut in the lane. A test renders one threat alone and then with a second
+overlapping it, and asserts the leading chip's interior is **pixel-identical**
+between the two.
+
+---
+
 ## [1.5.2]
 
 ### Added — wave and crypto on the field itself
