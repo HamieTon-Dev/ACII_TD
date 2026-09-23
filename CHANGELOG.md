@@ -7,6 +7,46 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [1.4.0]
+
+### Fixed — pockets that looked buildable but were not
+
+A playtest screenshot marked six obvious tower spots inside the serpentine
+bends. Checking them against the geometry showed five were being silently
+rejected, and the reason was structural rather than a bad filter.
+
+A deployment node needs `LANE_HEIGHT / 2 + NODE_RADIUS + margin` — 58 units — of
+clearance from a route's centreline, so a pocket needs **116 units** between
+levels before a tower can stand in it at all. Half the pockets were 90. They
+read as prime real estate and could never be built on.
+
+- Route levels re-spaced so **every pocket is 122 units**, comfortably over the
+  threshold. The levels are now named constants (`A1`..`B3`) that the waypoints
+  are built from, so the rule is visible where the numbers live.
+- The A3/B1 convergence stays deliberately tight at 72 units — the two routes
+  are meant to run close there and be covered from the pockets above and below,
+  not built inside. A test asserts nothing ever lands in it.
+- Candidate node rows are now **derived from the pockets** (one row down the
+  centre of each, plus the outer margins) instead of a uniform grid that put
+  rows wherever the arithmetic landed. One pocket was previously missed by two
+  units.
+- Node columns 10 → 12.
+
+**48 deployment nodes, up from 31**, and best route coverage rises from 732 to
+899 units.
+
+### Added — tests that guard the derivation
+
+New `MapGeometryTest`: every pocket is wide enough for a tower, every pocket
+actually received nodes, no node sits on a route, no node is useless to build
+on, nodes clear the server rack, both routes reach the core, and route progress
+always resolves to a point on the path.
+
+Also fixed a test that assumed route progress is proportional to x — true of the
+old straight lanes, not of a serpentine.
+
+---
+
 ## [1.3.0]
 
 The map, the boss, and the language. Driven by a play report: bosses could not

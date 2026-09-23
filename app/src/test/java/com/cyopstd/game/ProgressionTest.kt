@@ -27,6 +27,25 @@ class ProgressionTest {
         return engine
     }
 
+    /** Distance along [lane] whose world position is nearest to a point. */
+    private fun closestProgressTo(x: Float, y: Float, lane: Int): Float {
+        val scratch = FloatArray(3)
+        var bestProgress = 0f
+        var bestDistance = Float.MAX_VALUE
+        var progress = 0f
+        val length = WorldGeometry.laneLength[lane]
+        while (progress <= length) {
+            WorldGeometry.positionAt(lane, progress, scratch)
+            val d = kotlin.math.hypot(scratch[0] - x, scratch[1] - y)
+            if (d < bestDistance) {
+                bestDistance = d
+                bestProgress = progress
+            }
+            progress += 4f
+        }
+        return bestProgress
+    }
+
     private fun GameEngine.runWaveToCompletion(budgetSeconds: Float = 300f): Boolean {
         var elapsed = 0f
         while (elapsed < budgetSeconds) {
@@ -261,18 +280,21 @@ class ProgressionTest {
             val engine = newEngine(seed = 5)
             engine.firmwareDamageMultiplier = Balance.firmwareDamageMultiplier(firmware)
             engine.addCrypto(10_000, countAsEarned = false)
-            engine.placeAgent(AgentType.FIREWALL, 8)
-            val agent = engine.agentAt(8)!!
+            val node = WorldGeometry.nodesByCoverage.first()
+            engine.placeAgent(AgentType.FIREWALL, node.id)
+            val agent = engine.agentAt(node.id)!!
 
             // A target too tough to die, parked inside the agent's range.
-            // Position comes from lane progress, not from x/y: the mover
-            // recomputes coordinates from progress on every single step, so
-            // assigning them directly would not survive one tick.
+            // Position comes from route progress, not x/y: the mover recomputes
+            // coordinates from progress every step, so assigning them directly
+            // would not survive one tick. On a serpentine route progress is not
+            // proportional to x either, so the closest point is searched for
+            // rather than assumed.
             val dummy = engine.enemies.obtain()!!
             dummy.reset()
             dummy.active = true
             dummy.lane = 0
-            dummy.progress = agent.x - WorldGeometry.SPAWN_X
+            dummy.progress = closestProgressTo(agent.x, agent.y, lane = 0)
             dummy.baseSpeed = 0f
             dummy.health = 1_000_000f
             dummy.maxHealth = 1_000_000f

@@ -49,6 +49,34 @@ object WorldGeometry {
     /** Visual width of a route corridor. */
     const val LANE_HEIGHT = 54f
 
+    /** Where both routes meet for the final approach to the rack. */
+    const val CORE_Y = 380f
+
+    /**
+     * The horizontal levels the routes run along, top to bottom.
+     *
+     * These are not arbitrary. A deployment node needs
+     * [LANE_HEIGHT] / 2 + [NODE_RADIUS] + margin of clearance from a route's
+     * centreline, so a pocket between two adjacent levels has to be at least
+     * twice that — 116 units — before a tower can stand in it at all. An
+     * earlier layout used 90-unit pockets, which looked like obvious tower
+     * spots and silently refused to accept one.
+     *
+     * Every pocket is therefore [POCKET_HEIGHT], comfortably over that
+     * threshold. The single exception is the gap between [A3] and [B1]: the two
+     * routes run deliberately close there, and that convergence is meant to be
+     * covered from the pockets above and below it rather than built inside.
+     */
+    private const val POCKET_HEIGHT = 122f
+    private const val CONVERGENCE_GAP = 72f
+
+    const val A1 = 100f
+    const val A2 = A1 + POCKET_HEIGHT          // 222
+    const val A3 = A2 + POCKET_HEIGHT          // 344
+    const val B1 = A3 + CONVERGENCE_GAP        // 416
+    const val B2 = B1 + POCKET_HEIGHT          // 538
+    const val B3 = B2 + POCKET_HEIGHT          // 660
+
     /**
      * The routes, as waypoint chains. Movement, rendering and node placement all
      * derive from these — change a waypoint and the whole map follows, including
@@ -58,32 +86,32 @@ object WorldGeometry {
         // Upper route: right, down, back left, down, long run right, up, right,
         // down into the convergence.
         arrayOf(
-            Waypoint(SPAWN_X, 140f),
-            Waypoint(400f, 140f),
-            Waypoint(400f, 262f),
-            Waypoint(170f, 262f),
-            Waypoint(170f, 352f),
-            Waypoint(700f, 352f),
-            Waypoint(700f, 196f),
-            Waypoint(1050f, 196f),
-            Waypoint(1050f, 330f),
-            Waypoint(1150f, 383f),
-            Waypoint(SERVER_X, 383f)
+            Waypoint(SPAWN_X, A1),
+            Waypoint(400f, A1),
+            Waypoint(400f, A2),
+            Waypoint(170f, A2),
+            Waypoint(170f, A3),
+            Waypoint(700f, A3),
+            Waypoint(700f, A2),
+            Waypoint(1050f, A2),
+            Waypoint(1050f, A3),
+            Waypoint(1150f, CORE_Y),
+            Waypoint(SERVER_X, CORE_Y)
         ),
         // Lower route: the same shape mirrored, so neither side of the board is
         // the safe one.
         arrayOf(
-            Waypoint(SPAWN_X, 636f),
-            Waypoint(400f, 636f),
-            Waypoint(400f, 514f),
-            Waypoint(170f, 514f),
-            Waypoint(170f, 424f),
-            Waypoint(700f, 424f),
-            Waypoint(700f, 580f),
-            Waypoint(1050f, 580f),
-            Waypoint(1050f, 446f),
-            Waypoint(1150f, 383f),
-            Waypoint(SERVER_X, 383f)
+            Waypoint(SPAWN_X, B3),
+            Waypoint(400f, B3),
+            Waypoint(400f, B2),
+            Waypoint(170f, B2),
+            Waypoint(170f, B1),
+            Waypoint(700f, B1),
+            Waypoint(700f, B2),
+            Waypoint(1050f, B2),
+            Waypoint(1050f, B1),
+            Waypoint(1150f, CORE_Y),
+            Waypoint(SERVER_X, CORE_Y)
         )
     )
 
@@ -189,28 +217,46 @@ object WorldGeometry {
 
     private const val COVERAGE_STEP = 4f
 
-    private const val GRID_COLUMNS = 10
-    private const val GRID_ROWS = 6
-    private const val GRID_LEFT = 90f
+    private const val GRID_COLUMNS = 12
+    private const val GRID_LEFT = 80f
     private const val GRID_RIGHT = 1240f
-    private const val GRID_TOP = 70f
-    private const val GRID_BOTTOM = 700f
+
+    /** How far outside the outermost route the margin rows sit. */
+    private const val MARGIN_ROW_OFFSET = 62f
+
+    /**
+     * Candidate rows, derived from the map rather than spread evenly.
+     *
+     * A uniform grid put rows wherever the arithmetic landed, which meant the
+     * obvious tower pockets either got a row a few units too close to a route
+     * and were silently rejected, or got no row at all. Placing one row down the
+     * centre of every pocket guarantees the spots that *look* buildable are.
+     */
+    private val candidateRows: FloatArray = floatArrayOf(
+        A1 - MARGIN_ROW_OFFSET,      // above the upper route
+        (A1 + A2) / 2f,              // upper route's top pocket
+        (A2 + A3) / 2f,              // upper route's lower pocket
+        // The A3/B1 convergence is deliberately too tight to build inside.
+        (B1 + B2) / 2f,              // lower route's upper pocket
+        (B2 + B3) / 2f,              // lower route's bottom pocket
+        B3 + MARGIN_ROW_OFFSET       // below the lower route
+    )
 
     /**
      * Deployment nodes, derived from the routes rather than hand-placed.
      *
-     * A candidate grid is filtered down to positions that (a) clear every route
-     * by [NODE_CLEARANCE], (b) sit clear of the server rack, and (c) actually
-     * cover some route. Deriving them means the map cannot drift out of sync
-     * with itself: moving a waypoint moves the nodes.
+     * Candidates are filtered to positions that (a) clear every route by
+     * [NODE_CLEARANCE], (b) sit clear of the server rack, and (c) actually cover
+     * some route. Deriving them means the map cannot drift out of sync with
+     * itself: moving a waypoint moves the nodes, and no node exists that would
+     * be pointless to build on.
      */
     val nodes: Array<NodePosition> = buildList {
         var id = 0
         for (col in 0 until GRID_COLUMNS) {
             val x = GRID_LEFT + (GRID_RIGHT - GRID_LEFT) * col / (GRID_COLUMNS - 1f)
             if (x > SERVER_X - 55f) continue
-            for (row in 0 until GRID_ROWS) {
-                val y = GRID_TOP + (GRID_BOTTOM - GRID_TOP) * row / (GRID_ROWS - 1f)
+            for ((row, y) in candidateRows.withIndex()) {
                 if (distanceToNearestLane(x, y) < NODE_CLEARANCE) continue
                 if (laneCoverage(x, y, REFERENCE_RANGE) < MIN_NODE_COVERAGE) continue
                 add(NodePosition(id = id++, column = col, row = row, x = x, y = y))

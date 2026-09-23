@@ -643,3 +643,47 @@ What is true, and what the suite now guards, is that agent **choice** carries
 real weight — the same budget spent on specialists goes far further than spent
 on the cheap all-rounder. The counter multipliers themselves are asserted
 directly elsewhere.
+
+---
+
+## 14. Revision: pockets that looked buildable but were not
+
+A playtest marked six obvious tower spots inside the serpentine bends. Five were
+being silently rejected, for a structural reason worth stating plainly.
+
+A node needs `LANE_HEIGHT / 2 + NODE_RADIUS + margin` = **58 units** of clearance
+from a route centreline. So a pocket between two route levels needs **116 units**
+before a tower can stand in it. Half the pockets were 90 — they read as prime
+real estate and could never be built on.
+
+| | Before | After |
+| --- | ---: | ---: |
+| Pocket height | 122 / **90** (mixed) | **122** (uniform) |
+| Convergence gap | 72 | 72 (unchanged, deliberate) |
+| Node rows | uniform grid | **one per pocket centre** + margins |
+| Node columns | 10 | **12** |
+| Deployment nodes | 31 | **48** |
+| Best node coverage | 732 | **899** |
+
+The route levels are now named constants the waypoints are built from:
+
+```kotlin
+private const val POCKET_HEIGHT = 122f
+private const val CONVERGENCE_GAP = 72f
+
+const val A1 = 100f
+const val A2 = A1 + POCKET_HEIGHT     // 222
+const val A3 = A2 + POCKET_HEIGHT     // 344
+const val B1 = A3 + CONVERGENCE_GAP   // 416
+const val B2 = B1 + POCKET_HEIGHT     // 538
+const val B3 = B2 + POCKET_HEIGHT     // 660
+```
+
+The convergence stays tight on purpose: the two routes are meant to run close
+there and be covered from the pockets above and below, not built inside. A test
+asserts no node ever lands in it.
+
+Candidate rows are derived from the pockets rather than spread evenly. The old
+uniform grid missed one pocket **by two units** — close enough to look like a
+bug in the filter rather than in the spacing, which is exactly why the rule now
+lives next to the numbers and is asserted in `MapGeometryTest`.

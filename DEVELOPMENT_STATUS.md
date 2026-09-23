@@ -1,6 +1,6 @@
 # CyOps TD — Development Status
 
-Last updated: build of version 1.3.0.
+Last updated: build of version 1.4.0.
 
 ---
 
@@ -112,7 +112,7 @@ Last updated: build of version 1.3.0.
   `$$serializer` for the save models is present in the release dex, along with
   an unobfuscated `MainActivity` — the failure mode the ProGuard rules exist to
   prevent.
-- **116 JVM tests, all passing** in about a minute, in three layers:
+- **125 JVM tests, all passing** in about a minute, in three layers:
   - Simulation tests that drive the real engine headlessly — balance curve
     shape, wave generation, a fully played match, and save serialization.
   - Compose UI tests under Robolectric that compose the real screens and assert
