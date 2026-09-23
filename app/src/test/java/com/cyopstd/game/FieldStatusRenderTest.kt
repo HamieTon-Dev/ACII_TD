@@ -134,11 +134,22 @@ class FieldStatusRenderTest {
     }
 
     @Test
-    fun `neither readout collides with the ATTACK ORIGIN label`() {
-        // That label sits on its own line just below the status text.
-        for ((name, ink) in listOf("wave" to waveInk, "crypto" to cryptoInk)) {
-            assertTrue("$name ink descends to y=${ink.maxY}", ink.maxY < 38)
-        }
+    fun `the wave readout clears the ATTACK ORIGIN label`() {
+        // ATTACK ORIGIN is drawn at 17pt on a baseline twelve units above the
+        // top lane, so the top of its capitals is where the wave readout has
+        // to stop. Asserted against that position rather than a number typed
+        // in once: the readout was enlarged for legibility and a hard-coded
+        // ceiling would have failed for the wrong reason.
+        val labelBaseline =
+            WorldGeometry.entryPoint(0).y - WorldGeometry.LANE_HEIGHT * 0.5f - 12f
+        val labelTop = (labelBaseline - 13f).toInt()
+
+        assertTrue(
+            "wave ink descends to y=${waveInk.maxY}, and ATTACK ORIGIN starts at $labelTop",
+            waveInk.maxY < labelTop
+        )
+        // The crypto readout is in the other corner; nothing shares its line.
+        assertTrue("crypto ink descends to y=${cryptoInk.maxY}", cryptoInk.maxY < laneTop)
     }
 
     @Test

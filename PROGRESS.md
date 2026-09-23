@@ -4,7 +4,7 @@
 reads first. It records where the project actually stands, what is proven and
 what is not, and what comes next.
 
-_Last updated: v1.16.0 — LOADOUT, RUN MODE, and three unreachable controls fixed. See `CHANGELOG.md` for the full per-version history._
+_Last updated: v1.17.0 — legibility pass, panel rebuild, and the rack animation fix. See `CHANGELOG.md` for the full per-version history._
 
 ---
 
@@ -12,7 +12,7 @@ _Last updated: v1.16.0 — LOADOUT, RUN MODE, and three unreachable controls fix
 
 ```bash
 cd /home/user/ACII_TD
-./gradlew :app:testDebugUnitTest      # 260 tests, all passing
+./gradlew :app:testDebugUnitTest      # 273 tests, all passing
 ./gradlew :app:assembleRelease        # -> app/build/outputs/apk/release/CyOpsTD-v<ver>.apk
 ```
 
@@ -104,6 +104,7 @@ rather than loosened.
 | 1.14 | GOOGLE PLAY account screen; living backgrounds reach the menus |
 | 1.15 | Cloud save: progress follows a linked Google account across devices |
 | 1.16 | LOADOUT (equip skins), RUN MODE (pick HACK:AI), locked 5× speed fixed |
+| 1.17 | Rack animation glitch fixed; legibility pass; two-column agent panel |
 
 ---
 
@@ -491,4 +492,10 @@ per feature: **where does a player press this?** It is now a step in §7.
 - A control that cannot act must say so. Never let a button quietly do
   something *else* — that is worse than a dead button, because it also
   misreports the state it appears to have set.
+- **Never derive an animation's position from `time × rate` when the rate can
+  change.** Integrate instead (`phase += delta × rate`). A rate that changes
+  mid-run moves the position by `elapsed × Δrate`, which after a minute of
+  play is tens of cycles — this shipped in the core rack for six releases and
+  read as a glitch every time a threat died. `RackAnimation` holds the fix and
+  the tests.
 - No randomness in agent damage.

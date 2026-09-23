@@ -84,6 +84,16 @@ class BattlefieldRenderer {
     private val colBlue = Palette.Blue.toArgb()
     private val colCrypto = Palette.Crypto.toArgb()
     private val colText = Palette.TextPrimary.toArgb()
+
+    /**
+     * Plain white, for the handful of readouts that have to win.
+     *
+     * Not a palette entry: the palette is the game's cool cyber tint, and every
+     * colour in it is chosen to sit *back*. These three numbers -- an agent's
+     * level, the core's integrity and the corner readouts -- are the ones a
+     * player looks for on purpose, so they are the ones allowed to be white.
+     */
+    private val colWhite = 0xFFFFFFFF.toInt()
     private val colMuted = Palette.TextMuted.toArgb()
     private val colSecondary = Palette.TextSecondary.toArgb()
 
@@ -156,6 +166,7 @@ class BattlefieldRenderer {
         time: Float
     ) {
         frameTime = time
+        advanceRackAnimation(time, engine)
         val tint = backdropTint(engine.currentWave, time)
         // The letterbox picks up a trace of the same shift so the shift reads
         // as lighting rather than as a coloured rectangle on a black screen.
@@ -176,7 +187,6 @@ class BattlefieldRenderer {
         }
 
         drawBackdrop(canvas, engine, options, time)
-        drawFieldStatus(canvas, engine)
         drawLanes(canvas, engine, options, time)
         drawServer(canvas, engine, time)
         drawDeploymentNodes(canvas, engine, selection, time)
@@ -186,6 +196,15 @@ class BattlefieldRenderer {
         drawEnemies(canvas, engine, time)
         drawProjectiles(canvas, engine)
         drawEffects(canvas, engine)
+        // Drawn last, over everything.
+        //
+        // There is a row of nineteen deployment nodes along y=38, which is
+        // exactly where these two readouts live, so whichever is drawn second
+        // wins the corner. The wave and the crypto are numbers the player
+        // looks up mid-fight; a node is a bracket they can still see the rest
+        // of and can still tap. So the readouts go on top, on a plate, and
+        // the corner node shows through it.
+        drawFieldStatus(canvas, engine)
         drawBossBanner(canvas, engine, time)
 
         canvas.restoreToCount(save)
@@ -288,16 +307,32 @@ class BattlefieldRenderer {
      * another panel.
      */
     private fun drawFieldStatus(canvas: android.graphics.Canvas, engine: GameEngine) {
+        // Both readouts sit on a soft plate. They are drawn over whatever the
+        // backdrop and the living background happen to be doing, and a number
+        // that is legible on the plain grid can disappear over AURORA -- the
+        // plate makes legibility independent of what is behind it.
+        val waveText = "WAVE ${engine.currentWave}"
+        val cryptoText = "\u25C7 ${engine.crypto}"
         leftTextPaint.textSize = FIELD_STATUS_TEXT
-        leftTextPaint.color = colSecondary
-        leftTextPaint.alpha = FIELD_STATUS_ALPHA
+        rightTextPaint.textSize = FIELD_STATUS_TEXT
+
+        // Sized from a template, not from the live text. A plate measured
+        // against the number itself grows and shrinks every time the number
+        // does, and crypto changes several times a second during a wave --
+        // a dark rectangle breathing in the corner is worse than no plate.
+        val waveWidth = leftTextPaint.measureText(WAVE_PLATE_TEMPLATE) + 16f
+        val cryptoWidth = rightTextPaint.measureText(CRYPTO_PLATE_TEMPLATE) + 16f
+        plate(canvas, FIELD_STATUS_MARGIN - 8f, waveWidth)
+        plate(canvas, WorldGeometry.WIDTH - FIELD_STATUS_MARGIN + 8f - cryptoWidth, cryptoWidth)
+
+        leftTextPaint.color = colWhite
+        leftTextPaint.alpha = 255
         canvas.drawText(
-            "WAVE ${engine.currentWave}",
+            waveText,
             FIELD_STATUS_MARGIN,
             FIELD_STATUS_BASELINE,
             leftTextPaint
         )
-        leftTextPaint.alpha = 255
 
         // The run's name, centred between the two corner readouts and set
         // smaller than either: it identifies the run without competing with
@@ -313,16 +348,30 @@ class BattlefieldRenderer {
         )
         textPaint.alpha = 255
 
-        rightTextPaint.textSize = FIELD_STATUS_TEXT
         rightTextPaint.color = colCrypto
-        rightTextPaint.alpha = FIELD_STATUS_ALPHA
+        rightTextPaint.alpha = 255
         canvas.drawText(
-            "\u25C7 ${engine.crypto}",
+            cryptoText,
             WorldGeometry.WIDTH - FIELD_STATUS_MARGIN,
             FIELD_STATUS_BASELINE,
             rightTextPaint
         )
-        rightTextPaint.alpha = 255
+    }
+
+    /** The dark strip a corner readout is drawn on. */
+    private fun plate(canvas: android.graphics.Canvas, x: Float, width: Float) {
+        fillPaint.color = colBackground
+        fillPaint.alpha = FIELD_STATUS_PLATE_ALPHA
+        canvas.drawRoundRect(
+            x,
+            FIELD_STATUS_BASELINE - FIELD_STATUS_TEXT + 1f,
+            x + width,
+            FIELD_STATUS_BASELINE + 9f,
+            5f,
+            5f,
+            fillPaint
+        )
+        fillPaint.alpha = 255
     }
 
     /**
@@ -573,6 +622,25 @@ class BattlefieldRenderer {
      * blinking activity LEDs that speed up while traffic is being processed and
      * turn into an alarm pattern when the server is hurt.
      */
+    // ------------------------------------------------- rack animation clocks
+
+    /**
+     * Phases for the two rack animations that change speed with board load.
+     *
+     * The integration, and the reason it has to be an integration rather than
+     * `time * rate`, is in [RackAnimation]. It was a real bug: the chase
+     * teleported and the LEDs flickered every time a threat died.
+     */
+    private val rack = RackAnimation()
+
+    private fun advanceRackAnimation(time: Float, engine: GameEngine) {
+        rack.advance(time, rackLoad(engine))
+    }
+
+    /** How busy the board is, 0..1.6. Drives both rack animations' speed. */
+    private fun rackLoad(engine: GameEngine): Float =
+        (engine.activeEnemyCount() / 14f).coerceIn(0f, 1.6f)
+
     private fun drawServer(canvas: android.graphics.Canvas, engine: GameEngine, time: Float) {
         val left = WorldGeometry.SERVER_X
         val top = WorldGeometry.SERVER_TOP
@@ -635,15 +703,14 @@ class BattlefieldRenderer {
         // that mix is most of what makes it read as hardware. Which light is
         // which is fixed per position rather than random per frame, because
         // an LED that changes colour is not an LED.
-        val load = (engine.activeEnemyCount() / 14f).coerceIn(0f, 1.6f)
-        val blinkRate = 1.4f + load * 3.4f
+        val load = rackLoad(engine)
         thinTextPaint.textSize = 20f
         for (row in 0 until LED_ROWS) {
             val ly = top + 140f + row * 26f
             for (col in 0 until LED_COLUMNS) {
                 val lx = left + 30f + col * 25f
                 val seed = row * 7.31f + col * 3.77f
-                val pulse = sin(time * blinkRate + seed)
+                val pulse = sin(rack.ledPhase + seed)
                 val lit = pulse > (0.55f - load * 0.35f)
                 // Roughly one light in three is the second colour.
                 val amber = (row * LED_COLUMNS + col) % 3 == 1
@@ -684,12 +751,14 @@ class BattlefieldRenderer {
         strokePaint.alpha = 200
         canvas.drawRect(barLeft, barTop, barRight, barBottom, strokePaint)
 
-        textPaint.textSize = 20f
-        textPaint.color = colText
+        // Integrity figures. The number the chase circuit is drawn around, so
+        // it is set large enough to be worth framing.
+        textPaint.textSize = INTEGRITY_TEXT
+        textPaint.color = colWhite
         textPaint.alpha = 255
         canvas.drawText(
             "${engine.serverHp} / ${engine.serverMaxHp}",
-            (left + right) * 0.5f, bottom - 22f, textPaint
+            (left + right) * 0.5f, bottom - 20f, textPaint
         )
 
         // Alarm banner while integrity is critical.
@@ -893,8 +962,10 @@ class BattlefieldRenderer {
         val perimeter = 2f * (sideW + sideH)
 
         // Two comets on opposite sides of the circuit, so it reads as a loop
-        // rather than as a single dot sliding back and forth.
-        val head = (time * (0.32f + load * 0.30f)) % 1f
+        // rather than as a single dot sliding back and forth. The head comes
+        // from an integrated phase, not from `time * rate` -- see
+        // advanceRackAnimation for why that distinction is the whole bug.
+        val head = rack.chasePhase
 
         for (i in 0 until count) {
             val at = i / count.toFloat()
@@ -1158,11 +1229,22 @@ class BattlefieldRenderer {
             textPaint.alpha = 255
             canvas.drawText(agent.type.renderedGlyph(agent.level), agent.x, agent.y + 8f, textPaint)
 
-            // Level pip row under the agent.
-            thinTextPaint.textSize = 12f
-            thinTextPaint.color = colSecondary
-            thinTextPaint.alpha = 210
-            canvas.drawText("L${agent.level}", agent.x, agent.y + WorldGeometry.NODE_RADIUS + 16f, thinTextPaint)
+            // Level under the agent, in plain white at full strength.
+            //
+            // It used to be 12pt of dim secondary text, which on a phone at
+            // arm's length was a smudge -- and the level is the one number a
+            // player checks constantly while deciding what to upgrade next.
+            // White rather than the agent's colour so it reads the same on
+            // every class and against every backdrop.
+            thinTextPaint.textSize = AGENT_LEVEL_TEXT
+            thinTextPaint.color = colWhite
+            thinTextPaint.alpha = 255
+            canvas.drawText(
+                "L${agent.level}",
+                agent.x,
+                agent.y + WorldGeometry.NODE_RADIUS + 19f,
+                thinTextPaint
+            )
 
             if (agent.damageBuff > 1f) {
                 thinTextPaint.color = colPurple
@@ -1635,10 +1717,23 @@ class BattlefieldRenderer {
         // The in-field wave and crypto readouts. The baseline is set so the
         // text clears both the top of the field and the ATTACK ORIGIN label
         // below it, and so the whole thing stays above the top lane at y=73.
-        const val FIELD_STATUS_TEXT = 24f
-        const val FIELD_STATUS_BASELINE = 29f
-        const val FIELD_STATUS_MARGIN = 14f
-        const val FIELD_STATUS_ALPHA = 170
+        const val FIELD_STATUS_TEXT = 31f
+        const val FIELD_STATUS_BASELINE = 34f
+        const val FIELD_STATUS_MARGIN = 16f
+        /** How dark the plate under a corner readout is. */
+        const val FIELD_STATUS_PLATE_ALPHA = 185
+
+        /** Plates are sized for these, so they never resize during a run. */
+        const val WAVE_PLATE_TEMPLATE = "WAVE 000"
+        const val CRYPTO_PLATE_TEMPLATE = "\u25C7 000000"
+
+        /** The level under an agent. Read constantly; sized to be readable. */
+        const val AGENT_LEVEL_TEXT = 17f
+
+        /** The core's integrity figures, inside the chase circuit. */
+        const val INTEGRITY_TEXT = 27f
+
+
 
         /** The run name: smaller and dimmer than the corner readouts. */
         const val RUN_NAME_TEXT = 15f

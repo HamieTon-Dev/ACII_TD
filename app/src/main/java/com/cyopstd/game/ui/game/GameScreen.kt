@@ -191,10 +191,22 @@ fun GameScreen(
                 TutorialOverlay(
                     step = viewModel.tutorialStep,
                     onAdvance = viewModel::advanceTutorial,
-                    onSkip = viewModel::skipTutorial,
                     modifier = Modifier
                         .align(Alignment.TopStart)
                         .padding(10.dp)
+                )
+
+                // Skip lives in the corner rather than inside the card. A
+                // player who wants out of a tutorial wants out at every step,
+                // including the ones that wait for them to tap something
+                // specific and therefore have no buttons of their own.
+                CompactButton(
+                    text = "SKIP \u00D7",
+                    onClick = viewModel::skipTutorial,
+                    accent = Palette.TextSecondary,
+                    modifier = Modifier
+                        .align(Alignment.TopEnd)
+                        .padding(top = 6.dp, end = 8.dp)
                 )
             }
         }

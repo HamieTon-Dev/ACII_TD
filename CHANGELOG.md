@@ -7,6 +7,81 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [1.17.0]
+
+### Fixed — the chase lights glitched every time you killed something
+
+The reported symptom was that the racetrack on the core "glitches while
+defeating enemies" and the animation stutters. It was one mistake, in two
+places, and it is worth writing down because it looks completely harmless:
+
+```kotlin
+val head = (time * (0.32f + load * 0.30f)) % 1f   // chase
+val pulse = sin(time * (1.4f + load * 3.4f))      // status LEDs
+```
+
+Both animations speed up as the board fills, which is the intended behaviour —
+the rack is a load indicator. But position here is the product of the **whole
+elapsed time** and a rate that changes mid-run. So the instant a threat died,
+the rate dropped and the position jumped with it, by `elapsed × Δrate`. A
+minute into a run that is **more than twenty whole cycles**: the chase
+teleported and the LEDs flickered, exactly when the player was looking at the
+board because they had just killed something.
+
+Phases are now integrated — `phase += delta × rate` — which keeps them
+continuous across a rate change: a busier board makes the lights move faster
+*from where they are* rather than moving them somewhere else. The step is
+clamped, so a frame after a pause or a backgrounded app does not fling them
+either, and a rewound clock (a new run) does not unwind them.
+
+It lives in its own class, `RackAnimation`, with seven tests. The first of them
+measures the *old* formula's jump, so the size of what was wrong stays on the
+record.
+
+### Changed — the numbers a player actually reads
+
+Every one of these was reported as too small or too dim, and every one is a
+number someone looks for on purpose rather than absorbs:
+
+| | was | now |
+| --- | --- | --- |
+| Agent level, under each agent | 12pt dim grey | **17pt white** |
+| Core integrity, inside the chase circuit | 20pt | **27pt white** |
+| WAVE and ◇ corner readouts | 24pt at 67% alpha | **31pt, full strength, on a plate** |
+
+The corner readouts also moved to the **end** of the draw order. There is a row
+of nineteen deployment nodes along the same line, so whichever is drawn second
+wins the corner — and the wave and the crypto are numbers you look up
+mid-fight, while a node is a bracket you can still see the rest of and still
+tap. Their plates are sized from a template rather than from the live number:
+a plate measured against the text itself would grow and shrink every time
+crypto changed, which during a wave is several times a second.
+
+### Changed — the upgrade panel is two columns, and its actions never scroll
+
+Reported as: *nothing indicates the players to scroll down to upgrade towers.*
+It was one tall scrolling card with UPGRADE at the bottom, so on a short screen
+the buttons were below the fold with nothing to suggest they existed.
+
+Everything you **do** is now in its own column on the right — cost, +1 / +10 /
+MAX, SELL, CLOSE — outside the scroll, always on screen. Everything you **read**
+is on the left. The reading column can still overflow on a small phone, so it
+says so: a `▼ MORE BELOW` hint appears at its bottom edge while there is more
+below, and only while there is. An invisible scroll is the same as no scroll.
+
+The card is also shorter than it was — capped at 300dp tall instead of growing
+to fit — so it no longer covers the field it is describing.
+
+### Changed — SKIP is in the corner, for the whole tutorial
+
+The tutorial's only SKIP lived inside the card, beside CONTINUE. Several steps
+wait for the player to tap something specific and draw no buttons at all, so on
+exactly those steps there was no way out of the tutorial. It is now a small
+button in the screen's top-right corner, present at every step, and CONTINUE
+takes the full width of the card it left.
+
+---
+
 ## [1.16.0]
 
 ### Added — LOADOUT, because a skin you cannot wear is not a skin

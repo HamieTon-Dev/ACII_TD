@@ -37,6 +37,8 @@ few frames per second.
 | --- | --- |
 | `menu-run-modes.png` | Main menu with the RUN MODE panel, HACK:AI selected |
 | `loadout.png` | LOADOUT, with some skins owned and the rest locked |
+| `battlefield.png` | A wave in progress, with the enlarged corner readouts and integrity figures |
+| `upgrade-panel.png` | The two-column agent panel, actions on the right, scroll hint on the left |
 | `cloud-save-unlinked.png` | The Google Play account screen before a Google account is linked |
 | `cloud-save-linked.png` | The same screen once progress is following the account |
 

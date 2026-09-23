@@ -260,7 +260,6 @@ fun UnlockBanner(type: AgentType, modifier: Modifier = Modifier) {
 fun TutorialOverlay(
     step: Int,
     onAdvance: () -> Unit,
-    onSkip: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     val content = tutorialContentFor(step) ?: return
@@ -283,24 +282,16 @@ fun TutorialOverlay(
             style = MaterialTheme.typography.bodyMedium,
             color = Palette.TextPrimary
         )
-        Spacer(Modifier.height(10.dp))
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.spacedBy(8.dp)
-        ) {
-            if (content.showContinue) {
-                CompactButton(
-                    text = "CONTINUE",
-                    onClick = onAdvance,
-                    accent = Palette.Green,
-                    modifier = Modifier.weight(1f)
-                )
-            }
+        // SKIP is not in here; it sits in the screen's top-right corner so it
+        // is reachable on the steps that wait for a specific tap and show no
+        // buttons at all. That leaves CONTINUE the full width of the card.
+        if (content.showContinue) {
+            Spacer(Modifier.height(10.dp))
             CompactButton(
-                text = "SKIP",
-                onClick = onSkip,
-                accent = Palette.TextSecondary,
-                modifier = Modifier.weight(1f)
+                text = "CONTINUE",
+                onClick = onAdvance,
+                accent = Palette.Green,
+                modifier = Modifier.fillMaxWidth()
             )
         }
     }
