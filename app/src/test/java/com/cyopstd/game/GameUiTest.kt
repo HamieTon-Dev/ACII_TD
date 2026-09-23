@@ -75,9 +75,10 @@ class GameUiTest {
                     stats = PlayerStats(),
                     budget = 0L,
                     firmwareLevel = 0,
+                    adsRemoved = false,
                     backgroundAnimation = false,
                     onPlay = { played = true },
-                    onContinue = {}, onAgents = {}, onFirmware = {}, onCodex = {}, onStore = {}, onLeaderboard = {},
+                    onContinue = {}, onAgents = {}, onFirmware = {}, onCodex = {}, onStore = {}, onPlayAccount = {}, onLeaderboard = {},
                     onStatistics = {}, onSettings = {}, onAbout = {}, onExit = {}
                 )
             }
@@ -106,9 +107,10 @@ class GameUiTest {
                     stats = PlayerStats(),
                     budget = 0L,
                     firmwareLevel = 0,
+                    adsRemoved = false,
                     backgroundAnimation = false,
                     onPlay = {}, onContinue = { continued++ }, onAgents = {},
-                    onFirmware = {}, onCodex = {}, onStore = {}, onLeaderboard = {}, onStatistics = {}, onSettings = {},
+                    onFirmware = {}, onCodex = {}, onStore = {}, onPlayAccount = {}, onLeaderboard = {}, onStatistics = {}, onSettings = {},
                     onAbout = {}, onExit = {}
                 )
             }
@@ -132,8 +134,9 @@ class GameUiTest {
                     ),
                     budget = 340L,
                     firmwareLevel = 12,
+                    adsRemoved = false,
                     backgroundAnimation = false,
-                    onPlay = {}, onContinue = {}, onAgents = {}, onFirmware = {}, onCodex = {}, onStore = {}, onLeaderboard = {},
+                    onPlay = {}, onContinue = {}, onAgents = {}, onFirmware = {}, onCodex = {}, onStore = {}, onPlayAccount = {}, onLeaderboard = {},
                     onStatistics = {}, onSettings = {}, onAbout = {}, onExit = {}
                 )
             }
@@ -293,9 +296,10 @@ class GameUiTest {
                     stats = PlayerStats(),
                     budget = 175L,
                     firmwareLevel = 40,
+                    adsRemoved = false,
                     backgroundAnimation = false,
                     onPlay = {}, onContinue = {}, onAgents = {}, onFirmware = {},
-                    onCodex = {}, onStore = {}, onLeaderboard = {}, onStatistics = {}, onSettings = {},
+                    onCodex = {}, onStore = {}, onPlayAccount = {}, onLeaderboard = {}, onStatistics = {}, onSettings = {},
                     onAbout = {}, onExit = {}
                 )
             }

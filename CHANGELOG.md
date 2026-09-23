@@ -7,6 +7,96 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [1.14.0]
+
+### Added — the Google Play account screen
+
+A sub-menu whose only job is to answer one question honestly: *where do my
+purchases live, and what happens to them when I change phone?*
+
+Everything on it follows from one fact it refuses to obscure — **the game has
+no account of its own.** There is no login, no password and no server holding
+progress. A reassuring "signed in" badge would have been easy and would have
+been a lie: a player who believes there is a CyOps account expects their waves
+and their € to follow them to a new phone, and they do not. So the screen says
+which of the two does, in as many words:
+
+| | |
+| --- | --- |
+| PURCHASES | YOUR GOOGLE ACCOUNT |
+| WAVES, € AND FIRMWARE | THIS DEVICE ONLY |
+
+It also shows the live billing connection (CONNECTED / CONNECTING /
+UNREACHABLE / NOT AVAILABLE), each with an explanation of what the player can
+do about it; what the account owns, counted from the entitlements rather than
+assumed; the callsign, labelled as local and *not* a Google account; and links
+out to Play's own order history for refunds and receipts, because those are
+Google's to handle and pretending otherwise would strand a player.
+
+RESTORE stays pressable when Play is merely unreachable — that state is usually
+a missing network, and the fix is to press it again once there is one — and is
+disabled only when the build genuinely has no billing, because a restore button
+that looks live but does nothing is worse than a dead one.
+
+### Added — living backgrounds now theme the menus
+
+An owned background no longer stops at the battlefield. It reaches every menu
+backdrop through a single `CompositionLocal`, changing the drift's colour,
+density and pace. The battlefield effects are native-Canvas and the menus are
+Compose, so the theme carries by palette rather than by maintaining two
+implementations of every backdrop.
+
+Rasterized and measured rather than eyeballed: at 960×540 the free backdrop
+inks 2,051 pixels and AURORA 4,270, LATTICE reads green where AURORA reads
+blue, and every theme averages ≈0.02 luminance over the page — far under the
+0.22 ceiling that separates a backdrop from something competing with the menu
+in front of it.
+
+### Fixed — ALL LIVING BACKGROUNDS granted three of five
+
+`bg_pack` is titled ALL LIVING BACKGROUNDS and priced as a bundle, but its
+grant list was written when there were three backgrounds and was never updated
+when RAINFALL and PULSE were added. Anyone buying it would have received three
+of the five it names. The test that should have caught this asserted the
+literal `3`; it now asserts against the catalog, so adding a sixth background
+cannot repeat the mistake quietly.
+
+### Fixed — switching themes kept the previous one's motion
+
+The backdrop's columns were remembered against the column count alone. Every
+owned theme produces the same count, so changing from DRIFT to AURORA kept
+DRIFT's drift speeds.
+
+### Changed — the menu stopped claiming there are no ads
+
+The main menu read `OFFLINE · NO ACCOUNT · NO ADS · NO PURCHASES`. Three
+quarters of that stopped being true in 1.13.0. It now reads `PLAYS OFFLINE · NO
+LOGIN REQUIRED`, and adds `· AD-FREE` only for a player who has actually bought
+it. `README.md` carried the same stale claim about the `INTERNET` permission
+and has been corrected with the real permission list.
+
+---
+
+## [1.9.0] – [1.13.0]
+
+Logged in `PROGRESS.md` while the Play Store work was in flight, and summarized
+here after the fact:
+
+- **1.9.x** — SANDBOX removed; save state log (`PROGRESS.md`) written; splash
+  screen with the HAMIETON-DEV mark; `Hack:AI` hard mode behind wave 100; the
+  persistent player tag and build identifier on every screen.
+- **1.10.0** — the store catalog, entitlements and persistence, with
+  `NoBillingGateway` as the shipped default so the game stays playable when
+  billing is not.
+- **1.11.0** — menu music (bright 8-bit, against the game's lo-fi), core-server
+  skins, living backgrounds, SPECTRUM agents, themed lane corridors.
+- **1.12.0** — local leaderboard and callsign registration; one interstitial
+  after a *lost* run, behind a tested policy.
+- **1.13.0** — real Google Play Billing and AdMob, selected only when the build
+  is configured for them. APK 1.18 MB → 3.02 MB.
+
+---
+
 ## [1.8.0]
 
 ### Fixed — paying more now buys more

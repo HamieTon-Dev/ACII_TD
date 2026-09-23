@@ -205,10 +205,16 @@ enum class Sku(
         id = "bg_pack",
         kind = SkuKind.PERMANENT,
         title = "ALL LIVING BACKGROUNDS",
-        summary = "All three living backgrounds, plus €200.",
+        // Every background, not most of them. RAINFALL and PULSE were added
+        // after this pack was written and were not added to it, so a player
+        // buying something called ALL LIVING BACKGROUNDS would have received
+        // three of five.
+        summary = "All five living backgrounds, plus \u20AC200.",
         fallbackPrice = "$4.99",
         grantsBudget = 200,
-        alsoUnlocks = listOf("bg_drift", "bg_lattice", "bg_aurora")
+        alsoUnlocks = listOf(
+            "bg_drift", "bg_lattice", "bg_aurora", "bg_rainfall", "bg_pulse"
+        )
     ),
 
     // ------------------------------------------------------------ starter pack

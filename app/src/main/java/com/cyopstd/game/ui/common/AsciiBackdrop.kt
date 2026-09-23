@@ -15,9 +15,21 @@ import androidx.compose.ui.graphics.nativeCanvas
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.dp
+import androidx.compose.runtime.staticCompositionLocalOf
+import com.cyopstd.game.ui.theme.LivingBackground
 import com.cyopstd.game.ui.theme.Palette
 import kotlin.math.sin
 import kotlin.random.Random
+
+/**
+ * The living background the menus should wear.
+ *
+ * A CompositionLocal rather than a parameter on every screen: the backdrop
+ * sits behind roughly a dozen composables, all of which would otherwise have
+ * to accept and forward a value none of them care about. Set once in
+ * `CyOpsApp`, read once here.
+ */
+val LocalLivingBackground = staticCompositionLocalOf { LivingBackground.NONE }
 
 /**
  * The slow drift of 0s, 1s and punctuation behind the menus.
@@ -32,19 +44,33 @@ fun AsciiBackdrop(
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
     density: Int = 46,
-    tint: androidx.compose.ui.graphics.Color = Palette.GridLine,
+    tint: androidx.compose.ui.graphics.Color? = null,
     /** Seconds between backdrop updates. Decoration is throttled on purpose. */
     frameIntervalSeconds: Float = 0.05f
 ) {
     val density0 = LocalDensity.current
     var time by remember { mutableFloatStateOf(0f) }
 
-    val columns = remember(density) {
+    // The player's living background, if they own one. It reaches the menus by
+    // changing this drift's colour and weight rather than by porting the
+    // battlefield's Canvas effects: the menus are Compose, the effects are
+    // native-Canvas, and one recognisable palette carries the theme without
+    // maintaining two implementations of every backdrop.
+    val living = LocalLivingBackground.current
+    val resolvedTint = tint ?: living.laneTint ?: Palette.GridLine
+    // A theme earns a denser, livelier drift; the free backdrop stays as it was.
+    val columnCount = if (living == LivingBackground.NONE) density else (density * 1.35f).toInt()
+    val liveliness = if (living == LivingBackground.NONE) 1f else 1f + living.speed * 1.6f
+
+    // Keyed on liveliness as well as the count: every owned theme yields the
+    // same column count, so keying on the count alone kept the first theme's
+    // speeds when the player switched to another one.
+    val columns = remember(columnCount, liveliness) {
         val random = Random(0xBA5710D)
-        Array(density) {
+        Array(columnCount) {
             BackdropColumn(
                 xFraction = random.nextFloat(),
-                speed = 8f + random.nextFloat() * 26f,
+                speed = (8f + random.nextFloat() * 26f) * liveliness,
                 offset = random.nextFloat() * 1000f,
                 glyphs = CharArray(GLYPHS_PER_COLUMN) {
                     BACKDROP_CHARS[random.nextInt(BACKDROP_CHARS.size)]
@@ -85,7 +111,7 @@ fun AsciiBackdrop(
         val h = size.height
         paint.textSize = with(density0) { 11.dp.toPx() }
         val lineHeight = paint.textSize * 1.5f
-        val baseArgb = tint.toArgb()
+        val baseArgb = resolvedTint.toArgb()
 
         drawIntoCanvas { canvas ->
             val native = canvas.nativeCanvas

@@ -41,6 +41,7 @@ fun MainMenuScreen(
     stats: PlayerStats,
     budget: Long,
     firmwareLevel: Int,
+    adsRemoved: Boolean,
     backgroundAnimation: Boolean,
     onPlay: () -> Unit,
     onContinue: () -> Unit,
@@ -48,6 +49,7 @@ fun MainMenuScreen(
     onFirmware: () -> Unit,
     onCodex: () -> Unit,
     onStore: () -> Unit,
+    onPlayAccount: () -> Unit,
     onLeaderboard: () -> Unit,
     onStatistics: () -> Unit,
     onSettings: () -> Unit,
@@ -136,7 +138,11 @@ fun MainMenuScreen(
                 }
 
                 Spacer(Modifier.height(12.dp))
-                Caption("OFFLINE · NO ACCOUNT · NO ADS · NO PURCHASES")
+                // This line used to read "OFFLINE · NO ACCOUNT · NO ADS · NO
+                // PURCHASES". Three quarters of that stopped being true the
+                // moment billing and ads were wired in, and a menu that lies
+                // about ads is worse than one that says nothing.
+                Caption(playsOfflineCaption(adsRemoved))
             }
 
             Spacer(Modifier.width(24.dp))
@@ -193,6 +199,14 @@ fun MainMenuScreen(
                 )
                 Spacer(Modifier.height(10.dp))
                 BastionButton(
+                    text = "GOOGLE PLAY",
+                    subtitle = "Purchases, restore and what leaves this device",
+                    leadingGlyph = "[G]",
+                    accent = Palette.Blue,
+                    onClick = onPlayAccount
+                )
+                Spacer(Modifier.height(10.dp))
+                BastionButton(
                     text = "LEADERBOARD",
                     subtitle = "Ranked by deepest wave reached",
                     leadingGlyph = "[#]",
@@ -240,6 +254,18 @@ fun MainMenuScreen(
             }
         }
     }
+}
+
+/**
+ * The one-line promise under the status panel.
+ *
+ * It only ever claims what is still true for *this* player: the game runs with
+ * no network and asks for no account either way, and ads are mentioned only
+ * when there are ads to mention.
+ */
+private fun playsOfflineCaption(adsRemoved: Boolean): String = buildString {
+    append("PLAYS OFFLINE \u00B7 NO LOGIN REQUIRED")
+    if (adsRemoved) append(" \u00B7 AD-FREE")
 }
 
 private val TITLE_ART = """

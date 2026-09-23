@@ -116,13 +116,16 @@ Adding billing, ads and a network permission changes what must be declared:
   and the data safety answers both change. Decide before the first publish.
 
 Nothing else leaves the device: there is no analytics SDK, no crash reporter,
-no account system, and the leaderboard is local.
+no account system, and the leaderboard is local. The in-game **GOOGLE PLAY**
+screen states this to the player directly, including that purchases follow
+their Google account while run progress does not — worth reading before
+writing the store listing, so the two say the same thing.
 
 ---
 
 ## 5. What has and has not been proven
 
-**Verified here:** the app builds and signs; 205 tests pass; the Play SDKs
+**Verified here:** the app builds and signs; 219 tests pass; the Play SDKs
 resolve, link and survive R8 (billing and ads classes are present in the
 release DEX); the merged manifest carries INTERNET, `AD_ID` and the
 `com.android.vending.BILLING` permission the billing library adds.

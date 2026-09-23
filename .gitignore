@@ -21,3 +21,6 @@ keystore/
 
 # Logs
 *.log
+
+# Kotlin 2.x build session scratch
+.kotlin/

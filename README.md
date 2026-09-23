@@ -39,34 +39,47 @@ The security terminology is personality and education, not a prerequisite.
 
 ## What this game does not do
 
-- **No internet connection.** The app does not request the `INTERNET`
-  permission. It cannot talk to a network even if it wanted to.
-- No account, no login, no cloud save.
-- No advertisements, in-app purchases or subscriptions.
-- No analytics or telemetry.
+- **Nothing about your play leaves the device.** No analytics, no telemetry, no
+  crash reporter, no cloud save. Waves, agents, € and firmware are stored
+  locally and are never uploaded.
+- **No account and no login.** There is nothing to sign into. Purchases belong
+  to the Google account already signed into the Play Store on the device, which
+  is why the only account control in the game is RESTORE.
 - **No real cryptocurrency.** No blockchain, wallet, mining, NFTs or gambling.
   `◇ Crypto` and `€ Budget` are fictional in-game resources, exactly like gold
-  in any other tower defence game. Neither has value, neither can be bought, and
-  neither can leave the device.
+  in any other tower defence game. Neither has value and neither can leave the
+  device.
+- **Nothing that costs money is required.** Every agent, wave, boss and mode is
+  reachable by playing. The store sells cosmetics, convenience and € shortcuts.
 
-The only permission the game declares is `VIBRATE`, for optional haptic
-feedback. A build of the release APK reports exactly two permissions:
+## What it does ask for
 
-```
-android.permission.VIBRATE
-com.packetbastion.asciidefense.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
-```
+Earlier releases of this README said the app requested no `INTERNET`
+permission at all. That stopped being true in 1.13.0, when Google Play Billing
+and AdMob were wired in, and a README that keeps the old claim is worse than no
+README. The release build declares:
 
-The second is not a capability request. AndroidX injects it into every app that
-uses `androidx.core`; it is a signature-level permission scoped to this app's own
-package, used so that broadcast receivers registered at runtime are not
-exported to other apps. It grants nothing and cannot be held by anything else.
+| Permission | Why |
+| --- | --- |
+| `VIBRATE` | Optional haptic feedback |
+| `INTERNET`, `ACCESS_NETWORK_STATE` | Google Play Billing and, when a build is configured for them, ads |
+| `com.google.android.gms.permission.AD_ID` | Required by the ads SDK |
+| `com.android.vending.BILLING` | Added by the billing library |
+
+A checkout with no AdMob ids configured — which is how this repository ships —
+selects no-op gateways, shows no ads and sells nothing. **The game is fully
+playable with no network at all**, and one interstitial after a *lost* run is
+the only ad it will ever show, never more often than once every three minutes,
+and never at all once REMOVE ADS is bought.
 
 ---
 
 ## Screenshots
 
-*(Not yet captured — see [`docs/screenshots/README.md`](docs/screenshots/README.md).)*
+*(No device captures yet — see [`docs/screenshots/README.md`](docs/screenshots/README.md).
+Two screens are available as rendered previews, rasterized from the real
+Compose code under Robolectric: [`menu-google-play.png`](docs/screenshots/menu-google-play.png)
+and [`google-play-account.png`](docs/screenshots/google-play-account.png).)*
 
 | Screen | File |
 | --- | --- |

@@ -52,8 +52,15 @@ class StoreTest {
         assertTrue(starter.spectrumAgents)
         assertTrue(starter.owns(Sku.BG_DRIFT))
 
+        // Asserted against the catalog rather than a literal: this test used
+        // to say 3, which stayed green while two backgrounds were added to the
+        // game and not to the pack that claims to contain all of them.
         val backgrounds = Entitlements().plus(Sku.BG_PACK)
-        assertEquals(3, backgrounds.backgrounds.size)
+        assertEquals(Sku.backgrounds.size, backgrounds.backgrounds.size)
+        for (bg in Sku.backgrounds) {
+            assertTrue("${bg.id} was not granted by ALL LIVING BACKGROUNDS",
+                backgrounds.owns(bg))
+        }
     }
 
     @Test

@@ -4,7 +4,7 @@
 reads first. It records where the project actually stands, what is proven and
 what is not, and what comes next.
 
-_Last updated: v1.9.1 + cosmetics_ — see `CHANGELOG.md` for the full per-version history._
+_Last updated: v1.14.0 — Google Play account screen + themed menu backdrop. See `CHANGELOG.md` for the full per-version history._
 
 ---
 
@@ -12,7 +12,7 @@ _Last updated: v1.9.1 + cosmetics_ — see `CHANGELOG.md` for the full per-versi
 
 ```bash
 cd /home/user/ACII_TD
-./gradlew :app:testDebugUnitTest      # 169 tests, all passing
+./gradlew :app:testDebugUnitTest      # 219 tests, all passing
 ./gradlew :app:assembleRelease        # -> app/build/outputs/apk/release/CyOpsTD-v<ver>.apk
 ```
 
@@ -96,6 +96,12 @@ rather than loosened.
 | 1.6 | 48→79 deployment spots, threat chips, swarm spacing, health bar tracks |
 | 1.7 | TARPIT support unit (20 ◇ slow field), spawn interval 1.0–1.5s |
 | 1.8 | Roster rebalanced upward; removed the last random damage roll |
+| 1.9 | SANDBOX removed, splash mark, Hack:AI behind wave 100, identity strip |
+| 1.10 | Store catalog, entitlements, persistence; `NoBillingGateway` default |
+| 1.11 | Menu music, core-server skins, living backgrounds, SPECTRUM agents |
+| 1.12 | Local leaderboard + callsign; one interstitial after a lost run |
+| 1.13 | Real Play Billing + AdMob, selected only when configured. 3.02 MB |
+| 1.14 | GOOGLE PLAY account screen; living backgrounds reach the menus |
 
 ---
 
@@ -199,11 +205,25 @@ interface, ship a no-op implementation, and **do not claim they work**:
    `save/GameRepository.kt` — `storeState`, `applyPurchase`, cosmetic choice,
    `identity`, `setUsername`, `recordDamage`. `save/SaveModels.kt` gained
    `StoreState` and `PlayerIdentity`. 9 tests in `StoreTest.kt`.
-5. ⬜ Store screen UI, driven by the catalog. Add `Screen.Store` to
-   `ui/CyOpsApp.kt` and a MAIN MENU entry.
-6. 🟨 Skins — core-server skins chosen; **living backgrounds and the SPECTRUM
+5. ✅ Store screen UI, driven by the catalog — `ui/menu/StoreScreen.kt`,
+   `Screen.Store` in `ui/CyOpsApp.kt`, MAIN MENU entry. Joined in v1.14.0 by
+   `ui/menu/PlayAccountScreen.kt` (`Screen.PlayAccount`, MAIN MENU → GOOGLE
+   PLAY): connection state, what the Google account owns, the callsign, and
+   links into Play's own order history. It states plainly that purchases
+   follow the Google account while run progress does not leave the device —
+   the one thing a player is likely to get wrong, and expensive to get wrong.
+   `store/PlayLinks.kt` builds the deep links (market:// first, https
+   fallback) and reports failure rather than pretending a dead button worked.
+   8 tests in `PlayAccountTest.kt`.
+6. ✅ Skins — core-server skins chosen; **living backgrounds and the SPECTRUM
    agent skin are implemented and wired**, backgrounds also tint the lane
-   corridors. Remaining: showing the menu backdrop the same treatment.
+   corridors, and as of v1.14.0 they theme **the menu backdrop** too, through
+   `LocalLivingBackground` in `ui/common/AsciiBackdrop.kt` — one
+   CompositionLocal set in `CyOpsApp` rather than a parameter threaded through
+   a dozen screens. Verified by rasterizing the real backdrop
+   (`MenuBackdropRenderTest`): free backdrop 2,051 ink pixels against AURORA's
+   4,270, LATTICE green where AURORA is blue, every theme ≈0.02 luminance
+   against a 0.22 ceiling.
    `ui/theme/CoreSkin.kt` holds six looks as pure data (four colours plus a
    signature flourish), so a new one is a table entry rather than a branch.
    `BattlefieldRenderer.coreSkin` applies it; `drawCoreFlourish` draws the
@@ -252,8 +272,13 @@ interface, ship a no-op implementation, and **do not claim they work**:
    They are deliberately **not** in `app/build.gradle.kts` yet — adding them
    pulls in the INTERNET permission and roughly 5× the APK size, and none of it
    can be tested here.
-10. ⬜ Update `README.md` / `DEVELOPMENT_STATUS.md` to stop advertising
-    "no ads, no IAP, no accounts, no INTERNET permission".
+10. ✅ `README.md` no longer advertises "no ads, no IAP, no INTERNET
+    permission" — it now carries the real permission table and says what the
+    unconfigured checkout does instead. `DEVELOPMENT_STATUS.md` is a log of
+    the 1.0 build, so its claim is marked superseded rather than rewritten.
+    The **main menu** carried the same stale line (`NO ADS · NO PURCHASES`)
+    and now reads `PLAYS OFFLINE · NO LOGIN REQUIRED`, plus `· AD-FREE` only
+    for a player who bought it.
 
 **Implementation note for whoever picks this up:** `NoBillingGateway` is the
 shipped gateway. The game must stay fully playable with it — that is the
@@ -366,11 +391,15 @@ backgrounds with no product to sell them.
 ### 6e. Decisions needed from the user
 
 - Leaderboard: Play Games (no custom usernames, no backend) **or** a custom
-  backend (real hosting + privacy policy)?
-- OmniByte living background: add the repo to the session, or write fresh?
+  backend (real hosting + privacy policy)? Local for now, behind
+  `LeaderboardGateway` — swapping it touches one file and no screen.
+- `core_skin_pack` is still priced at the originally specified $2.50 while now
+  covering six skins rather than three. Worth revisiting before publish.
+- OmniByte living background: the repo is unreachable from this session
+  (`list_repos` returns it as inaccessible), so the five backgrounds were
+  written fresh.
 - Package name / applicationId for the Play Console listing — `com.cyopstd.game`
   is the current one and cannot change after first publish.
-- SANDBOX rebalance (from §5).
 
 ---
 

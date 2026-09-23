@@ -167,7 +167,11 @@ Deliberately out of scope for 1.0, and the code is structured to accept them:
 - Additional maps (4/5 lanes, branching paths). `WorldGeometry` already models
   lanes as waypoint lists specifically so this is additive.
 - Campaign missions, challenge modes, achievements.
-- Leaderboards or any online feature. There is no INTERNET permission by design.
+- ~~Leaderboards or any online feature. There is no INTERNET permission by
+  design.~~ **Superseded.** A local leaderboard shipped in 1.12.0 and Play
+  Billing + AdMob in 1.13.0, so the release build does declare `INTERNET`.
+  The rest of this document describes the 1.0 release and is left as written;
+  `RELEASING.md` and `PROGRESS.md` carry the current state.
 - Prestige / specialisation past agent level 10.
 - Pinch-to-zoom on the battlefield (the fixed world fits the screen, so it has
   not been needed).

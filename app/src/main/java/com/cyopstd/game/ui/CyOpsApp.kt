@@ -17,13 +17,20 @@ import com.cyopstd.game.ui.menu.AboutScreen
 import com.cyopstd.game.ui.menu.AgentsScreen
 import com.cyopstd.game.ui.menu.FirmwareScreen
 import com.cyopstd.game.ui.menu.LeaderboardScreen
+import com.cyopstd.game.ui.menu.PlayAccountScreen
 import com.cyopstd.game.ui.menu.StoreScreen
 import com.cyopstd.game.ui.menu.MainMenuScreen
 import com.cyopstd.game.ui.settings.SettingsScreen
 import com.cyopstd.game.ui.splash.SplashScreen
 import com.cyopstd.game.ui.stats.StatisticsScreen
 import androidx.compose.ui.Alignment
+import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.ui.platform.LocalContext
+import com.cyopstd.game.ads.PlayServices
+import com.cyopstd.game.store.PlayLinks
 import com.cyopstd.game.ui.common.IdentityStrip
+import com.cyopstd.game.ui.common.LocalLivingBackground
+import com.cyopstd.game.ui.theme.LivingBackground
 import com.cyopstd.game.ui.theme.Palette
 
 /**
@@ -42,6 +49,7 @@ sealed interface Screen {
     data object Firmware : Screen
     data object Codex : Screen
     data object Store : Screen
+    data object PlayAccount : Screen
     data object Leaderboard : Screen
     data object Statistics : Screen
     data object Settings : Screen
@@ -58,7 +66,13 @@ fun CyOpsApp(
     // Where SETTINGS should return to: it is reachable from both the main menu
     // and the in-match pause menu.
     var settingsReturn by remember { mutableStateOf<Screen>(Screen.MainMenu) }
+    // The Play account screen links out to Google Play; opening a URI needs a
+    // Context, and this is the one place in the graph that already has one.
+    val context = LocalContext.current
 
+    // Set once, read by every menu backdrop beneath it.
+    val living = LivingBackground.forProduct(viewModel.cosmetics.backgroundId)
+    CompositionLocalProvider(LocalLivingBackground provides living) {
     Box(modifier.fillMaxSize().background(Palette.Background)) {
         when (screen) {
             Screen.Splash -> SplashScreen(onFinished = { screen = Screen.MainMenu })
@@ -70,6 +84,7 @@ fun CyOpsApp(
                     stats = viewModel.stats,
                     budget = viewModel.budget,
                     firmwareLevel = viewModel.firmwareLevel,
+                    adsRemoved = viewModel.entitlements.adsRemoved,
                     backgroundAnimation = viewModel.settings.backgroundAnimation,
                     onPlay = {
                         viewModel.playClick()
@@ -87,6 +102,7 @@ fun CyOpsApp(
                     onFirmware = { viewModel.playClick(); screen = Screen.Firmware },
                     onCodex = { viewModel.playClick(); screen = Screen.Codex },
                     onStore = { viewModel.playClick(); screen = Screen.Store },
+                    onPlayAccount = { viewModel.playClick(); screen = Screen.PlayAccount },
                     onLeaderboard = {
                         viewModel.playClick()
                         viewModel.refreshLeaderboard()
@@ -144,6 +160,38 @@ fun CyOpsApp(
                     backgroundAnimation = viewModel.settings.backgroundAnimation,
                     onBuy = { sku -> viewModel.buy(sku) },
                     onRestore = { viewModel.restorePurchases() },
+                    onBack = { viewModel.playClick(); screen = Screen.MainMenu }
+                )
+            }
+
+            Screen.PlayAccount -> {
+                BackHandler { screen = Screen.MainMenu }
+                PlayAccountScreen(
+                    entitlements = viewModel.entitlements,
+                    identity = viewModel.identity,
+                    budget = viewModel.budget,
+                    status = viewModel.billingStatus,
+                    adsConfigured = PlayServices.adsConfigured,
+                    backgroundAnimation = viewModel.settings.backgroundAnimation,
+                    onRestore = { viewModel.restorePurchases() },
+                    onOpenOrders = {
+                        viewModel.playClick()
+                        if (!PlayLinks.open(context, PlayLinks.orderHistoryUris())) {
+                            viewModel.showTransient("NO APP CAN OPEN GOOGLE PLAY")
+                        }
+                    },
+                    onOpenListing = {
+                        viewModel.playClick()
+                        val uris = PlayLinks.listingUris(context.packageName)
+                        if (!PlayLinks.open(context, uris)) {
+                            viewModel.showTransient("NO APP CAN OPEN GOOGLE PLAY")
+                        }
+                    },
+                    onCallsign = {
+                        viewModel.playClick()
+                        viewModel.refreshLeaderboard()
+                        screen = Screen.Leaderboard
+                    },
                     onBack = { viewModel.playClick(); screen = Screen.MainMenu }
                 )
             }
@@ -209,5 +257,6 @@ fun CyOpsApp(
             playerTag = viewModel.playerTag,
             modifier = Modifier.align(Alignment.BottomCenter)
         )
+    }
     }
 }
