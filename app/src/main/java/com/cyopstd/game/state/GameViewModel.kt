@@ -12,6 +12,9 @@ import androidx.compose.ui.geometry.Offset
 import com.cyopstd.game.audio.AudioEngine
 import com.cyopstd.game.audio.HapticEngine
 import com.cyopstd.game.core.Balance
+import com.cyopstd.game.ads.AdGateway
+import com.cyopstd.game.ads.AdPolicy
+import com.cyopstd.game.ads.NoAdGateway
 import com.cyopstd.game.core.GameMode
 import com.cyopstd.game.save.LeaderboardEntry
 import com.cyopstd.game.save.LeaderboardGateway
@@ -216,6 +219,41 @@ class GameViewModel @JvmOverloads constructor(
     /** The tag shown on the persistent identity strip. */
     var playerTag by mutableStateOf("")
         private set
+
+    // -------------------------------------------------------------------- ads
+
+    /**
+     * [NoAdGateway] until AdMob is configured — see PROGRESS.md. Swapping in
+     * the real one is the only change needed; nothing else knows the
+     * difference, and with the no-op the game plays exactly as it does today.
+     */
+    private val ads: AdGateway = NoAdGateway()
+    private val adPolicy = AdPolicy()
+
+    /** True while an interstitial is on screen and the game is waiting on it. */
+    var showingAd by mutableStateOf(false)
+        private set
+
+    /**
+     * Shows an interstitial after a lost run, if the rules allow one.
+     *
+     * [then] runs either way. The game must not depend on an ad completing —
+     * a gateway that never calls back would otherwise strand the player on a
+     * dead screen, so the continuation is the caller's and is always invoked.
+     */
+    private fun maybeShowLossAd(then: () -> Unit) {
+        if (!adPolicy.shouldShowOnRunLost(entitlements.adsRemoved, ads.isReady)) {
+            then()
+            return
+        }
+        adPolicy.recordShown()
+        showingAd = true
+        ads.showInterstitial {
+            showingAd = false
+            ads.preload()
+            then()
+        }
+    }
 
     // ------------------------------------------------------------ leaderboard
 
@@ -705,6 +743,10 @@ class GameViewModel @JvmOverloads constructor(
         runRecorded = true
         matchActive = false
         audio.setInMatch(false)
+        // Only a lost run carries an ad. A player who quit to the menu chose
+        // to leave, and charging them for that is the fastest way to make
+        // leaving permanent.
+        if (engine.phase == RunPhase.GAME_OVER) maybeShowLossAd { }
 
         val isRecord = engine.currentWave > stats.highestWave
         gameOverSummary = GameOverSummary(

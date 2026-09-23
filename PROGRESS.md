@@ -153,10 +153,18 @@ interface, ship a no-op implementation, and **do not claim they work**:
    (`com.android.billingclient:billing`) is a Google Maven dependency; check it
    resolves through the proxy before promising anything. Nothing about billing
    can be functionally tested in this container.
-2. **Ads (interstitial on run loss)** — needs an AdMob account and app/unit
-   IDs. Note: **the "skip after 30 seconds" rule is not ours to set** — skip
-   timing is controlled by the ad format and network. An interstitial on loss
-   is implementable; the skip behaviour is AdMob's.
+2. **Ads** — 🟨 **the policy and wiring are built and tested; the ad network
+   is not connected.** `ads/AdGateway.kt` holds the interface, `NoAdGateway`
+   (what ships today — never has an ad, always calls back, so the game plays
+   exactly as it does now) and `AdPolicy`, which is where the rules that
+   matter live: paying to remove ads removes them with no exceptions, only a
+   *lost* run carries an ad (never quitting to the menu), and a 180 s cooldown
+   so a player losing repeatedly on an early wave is not shown one every
+   thirty seconds. 6 tests, one of which caught a `Long.MIN_VALUE` overflow
+   that stopped the first ad of every session from ever showing.
+   Still needed from the owner: an AdMob account and unit ids. Note that
+   **"skip after 30 seconds" is not ours to set** — skip timing belongs to the
+   ad format and the network.
 3. **Online leaderboard with unique usernames** — a *unique* username registry
    needs a server. Two honest options, and the user must pick:
    - **Play Games Services leaderboards** (no backend; identity and display
@@ -209,8 +217,14 @@ interface, ship a no-op implementation, and **do not claim they work**:
    `[1,2,3,5]` with `Balance.speedCount(fifthUnlocked)`, and
    `GameViewModel.fifthSpeedUnlocked` gates cycling. Still needs wiring from
    the store state into the view model.
-8. ⬜ Username + local leaderboard screen. The model and persistence exist;
-   the UI does not.
+8. ✅ **Leaderboard + callsign registration.** `LEADERBOARD` on the main menu:
+   rankings, your record, and the registration field. Behind a
+   `LeaderboardGateway` interface with `LocalLeaderboard`, so swapping in Play
+   Games or a backend later touches one file and no screen. Rank is by deepest
+   wave with damage as the tiebreak, and that ordering lives on
+   `LeaderboardEntry` so nothing can re-implement it differently. The board is
+   a history of runs, not a table of players — beating your own record keeps
+   both. Capped at 25. 6 tests.
 9. ⬜ Real Play Billing / AdMob / Play Games wiring — **blocked on the owner.**
    All three SDKs were confirmed to resolve through the proxy:
    `com.android.billingclient:billing-ktx:7.1.1`,
