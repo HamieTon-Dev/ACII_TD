@@ -58,9 +58,19 @@ object Balance {
 
     const val MAX_WAVE_ENEMIES = 42
 
-    /** Seconds between spawns; tightens with wave number but never below the floor. */
+    /**
+     * Seconds between spawns; tightens with wave number but never below the
+     * floor.
+     *
+     * Widened in 1.6.1 from 1.15s down to a 0.38s floor. At the old floor a
+     * late wave put a threat on the board every third of a second, which is
+     * faster than most of them clear their own chip width, so the board read
+     * as one continuous smear of traffic rather than as a stream of separate
+     * attacks you could pick off. The range is now 1.50s early to 1.00s deep,
+     * which keeps the board legible at every wave.
+     */
     fun spawnInterval(wave: Int): Float =
-        (1.15f - wave * 0.010f).coerceAtLeast(0.38f)
+        (1.50f - wave * 0.010f).coerceIn(1.00f, 1.50f)
 
     /**
      * World units between consecutive members of a swarm burst.

@@ -25,6 +25,7 @@ enum class AttackStyle(val trail: String) {
     BURST(">>>>"),
     PRECISION("*--->"),
     CONTAINMENT("[::]"),
+    THROTTLE("~->"),
     CIPHER("{==>}"),
     HUNTER("-=>"),
     SENTINEL(":::>"),
@@ -56,6 +57,27 @@ enum class AgentType(
     /** Advanced agents expose the targeting selector. */
     val allowsTargetingModes: Boolean = false
 ) {
+    TARPIT(
+        displayName = "TARPIT",
+        shortName = "TARPIT",
+        glyph = "~",
+        cost = 20,
+        // Almost no damage on purpose. At 1.2 a four-tarpit board cleared wave
+        // 12 better than two FIREWALLs for the same 80 crypto, which made the
+        // cheapest unit on the board also the most efficient one. It has to be
+        // bought for what it does to the enemy's clock, not for its output.
+        baseDamage = 0.6f,
+        baseFireRate = 1.6f,
+        baseRange = 200f,
+        attackStyle = AttackStyle.THROTTLE,
+        unlockWave = 0,
+        abilityName = "RATE LIMIT",
+        abilitySummary = "Cheap and nearly harmless. Everything inside its radius crawls.",
+        codexEntry = "A tarpit accepts a hostile connection and then answers as " +
+            "slowly as it possibly can, holding the attacker open on a socket " +
+            "that is going nowhere. It does not stop anything by itself. It " +
+            "buys every other defence you have more time to work."
+    ),
     FIREWALL(
         displayName = "FIREWALL",
         shortName = "FIREWALL",

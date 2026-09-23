@@ -159,6 +159,7 @@ class BattlefieldRenderer {
         drawLanes(canvas, engine, options, time)
         drawServer(canvas, engine, time)
         drawDeploymentNodes(canvas, engine, selection, time)
+        drawTarpitFields(canvas, engine)
         drawRangeIndicator(canvas, engine, selection, options)
         drawAgents(canvas, engine, selection, time)
         drawEnemies(canvas, engine, time)
@@ -664,6 +665,26 @@ class BattlefieldRenderer {
 
     // ---------------------------------------------------------------- agents
 
+    /**
+     * The TARPIT's slow field, drawn faintly and permanently.
+     *
+     * Range rings are otherwise only shown for a selected or about-to-be-placed
+     * agent, because a board full of overlapping circles is unreadable. This
+     * one is the exception it earns: the field *is* the unit, and an area
+     * effect you cannot see the edge of is guesswork. Kept at a tenth alpha so
+     * several of them still read as texture rather than as clutter.
+     */
+    private fun drawTarpitFields(canvas: android.graphics.Canvas, engine: GameEngine) {
+        for (agent in engine.agents.items) {
+            if (!agent.active || agent.type != AgentType.TARPIT) continue
+            strokePaint.color = colBlue
+            strokePaint.alpha = 26
+            strokePaint.strokeWidth = 1.5f
+            canvas.drawCircle(agent.x, agent.y, agent.range(), strokePaint)
+        }
+        strokePaint.alpha = 255
+    }
+
     private fun drawAgents(
         canvas: android.graphics.Canvas,
         engine: GameEngine,
@@ -1106,6 +1127,7 @@ class BattlefieldRenderer {
     // ---------------------------------------------------------------- colors
 
     private fun agentColor(type: AgentType): Int = when (type) {
+        AgentType.TARPIT -> colBlue
         AgentType.FIREWALL -> colGreen
         AgentType.IDS -> colCyan
         AgentType.IPS -> colBlue

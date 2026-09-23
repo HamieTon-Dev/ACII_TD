@@ -7,6 +7,60 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [1.7.0]
+
+### Added — TARPIT, a 20 ◇ support unit
+
+`[~]` **TARPIT** — 20 crypto, 200 range, available from wave 1. It is the
+cheapest thing on the board and deals almost no damage. Everything inside its
+radius simply moves at **0.72× speed**, deepening to a 0.55× floor as it levels.
+
+It is an **area field**, not an on-hit slow, and that decision was made by
+measurement rather than taste. Applied on hit, a tarpit firing 1.6 shots a
+second with a 1.4 second slow holds about two threats at a time; against a wave
+of twenty that measured as **0.6 hp of integrity saved for 20 crypto** — worse
+value than simply upgrading a tower you already own, i.e. a unit nobody would
+ever buy. As a field it does what its name means.
+
+Balanced against two failure modes, both measured over 12 seeded runs each
+(the engine's generator is injectable, so every figure is reproducible):
+
+- **It must not be spammable.** Slows do not stack — only the strongest
+  applies — so a wall of tarpits buys area, never a deeper slow, and the unit
+  has the damage output of a rounding error. Four tarpits (80 ◇) leak more
+  integrity than two FIREWALLs at the same price.
+- **It must be worth buying.** Placed beside damage, 20 ◇ of tarpit saves
+  ~2 hp of integrity where 17 ◇ of upgrade saves ~1.2.
+
+It also must not delete the **SANDBOX**, which costs four times as much and is
+the slow specialist: a test asserts the sandbox slows strictly deeper at all
+100 levels.
+
+The field is drawn as a faint permanent ring. Range rings are otherwise shown
+only for a selected agent, because a board of overlapping circles is
+unreadable — but for this unit the field *is* the unit, and an area effect
+whose edge you cannot see is guesswork.
+
+An earlier pass had the tarpit at 1.2 base damage. Four of them then cleared
+wave 12 *better* than two FIREWALLs for the same money, making the cheapest
+unit also the most efficient one. Damage is now 0.6.
+
+### Changed — threats arrive far enough apart to be read
+
+Spawn interval moved from **1.15 s decaying to a 0.38 s floor** to **1.50 s
+decaying to a 1.00 s floor**. At the old floor a late wave put a threat on the
+board every third of a second — faster than one clears its own chip width — so
+deep waves read as one continuous smear of traffic rather than a stream of
+separate attacks you could pick off and respond to.
+
+The trade is honest and worth stating: **late waves take about twice as long to
+spawn** (wave 90 goes from 16 s of spawning to 42 s), and because threats arrive
+spread out rather than bunched, **the game is easier**. Late-game pressure now
+comes from health scaling rather than from spawn rate, since wave size is capped
+at 42 regardless. The 2× and 3× speed controls absorb the extra wall-clock time.
+
+---
+
 ## [1.6.0]
 
 ### Added — deployment spots where the map was empty

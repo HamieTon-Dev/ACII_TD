@@ -572,6 +572,47 @@ gain. A test walks 400 consecutive levels and asserts no two print the same.
 The **tuning** was left alone: +0.5% a level is the intended curve, and the
 cost table is built around buying it in dozens.
 
+### TARPIT
+
+| | |
+| --- | --- |
+| Cost | 20 ◇ — the cheapest unit in the game |
+| Range | 200 |
+| Damage | 0.6 @ 1.6/s — 0.96 dps, a rounding error |
+| Slow | 0.72× at L1, −0.01 per level, floor 0.55× |
+| Kind | **Area field**, refreshed every frame, 0.25 s linger |
+
+A support unit. It buys time for everything else you own and wins nothing by
+itself. Three properties keep it in its lane:
+
+- **Slows do not stack.** Four tarpits apply the same 0.72× as one, so spam
+  buys coverage, never a lock.
+- **It cannot kill.** At 0.96 dps a board of nothing but tarpits leaks more
+  than half as many towers' worth of FIREWALLs at the same price.
+- **The SANDBOX stays deeper at every level** (0.60× → 0.42× against the
+  tarpit's 0.72× → 0.55×), so the 80 ◇ specialist keeps its job.
+
+Measured over 12 seeded runs per board, at waves 8/12/16:
+
+| Board | Cost | Integrity lost |
+| --- | ---: | ---: |
+| 2× FIREWALL | 80 | 29.2 |
+| 2× FIREWALL + 1 upgrade | 97 | 28.0 |
+| 2× FIREWALL + 1× TARPIT | 100 | **27.2** |
+| 3× FIREWALL | 120 | 23.9 |
+| 4× TARPIT | 80 | 34.6 |
+
+### Spawn pacing
+
+`spawnInterval(wave) = (1.50 − wave × 0.010)` clamped to **1.00–1.50 s**.
+
+Previously 1.15 s decaying to a 0.38 s floor. At that floor a threat landed
+every third of a second, which is faster than one clears its own chip width, so
+a deep wave read as a smear rather than as individual attacks. The cost is that
+late waves spawn for about twice as long, and that the game is easier — threats
+that arrive spread out are picked off more easily than bunched ones. Wave size
+is capped at 42, so late-game pressure now rests on health scaling alone.
+
 ### Deployment spots
 
 48 spots became 79 in 1.6.0. The additions are the mid-map corridor between
