@@ -285,13 +285,16 @@ Rack hardware, applied to every skin (v1.9.1+):
   whatever the box is painted. Tinting them to match a skin made them read as
   decoration rather than hardware. Which light is which is fixed per position,
   never rolled per frame — an LED that changes colour is not an LED.
-- **A racetrack chase strip** along the bottom of the rack: two comets running
-  opposite sides of the loop with fading tails, speeding up with board load,
-  modelled on an addressable LED ring.
+- **A racetrack chase that loops around the integrity bar and its numbers**:
+  two comets running opposite sides of the circuit with fading tails, speeding
+  up with board load, modelled on an addressable LED strip. Framing the
+  readout rather than sitting beside it puts the motion where the number that
+  matters already is.
 - **NEONGRID is the premium skin** ($1, deliberately **excluded from the
   pack** — a test asserts it). Its chase is a closed **ring** rather than a
-  strip, and its lights skim slowly between blue and green like a holographic
-  foil. That is the one place a skin colours a light, because it is a
+  circuit, and its lights skim slowly between blue and green like a
+  holographic foil. (`CoreSkin.Chase.RING_HOLOGRAPHIC` keeps the standalone
+  circle available if the owner prefers it.) That is the one place a skin colours a light, because it is a
   signature rather than an indicator; the status LEDs above it are untouched.
 
 Seven paid skins. **Pricing needs a decision:** `CORE_SKIN_PACK` is still at the

@@ -630,7 +630,7 @@ class BattlefieldRenderer {
         }
         thinTextPaint.alpha = 255
 
-        drawRacetrack(canvas, left, right, bottom - 96f, damaged, load, time)
+        drawRacetrack(canvas, left, right, top, bottom, damaged, load, time)
 
         // Integrity bar: [==========]
         val barLeft = left + 26f
@@ -822,70 +822,88 @@ class BattlefieldRenderer {
     }
 
     /**
-     * The chase along the bottom of the rack.
+     * The chase around the integrity block.
      *
-     * A run of LEDs with lit comets travelling along it and fading behind,
-     * like the addressable strips these racks are actually built with. It
-     * speeds up with board load, so it carries the same information as the LED
-     * grid in a form the eye catches from across the screen.
+     * Lights run a closed circuit around the integrity bar and its numbers
+     * with comets travelling it and fading behind, like the addressable strips
+     * these racks are actually built with. Framing the readout rather than
+     * sitting beside it means the chase draws the eye to the number that
+     * matters, and it speeds up with board load, so it carries the same
+     * information as the LED grid in a form the eye catches peripherally.
      *
-     * NEONGRID runs the same chase around a closed ring instead, and skims its
-     * colour slowly between blue and green the way a holographic foil shifts
-     * as it is tilted. That is the one place a skin is allowed to colour a
-     * light, because it is the skin's signature rather than an indicator: the
-     * green-and-amber status LEDs above it are untouched.
+     * NEONGRID skims its lights slowly between blue and green like a
+     * holographic foil. That is the one place a skin colours a light, because
+     * it is the skin's signature rather than an indicator: the green-and-amber
+     * status LEDs above are untouched.
      */
     private fun drawRacetrack(
         canvas: android.graphics.Canvas,
         left: Float,
         right: Float,
-        y: Float,
+        top: Float,
+        bottom: Float,
         damaged: Boolean,
         load: Float,
         time: Float
     ) {
-        val ring = coreSkin.chase == CoreSkin.Chase.RING_HOLOGRAPHIC
-        val count = if (ring) RING_LEDS else RACETRACK_LEDS
-        val span = (right - left) - 52f
-        val gap = span / (RACETRACK_LEDS - 1)
+        val style = coreSkin.chase
+        val holographic = style != CoreSkin.Chase.LOOP
+        val ring = style == CoreSkin.Chase.RING_HOLOGRAPHIC
+        val count = if (ring) RING_LEDS else LOOP_LEDS
         val cx = (left + right) * 0.5f
-        // Two comets on opposite sides of the loop, so the chase reads as a
-        // circuit rather than as a single dot sliding back and forth.
+
+        // The circuit encloses the bar (which starts 76 units up from the
+        // bottom of the rack) and the figures beneath it.
+        val loopLeft = left + 13f
+        val loopRight = right - 13f
+        val loopTop = bottom - 90f
+        val loopBottom = bottom - 8f
+        val sideW = loopRight - loopLeft
+        val sideH = loopBottom - loopTop
+        val perimeter = 2f * (sideW + sideH)
+
+        // Two comets on opposite sides of the circuit, so it reads as a loop
+        // rather than as a single dot sliding back and forth.
         val head = (time * (0.32f + load * 0.30f)) % 1f
 
         for (i in 0 until count) {
-            val at = i / (count - 1f)
+            val at = i / count.toFloat()
             val px: Float
             val py: Float
             if (ring) {
-                // Lifted clear of the integrity bar, which starts 76 units up
-                // from the bottom of the rack: a ring centred on the strip's
-                // line would overlap it.
-                val angle = (i / count.toFloat()) * TWO_PI_F - TWO_PI_F * 0.25f
+                val angle = at * TWO_PI_F - TWO_PI_F * 0.25f
                 px = cx + cos(angle) * RING_RADIUS
-                py = y - RING_LIFT + sin(angle) * RING_RADIUS
+                py = bottom - 114f + sin(angle) * RING_RADIUS
             } else {
-                px = left + 26f + i * gap
-                py = y
+                // Walk the perimeter clockwise from the top-left corner.
+                val d = at * perimeter
+                when {
+                    d < sideW -> { px = loopLeft + d; py = loopTop }
+                    d < sideW + sideH -> { px = loopRight; py = loopTop + (d - sideW) }
+                    d < 2f * sideW + sideH -> {
+                        px = loopRight - (d - sideW - sideH); py = loopBottom
+                    }
+                    else -> { px = loopLeft; py = loopBottom - (d - 2f * sideW - sideH) }
+                }
             }
 
             var best = 1f
             for (comet in 0 until 2) {
                 val h = (head + comet * 0.5f) % 1f
-                var d = h - (if (ring) i / count.toFloat() else at)
-                if (d < 0f) d += 1f
-                if (d < best) best = d
+                var gap = h - at
+                if (gap < 0f) gap += 1f
+                if (gap < best) best = gap
             }
             val glow = (1f - best * RACETRACK_TAIL).coerceIn(0f, 1f)
 
             fillPaint.color = when {
                 damaged -> colRed
-                ring -> holographic(time, i / count.toFloat())
+                holographic -> holographic(time, at)
                 glow > 0.55f -> colLedGreen
                 else -> colLedAmber
             }
-            fillPaint.alpha = (24 + 231 * glow * glow).toInt().coerceIn(0, 255)
-            canvas.drawCircle(px, py, 2.4f + 2.2f * glow, fillPaint)
+            fillPaint.alpha = (22 + 233 * glow * glow).toInt().coerceIn(0, 255)
+            canvas.drawCircle(px, py, 2.2f + 2.0f * glow, fillPaint)
         }
         fillPaint.alpha = 255
     }
@@ -893,10 +911,10 @@ class BattlefieldRenderer {
     /**
      * Holographic foil: a slow blue-to-green skim with a spatial offset, so
      * neighbouring lights sit at slightly different points in the sweep and
-     * the ring shows a gradient rather than flashing as one block.
+     * the circuit shows a gradient rather than flashing as one block.
      */
     private fun holographic(time: Float, position: Float): Int {
-        val phase = 0.5f + 0.5f * sin(TWO_PI_F * (time * HOLO_SPEED + position * 0.65f))
+        val phase = 0.5f + 0.5f * sin(TWO_PI_F * (time * HOLO_SPEED + position * 0.85f))
         val r = (0x3A + (0x2B - 0x3A) * phase).toInt()
         val g = (0x86 + (0xFF - 0x86) * phase).toInt()
         val b = (0xFF + (0x9C - 0xFF) * phase).toInt()
@@ -1525,12 +1543,12 @@ class BattlefieldRenderer {
     }
 
     private companion object {
-        const val RACETRACK_LEDS = 22
+        /** Lights around the circuit that frames the integrity block. */
+        const val LOOP_LEDS = 46
 
         /** NEONGRID's ring: lights around it, its radius, and its skim rate. */
         const val RING_LEDS = 26
         const val RING_RADIUS = 30f
-        const val RING_LIFT = 24f
         const val HOLO_SPEED = 0.11f
 
         /** How quickly a racetrack comet fades behind itself. */

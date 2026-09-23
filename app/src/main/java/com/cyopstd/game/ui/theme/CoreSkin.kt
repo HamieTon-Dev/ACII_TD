@@ -23,7 +23,7 @@ enum class CoreSkin(
     val trim: Color,
     val flourish: Flourish,
     /** How the chase strip along the bottom of the rack is drawn. */
-    val chase: Chase = Chase.STRIP
+    val chase: Chase = Chase.LOOP
 ) {
     DEFAULT(
         productId = null,
@@ -86,7 +86,7 @@ enum class CoreSkin(
         accent = Color(0xFF3A86FF),
         trim = Color(0xFF4A79C8),
         flourish = Flourish.GRID,
-        chase = Chase.RING_HOLOGRAPHIC
+        chase = Chase.LOOP_HOLOGRAPHIC
     ),
 
     VOID(
@@ -101,11 +101,12 @@ enum class CoreSkin(
     /**
      * The chase along the bottom of the rack.
      *
-     * [STRIP] is the straight run every skin gets. [RING_HOLOGRAPHIC] is
-     * NEONGRID's alone: a closed loop whose lights skim slowly between blue
-     * and green, the way a holographic foil shifts as you tilt it.
+     * [LOOP] runs the lights right around the integrity bar and its numbers,
+     * so the chase frames the one readout that matters most instead of sitting
+     * beside it. [LOOP_HOLOGRAPHIC] is the same circuit with NEONGRID's foil
+     * colour, and [RING_HOLOGRAPHIC] is the standalone circle.
      */
-    enum class Chase { STRIP, RING_HOLOGRAPHIC }
+    enum class Chase { LOOP, LOOP_HOLOGRAPHIC, RING_HOLOGRAPHIC }
 
     /** The extra mark that makes a skin recognisable at a glance. */
     enum class Flourish {
