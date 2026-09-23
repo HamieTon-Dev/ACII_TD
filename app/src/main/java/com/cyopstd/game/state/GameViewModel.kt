@@ -351,6 +351,7 @@ class GameViewModel @JvmOverloads constructor(
     // ----------------------------------------------------------- run control
 
     fun startNewGame() {
+        audio.setInMatch(true)
         // Selected before the run starts: the mode sets starting integrity, so
         // it has to be in place before startNewRun reads it.
         engine.selectMode(selectedMode)
@@ -675,7 +676,7 @@ class GameViewModel @JvmOverloads constructor(
         if (runRecorded) return
         runRecorded = true
         matchActive = false
-        audio.stopMusic()
+        audio.setInMatch(false)
 
         val isRecord = engine.currentWave > stats.highestWave
         gameOverSummary = GameOverSummary(
@@ -728,7 +729,7 @@ class GameViewModel @JvmOverloads constructor(
         }
         matchActive = false
         paused = false
-        audio.stopMusic()
+        audio.setInMatch(false)
     }
 
     /** Called from onStop so an app kill never costs the player their run. */
@@ -774,7 +775,7 @@ class GameViewModel @JvmOverloads constructor(
     fun abandonMatch() {
         matchActive = false
         gameOverSummary = null
-        audio.stopMusic()
+        audio.setInMatch(false)
     }
 
     // ---------------------------------------------------------------- settings
@@ -810,7 +811,7 @@ class GameViewModel @JvmOverloads constructor(
     }
 
     fun onAppPaused() {
-        audio.stopMusic()
+        audio.setInMatch(false)
         saveIfActive()
     }
 

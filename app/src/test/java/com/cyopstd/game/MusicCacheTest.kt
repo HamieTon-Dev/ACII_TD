@@ -24,7 +24,7 @@ class MusicCacheTest {
 
     private val context = ApplicationProvider.getApplicationContext<android.app.Application>()
     private val engine = MusicEngine(context)
-    private val expectedLength = 44L + ChiptuneComposer.totalFrames * 2L
+    private val expectedLength = 44L + ChiptuneComposer.totalFrames() * 2L
 
     @Test
     fun `the track is rendered once and then reused`() {

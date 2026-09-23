@@ -33,18 +33,52 @@ object ChiptuneComposer {
     /** Deliberately low: it is half the cost of 32 kHz and sounds warmer. */
     const val SAMPLE_RATE = 16_000
 
-    /** Bump this when the arrangement changes so cached renders are replaced. */
-    const val TRACK_VERSION = 1
+    /** Bump this when an arrangement changes so cached renders are replaced. */
+    const val TRACK_VERSION = 2
 
-    private const val BPM = 72f
     private const val BEATS_PER_BAR = 4
     private const val BARS_PER_SECTION = 8
 
-    private val SECONDS_PER_BEAT = 60f / BPM
-    private val SECONDS_PER_BAR = SECONDS_PER_BEAT * BEATS_PER_BAR
+    /**
+     * The two pieces of music in the game.
+     *
+     * They are deliberately opposite. [GAME] is slow lo-fi that has to sit
+     * under an hour of play without ever asking for attention. [MENU] is the
+     * one place the game is allowed to be loud: nothing is happening, nobody
+     * is concentrating, and a classic chiptune is what a menu is for. So it is
+     * faster, brighter — a far higher filter cutoff, which is most of the
+     * difference between "lo-fi" and "8-bit" — and short, because a menu is
+     * not somewhere anyone sits for three minutes.
+     */
+    enum class Track(
+        val bpm: Float,
+        /** Low-pass cutoff in Hz. Low is lo-fi; high is bright 8-bit. */
+        val cutoffHz: Float,
+        val masterGain: Float,
+        /** Tape-wow depth. Zero is a clean machine. */
+        val wow: Float
+    ) {
+        GAME(bpm = 72f, cutoffHz = 2600f, masterGain = 1.25f, wow = 1f),
+        MENU(bpm = 132f, cutoffHz = 7200f, masterGain = 1.15f, wow = 0.15f)
+    }
+
+    /**
+     * Timing and arrangement for the track being rendered.
+     *
+     * Object-level state rather than a parameter on twenty functions. Renders
+     * are sequential and it is set once at the top of [writeWav], the same way
+     * the noise generator is reset there.
+     */
+    private var bpm = Track.GAME.bpm
+    private var track = Track.GAME
+    private var sections: Array<Section> = emptyArray()
+
+    private val SECONDS_PER_BEAT get() = 60f / bpm
+    private val SECONDS_PER_BAR get() = SECONDS_PER_BEAT * BEATS_PER_BAR
 
     /** Rendered in chunks of one section so peak memory stays near 2 MB. */
-    private val FRAMES_PER_SECTION = (SECONDS_PER_BAR * BARS_PER_SECTION * SAMPLE_RATE).toInt()
+    private val FRAMES_PER_SECTION
+        get() = (SECONDS_PER_BAR * BARS_PER_SECTION * SAMPLE_RATE).toInt()
 
     private const val TWO_PI = (2.0 * PI).toFloat()
 
@@ -112,6 +146,20 @@ object ChiptuneComposer {
         val bassPickup: Boolean = true
     )
 
+    /**
+     * The menu track: four bright sections, about eighty seconds.
+     *
+     * Denser melody than the game track and no quiet intro, because a menu
+     * track begins the moment the menu appears and gets a few seconds of
+     * attention rather than an hour of tolerance.
+     */
+    private val MENU_ARRANGEMENT = arrayOf(
+        Section(0, melodyDensity = 0.52f, drums = 2, melodyOctave = 1, padGain = 0.95f),
+        Section(2, melodyDensity = 0.58f, drums = 2, melodyOctave = 1, padGain = 1.00f),
+        Section(1, melodyDensity = 0.46f, drums = 2, melodyOctave = 0, padGain = 0.95f),
+        Section(0, melodyDensity = 0.60f, drums = 2, melodyOctave = 1, padGain = 1.00f)
+    )
+
     private val ARRANGEMENT = arrayOf(
         Section(0, melodyDensity = 0.00f, drums = 0, melodyOctave = 0, padGain = 0.62f,
             bassGain = 0.62f, bassPickup = false),
@@ -127,10 +175,25 @@ object ChiptuneComposer {
             bassGain = 0.72f, bassPickup = false)
     )
 
-    /** Total length of the rendered track in seconds. */
-    val trackSeconds: Float get() = ARRANGEMENT.size * BARS_PER_SECTION * SECONDS_PER_BAR
+    /** Total length of [which] in seconds. */
+    fun trackSeconds(which: Track = Track.GAME): Float {
+        val saved = bpm
+        bpm = which.bpm
+        val result = arrangementFor(which).size * BARS_PER_SECTION * SECONDS_PER_BAR
+        bpm = saved
+        return result
+    }
 
-    val totalFrames: Int get() = ARRANGEMENT.size * FRAMES_PER_SECTION
+    fun totalFrames(which: Track = Track.GAME): Int {
+        val saved = bpm
+        bpm = which.bpm
+        val result = arrangementFor(which).size * FRAMES_PER_SECTION
+        bpm = saved
+        return result
+    }
+
+    private fun arrangementFor(which: Track): Array<Section> =
+        if (which == Track.MENU) MENU_ARRANGEMENT else ARRANGEMENT
 
     // --------------------------------------------------------------- output
 
@@ -140,8 +203,11 @@ object ChiptuneComposer {
      * Written a section at a time so nothing bigger than a couple of megabytes
      * is ever live, which matters on the low-end devices this game targets.
      */
-    fun writeWav(out: OutputStream) {
-        val frames = totalFrames
+    fun writeWav(out: OutputStream, which: Track = Track.GAME) {
+        track = which
+        bpm = which.bpm
+        sections = arrangementFor(which)
+        val frames = totalFrames(which)
         out.write(wavHeader(frames))
 
         // The noise generator is object state, so a second render would start
@@ -151,9 +217,9 @@ object ChiptuneComposer {
         val notes = compose()
         val mix = FloatArray(FRAMES_PER_SECTION)
         val bytes = ByteArray(FRAMES_PER_SECTION * 2)
-        val master = Master()
+        val master = Master(track)
 
-        for (section in ARRANGEMENT.indices) {
+        for (section in sections.indices) {
             java.util.Arrays.fill(mix, 0f)
             val blockStart = section * FRAMES_PER_SECTION
             val blockEnd = blockStart + FRAMES_PER_SECTION
@@ -177,8 +243,8 @@ object ChiptuneComposer {
         val rng = Rng(0x5EED_1F0Fu)
         var scaleIndex = 2
 
-        for (s in ARRANGEMENT.indices) {
-            val section = ARRANGEMENT[s]
+        for (s in sections.indices) {
+            val section = sections[s]
             val progression = PROGRESSIONS[section.progression]
 
             for (bar in 0 until BARS_PER_SECTION) {
@@ -422,9 +488,10 @@ object ChiptuneComposer {
             // Tape wow: two slow, mutually prime drifts. Barely a fifth of a
             // semitone, but it is what stops the pads sounding like a computer.
             if (note.voice != Voice.HAT && note.voice != Voice.RIM) {
-                freq *= 1f +
+                freq *= 1f + track.wow * (
                     0.0024f * sin(TWO_PI * 0.13f * absolute) +
-                    0.0012f * sin(TWO_PI * 0.37f * absolute + 1.7f)
+                        0.0012f * sin(TWO_PI * 0.37f * absolute + 1.7f)
+                    )
             }
 
             phase += freq / SAMPLE_RATE
@@ -462,7 +529,7 @@ object ChiptuneComposer {
      * rather than heard. Filter state persists across blocks so the section
      * boundaries are inaudible.
      */
-    private class Master {
+    private class Master(private val track: Track) {
         private var lowA = 0f
         private var lowB = 0f
         private var highY = 0f
@@ -470,10 +537,11 @@ object ChiptuneComposer {
 
         fun finish(mix: FloatArray, blockStart: Int, totalFrames: Int, out: ByteArray) {
             for (i in mix.indices) {
-                var sample = mix[i] * MASTER_GAIN + noise() * 0.0035f
+                var sample = mix[i] * track.masterGain + noise() * 0.0035f
 
-                lowA += LOW_ALPHA * (sample - lowA)
-                lowB += LOW_ALPHA * (lowA - lowB)
+                val alpha = lowAlphaFor(track.cutoffHz)
+                lowA += alpha * (sample - lowA)
+                lowB += alpha * (lowA - lowB)
                 sample = lowB
 
                 val input = sample
@@ -551,10 +619,12 @@ object ChiptuneComposer {
         fun int(bound: Int): Int = (next() % bound.toUInt()).toInt()
     }
 
-    private const val MASTER_GAIN = 1.25f
-    private val LOW_ALPHA = run {
+    /** One-pole coefficient for a cutoff, cached per distinct value. */
+    private val lowAlphaCache = HashMap<Float, Float>()
+
+    private fun lowAlphaFor(cutoffHz: Float): Float = lowAlphaCache.getOrPut(cutoffHz) {
         val dt = 1f / SAMPLE_RATE
-        val rc = 1f / (TWO_PI * 2600f)
+        val rc = 1f / (TWO_PI * cutoffHz)
         dt / (rc + dt)
     }
     private val HIGH_ALPHA = run {

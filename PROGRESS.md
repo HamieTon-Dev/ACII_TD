@@ -175,9 +175,16 @@ interface, ship a no-op implementation, and **do not claim they work**:
 1. ✅ This file.
 2. ✅ **Splash**: ASCII HAMIETON-DEV shield mark above the title
    (`ui/splash/SplashScreen.kt`).
-3. ⬜ Menu music — a second `ChiptuneComposer` arrangement, classic 8-bit,
-   distinct from the in-game lo-fi track. Follow the existing composer's shape:
-   `ARRANGEMENT` + `writeWav`, and add a `MusicEngine` track selector.
+3. ✅ **Menu music.** `ChiptuneComposer.Track` now has GAME and MENU, which are
+   deliberately opposite: GAME is slow lo-fi that must sit under an hour of
+   play without asking for attention; MENU gets a few seconds, so it is 132 BPM
+   against 72, a 7.2 kHz cutoff against 2.6 kHz, almost no tape wow, and 58
+   seconds long instead of 213. Measured: 25.8% of its energy above 3 kHz
+   against the game track's 12.6%. Two `MusicEngine` instances rather than one
+   that reloads — switching screens is frequent and re-preparing a
+   multi-megabyte file each time would stutter the transition.
+   `AudioEngine.setInMatch()` swaps them, pausing rather than stopping so
+   returning to the menu resumes instead of restarting.
 4. ✅ **Store model**: `store/Sku.kt` (full catalog), `store/Entitlements.kt`,
    `store/BillingGateway.kt` (interface + `NoBillingGateway`),
    `store/StoreRepository.kt` (interface). Persistence added to
@@ -186,7 +193,9 @@ interface, ship a no-op implementation, and **do not claim they work**:
    `StoreState` and `PlayerIdentity`. 9 tests in `StoreTest.kt`.
 5. ⬜ Store screen UI, driven by the catalog. Add `Screen.Store` to
    `ui/CyOpsApp.kt` and a MAIN MENU entry.
-6. 🟨 Skins — **core-server skins done and rendered for selection.**
+6. 🟨 Skins — core-server skins chosen; **living backgrounds and the SPECTRUM
+   agent skin are implemented and wired**, backgrounds also tint the lane
+   corridors. Remaining: showing the menu backdrop the same treatment.
    `ui/theme/CoreSkin.kt` holds six looks as pure data (four colours plus a
    signature flourish), so a new one is a table entry rather than a branch.
    `BattlefieldRenderer.coreSkin` applies it; `drawCoreFlourish` draws the

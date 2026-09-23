@@ -24,7 +24,11 @@ import java.io.FileOutputStream
  * since. Every entry point tolerates failure: a device that cannot give us a
  * MediaPlayer simply plays without music.
  */
-class MusicEngine(private val context: Context) {
+class MusicEngine(
+    private val context: Context,
+    /** Which of the two pieces this engine plays. */
+    private val track: ChiptuneComposer.Track = ChiptuneComposer.Track.GAME
+) {
 
     private val lock = Any()
     private var player: MediaPlayer? = null
@@ -82,20 +86,29 @@ class MusicEngine(private val context: Context) {
      */
     internal fun ensureTrackFile(): File {
         val dir = File(context.cacheDir, "music").apply { mkdirs() }
-        val file = File(dir, "lofi_v${ChiptuneComposer.TRACK_VERSION}.wav")
-        val expected = 44L + ChiptuneComposer.totalFrames * 2L
+        val file = File(
+            dir,
+            "${track.name.lowercase()}_v${ChiptuneComposer.TRACK_VERSION}.wav"
+        )
+        val expected = 44L + ChiptuneComposer.totalFrames(track) * 2L
 
-        // Drop renders from earlier versions of the arrangement, and any
-        // partial file. Done before the early return below, so a cache left
-        // untidy by an interrupted render is cleaned up on the next launch
-        // rather than holding megabytes forever.
-        dir.listFiles()?.forEach { if (it != file) it.delete() }
+        // Drop renders from earlier versions of this track, and any partial
+        // file. Done before the early return below, so a cache left untidy by
+        // an interrupted render is cleaned up on the next launch rather than
+        // holding megabytes forever. Scoped by name prefix so the two tracks
+        // do not delete each other.
+        val prefix = track.name.lowercase()
+        dir.listFiles()?.forEach {
+            if (it != file && (it.name.startsWith(prefix) || it.name.startsWith("lofi"))) {
+                it.delete()
+            }
+        }
 
         if (file.exists() && file.length() == expected) return file
 
-        val temp = File(dir, "lofi.partial")
+        val temp = File(dir, "$prefix.partial")
         BufferedOutputStream(FileOutputStream(temp), 1 shl 16).use {
-            ChiptuneComposer.writeWav(it)
+            ChiptuneComposer.writeWav(it, track)
         }
         if (!temp.renameTo(file)) {
             temp.copyTo(file, overwrite = true)

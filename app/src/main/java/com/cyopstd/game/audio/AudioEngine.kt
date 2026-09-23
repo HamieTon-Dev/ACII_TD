@@ -45,10 +45,24 @@ class AudioEngine(private val context: Context) {
      * else here, but long-form and streamed from disk instead of looped out of
      * a sample pool.
      */
-    private val music = MusicEngine(context)
+    private val music = MusicEngine(context, ChiptuneComposer.Track.GAME)
+
+    /**
+     * The menu's own track.
+     *
+     * A second engine rather than one that reloads: switching screens is
+     * frequent and a MediaPlayer that has to re-prepare a multi-megabyte file
+     * each time would stutter the transition. Two prepared players cost a few
+     * megabytes of cache and swap instantly.
+     */
+    private val menuMusic = MusicEngine(context, ChiptuneComposer.Track.MENU)
+
+    /** Which track should be playing. */
+    private var inMatch = false
 
     fun initialize(scope: CoroutineScope) {
         music.prepare(scope)
+        menuMusic.prepare(scope)
         if (soundPool != null) return
         val attributes = AudioAttributes.Builder()
             .setUsage(AudioAttributes.USAGE_GAME)
@@ -114,24 +128,47 @@ class AudioEngine(private val context: Context) {
 
     private fun Float?.orDefault(): Float = this ?: 1f
 
-    /** Starts (or resumes) the background track, if music is turned up. */
+    /**
+     * Chooses the track for where the player is.
+     *
+     * Only the chosen one plays; the other is paused rather than stopped, so
+     * returning to the menu mid-track picks the menu music up where it was
+     * instead of restarting it.
+     */
+    fun setInMatch(value: Boolean) {
+        if (inMatch == value) return
+        inMatch = value
+        if (musicVolume <= 0.01f) return
+        if (value) {
+            menuMusic.pause()
+            music.start()
+        } else {
+            music.pause()
+            menuMusic.start()
+        }
+    }
+
+    /** Starts (or resumes) whichever track belongs to the current screen. */
     fun startMusic() {
         if (musicVolume <= 0.01f) return
-        music.start()
+        if (inMatch) music.start() else menuMusic.start()
     }
 
     fun stopMusic() {
         music.pause()
+        menuMusic.pause()
     }
 
     fun applyVolumes(music: Float, sfx: Float) {
         musicVolume = music
         sfxVolume = sfx
         this.music.setVolume(music)
+        menuMusic.setVolume(music)
     }
 
     fun release() {
         music.release()
+        menuMusic.release()
         try {
             soundPool?.release()
         } catch (error: Exception) {

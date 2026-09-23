@@ -19,13 +19,13 @@ import kotlin.math.sqrt
 class ChiptuneComposerTest {
 
     private val rendered: ByteArray by lazy {
-        ByteArrayOutputStream(44 + ChiptuneComposer.totalFrames * 2).also {
+        ByteArrayOutputStream(44 + ChiptuneComposer.totalFrames() * 2).also {
             ChiptuneComposer.writeWav(it)
         }.toByteArray()
     }
 
     private fun samples(): FloatArray {
-        val frames = ChiptuneComposer.totalFrames
+        val frames = ChiptuneComposer.totalFrames()
         val out = FloatArray(frames)
         for (i in 0 until frames) {
             val lo = rendered[44 + i * 2].toInt() and 0xFF
@@ -40,8 +40,8 @@ class ChiptuneComposerTest {
         // The complaint that prompted this was a two-second loop. Three and a
         // half minutes of developing arrangement is a different category.
         assertTrue(
-            "track is ${ChiptuneComposer.trackSeconds}s",
-            ChiptuneComposer.trackSeconds > 180f
+            "track is ${ChiptuneComposer.trackSeconds()}s",
+            ChiptuneComposer.trackSeconds() > 180f
         )
     }
 
@@ -64,8 +64,8 @@ class ChiptuneComposerTest {
         assertEquals(1, int16(22))                              // mono
         assertEquals(ChiptuneComposer.SAMPLE_RATE, int32(24))
         assertEquals(16, int16(34))                             // bits per sample
-        assertEquals(ChiptuneComposer.totalFrames * 2, int32(40))
-        assertEquals(44 + ChiptuneComposer.totalFrames * 2, rendered.size)
+        assertEquals(ChiptuneComposer.totalFrames() * 2, int32(40))
+        assertEquals(44 + ChiptuneComposer.totalFrames() * 2, rendered.size)
     }
 
     @Test
@@ -141,4 +141,85 @@ class ChiptuneComposerTest {
         val second = ByteArrayOutputStream().also { ChiptuneComposer.writeWav(it) }.toByteArray()
         assertTrue("two renders differ", rendered.contentEquals(second))
     }
+    @Test
+    fun `the menu has its own track, and it is a different piece of music`() {
+        // The two exist for opposite jobs: the game track has to sit under an
+        // hour of play without asking for attention, the menu track gets a few
+        // seconds and is allowed to be loud. If they came out similar, one of
+        // them is wrong.
+        val menu = ByteArrayOutputStream().also {
+            ChiptuneComposer.writeWav(it, ChiptuneComposer.Track.MENU)
+        }.toByteArray()
+
+        fun samplesOf(bytes: ByteArray): FloatArray {
+            val n = (bytes.size - 44) / 2
+            return FloatArray(n) { i ->
+                val lo = bytes[44 + i * 2].toInt() and 0xFF
+                val hi = bytes[44 + i * 2 + 1].toInt()
+                (((hi shl 8) or lo).toShort()) / 32768f
+            }
+        }
+
+        val menuSamples = samplesOf(menu)
+        val gameSamples = samples()
+
+        // A menu loop is short. Three and a half minutes would be absurd here.
+        val menuSeconds = ChiptuneComposer.trackSeconds(ChiptuneComposer.Track.MENU)
+        assertTrue("menu track is ${menuSeconds}s", menuSeconds in 40f..130f)
+        assertTrue(
+            "the menu track should be far shorter than the game track",
+            menuSeconds < ChiptuneComposer.trackSeconds() * 0.6f
+        )
+
+        // Brighter: more of its energy sits above 2 kHz than the lo-fi track's.
+        fun highFraction(samples: FloatArray): Double {
+            // One-pole split at roughly 3 kHz -- deliberately *between* the two
+            // tracks' cutoffs (2.6 kHz and 7.2 kHz). Splitting below both, as
+            // an earlier version did at ~1 kHz, put most of both tracks in the
+            // same band and could not tell them apart at all.
+            var low = 0f
+            var lowEnergy = 0.0
+            var highEnergy = 0.0
+            val alpha = 0.54f
+            for (s in samples) {
+                low += alpha * (s - low)
+                lowEnergy += low.toDouble() * low
+                val high = s - low
+                highEnergy += high.toDouble() * high
+            }
+            return highEnergy / (highEnergy + lowEnergy)
+        }
+
+        val menuHigh = highFraction(menuSamples)
+        val gameHigh = highFraction(gameSamples)
+        // Measured at about 1.45x. The cutoffs are far apart (2.6 kHz against
+        // 7.2 kHz) but pulse and triangle waves have limited energy that high
+        // to begin with, so the filter difference shows as a clear margin
+        // rather than a dramatic one.
+        assertTrue(
+            "menu is $menuHigh bright against the game track's $gameHigh",
+            menuHigh > gameHigh * 1.3
+        )
+
+        // The differences an ear actually notices first are tempo and the
+        // absence of tape wow, so those get asserted too rather than being
+        // left to the spectrum measure alone.
+        assertTrue(
+            "menu runs at ${ChiptuneComposer.Track.MENU.bpm} against " +
+                "${ChiptuneComposer.Track.GAME.bpm}",
+            ChiptuneComposer.Track.MENU.bpm > ChiptuneComposer.Track.GAME.bpm * 1.5f
+        )
+        assertTrue(
+            "the menu track should not wobble like tape",
+            ChiptuneComposer.Track.MENU.wow < ChiptuneComposer.Track.GAME.wow * 0.5f
+        )
+
+        // And still a sane mix.
+        var peak = 0f
+        for (s in menuSamples) if (abs(s) > peak) peak = abs(s)
+        assertTrue("menu peak $peak", peak in 0.3f..0.98f)
+        assertTrue(abs(menuSamples.first()) < 0.01f)
+        assertTrue(abs(menuSamples.last()) < 0.01f)
+    }
+
 }
