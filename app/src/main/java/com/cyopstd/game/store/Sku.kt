@@ -140,21 +140,23 @@ enum class Sku(
         id = "core_skin_neongrid",
         kind = SkuKind.PERMANENT,
         title = "CORE: NEONGRID",
-        summary = "A bright cyan grid receding into the core.",
+        summary = "Neon-blue grid receding into the core, with a holographic " +
+            "ring that skims blue to green.",
         fallbackPrice = "$1.00"
     ),
 
     CORE_SKIN_PACK(
         id = "core_skin_pack",
         kind = SkuKind.PERMANENT,
-        title = "ALL CORE SKINS",
-        summary = "All seven CORE-SERVER skins, plus \u20AC200.",
+        title = "CORE SKIN PACK",
+        // NEONGRID is deliberately not in here. It is the premium skin, sold
+        // on its own, and folding it into a 2.50 bundle would give it away.
+        summary = "Six CORE-SERVER skins, plus \u20AC200. NEONGRID sold separately.",
         fallbackPrice = "$2.50",
         grantsBudget = 200,
         alsoUnlocks = listOf(
             "core_skin_reactor", "core_skin_meridian", "core_skin_glacier",
-            "core_skin_void", "core_skin_mainframe", "core_skin_cascade",
-            "core_skin_neongrid"
+            "core_skin_void", "core_skin_mainframe", "core_skin_cascade"
         )
     ),
 

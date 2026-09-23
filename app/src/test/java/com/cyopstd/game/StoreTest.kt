@@ -37,10 +37,15 @@ class StoreTest {
     @Test
     fun `a bundle grants everything it advertises`() {
         val owned = Entitlements().plus(Sku.CORE_SKIN_PACK)
-        for (skin in Sku.coreSkins) {
+        for (skin in Sku.coreSkins.filter { it != Sku.CORE_SKIN_NEONGRID }) {
             assertTrue("${skin.id} was not granted by the pack", owned.owns(skin))
         }
-        assertEquals(Sku.coreSkins.size, owned.coreSkins.size)
+        // Everything except the premium skin, which is sold on its own.
+        assertEquals(Sku.coreSkins.size - 1, owned.coreSkins.size)
+        assertFalse(
+            "NEONGRID is the premium skin and must not come free with the pack",
+            owned.owns(Sku.CORE_SKIN_NEONGRID)
+        )
 
         val starter = Entitlements().plus(Sku.STARTER_PACK)
         assertTrue(starter.adsRemoved)

@@ -71,6 +71,8 @@ class BattlefieldRenderer {
     private val colSurfaceSunken = Palette.SurfaceSunken.toArgb()
     private val colGrid = Palette.GridLine.toArgb()
     private val colDivider = Palette.Divider.toArgb()
+    private val colLedGreen = Palette.ServerLedGreen.toArgb()
+    private val colLedAmber = Palette.ServerLedAmber.toArgb()
     private val colCyan = Palette.Cyan.toArgb()
     private val colCyanDim = Palette.CyanDim.toArgb()
     private val colGreen = Palette.Green.toArgb()
@@ -617,8 +619,8 @@ class BattlefieldRenderer {
                 val amber = (row * LED_COLUMNS + col) % 3 == 1
                 thinTextPaint.color = when {
                     damaged && lit -> colRed
-                    lit && amber -> coreSkin.ledAlt.toArgb()
-                    lit -> coreSkin.led.toArgb()
+                    lit && amber -> colLedAmber
+                    lit -> colLedGreen
                     else -> colMuted
                 }
                 thinTextPaint.alpha = if (lit) 235 else 70
@@ -820,12 +822,18 @@ class BattlefieldRenderer {
     }
 
     /**
-     * The chase strip along the bottom of the rack.
+     * The chase along the bottom of the rack.
      *
-     * A run of LEDs with a lit comet travelling along it and fading behind,
+     * A run of LEDs with lit comets travelling along it and fading behind,
      * like the addressable strips these racks are actually built with. It
-     * speeds up with load, so it carries the same information as the LED grid
-     * in a form the eye catches from across the screen.
+     * speeds up with board load, so it carries the same information as the LED
+     * grid in a form the eye catches from across the screen.
+     *
+     * NEONGRID runs the same chase around a closed ring instead, and skims its
+     * colour slowly between blue and green the way a holographic foil shifts
+     * as it is tilted. That is the one place a skin is allowed to colour a
+     * light, because it is the skin's signature rather than an indicator: the
+     * green-and-amber status LEDs above it are untouched.
      */
     private fun drawRacetrack(
         canvas: android.graphics.Canvas,
@@ -836,21 +844,35 @@ class BattlefieldRenderer {
         load: Float,
         time: Float
     ) {
-        val count = RACETRACK_LEDS
+        val ring = coreSkin.chase == CoreSkin.Chase.RING_HOLOGRAPHIC
+        val count = if (ring) RING_LEDS else RACETRACK_LEDS
         val span = (right - left) - 52f
-        val gap = span / (count - 1)
-        // Two comets on opposite sides of the loop, so the strip reads as a
+        val gap = span / (RACETRACK_LEDS - 1)
+        val cx = (left + right) * 0.5f
+        // Two comets on opposite sides of the loop, so the chase reads as a
         // circuit rather than as a single dot sliding back and forth.
         val head = (time * (0.32f + load * 0.30f)) % 1f
 
         for (i in 0 until count) {
-            val x = left + 26f + i * gap
             val at = i / (count - 1f)
-            // Distance behind either comet, wrapped, so the tail crosses the end.
+            val px: Float
+            val py: Float
+            if (ring) {
+                // Lifted clear of the integrity bar, which starts 76 units up
+                // from the bottom of the rack: a ring centred on the strip's
+                // line would overlap it.
+                val angle = (i / count.toFloat()) * TWO_PI_F - TWO_PI_F * 0.25f
+                px = cx + cos(angle) * RING_RADIUS
+                py = y - RING_LIFT + sin(angle) * RING_RADIUS
+            } else {
+                px = left + 26f + i * gap
+                py = y
+            }
+
             var best = 1f
             for (comet in 0 until 2) {
                 val h = (head + comet * 0.5f) % 1f
-                var d = h - at
+                var d = h - (if (ring) i / count.toFloat() else at)
                 if (d < 0f) d += 1f
                 if (d < best) best = d
             }
@@ -858,13 +880,27 @@ class BattlefieldRenderer {
 
             fillPaint.color = when {
                 damaged -> colRed
-                glow > 0.55f -> coreSkin.led.toArgb()
-                else -> coreSkin.ledAlt.toArgb()
+                ring -> holographic(time, i / count.toFloat())
+                glow > 0.55f -> colLedGreen
+                else -> colLedAmber
             }
             fillPaint.alpha = (24 + 231 * glow * glow).toInt().coerceIn(0, 255)
-            canvas.drawCircle(x, y, 2.4f + 2.2f * glow, fillPaint)
+            canvas.drawCircle(px, py, 2.4f + 2.2f * glow, fillPaint)
         }
         fillPaint.alpha = 255
+    }
+
+    /**
+     * Holographic foil: a slow blue-to-green skim with a spatial offset, so
+     * neighbouring lights sit at slightly different points in the sweep and
+     * the ring shows a gradient rather than flashing as one block.
+     */
+    private fun holographic(time: Float, position: Float): Int {
+        val phase = 0.5f + 0.5f * sin(TWO_PI_F * (time * HOLO_SPEED + position * 0.65f))
+        val r = (0x3A + (0x2B - 0x3A) * phase).toInt()
+        val g = (0x86 + (0xFF - 0x86) * phase).toInt()
+        val b = (0xFF + (0x9C - 0xFF) * phase).toInt()
+        return (0xFF shl 24) or (r shl 16) or (g shl 8) or b
     }
 
     // ----------------------------------------------------------------- nodes
@@ -1490,6 +1526,12 @@ class BattlefieldRenderer {
 
     private companion object {
         const val RACETRACK_LEDS = 22
+
+        /** NEONGRID's ring: lights around it, its radius, and its skim rate. */
+        const val RING_LEDS = 26
+        const val RING_RADIUS = 30f
+        const val RING_LIFT = 24f
+        const val HOLO_SPEED = 0.11f
 
         /** How quickly a racetrack comet fades behind itself. */
         const val RACETRACK_TAIL = 7f

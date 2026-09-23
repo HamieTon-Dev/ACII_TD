@@ -77,6 +77,19 @@ object Palette {
         return backdropBands[band % backdropBands.size]
     }
 
+    /**
+     * Rack indicator LEDs.
+     *
+     * Shared by every CORE-SERVER skin rather than tinted per skin. A skin
+     * changes the *chassis* — its colour, its flourish, its frame — but the
+     * indicator lights on a rack are green for link and power and amber for
+     * activity and warnings whatever the box is painted. Tinting them violet
+     * or gold to match a skin made them read as decoration instead of as
+     * hardware.
+     */
+    val ServerLedGreen = Color(0xFF3BE06B)
+    val ServerLedAmber = Color(0xFFFFA23D)
+
     /** Server integrity bar colour, by remaining fraction. */
     fun healthColor(fraction: Float): Color = when {
         fraction > 0.6f -> Green
