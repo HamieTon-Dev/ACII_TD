@@ -16,6 +16,7 @@ import com.cyopstd.game.ui.game.GameScreen
 import com.cyopstd.game.ui.menu.AboutScreen
 import com.cyopstd.game.ui.menu.AgentsScreen
 import com.cyopstd.game.ui.menu.FirmwareScreen
+import com.cyopstd.game.ui.menu.StoreScreen
 import com.cyopstd.game.ui.menu.MainMenuScreen
 import com.cyopstd.game.ui.settings.SettingsScreen
 import com.cyopstd.game.ui.splash.SplashScreen
@@ -37,6 +38,7 @@ sealed interface Screen {
     data object Agents : Screen
     data object Firmware : Screen
     data object Codex : Screen
+    data object Store : Screen
     data object Statistics : Screen
     data object Settings : Screen
     data object About : Screen
@@ -80,6 +82,7 @@ fun CyOpsApp(
                     onAgents = { viewModel.playClick(); screen = Screen.Agents },
                     onFirmware = { viewModel.playClick(); screen = Screen.Firmware },
                     onCodex = { viewModel.playClick(); screen = Screen.Codex },
+                    onStore = { viewModel.playClick(); screen = Screen.Store },
                     onStatistics = { viewModel.playClick(); screen = Screen.Statistics },
                     onSettings = {
                         viewModel.playClick()
@@ -118,6 +121,20 @@ fun CyOpsApp(
                     lifetimeBudgetEarned = viewModel.lifetimeBudgetEarned,
                     backgroundAnimation = viewModel.settings.backgroundAnimation,
                     onBuy = { levels -> viewModel.buyFirmware(levels) },
+                    onBack = { viewModel.playClick(); screen = Screen.MainMenu }
+                )
+            }
+
+            Screen.Store -> {
+                BackHandler { screen = Screen.MainMenu }
+                StoreScreen(
+                    entitlements = viewModel.entitlements,
+                    budget = viewModel.budget,
+                    prices = viewModel.billingPrices,
+                    status = viewModel.billingStatus,
+                    backgroundAnimation = viewModel.settings.backgroundAnimation,
+                    onBuy = { sku -> viewModel.buy(sku) },
+                    onRestore = { viewModel.restorePurchases() },
                     onBack = { viewModel.playClick(); screen = Screen.MainMenu }
                 )
             }

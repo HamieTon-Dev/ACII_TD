@@ -47,6 +47,7 @@ fun MainMenuScreen(
     onAgents: () -> Unit,
     onFirmware: () -> Unit,
     onCodex: () -> Unit,
+    onStore: () -> Unit,
     onStatistics: () -> Unit,
     onSettings: () -> Unit,
     onAbout: () -> Unit,
@@ -180,6 +181,14 @@ fun MainMenuScreen(
                     leadingGlyph = "[\u20AC]",
                     accent = Palette.Crypto,
                     onClick = onFirmware
+                )
+                Spacer(Modifier.height(10.dp))
+                BastionButton(
+                    text = "STORE",
+                    subtitle = "Skins, budget packs and conveniences",
+                    leadingGlyph = "[$]",
+                    accent = Palette.Green,
+                    onClick = onStore
                 )
                 Spacer(Modifier.height(10.dp))
                 BastionButton(

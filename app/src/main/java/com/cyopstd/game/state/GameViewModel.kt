@@ -12,6 +12,12 @@ import androidx.compose.ui.geometry.Offset
 import com.cyopstd.game.audio.AudioEngine
 import com.cyopstd.game.audio.HapticEngine
 import com.cyopstd.game.core.Balance
+import com.cyopstd.game.store.BillingGateway
+import com.cyopstd.game.store.BillingStatus
+import com.cyopstd.game.store.CosmeticChoice
+import com.cyopstd.game.store.Entitlements
+import com.cyopstd.game.store.NoBillingGateway
+import com.cyopstd.game.store.Sku
 import com.cyopstd.game.core.WorldGeometry
 import com.cyopstd.game.engine.GameEngine
 import com.cyopstd.game.engine.GameSound
@@ -188,6 +194,90 @@ class GameViewModel @JvmOverloads constructor(
         }
 
         engine.onGameOver = { onRunEnded() }
+    }
+
+    // ------------------------------------------------------------------ store
+
+    /**
+     * The billing gateway. [NoBillingGateway] until the app is registered in
+     * the Play Console — see PROGRESS.md. Swapping in the real one is the only
+     * change needed here; nothing else in the view model knows the difference.
+     */
+    private val billing: BillingGateway = NoBillingGateway()
+
+    var entitlements by mutableStateOf(Entitlements())
+        private set
+
+    var cosmetics by mutableStateOf(CosmeticChoice())
+        private set
+
+    var billingPrices by mutableStateOf(emptyMap<String, String>())
+        private set
+
+    var billingStatus by mutableStateOf(BillingStatus.UNAVAILABLE)
+        private set
+
+    fun buy(sku: Sku) {
+        playClick()
+        billing.purchase(sku)
+    }
+
+    fun restorePurchases() {
+        playClick()
+        billing.restore()
+    }
+
+    fun chooseCoreSkin(id: String?) {
+        viewModelScope.launch { repository.chooseCoreSkin(id) }
+    }
+
+    fun chooseBackground(id: String?) {
+        viewModelScope.launch { repository.chooseBackground(id) }
+    }
+
+    /**
+     * Started from its own `init` block rather than from [observePersistence].
+     *
+     * Kotlin runs property initializers and `init` blocks in declaration order,
+     * and [observePersistence] is called from an `init` block that sits *above*
+     * these properties — so collecting from there dereferenced `billing` and
+     * the store state before either existed, and every collector died on a
+     * NullPointerException before the view model finished being built.
+     */
+    private fun observeStore() {
+        collectJobs += viewModelScope.launch {
+            repository.storeState.collectLatest { state ->
+                entitlements = state.entitlements
+                cosmetics = state.cosmetics
+                fifthSpeedUnlocked = state.entitlements.fifthSpeedUnlocked
+                // A player who owned 5x, then lost it (refund, or a restore
+                // onto another account), must not be left running at a speed
+                // they no longer have.
+                if (speedIndex >= Balance.speedCount(fifthSpeedUnlocked)) {
+                    applySpeedIndex(0)
+                }
+            }
+        }
+        collectJobs += viewModelScope.launch {
+            billing.prices.collectLatest { billingPrices = it }
+        }
+        collectJobs += viewModelScope.launch {
+            billing.status.collectLatest { billingStatus = it }
+        }
+        collectJobs += viewModelScope.launch {
+            billing.purchases.collectLatest { owned ->
+                for (sku in owned) {
+                    // Order ids come from Play; without one there is nothing to
+                    // guard a consumable against being credited twice, so a
+                    // gateway that cannot supply one must not grant budget.
+                    repository.applyPurchase(sku, orderId = "")
+                }
+            }
+        }
+    }
+
+    init {
+        observeStore()
     }
 
     private fun observePersistence() {

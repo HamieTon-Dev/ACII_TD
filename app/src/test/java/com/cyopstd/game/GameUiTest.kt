@@ -77,7 +77,7 @@ class GameUiTest {
                     firmwareLevel = 0,
                     backgroundAnimation = false,
                     onPlay = { played = true },
-                    onContinue = {}, onAgents = {}, onFirmware = {}, onCodex = {},
+                    onContinue = {}, onAgents = {}, onFirmware = {}, onCodex = {}, onStore = {},
                     onStatistics = {}, onSettings = {}, onAbout = {}, onExit = {}
                 )
             }
@@ -108,7 +108,7 @@ class GameUiTest {
                     firmwareLevel = 0,
                     backgroundAnimation = false,
                     onPlay = {}, onContinue = { continued++ }, onAgents = {},
-                    onFirmware = {}, onCodex = {}, onStatistics = {}, onSettings = {},
+                    onFirmware = {}, onCodex = {}, onStore = {}, onStatistics = {}, onSettings = {},
                     onAbout = {}, onExit = {}
                 )
             }
@@ -133,7 +133,7 @@ class GameUiTest {
                     budget = 340L,
                     firmwareLevel = 12,
                     backgroundAnimation = false,
-                    onPlay = {}, onContinue = {}, onAgents = {}, onFirmware = {}, onCodex = {},
+                    onPlay = {}, onContinue = {}, onAgents = {}, onFirmware = {}, onCodex = {}, onStore = {},
                     onStatistics = {}, onSettings = {}, onAbout = {}, onExit = {}
                 )
             }
@@ -295,7 +295,7 @@ class GameUiTest {
                     firmwareLevel = 40,
                     backgroundAnimation = false,
                     onPlay = {}, onContinue = {}, onAgents = {}, onFirmware = {},
-                    onCodex = {}, onStatistics = {}, onSettings = {},
+                    onCodex = {}, onStore = {}, onStatistics = {}, onSettings = {},
                     onAbout = {}, onExit = {}
                 )
             }
