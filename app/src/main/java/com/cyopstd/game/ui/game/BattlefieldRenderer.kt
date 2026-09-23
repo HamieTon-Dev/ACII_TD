@@ -1132,7 +1132,6 @@ class BattlefieldRenderer {
         AgentType.IDS -> colCyan
         AgentType.IPS -> colBlue
         AgentType.ANALYST -> colCrypto
-        AgentType.SANDBOX -> colBlue
         AgentType.CRYPTOGRAPHER -> colPurple
         AgentType.ZERO_DAY_HUNTER -> colOrange
         AgentType.AI_SENTINEL -> colCyan

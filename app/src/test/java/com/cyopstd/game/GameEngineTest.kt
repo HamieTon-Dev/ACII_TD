@@ -669,7 +669,6 @@ class GameEngineTest {
 
         assertTrue("IPS unlocks at wave 3", AgentType.IPS in unlocked)
         assertTrue("ANALYST unlocks at wave 5", AgentType.ANALYST in unlocked)
-        assertTrue("SANDBOX unlocks at wave 8", AgentType.SANDBOX in unlocked)
         assertEquals(
             "no duplicate unlock notifications",
             unlocked.size, unlocked.distinct().size
@@ -784,7 +783,7 @@ class GameEngineTest {
 
     /**
      * Fill every deployment node with a mix built around the counter-play table:
-     * IPS for swarms, ANALYST for elites, CRYPTOGRAPHER for encryption, SANDBOX
+     * IPS for swarms, ANALYST for elites, CRYPTOGRAPHER for encryption, TARPIT
      * for slows, IDS for fast packets, armour-ignoring agents for Trojans, and
      * an ARCHITECT to buff its neighbours.
      */
@@ -794,7 +793,7 @@ class GameEngineTest {
             AgentType.IPS,
             AgentType.ANALYST,
             AgentType.CRYPTOGRAPHER,
-            AgentType.SANDBOX,
+            AgentType.TARPIT,
             AgentType.ZERO_DAY_HUNTER,
             AgentType.IDS,
             AgentType.ROOT_ADMIN,

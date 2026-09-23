@@ -258,7 +258,6 @@ has a real cost and cannot be used as a free undo.
 | FIREWALL | 40 | 9.0 | 1.15 | 168 | start |
 | IDS | 55 | 7.0 | 1.00 | 268 | start |
 | IPS | 70 | 4.4 | 3.30 | 158 | wave 3 |
-| SANDBOX | 80 | 3.0 | 0.85 | 186 | wave 8 |
 | ANALYST | 95 | 30.0 | 0.62 | 200 | wave 5 |
 | CRYPTOGRAPHER | 105 | 14.0 | 1.05 | 205 | wave 10 |
 | ZERO-DAY HUNTER | 150 | 26.0 | 1.15 | 225 | wave 15 |
@@ -335,8 +334,6 @@ A wrong pick should be punished, not invalidated.
 
 | Ability | Constant | Value |
 | --- | --- | --- |
-| Sandbox slow | duration | 2.2 s |
-| Sandbox slow | factor | 0.60 at L1 → 0.42 at L10 |
 | Hunter crit | chance / multiplier | 25% / ×3 |
 | Sentinel multi-lock | targets | 3 |
 | Quantum chain | bounces / ratio / radius | 2 / 55% / 130 units |
@@ -582,7 +579,6 @@ Damage per crypto, at base level:
 | FIREWALL | 40 | 10.4 | 168 | 0.259 |
 | IDS | 55 | 9.0 | 290 | 0.164 |
 | IPS | 70 | 17.8 | 170 | 0.255 |
-| SANDBOX | 80 | 4.3 | 196 | 0.053 |
 | ANALYST | 95 | 23.6 | 212 | 0.248 |
 | CRYPTOGRAPHER | 105 | 27.3 | 220 | 0.260 |
 | ZERO-DAY HUNTER | 150 | 48.3 | 242 | 0.322 |
@@ -595,21 +591,9 @@ Among the pure damage dealers the figure now climbs with price — 0.259 at the
 FIREWALL to 0.362 at the ROOT ADMIN — so saving up is rewarded. Before 1.8.0 it
 *fell*: the ROOT ADMIN returned 0.232 against the FIREWALL's 0.259.
 
-The three units below the line are priced for what they do to other things: the
-TARPIT and SANDBOX slow, the NETWORK ARCHITECT buffs every agent in range by
-+30% damage and +20% fire rate.
-
-### Known issue: the SANDBOX is outclassed
-
-At 80 ◇ the SANDBOX slows to 0.60× on hit and deals 4.3 dps. The TARPIT costs
-**a quarter as much** and slows to 0.72× as a *continuous field*, which in
-practice holds far more threats at once than an on-hit slow can. Four tarpits
-cost the same as one sandbox, cover four areas, and out-damage it.
-
-The sandbox's only remaining edge is depth of slow in one spot. It is the
-weakest buy on the board. This wants a rethink of what the unit is for — a
-stronger effect, a different one, or a lower price — rather than another
-number nudge, so it is recorded here rather than patched.
+The two units below the line are priced for what they do to other things: the
+TARPIT slows, and the NETWORK ARCHITECT buffs every agent in range by +30%
+damage and +20% fire rate.
 
 ### No randomness in damage
 
@@ -636,8 +620,6 @@ itself. Three properties keep it in its lane:
   buys coverage, never a lock.
 - **It cannot kill.** At 0.96 dps a board of nothing but tarpits leaks more
   than half as many towers' worth of FIREWALLs at the same price.
-- **The SANDBOX stays deeper at every level** (0.60× → 0.42× against the
-  tarpit's 0.72× → 0.55×), so the 80 ◇ specialist keeps its job.
 
 Measured over 12 seeded runs per board, at waves 8/12/16:
 

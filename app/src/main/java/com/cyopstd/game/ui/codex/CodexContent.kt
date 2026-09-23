@@ -98,7 +98,7 @@ object CodexContent {
         EnemyType.EXPLOIT -> "IDS does 45% extra to fast attacks and sees them coming first."
         EnemyType.ENCRYPTED -> "Everything except CRYPTOGRAPHER loses over half its damage here."
         EnemyType.SQL_BLIND -> "Armoured and patient. Heavy single hits beat it; rapid fire wastes itself."
-        EnemyType.DDOS -> "Slow them with SANDBOX, then let IPS clear the backlog."
+        EnemyType.DDOS -> "Hold them in a TARPIT field, then let IPS clear the backlog."
         EnemyType.ZERO_DAY -> "ANALYST does 80% extra to elites. Armour-ignoring agents help."
         EnemyType.BOSS -> "Focus fire. ANALYST and ROOT ADMIN carry boss waves."
     }
@@ -107,7 +107,7 @@ object CodexContent {
         BossModifier.FIREWALL_RESISTANCE -> "Lean on non-FIREWALL agents for this wave."
         BossModifier.ENCRYPTION_SHIELD -> "A single CRYPTOGRAPHER swings the whole fight."
         BossModifier.ARMOR_PLATING -> "ZERO-DAY HUNTER and ROOT ADMIN ignore armour entirely."
-        BossModifier.SPEED_BURST -> "Keep a SANDBOX on the route to cancel the acceleration."
+        BossModifier.SPEED_BURST -> "Keep a TARPIT on the route to bleed off the acceleration."
         BossModifier.REGENERATION -> "Burst it down; chip damage will never out-pace the repair."
         BossModifier.PACKET_REPLICATION -> "Leave swarm clear-up to IPS so your heavy hitters stay on the boss."
         BossModifier.AGENT_DISRUPTION -> "Spread your agents out so one jam cannot silence the line."
@@ -176,14 +176,6 @@ object CodexContent {
             body = "An IPS is an IDS with the authority to act. When it recognises " +
                 "an attack it drops the traffic itself instead of only telling " +
                 "someone about it."
-        ),
-        Entry(
-            glyph = "[S]",
-            title = "SANDBOX",
-            subtitle = "Isolated analysis environment",
-            body = "A sandbox runs untrusted code in a sealed environment and " +
-                "watches what it tries to do. If it turns out to be malicious, it " +
-                "did its damage to a throwaway machine."
         ),
         Entry(
             glyph = "{#}",

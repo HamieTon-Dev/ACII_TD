@@ -92,9 +92,7 @@ class CombatSystem(private val engine: GameEngine, private val random: Random) {
      *
      * It stays in check because slows do not stack — only the strongest
      * applies — so a wall of cheap tarpits buys area, never a deeper slow, and
-     * the unit deals almost no damage of its own. It is also strictly milder
-     * than the SANDBOX's on-hit slow at every level, so the 80-crypto
-     * specialist keeps its job.
+     * the unit deals almost no damage of its own.
      */
     private fun applyTarpitField(agent: Agent) {
         val factor = tarpitSlowFactor(agent.level)

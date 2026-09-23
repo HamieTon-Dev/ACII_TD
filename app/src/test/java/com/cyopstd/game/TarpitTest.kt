@@ -16,10 +16,10 @@ import kotlin.random.Random
  * damage, and everything it hits crawls.
  *
  * A cheap unit is the easiest thing in a tower defence to get wrong. These
- * pin the two failure modes. It must actually do its job — an earlier build
- * of the SANDBOX slow shipped wired to nothing — and it must not be the most
- * efficient thing on the board, which at its first damage figure it was: four
- * of them cleared wave 12 better than two FIREWALLs for the same money.
+ * pin the two failure modes. It must actually do its job, and it must not be
+ * the most efficient thing on the board — which at its first damage figure it
+ * was: four of them cleared wave 12 better than two FIREWALLs for the same
+ * money.
  */
 class TarpitTest {
 
@@ -229,21 +229,6 @@ class TarpitTest {
                 "$upgraded, so the tarpit is the worse buy",
             supported < upgraded
         )
-    }
-
-    @Test
-    fun `the tarpit does not put the sandbox out of a job`() {
-        // The SANDBOX costs four times as much and is the slow specialist. A
-        // cheap unit that outslowed it would simply delete it from the game.
-        for (level in 1..100) {
-            val tarpit = CombatSystem.tarpitSlowFactor(level)
-            val sandbox = (0.60f - (level - 1) * 0.02f).coerceAtLeast(0.42f)
-            assertTrue(
-                "at level $level the tarpit slows to $tarpit and the sandbox " +
-                    "to $sandbox",
-                tarpit > sandbox
-            )
-        }
     }
 
     @Test

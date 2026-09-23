@@ -24,9 +24,9 @@ class AgentCurveTest {
     private val AgentType.dps: Float get() = baseDamage * baseFireRate
 
     /**
-     * The agents whose job is damage. The TARPIT (a slow field), the SANDBOX
-     * (a slow) and the NETWORK ARCHITECT (a buff aura) are priced for what they
-     * do to other things, so they are judged elsewhere.
+     * The agents whose job is damage. The TARPIT (a slow field) and the
+     * NETWORK ARCHITECT (a buff aura) are priced for what they do to other
+     * things, so they are judged elsewhere.
      */
     private val damageDealers = listOf(
         AgentType.FIREWALL, AgentType.IPS, AgentType.ANALYST,
@@ -79,8 +79,7 @@ class AgentCurveTest {
     fun `reach grows with price`() {
         // The IDS is the declared exception: a cheap unit whose whole identity
         // is seeing further than anything else.
-        val byPrice = (damageDealers + AgentType.SANDBOX + AgentType.NETWORK_ARCHITECT)
-            .sortedBy { it.cost }
+        val byPrice = (damageDealers + AgentType.NETWORK_ARCHITECT).sortedBy { it.cost }
         for (i in 1 until byPrice.size) {
             assertTrue(
                 "${byPrice[i].name} reaches ${byPrice[i].baseRange} where the " +

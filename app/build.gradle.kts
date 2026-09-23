@@ -13,8 +13,8 @@ android {
         applicationId = "com.cyopstd.game"
         minSdk = 24
         targetSdk = 35
-        versionCode = 12
-        versionName = "1.9.0"
+        versionCode = 13
+        versionName = "1.9.1"
         // Keep the APK small: the game ships no localized resources yet.
         resourceConfigurations += listOf("en")
     }

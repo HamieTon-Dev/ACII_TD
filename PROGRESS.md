@@ -101,9 +101,9 @@ rather than loosened.
 
 ## 5. Known issues, open questions
 
-- **SANDBOX (80 ◇) is outclassed by TARPIT (20 ◇).** Recorded in `BALANCE.md`.
-  Needs a design decision — stronger effect, different effect, or lower price —
-  not another number nudge. **Waiting on the user.**
+- ~~SANDBOX outclassed by TARPIT~~ — **resolved in 1.9.1: the unit was removed**
+  at the owner's instruction. Save compatibility is covered by tests in
+  `SaveSerializationTest`.
 - **Release APK has never been seen drawing a frame.** The container emulator
   has no KVM and its own `system_server` died under render load. The debug APK
   was observed rendering the main menu. No crash was ever logged against the

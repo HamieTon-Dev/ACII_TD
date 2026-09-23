@@ -48,12 +48,6 @@ class ProjectileSystem(private val engine: GameEngine, private val random: Rando
             else -> false
         }
 
-        if (agent.type == AgentType.SANDBOX) {
-            // Slow deepens as the sandbox levels: 0.60x at L1 down to 0.42x at L10.
-            projectile.slowFactor = (0.60f - (agent.level - 1) * 0.02f).coerceAtLeast(0.42f)
-            projectile.slowDuration = SANDBOX_SLOW_SECONDS
-        }
-
         if (agent.type == AgentType.QUANTUM_DEFENDER) {
             projectile.chainsLeft = QUANTUM_CHAINS
         }
@@ -240,7 +234,6 @@ class ProjectileSystem(private val engine: GameEngine, private val random: Rando
         const val IPS_VS_SWARM = 1.35f
         const val FIREWALL_RESISTED = 0.65f
 
-        const val SANDBOX_SLOW_SECONDS = 2.2f
         const val QUANTUM_CHAINS = 2
         const val QUANTUM_CHAIN_RATIO = 0.55f
         private const val QUANTUM_CHAIN_RADIUS = 130f

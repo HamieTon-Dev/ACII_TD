@@ -24,7 +24,6 @@ enum class AttackStyle(val trail: String) {
     SCAN("~~>"),
     BURST(">>>>"),
     PRECISION("*--->"),
-    CONTAINMENT("[::]"),
     THROTTLE("~->"),
     CIPHER("{==>}"),
     HUNTER("-=>"),
@@ -139,22 +138,6 @@ enum class AgentType(
             "the automated tools flagged and decides what it really is — slower " +
             "than a machine, far better against the hard cases.",
         allowsTargetingModes = true
-    ),
-    SANDBOX(
-        displayName = "SANDBOX",
-        shortName = "SANDBOX",
-        glyph = "S",
-        cost = 80,
-        baseDamage = 5f,
-        baseFireRate = 0.85f,
-        baseRange = 196f,
-        attackStyle = AttackStyle.CONTAINMENT,
-        unlockWave = 8,
-        abilityName = "DETONATION CHAMBER",
-        abilitySummary = "Slows every threat it hits by up to 45% while analysing.",
-        codexEntry = "A sandbox runs suspicious code in an isolated environment to " +
-            "see what it does before it is allowed anywhere near production. " +
-            "Anything under analysis is not going anywhere fast."
     ),
     CRYPTOGRAPHER(
         displayName = "CRYPTOGRAPHER",

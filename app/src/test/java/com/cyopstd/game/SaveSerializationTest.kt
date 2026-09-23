@@ -1,5 +1,8 @@
 package com.cyopstd.game
 
+import com.cyopstd.game.core.WorldGeometry
+import com.cyopstd.game.engine.GameEngine
+import com.cyopstd.game.model.AgentType
 import com.cyopstd.game.save.SavedAgent
 import com.cyopstd.game.save.SavedRun
 import kotlinx.serialization.json.Json
@@ -98,4 +101,76 @@ class SaveSerializationTest {
             threw
         )
     }
+    @Test
+    fun `a save naming an agent that no longer exists still loads`() {
+        // The SANDBOX was removed in 1.9.1. Anyone mid-run with one deployed
+        // has it written into their save by name, and a save that referred to
+        // a agent the build no longer has must not take the run down with it.
+        val engine = GameEngine()
+        engine.startNewRun()
+        engine.restore(
+            wave = 9,
+            serverHp = 72,
+            crypto = 400,
+            placements = listOf(
+                GameEngine.SavedPlacement(
+                    nodeId = WorldGeometry.nodesByCoverage[0].id,
+                    agentTypeName = "FIREWALL",
+                    level = 4,
+                    targetingOrdinal = 0
+                ),
+                GameEngine.SavedPlacement(
+                    nodeId = WorldGeometry.nodesByCoverage[1].id,
+                    agentTypeName = "SANDBOX",
+                    level = 7,
+                    targetingOrdinal = 0
+                ),
+                GameEngine.SavedPlacement(
+                    nodeId = WorldGeometry.nodesByCoverage[2].id,
+                    agentTypeName = "TARPIT",
+                    level = 2,
+                    targetingOrdinal = 0
+                )
+            ),
+            attacksBlocked = 10,
+            cryptoEarned = 50,
+            bossesDefeated = 1,
+            serverDamageTaken = 28,
+            agentsDeployed = 3,
+            agentUpgrades = 11
+        )
+
+        // The run survives, the wave and integrity are intact, and the towers
+        // that still exist are placed. The retired one is simply dropped.
+        assertEquals(9, engine.currentWave)
+        assertEquals(72, engine.serverHp)
+        assertEquals(
+            "the removed agent should be skipped, not placed or crashed on",
+            2, engine.activeAgentCount()
+        )
+        assertEquals(
+            AgentType.FIREWALL,
+            engine.agentAt(WorldGeometry.nodesByCoverage[0].id)?.type
+        )
+        assertEquals(
+            "the spot the removed agent held should be free",
+            null, engine.agentAt(WorldGeometry.nodesByCoverage[1].id)
+        )
+        assertEquals(
+            AgentType.TARPIT,
+            engine.agentAt(WorldGeometry.nodesByCoverage[2].id)?.type
+        )
+    }
+
+    @Test
+    fun `an unlock list naming a removed agent is harmless`() {
+        // Unlocks are stored by name too. A stale entry must neither crash nor
+        // unlock something else by shifting an index.
+        val stale = setOf("FIREWALL", "SANDBOX", "IPS")
+        val resolved = stale.mapNotNull { AgentType.fromNameSafe(it) }
+        assertEquals(2, resolved.size)
+        assertTrue(AgentType.FIREWALL in resolved)
+        assertTrue(AgentType.IPS in resolved)
+    }
+
 }
