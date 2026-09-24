@@ -45,7 +45,7 @@ object ChiptuneComposer {
     private var sampleRate = 16_000
 
     /** Bump this when an arrangement changes so cached renders are replaced. */
-    const val TRACK_VERSION = 5
+    const val TRACK_VERSION = 6
 
     private const val BEATS_PER_BAR = 4
     private const val BARS_PER_SECTION = 8
@@ -115,7 +115,14 @@ object ChiptuneComposer {
          */
         val bassPunch: Float = 0f,
         /** Kick level. The other half of "harder", and the half you feel. */
-        val kickGain: Float = 1f
+        val kickGain: Float = 1f,
+        /**
+         * Alternate an 8-bit kit and an acoustic one every riff.
+         *
+         * Off for the original two tracks, which are one kit throughout and
+         * were not asked to change.
+         */
+        val mixedKit: Boolean = false
     ) {
         GAME(bpm = 72f, cutoffHz = 2600f, masterGain = 1.25f, wow = 1f),
         MENU(bpm = 132f, cutoffHz = 7200f, masterGain = 1.15f, wow = 0.15f),
@@ -139,7 +146,7 @@ object ChiptuneComposer {
         BOTTLE(
             bpm = 60f, cutoffHz = 6400f, masterGain = 1.10f, wow = 0.08f,
             sampleRate = 24_000, hiss = 0.0006f, leadDuty = 0.30f,
-            air = 2.4f, lowCutHz = 74f
+            air = 2.4f, lowCutHz = 74f, mixedKit = true
         ),
 
         /**
@@ -153,7 +160,8 @@ object ChiptuneComposer {
         BOTTLE_DRIVE(
             bpm = 90f, cutoffHz = 7600f, masterGain = 0.97f, wow = 0.05f,
             sampleRate = 24_000, hiss = 0.0005f, leadDuty = 0.26f,
-            air = 2.7f, lowCutHz = 80f, bassPunch = 2.1f, kickGain = 1.55f
+            air = 2.7f, lowCutHz = 80f, bassPunch = 2.1f, kickGain = 1.55f,
+            mixedKit = true
         )
     }
 
@@ -177,7 +185,21 @@ object ChiptuneComposer {
     // ----------------------------------------------------------- the music
 
     /** Which oscillator a note is played on. */
-    private enum class Voice { LEAD, PAD, BASS, KICK, HAT, RIM, SUB, GUITAR, SYNTH }
+    private enum class Voice {
+        LEAD, PAD, BASS, KICK, HAT, RIM, SUB, GUITAR, SYNTH,
+
+        /** Snare from a noise channel: a burst of static and nothing else. */
+        SNARE_CHIP,
+
+        /** Snare with a body: a tuned shell under the wires. */
+        SNARE_REAL,
+
+        /** Hat from a noise channel: white, short, flat. */
+        HAT_CHIP,
+
+        /** Hat from six inharmonic squares: metallic, and it sizzles. */
+        HAT_REAL
+    }
 
     private class Note(
         val startFrame: Int,
@@ -673,33 +695,107 @@ object ChiptuneComposer {
         intensity: Int,
         rng: Rng
     ) {
+        // Which kit this riff is played on. Four bars is a riff, so the kit
+        // flips every four bars -- long enough to settle into and short enough
+        // that the swap comes back around inside a section.
+        val acoustic = track.mixedKit && (bar / RIFF_BARS) % 2 == 1
+
         if (intensity >= 2) {
             notes += kick(time)
             notes += kick(time + SECONDS_PER_BEAT * 2.5f, 0.82f)
-            notes += note(
-                time + SECONDS_PER_BEAT * 2f, 0.16f, 0f, Voice.RIM,
-                amp = 0.17f, attack = 0.001f, release = 0.02f, decay = 26f
-            )
+            notes += backbeat(time + SECONDS_PER_BEAT * 2f, acoustic)
             if (bar % 8 == 7) {
-                notes += note(
-                    time + SECONDS_PER_BEAT * 3.5f, 0.14f, 0f, Voice.RIM,
-                    amp = 0.13f, attack = 0.001f, release = 0.02f, decay = 30f
-                )
+                notes += backbeat(time + SECONDS_PER_BEAT * 3.5f, acoustic, 0.76f)
             }
         }
 
         val hatSlots = if (intensity >= 2) intArrayOf(1, 3, 5, 7) else intArrayOf(2, 6)
         for (slot in hatSlots) {
             if (intensity >= 2 && rng.float() < 0.12f) continue
+            notes += hat(
+                time + SECONDS_PER_BEAT * 0.5f * slot,
+                acoustic,
+                if (intensity >= 2) 1f else 0.67f
+            )
+        }
+    }
+
+    /** A riff, for the purpose of swapping kits. */
+    private const val RIFF_BARS = 4
+
+    /**
+     * Voices the tape wow must not touch.
+     *
+     * Wow is a tuning drift, and these have no tuning to drift: percussion and
+     * transients. Warbling them just smears the attack.
+     */
+    private val UNPITCHED = setOf(
+        Voice.HAT, Voice.HAT_CHIP, Voice.HAT_REAL, Voice.RIM,
+        Voice.SNARE_CHIP, Voice.SNARE_REAL, Voice.SUB
+    )
+
+    /**
+     * Partials of a struck cymbal, as ratios of the base frequency.
+     *
+     * Deliberately not whole-number multiples: a harmonic series sounds like a
+     * pitch, and a cymbal is the absence of one.
+     */
+    private val METAL_RATIOS =
+        floatArrayOf(1f, 1.4471f, 1.6170f, 1.9265f, 2.5028f, 2.6637f)
+
+    /**
+     * The backbeat, on whichever kit this riff is using.
+     *
+     * The chip snare is a burst of static and nothing else — that is all a
+     * noise channel can do, and the flatness is the sound. The acoustic one
+     * has a tuned shell under the wires and about four times the tail, which
+     * is what makes it read as a drum in a room rather than a click.
+     */
+    private fun backbeat(time: Float, acoustic: Boolean, gain: Float = 1f): Note =
+        if (!track.mixedKit) {
+            note(
+                time, 0.16f, 0f, Voice.RIM,
+                amp = 0.17f * gain, attack = 0.001f, release = 0.02f, decay = 26f
+            )
+        } else if (acoustic) {
+            note(
+                // 186 Hz: the shell. Low enough to have weight, high enough to
+                // stay clear of the bass it lands on top of.
+                time, 0.26f, 186f, Voice.SNARE_REAL,
+                amp = 0.23f * gain, attack = 0.001f, release = 0.09f, decay = 11f
+            )
+        } else {
+            note(
+                time, 0.11f, 0f, Voice.SNARE_CHIP,
+                amp = 0.21f * gain, attack = 0.0005f, release = 0.015f, decay = 34f
+            )
+        }
+
+    /**
+     * The hat, on whichever kit this riff is using.
+     *
+     * Chip hats are white and gone instantly. Acoustic ones ring, and they are
+     * metallic rather than white — six inharmonic partials, which is how every
+     * drum machine since the 808 has faked a cymbal, because white noise alone
+     * sounds like a shaker.
+     */
+    private fun hat(time: Float, acoustic: Boolean, gain: Float): Note {
+        val air = track.air.coerceAtLeast(1f)
+        return if (acoustic) {
+            note(
+                time, 0.13f * air, 810f, Voice.HAT_REAL,
+                amp = 0.062f * track.air * gain,
+                attack = 0.001f, release = 0.05f, decay = 26f / air
+            )
+        } else {
             // On an airy track the hat is the only thing in the mix with any
             // real top end, and at a 70 decay it lasted about fifteen
             // milliseconds -- a tick, not a hat. Letting it ring is worth more
             // brightness than any amount of filter.
-            notes += note(
-                time + SECONDS_PER_BEAT * 0.5f * slot,
-                0.06f * track.air.coerceAtLeast(1f), 0f, Voice.HAT,
-                amp = (if (intensity >= 2) 0.075f else 0.05f) * track.air,
-                attack = 0.001f, release = 0.01f, decay = 70f / track.air.coerceAtLeast(1f)
+            note(
+                time, 0.06f * air, 0f, Voice.HAT_CHIP,
+                amp = 0.075f * track.air * gain,
+                attack = 0.001f, release = 0.01f, decay = 70f / air
             )
         }
     }
@@ -1017,9 +1113,7 @@ object ChiptuneComposer {
             }
             // Tape wow: two slow, mutually prime drifts. Barely a fifth of a
             // semitone, but it is what stops the pads sounding like a computer.
-            if (note.voice != Voice.HAT && note.voice != Voice.RIM &&
-                note.voice != Voice.SUB
-            ) {
+            if (note.voice !in UNPITCHED) {
                 freq *= 1f + track.wow * (
                     0.0024f * sin(TWO_PI * 0.13f * absolute) +
                         0.0012f * sin(TWO_PI * 0.37f * absolute + 1.7f)
@@ -1034,8 +1128,33 @@ object ChiptuneComposer {
                 Voice.PAD -> if (phase < 0.25f) 1f else -1f
                 Voice.BASS -> if (phase < 0.5f) 4f * phase - 1f else 3f - 4f * phase
                 Voice.KICK -> sin(TWO_PI * phase)
-                Voice.HAT -> noise()
+                Voice.HAT, Voice.HAT_CHIP -> noise()
                 Voice.RIM -> noise() * 0.7f + sin(t * 1180f) * 0.3f
+
+                // A noise channel firing. Flat, white, and that is the point:
+                // an 8-bit snare has no shell to resonate.
+                Voice.SNARE_CHIP -> noise()
+
+                // Wires over a tuned shell. The shell is a sine at the note's
+                // own frequency and decays faster than the wires do, so the
+                // hit has a pitch at the front and static behind it -- which
+                // is the order a real snare does it in.
+                Voice.SNARE_REAL -> {
+                    val shell = sin(TWO_PI * phase) * exp(-26f * t)
+                    noise() * 0.62f + shell * 0.58f
+                }
+
+                // Six inharmonic squares, which is how every drum machine
+                // since the 808 has faked a cymbal. White noise on its own
+                // sounds like a shaker; it is the beating between partials
+                // that sounds like metal.
+                Voice.HAT_REAL -> {
+                    var sum = 0f
+                    for (ratio in METAL_RATIOS) {
+                        sum += if ((freq * ratio * t) % 1f < 0.5f) 1f else -1f
+                    }
+                    sum * 0.17f + noise() * 0.22f
+                }
                 // Driven hard on purpose: the master's soft saturation turns
                 // the overdrive into grit rather than into clipping, which is
                 // what makes a bass hit audible through a phone speaker.

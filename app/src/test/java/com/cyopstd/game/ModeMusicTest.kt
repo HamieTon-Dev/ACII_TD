@@ -394,6 +394,84 @@ class ModeMusicTest {
         }
     }
 
+    // ------------------------------------------------------------- the kits
+
+    @Test
+    fun `the kit swaps every riff, and the two kits are really different`() {
+        // The backbeat lands on beat 3. Bars 1-3 are played on the chip kit
+        // and bars 5-7 on the acoustic one, so the same beat of the same
+        // groove is available on both and everything around it is comparable.
+        //
+        // Measured in a narrow band around the acoustic snare's shell
+        // frequency and in a tight window on the transient. A wider window
+        // does not work: over 300ms and 150-300Hz the bass line swamps the
+        // snare completely and the two kits measure as identical, which is
+        // what the first version of this measurement concluded.
+        for (track in listOf(Track.BOTTLE, Track.BOTTLE_DRIVE)) {
+            val chip = backbeatEnergy(track, listOf(1, 2, 3), 170f, 210f)
+            val real = backbeatEnergy(track, listOf(5, 6, 7), 170f, 210f)
+            assertTrue(
+                "$track measures $real at the snare shell on the acoustic riff " +
+                    "against $chip on the chip riff -- the two kits sound the same",
+                real > chip * 2f
+            )
+        }
+    }
+
+    @Test
+    fun `the chip kit stays flat, which is the whole point of it`() {
+        // A noise-channel snare has no tuned component at all. If the chip
+        // riff ever grows one, the two kits have quietly become one kit.
+        for (track in listOf(Track.BOTTLE, Track.BOTTLE_DRIVE)) {
+            val shell = backbeatEnergy(track, listOf(1, 2, 3), 170f, 210f)
+            val static = backbeatEnergy(track, listOf(1, 2, 3), 600f, 4000f)
+            assertTrue(
+                "$track's chip snare has grown a pitched body: $shell at the " +
+                    "shell against $static of static",
+                shell < static
+            )
+        }
+    }
+
+    /**
+     * Energy between [lo] and [hi] in the 45ms after the backbeat of each of
+     * [bars], as a fraction of that window's total.
+     */
+    private fun backbeatEnergy(
+        track: Track,
+        bars: List<Int>,
+        lo: Float,
+        hi: Float
+    ): Float {
+        val s = samples(track)
+        val rate = track.sampleRate
+        val beat = ChiptuneComposer.barSeconds(track) / 4f
+        val window = 512
+        var inBand = 0.0
+        var total = 0.0
+        for (bar in bars) {
+            // Beat 3 of the bar, which is where the backbeat is written.
+            val at = ((bar * 4 + 2) * beat * rate).toInt()
+            val windows = (0.045f * rate).toInt() / window
+            for (w in 0 until windows) {
+                val re = DoubleArray(window)
+                val im = DoubleArray(window)
+                for (i in 0 until window) {
+                    val hann = 0.5 - 0.5 * kotlin.math.cos(2.0 * Math.PI * i / (window - 1))
+                    re[i] = s[at + w * window + i] * hann
+                }
+                dft(re, im)
+                for (k in 1 until window / 2) {
+                    val hz = k.toFloat() * rate / window
+                    val power = re[k] * re[k] + im[k] * im[k]
+                    total += power
+                    if (hz >= lo && hz < hi) inBand += power
+                }
+            }
+        }
+        return if (total == 0.0) 0f else (inBand / total).toFloat()
+    }
+
     @Test
     fun `the glitch fires exactly six stabs`() {
         // "x6" is a count. Counted off the rendered audio rather than off the
