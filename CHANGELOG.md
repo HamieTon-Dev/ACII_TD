@@ -7,6 +7,53 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [1.24.0]
+
+### Added — REVIVE PACK, and ten times the € everywhere
+
+**REVIVE PACK**, $4.99: three revives per run instead of one, **no ad in front
+of any of them**, and €5,000. It sits next to REMOVE ADS in the store's
+CONVENIENCE section on purpose — they are the two products with "ads" in the
+name, and they cover different ads. REMOVE ADS takes away the interstitial
+between runs. REVIVE PACK takes away the rewarded ad in front of a revive.
+Neither implies the other, and the store, the account screen and the revive
+button all say so.
+
+**Every € figure is now ten times what it was.**
+
+| Product | € before | € now |
+| --- | ---: | ---: |
+| €150 BUDGET | 150 | **1,500** |
+| €500 BUDGET | 500 | **5,000** |
+| €900 BUDGET | 900 | **9,000** |
+| CORE SKIN PACK | 200 | **2,000** |
+| ALL LIVING BACKGROUNDS | 200 | **2,000** |
+| STARTER PACK | 200 | **2,000** |
+| REMOVE ADS | — | **5,000** |
+| REVIVE PACK | — | **5,000** |
+
+**Nothing got cheaper or more expensive.** Ten times the € in the packs alone
+would have been a tenfold buff to paying, so the whole economy moved together:
+what a wave pays out and what a firmware level costs went up by the same ten.
+€9,000 buys exactly the firmware levels €900 used to buy — there is a test that
+asserts that directly. The numbers are bigger and the game is the same, which
+is the point.
+
+### Your existing € was carried across
+
+A save written before this release holds € at the old scale. It is multiplied
+by ten once, on first launch, and stamped so it can never be multiplied twice.
+Firmware levels already bought are untouched — only the currency changed
+denomination. Nobody ends up poorer than they were.
+
+### Also
+
+A product in the catalog that no screen listed could be priced, restored, and
+never bought. The store's sections are now data, and a test asserts every
+product is reachable from a screen — REVIVE PACK was caught by it.
+
+---
+
 ## [1.23.0]
 
 ### Added — watch an ad to continue

@@ -114,7 +114,9 @@ fun GameOverOverlay(
     /** Null when no revive can be offered; the button is then absent, not dead. */
     onWatchAdToRevive: (() -> Unit)? = null,
     revivesLeft: Int = 0,
-    reviveAdShowing: Boolean = false
+    reviveAdShowing: Boolean = false,
+    /** True when the REVIVE PACK has already paid for this; no ad is shown. */
+    reviveIsFree: Boolean = false
 ) {
     val transition = rememberInfiniteTransition(label = "gameOver")
     val flash by transition.animateFloat(
@@ -197,7 +199,13 @@ fun GameOverOverlay(
                 Spacer(Modifier.height(12.dp))
 
                 BastionButton(
-                    text = if (reviveAdShowing) "LOADING AD…" else "WATCH AD TO CONTINUE",
+                    text = when {
+                        reviveAdShowing -> "LOADING AD…"
+                        // A player who bought the pack must not be told they
+                        // are about to watch an ad. They are not.
+                        reviveIsFree -> "CONTINUE"
+                        else -> "WATCH AD TO CONTINUE"
+                    },
                     onClick = { if (!reviveAdShowing) onWatchAdToRevive() },
                     accent = Palette.Crypto,
                     leadingGlyph = "[+]",
@@ -205,13 +213,15 @@ fun GameOverOverlay(
                 )
                 Spacer(Modifier.height(6.dp))
                 Text(
-                    // Three facts, because each one is something a player would
-                    // otherwise find out the hard way: what it costs, what it
-                    // gives back, and that there is not another one after this.
+                    // Each clause is something a player would otherwise find
+                    // out the hard way: what it costs, what it gives back, and
+                    // how many are left.
                     text = "Resume this wave at half integrity. " +
                         (if (revivesLeft == 1) "One revive per run."
                         else "$revivesLeft revives left this run.") +
-                        " REMOVE ADS covers ads between runs; revive ads are separate.",
+                        (if (reviveIsFree) " REVIVE PACK — no ad."
+                        else " REMOVE ADS covers ads between runs; " +
+                            "revive ads are separate."),
                     style = MaterialTheme.typography.bodySmall,
                     color = Palette.TextMuted,
                     textAlign = TextAlign.Center

@@ -4,7 +4,7 @@
 reads first. It records where the project actually stands, what is proven and
 what is not, and what comes next.
 
-_Last updated: v1.23.0 — the revive. See `CHANGELOG.md` for the full per-version history._
+_Last updated: v1.24.0 — the revive pack and the ×10 € rescale. See `CHANGELOG.md` for the full per-version history._
 
 ---
 
@@ -25,18 +25,24 @@ this section is the position marker. Update it when an item ships.
 | 3 | C1 — boss identities | ✅ 1.21.0 |
 | 4 | B1 — the boss dossier | ✅ 1.22.0 |
 | 5 | F1 — revive on a rewarded ad | ✅ 1.23.0 |
-| 6 | D2 — `[REDHAT]` / `[BLUEHAT]` | ⛔ **blocked on the owner** — the four guard rails in §D2 need a pick |
-| 7 | F2 — revive pack + ×10 € rescale | ⬜ **next workable item** |
-| 8 | H1 — the tutorial overhaul | ⬜ |
+| 6 | F2 — revive pack + ×10 € rescale | ✅ 1.24.0 |
+| 7 | D2 — `[REDHAT]` / `[BLUEHAT]` | ⛔ **blocked on the owner** — the four guard rails in §D2 need a pick |
+| 8 | H1 — the tutorial overhaul | ⬜ **next workable item** |
 | 9 | E1 — the "Hugging-Face" map | ⬜ largest; its own version |
 | 10 | E2 — AI bosses `[₩₩₩]` / `[¥¥¥]` | ⬜ needs C1 + D2 + E1 |
 | 11 | F3 — two-device cloud-save check | ⛔ needs a real Play Console |
 
-**Pick up at F2**, skipping D2 until the owner chooses. F2 is the store pass:
-the `revive_pack` at $4.99 (3 revives per run, no revive ads ever, +€5,000),
-×10 € on every existing pack, and +€5,000 on `no_ads`. The revive it sells
-already exists as of 1.23.0 — `Balance.REVIVES_PER_RUN` is the free
-entitlement and `GameViewModel.revivesAllowed` is the hook the pack raises.
+**Pick up at H1**, skipping D2 until the owner chooses. H1 is the tutorial
+overhaul: force 2× FIREWALL and 2× TARPIT, point arrows at the real "WAVE 1"
+and "◇120" readouts (which are drawn on the Canvas, not in Compose, so the
+arrow has to cross that boundary), keep SKIP out of the way of what it is
+pointing at, and an optional enemy/boss briefing. §H1 has the detail.
+
+**A note for whoever picks this up:** `revive_pack` is a new Play Console
+product id that does not exist yet, and `cyops.admob.rewardedId` is a new
+AdMob unit that does not exist yet. Both are in `RELEASING.md` and both are
+the owner's to create. The build degrades correctly without either — no
+revive button, no revive pack purchase — so neither blocks development.
 
 Also still open and owner-facing: §J's boss, level and background options, and
 the remaining `BossVariant` rows.
@@ -52,7 +58,7 @@ when it ships rather than leaving it in both.
 
 ```bash
 cd /home/user/ACII_TD
-./gradlew :app:testDebugUnitTest      # 332 tests, all passing
+./gradlew :app:testDebugUnitTest      # 347 tests, all passing
 ./gradlew :app:assembleRelease        # -> app/build/outputs/apk/release/CyOpsTD-v<ver>.apk
 ```
 
@@ -158,6 +164,7 @@ rather than loosened.
 | 1.21 | Boss identities: `[!!!]` BREACH, `[GG]` GOOD GAME, `[ZZ]` ZOMBIE |
 | 1.22 | BOSS dossier: live stats and every modifier's description, mid-fight |
 | 1.23 | Revive on a rewarded ad: same wave, half integrity, one per run |
+| 1.24 | REVIVE PACK ($4.99, 3/run, no revive ads); whole € economy ×10 |
 
 ---
 

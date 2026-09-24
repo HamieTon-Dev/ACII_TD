@@ -66,11 +66,12 @@ these ids. A typo is a product that can never be bought, so copy them:
 
 | Product ID | Type | Suggested price | Grants |
 | --- | --- | ---: | --- |
-| `no_ads` | Permanent | $4.99 | No interstitial, ever |
+| `no_ads` | Permanent | $4.99 | No interstitial, ever, + €5,000 |
+| `revive_pack` | Permanent | $4.99 | 3 revives per run, no revive ads, + €5,000 |
 | `speed_5x` | Permanent | $4.99 | Fifth simulation speed |
-| `budget_small` | **Consumable** | $0.99 | €150 |
-| `budget_medium` | **Consumable** | $2.99 | €500 |
-| `budget_large` | **Consumable** | $4.99 | €900 |
+| `budget_small` | **Consumable** | $0.99 | €1,500 |
+| `budget_medium` | **Consumable** | $2.99 | €5,000 |
+| `budget_large` | **Consumable** | $4.99 | €9,000 |
 | `skin_agents_spectrum` | Permanent | $2.99 | SPECTRUM agent colours |
 | `core_skin_reactor` | Permanent | $1.00 | CORE: REACTOR |
 | `core_skin_meridian` | Permanent | $1.00 | CORE: MERIDIAN |
@@ -79,18 +80,32 @@ these ids. A typo is a product that can never be bought, so copy them:
 | `core_skin_mainframe` | Permanent | $1.00 | CORE: MAINFRAME |
 | `core_skin_cascade` | Permanent | $1.00 | CORE: CASCADE |
 | `core_skin_neongrid` | Permanent | $1.00 | CORE: NEONGRID (premium) |
-| `core_skin_pack` | Permanent | **$2.50** | Six core skins + €200 |
+| `core_skin_pack` | Permanent | **$2.50** | Six core skins + €2,000 |
 | `bg_drift` | Permanent | $1.99 | LIVING: DRIFT |
 | `bg_lattice` | Permanent | $2.99 | LIVING: LATTICE |
 | `bg_aurora` | Permanent | $4.99 | LIVING: AURORA |
 | `bg_rainfall` | Permanent | $1.99 | LIVING: RAINFALL |
 | `bg_pulse` | Permanent | $2.99 | LIVING: PULSE |
-| `bg_pack` | Permanent | $4.99 | All five backgrounds + €200 |
-| `starter_pack` | Permanent | $4.99 | No-ads + SPECTRUM + DRIFT + €200 |
+| `bg_pack` | Permanent | $4.99 | All five backgrounds + €2,000 |
+| `starter_pack` | Permanent | $4.99 | No-ads + SPECTRUM + DRIFT + €2,000 |
 
 The three **consumables must be created as consumable** in the console. The app
 consumes them so they can be bought again; a € pack created as a
 non-consumable could only ever be bought once.
+
+**`no_ads` and `revive_pack` both say "no ads" and cover different ads.**
+`no_ads` removes the interstitial between runs; `revive_pack` removes the
+rewarded ad in front of a revive and raises the per-run revive count to three.
+Neither implies the other — in code, in the store copy, or on the account
+screen — because a player who assumes one covers the other files a refund. If
+you edit the store listings, keep both descriptions explicit about it.
+
+**The € figures above are the 1.24.0 scale**, ten times what they were. The
+whole economy was multiplied by ten together — wave payouts and firmware costs
+as well as packs — so a pack buys exactly what it bought before and only the
+numbers are larger. `Balance.BUDGET_SCALE` is the factor and
+`GameRepository.migrateBudgetScale()` carries a pre-1.24.0 save across, once.
+Do not raise the pack figures alone.
 
 `core_skin_pack` deliberately **excludes** `core_skin_neongrid` — NEONGRID is
 the premium skin and is sold on its own. Note also that the pack is still at

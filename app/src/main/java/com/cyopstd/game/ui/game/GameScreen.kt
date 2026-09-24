@@ -267,7 +267,8 @@ fun GameScreen(
                     null
                 },
             revivesLeft = viewModel.revivesAllowed - viewModel.revivesUsed,
-            reviveAdShowing = viewModel.showingReviveAd
+            reviveAdShowing = viewModel.showingReviveAd,
+            reviveIsFree = viewModel.reviveIsFree
         )
     }
 }

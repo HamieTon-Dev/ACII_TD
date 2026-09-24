@@ -141,6 +141,37 @@ class GameRepository(private val store: DataStore<Preferences>) {
 
     suspend fun hasSavedRun(): Boolean = savedRun.first()?.isResumable == true
 
+    /**
+     * Brings a pre-1.24.0 save onto the ×10 € scale, exactly once.
+     *
+     * 1.24.0 multiplied the whole € economy by ten — what a wave pays out,
+     * what a firmware level costs, and what every store pack grants — so that
+     * the packs could show bigger numbers without becoming ten times better
+     * value. A save written before that carries € at the old scale, and
+     * leaving it there would have made every existing player ten times poorer
+     * against the new firmware costs overnight. That is not a rounding error;
+     * it is somebody's purchase.
+     *
+     * So the stored budget and the lifetime total are multiplied once and the
+     * save is stamped. The stamp is what makes it once: running this twice
+     * would be as wrong as never running it.
+     *
+     * Firmware *level* is untouched. Levels already bought stay bought; only
+     * the currency changes denomination.
+     */
+    suspend fun migrateBudgetScale() {
+        val prefs = store.data.catch { emitSafely(it) }.first()
+        if (prefs[Keys.BUDGET_SCALE_VERSION] == Balance.BUDGET_SCALE) return
+
+        val budget = prefs[Keys.BUDGET] ?: 0L
+        val lifetime = prefs[Keys.LIFETIME_BUDGET] ?: 0L
+        writeSafely { updated ->
+            updated[Keys.BUDGET] = budget * Balance.BUDGET_SCALE
+            updated[Keys.LIFETIME_BUDGET] = lifetime * Balance.BUDGET_SCALE
+            updated[Keys.BUDGET_SCALE_VERSION] = Balance.BUDGET_SCALE
+        }
+    }
+
     suspend fun unlockAgent(type: AgentType) {
         val current = progress.first().unlockedAgents
         if (type.name in current) return
@@ -312,6 +343,14 @@ class GameRepository(private val store: DataStore<Preferences>) {
         val DEPLOYMENTS_JSON = stringPreferencesKey("deployments_json")
 
         val BUDGET = longPreferencesKey("budget")
+
+        /**
+         * Which € scale this save is written in.
+         *
+         * Absent means the pre-1.24.0 scale, before the whole € economy was
+         * multiplied by ten. See [migrateBudgetScale].
+         */
+        val BUDGET_SCALE_VERSION = intPreferencesKey("budget_scale_version")
         val LIFETIME_BUDGET = longPreferencesKey("lifetime_budget")
         val FIRMWARE_LEVEL = intPreferencesKey("firmware_level")
         val UNLOCKED_AGENTS = stringPreferencesKey("unlocked_agents")

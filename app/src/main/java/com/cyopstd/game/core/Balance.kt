@@ -265,7 +265,25 @@ object Balance {
      * being rewarded.
      */
     const val BUDGET_MILESTONE_INTERVAL = 10
-    const val BUDGET_BASE = 5
+
+    /**
+     * The 1.24.0 rescale, ×10 across the whole € economy.
+     *
+     * The owner asked for ten times the € in every store pack, to make a pack
+     * look worth what it costs. Ten times the € *only* in the packs would have
+     * been a 10× buff to paying, so everything moved together: what a wave pays
+     * out, what a firmware level costs, and every pack. The ratios a player
+     * experiences are identical and only the numbers are bigger, which is
+     * exactly what was asked for.
+     *
+     * It lives here as a named constant rather than baked into the numbers
+     * because an existing save has to be multiplied by the same factor once —
+     * see `GameRepository.migrateBudgetScale`. Change this and that migration
+     * changes with it.
+     */
+    const val BUDGET_SCALE = 10
+
+    const val BUDGET_BASE = 5 * BUDGET_SCALE
 
     fun isBudgetMilestone(wave: Int): Boolean =
         wave > 0 && wave % BUDGET_MILESTONE_INTERVAL == 0
@@ -292,7 +310,8 @@ object Balance {
         1f + level.coerceIn(0, MAX_FIRMWARE_LEVEL) * FIRMWARE_DAMAGE_PER_LEVEL
 
     /** € cost to go from firmware [level] to [level] + 1. */
-    fun firmwareCost(level: Int): Int = 3 + level.coerceAtLeast(0)
+    fun firmwareCost(level: Int): Int =
+        (3 + level.coerceAtLeast(0)) * BUDGET_SCALE
 
     /** Total € needed to climb from [fromLevel] by [steps] levels. */
     fun firmwareCostFor(fromLevel: Int, steps: Int): Long {

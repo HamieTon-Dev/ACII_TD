@@ -20,6 +20,25 @@ data class Entitlements(
     fun owns(id: String): Boolean = id in ownedIds
 
     val adsRemoved: Boolean get() = Sku.NO_ADS.id in ownedIds
+
+    /**
+     * Revives per run this player is entitled to, or null for the default.
+     *
+     * Null rather than the default number so that [com.cyopstd.game.core.Balance]
+     * stays the single place the free entitlement is written down, and a
+     * product only ever says what it *changes*.
+     */
+    val revivesPerRun: Int? get() = Sku.revivesPerRun(ownedIds)
+
+    /**
+     * True when a revive costs no ad.
+     *
+     * Deliberately not implied by [adsRemoved]: the owner's rule is that
+     * REMOVE ADS buys freedom from ads the player did not ask for, and the
+     * revive is one they did. Only a product that says it covers revives
+     * covers revives.
+     */
+    val reviveAdsRemoved: Boolean get() = Sku.reviveAdsRemoved(ownedIds)
     val fifthSpeedUnlocked: Boolean get() = Sku.SPEED_5X.id in ownedIds
     val spectrumAgents: Boolean get() = Sku.SKIN_AGENTS_SPECTRUM.id in ownedIds
 

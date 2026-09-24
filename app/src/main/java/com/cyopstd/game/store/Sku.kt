@@ -29,6 +29,16 @@ enum class Sku(
     val fallbackPrice: String,
     /** € credited on purchase. */
     val grantsBudget: Int = 0,
+    /**
+     * Revives this product grants per run, replacing the free entitlement.
+     *
+     * Zero means "changes nothing about revives". It is a *replacement* rather
+     * than an addition so that owning two products that both touch revives can
+     * never stack into a number nobody priced.
+     */
+    val grantsRevivesPerRun: Int = 0,
+    /** True when this product removes the ad requirement from the revive. */
+    val removesReviveAds: Boolean = false,
     /** Other products this one also unlocks. */
     val alsoUnlocks: List<String> = emptyList()
 ) {
@@ -37,8 +47,24 @@ enum class Sku(
         id = "no_ads",
         kind = SkuKind.PERMANENT,
         title = "REMOVE ADS",
-        summary = "No interstitial after a failed run. Ever.",
-        fallbackPrice = "$4.99"
+        // Says what it does *not* cover, because "no ads" on two different
+        // products is exactly the thing that generates refund requests when a
+        // player assumes one covers the other.
+        summary = "No interstitial after a failed run, ever, plus \u20AC5,000. " +
+            "Revive ads are opt-in and separate — see REVIVE PACK.",
+        fallbackPrice = "$4.99",
+        grantsBudget = 5_000
+    ),
+
+    REVIVE_PACK(
+        id = "revive_pack",
+        kind = SkuKind.PERMANENT,
+        title = "REVIVE PACK",
+        summary = "3 revives per run and no revive ads ever, plus \u20AC5,000.",
+        fallbackPrice = "$4.99",
+        grantsBudget = 5_000,
+        grantsRevivesPerRun = 3,
+        removesReviveAds = true
     ),
 
     SPEED_5X(
@@ -53,28 +79,28 @@ enum class Sku(
     BUDGET_SMALL(
         id = "budget_small",
         kind = SkuKind.CONSUMABLE,
-        title = "€150 BUDGET",
+        title = "€1,500 BUDGET",
         summary = "Spend it on permanent CORE FIRMWARE damage.",
         fallbackPrice = "$0.99",
-        grantsBudget = 150
+        grantsBudget = 1_500
     ),
 
     BUDGET_MEDIUM(
         id = "budget_medium",
         kind = SkuKind.CONSUMABLE,
-        title = "€500 BUDGET",
+        title = "€5,000 BUDGET",
         summary = "Better value per euro than the small pack.",
         fallbackPrice = "$2.99",
-        grantsBudget = 500
+        grantsBudget = 5_000
     ),
 
     BUDGET_LARGE(
         id = "budget_large",
         kind = SkuKind.CONSUMABLE,
-        title = "€900 BUDGET",
+        title = "€9,000 BUDGET",
         summary = "The best value per euro.",
         fallbackPrice = "$4.99",
-        grantsBudget = 900
+        grantsBudget = 9_000
     ),
 
     // ------------------------------------------------------------ agent skins
@@ -151,9 +177,9 @@ enum class Sku(
         title = "CORE SKIN PACK",
         // NEONGRID is deliberately not in here. It is the premium skin, sold
         // on its own, and folding it into a 2.50 bundle would give it away.
-        summary = "Six CORE-SERVER skins, plus \u20AC200. NEONGRID sold separately.",
+        summary = "Six CORE-SERVER skins, plus \u20AC2,000. NEONGRID sold separately.",
         fallbackPrice = "$2.50",
-        grantsBudget = 200,
+        grantsBudget = 2_000,
         alsoUnlocks = listOf(
             "core_skin_reactor", "core_skin_meridian", "core_skin_glacier",
             "core_skin_void", "core_skin_mainframe", "core_skin_cascade"
@@ -209,9 +235,9 @@ enum class Sku(
         // after this pack was written and were not added to it, so a player
         // buying something called ALL LIVING BACKGROUNDS would have received
         // three of five.
-        summary = "All five living backgrounds, plus \u20AC200.",
+        summary = "All five living backgrounds, plus \u20AC2,000.",
         fallbackPrice = "$4.99",
-        grantsBudget = 200,
+        grantsBudget = 2_000,
         alsoUnlocks = listOf(
             "bg_drift", "bg_lattice", "bg_aurora", "bg_rainfall", "bg_pulse"
         )
@@ -223,9 +249,9 @@ enum class Sku(
         kind = SkuKind.PERMANENT,
         title = "STARTER PACK",
         summary = "No ads, the SPECTRUM agent skin, the DRIFT background, " +
-            "and €200.",
+            "and \u20AC2,000.",
         fallbackPrice = "$4.99",
-        grantsBudget = 200,
+        grantsBudget = 2_000,
         alsoUnlocks = listOf("no_ads", "skin_agents_spectrum", "bg_drift")
     );
 
@@ -247,5 +273,19 @@ enum class Sku(
 
         val backgrounds: List<Sku> =
             listOf(BG_DRIFT, BG_LATTICE, BG_AURORA, BG_RAINFALL, BG_PULSE)
+
+        /**
+         * Revives per run for a player owning [owned], or null for the default.
+         *
+         * The maximum rather than the sum: two products that both grant
+         * revives must not stack into a number nobody priced.
+         */
+        fun revivesPerRun(owned: Set<String>): Int? =
+            entries.filter { it.grantsRevivesPerRun > 0 && it.id in owned }
+                .maxOfOrNull { it.grantsRevivesPerRun }
+
+        /** True when something the player owns pays for the revive already. */
+        fun reviveAdsRemoved(owned: Set<String>): Boolean =
+            entries.any { it.removesReviveAds && it.id in owned }
     }
 }

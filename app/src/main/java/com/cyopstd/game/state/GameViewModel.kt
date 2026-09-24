@@ -215,8 +215,18 @@ class GameViewModel @JvmOverloads constructor(
     var revivesUsed by mutableIntStateOf(0)
         private set
 
-    /** Revives this run is entitled to, which the revive pack will raise. */
-    val revivesAllowed: Int get() = Balance.REVIVES_PER_RUN
+    /** Revives this run is entitled to; the REVIVE PACK raises it to three. */
+    val revivesAllowed: Int
+        get() = entitlements.revivesPerRun ?: Balance.REVIVES_PER_RUN
+
+    /**
+     * True when the player has bought their way past the revive ad.
+     *
+     * The button then reads CONTINUE rather than WATCH AD TO CONTINUE and
+     * grants the revive directly. Nothing else about the revive changes, which
+     * is the point: the pack sells away the ad, not a different feature.
+     */
+    val reviveIsFree: Boolean get() = entitlements.reviveAdsRemoved
 
     /**
      * True while a rewarded ad is on screen for a revive.
@@ -245,7 +255,7 @@ class GameViewModel @JvmOverloads constructor(
         get() = engine.phase == RunPhase.GAME_OVER &&
             !runRecorded &&
             revivesUsed < revivesAllowed &&
-            ads.isRewardedReady
+            (reviveIsFree || ads.isRewardedReady)
 
     var gameOverSummary by mutableStateOf<GameOverSummary?>(null)
         private set
@@ -644,6 +654,10 @@ class GameViewModel @JvmOverloads constructor(
     }
 
     private fun observePersistence() {
+        // Before anything reads the budget: a save written before the 1.24.0
+        // rescale carries € at a tenth of the current scale, and reading it
+        // without migrating would show a player a tenth of what they own.
+        collectJobs += viewModelScope.launch { repository.migrateBudgetScale() }
         collectJobs += viewModelScope.launch {
             repository.settings.collectLatest { loaded ->
                 settings = loaded
@@ -1137,6 +1151,12 @@ class GameViewModel @JvmOverloads constructor(
     fun watchAdToRevive() {
         if (!canReviveNow || showingReviveAd) return
         playClick()
+        // Someone who bought the REVIVE PACK is not shown an ad they already
+        // paid to be rid of. Same revive, no ad in front of it.
+        if (reviveIsFree) {
+            grantRevive()
+            return
+        }
         showingReviveAd = true
         ads.showRewarded { earned ->
             showingReviveAd = false
@@ -1148,23 +1168,35 @@ class GameViewModel @JvmOverloads constructor(
                 showTransient("AD NOT COMPLETED — NOTHING SPENT")
                 return@showRewarded
             }
-            if (!engine.reviveRun()) {
-                showTransient("REVIVE FAILED — RUN ALREADY ENDED")
-                return@showRewarded
-            }
-            revivesUsed += 1
-            reviveSpentThisRun = true
-            gameOverSummary = null
-            matchActive = true
-            paused = false
-            audio.setInMatch(true)
-            if (settings.musicVolume > 0.01f) audio.startMusic()
-            selection = BattlefieldSelection()
-            showBossPanel = false
-            showDeployPanel = false
-            pushHud()
-            showTransient("SYSTEMS RESTORED — INTEGRITY ${engine.serverHp}")
+            grantRevive(spentAnAd = true)
         }
+    }
+
+    /**
+     * Puts the run back on its feet.
+     *
+     * Shared by the ad path and the REVIVE PACK path so there is exactly one
+     * description of what a revive does. [spentAnAd] only decides whether this
+     * run has already paid its ad budget, which is what suppresses the loss
+     * interstitial at the end.
+     */
+    private fun grantRevive(spentAnAd: Boolean = false) {
+        if (!engine.reviveRun()) {
+            showTransient("REVIVE FAILED — RUN ALREADY ENDED")
+            return
+        }
+        revivesUsed += 1
+        if (spentAnAd) reviveSpentThisRun = true
+        gameOverSummary = null
+        matchActive = true
+        paused = false
+        audio.setInMatch(true)
+        if (settings.musicVolume > 0.01f) audio.startMusic()
+        selection = BattlefieldSelection()
+        showBossPanel = false
+        showDeployPanel = false
+        pushHud()
+        showTransient("SYSTEMS RESTORED — INTEGRITY ${engine.serverHp}")
     }
 
     /**

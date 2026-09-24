@@ -1,6 +1,7 @@
 package com.cyopstd.game
 
 import com.cyopstd.game.model.AgentType
+import com.cyopstd.game.core.Balance
 import com.cyopstd.game.save.GameRepository
 import com.cyopstd.game.save.SavedAgent
 import com.cyopstd.game.save.SavedRun
@@ -253,30 +254,37 @@ class GameRepositoryTest {
 
     @Test
     fun `buying firmware spends budget and raises the level`() = runTest {
-        repository.awardBudget(100)
+        // Priced off the curve rather than off literals. These tests are about
+        // what the repository does with a purchase -- spend exactly the cost,
+        // raise exactly the level, leave income alone -- and hardcoding the
+        // numbers made them fail on the 1.24.0 x10 rescale, which changed the
+        // curve and nothing they were actually asserting.
+        val cost = Balance.firmwareCostFor(fromLevel = 0, steps = 5)
+        repository.awardBudget((cost + 75L).toInt())
 
         val bought = repository.buyFirmware(5)
 
         assertEquals(5, bought)
         val progress = repository.progress.first()
         assertEquals(5, progress.firmwareLevel)
-        // Levels 0..4 cost 3,4,5,6,7 = 25.
         assertEquals(75L, progress.budget)
         // Lifetime earned is a record of income, so spending must not reduce it.
-        assertEquals(100L, progress.lifetimeBudgetEarned)
+        assertEquals(cost + 75L, progress.lifetimeBudgetEarned)
     }
 
     @Test
     fun `firmware purchases stop at the budget rather than going negative`() = runTest {
-        repository.awardBudget(10)
+        // Enough for two levels and change, never three.
+        val twoLevels = Balance.firmwareCostFor(fromLevel = 0, steps = 2)
+        val thirdLevel = Balance.firmwareCost(2)
+        repository.awardBudget((twoLevels + thirdLevel - 1).toInt())
 
-        // Levels 0..2 cost 3+4+5 = 12, so 10 buys only two.
         val bought = repository.buyFirmware(50)
 
         assertEquals(2, bought)
         val progress = repository.progress.first()
         assertEquals(2, progress.firmwareLevel)
-        assertEquals(3L, progress.budget)
+        assertEquals(thirdLevel - 1L, progress.budget)
         assertTrue("budget can never go negative", progress.budget >= 0)
     }
 
@@ -291,7 +299,7 @@ class GameRepositoryTest {
 
     @Test
     fun `firmware survives as permanent progression`() = runTest {
-        repository.awardBudget(1000)
+        repository.awardBudget(Balance.firmwareCostFor(fromLevel = 0, steps = 20).toInt())
         repository.buyFirmware(20)
 
         // A fresh repository over the same store sees the same firmware: this

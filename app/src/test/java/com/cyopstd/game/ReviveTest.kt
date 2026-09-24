@@ -9,6 +9,7 @@ import com.cyopstd.game.engine.RunPhase
 import com.cyopstd.game.state.GameViewModel
 import androidx.test.core.app.ApplicationProvider
 import com.cyopstd.game.save.GameRepository
+import com.cyopstd.game.store.Sku
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withTimeoutOrNull
@@ -298,6 +299,62 @@ class ReviveTest {
             1,
             entriesOnBoard()
         )
+    }
+
+    // ------------------------------------------------------- the revive pack
+
+    @Test
+    fun `the pack grants three revives and shows no ad for any of them`() {
+        val ads = FakeAds(grants = true)
+        val application = ApplicationProvider.getApplicationContext<Application>()
+        repository = TestStores.isolatedRepository()
+        runBlocking { repository.applyPurchase(Sku.REVIVE_PACK, "order-revive-pack") }
+
+        val viewModel = GameViewModel(application, repository, adsOverride = ads)
+        shadowOf(Looper.getMainLooper()).idle()
+        viewModel.loseARun()
+
+        assertEquals(3, viewModel.revivesAllowed)
+        assertTrue("the pack pays for the revive", viewModel.reviveIsFree)
+
+        repeat(3) { attempt ->
+            assertTrue("revive ${attempt + 1} should be on offer", viewModel.canReviveNow)
+            viewModel.watchAdToRevive()
+            shadowOf(Looper.getMainLooper()).idle()
+            assertTrue("the run should be live again", viewModel.matchActive)
+            viewModel.playUntilLost()
+        }
+
+        assertEquals(3, viewModel.revivesUsed)
+        assertEquals(
+            "the pack sells the ad away; showing one anyway is the refund " +
+                "request this product exists to avoid",
+            0,
+            ads.rewardedShown
+        )
+        assertFalse("three is three, not four", viewModel.canReviveNow)
+    }
+
+    @Test
+    fun `REMOVE ADS alone does not pay for the revive`() {
+        val ads = FakeAds(grants = true)
+        val application = ApplicationProvider.getApplicationContext<Application>()
+        repository = TestStores.isolatedRepository()
+        runBlocking { repository.applyPurchase(Sku.NO_ADS, "order-no-ads") }
+
+        val viewModel = GameViewModel(application, repository, adsOverride = ads)
+        shadowOf(Looper.getMainLooper()).idle()
+        viewModel.loseARun()
+
+        assertFalse(
+            "REMOVE ADS covers ads between runs, not the one the player asked for",
+            viewModel.reviveIsFree
+        )
+        assertEquals(Balance.REVIVES_PER_RUN, viewModel.revivesAllowed)
+
+        viewModel.watchAdToRevive()
+        shadowOf(Looper.getMainLooper()).idle()
+        assertEquals("the revive still costs an ad", 1, ads.rewardedShown)
     }
 
     @Test

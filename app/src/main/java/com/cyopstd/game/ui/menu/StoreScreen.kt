@@ -26,7 +26,42 @@ import com.cyopstd.game.ui.common.CompactButton
 import com.cyopstd.game.ui.common.ScreenScaffold
 import com.cyopstd.game.ui.common.StatRow
 import com.cyopstd.game.ui.common.TerminalPanel
+import androidx.compose.ui.graphics.Color
 import com.cyopstd.game.ui.theme.Palette
+
+/**
+ * One headed group of products on the store's left-hand column.
+ *
+ * The sections are data rather than three inline loops so that a test can ask
+ * the obvious question — *is every product in the catalog actually reachable?*
+ * Adding a `Sku` and forgetting to list it produced a product that existed,
+ * had a price, could be restored, and could never be bought, and nothing in
+ * the build said so.
+ */
+data class StoreSection(val title: String, val accent: Color, val items: List<Sku>)
+
+/** The left column, in order. */
+val STORE_SECTIONS: List<StoreSection> = listOf(
+    StoreSection(
+        "BEST VALUE",
+        Palette.Crypto,
+        listOf(Sku.STARTER_PACK, Sku.CORE_SKIN_PACK, Sku.BG_PACK)
+    ),
+    StoreSection(
+        "BUDGET",
+        Palette.Cyan,
+        listOf(Sku.BUDGET_SMALL, Sku.BUDGET_MEDIUM, Sku.BUDGET_LARGE)
+    ),
+    StoreSection(
+        "CONVENIENCE",
+        Palette.Green,
+        // REVIVE_PACK sits next to NO_ADS on purpose: they are the two
+        // products with "ads" in them, and a player comparing them side by
+        // side is a player who does not later ask for a refund because they
+        // bought the wrong one.
+        listOf(Sku.NO_ADS, Sku.REVIVE_PACK, Sku.SPEED_5X)
+    )
+)
 
 /**
  * The store.
@@ -91,21 +126,12 @@ fun StoreScreen(
                     .weight(1f)
                     .verticalScroll(rememberScrollState())
             ) {
-                Section("BEST VALUE", Palette.Crypto) {
-                    for (sku in listOf(Sku.STARTER_PACK, Sku.CORE_SKIN_PACK, Sku.BG_PACK)) {
-                        ProductRow(sku, entitlements, prices, available, onBuy)
-                    }
-                }
-                Spacer(Modifier.height(12.dp))
-                Section("BUDGET", Palette.Cyan) {
-                    for (sku in listOf(Sku.BUDGET_SMALL, Sku.BUDGET_MEDIUM, Sku.BUDGET_LARGE)) {
-                        ProductRow(sku, entitlements, prices, available, onBuy)
-                    }
-                }
-                Spacer(Modifier.height(12.dp))
-                Section("CONVENIENCE", Palette.Green) {
-                    for (sku in listOf(Sku.NO_ADS, Sku.SPEED_5X)) {
-                        ProductRow(sku, entitlements, prices, available, onBuy)
+                for ((index, section) in STORE_SECTIONS.withIndex()) {
+                    if (index > 0) Spacer(Modifier.height(12.dp))
+                    Section(section.title, section.accent) {
+                        for (sku in section.items) {
+                            ProductRow(sku, entitlements, prices, available, onBuy)
+                        }
                     }
                 }
             }

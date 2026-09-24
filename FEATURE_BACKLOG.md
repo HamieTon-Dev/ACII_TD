@@ -235,62 +235,64 @@ interstitial when it finally ends.
 - *"30 seconds" is still not ours to set* — length belongs to the ad format and
   the network. The app decides whether to offer one and what it grants.
 
-### F2 ⬜ Store: a revive pack, and 10x the € in every pack
+### F2 ✅ shipped in 1.24.0 — the revive pack, and ten times the €
 
 **Asked:** *"add an option in the store for '3 revives per run no ads for
-revives ever - $4.99'. Also each pack should be 10x the amount of € given - even
-for the skin packs and all buys that come with € included. makes it look more
-valuable. Add in €5000 for each No ads after runs and No ads with 3 revive per
-run packs."*
+revives ever - $4.99'. Also each pack should be 10x the amount of € given —
+even for the skin packs and all buys that come with € included. makes it look
+more valuable. Add in €5000 for each No ads after runs and No ads with 3 revive
+per run packs."*
 
-**The new product.** A permanent one-time purchase:
+**`revive_pack`**, $4.99, permanent: three revives per run, no ad in front of
+any of them, and €5,000. It sits next to REMOVE ADS in CONVENIENCE so the two
+products with "ads" in them are read side by side, and every place either one
+appears now says which ads it covers.
 
-| | |
-| --- | --- |
-| Product id | `revive_pack` |
-| Type | Permanent (restorable) |
-| Price | $4.99 |
-| Grants | 3 revives per run, no ad ever required for a revive, **+ €5,000** |
+**Ten times the €, everywhere** — and this is the part that needed care. Ten
+times the € *in the packs alone* would have been a tenfold buff to paying. So
+the whole economy moved together: `Balance.BUDGET_SCALE = 10` multiplies what a
+wave pays out and what a firmware level costs as well as what every pack
+grants. €9,000 against the new curve buys exactly the levels €900 bought
+against the old one — there is a test that asserts precisely that — so the
+ratios a player experiences are unchanged and only the numbers are bigger,
+which is what "makes it look more valuable" means.
 
-It supersedes the once-per-run limit for everyone who owns it, and the revive
-button skips the ad entirely for them. Worth naming clearly in the store —
-*"3 REVIVES PER RUN · NO REVIVE ADS EVER"* — because "no ads" appearing on two
-different products is exactly the kind of thing that generates refund requests
-when a player assumes one covers the other.
-
-**Ten times the €, everywhere.** Every `grantsBudget` in `store/Sku.kt`
-multiplied by ten, plus €5,000 onto `no_ads`:
-
-| Product | € now | € after |
+| Product | € before | € now |
 | --- | ---: | ---: |
-| `budget_small` ($0.99) | 150 | **1,500** |
-| `budget_medium` ($2.99) | 500 | **5,000** |
-| `budget_large` ($4.99) | 900 | **9,000** |
-| `core_skin_pack` ($2.50) | 200 | **2,000** |
-| `bg_pack` ($4.99) | 200 | **2,000** |
-| `starter_pack` ($4.99) | 200 | **2,000** |
-| `no_ads` ($4.99) | — | **5,000** (new) |
-| `revive_pack` ($4.99) | — | **5,000** (new) |
+| `budget_small` | 150 | **1,500** |
+| `budget_medium` | 500 | **5,000** |
+| `budget_large` | 900 | **9,000** |
+| `core_skin_pack` | 200 | **2,000** |
+| `bg_pack` | 200 | **2,000** |
+| `starter_pack` | 200 | **2,000** |
+| `no_ads` | — | **5,000** |
+| `revive_pack` | — | **5,000** |
 
-Two consequences to handle in the same change, or the numbers stop meaning
-anything:
+#### The three things that would have gone wrong quietly
 
-1. **The firmware curve is priced against the old scale.** €9,000 against a
-   curve built when the largest pack was €900 either buys the whole tree
-   outright or does not — it needs checking against `Balance.firmwareCost` and
-   `MAX_FIRMWARE_LEVEL` before release. If a single $4.99 pack maxes firmware,
-   the € economy is over. Either the curve's late costs rise with it, or the
-   ×10 lands as a presentation change on a rescaled economy — **everything**
-   ×10, including what waves pay out, so the ratio a player experiences is
-   unchanged and only the numbers look bigger. That second option is almost
-   certainly what is wanted here ("makes it look more valuable"), and it is the
-   safer one.
-2. `StoreTest` asserts the € packs get better per euro as they get larger. ×10
-   preserves the ratios, so it should pass untouched — which is the point of
-   having written it that way.
+**Existing saves.** A save written before the rescale carries € at a tenth of
+the new scale, and leaving it there would have made every existing player ten
+times poorer against the new firmware costs overnight. That is not a rounding
+error, it is somebody's purchase. `GameRepository.migrateBudgetScale()`
+multiplies the stored budget and lifetime total once and stamps the save;
+running it twice would be as wrong as never running it, and a test runs it
+three times.
 
-**Play Console:** `revive_pack` is a new product id that must be created before
-release; `RELEASING.md` §2's table needs the row and the revised € column.
+**REMOVE ADS leaking into revives.** `STARTER_PACK` unlocks `no_ads`, so any
+"ads removed implies revive ads removed" shortcut would have handed three
+revives to a bundle that never claimed to sell them. Only a product that says
+it covers revives covers revives, and `Entitlements.reviveAdsRemoved` is the
+single place that is decided.
+
+**A product nobody could buy.** `revive_pack` was in the catalog, in the
+`RELEASING.md` table and on no screen. The store's sections are now data
+(`STORE_SECTIONS`) and a test asserts every `Sku` is reachable from a screen —
+it fails with the offending id named.
+
+#### Still to do outside the code
+
+`revive_pack` is a new Play Console product id and must be created before
+release. `RELEASING.md` §2 carries the row and the revised € column.
 
 ### F3 ⬜ Confirm what reaches the Google account, and say so in the UI
 
@@ -457,8 +459,7 @@ either depends on another or needs a decision noted in its section.**
 5. ~~F1~~ — ✅ 1.23.0.
 6. **D2** — RH/BH. **Blocked on the owner:** the four guard rails in §D2 need
    a pick before this can be built. Skipped rather than stalled on.
-7. **F2** — the store pass: the revive pack and the ×10 € rescale. **Next**,
-   and now unblocked — the pack sells a revive that exists.
+7. ~~F2~~ — ✅ 1.24.0.
 8. **H1** — the tutorial. Best done late: it teaches the game, and the game is
     still changing shape above it.
 9. **E1** — the map layer. Largest, and worth its own version.
