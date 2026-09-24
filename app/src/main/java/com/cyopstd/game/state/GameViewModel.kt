@@ -19,6 +19,8 @@ import com.cyopstd.game.ads.PlayServices
 import com.cyopstd.game.ads.AdPolicy
 import com.cyopstd.game.ads.NoAdGateway
 import com.cyopstd.game.core.GameMode
+import com.cyopstd.game.model.BossModifier
+import com.cyopstd.game.ui.game.BossDossier
 import com.cyopstd.game.save.LeaderboardEntry
 import com.cyopstd.game.save.LeaderboardGateway
 import com.cyopstd.game.save.LocalLeaderboard
@@ -146,6 +148,39 @@ class GameViewModel @JvmOverloads constructor(
      * view model.
      */
     var fifthSpeedUnlocked by mutableStateOf(false)
+
+    /** The boss dossier, open or not. Only reachable while a boss is up. */
+    var showBossPanel by mutableStateOf(false)
+        private set
+
+    fun toggleBossPanel() {
+        playClick()
+        showBossPanel = !showBossPanel
+    }
+
+    /**
+     * What the game knows about the boss on the field, or null if there is
+     * none.
+     *
+     * Built on demand from the live enemy rather than snapshotted into the HUD
+     * each tick: the dossier is opened *during* a fight, and a frozen copy of
+     * the numbers would be worse than not showing them. The panel reads
+     * `frameTick` so it recomposes with the simulation.
+     */
+    fun bossDossier(): BossDossier? {
+        val boss = engine.enemies.items.firstOrNull { it.active && it.isBoss } ?: return null
+        return BossDossier(
+            variant = boss.variant,
+            health = boss.health,
+            maxHealth = boss.maxHealth,
+            armor = boss.armor,
+            speed = boss.currentSpeed(),
+            modifiers = BossModifier.entries.filter { boss.hasModifier(it) },
+            revived = boss.revived,
+            distanceToCore = (WorldGeometry.laneLength[boss.lane] - boss.progress)
+                .coerceAtLeast(0f)
+        )
+    }
 
     var showDeployPanel by mutableStateOf(false)
         private set
@@ -715,6 +750,10 @@ class GameViewModel @JvmOverloads constructor(
             autoStartRemaining = kotlin.math.ceil(engine.autoStartRemaining).toInt()
         )
         if (snapshot != hud) hud = snapshot
+        // The dossier is about one specific opponent. When that opponent is
+        // gone the panel has nothing to say, and leaving the flag set would
+        // have the *next* boss throw it open over the board unasked.
+        if (showBossPanel && !snapshot.bossOnField) showBossPanel = false
         trackPhaseForBanner(engine.phase)
     }
 

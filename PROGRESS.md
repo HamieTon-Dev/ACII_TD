@@ -4,7 +4,7 @@
 reads first. It records where the project actually stands, what is proven and
 what is not, and what comes next.
 
-_Last updated: v1.21.0 — boss identities. See `CHANGELOG.md` for the full per-version history._
+_Last updated: v1.22.0 — the boss dossier. See `CHANGELOG.md` for the full per-version history._
 
 ---
 
@@ -12,15 +12,38 @@ _Last updated: v1.21.0 — boss identities. See `CHANGELOG.md` for the full per-
 
 **When the owner says "continue", take the first unfinished item from
 `FEATURE_BACKLOG.md` §K and work it.** That is a standing instruction, not a
-one-off; it does not need re-asking each time.
+one-off; it does not need re-asking each time. The owner has also asked to keep
+working the whole list until usage runs out, logging position as it goes — so
+this section is the position marker. Update it when an item ships.
+
+### Where the list stands
+
+| §K | Item | State |
+| --- | --- | --- |
+| 1 | A1, A2 — HUD sizing | ✅ 1.18.0 |
+| 2 | D1 + all of §G — balance | ✅ 1.19.0 |
+| 3 | C1 — boss identities | ✅ 1.21.0 |
+| 4 | B1 — the boss dossier | ✅ 1.22.0 |
+| 5 | D2 — `[REDHAT]` / `[BLUEHAT]` | ⛔ **blocked on the owner** — the four guard rails in §D2 need a pick |
+| 6 | F1 — revive on a rewarded ad | ⬜ **next workable item** |
+| 7 | F2 — revive pack + ×10 € rescale | ⬜ after F1 |
+| 8 | H1 — the tutorial overhaul | ⬜ |
+| 9 | E1 — the "Hugging-Face" map | ⬜ largest; its own version |
+| 10 | E2 — AI bosses `[₩₩₩]` / `[¥¥¥]` | ⬜ needs C1 + D2 + E1 |
+| 11 | F3 — two-device cloud-save check | ⛔ needs a real Play Console |
+
+**Pick up at F1**, skipping D2 until the owner chooses. F1's shape and the two
+traps in it (REMOVE ADS must *not* cover the revive ad; `onRunEnded()` must be
+reordered so a revived run is not recorded or submitted twice) are written up
+in `FEATURE_BACKLOG.md` §F1.
+
+Also still open and owner-facing: §J's boss, level and background options, and
+the remaining `BossVariant` rows.
 
 Requested but **not built**: `FEATURE_BACKLOG.md`. It holds the owner's
-add-on list (HUD sizing, a boss dossier panel, boss identities, REDHAT and
-BLUEHAT, a revive on a rewarded ad, a second map, new living-background
-shapes), what each one touches in
-this codebase, and the decisions still open. Read it before starting new work,
-and move an item into `CHANGELOG.md` when it ships rather than leaving it in
-both.
+add-on list, what each item touches in this codebase, and the decisions still
+open. Read it before starting new work, and move an item into `CHANGELOG.md`
+when it ships rather than leaving it in both.
 
 ---
 
@@ -28,7 +51,7 @@ both.
 
 ```bash
 cd /home/user/ACII_TD
-./gradlew :app:testDebugUnitTest      # 306 tests, all passing
+./gradlew :app:testDebugUnitTest      # 315 tests, all passing
 ./gradlew :app:assembleRelease        # -> app/build/outputs/apk/release/CyOpsTD-v<ver>.apk
 ```
 
@@ -86,6 +109,13 @@ caught real defects that reading the code did not:
    smearing, a 92%-opaque chip that still bled through, and label collisions.
 2. **Diff two frames that differ in one thing.** That locates exactly which
    pixels an element owns, and proves it touches nothing else.
+2b. **Fetch a composable's laid-out bounds, do not just assert its text.**
+   `onNodeWithText(...).fetchSemanticsNode().boundsInRoot` and `.size`. In
+   1.22.0 two dossier tests failed with a bare *"the component is not
+   displayed"*, naming no line; the bounds named it in one run — the signature
+   measured `78 x 0` and a stat value `6 x 0`, both laid out and both off the
+   bottom of a fixed-height panel. A semantics assertion proves a composable
+   exists; only its measured bounds prove it is on screen.
 3. **Seed the engine and average.** `GameEngine(random = Random(seed))` makes
    simulations reproducible. An earlier balance test read a *single* wave and
    drew the opposite conclusion from the truth. Always average over seeds and
@@ -125,6 +155,7 @@ rather than loosened.
 | 1.19 | Range scales ×1.25/5 levels; TARPIT aura ×1.5; IPS splash; FIREWALL jam-proof |
 | 1.20 | Boss and elite death blasts: 420 derived pixel shards, shockwave, core |
 | 1.21 | Boss identities: `[!!!]` BREACH, `[GG]` GOOD GAME, `[ZZ]` ZOMBIE |
+| 1.22 | BOSS dossier: live stats and every modifier's description, mid-fight |
 
 ---
 

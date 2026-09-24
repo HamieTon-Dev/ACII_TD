@@ -28,25 +28,32 @@ strip every frame since 1.5.2. Also fixed in 1.18.0.
 
 ## B. The boss panel
 
-### B1 ⬜ A button that opens the current boss's dossier
+### B1 ✅ shipped in 1.22.0 — a button that opens the current boss's dossier
 
 **Asked:** *"Add a small button to show current boss click and it has a pop up
 window to show its health, stats, debuff, and modifiers and name of the type of
 attack."*
 
-Everything it needs already exists and is not surfaced anywhere: `Enemy` carries
-`health`, `armor`, `speed`, and its rolled `BossModifier` set (each with a
-`displayName`, `tag` and `description`), and `HudSnapshot` already knows
-`bossOnField`.
+A **BOSS** button sits in the control bar and is only there while a boss is on
+the field — no dead control to press. It opens a two-column panel at the top
+right: on the left the variant's glyph, name, an integrity meter with the raw
+`420 / 1000` under it, and a strip carrying ARMOUR, SPEED and TO CORE; on the
+right every modifier it rolled, each with the description that was already
+written for it and never shown. A ZOMBIE that has already come back says so
+under its name.
 
-Shape: a compact button in the control bar or the field's top strip, shown
-**only while a boss is on the field**, opening a panel modelled on the rebuilt
-`AgentManagementPanel` — two columns, actions clear of the scroll, capped
-height. Live-updating, since the numbers move while it is open.
+It reads the live enemy through `frameTick` rather than a snapshot, so the
+numbers move while it is open — which is the only reason to open it mid-fight.
+It closes itself when the boss dies, so the next one does not throw it over the
+board unasked.
 
-Content: name and glyph, health bar with current/max, armour, speed, the
-modifiers it rolled with their descriptions, and — once B2 lands — which
-variant it is and what that variant does.
+**What this cost, and the lesson:** the first build asserted the text was there,
+and the text *was* there — laid out, at a height of zero, off the bottom of a
+fixed-height panel. Two of the eight tests failed with "not displayed" and no
+clue which line. Fetching the laid-out bounds is what found it: the signature
+measured `78 x 0` and DISTANCE TO CORE's value `6 x 0`. Same lesson as the HUD
+strip in 1.18.0, one level up: **a semantics assertion proves a composable
+exists; only its measured bounds prove it is on screen.**
 
 ---
 
@@ -484,8 +491,10 @@ either depends on another or needs a decision noted in its section.**
 1. ~~A1, A2~~ — ✅ 1.18.0.
 2. ~~D1~~ — ✅ 1.19.0, together with all of §G.
 3. ~~C1~~ — ✅ 1.21.0. B1, C2 and E2 are unblocked.
-4. **B1** — the dossier, once there is something worth showing in it.
-5. **D2** — RH/BH, once the guard rails in §D2 are chosen.
+4. ~~B1~~ — ✅ 1.22.0.
+5. **D2** — RH/BH, once the guard rails in §D2 are chosen. **Blocked on the
+   owner:** the four guard rails in §D2 need a pick before this can be built.
+   Next in the sequence that can be worked without a decision is F1.
 8. **F1** — the revive. Independent of the boss and map work, but it reorders
    the run-end path, so it is better done while that path is quiet than
    alongside a change to it.

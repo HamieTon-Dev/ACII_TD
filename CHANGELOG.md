@@ -7,6 +7,53 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [1.22.0]
+
+### Added — you can finally ask what you are fighting
+
+A boss could arrive carrying four modifiers, each with a name, a tag and a
+written description, and the only clue the game ever gave was a banner that
+flashed past before the fight. "Why is this one not dying?" had an answer that
+existed in the code and was never shown to anybody.
+
+A **BOSS** button now sits in the control bar **while a boss is on the field**,
+and nowhere else — the game does not offer a control that cannot do anything.
+It opens a dossier at the top right:
+
+- the variant's glyph and name, and — for a `[ZZ]` that has already come back —
+  *REANIMATED, it will not come back again*
+- an integrity meter with the raw numbers under it, `420 / 1000`
+- ARMOUR, SPEED and DISTANCE TO CORE in one strip
+- **every modifier it rolled, with its description** — the part that answers the
+  question
+
+It reads the live enemy rather than a snapshot, so the numbers move while it is
+open, which is the only reason to open it mid-fight. It closes itself when the
+boss dies, so the next boss does not throw it over the board unasked.
+
+### The bug this shipped with, and how it was found
+
+The first build of the panel put four stat rows in a fixed-height column, and
+the bottom two ran off the end of it. Nothing said so: the composables were
+there, they were laid out, and the test that asserted their text existed passed
+on three of them. Two tests failed with *"the component is not displayed"* and
+no indication of which line.
+
+Fetching the laid-out bounds of each node found it in one run — the signature
+line measured `78 x 0` and DISTANCE TO CORE's value measured `6 x 0`. That is
+what "present but never seen" looks like from outside.
+
+Three independent things now stop it recurring: the three secondary numbers
+share one strip instead of costing four rows, the panel is sized past what its
+content measures rather than up to it, and the column scrolls with the same
+MORE BELOW hint the agent panel uses — so a longer signature or a larger system
+font degrades into a scroll rather than into silence.
+
+It is the 1.18.0 HUD lesson one level up: **a semantics assertion proves a
+composable exists; only its measured bounds prove it is on screen.**
+
+---
+
 ## [1.21.0]
 
 ### Added — bosses have identities now

@@ -175,6 +175,24 @@ fun GameScreen(
                 )
             }
 
+            if (viewModel.showBossPanel) {
+                // Reading frameTick subscribes this to the simulation clock, so
+                // the numbers move while the panel is open -- which is the
+                // whole reason to open it mid-fight.
+                @Suppress("UNUSED_EXPRESSION")
+                viewModel.frameTick
+                val dossier = viewModel.bossDossier()
+                if (dossier != null) {
+                    BossDossierPanel(
+                        dossier = dossier,
+                        onClose = viewModel::toggleBossPanel,
+                        modifier = Modifier
+                            .align(Alignment.TopEnd)
+                            .padding(8.dp)
+                    )
+                }
+            }
+
             if (viewModel.showDeployPanel) {
                 DeployPanel(
                     crypto = hud.crypto,
@@ -328,6 +346,18 @@ private fun ControlBar(viewModel: GameViewModel) {
             accent = Palette.Cyan,
             dense = true
         )
+
+        // Only while there is a boss to read about. A dead button that says
+        // BOSS when there is no boss teaches the player to ignore it.
+        if (hud.bossOnField) {
+            CompactButton(
+                text = "BOSS",
+                onClick = viewModel::toggleBossPanel,
+                selected = viewModel.showBossPanel,
+                accent = Palette.Red,
+                dense = true
+            )
+        }
 
         CompactButton(
             text = if (viewModel.paused) "RESUME" else "PAUSE",

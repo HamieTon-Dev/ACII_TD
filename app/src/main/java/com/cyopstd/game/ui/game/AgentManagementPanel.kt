@@ -266,7 +266,7 @@ fun AgentManagementPanel(
  * decoration: if it is there, there is something to see.
  */
 @Composable
-private fun ScrollHint(scroll: ScrollState, modifier: Modifier = Modifier) {
+internal fun ScrollHint(scroll: ScrollState, modifier: Modifier = Modifier) {
     val more = scroll.value < scroll.maxValue - 2
     if (!more) return
     Box(
