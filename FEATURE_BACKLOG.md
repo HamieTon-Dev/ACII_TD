@@ -181,97 +181,59 @@ the boss does nothing. Whichever way it goes, it wants a test.
 
 ## F. Revive on a rewarded ad
 
-### F1 ⬜ Watch an ad to continue from the same wave at half integrity
+### F1 ✅ shipped in 1.23.0 — watch an ad to continue at half integrity
 
 **Asked:** *"if player loses add a button to choose to watch a 30 second ad to
 revive player at same round with half health of core server and continue."*
 
-The offer belongs on the game-over overlay (`ui/game/GameOverlays.kt`), beside
-the existing actions: *CONTINUE — WATCH AD*, and whatever the player does, the
-run either resumes or ends properly.
+**WATCH AD TO CONTINUE** sits on the game-over screen when — and only when —
+the run is genuinely lost, the run's one revive is unspent, and a rewarded ad
+is actually loaded. Otherwise there is no button, not a dead one.
 
-**This is a rewarded ad, not the interstitial the app already shows.** The
-distinction matters and is the first piece of work: `AdGateway` today has one
-method, `showInterstitial(onFinished)`, and it calls back on *dismissal*. A
-revive granted on dismissal is a revive granted for closing the ad after two
-seconds. A rewarded ad has a separate SDK path (`RewardedAd`) with a **reward
-callback that fires only on completion**, and the revive must hang off that and
-nothing else. The gateway grows a second method whose continuation carries
-whether the reward was actually earned.
+Taking it clears the board, restores half the *mode's* maximum integrity
+(rounded up, so 50 on standard and 35 on Hack:AI), keeps the agents, their
+levels and the ◇ crypto, and drops back into the **preparing** phase for the
+same wave — a moment to spend and re-place before it comes again, which is what
+makes it read as a reprieve rather than a stay of execution.
 
-Keep the discipline the interstitial path already has: every path calls the
-continuation exactly once, including when the SDK delivers both a dismissal and
-a failure. A player who is owed a revive and gets a dead screen instead has lost
-a run to a bug.
+#### The four things that were easy to get wrong
 
-**"30 seconds" is not ours to set** — the same caveat as the loss interstitial,
-now in `RELEASING.md`. Length belongs to the ad format and the network; rewarded
-ads are typically 15–30s with the reward at the end. The app decides *whether*
-to offer one and what it grants, not how long it runs.
+**The reward, not the dismissal.** `AdGateway` grew `showRewarded`, whose
+continuation carries whether the reward was *earned*. An interstitial calls
+back on dismissal, so a revive hung off that callback is a revive granted for
+closing the ad after two seconds. `AdMobGateway` latches the reward in
+`onUserEarnedReward` and reads it when the ad closes, and every path — earned,
+skipped, failed to show, none loaded, no activity, SDK throwing — calls the
+continuation exactly once.
 
-#### What the revive restores
+**The double count.** `onRunEnded()` used to record the run, submit the
+leaderboard entry, clear the save and show the loss ad the instant the core
+fell. A revive after that would have posted *two* leaderboard entries for one
+run and landed its kills, crypto and damage twice in lifetime stats. It is now
+split: the summary goes up and the revive is offered, and nothing is written
+until `finalizeRun()` — which the decline, RETRY, MAIN MENU and backgrounding
+the app all go through, and which is idempotent. Six tests fail if that split
+is undone.
 
-Owner's spec: same wave, **half** core integrity, continue. Concretely:
+**Backgrounding the offer.** A run sitting on an unanswered offer is
+deliberately unrecorded, so leaving the app there would have been a way to
+erase a bad run. `onAppPaused()` finalizes it.
 
-- `serverHp = ceil(serverMaxHp / 2)` — from the mode's max, so it is half of 70
-  on Hack:AI and half of 100 on standard.
-- **Clear the threats currently on the field.** Reviving into the swarm that
-  just killed the player is not a revive; they would lose again inside a second
-  and would rightly feel cheated of the ad they watched.
-- Keep the wave number, the deployed agents, their levels and the ◇ crypto —
-  the run continues, it does not restart.
-- ❓ **Resume where, exactly.** Re-entering the *preparing* phase for the same
-  wave gives a moment to spend crypto and re-place, which is what makes the
-  revive feel like a second chance. Resuming mid-wave is harsher and closer to
-  a literal reading of "continue". Recommendation: preparing phase.
+**The ad budget.** A run that spent a rewarded ad is not then charged the loss
+interstitial when it finally ends.
 
-#### The part that will bite
+#### Policy, as the owner set it
 
-`GameViewModel.onRunEnded()` currently does everything at once: it records the
-run result, submits the leaderboard entry, clears the saved run, and may show
-the loss interstitial. **A revive after that double-counts.** One run would post
-two leaderboard entries — one at the wave it died on and one at the wave it
-finally reached — and its attacks, kills and crypto would land twice in lifetime
-stats.
-
-So the order has to change: on game over, *offer* first, and only record,
-submit and clear the save once the player declines, or once a revive has been
-spent and the run ends for real. That reordering is the actual work here; the ad
-is the easy half. It wants a test that a revived run produces exactly one
-leaderboard entry and one set of stats.
-
-#### Policy — decided by the owner
-
-- **One revive per run.** Stated on the button, so nobody watches an ad
-  expecting a second.
-- **REMOVE ADS does not cover the revive ad.** Owner's call, and it is the
-  right one commercially: REMOVE ADS buys freedom from ads the player did not
-  ask for, and the revive is one they did. The revive ad is the price of the
-  revive, not an interruption. The store answers this properly with the pack in
-  §F2, which is what a player who never wants to watch one buys.
-  - The button's wording has to be straight about it, or a REMOVE ADS owner
-    feels cheated the first time it appears: *"WATCH AD TO CONTINUE"*, and in
-    the store, *"REMOVE ADS covers ads between runs. Revive ads are separate."*
-- **The loss interstitial.** A player who watches a rewarded ad must not then be
-  shown an interstitial when the run finally ends. A revive spends the run's ad
-  budget; suppress the interstitial for that run.
-- **The cooldown.** `AdPolicy`'s 180s gap exists to stop *unsolicited*
-  interstitials stacking up. A revive is player-initiated and should be exempt,
-  or a quick second loss offers a revive the player cannot take.
-- **An unconfigured build** (`PlayServices.adsConfigured == false`, which is how
-  the repo ships) has no ad to offer. The button is hidden rather than dead —
-  the rule from §1.16: a control that cannot act must say so, and must never
-  quietly do something else.
-
-#### Why it is worth building
-
-It is the one monetisation in the list that a player is *glad* to see: it
-arrives exactly when they want something, it is opt-in, and it converts a lost
-run into two more minutes of play. Google's own policy is comfortable with
-rewarded ads on that shape as long as the value is stated up front and nothing
-auto-plays, which is how the button reads.
-
----
+- **One revive per run** (`Balance.REVIVES_PER_RUN`), stated on the button.
+- **REMOVE ADS does not cover it**, and the game says so in two places rather
+  than letting a paying player discover it: the button's own line reads
+  *"REMOVE ADS covers ads between runs; revive ads are separate"*, and the
+  GOOGLE PLAY account screen's ADVERTISING row reads **REMOVED · REVIVE ADS
+  SEPARATE** instead of the *REMOVED · NONE* that would now be a lie.
+- **A build with no rewarded unit never offers it.** `cyops.admob.rewardedId`
+  is a separate, optional id; `PlayServices.rewardedConfigured` is the gate.
+- *"30 seconds" is still not ours to set* — length belongs to the ad format and
+  the network. The app decides whether to offer one and what it grants.
 
 ### F2 ⬜ Store: a revive pack, and 10x the € in every pack
 
@@ -492,19 +454,16 @@ either depends on another or needs a decision noted in its section.**
 2. ~~D1~~ — ✅ 1.19.0, together with all of §G.
 3. ~~C1~~ — ✅ 1.21.0. B1, C2 and E2 are unblocked.
 4. ~~B1~~ — ✅ 1.22.0.
-5. **D2** — RH/BH, once the guard rails in §D2 are chosen. **Blocked on the
-   owner:** the four guard rails in §D2 need a pick before this can be built.
-   Next in the sequence that can be worked without a decision is F1.
-8. **F1** — the revive. Independent of the boss and map work, but it reorders
-   the run-end path, so it is better done while that path is quiet than
-   alongside a change to it.
-9. **F2** — the store pass: the revive pack and the ×10 € rescale. After F1,
-   because the pack sells something that has to exist first.
-10. **H1** — the tutorial. Best done late: it teaches the game, and the game is
+5. ~~F1~~ — ✅ 1.23.0.
+6. **D2** — RH/BH. **Blocked on the owner:** the four guard rails in §D2 need
+   a pick before this can be built. Skipped rather than stalled on.
+7. **F2** — the store pass: the revive pack and the ×10 € rescale. **Next**,
+   and now unblocked — the pack sells a revive that exists.
+8. **H1** — the tutorial. Best done late: it teaches the game, and the game is
     still changing shape above it.
-11. **E1** — the map layer. Largest, and worth its own version.
-12. **E2** — the AI bosses, last, because they need C1, D2 and E1.
-13. **F3** — the two-device verification, once there is a Play Console.
+9. **E1** — the map layer. Largest, and worth its own version.
+10. **E2** — the AI bosses, last, because they need C1, D2 and E1.
+11. **F3** — the two-device verification, once there is a Play Console.
 
 Backgrounds (§F) can slot in anywhere; they touch nothing else.
 

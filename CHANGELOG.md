@@ -7,6 +7,61 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [1.23.0]
+
+### Added — watch an ad to continue
+
+A lost run can now be continued. **WATCH AD TO CONTINUE** appears on the
+game-over screen, and taking it clears the board, restores half the mode's
+core integrity — 50 on standard, 35 on Hack:AI, rounded up — and drops you back
+into the preparing phase for the same wave with your agents, their levels and
+your ◇ crypto exactly as they were. A moment to spend and re-place before the
+wave comes again, rather than a shove straight back into the swarm that just
+killed you.
+
+**One per run**, and the button says so.
+
+### The four things that were easy to get wrong
+
+**The reward, not the dismissal.** This is a rewarded ad, which is a different
+format from the interstitial the game already showed. An interstitial calls
+back when it is *dismissed*, so a revive hung off that callback would be a
+revive granted for closing the ad after two seconds. The new
+`AdGateway.showRewarded` reports whether the reward was actually earned, and
+the revive hangs off that and nothing else. Every path through it — earned,
+skipped, failed to show, none loaded, no activity attached, the SDK throwing —
+calls back exactly once. A player who is owed a revive and gets a dead screen
+instead has lost a run to a bug.
+
+**The double count.** The run used to be recorded, submitted to the
+leaderboard and cleared from the save the instant the core fell. A revive after
+that would have posted *two* leaderboard entries for one run and landed its
+kills, crypto and damage twice in lifetime statistics. The order is now: show
+the summary, offer the revive, and write nothing until the player is finished
+with the run. Six tests fail if that split is undone.
+
+**Backgrounding the offer.** A run sitting on an unanswered offer is
+deliberately unrecorded — so leaving the app there would have been a way to
+erase a bad run. It is now recorded when the app is backgrounded.
+
+**The ad budget.** A run that already paid a rewarded ad is not then shown the
+loss interstitial when it finally ends.
+
+### REMOVE ADS does not cover the revive ad
+
+The owner's call, and the game says so in two places rather than letting a
+paying player find out at the worst possible moment: on the button itself
+(*"REMOVE ADS covers ads between runs; revive ads are separate"*) and on the
+GOOGLE PLAY account screen, whose ADVERTISING row now reads **REMOVED · REVIVE
+ADS SEPARATE** instead of the *REMOVED · NONE* that would now be untrue.
+REMOVE ADS buys freedom from ads you did not ask for. The revive is one you
+did, and it is opt-in.
+
+A build with no rewarded ad unit configured (`cyops.admob.rewardedId`, which is
+separate and optional) shows **no button at all** rather than a dead one.
+
+---
+
 ## [1.22.0]
 
 ### Added — you can finally ask what you are fighting

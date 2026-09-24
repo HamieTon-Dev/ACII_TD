@@ -4,7 +4,7 @@
 reads first. It records where the project actually stands, what is proven and
 what is not, and what comes next.
 
-_Last updated: v1.22.0 — the boss dossier. See `CHANGELOG.md` for the full per-version history._
+_Last updated: v1.23.0 — the revive. See `CHANGELOG.md` for the full per-version history._
 
 ---
 
@@ -24,18 +24,19 @@ this section is the position marker. Update it when an item ships.
 | 2 | D1 + all of §G — balance | ✅ 1.19.0 |
 | 3 | C1 — boss identities | ✅ 1.21.0 |
 | 4 | B1 — the boss dossier | ✅ 1.22.0 |
-| 5 | D2 — `[REDHAT]` / `[BLUEHAT]` | ⛔ **blocked on the owner** — the four guard rails in §D2 need a pick |
-| 6 | F1 — revive on a rewarded ad | ⬜ **next workable item** |
-| 7 | F2 — revive pack + ×10 € rescale | ⬜ after F1 |
+| 5 | F1 — revive on a rewarded ad | ✅ 1.23.0 |
+| 6 | D2 — `[REDHAT]` / `[BLUEHAT]` | ⛔ **blocked on the owner** — the four guard rails in §D2 need a pick |
+| 7 | F2 — revive pack + ×10 € rescale | ⬜ **next workable item** |
 | 8 | H1 — the tutorial overhaul | ⬜ |
 | 9 | E1 — the "Hugging-Face" map | ⬜ largest; its own version |
 | 10 | E2 — AI bosses `[₩₩₩]` / `[¥¥¥]` | ⬜ needs C1 + D2 + E1 |
 | 11 | F3 — two-device cloud-save check | ⛔ needs a real Play Console |
 
-**Pick up at F1**, skipping D2 until the owner chooses. F1's shape and the two
-traps in it (REMOVE ADS must *not* cover the revive ad; `onRunEnded()` must be
-reordered so a revived run is not recorded or submitted twice) are written up
-in `FEATURE_BACKLOG.md` §F1.
+**Pick up at F2**, skipping D2 until the owner chooses. F2 is the store pass:
+the `revive_pack` at $4.99 (3 revives per run, no revive ads ever, +€5,000),
+×10 € on every existing pack, and +€5,000 on `no_ads`. The revive it sells
+already exists as of 1.23.0 — `Balance.REVIVES_PER_RUN` is the free
+entitlement and `GameViewModel.revivesAllowed` is the hook the pack raises.
 
 Also still open and owner-facing: §J's boss, level and background options, and
 the remaining `BossVariant` rows.
@@ -51,7 +52,7 @@ when it ships rather than leaving it in both.
 
 ```bash
 cd /home/user/ACII_TD
-./gradlew :app:testDebugUnitTest      # 315 tests, all passing
+./gradlew :app:testDebugUnitTest      # 332 tests, all passing
 ./gradlew :app:assembleRelease        # -> app/build/outputs/apk/release/CyOpsTD-v<ver>.apk
 ```
 
@@ -156,6 +157,7 @@ rather than loosened.
 | 1.20 | Boss and elite death blasts: 420 derived pixel shards, shockwave, core |
 | 1.21 | Boss identities: `[!!!]` BREACH, `[GG]` GOOD GAME, `[ZZ]` ZOMBIE |
 | 1.22 | BOSS dossier: live stats and every modifier's description, mid-fight |
+| 1.23 | Revive on a rewarded ad: same wave, half integrity, one per run |
 
 ---
 

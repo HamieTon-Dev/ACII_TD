@@ -14,6 +14,9 @@ interface AdGateway {
     /** True when an ad is loaded and could be shown right now. */
     val isReady: Boolean
 
+    /** True when a *rewarded* ad is loaded and could be shown right now. */
+    val isRewardedReady: Boolean get() = false
+
     /**
      * Show the interstitial.
      *
@@ -23,7 +26,26 @@ interface AdGateway {
      */
     fun showInterstitial(onFinished: () -> Unit)
 
+    /**
+     * Show a rewarded ad, and report whether the reward was actually earned.
+     *
+     * This is a different format from [showInterstitial] and the difference is
+     * the whole point. An interstitial calls back on *dismissal*, so a revive
+     * granted on that callback is a revive granted for closing the ad after two
+     * seconds. A rewarded ad has a reward callback that fires only on
+     * completion, and `earned` is that and nothing else.
+     *
+     * [onResult] must be called exactly once on every path — shown and earned,
+     * shown and skipped, failed to show, none loaded, no activity attached, or
+     * the SDK throwing. A player who is owed a revive and gets a dead screen
+     * instead has lost a run to a bug.
+     */
+    fun showRewarded(onResult: (earned: Boolean) -> Unit) = onResult(false)
+
     fun preload()
+
+    /** Load a rewarded ad ahead of the moment it is needed. */
+    fun preloadRewarded() = Unit
 }
 
 /**
@@ -35,8 +57,18 @@ interface AdGateway {
  */
 class NoAdGateway : AdGateway {
     override val isReady: Boolean get() = false
+    override val isRewardedReady: Boolean get() = false
     override fun showInterstitial(onFinished: () -> Unit) = onFinished()
+
+    /**
+     * No ad, so no reward. Not `true` "to be nice": the revive is worth
+     * something, and a build with no ads must not hand it out for free while a
+     * configured build charges an ad for it. The UI asks [isRewardedReady]
+     * first and never offers the button here, so this path is the backstop.
+     */
+    override fun showRewarded(onResult: (earned: Boolean) -> Unit) = onResult(false)
     override fun preload() = Unit
+    override fun preloadRewarded() = Unit
 }
 
 /**

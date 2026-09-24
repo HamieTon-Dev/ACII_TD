@@ -182,6 +182,19 @@ object Balance {
      */
     const val MAX_AGENT_LEVEL = 100
 
+    /**
+     * Revives a run is entitled to without buying anything.
+     *
+     * One, on a rewarded ad, and the button says so — nobody should watch an
+     * ad expecting a second. The revive pack in the store raises this for the
+     * run rather than changing the constant, so the free entitlement stays one
+     * and the thing being sold stays legible.
+     */
+    const val REVIVES_PER_RUN = 1
+
+    /** Fraction of the mode's maximum integrity a revive restores. */
+    const val REVIVE_INTEGRITY_FRACTION = 0.5f
+
     /** Per-level stat growth, as a fraction of the agent's base stat. */
     const val UPGRADE_DAMAGE_GROWTH = 0.20f
     const val UPGRADE_RATE_GROWTH = 0.018f

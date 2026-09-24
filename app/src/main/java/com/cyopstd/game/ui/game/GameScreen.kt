@@ -257,7 +257,17 @@ fun GameScreen(
             onMainMenu = {
                 viewModel.abandonMatch()
                 onExitToMenu()
-            }
+            },
+            // Null rather than a disabled button: a build with no rewarded ad
+            // unit, or a run that has spent its revive, shows no offer at all.
+            onWatchAdToRevive =
+                if (viewModel.canReviveNow || viewModel.showingReviveAd) {
+                    { viewModel.watchAdToRevive() }
+                } else {
+                    null
+                },
+            revivesLeft = viewModel.revivesAllowed - viewModel.revivesUsed,
+            reviveAdShowing = viewModel.showingReviveAd
         )
     }
 }

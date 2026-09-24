@@ -51,6 +51,8 @@ fun PlayAccountScreen(
     budget: Long,
     status: BillingStatus,
     adsConfigured: Boolean,
+    /** True when this build can offer a revive on a rewarded ad. */
+    reviveAdsConfigured: Boolean = false,
     cloudStatus: CloudSaveStatus,
     cloudAccount: String?,
     lastCloudSync: Long?,
@@ -175,7 +177,16 @@ fun PlayAccountScreen(
                     StatRow(
                         "ADVERTISING",
                         when {
+                            // "REMOVED · NONE" would be a lie in a build that
+                            // can offer a revive: REMOVE ADS buys freedom from
+                            // ads the player did not ask for, and the revive is
+                            // one they did. Saying so here is cheaper than a
+                            // player finding out at the worst moment.
+                            entitlements.adsRemoved && reviveAdsConfigured ->
+                                "REMOVED · REVIVE ADS SEPARATE"
                             entitlements.adsRemoved -> "REMOVED · NONE"
+                            adsConfigured && reviveAdsConfigured ->
+                                "ONE AD AFTER A LOST RUN · REVIVE OPT-IN"
                             adsConfigured -> "ONE AD AFTER A LOST RUN"
                             else -> "NOT IN THIS BUILD"
                         },

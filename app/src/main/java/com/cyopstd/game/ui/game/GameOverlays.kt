@@ -110,7 +110,11 @@ fun PauseOverlay(
 fun GameOverOverlay(
     summary: GameOverSummary,
     onRetry: () -> Unit,
-    onMainMenu: () -> Unit
+    onMainMenu: () -> Unit,
+    /** Null when no revive can be offered; the button is then absent, not dead. */
+    onWatchAdToRevive: (() -> Unit)? = null,
+    revivesLeft: Int = 0,
+    reviveAdShowing: Boolean = false
 ) {
     val transition = rememberInfiniteTransition(label = "gameOver")
     val flash by transition.animateFloat(
@@ -184,6 +188,33 @@ fun GameOverOverlay(
                     style = MaterialTheme.typography.titleMedium,
                     color = Palette.Green,
                     modifier = Modifier.alpha(flash)
+                )
+            }
+
+            if (onWatchAdToRevive != null) {
+                Spacer(Modifier.height(16.dp))
+                AsciiRule(color = Palette.RedDeep)
+                Spacer(Modifier.height(12.dp))
+
+                BastionButton(
+                    text = if (reviveAdShowing) "LOADING AD…" else "WATCH AD TO CONTINUE",
+                    onClick = { if (!reviveAdShowing) onWatchAdToRevive() },
+                    accent = Palette.Crypto,
+                    leadingGlyph = "[+]",
+                    modifier = Modifier.fillMaxWidth()
+                )
+                Spacer(Modifier.height(6.dp))
+                Text(
+                    // Three facts, because each one is something a player would
+                    // otherwise find out the hard way: what it costs, what it
+                    // gives back, and that there is not another one after this.
+                    text = "Resume this wave at half integrity. " +
+                        (if (revivesLeft == 1) "One revive per run."
+                        else "$revivesLeft revives left this run.") +
+                        " REMOVE ADS covers ads between runs; revive ads are separate.",
+                    style = MaterialTheme.typography.bodySmall,
+                    color = Palette.TextMuted,
+                    textAlign = TextAlign.Center
                 )
             }
 

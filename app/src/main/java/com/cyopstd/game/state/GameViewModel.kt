@@ -69,7 +69,15 @@ class GameViewModel @JvmOverloads constructor(
      * Injectable so tests can supply an isolated store. Production always uses
      * the default, which is the app's single shared repository.
      */
-    private val repository: GameRepository = GameRepository(application)
+    private val repository: GameRepository = GameRepository(application),
+    /**
+     * Injectable so the revive can be tested without an AdMob account.
+     *
+     * Production passes nothing and gets the gateway the build is configured
+     * for, exactly as before. There is no way to reach a test gateway from a
+     * shipped build.
+     */
+    adsOverride: AdGateway? = null
 ) : AndroidViewModel(application) {
 
     private val audio = AudioEngine(application)
@@ -197,6 +205,48 @@ class GameViewModel @JvmOverloads constructor(
 
     private var unlockBannerExpiry: Long = 0L
 
+    /**
+     * Revives spent on the current run.
+     *
+     * The owner's rule is one per run, and the button says so, so nobody
+     * watches an ad expecting a second. [Balance.REVIVES_PER_RUN] is where the
+     * number lives because §F2's revive pack raises it.
+     */
+    var revivesUsed by mutableIntStateOf(0)
+        private set
+
+    /** Revives this run is entitled to, which the revive pack will raise. */
+    val revivesAllowed: Int get() = Balance.REVIVES_PER_RUN
+
+    /**
+     * True while a rewarded ad is on screen for a revive.
+     *
+     * Separate from [showingAd], which is the interstitial: the two cover the
+     * screen for different reasons and the game-over overlay has to know which
+     * one it is waiting on.
+     */
+    var showingReviveAd by mutableStateOf(false)
+        private set
+
+    /** Set once a revive has been spent, so the run's loss ad is suppressed. */
+    private var reviveSpentThisRun = false
+
+    /**
+     * Whether the game-over screen may offer a revive right now.
+     *
+     * Every clause is a reason a player would otherwise be shown a button that
+     * does nothing: the run must actually be lost, the entitlement must not be
+     * spent, and there must be a rewarded ad loaded to pay for it. An
+     * unconfigured build has no rewarded gateway and so never reaches the
+     * last clause — the rule from 1.16.0, that a control which cannot act must
+     * not be offered at all.
+     */
+    val canReviveNow: Boolean
+        get() = engine.phase == RunPhase.GAME_OVER &&
+            !runRecorded &&
+            revivesUsed < revivesAllowed &&
+            ads.isRewardedReady
+
     var gameOverSummary by mutableStateOf<GameOverSummary?>(null)
         private set
 
@@ -286,6 +336,9 @@ class GameViewModel @JvmOverloads constructor(
         (billing as? PlayBillingGateway)?.attach(activity)
         (ads as? AdMobGateway)?.attach(activity)
         ads.preload()
+        // Loaded up front, because the moment it is wanted -- the instant the
+        // core falls -- is the worst possible moment to start fetching one.
+        ads.preloadRewarded()
         (cloud as? PlayGamesCloudSave)?.let { games ->
             games.attach(activity)
             // Refresh rather than sign in: a player who has linked before is
@@ -412,8 +465,12 @@ class GameViewModel @JvmOverloads constructor(
      * crash, and it must never quietly become Google's *test* ads shown to
      * real players either.
      */
-    private val ads: AdGateway = if (PlayServices.adsConfigured) {
-        AdMobGateway(application, PlayServices.adMobInterstitialId)
+    private val ads: AdGateway = adsOverride ?: if (PlayServices.adsConfigured) {
+        AdMobGateway(
+            application,
+            PlayServices.adMobInterstitialId,
+            if (PlayServices.rewardedConfigured) PlayServices.adMobRewardedId else ""
+        )
     } else {
         NoAdGateway()
     }
@@ -641,6 +698,8 @@ class GameViewModel @JvmOverloads constructor(
         speedIndex = 0
         gameOverSummary = null
         runRecorded = false
+        revivesUsed = 0
+        reviveSpentThisRun = false
         matchActive = true
         tutorialStep = if (tutorialCompleted) -1 else 0
         pushHud()
@@ -690,6 +749,8 @@ class GameViewModel @JvmOverloads constructor(
             speedIndex = 0
             gameOverSummary = null
             runRecorded = false
+            revivesUsed = 0
+            reviveSpentThisRun = false
             matchActive = true
             tutorialStep = -1
             pushHud()
@@ -959,15 +1020,65 @@ class GameViewModel @JvmOverloads constructor(
 
     // ------------------------------------------------------- run termination
 
+    /**
+     * The run is over — but not necessarily finished.
+     *
+     * This used to be one method that recorded the run, submitted the
+     * leaderboard entry, cleared the save and showed the loss ad, all at the
+     * moment the core fell. A revive after that would have double-counted
+     * everything: one run would have posted two leaderboard entries, one at
+     * the wave it died on and one at the wave it finally reached, and its
+     * kills, crypto and damage would have landed twice in lifetime stats.
+     *
+     * So the order is now: show the summary, *offer* the revive, and record
+     * nothing until the player has finished with the run. [finalizeRun] is the
+     * only thing that writes, and it is idempotent.
+     */
     private fun onRunEnded() {
+        if (runRecorded) return
+        matchActive = false
+        audio.setInMatch(false)
+        showSummary()
+
+        // A revive on offer means the run may not be over. Nothing is written,
+        // no leaderboard entry is posted, and the save is left alone until the
+        // player either takes it or walks away from it.
+        if (canReviveNow) return
+
+        finalizeRun()
+    }
+
+    /** The summary the game-over screen reads, from wherever the run got to. */
+    private fun showSummary() {
+        val isRecord = engine.currentWave > stats.highestWave
+        gameOverSummary = GameOverSummary(
+            waveReached = engine.currentWave,
+            attacksBlocked = engine.runAttacksBlocked,
+            cryptoEarned = engine.runCryptoEarned,
+            bossesDefeated = engine.runBossesDefeated,
+            bestWave = maxOf(stats.highestWave, engine.currentWave),
+            isNewRecord = isRecord
+        )
+    }
+
+    /**
+     * Writes the run down, once.
+     *
+     * Called when the player declines the revive, leaves the game-over screen,
+     * backgrounds the app on it, or when there was never a revive to offer.
+     * The guard is the whole contract: a revived run reaches here exactly once,
+     * at the wave it finally reached.
+     */
+    private fun finalizeRun() {
         if (runRecorded) return
         runRecorded = true
         matchActive = false
         audio.setInMatch(false)
         // Only a lost run carries an ad. A player who quit to the menu chose
         // to leave, and charging them for that is the fastest way to make
-        // leaving permanent.
-        if (engine.phase == RunPhase.GAME_OVER) maybeShowLossAd { }
+        // leaving permanent. A player who already watched a rewarded ad for a
+        // revive has paid this run's ad budget and is not charged twice.
+        if (engine.phase == RunPhase.GAME_OVER && !reviveSpentThisRun) maybeShowLossAd { }
 
         val isRecord = engine.currentWave > stats.highestWave
         gameOverSummary = GameOverSummary(
@@ -1009,6 +1120,63 @@ class GameViewModel @JvmOverloads constructor(
             // one a player would be most upset to repeat on another device.
             syncCloudQuietly()
         }
+    }
+
+    /**
+     * Watch a rewarded ad to continue the run.
+     *
+     * The revive hangs off the ad's reward callback and nothing else. An
+     * interstitial calls back on dismissal, so granting a revive there would
+     * be granting it for closing the ad after two seconds; [AdGateway.showRewarded]
+     * reports whether the reward was actually earned, and a `false` leaves the
+     * player exactly where they were, on the game-over screen, with the offer
+     * still standing if the ad simply failed to show.
+     *
+     * The entitlement is only spent on a revive that actually happened.
+     */
+    fun watchAdToRevive() {
+        if (!canReviveNow || showingReviveAd) return
+        playClick()
+        showingReviveAd = true
+        ads.showRewarded { earned ->
+            showingReviveAd = false
+            ads.preloadRewarded()
+            if (!earned) {
+                // Nothing spent, nothing granted, and the button is still
+                // there. Saying so matters: silence here reads as the game
+                // having taken the ad and given nothing back.
+                showTransient("AD NOT COMPLETED — NOTHING SPENT")
+                return@showRewarded
+            }
+            if (!engine.reviveRun()) {
+                showTransient("REVIVE FAILED — RUN ALREADY ENDED")
+                return@showRewarded
+            }
+            revivesUsed += 1
+            reviveSpentThisRun = true
+            gameOverSummary = null
+            matchActive = true
+            paused = false
+            audio.setInMatch(true)
+            if (settings.musicVolume > 0.01f) audio.startMusic()
+            selection = BattlefieldSelection()
+            showBossPanel = false
+            showDeployPanel = false
+            pushHud()
+            showTransient("SYSTEMS RESTORED — INTEGRITY ${engine.serverHp}")
+        }
+    }
+
+    /**
+     * The player is done with this run: write it down.
+     *
+     * Every way off the game-over screen goes through here, including
+     * backgrounding the app on it, because a run whose revive was offered and
+     * never taken must still count.
+     */
+    fun finishRun() {
+        if (engine.phase != RunPhase.GAME_OVER) return
+        finalizeRun()
     }
 
     /**
@@ -1076,10 +1244,12 @@ class GameViewModel @JvmOverloads constructor(
     }
 
     fun restartAfterGameOver() {
+        finishRun()
         startNewGame()
     }
 
     fun abandonMatch() {
+        finishRun()
         matchActive = false
         gameOverSummary = null
         audio.setInMatch(false)
@@ -1123,6 +1293,11 @@ class GameViewModel @JvmOverloads constructor(
         // reads it afterwards. Launching both separately raced, and the race
         // was silent — the pushed snapshot would simply be missing the run the
         // player had just walked away from.
+        // A revive on offer means the run is deliberately unrecorded. If the
+        // player leaves the app there rather than answering, the run still
+        // happened and still counts -- otherwise backgrounding the game would
+        // be a way to erase a bad run.
+        finishRun()
         viewModelScope.launch {
             if (matchActive && engine.phase != RunPhase.GAME_OVER) persistRun()
             syncCloudQuietly()

@@ -452,6 +452,61 @@ class GameEngine(
         if (autoStartWaves) autoStartRemaining = Balance.AUTO_START_DELAY
     }
 
+    // ------------------------------------------------------------ the revive
+
+    /**
+     * Brings a lost run back at half integrity, on the wave it died on.
+     *
+     * Returns false if there was nothing to revive — the caller does not get
+     * to pay for a revive that did not happen, and a revive gated on a
+     * rewarded ad is exactly the place a silent no-op would cost a player
+     * their run.
+     *
+     * Three things are deliberate:
+     *
+     * 1. **The field is cleared.** Reviving into the swarm that just killed
+     *    the player is not a revive; they would lose again inside a second and
+     *    would rightly feel cheated of the ad they watched. The wave plan is
+     *    reset with it, so the wave is replayed rather than resumed halfway
+     *    through with the survivors missing.
+     * 2. **Half of the *mode's* maximum**, so it is half of 70 on Hack:AI and
+     *    half of 100 on standard, and it rounds up — a revive to zero is not a
+     *    revive.
+     * 3. **It returns to PREPARING.** The agents, their levels and the crypto
+     *    are all untouched, so the second chance is a chance to spend and
+     *    re-place before the wave comes again. That is what makes it feel like
+     *    a reprieve rather than a stay of execution.
+     */
+    fun reviveRun(): Boolean {
+        if (phase != RunPhase.GAME_OVER) return false
+
+        enemies.clear()
+        projectiles.clear()
+        effects.clear()
+        enemySystem.clearEscorts()
+
+        serverHp = kotlin.math.ceil(serverMaxHp * Balance.REVIVE_INTEGRITY_FRACTION)
+            .toInt().coerceAtLeast(1)
+        serverHitFlash = 0f
+
+        // The wave is replayed from the top, so its plan starts over too.
+        plan = null
+        waveTimer = 0f
+        nextOrderIndex = 0
+        enemiesRemaining = 0
+        bossWarningRemaining = 0f
+        autoStartRemaining = 0f
+        activeBossModifiers = emptyList()
+        activeBossVariant = com.cyopstd.game.model.BossVariant.BREACH
+
+        // Replayed means replayed: the wave counter steps back so that
+        // startNextWave() builds the same wave again rather than skipping it.
+        if (currentWave > 0) currentWave -= 1
+
+        phase = RunPhase.PREPARING
+        return true
+    }
+
     // ------------------------------------------------------------ server state
 
     /** Called by [EnemySystem] when a packet reaches CORE-SERVER. */

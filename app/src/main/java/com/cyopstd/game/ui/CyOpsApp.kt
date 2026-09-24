@@ -192,6 +192,7 @@ fun CyOpsApp(
                     budget = viewModel.budget,
                     status = viewModel.billingStatus,
                     adsConfigured = PlayServices.adsConfigured,
+                    reviveAdsConfigured = PlayServices.rewardedConfigured,
                     cloudStatus = viewModel.cloudStatus,
                     cloudAccount = viewModel.cloudAccount,
                     lastCloudSync = viewModel.lastCloudSync,

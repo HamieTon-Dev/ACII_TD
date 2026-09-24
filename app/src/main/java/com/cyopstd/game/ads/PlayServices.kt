@@ -17,6 +17,7 @@ object PlayServices {
     /** AdMob ids as supplied at build time. */
     val adMobAppId: String get() = BuildConfig.ADMOB_APP_ID
     val adMobInterstitialId: String get() = BuildConfig.ADMOB_INTERSTITIAL_ID
+    val adMobRewardedId: String get() = BuildConfig.ADMOB_REWARDED_ID
 
     /**
      * True only when *both* ids are present and look like AdMob ids.
@@ -31,6 +32,20 @@ object PlayServices {
             adMobInterstitialId.startsWith(ADMOB_PREFIX) &&
             adMobAppId != SAMPLE_APP_ID &&
             adMobInterstitialId != SAMPLE_INTERSTITIAL_ID
+
+    /**
+     * True when this build can offer a revive on a rewarded ad.
+     *
+     * Deliberately separate from [adsConfigured]: they are different ad units
+     * and different formats, and a build that has one and not the other must
+     * do the half it can rather than the half it cannot. A build with no
+     * rewarded id never shows the revive button at all — the rule from 1.16.0,
+     * that a control which cannot act must not be offered.
+     */
+    val rewardedConfigured: Boolean
+        get() = adsConfigured &&
+            adMobRewardedId.startsWith(ADMOB_PREFIX) &&
+            adMobRewardedId != SAMPLE_REWARDED_ID
 
     /** The Play Games Services project id, as supplied at build time. */
     val gamesAppId: String get() = BuildConfig.GAMES_APP_ID
@@ -56,4 +71,5 @@ object PlayServices {
     /** Google's documented samples. Never to be shipped as if they were ours. */
     const val SAMPLE_APP_ID = "ca-app-pub-3940256099942544~3347511713"
     const val SAMPLE_INTERSTITIAL_ID = "ca-app-pub-3940256099942544/1033173712"
+    const val SAMPLE_REWARDED_ID = "ca-app-pub-3940256099942544/5224354917"
 }

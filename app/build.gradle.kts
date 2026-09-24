@@ -13,8 +13,8 @@ android {
         applicationId = "com.cyopstd.game"
         minSdk = 24
         targetSdk = 35
-        versionCode = 26
-        versionName = "1.22.0"
+        versionCode = 27
+        versionName = "1.23.0"
 
         // Stamped into the APK so the build identifier on screen is the real
         // one, not a string someone remembered to update. Reported by
@@ -30,15 +30,24 @@ android {
         //
         //     cyops.admob.appId=ca-app-pub-XXXXXXXX~YYYYYYYY
         //     cyops.admob.interstitialId=ca-app-pub-XXXXXXXX/ZZZZZZZZ
+        //     cyops.admob.rewardedId=ca-app-pub-XXXXXXXX/WWWWWWWW
+        //
+        // The rewarded id is a separate ad unit and a separate format. It is
+        // what the revive hangs off, and it is optional: a build with an
+        // interstitial id and no rewarded id shows ads between runs and simply
+        // never offers a revive, rather than offering one it cannot deliver.
         //
         // The AdMob *application* id must also reach the manifest, which is why
         // it is a manifest placeholder as well as a BuildConfig field.
         val admobAppId = (project.findProperty("cyops.admob.appId") as String?).orEmpty()
         val admobInterstitial =
             (project.findProperty("cyops.admob.interstitialId") as String?).orEmpty()
+        val admobRewarded =
+            (project.findProperty("cyops.admob.rewardedId") as String?).orEmpty()
 
         buildConfigField("String", "ADMOB_APP_ID", "\"${'$'}admobAppId\"")
         buildConfigField("String", "ADMOB_INTERSTITIAL_ID", "\"${'$'}admobInterstitial\"")
+        buildConfigField("String", "ADMOB_REWARDED_ID", "\"${'$'}admobRewarded\"")
 
         // Play Games Services, which is what carries a player's progress
         // between devices:

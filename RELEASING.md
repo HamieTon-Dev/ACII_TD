@@ -18,13 +18,27 @@ Put the real ids in `gradle.properties` (or pass them on the command line).
 ```properties
 cyops.admob.appId=ca-app-pub-XXXXXXXXXXXXXXXX~YYYYYYYYYY
 cyops.admob.interstitialId=ca-app-pub-XXXXXXXXXXXXXXXX/ZZZZZZZZZZ
+cyops.admob.rewardedId=ca-app-pub-XXXXXXXXXXXXXXXX/WWWWWWWWWW
 ```
 
 ```bash
 ./gradlew :app:assembleRelease \
   -Pcyops.admob.appId=ca-app-pub-...~... \
-  -Pcyops.admob.interstitialId=ca-app-pub-.../...
+  -Pcyops.admob.interstitialId=ca-app-pub-.../... \
+  -Pcyops.admob.rewardedId=ca-app-pub-.../...
 ```
+
+The **rewarded** unit is a separate ad unit and a separate format, created in
+AdMob as *Rewarded* rather than *Interstitial*. It is what the revive on the
+game-over screen hangs off, and it is optional: a build with an interstitial id
+and no rewarded id shows ads between runs and simply never offers a revive,
+rather than offering one it cannot deliver. `PlayServices.rewardedConfigured`
+is the check, and the button is absent — not disabled — when it is false.
+
+Note for the store listing and for support: **REMOVE ADS does not cover the
+revive ad.** REMOVE ADS buys freedom from ads the player did not ask for; the
+revive is one they did, and it is opt-in. The GOOGLE PLAY account screen says
+so on the ADVERTISING row, and the revive button says it too.
 
 `PlayServices.adsConfigured` requires both ids, both starting `ca-app-pub-`,
 and **neither equal to Google's sample ids**. That last check matters: the
