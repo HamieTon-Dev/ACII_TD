@@ -28,12 +28,24 @@ this section is the position marker. Update it when an item ships.
 | 6 | F2 — revive pack + ×10 € rescale | ✅ 1.24.0 |
 | 7 | H1 — the tutorial overhaul | ✅ 1.25.0 |
 | 8 | D2 — `[REDHAT]` / `[BLUEHAT]` | ⛔ **blocked on the owner** — the four guard rails in §D2 need a pick |
-| 9 | E1 — the "Hugging-Face" map | ⬜ **next workable item** — largest; its own version |
-| 10 | E2 — AI bosses `[₩₩₩]` / `[¥¥¥]` | ⬜ needs C1 + D2 + E1 |
-| 11 | F3 — two-device cloud-save check | ⛔ needs a real Play Console |
+| 9 | M1 — main-menu boot sequence | ⬜ **next workable item** — see the start-up budget note in §M1 |
+| 10 | E1 — the "Hugging-Face" map | ⬜ largest; its own version |
+| 11 | E2 — AI bosses `[₩₩₩]` / `[¥¥¥]` | ⬜ needs C1 + D2 + E1 |
+| 12 | F3 — two-device cloud-save check | ⛔ needs a real Play Console |
 
-**Pick up at E1**, skipping D2 until the owner chooses. E1 is the second map,
-"Hugging-Face" — the largest remaining item and worth its own version. The
+**Waiting on the owner right now:** the two mode tracks (HACK:AI and the
+second map's) are written, tested and pushed but the version bump and APK are
+held pending review — see the last entry in `CHANGELOG.md`'s unreleased work
+and commit `21bd881`.
+
+**Then pick up at M1**, skipping D2 until the owner chooses. M1 is the
+main-menu power-on sequence; read §M1's closing note before building it,
+because start-up is already 3.8 seconds before the menu appears and the
+answer is probably to merge the menu boot with the existing boot splash
+rather than to stack a third timed screen in front of the player.
+
+**After that, E1** — the second map, "Hugging-Face", the largest remaining
+item and worth its own version. The
 thing to understand before starting: the map is *derived* from named constants
 in `WorldGeometry`, and a great deal assumes there is exactly one of it. §E1
 has the detail; E2 (the AI bosses `[₩₩₩]` / `[¥¥¥]`) needs E1 and D2 first.
