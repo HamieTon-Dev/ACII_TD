@@ -325,27 +325,35 @@ class BattlefieldRenderer {
      * the money also puts the two numbers a player checks most in one glance
      * instead of at opposite ends of a 1600-unit board.
      */
+    /**
+     * Where the two readouts are, for the tutorial to point at.
+     *
+     * Computed once: the plate is sized from fixed templates, so it does not
+     * move. Drawn *from* this rather than alongside it, so an arrow aimed here
+     * can never point at where the readout used to be.
+     */
+    val fieldStatusAnchors: FieldStatusAnchors by lazy {
+        FieldStatusAnchors.measure(rightTextPaint)
+    }
+
     private fun drawFieldStatus(canvas: android.graphics.Canvas, engine: GameEngine) {
         rightTextPaint.textSize = FIELD_STATUS_TEXT
-        val waveText = "WAVE ${engine.currentWave}"
+        // Never WAVE 0. Before the first wave there is nothing behind you and
+        // wave 1 is what is coming, which is what the HUD ("--") and the
+        // preparation banner ("PERIMETER READY") already say in their own way.
+        // The readout was the only thing claiming a wave zero existed.
+        val waveText = "WAVE ${engine.currentWave.coerceAtLeast(1)}"
         val cryptoText = "\u25C7 ${engine.crypto}"
 
-        // One plate behind both lines, sized from templates rather than from
-        // the live text: a plate measured against the number itself grows and
-        // shrinks every time the number does, and crypto changes several times
-        // a second during a wave.
-        val plateWidth = maxOf(
-            rightTextPaint.measureText(WAVE_PLATE_TEMPLATE),
-            rightTextPaint.measureText(CRYPTO_PLATE_TEMPLATE)
-        ) + 20f
+        val anchors = fieldStatusAnchors
         val right = WorldGeometry.WIDTH - FIELD_STATUS_MARGIN
         fillPaint.color = colBackground
         fillPaint.alpha = FIELD_STATUS_PLATE_ALPHA
         canvas.drawRoundRect(
-            right + 10f - plateWidth,
-            FIELD_STATUS_BASELINE - FIELD_STATUS_TEXT - 2f,
-            right + 10f,
-            FIELD_STATUS_BASELINE + FIELD_STATUS_LINE + 10f,
+            anchors.plate.left,
+            anchors.plate.top,
+            anchors.plate.right,
+            anchors.plate.bottom,
             6f,
             6f,
             fillPaint
@@ -1815,7 +1823,7 @@ class BattlefieldRenderer {
         }
     }
 
-    private companion object {
+    internal companion object {
         /** Lights around the circuit that frames the integrity block. */
         const val LOOP_LEDS = 46
 

@@ -7,6 +7,47 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [1.25.0]
+
+### Added — the tutorial actually teaches the game now
+
+Eleven cards instead of five, and the first-run experience finally explains the
+two numbers a new player stares at without being told what they mean.
+
+**Arrows that point at the real thing.** The WAVE and ◇ CRYPTO readouts are
+drawn inside the battlefield canvas; the tutorial card is a normal UI panel.
+The arrow now crosses that boundary properly — it is aimed using the renderer's
+own measurements of where it drew those readouts, so it lands on them at any
+screen size and cannot drift to where they used to be.
+
+**SKIP gets out of its own way.** It lived in the top-right corner, which is
+exactly where the WAVE and ◇ readouts are — measured sitting straight over the
+plate. On the two steps that point at them it moves to the bottom left, clear
+of the card, the readouts and the deploy panel. It is reachable on every single
+step, including the ones that wait for you to tap something and draw no buttons
+of their own.
+
+**It insists on two FIREWALLs and two TARPITs**, and says so if you pick
+something else rather than quietly moving on. A player who ignores the cards
+and just starts playing is never left staring at a stale step.
+
+**An optional briefing.** *"Know what is coming?"* — yes gives you the threats,
+the three boss identities, what JAM does to an agent and why TARPIT deals no
+damage. No goes straight to playing. It is generated from the game's own
+catalog, so it cannot drift out of date the way a hand-written one would.
+
+### Fixed
+
+**The game used to say WAVE 0.** The first thing a new player saw was a wave
+that does not exist. It now reads WAVE 1 before the first wave, which is what
+the top bar (`--`) and the preparation banner (PERIMETER READY) already meant.
+
+**Skipping the tutorial did not always stick.** Skip it, lose the run, press
+RETRY, and it could come straight back — the "done" flag is saved in the
+background and a stale read could undo it.
+
+---
+
 ## [1.24.0]
 
 ### Added — REVIVE PACK, and ten times the € everywhere

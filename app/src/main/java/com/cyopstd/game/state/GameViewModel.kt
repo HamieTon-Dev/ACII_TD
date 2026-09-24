@@ -21,6 +21,8 @@ import com.cyopstd.game.ads.NoAdGateway
 import com.cyopstd.game.core.GameMode
 import com.cyopstd.game.model.BossModifier
 import com.cyopstd.game.ui.game.BossDossier
+import com.cyopstd.game.ui.game.TutorialGate
+import com.cyopstd.game.ui.game.TutorialScript
 import com.cyopstd.game.save.LeaderboardEntry
 import com.cyopstd.game.save.LeaderboardGateway
 import com.cyopstd.game.save.LocalLeaderboard
@@ -670,7 +672,13 @@ class GameViewModel @JvmOverloads constructor(
         collectJobs += viewModelScope.launch {
             repository.progress.collectLatest { loaded ->
                 unlockedAgents = loaded.unlockedAgents + AgentType.starters.map { it.name }
-                tutorialCompleted = loaded.tutorialCompleted
+                // Never un-complete it. The flag is written asynchronously,
+                // so an emission from before that write still says false --
+                // and a player who skips the tutorial and immediately hits
+                // RETRY would be handed it again. In-memory is the truth
+                // until the write lands. `resetAllProgress` clears both
+                // deliberately, after the store is emptied.
+                tutorialCompleted = loaded.tutorialCompleted || tutorialCompleted
                 budget = loaded.budget
                 firmwareLevel = loaded.firmwareLevel
                 lifetimeBudgetEarned = loaded.lifetimeBudgetEarned
@@ -879,8 +887,12 @@ class GameViewModel @JvmOverloads constructor(
             // The tutorial advances on the action itself, not on having
             // acknowledged the previous card. A player who ignores the prompts
             // and just plays must never be left staring at a stale step.
-            if (tutorialStep in TUTORIAL_INTRO..TUTORIAL_TAP_AGENTS) {
-                tutorialStep = TUTORIAL_SELECT_FIREWALL
+            // A player who ignores the cards and just plays must never be
+            // left staring at a stale step. Opening the roster from anywhere
+            // ahead of it jumps the script to the pick, explanations and all:
+            // they acted, so skipping what they skipped is their call.
+            if (tutorialStep in TutorialScript.INTRO until TutorialScript.PICK_FIREWALL) {
+                tutorialStep = TutorialScript.PICK_FIREWALL
             }
         } else {
             selection = selection.copy(pendingAgent = null)
@@ -896,10 +908,26 @@ class GameViewModel @JvmOverloads constructor(
         selection = selection.copy(pendingAgent = type, selectedNodeId = null)
         showDeployPanel = false
         audio.play(GameSound.UI_CLICK)
-        // Any agent advances the step; the tutorial suggests FIREWALL, it does
-        // not insist on it.
-        if (tutorialStep in TUTORIAL_INTRO..TUTORIAL_SELECT_FIREWALL) {
-            tutorialStep = TUTORIAL_TAP_NODE
+        // The guided run does insist, because the owner asked it to: two
+        // FIREWALLs and two TARPITs. Picking the wrong one says so rather than
+        // silently moving on, which is what "forced" has to mean if the step
+        // after it is going to count placements of a specific agent.
+        when {
+            tutorialStep < 0 -> Unit
+
+            tutorialStep <= TutorialScript.PICK_FIREWALL ->
+                if (type == AgentType.FIREWALL) {
+                    tutorialStep = TutorialScript.PLACE_FIREWALLS
+                } else {
+                    showTransient("THE GUIDED RUN NEEDS FIREWALL FIRST")
+                }
+
+            tutorialStep == TutorialScript.PICK_TARPIT ->
+                if (type == AgentType.TARPIT) {
+                    tutorialStep = TutorialScript.PLACE_TARPITS
+                } else {
+                    showTransient("THE GUIDED RUN NEEDS TARPIT NEXT")
+                }
         }
     }
 
@@ -927,9 +955,7 @@ class GameViewModel @JvmOverloads constructor(
             when (engine.placeAgent(pending, node.id)) {
                 PlacementResult.SUCCESS -> {
                     selection = BattlefieldSelection()
-                    if (tutorialStep in TUTORIAL_INTRO..TUTORIAL_TAP_NODE) {
-                        tutorialStep = TUTORIAL_START_WAVE
-                    }
+                    advanceTutorialOnPlacement()
                 }
                 PlacementResult.INSUFFICIENT_CRYPTO -> showTransient("INSUFFICIENT CRYPTO")
                 PlacementResult.NODE_OCCUPIED -> showTransient("NODE OCCUPIED")
@@ -1028,9 +1054,46 @@ class GameViewModel @JvmOverloads constructor(
         }
     }
 
+    /**
+     * CONTINUE on a card that is just telling the player something.
+     *
+     * Only the acknowledge-gated steps move here. A step that waits for an
+     * action shows no button at all, so there is nothing to press that would
+     * skip past the thing the player is meant to be learning by doing.
+     */
     fun advanceTutorial() {
-        if (tutorialStep == TUTORIAL_INTRO) tutorialStep = TUTORIAL_TAP_AGENTS
+        val current = TutorialScript.stepAt(tutorialStep) ?: return
+        if (current.gate != TutorialGate.ACKNOWLEDGE) return
+        playClick()
+        tutorialStep = nextStepAfter(tutorialStep)
     }
+
+    /** The briefing question: yes reads it, no goes straight to playing. */
+    fun answerBriefing(wanted: Boolean) {
+        if (tutorialStep != TutorialScript.BRIEFING_OFFER) return
+        playClick()
+        tutorialStep = if (wanted) TutorialScript.BRIEFING else TutorialScript.OPEN_ROSTER
+    }
+
+    /**
+     * Counts what the player has actually built, and moves on when it is enough.
+     *
+     * The count comes from the board rather than from a tally kept alongside
+     * it: a player who places a FIREWALL, sells it and places another has one
+     * FIREWALL, and a counter incremented on each placement would have said
+     * two. Asking the engine cannot be wrong.
+     */
+    private fun advanceTutorialOnPlacement() {
+        val current = TutorialScript.stepAt(tutorialStep) ?: return
+        val required = current.requiresAgent ?: return
+        val built = engine.agents.items.count { it.active && it.type == required }
+        if (built < current.requiresCount) return
+        tutorialStep = nextStepAfter(tutorialStep)
+    }
+
+    /** The step after [index], ending the tutorial when there is none. */
+    private fun nextStepAfter(index: Int): Int =
+        if (index >= TutorialScript.lastIndex) -1 else index + 1
 
     // ------------------------------------------------------- run termination
 
@@ -1349,12 +1412,6 @@ class GameViewModel @JvmOverloads constructor(
     }
 
     companion object {
-        const val TUTORIAL_INTRO = 0
-        const val TUTORIAL_TAP_AGENTS = 1
-        const val TUTORIAL_SELECT_FIREWALL = 2
-        const val TUTORIAL_TAP_NODE = 3
-        const val TUTORIAL_START_WAVE = 4
-
         private const val TRANSIENT_MS = 1600L
         private const val UNLOCK_BANNER_MS = 3200L
         private const val TAP_RADIUS_MULTIPLIER = 2.0f

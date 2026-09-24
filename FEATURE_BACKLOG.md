@@ -336,48 +336,58 @@ about losing.
 
 ## H. Tutorial
 
-### H1 ⬜ A guided first run
+### H1 ✅ shipped in 1.25.0 — a guided first run
 
 **Asked:** *"During tutorial force player to add 2x Firewall and 2x tarpit.
-explain and point arrow to wave count, and Crypto◇ 'money earned to buy agents
-to defend server, Crypto◇ earned for every kill and every wave completed'. make
-sure arrows in tutorial text box point to the actual word 'Wave 1' and ◇120.
-also make sure the skip button doesn't block text boxes, moves out of the way
-during tutorial, and doesn't block 'Wave 1' and '◇120' when pointing to them.
-Possibly ask if they want to know about enemy types and bosses and give quick
-overview of the enemies their names and boss names and types, explain Jam,
-explain Tarpit slows local enemies within range."*
+explain and point arrow to wave count, and Crypto◇ ... make sure arrows in
+tutorial text box point to the actual word 'Wave 1' and ◇120. also make sure the
+skip button doesn't block text boxes, moves out of the way during tutorial, and
+doesn't block 'Wave 1' and '◇120' when pointing to them. Possibly ask if they
+want to know about enemy types and bosses..."*
 
-Four separate pieces:
+Eleven cards instead of five, in `TutorialScript` — a table, not a `when` over
+an integer, because the card, the arrow and the SKIP button all have to agree
+about the current step.
 
-1. **Scripted placements.** The tutorial gates progress until the player has
-   placed 2 × FIREWALL and 2 × TARPIT. The steps exist
-   (`GameOverlays.tutorialContentFor`); what is missing is the engine-side
-   condition that advances only on the right placement, and highlighting the
-   nodes that count.
-2. **Arrows that point at real things.** This is the one with teeth. The wave
-   and crypto readouts are drawn inside the **native Canvas world**
-   (`BattlefieldRenderer.drawFieldStatus`), while the tutorial card is
-   **Compose**, so an arrow from the card to the word `WAVE 1` has to cross that
-   boundary: the world's coordinates go through `WorldTransform` (scale and
-   letterbox offsets) to land on a screen position the Compose layer can point
-   at. Doable — the transform is already there and already exact — but it is
-   real work, not a graphic. Everything else in this item is easy by comparison.
-3. **The SKIP button must get out of the way.** It sits top-right (1.17.0), which
-   is exactly where `◇ 120` is. While a step is pointing at the crypto readout
-   it has to move — to the opposite corner, or below the card. The rule already
-   in `PROGRESS.md` applies: a control that blocks the thing it is explaining is
-   worse than no control.
-4. **An optional briefing.** *"Want a rundown of what is coming?"* → the threat
-   types with names and what each does, the boss (and, after §C1, the variants),
-   what JAM does to an agent, and that TARPIT slows everything inside its aura.
-   Every word of this already exists as `codexEntry` text on `EnemyType` and as
-   the ability text on `AgentType`, so the briefing can be generated from the
-   catalog rather than written twice and left to drift.
+**Forced placements.** Two FIREWALLs, then two TARPITs, and picking the wrong
+agent says so rather than silently moving on. The count comes from the board,
+not from a tally: place, sell, place again is one agent, and a counter
+incremented per placement would have said two.
 
-Copy the owner specified, verbatim, for the crypto step: *"money earned to buy
-agents to defend server, Crypto◇ earned for every kill and every wave
-completed."*
+**Arrows that point at real things.** `WAVE 1` and `◇ 120` are drawn by
+`BattlefieldRenderer` in world units; the card is Compose, in screen pixels.
+`FieldStatusAnchors` is the bridge — the renderer draws its plate *from* those
+rects and the tutorial aims at them, so the arrow cannot point at where the
+readout used to be. Proved against pixels: change only the crypto number, and
+every pixel that moves has to fall inside the box the arrow points at.
+
+**SKIP gets out of the way.** Its home is the top right, which is exactly where
+the readouts are — measured at 1530–1592 × 88–139, straight over the plate. On
+the two pointing steps it moves to the bottom left, clear of the card (top
+left), the readouts (top right) and the deploy panel (bottom centre). A test
+walks every card and asserts SKIP is on screen at each one.
+
+**The briefing** is offered, not imposed, and generated from `EnemyType
+.codexEntry`, the `BossVariant` signatures and the agents' ability text rather
+than written a second time — so a renamed threat or a new boss cannot leave it
+quietly describing a game that no longer exists.
+
+#### Three things found by building it
+
+**The readout said WAVE 0.** A new player's first sight of the game was a wave
+that does not exist, and the arrow could not point at the words "WAVE 1"
+because they were not there. The HUD already showed `--` and the banner already
+said PERIMETER READY; the readout was the only thing claiming a wave zero.
+
+**The forced placements cost exactly the starting purse.** 2 × 40 + 2 × 20 =
+120 = `STARTING_CRYPTO`, to the crypto. There is now a test on it, because agent
+costs and the starting purse are edited by different people for different
+reasons and a tutorial that asks for four agents the player cannot afford
+cannot be finished.
+
+**Skipping the tutorial did not always stick.** The flag is written
+asynchronously, and a progress emission from before the write overwrote the
+in-memory copy — so skip, lose, RETRY handed the tutorial straight back.
 
 ---
 
@@ -460,8 +470,7 @@ either depends on another or needs a decision noted in its section.**
 6. **D2** — RH/BH. **Blocked on the owner:** the four guard rails in §D2 need
    a pick before this can be built. Skipped rather than stalled on.
 7. ~~F2~~ — ✅ 1.24.0.
-8. **H1** — the tutorial. Best done late: it teaches the game, and the game is
-    still changing shape above it.
+8. ~~H1~~ — ✅ 1.25.0.
 9. **E1** — the map layer. Largest, and worth its own version.
 10. **E2** — the AI bosses, last, because they need C1, D2 and E1.
 11. **F3** — the two-device verification, once there is a Play Console.

@@ -20,7 +20,10 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.runtime.withFrameNanos
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -28,6 +31,8 @@ import androidx.compose.ui.graphics.drawscope.drawIntoCanvas
 import androidx.compose.ui.graphics.nativeCanvas
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.layout.onSizeChanged
+import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.dp
 import com.cyopstd.game.core.Balance
 import com.cyopstd.game.engine.RunPhase
@@ -112,10 +117,16 @@ fun GameScreen(
     ) {
         GameHud(hud = hud)
 
+        // The battlefield's pixel size, so the tutorial can convert a world
+        // rect into somewhere on screen to point at. The Canvas inside
+        // Battlefield fills this same Box, so one size serves both.
+        var fieldSize by remember { mutableStateOf(IntSize.Zero) }
+
         Box(
             modifier = Modifier
                 .weight(1f)
                 .fillMaxWidth()
+                .onSizeChanged { fieldSize = it }
         ) {
             Battlefield(viewModel, renderer, options)
 
@@ -207,25 +218,61 @@ fun GameScreen(
             }
 
             if (viewModel.tutorialStep >= 0 && viewModel.gameOverSummary == null) {
+                val script = TutorialScript.stepAt(viewModel.tutorialStep)
+                val target = when (script?.target) {
+                    TutorialTarget.WAVE_READOUT -> renderer.fieldStatusAnchors.wave
+                    TutorialTarget.CRYPTO_READOUT -> renderer.fieldStatusAnchors.crypto
+                    else -> null
+                }
+
+                // The arrow, drawn under the card so a long card is never
+                // painted over by it, and only once the field has a size to
+                // convert against.
+                if (target != null && fieldSize.width > 0 && fieldSize.height > 0) {
+                    TutorialPointer(
+                        target = target,
+                        transform = WorldTransform(
+                            fieldSize.width.toFloat(),
+                            fieldSize.height.toFloat()
+                        )
+                    )
+                }
+
                 TutorialOverlay(
                     step = viewModel.tutorialStep,
                     onAdvance = viewModel::advanceTutorial,
+                    onBriefing = viewModel::answerBriefing,
                     modifier = Modifier
                         .align(Alignment.TopStart)
                         .padding(10.dp)
                 )
 
-                // Skip lives in the corner rather than inside the card. A
-                // player who wants out of a tutorial wants out at every step,
+                // Skip lives in a corner rather than inside the card. A player
+                // who wants out of a tutorial wants out at every step,
                 // including the ones that wait for them to tap something
                 // specific and therefore have no buttons of their own.
+                //
+                // Its home is the top right -- which is exactly where the WAVE
+                // and CRYPTO readouts are. On the two steps that point at
+                // them it moves to the bottom left, clear of the card (top
+                // left), the readouts (top right) and the deploy panel (bottom
+                // centre). A control that covers the thing it is explaining is
+                // worse than no control.
+                val skipIsInTheWay = target != null
                 CompactButton(
                     text = "SKIP \u00D7",
                     onClick = viewModel::skipTutorial,
                     accent = Palette.TextSecondary,
                     modifier = Modifier
-                        .align(Alignment.TopEnd)
-                        .padding(top = 6.dp, end = 8.dp)
+                        .align(
+                            if (skipIsInTheWay) Alignment.BottomStart else Alignment.TopEnd
+                        )
+                        .padding(
+                            top = if (skipIsInTheWay) 0.dp else 6.dp,
+                            end = if (skipIsInTheWay) 0.dp else 8.dp,
+                            start = if (skipIsInTheWay) 10.dp else 0.dp,
+                            bottom = if (skipIsInTheWay) 10.dp else 0.dp
+                        )
                 )
             }
         }

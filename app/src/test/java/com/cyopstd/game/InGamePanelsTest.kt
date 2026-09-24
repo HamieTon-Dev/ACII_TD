@@ -21,6 +21,7 @@ import com.cyopstd.game.state.GameViewModel
 import com.cyopstd.game.ui.game.AgentManagementPanel
 import com.cyopstd.game.ui.game.GameScreen
 import com.cyopstd.game.ui.game.TutorialOverlay
+import com.cyopstd.game.ui.game.TutorialScript
 import com.cyopstd.game.ui.theme.CyOpsTheme
 import org.junit.Assert.assertEquals
 import org.junit.Rule
@@ -112,13 +113,14 @@ class InGamePanelsTest {
 
     @Test
     fun `the tutorial can be skipped from a step that draws no buttons`() {
-        // Step 1 waits for the player to tap AGENTS and shows no CONTINUE. The
+        // The roster step waits for the player to tap AGENTS and shows no
+        // CONTINUE. The
         // old SKIP lived beside CONTINUE, so on exactly these steps there was
         // no way out of the tutorial at all.
         compose.setContent {
             CyOpsTheme {
                 Box(Modifier.fillMaxSize()) {
-                    TutorialOverlay(step = 1, onAdvance = {})
+                    TutorialOverlay(step = TutorialScript.OPEN_ROSTER, onAdvance = {}, onBriefing = {})
                 }
             }
         }
@@ -149,15 +151,21 @@ class InGamePanelsTest {
         }
         compose.mainClock.advanceTimeBy(64)
 
-        // Step 0 explains and offers CONTINUE; SKIP is in the corner either
+        // The intro explains and offers CONTINUE; SKIP is in a corner either
         // way, which is the point -- it does not come and go with the card.
         compose.onNodeWithText("SKIP \u00D7").assertIsDisplayed()
 
-        viewModel.advanceTutorial()
+        // Walk to a step that waits for a tap and draws no buttons of its own,
+        // the way a player does: through the two explaining cards and past the
+        // briefing offer.
+        viewModel.advanceTutorial()   // -> the wave readout
+        viewModel.advanceTutorial()   // -> the crypto readout
+        viewModel.advanceTutorial()   // -> the briefing offer
+        viewModel.answerBriefing(wanted = false)
+        assertEquals(TutorialScript.OPEN_ROSTER, viewModel.tutorialStep)
         shadowOf(Looper.getMainLooper()).idle()
         compose.mainClock.advanceTimeBy(64)
 
-        // Step 1 waits for a tap on AGENTS and draws no buttons of its own.
         compose.onNodeWithText("SKIP \u00D7").assertIsDisplayed()
         compose.onNodeWithText("SKIP \u00D7").performClick()
         assertEquals(-1, viewModel.tutorialStep)
@@ -168,7 +176,7 @@ class InGamePanelsTest {
         compose.setContent {
             CyOpsTheme {
                 Box(Modifier.fillMaxSize()) {
-                    TutorialOverlay(step = 0, onAdvance = {})
+                    TutorialOverlay(step = TutorialScript.INTRO, onAdvance = {}, onBriefing = {})
                 }
             }
         }

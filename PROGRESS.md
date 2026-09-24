@@ -4,7 +4,7 @@
 reads first. It records where the project actually stands, what is proven and
 what is not, and what comes next.
 
-_Last updated: v1.24.0 — the revive pack and the ×10 € rescale. See `CHANGELOG.md` for the full per-version history._
+_Last updated: v1.25.0 — the guided first run. See `CHANGELOG.md` for the full per-version history._
 
 ---
 
@@ -26,17 +26,21 @@ this section is the position marker. Update it when an item ships.
 | 4 | B1 — the boss dossier | ✅ 1.22.0 |
 | 5 | F1 — revive on a rewarded ad | ✅ 1.23.0 |
 | 6 | F2 — revive pack + ×10 € rescale | ✅ 1.24.0 |
-| 7 | D2 — `[REDHAT]` / `[BLUEHAT]` | ⛔ **blocked on the owner** — the four guard rails in §D2 need a pick |
-| 8 | H1 — the tutorial overhaul | ⬜ **next workable item** |
-| 9 | E1 — the "Hugging-Face" map | ⬜ largest; its own version |
+| 7 | H1 — the tutorial overhaul | ✅ 1.25.0 |
+| 8 | D2 — `[REDHAT]` / `[BLUEHAT]` | ⛔ **blocked on the owner** — the four guard rails in §D2 need a pick |
+| 9 | E1 — the "Hugging-Face" map | ⬜ **next workable item** — largest; its own version |
 | 10 | E2 — AI bosses `[₩₩₩]` / `[¥¥¥]` | ⬜ needs C1 + D2 + E1 |
 | 11 | F3 — two-device cloud-save check | ⛔ needs a real Play Console |
 
-**Pick up at H1**, skipping D2 until the owner chooses. H1 is the tutorial
-overhaul: force 2× FIREWALL and 2× TARPIT, point arrows at the real "WAVE 1"
-and "◇120" readouts (which are drawn on the Canvas, not in Compose, so the
-arrow has to cross that boundary), keep SKIP out of the way of what it is
-pointing at, and an optional enemy/boss briefing. §H1 has the detail.
+**Pick up at E1**, skipping D2 until the owner chooses. E1 is the second map,
+"Hugging-Face" — the largest remaining item and worth its own version. The
+thing to understand before starting: the map is *derived* from named constants
+in `WorldGeometry`, and a great deal assumes there is exactly one of it. §E1
+has the detail; E2 (the AI bosses `[₩₩₩]` / `[¥¥¥]`) needs E1 and D2 first.
+
+Useful anchors from 1.25.0 if the second map moves the readouts:
+`FieldStatusAnchors` is the single source for where WAVE and ◇ are drawn, and
+the tutorial's arrows follow it automatically.
 
 **A note for whoever picks this up:** `revive_pack` is a new Play Console
 product id that does not exist yet, and `cyops.admob.rewardedId` is a new
@@ -58,7 +62,7 @@ when it ships rather than leaving it in both.
 
 ```bash
 cd /home/user/ACII_TD
-./gradlew :app:testDebugUnitTest      # 347 tests, all passing
+./gradlew :app:testDebugUnitTest      # 368 tests, all passing
 ./gradlew :app:assembleRelease        # -> app/build/outputs/apk/release/CyOpsTD-v<ver>.apk
 ```
 
@@ -165,6 +169,7 @@ rather than loosened.
 | 1.22 | BOSS dossier: live stats and every modifier's description, mid-fight |
 | 1.23 | Revive on a rewarded ad: same wave, half integrity, one per run |
 | 1.24 | REVIVE PACK ($4.99, 3/run, no revive ads); whole € economy ×10 |
+| 1.25 | Tutorial: forced placements, arrows onto the Canvas readouts, briefing |
 
 ---
 

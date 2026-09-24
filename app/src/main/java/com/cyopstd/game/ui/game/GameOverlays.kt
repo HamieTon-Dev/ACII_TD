@@ -18,6 +18,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -28,7 +29,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.foundation.Canvas
 import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.geometry.Rect
+import androidx.compose.ui.geometry.Size
+import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.cyopstd.game.model.AgentType
@@ -293,21 +299,29 @@ fun UnlockBanner(type: AgentType, modifier: Modifier = Modifier) {
 // ---------------------------------------------------------------- tutorial
 
 /**
- * A four-step, skippable first-play tutorial. It never blocks the battlefield:
- * it sits in a corner card and advances as the player actually performs each
- * action, so it teaches by doing rather than by reading.
+ * The guided first run.
+ *
+ * It never blocks the battlefield: it sits in a corner card and most steps
+ * advance as the player actually performs the action, so it teaches by doing
+ * rather than by reading. The script lives in [TutorialScript] — what each card
+ * says, what its arrow points at, and how it is cleared — because the card, the
+ * arrow and the SKIP button all have to agree about the current step and three
+ * separate `when`s over the same integer is three places to forget.
  */
 @Composable
 fun TutorialOverlay(
     step: Int,
     onAdvance: () -> Unit,
+    onBriefing: (wanted: Boolean) -> Unit,
     modifier: Modifier = Modifier
 ) {
-    val content = tutorialContentFor(step) ?: return
+    val content = TutorialScript.stepAt(step) ?: return
+    val body = if (step == TutorialScript.BRIEFING) TutorialBriefing.body() else content.body
 
     Column(
         modifier = modifier
             .widthIn(max = 380.dp)
+            .heightIn(max = 330.dp)
             .background(Palette.SurfaceRaised.copy(alpha = 0.97f), RoundedCornerShape(6.dp))
             .border(1.dp, Palette.Green.copy(alpha = 0.7f), RoundedCornerShape(6.dp))
             .padding(14.dp)
@@ -319,61 +333,131 @@ fun TutorialOverlay(
         )
         Spacer(Modifier.height(6.dp))
         Text(
-            text = content.body,
-            style = MaterialTheme.typography.bodyMedium,
-            color = Palette.TextPrimary
+            text = body,
+            style = if (step == TutorialScript.BRIEFING) {
+                MaterialTheme.typography.bodySmall
+            } else {
+                MaterialTheme.typography.bodyMedium
+            },
+            color = Palette.TextPrimary,
+            modifier = Modifier
+                .weight(1f, fill = false)
+                .verticalScroll(rememberScrollState())
         )
-        // SKIP is not in here; it sits in the screen's top-right corner so it
-        // is reachable on the steps that wait for a specific tap and show no
-        // buttons at all. That leaves CONTINUE the full width of the card.
-        if (content.showContinue) {
-            Spacer(Modifier.height(10.dp))
-            CompactButton(
-                text = "CONTINUE",
-                onClick = onAdvance,
-                accent = Palette.Green,
-                modifier = Modifier.fillMaxWidth()
-            )
+
+        // SKIP is not in here; it sits in a screen corner so it is reachable on
+        // the steps that wait for a specific tap and show no buttons at all.
+        when (content.gate) {
+            TutorialGate.ACKNOWLEDGE -> {
+                Spacer(Modifier.height(10.dp))
+                CompactButton(
+                    text = "CONTINUE",
+                    onClick = onAdvance,
+                    accent = Palette.Green,
+                    modifier = Modifier.fillMaxWidth()
+                )
+            }
+
+            TutorialGate.ASK_BRIEFING -> {
+                Spacer(Modifier.height(10.dp))
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.spacedBy(8.dp)
+                ) {
+                    Box(Modifier.weight(1f)) {
+                        CompactButton(
+                            text = "YES, BRIEF ME",
+                            onClick = { onBriefing(true) },
+                            accent = Palette.Green,
+                            modifier = Modifier.fillMaxWidth()
+                        )
+                    }
+                    Box(Modifier.weight(1f)) {
+                        CompactButton(
+                            text = "NO, LET ME PLAY",
+                            onClick = { onBriefing(false) },
+                            accent = Palette.TextSecondary,
+                            modifier = Modifier.fillMaxWidth()
+                        )
+                    }
+                }
+            }
+
+            TutorialGate.ACTION -> Unit
         }
     }
 }
 
-private data class TutorialContent(
-    val title: String,
-    val body: String,
-    val showContinue: Boolean
-)
+/**
+ * The arrow from the tutorial card to a readout drawn inside the Canvas.
+ *
+ * This is the piece with teeth. `WAVE 1` and `◇ 120` are drawn by
+ * [BattlefieldRenderer] in world units; the card is Compose, laid out in screen
+ * pixels. The arrow has to cross that boundary, which it does by taking the
+ * renderer's own [FieldStatusAnchors] through the same [WorldTransform] the
+ * battlefield was drawn with — so the arrow lands on the readout at any screen
+ * size, letterboxing included, and cannot drift to where the readout used to
+ * be.
+ *
+ * Drawn as a full-size overlay rather than positioned, because the line is
+ * between two points and neither of them is the box's corner.
+ */
+@Composable
+fun TutorialPointer(
+    target: WorldRect,
+    transform: WorldTransform,
+    modifier: Modifier = Modifier
+) {
+    val pulse by rememberInfiniteTransition(label = "pointer").animateFloat(
+        initialValue = 0.45f,
+        targetValue = 1f,
+        animationSpec = infiniteRepeatable(tween(700), RepeatMode.Reverse),
+        label = "pointerPulse"
+    )
 
-private fun tutorialContentFor(step: Int): TutorialContent? = when (step) {
-    0 -> TutorialContent(
-        title = "WELCOME TO CyOps TD",
-        body = "Cyberattacks are inbound on CORE-SERVER. " +
-            "Deploy Cyber Agents beside the routes to stop them before they land.",
-        showContinue = true
-    )
-    1 -> TutorialContent(
-        title = "STEP 1 — OPEN THE ROSTER",
-        body = "Tap the AGENTS button in the control bar below.",
-        showContinue = false
-    )
-    2 -> TutorialContent(
-        title = "STEP 2 — PICK AN AGENT",
-        body = "Select FIREWALL. It is cheap, reliable, and has no weaknesses.",
-        showContinue = false
-    )
-    3 -> TutorialContent(
-        title = "STEP 3 — DEPLOY",
-        body = "Tap one of the highlighted deployment nodes beside a route. " +
-            "Crypto is deducted when the agent lands.",
-        showContinue = false
-    )
-    4 -> TutorialContent(
-        title = "STEP 4 — START THE WAVE",
-        body = "Tap NEXT WAVE. Your agents fire automatically. Every attack you " +
-            "stop pays out ◇ Crypto, which buys more agents and upgrades.",
-        showContinue = false
-    )
-    else -> null
+    val screen = target.toScreen(transform)
+    Canvas(modifier = modifier.fillMaxSize()) {
+        val box = Rect(
+            left = screen.left - 6f,
+            top = screen.top - 6f,
+            right = screen.right + 6f,
+            bottom = screen.bottom + 6f
+        )
+        val colour = Palette.Green.copy(alpha = pulse)
+
+        drawRect(
+            color = colour,
+            topLeft = Offset(box.left, box.top),
+            size = Size(box.width, box.height),
+            style = Stroke(width = 3f)
+        )
+
+        // The arrow comes in from the left, which is where the card is, and
+        // stops short of the box so it never sits on top of the number it is
+        // pointing at.
+        val tipX = box.left - 10f
+        val tipY = box.center.y
+        val tailX = (tipX - size.width * 0.16f).coerceAtLeast(8f)
+        drawLine(
+            color = colour,
+            start = Offset(tailX, tipY),
+            end = Offset(tipX, tipY),
+            strokeWidth = 3f
+        )
+        val head = 14f
+        drawLine(
+            color = colour,
+            start = Offset(tipX, tipY),
+            end = Offset(tipX - head, tipY - head * 0.6f),
+            strokeWidth = 3f
+        )
+        drawLine(
+            color = colour,
+            start = Offset(tipX, tipY),
+            end = Offset(tipX - head, tipY + head * 0.6f),
+            strokeWidth = 3f
+        )
+    }
 }
 
 // ------------------------------------------------------------- transient msg

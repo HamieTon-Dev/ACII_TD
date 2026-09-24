@@ -12,6 +12,7 @@ import androidx.test.core.app.ApplicationProvider
 import com.cyopstd.game.model.AgentType
 import org.robolectric.Shadows.shadowOf
 import com.cyopstd.game.state.GameViewModel
+import com.cyopstd.game.ui.game.TutorialScript
 import com.cyopstd.game.ui.codex.CodexScreen
 import com.cyopstd.game.ui.menu.AboutScreen
 import com.cyopstd.game.core.Balance
@@ -413,7 +414,7 @@ class GameUiTest {
         assertEquals(0, viewModel.hud.wave)
         assertEquals(
             "first-time players get the tutorial",
-            GameViewModel.TUTORIAL_INTRO, viewModel.tutorialStep
+            TutorialScript.INTRO, viewModel.tutorialStep
         )
         assertFalse(viewModel.paused)
         assertEquals(1f, viewModel.currentSpeed, 0.001f)
@@ -429,15 +430,15 @@ class GameUiTest {
         viewModel.toggleDeployPanel()
         assertTrue(viewModel.showDeployPanel)
         assertEquals(
-            "opening the roster advances the tutorial even if the intro card " +
-                "was never acknowledged",
-            GameViewModel.TUTORIAL_SELECT_FIREWALL, viewModel.tutorialStep
+            "opening the roster advances the tutorial even if the explaining " +
+                "cards were never acknowledged",
+            TutorialScript.PICK_FIREWALL, viewModel.tutorialStep
         )
 
         viewModel.choosePendingAgent(AgentType.FIREWALL)
         assertEquals(AgentType.FIREWALL, viewModel.selection.pendingAgent)
         assertFalse("choosing an agent closes the picker", viewModel.showDeployPanel)
-        assertEquals(GameViewModel.TUTORIAL_TAP_NODE, viewModel.tutorialStep)
+        assertEquals(TutorialScript.PLACE_FIREWALLS, viewModel.tutorialStep)
 
         val node = com.cyopstd.game.core.WorldGeometry.nodes[10]
         viewModel.onBattlefieldTap(androidx.compose.ui.geometry.Offset(node.x, node.y))
@@ -446,8 +447,8 @@ class GameUiTest {
         assertEquals(1, viewModel.engine.activeAgentCount())
         assertEquals(cryptoBefore - AgentType.FIREWALL.cost, viewModel.hud.crypto)
         assertEquals(
-            "placing advances the tutorial to the wave step",
-            GameViewModel.TUTORIAL_START_WAVE, viewModel.tutorialStep
+            "one FIREWALL is not two; the guided run waits for the second",
+            TutorialScript.PLACE_FIREWALLS, viewModel.tutorialStep
         )
     }
 
