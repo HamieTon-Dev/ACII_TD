@@ -650,7 +650,7 @@ menu calls it, including the first.
 
 ## N. Screen sizes
 
-### N1 ⬜ **NECESSITY** — every screen must work on every phone
+### N1 ◐ **NECESSITY** — every screen must work on every phone *(audit landed 1.32.0)*
 
 **Asked:** *"check all elements of the game so it will function on any screen
 size as well. add this as a necessity to backlog."*
@@ -665,43 +665,58 @@ captured here and was unreadable on the owner's actual phone, twice. Anything
 this audit checks by rendering in the test environment is checking something
 the device does not necessarily do.
 
-#### What has to be checked, and what to check it against
+#### What was built (1.32.0)
 
-The battlefield is the safe part: it is a fixed 1600×760 world letterboxed by
-`WorldTransform`, so it is correct on any aspect by construction. Everything
-in Compose is the exposure:
+Two tests, because there turned out to be two entirely different questions.
 
-- **The main menu.** Two columns side by side, each scrolling. On a narrow or
-  short screen the right-hand column's buttons are the first thing to squeeze.
-- **The in-game panels.** `AgentManagementPanel` (430×300), `BossDossierPanel`
-  (430×330) and `DeployPanel` are **fixed-size in dp**. On a 600dp-wide phone
-  in landscape a 430dp panel is most of the screen; on a short one the fixed
-  height overflows. B1 already hit exactly this and was only caught by
-  measuring the laid-out bounds.
-- **The control bar and the HUD strip**, which have to hold a row of buttons
-  and a row of readouts without wrapping.
-- **The store, codex, settings and account screens**, all long scrolling lists
-  of `StatRow`s whose label and value meet in the middle.
-- **Text scale.** A player with the system font at 1.3× is a screen size
-  problem wearing a different hat, and nothing has been tested against it.
+**`ScreenSizeTest`** renders every screen a player can reach — main menu,
+store, agents, firmware, loadout, settings, codex, statistics, about,
+leaderboard, the boss dossier, the pause overlay, the game-over summary and a
+live match with the roster open — at eight viewports: 568×320, 640×360, 800×400, 900×380,
+1000×460, 1280×800, plus 640×360 at font scales 1.3× and 2×. 128 cases. It
+fails naming anything laid out past the edge that no scroll can reach.
 
-#### How to do it so it is actually verified
+**`WorldFitTest`** answers the battlefield, which is not Compose at all: a
+fixed 1600×760 world letterboxed by `WorldTransform`. Because that is pure
+arithmetic it does not sample device sizes and hope — it sweeps eighty
+viewports from square to 3:1 and asserts the world lands inside all of them,
+the aspect is preserved, the letterbox bars are even, and a tap round-trips to
+the point it was drawn from.
 
-Robolectric takes a `qualifiers` string, so a screen can be rendered at any
-size from a test: `w640dp-h300dp-land`, `w960dp-h440dp-land`,
-`w1280dp-h600dp-land`, and the same three with `-large` text scaling. A
-parameterised test over that matrix that asserts **no node is clipped and no
-node overflows the viewport** — using `boundsInRoot`, the technique that found
-the 1.22.0 dossier bug — would catch the whole class at once.
+#### What it found
 
-The honest caveat, again: that verifies layout arithmetic, not rendering. Font
-metrics differ on device. Anything font-dependent still needs a real phone.
+The Compose screens were already clean at every size, including 2× text —
+every one of them is built around a scroll column, which is what saved them.
 
-#### Where to start
+The fault was on the battlefield, and it is one no layout check could have
+seen. **The perimeter map generated fourteen pairs of deployment nodes 26
+world units apart** — two circles of radius 26 drawn almost entirely on top of
+each other. Nothing clipped, nothing overflowed. Letterboxed onto a 568×320dp
+phone those two nodes sit **9dp** apart: one fingertip covers both and the
+player gets whichever the arithmetic preferred.
 
-The three fixed-size panels, because they are the only places in the codebase
-with a hard-coded dp size that content has to fit inside, and they are the
-ones most likely to be wrong today.
+Fixed in the derivation rather than by nudging the candidate rows, so a future
+map cannot reintroduce it: `WorldGeometry.MIN_NODE_SPACING` drops a candidate
+stacked on one already taken, keeping whichever of the two covers more route.
+Perimeter went from 81 nodes to 67; Hugging-Face was already clean at 62.
+
+That change moves node ids, and node ids are save keys, so `SAVE_VERSION` went
+to 2 and `SavedRun.isRestorable` now checks it. `version` had been written
+since the first build and read by *nothing* — the field meant to stop a stale
+save being misread could not stop anything.
+
+#### What is honestly still open
+
+- **A real phone.** Font metrics differ here; the splash proved that twice.
+  Nothing in this audit replaces installing the APK on a device.
+- **Node density on the smallest screens.** Nodes are now ≥56 world units
+  apart, which is ~20dp on a 568×320dp phone. That is better than 9dp and
+  still under Material's 48dp guidance, and it cannot be fixed by enlarging
+  the tap radius: nearest-node already wins every tap inside it, so a bigger
+  radius only eats the empty-space tap that clears a selection
+  (`WorldFitTest` pins that ceiling). Fixing it properly means a sparser grid
+  on small screens, or pinch-to-zoom on the board. **Owner's call** — it is a
+  design change, not a bug fix.
 
 ---
 

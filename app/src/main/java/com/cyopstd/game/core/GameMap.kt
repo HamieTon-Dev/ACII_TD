@@ -1,5 +1,6 @@
 package com.cyopstd.game.core
 
+import kotlin.math.abs
 import kotlin.math.atan2
 import kotlin.math.hypot
 import kotlin.math.max
@@ -42,6 +43,25 @@ object WorldGeometry {
     const val CORE_Y = 380f
 
     const val NODE_RADIUS = 26f
+
+    /**
+     * How close two deployment nodes may be, centre to centre.
+     *
+     * The perimeter map generated pairs exactly [NODE_RADIUS] apart — two
+     * circles of radius 26 whose centres are 26 units apart, i.e. drawn almost
+     * entirely on top of each other, fourteen times across the board. It was
+     * invisible on a desk monitor and unusable on a phone: letterboxed onto a
+     * 568x320dp window those two nodes are **9dp** apart, so a fingertip
+     * covers both and the player gets whichever one the arithmetic preferred.
+     *
+     * Deriving the fix rather than moving the rows by hand is deliberate, and
+     * for the same reason the nodes are derived at all: a future map cannot
+     * reintroduce this by choosing unlucky candidate rows.
+     *
+     * The value is a full node apart plus a little, which leaves every pocket
+     * its node while dropping the duplicate crowded against it.
+     */
+    internal const val MIN_NODE_SPACING = NODE_RADIUS * 2f + 4f
 
     /** Clearance a node needs from any route, so it never sits on the path. */
     internal val NODE_CLEARANCE = LANE_HEIGHT / 2f + NODE_RADIUS + 5f
@@ -198,34 +218,56 @@ class GameMap(
      * Deployment nodes, derived from the routes rather than hand-placed.
      *
      * Candidates are filtered to positions that (a) clear every route by
-     * [WorldGeometry.NODE_CLEARANCE], (b) sit clear of the server rack, and
-     * (c) actually cover some route. Deriving them means the map cannot drift
-     * out of sync with itself: moving a waypoint moves the nodes, and no node
-     * exists that would be pointless to build on.
+     * [WorldGeometry.NODE_CLEARANCE], (b) sit clear of the server rack,
+     * (c) actually cover some route, and (d) are not stacked on a node
+     * already accepted. Deriving them means the map cannot drift out of sync
+     * with itself: moving a waypoint moves the nodes, and no node exists that
+     * would be pointless to build on or impossible to aim at.
      */
     val nodes: Array<NodePosition> = buildList {
-        var id = 0
         for (col in 0 until WorldGeometry.GRID_COLUMNS) {
             val x = WorldGeometry.GRID_LEFT +
                 (WorldGeometry.GRID_RIGHT - WorldGeometry.GRID_LEFT) * col /
                 (WorldGeometry.GRID_COLUMNS - 1f)
             if (x > WorldGeometry.SERVER_X - 55f) continue
+
+            // Everything this column could offer, best first. Sorting by
+            // coverage matters because of the spacing rule below: when two
+            // candidates are too close to both exist, the one kept should be
+            // the one worth deploying to, not whichever row happened to come
+            // first in the table.
+            val column = ArrayList<Pair<Int, Float>>()
             for ((row, y) in candidateRows.withIndex()) {
                 if (distanceToNearestLane(x, y) < WorldGeometry.NODE_CLEARANCE) continue
-                if (laneCoverage(x, y, WorldGeometry.ELIGIBILITY_RANGE) <
-                    WorldGeometry.MIN_NODE_COVERAGE
-                ) {
-                    continue
-                }
-                add(
-                    NodePosition(
-                        id = id++, column = col, row = row, x = x, y = y,
-                        laneDistance = distanceToNearestLane(x, y)
-                    )
-                )
+                val coverage = laneCoverage(x, y, WorldGeometry.ELIGIBILITY_RANGE)
+                if (coverage < WorldGeometry.MIN_NODE_COVERAGE) continue
+                column += row to coverage
+            }
+            column.sortWith(compareByDescending<Pair<Int, Float>> { it.second }.thenBy { it.first })
+
+            val taken = ArrayList<Float>()
+            for ((row, _) in column) {
+                val y = candidateRows[row]
+                if (taken.any { abs(it - y) < WorldGeometry.MIN_NODE_SPACING }) continue
+                taken += y
+                add(Triple(col, row, y))
             }
         }
-    }.toTypedArray()
+    }
+        // Top to bottom within each column, so ids read down the board the way
+        // the board looks. They are also save keys, which is why the ordering
+        // is pinned here rather than left to whatever the filter produced.
+        .sortedWith(compareBy({ it.first }, { it.third }))
+        .mapIndexed { index, (col, row, y) ->
+            val x = WorldGeometry.GRID_LEFT +
+                (WorldGeometry.GRID_RIGHT - WorldGeometry.GRID_LEFT) * col /
+                (WorldGeometry.GRID_COLUMNS - 1f)
+            NodePosition(
+                id = index, column = col, row = row, x = x, y = y,
+                laneDistance = distanceToNearestLane(x, y)
+            )
+        }
+        .toTypedArray()
 
     fun node(id: Int): NodePosition? = nodes.getOrNull(id)
 

@@ -56,6 +56,15 @@ data class SavedRun(
 ) {
     /** A run is only worth offering as CONTINUE if the server is still standing. */
     val isResumable: Boolean get() = serverHp > 0 && wave >= 0
+
+    /**
+     * ...and only if this build can still make sense of it.
+     *
+     * Kept as one property rather than two checks because the menu and the
+     * restore have to agree: offering CONTINUE for a save that the restore
+     * then refuses is a button that does nothing.
+     */
+    val isRestorable: Boolean get() = isResumable && version == SAVE_VERSION
 }
 
 @Serializable
@@ -88,7 +97,23 @@ data class PlayerProgress(
     val lifetimeBudgetEarned: Long = 0
 )
 
-const val SAVE_VERSION = 1
+/**
+ * Bumped whenever a change makes an older save mean something different.
+ *
+ * Adding a field never needs this — every field has a default, so an old save
+ * still reads cleanly. What does need it is a change to what the existing
+ * numbers *refer to*, and so far that means the deployment grid: agents are
+ * stored by node id, a node id is a position in a derived array, and version 2
+ * drops the stacked duplicate nodes the perimeter map used to generate. A
+ * version 1 save restored against that array would put a player's whole board
+ * on the wrong patches of ground, quietly.
+ *
+ * Older runs are discarded rather than migrated. There is no mapping to
+ * migrate *to* — the node a save refers to may no longer exist — and a run is
+ * one sitting, not a profile: nothing permanent (progress, purchases, stats)
+ * lives in [SavedRun].
+ */
+const val SAVE_VERSION = 2
 
 /**
  * Everything the store screen needs in one snapshot.

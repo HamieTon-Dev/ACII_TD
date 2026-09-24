@@ -4,7 +4,7 @@
 reads first. It records where the project actually stands, what is proven and
 what is not, and what comes next.
 
-_Last updated: v1.31.0 — startup music fade. See `CHANGELOG.md` for the full per-version history._
+_Last updated: v1.32.0 — the screen-size audit (N1) and the overlapping-node fix it found. See `CHANGELOG.md` for the full per-version history._
 
 ---
 
@@ -30,7 +30,7 @@ this section is the position marker. Update it when an item ships.
 | 8 | D2 — `[REDHAT]` / `[BLUEHAT]` | ⛔ **blocked on the owner** — the four guard rails in §D2 need a pick |
 | 9 | M1 — main-menu boot sequence | ❌ withdrawn 1.28.0 — read §M1, the failure is instructive |
 | 9b | M2 — boot sound over the ident | ✅ 1.28.0 |
-| 10 | N1 — screen-size audit | ⬜ **RELEASE BLOCKER** — do before anything ships |
+| 10 | N1 — screen-size audit | ◐ 1.32.0 — the audit landed and found a real fault; see below |
 | 11 | E1 — the "Hugging-Face" map | ⬜ in progress; the refactor landed in 1.28.0 |
 | 12 | E2 — AI bosses `[₩₩₩]` / `[¥¥¥]` | ⬜ needs C1 + D2 + E1 |
 | 13 | F3 — two-device cloud-save check | ⛔ needs a real Play Console |
@@ -46,6 +46,26 @@ screens: the studio ident (1.9s, now carrying the boot sound) and the boot
 splash (1.9s) — about 3.8 seconds. The boot splash and the ident are
 arguably still one beat too many; worth raising before the store listing
 goes live, but no longer urgent.
+
+**N1, and what it actually found.** The Compose screens were all clean at
+every size — 128 rendered cases including a 568×320dp phone and the system
+font at 2× — because every one of them is built around a scroll column. The
+fault was on the battlefield, where no layout check could reach it: the
+perimeter map derived fourteen pairs of deployment nodes 26 world units
+apart, which is the radius a node is *drawn* at, so the two circles sat on top
+of each other. Nothing clipped, nothing overflowed, and on a small phone the
+pair is 9dp apart. Fixed in the derivation
+(`WorldGeometry.MIN_NODE_SPACING`), which moved node ids, which is why
+`SAVE_VERSION` is now 2 and `SavedRun.isRestorable` checks it — that field had
+been written since the first build and read by nothing.
+
+Two things stay open and one is the owner's: **a real phone** (font metrics
+differ here, which is how the splash got through twice), and **node density**,
+still ~20dp apart on the smallest screen. That last one cannot be fixed by
+enlarging the tap radius — nearest-node already wins every tap inside it, so a
+larger radius only eats the empty-space tap that clears a selection, and
+`WorldFitTest` pins that ceiling. It needs a sparser grid on small screens or
+pinch-to-zoom, which is a design change.
 
 **Three things the test renderer cannot check.** Each cost a shipped bug.
 Robolectric substitutes its own **fonts**, so anything whose correctness
@@ -163,7 +183,7 @@ Key architecture (full detail in `ARCHITECTURE.md`):
 
 ## 3. Testing approach that has actually caught bugs
 
-This matters more than any individual feature. Three techniques have each
+This matters more than any individual feature. These techniques have each
 caught real defects that reading the code did not:
 
 1. **Rasterize the renderer and look at it.** Robolectric with
@@ -179,6 +199,23 @@ caught real defects that reading the code did not:
    measured `78 x 0` and a stat value `6 x 0`, both laid out and both off the
    bottom of a fixed-height panel. A semantics assertion proves a composable
    exists; only its measured bounds prove it is on screen.
+2c. **`boundsInRoot` is clipped; `positionInRoot + size` is the layout truth.**
+   The same property that named the 1.22.0 bug hid the 1.32.0 one. Bounds are
+   what survived clipping, so a control laid out far off the side reports
+   bounds neatly inside the viewport. The first `ScreenSizeTest` used bounds
+   and passed everything — a harness measuring nothing, which is worse than no
+   harness because it reads as proof. Two corollaries, both learned the hard
+   way in the same afternoon: `@Config(qualifiers = …)` is resolved **once per
+   class**, so a parameterised size sweep silently renders every case at one
+   size (set it in the constructor with `RuntimeEnvironment.setQualifiers`);
+   and `Modifier.width/height` are **coerced into the incoming constraints**,
+   so a deliberately oversized canary built with them does not overflow and
+   the canary fails for the wrong reason. Use `requiredWidth`. Whenever a
+   check reports nothing, make it report something on purpose first.
+2d. **Subtract what is reachable.** An overflow check that does not know about
+   scroll containers flagged 107 elements in the store — every card below the
+   first, in a column built to scroll. A check that is loud about correct
+   layout gets muted, and then it is not a check.
 3. **Seed the engine and average.** `GameEngine(random = Random(seed))` makes
    simulations reproducible. An earlier balance test read a *single* wave and
    drew the opposite conclusion from the truth. Always average over seeds and

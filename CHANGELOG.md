@@ -7,6 +7,44 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [1.32.0]
+
+### Fixed — two deployment nodes were drawn on top of each other
+
+On the perimeter map, fourteen pairs of nodes sat 26 world units apart — the
+exact radius a node is drawn at, so the two circles almost entirely overlapped.
+On a desk monitor it read as a slightly thick node. Letterboxed onto a small
+phone those two nodes are **9dp** apart: one fingertip covers both, and you
+got whichever one the arithmetic preferred.
+
+Nodes are now required to keep a node's width between them. The perimeter map
+has 67 deployment spots where it had 81; the fourteen it lost were the
+duplicates, and where two candidates collided the one kept is the one covering
+more of the route. The Hugging-Face map was already clear.
+
+### Changed — a saved run from an older build is no longer resumed
+
+Agents are stored by node id, and a node id is a position in a derived array,
+so the change above means a run saved before this version refers to different
+ground. Those runs are now discarded instead of restored onto the wrong spots,
+and CONTINUE does not offer them. Nothing permanent is affected — progress,
+purchases, unlocks and statistics are stored separately.
+
+### Added — every screen is checked at every screen size
+
+A release blocker rather than polish: Play lists thousands of devices. Every
+screen is now rendered at eight viewports, from a 4-inch phone held sideways
+to a tablet, including the system font at 1.3× and 2×, and checked for
+anything laid out past the edge that cannot be scrolled to. The battlefield is
+checked separately and exactly, across eighty aspect ratios from square to
+3:1.
+
+This is layout arithmetic, not rendering. Font metrics on a real phone still
+differ from the test environment's, which is how the studio wordmark got
+through twice.
+
+---
+
 ## [1.31.0]
 
 ### Changed — the music eases in at launch

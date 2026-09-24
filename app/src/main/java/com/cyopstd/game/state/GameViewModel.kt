@@ -691,7 +691,7 @@ class GameViewModel @JvmOverloads constructor(
             }
         }
         collectJobs += viewModelScope.launch {
-            repository.savedRun.collectLatest { run -> hasSavedRun = run?.isResumable == true }
+            repository.savedRun.collectLatest { run -> hasSavedRun = run?.isRestorable == true }
         }
     }
 
@@ -746,7 +746,13 @@ class GameViewModel @JvmOverloads constructor(
     fun continueGame(onLoaded: () -> Unit = {}, onFailed: () -> Unit = {}) {
         viewModelScope.launch {
             val run = repository.savedRun.first()
-            if (run == null || !run.isResumable) {
+            if (run == null || !run.isRestorable) {
+                // A save from an older build is dropped rather than restored.
+                // `version` had been written since the first release and read
+                // by nothing, which made it decoration: the field that was
+                // meant to stop a stale save being misread could not stop
+                // anything. Placements are node ids into a derived array, so
+                // "misread" means every agent on a different patch of ground.
                 hasSavedRun = false
                 onFailed()
                 return@launch
