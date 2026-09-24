@@ -39,7 +39,7 @@ object CodexContent {
                 } else {
                     "◇ ${type.cost} · unlocks at wave ${type.unlockWave}"
                 },
-                body = type.codexEntry,
+                body = type.realWorld,
                 footnote = "${type.abilityName}: ${type.abilitySummary}"
             )
         }

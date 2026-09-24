@@ -565,6 +565,17 @@ class GameViewModel @JvmOverloads constructor(
 
     private val adPolicy = AdPolicy()
 
+    /**
+     * How far the player has zoomed the board, and where.
+     *
+     * Lives on the view model rather than in the composable so that it
+     * survives a recomposition, a pause and a backgrounded app -- coming back
+     * to a match and finding the board snapped back to fitted would be a small
+     * betrayal every time. It is deliberately NOT part of the engine or the
+     * save: it describes looking at the match, not the match.
+     */
+    val viewport = com.cyopstd.game.ui.game.BattlefieldViewport()
+
     /** True while an interstitial is on screen and the game is waiting on it. */
     var showingAd by mutableStateOf(false)
         private set
@@ -802,6 +813,10 @@ class GameViewModel @JvmOverloads constructor(
         runRecorded = false
         revivesUsed = 0
         reviveSpentThisRun = false
+        // A new run starts looking at the whole board. Carrying a zoom over
+        // from the last one would drop the player into a corner of a map they
+        // have not seen yet.
+        viewport.reset()
         matchActive = true
         tutorialStep = if (tutorialCompleted) -1 else 0
         pushHud()

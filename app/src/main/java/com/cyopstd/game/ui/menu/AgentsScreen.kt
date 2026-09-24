@@ -20,6 +20,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.cyopstd.game.model.AgentType
 import com.cyopstd.game.ui.common.GlyphBadge
@@ -103,15 +104,31 @@ private fun AgentRosterCard(type: AgentType, unlocked: Boolean, highestWave: Int
 
         Spacer(Modifier.height(8.dp))
 
-        Text(
-            text = type.abilityName,
-            style = MaterialTheme.typography.labelMedium,
-            color = Palette.Green
+        // Two halves, labelled, because the brief is that this screen should
+        // teach the real concept as well as the fictional unit -- and because
+        // the two used to be one paragraph in which a beginner had no way to
+        // tell which sentence was true of the world and which was true only
+        // here. REAL-WORLD comes first: it is the part worth knowing.
+        IndexSection(
+            label = "REAL-WORLD",
+            accent = Palette.Cyan,
+            body = type.realWorld
         )
+
+        Spacer(Modifier.height(8.dp))
+
+        IndexSection(
+            label = "IN-GAME",
+            accent = Palette.Green,
+            body = type.inGame
+        )
+
+        Spacer(Modifier.height(8.dp))
+
         Text(
-            text = type.abilitySummary,
-            style = MaterialTheme.typography.bodySmall,
-            color = Palette.TextSecondary
+            text = "${type.abilityName} — ${type.abilitySummary}",
+            style = MaterialTheme.typography.labelMedium,
+            color = Palette.Crypto
         )
 
         if (!unlocked) {
@@ -128,6 +145,21 @@ private fun AgentRosterCard(type: AgentType, unlocked: Boolean, highestWave: Int
             )
         }
     }
+}
+
+/** One labelled half of an index entry. */
+@Composable
+private fun IndexSection(label: String, accent: Color, body: String) {
+    Text(
+        text = label,
+        style = MaterialTheme.typography.labelSmall,
+        color = accent
+    )
+    Text(
+        text = body,
+        style = MaterialTheme.typography.bodySmall,
+        color = Palette.TextSecondary
+    )
 }
 
 @Composable

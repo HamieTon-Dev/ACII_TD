@@ -388,18 +388,53 @@ class GameUiTest {
     // ----------------------------------------------------------------- about
 
     @Test
-    fun `about screen states the offline and no-monetisation guarantees`() {
+    fun `about screen discloses ads and purchases instead of denying them`() {
+        // This test used to assert the opposite, and was right to at the time:
+        // it checked for "No advertisements" and a line about having no
+        // INTERNET permission. Both were true of the offline build and both
+        // were false by the time monetisation shipped, which is how a store
+        // listing ends up with an About screen that contradicts its own Data
+        // Safety form.
         compose.setContent {
             CyOpsTheme {
-                AboutScreen(backgroundAnimation = false, onBack = {})
+                AboutScreen(
+                    backgroundAnimation = false,
+                    onBack = {},
+                    adsConfigured = true,
+                    purchasesAvailable = true
+                )
             }
         }
 
         compose.onNodeWithText("ABOUT").assertIsDisplayed()
         compose.onNodeWithText(BuildConfig.VERSION_NAME).assertIsDisplayed()
-        compose.onNode(hasText("INTERNET", substring = true)).assertIsDisplayed()
-        compose.onNode(hasText("No advertisements", substring = true)).assertIsDisplayed()
+
+        // The disclosures the brief asked for.
+        compose.onNode(hasText("advertisements supplied by Google AdMob", substring = true))
+            .assertIsDisplayed()
+        compose.onNode(hasText("in-app purchases", substring = true)).assertIsDisplayed()
+        compose.onNode(hasText("AI-ASSISTED DEVELOPMENT", substring = true)).assertIsDisplayed()
+        compose.onNode(hasText("TRADEMARK AND THIRD-PARTY NOTICE", substring = true))
+            .assertIsDisplayed()
+
+        // ...and the claims that are still true.
         compose.onNode(hasText("No real cryptocurrency", substring = true))
+            .assertIsDisplayed()
+    }
+
+    @Test
+    fun `about screen says there are no ads when there genuinely are none`() {
+        compose.setContent {
+            CyOpsTheme {
+                AboutScreen(
+                    backgroundAnimation = false,
+                    onBack = {},
+                    adsConfigured = false,
+                    purchasesAvailable = false
+                )
+            }
+        }
+        compose.onNode(hasText("no advertisements", substring = true, ignoreCase = true))
             .assertIsDisplayed()
     }
 

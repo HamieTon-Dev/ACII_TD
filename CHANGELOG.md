@@ -7,6 +7,68 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [1.34.0]
+
+### Added — pinch to zoom the battlefield
+
+Two fingers zoom the board, and drag pans it once you are in. The HUD strip,
+the integrity and wave readouts, the agent roster and the control bar do not
+move or scale — only the battlefield does.
+
+This closes the small-screen problem the 1.32.0 audit found: on a 4-inch phone
+held sideways, adjacent deployment nodes sit about 20dp apart, which no tap
+radius can separate. Zoomed all the way in they are comfortably over the 48dp
+a fingertip needs.
+
+- Zoom runs from the fitted board to three times it. Fully out is the whole
+  battlefield; pinching out the last little way snaps exactly back to it.
+- The board cannot be dragged off screen.
+- A pinch never places an agent, never selects a node, and never clears a
+  selection — including when a finger lands or lifts directly on a node.
+- Zoom survives pausing and backgrounding the app, and resets on a new run.
+
+There is no double-tap to reset, deliberately: a double-tap detector has to
+hold every single tap for the double-tap timeout before delivering it, and a
+single tap is how you deploy.
+
+### Fixed — the About screen was telling players the game has no ads
+
+It carried a panel headed WHAT THIS GAME DOES NOT DO which promised no
+advertisements, no in-app purchases, no cloud save and no internet permission.
+Every line was true when it was written and false once monetisation shipped.
+What is shown now is read from the build, so it cannot claim otherwise.
+
+### Added — the tutorial now explains what you are defending
+
+It ran for eleven cards without ever saying what CORE-SERVER is, where its
+integrity is shown, or what happens at zero. A new second card does, before
+the player is asked to do anything.
+
+The integrity readout also now says INTEGRITY rather than HP, matching what
+the tutorial teaches and what every other screen already called it.
+
+### Added — the agent roster teaches the real concept as well as the unit
+
+Every agent now carries a REAL-WORLD explanation and an IN-GAME one, shown
+separately. They used to be one paragraph in which a beginner had no way to
+tell which sentence was true of the world: "An Intrusion Detection System
+watches network activity for suspicious behaviour and raises the alarm. It
+sees further than anything else you can deploy."
+
+Several entries were corrected in the process. CRYPTOGRAPHER implied real
+encryption could be broken and now says plainly that it cannot. QUANTUM
+DEFENDER conflated quantum key distribution with post-quantum cryptography,
+which are different things. ZERO-DAY HUNTER and ROOT ADMIN now say they are
+informal terms rather than job titles.
+
+### Added — About: AI assistance, trademarks, copyright
+
+An AI-assisted development statement, a trademark and third-party notice, and
+a copyright line using the year at runtime. The trademark notice disclaims
+affiliation and claims no licence, because there is none to claim.
+
+---
+
 ## [1.33.0]
 
 ### Added — Google Play release preparation, and the consent layer it needs

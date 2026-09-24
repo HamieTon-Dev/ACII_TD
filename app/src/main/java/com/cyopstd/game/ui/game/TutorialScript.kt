@@ -52,16 +52,17 @@ data class TutorialStep(
 object TutorialScript {
 
     const val INTRO = 0
-    const val WAVE_READOUT = 1
-    const val CRYPTO_READOUT = 2
-    const val BRIEFING_OFFER = 3
-    const val BRIEFING = 4
-    const val OPEN_ROSTER = 5
-    const val PICK_FIREWALL = 6
-    const val PLACE_FIREWALLS = 7
-    const val PICK_TARPIT = 8
-    const val PLACE_TARPITS = 9
-    const val START_WAVE = 10
+    const val CORE_INTEGRITY = 1
+    const val WAVE_READOUT = 2
+    const val CRYPTO_READOUT = 3
+    const val BRIEFING_OFFER = 4
+    const val BRIEFING = 5
+    const val OPEN_ROSTER = 6
+    const val PICK_FIREWALL = 7
+    const val PLACE_FIREWALLS = 8
+    const val PICK_TARPIT = 9
+    const val PLACE_TARPITS = 10
+    const val START_WAVE = 11
 
     /** How many of each the guided run insists on, as the owner asked. */
     const val REQUIRED_FIREWALLS = 2
@@ -72,6 +73,20 @@ object TutorialScript {
             title = "WELCOME TO CyOps TD",
             body = "Cyberattacks are inbound on CORE-SERVER. Deploy Cyber Agents " +
                 "beside the routes to stop them before they land."
+        ),
+        // The losing condition, taught second, before anything about how to
+        // win. The tutorial had eleven steps and not one of them said what
+        // CORE-SERVER was, where its integrity was shown, or what happened at
+        // zero -- step 1 said "stop them before they land" and step 2 said
+        // "for as long as you hold the server", both of which assume the
+        // player already knows what is being held and what holding it means.
+        TutorialStep(
+            title = "CORE-SERVER INTEGRITY",
+            body = "CORE-SERVER is what you are defending, and its INTEGRITY " +
+                "readout in the top strip is the only life you have. Every " +
+                "hostile packet that reaches the rack takes a bite out of it. " +
+                "At 0 the server is breached and the run ends — so nothing " +
+                "gets through is the whole job."
         ),
         TutorialStep(
             title = "THE WAVE COUNT",

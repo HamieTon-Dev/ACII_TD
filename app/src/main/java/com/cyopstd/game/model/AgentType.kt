@@ -52,7 +52,25 @@ enum class AgentType(
     val unlockWave: Int,
     val abilityName: String,
     val abilitySummary: String,
-    val codexEntry: String,
+    /**
+     * What the real cybersecurity concept is, with no gameplay in it.
+     *
+     * Kept strictly separate from [inGame] because the two were blended and
+     * the blend taught the wrong thing: "An Intrusion Detection System watches
+     * network activity for suspicious behaviour and raises the alarm. It sees
+     * further than anything else you can deploy." The first sentence is true
+     * of the world; the second is true only of this game, and a beginner has
+     * no way to tell which is which.
+     *
+     * Rules these lines are written to, from the owner's brief: beginner
+     * friendly, no exaggeration of real roles, no offensive procedure, and no
+     * informal term presented as an official certification or standardised job
+     * title. Where a term genuinely is ambiguous or contested in the industry,
+     * the line says so rather than picking a definition and asserting it.
+     */
+    val realWorld: String,
+    /** What the fictional agent actually does on the board. */
+    val inGame: String,
     /** Advanced agents expose the targeting selector. */
     val allowsTargetingModes: Boolean = false,
     /**
@@ -87,10 +105,14 @@ enum class AgentType(
         unlockWave = 0,
         abilityName = "RATE LIMIT",
         abilitySummary = "Cheap and nearly harmless. Everything inside its radius crawls.",
-        codexEntry = "A tarpit accepts a hostile connection and then answers as " +
-            "slowly as it possibly can, holding the attacker open on a socket " +
-            "that is going nowhere. It does not stop anything by itself. It " +
-            "buys every other defence you have more time to work."
+        realWorld = "A tarpit accepts a hostile connection and then answers as " +
+            "slowly as it is allowed to, holding the attacker open on a socket " +
+            "that is going nowhere. It is a delaying tactic, not a blocking " +
+            "one: the value is the time it costs the other side.",
+        inGame = "Deals almost no damage. Everything inside its radius crawls, " +
+            "which keeps threats in range of your damage dealers for far " +
+            "longer. Cheap, and useless on its own — it is a force multiplier " +
+            "for whatever is shooting next to it."
     ),
     FIREWALL(
         displayName = "FIREWALL",
@@ -104,10 +126,14 @@ enum class AgentType(
         unlockWave = 0,
         abilityName = "HARDENED",
         abilitySummary = "Reliable all-round damage, and it cannot be jammed.",
-        codexEntry = "A firewall inspects traffic against a rule set and drops " +
-            "anything that does not belong. It is the first thing you put " +
-            "between the outside world and anything you care about -- and the " +
-            "last thing a breach manages to talk its way past.",
+        realWorld = "A firewall checks traffic against a set of rules and drops " +
+            "anything the rules do not allow. It is usually the first control " +
+            "placed between an untrusted network and something worth " +
+            "protecting, and it is judged on the rules it is given rather than " +
+            "on cleverness.",
+        inGame = "Reliable mid-range damage at a low price, and the only agent " +
+            "immune to a boss JAM. Short reach, so it has to stand close to the " +
+            "lane — which is exactly why that immunity matters.",
         // The agent with the shortest reach has no choice but to stand where a
         // boss can jam it, so immunity is the identity that makes standing
         // there worth doing.
@@ -125,9 +151,13 @@ enum class AgentType(
         unlockWave = 0,
         abilityName = "DEEP SCAN",
         abilitySummary = "Very long detection range; +45% damage to fast attacks.",
-        codexEntry = "An Intrusion Detection System watches network activity for " +
-            "suspicious behaviour and raises the alarm. It sees further than " +
-            "anything else you can deploy."
+        realWorld = "An Intrusion Detection System watches network or host " +
+            "activity for patterns that look like an attack and raises an " +
+            "alert. It reports; it does not block. Someone, or something else, " +
+            "still has to act on what it finds.",
+        inGame = "The longest detection range in the roster, and +45% damage " +
+            "against fast attacks. Slow rate of fire — it is a spotter that " +
+            "happens to shoot, best placed where it can cover a lot of lane."
     ),
     IPS(
         displayName = "IPS",
@@ -141,10 +171,13 @@ enum class AgentType(
         unlockWave = 3,
         abilityName = "BLAST RADIUS",
         abilitySummary = "Extremely high rate of fire, and every shot splashes.",
-        codexEntry = "An Intrusion Prevention System is an IDS that is allowed to " +
-            "act: instead of only reporting a threat it blocks the traffic " +
-            "outright, and it does so continuously -- and to everything in the " +
-            "same connection.",
+        realWorld = "An Intrusion Prevention System sits in the traffic path and " +
+            "is permitted to act on what it detects, dropping or resetting a " +
+            "connection rather than only alerting. The trade-off is real: an " +
+            "IPS that misjudges legitimate traffic blocks it.",
+        inGame = "Very high rate of fire and every shot splashes, so it is the " +
+            "answer to a swarm rather than to a single heavy target. Costs " +
+            "more than an IDS and reaches less far.",
         // IPS was the roster's outlier: dearer than IDS and reaching 120 units
         // less, with an identity nobody could feel next to FIREWALL. Splash is
         // the job no other cheap agent does -- the answer to a swarm.
@@ -162,9 +195,13 @@ enum class AgentType(
         unlockWave = 5,
         abilityName = "THREAT ASSESSMENT",
         abilitySummary = "Slow, heavy hits. +80% damage to elites and bosses.",
-        codexEntry = "The human in the loop. A security analyst investigates what " +
-            "the automated tools flagged and decides what it really is — slower " +
-            "than a machine, far better against the hard cases.",
+        realWorld = "Security analyst is a real job. The human in the loop takes " +
+            "what the automated tools flagged, works out what actually " +
+            "happened, and decides what to do about it. Slower than a machine, " +
+            "and far better on the cases that do not match a known pattern.",
+        inGame = "Slow, heavy single hits with +80% damage against elites and " +
+            "bosses. Poor against swarms. Exposes the targeting selector, so " +
+            "you can aim it at the thing you actually want dead.",
         allowsTargetingModes = true
     ),
     CRYPTOGRAPHER(
@@ -179,9 +216,15 @@ enum class AgentType(
         unlockWave = 10,
         abilityName = "CIPHER BREAK",
         abilitySummary = "Ignores encryption entirely and deals triple damage to it.",
-        codexEntry = "Cryptography protects data in transit — and the same maths " +
-            "used to protect a message is used to analyse a hostile one. " +
-            "Encrypted payloads hold no secrets from this agent."
+        realWorld = "Cryptography protects data in transit and at rest, so that " +
+            "intercepting it is not the same as reading it. Attackers use it " +
+            "too — a lot of hostile traffic is encrypted — which is why " +
+            "defenders inspect at endpoints they control rather than trying to " +
+            "break the encryption itself.",
+        inGame = "Fictional licence, clearly flagged: this agent simply ignores " +
+            "the ENCRYPTED trait instead of being slowed by it, and deals " +
+            "triple damage to anything carrying it. Real cryptography does not " +
+            "work this way and nothing here breaks any real cipher."
     ),
     ZERO_DAY_HUNTER(
         displayName = "ZERO-DAY HUNTER",
@@ -196,9 +239,14 @@ enum class AgentType(
         abilityName = "ZERO-DAY STRIKE",
         abilitySummary = "Heavy single-target damage, identical every shot. " +
             "Ignores all armour.",
-        codexEntry = "A researcher who hunts for undiscovered flaws before an " +
-            "attacker finds them. It used to trade in luck; it now simply hits " +
-            "hard, every time, through anything.",
+        realWorld = "A zero-day is a flaw with no fix available yet — the " +
+            "defender has had zero days to patch it. Vulnerability researchers " +
+            "look for these so they can be reported and fixed before someone " +
+            "else finds them first. \"Zero-day hunter\" is informal shorthand, " +
+            "not a certification or a formal job title.",
+        inGame = "Heavy single-target damage, identical on every shot rather " +
+            "than a gamble, and it ignores armour. Expensive and slow; one of " +
+            "these does not hold a lane on its own.",
         allowsTargetingModes = true
     ),
     AI_SENTINEL(
@@ -213,9 +261,13 @@ enum class AgentType(
         unlockWave = 20,
         abilityName = "MULTI-LOCK",
         abilitySummary = "Engages up to 3 separate threats with every volley.",
-        codexEntry = "Machine-learning defence that correlates signals across the " +
-            "whole network at once. It does not have to pick a single target " +
-            "the way a human operator does.",
+        realWorld = "Machine-learning tools flag unusual patterns across far more " +
+            "signals than a person can read, and are used to narrow down what " +
+            "deserves attention. They assist analysts rather than replace them, " +
+            "and they produce false positives — a flag is a lead, not a verdict.",
+        inGame = "Engages up to three separate threats with every volley, which " +
+            "makes it the roster's answer to a wide wave. Exposes the targeting " +
+            "selector.",
         allowsTargetingModes = true
     ),
     QUANTUM_DEFENDER(
@@ -230,9 +282,16 @@ enum class AgentType(
         unlockWave = 30,
         abilityName = "ENTANGLED CHAIN",
         abilitySummary = "Each hit chains to 2 nearby threats for 55% damage.",
-        codexEntry = "Speculative defence built on quantum key distribution, where " +
-            "observing the channel changes it. Here, striking one target " +
-            "collapses the state of its neighbours too.",
+        realWorld = "Two different things get called \"quantum\" in security and " +
+            "they are worth keeping apart. Quantum key distribution uses " +
+            "physics to detect eavesdropping on a link, and is deployed only in " +
+            "rare, specialised settings. Post-quantum cryptography is ordinary " +
+            "software maths designed to resist future quantum computers, and is " +
+            "the one actually being rolled out.",
+        inGame = "Named after the first and firmly science fiction: each hit " +
+            "chains to two nearby threats for 55% damage. Strong against " +
+            "clustered waves, wasted on a lone target. Exposes the targeting " +
+            "selector.",
         allowsTargetingModes = true
     ),
     ROOT_ADMIN(
@@ -247,8 +306,14 @@ enum class AgentType(
         unlockWave = 40,
         abilityName = "SUDO TERMINATE",
         abilitySummary = "Overwhelming single-target damage. Ignores all armour.",
-        codexEntry = "Root is total authority over a system — it can end any " +
-            "process without asking. Expensive, late, and absolutely final.",
+        realWorld = "Root, or administrator, is the highest level of authority on " +
+            "a system: it can stop any process and change anything. Precisely " +
+            "because of that, good practice is to hand it out as rarely as " +
+            "possible and for as short a time as possible. \"Root admin\" is " +
+            "shorthand for the access level, not a job title.",
+        inGame = "Overwhelming single-target damage that ignores all armour. The " +
+            "most expensive agent in the game and unlocked very late. Exposes " +
+            "the targeting selector.",
         allowsTargetingModes = true
     ),
     NETWORK_ARCHITECT(
@@ -263,9 +328,13 @@ enum class AgentType(
         unlockWave = 50,
         abilityName = "SEGMENT UPLINK",
         abilitySummary = "Buffs every agent in range: +30% damage, +20% fire rate.",
-        codexEntry = "Good security is designed in, not bolted on. A network " +
-            "architect segments the network so every other defence you own " +
-            "works better than it would alone."
+        realWorld = "Network architects design how a network is divided up. " +
+            "Segmentation means a compromise in one area cannot simply walk " +
+            "into the next, which limits the damage of any single failure. It " +
+            "is design work done before an incident, not a tool used during one.",
+        inGame = "Deals no damage of its own. Buffs every agent in range by +30% " +
+            "damage and +20% fire rate, so its value is entirely in where you " +
+            "put it."
     );
 
     /** Agents available from the very first run. */

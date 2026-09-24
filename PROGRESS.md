@@ -4,7 +4,7 @@
 reads first. It records where the project actually stands, what is proven and
 what is not, and what comes next.
 
-_Last updated: v1.33.0 — Play release preparation (§O1): API 36, UMP consent, ad-id split per build type, and the two faults that audit found. See `CHANGELOG.md` for the full per-version history._
+_Last updated: v1.34.0 — pinch-to-zoom (§P1) and the content/legal audit (§P2–P11). See `CHANGELOG.md` for the full per-version history._
 
 ---
 
@@ -35,6 +35,7 @@ this section is the position marker. Update it when an item ships.
 | 12 | E2 — AI bosses `[₩₩₩]` / `[¥¥¥]` | ⬜ needs C1 + D2 + E1 |
 | 13 | F3 — two-device cloud-save check | ⛔ needs a real Play Console |
 | 14 | O1 — Play release + AdMob rewarded | ◐ 1.33.0; blocked on the owner's AdMob ids, upload key and Console setup |
+| 15 | P1–P11 — pinch-to-zoom + content/legal audit | ✅ 1.34.0 |
 
 **On the music:** the owner has set the generated mode tracks aside and will
 source music another way. The work stays in place and passing — HACK:AI has
@@ -84,6 +85,31 @@ config**, so any assertion about release configuration made by reading a
 cases did exactly that and only stopped being true when debug got its own test
 ad ids. The rule is now a pure function of its inputs so both build types can be
 asked properly.
+
+**Zoom lives in the transform, and that was the whole design.** Every world
+coordinate in this project has always become a screen coordinate in exactly one
+place, `WorldTransform`, so putting zoom there means drawing and hit-testing are
+the same expression evaluated twice rather than two implementations that have to
+be kept in step. The usual way a zoomable board goes wrong — agents landing a
+finger's width from the tap — is a `graphicsLayer` scaling pixels the renderer
+already drew while touch handling is corrected separately. There was no second
+implementation to get wrong here.
+
+**Prose rots, and only tests notice.** The About screen promised players no
+advertisements, no in-app purchases and no internet permission. Every line was
+true when written and false when shipped. `AboutAndIndexTest` and
+`TerminologyAuditTest` now assert the claims, and anything build-dependent is
+reported from the build rather than written down.
+
+**Hard-coded step indices in tutorial tests are a trap.** Inserting one card
+broke six tests with off-by-one numbers that said nothing about what was wrong.
+They walk to a named constant now.
+
+**The battlefield changes size during a match.** Opening the agent roster takes
+height from it and closing it gives it back, which moves the whole letterboxed
+board. A gesture test that measured a node's position once and tapped twice
+missed by 95 world units on the second tap and looked exactly like a broken
+gesture handler.
 
 **Three things the test renderer cannot check.** Each cost a shipped bug.
 Robolectric substitutes its own **fonts**, so anything whose correctness

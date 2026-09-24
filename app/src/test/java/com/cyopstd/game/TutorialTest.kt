@@ -123,6 +123,19 @@ class TutorialTest {
         return viewModel
     }
 
+    /**
+     * Advance through every plain CONTINUE card up to the briefing question.
+     *
+     * Named rather than counted so that adding a card to the script is a
+     * one-line change to the script and nothing else.
+     */
+    private fun GameViewModel.advanceToBriefingOffer() {
+        var guard = 0
+        while (tutorialStep < TutorialScript.BRIEFING_OFFER && guard++ < 50) {
+            advanceTutorial()
+        }
+    }
+
     private fun GameViewModel.place(type: AgentType, nodeIndex: Int) {
         choosePendingAgent(type)
         val node = Maps.PERIMETER.nodes[nodeIndex]
@@ -191,9 +204,11 @@ class TutorialTest {
         // End to end on the real view model: every card, both forced pairs,
         // and the crypto to pay for them.
         val viewModel = freshViewModel()
-        viewModel.advanceTutorial()   // wave readout
-        viewModel.advanceTutorial()   // crypto readout
-        viewModel.advanceTutorial()   // briefing offer
+        // Walk to the briefing offer rather than counting cards. Counting is
+        // what broke every one of these tests when the CORE-SERVER INTEGRITY
+        // card was inserted: the script grew by one and four tests failed
+        // with off-by-one numbers that said nothing about what was wrong.
+        viewModel.advanceToBriefingOffer()
         assertEquals(TutorialScript.BRIEFING_OFFER, viewModel.tutorialStep)
         viewModel.answerBriefing(wanted = true)
         assertEquals(TutorialScript.BRIEFING, viewModel.tutorialStep)
@@ -220,7 +235,7 @@ class TutorialTest {
     @Test
     fun `declining the briefing skips straight to playing`() {
         val viewModel = freshViewModel()
-        repeat(3) { viewModel.advanceTutorial() }
+        viewModel.advanceToBriefingOffer()
         viewModel.answerBriefing(wanted = false)
         assertEquals(TutorialScript.OPEN_ROSTER, viewModel.tutorialStep)
     }
@@ -273,7 +288,12 @@ class TutorialTest {
 
         val home = compose.onNodeWithText("SKIP ×").fetchSemanticsNode().boundsInRoot
 
-        viewModel.advanceTutorial()   // the wave readout, top right
+        // Walk to the card that actually points at the top-right readout,
+        // rather than assuming it is the next one. It stopped being the next
+        // one when the CORE-SERVER INTEGRITY card was inserted ahead of it.
+        while (viewModel.tutorialStep < TutorialScript.WAVE_READOUT) {
+            viewModel.advanceTutorial()
+        }
         shadowOf(Looper.getMainLooper()).idle()
         compose.mainClock.advanceTimeBy(64)
 
@@ -302,9 +322,11 @@ class TutorialTest {
             visited += viewModel.tutorialStep
         }
 
-        viewModel.advanceTutorial(); settle()   // wave readout
-        viewModel.advanceTutorial(); settle()   // crypto readout
-        viewModel.advanceTutorial(); settle()   // briefing offer
+        // Every acknowledge-gated card between the intro and the briefing
+        // offer, however many there are.
+        while (viewModel.tutorialStep < TutorialScript.BRIEFING_OFFER) {
+            viewModel.advanceTutorial(); settle()
+        }
         viewModel.answerBriefing(wanted = true); settle()
         viewModel.advanceTutorial(); settle()   // open roster
         viewModel.toggleDeployPanel(); settle()

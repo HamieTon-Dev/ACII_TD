@@ -34,6 +34,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.platform.LocalContext
 import com.cyopstd.game.ads.PlayServices
+import com.cyopstd.game.store.BillingStatus
 import com.cyopstd.game.store.PlayLinks
 import com.cyopstd.game.ui.common.IdentityStrip
 import com.cyopstd.game.ui.common.LocalLivingBackground
@@ -299,7 +300,17 @@ fun CyOpsApp(
                 BackHandler { screen = Screen.MainMenu }
                 AboutScreen(
                     backgroundAnimation = viewModel.settings.backgroundAnimation,
-                    onBack = { viewModel.playClick(); screen = Screen.MainMenu }
+                    onBack = { viewModel.playClick(); screen = Screen.MainMenu },
+                    // Reported from the build, never asserted. The panel this
+                    // replaced told players there were no ads and no purchases
+                    // in a build that had both.
+                    adsConfigured = PlayServices.adsConfigured,
+                    purchasesAvailable = viewModel.billingStatus != BillingStatus.UNAVAILABLE,
+                    privacyOptionsRequired = viewModel.privacyOptionsRequired,
+                    onPrivacyOptions = {
+                        viewModel.playClick()
+                        (context as? android.app.Activity)?.let(viewModel::showPrivacyOptions)
+                    }
                 )
             }
         }

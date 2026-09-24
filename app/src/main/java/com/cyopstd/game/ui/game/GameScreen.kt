@@ -4,7 +4,11 @@ import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
 import androidx.compose.ui.draw.clipToBounds
-import androidx.compose.foundation.gestures.detectTapGestures
+import androidx.compose.foundation.gestures.awaitEachGesture
+import androidx.compose.foundation.gestures.awaitFirstDown
+import androidx.compose.foundation.gestures.calculateCentroid
+import androidx.compose.foundation.gestures.calculatePan
+import androidx.compose.foundation.gestures.calculateZoom
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxWithConstraints
@@ -27,6 +31,8 @@ import androidx.compose.runtime.setValue
 import androidx.compose.runtime.withFrameNanos
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.drawscope.drawIntoCanvas
 import androidx.compose.ui.graphics.nativeCanvas
 import androidx.compose.ui.input.pointer.pointerInput
@@ -231,9 +237,17 @@ fun GameScreen(
                 if (target != null && fieldSize.width > 0 && fieldSize.height > 0) {
                     TutorialPointer(
                         target = target,
+                        // The same zoom and pan the board is drawn with. The
+                        // arrow points at something painted inside the canvas,
+                        // so a transform without the viewport in it would
+                        // point confidently at empty space the moment anyone
+                        // pinched.
                         transform = WorldTransform(
                             fieldSize.width.toFloat(),
-                            fieldSize.height.toFloat()
+                            fieldSize.height.toFloat(),
+                            viewModel.viewport.zoom,
+                            viewModel.viewport.panX,
+                            viewModel.viewport.panY
                         )
                     )
                 }
@@ -327,6 +341,9 @@ fun GameScreen(
  * Canvas to the frame clock — it redraws when the tick changes and at no other
  * time.
  */
+/** Test handle for the zoomable board. */
+const val BATTLEFIELD_TAG = "battlefield"
+
 @Composable
 private fun Battlefield(
     viewModel: GameViewModel,
@@ -337,11 +354,20 @@ private fun Battlefield(
         val density = LocalDensity.current
         val widthPx = with(density) { maxWidth.toPx() }
         val heightPx = with(density) { maxHeight.toPx() }
-        val transform = remember(widthPx, heightPx) { WorldTransform(widthPx, heightPx) }
+        val viewport = viewModel.viewport
+        val transform = remember(widthPx, heightPx, viewport.zoom, viewport.panX, viewport.panY) {
+            WorldTransform(widthPx, heightPx, viewport.zoom, viewport.panX, viewport.panY)
+        }
+        val touchSlop = with(density) { 12.dp.toPx() }
 
         Canvas(
             modifier = Modifier
                 .fillMaxSize()
+                // Tagged so a test can aim a real multi-touch gesture at the
+                // board rather than at the screen and hope. The rule that a
+                // pinch must never place an agent is not one that can be
+                // checked by reading the gesture code.
+                .testTag(BATTLEFIELD_TAG)
                 // Clipped to its own bounds, and it has to be.
                 //
                 // The renderer opens every frame with `canvas.drawColor`, which
@@ -355,10 +381,91 @@ private fun Battlefield(
                 // That is the "is the top HUD strip actually visible?" question
                 // that has been open in DEVELOPMENT_STATUS since 1.5.2, and the
                 // answer was no.
+                //
+                // It is now load-bearing for a second reason: zooming in draws
+                // the board larger than this box, and without the clip it would
+                // paint over the HUD strip and the control bar again.
                 .clipToBounds()
-                .pointerInput(transform) {
-                    detectTapGestures { offset ->
-                        viewModel.onBattlefieldTap(transform.toWorld(offset))
+                // One gesture loop, not two.
+                //
+                // `detectTapGestures` and `detectTransformGestures` in separate
+                // `pointerInput` modifiers both consume from the same stream and
+                // race: the tap detector sees the first finger go down, the
+                // transform detector sees the second, and whichever resolves
+                // first wins. That race is exactly the bug the brief is worried
+                // about -- a pinch that drops an agent where the first finger
+                // landed. Handling both here means a gesture is classified once,
+                // and a gesture that ever had two fingers in it can never be a
+                // tap.
+                .pointerInput(widthPx, heightPx) {
+                    awaitEachGesture {
+                        val first = awaitFirstDown(requireUnconsumed = false)
+                        var everMultiTouch = false
+                        var travelled = 0f
+                        var panned = false
+
+                        do {
+                            val event = awaitPointerEvent()
+                            val active = event.changes.count { it.pressed }
+                            if (active > 1) everMultiTouch = true
+
+                            val zoomChange = event.calculateZoom()
+                            val panChange = event.calculatePan()
+                            travelled += panChange.getDistance()
+
+                            // The transform as it stands *right now*, rebuilt
+                            // each event so the pinch anchors against the scale
+                            // the fingers are actually looking at.
+                            val live = WorldTransform(
+                                widthPx, heightPx,
+                                viewport.zoom, viewport.panX, viewport.panY
+                            )
+
+                            if (everMultiTouch) {
+                                if (zoomChange != 1f) {
+                                    viewport.pinch(live, event.calculateCentroid(), zoomChange)
+                                }
+                                if (panChange != Offset.Zero) {
+                                    viewport.pan(panChange.x, panChange.y)
+                                    panned = true
+                                }
+                            } else if (viewport.isZoomed && travelled > touchSlop) {
+                                // One finger drags the board, but only once
+                                // zoomed in and only past the slop -- otherwise
+                                // every placement tap with a shaky thumb would
+                                // scroll the board instead of deploying.
+                                viewport.pan(panChange.x, panChange.y)
+                                panned = true
+                            }
+
+                            if (everMultiTouch || panned) {
+                                // Claim the events so nothing else interprets
+                                // them, and keep the stored pan in step with
+                                // what the clamp allowed.
+                                event.changes.forEach { it.consume() }
+                                viewport.settle(
+                                    WorldTransform(
+                                        widthPx, heightPx,
+                                        viewport.zoom, viewport.panX, viewport.panY
+                                    )
+                                )
+                            }
+                        } while (event.changes.any { it.pressed })
+
+                        // A tap is what is left: one finger, start to finish,
+                        // that never travelled far enough to be a drag. Read
+                        // against a transform rebuilt from the *current*
+                        // viewport, so a tap is mapped at the zoom it was made
+                        // at rather than the zoom the frame started with.
+                        val wasTap = !everMultiTouch && !panned &&
+                            travelled <= touchSlop && !first.isConsumed
+                        if (wasTap) {
+                            val at = WorldTransform(
+                                widthPx, heightPx,
+                                viewport.zoom, viewport.panX, viewport.panY
+                            )
+                            viewModel.onBattlefieldTap(at.toWorld(first.position))
+                        }
                     }
                 }
         ) {

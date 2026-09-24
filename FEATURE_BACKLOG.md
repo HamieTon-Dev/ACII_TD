@@ -957,7 +957,7 @@ None of these can be done from this repository:
 Logged 2026-09-24 from a twelve-part owner brief. The owner's numbering is kept
 so nothing gets lost.
 
-### P1 ⬜ Battleground pinch-to-zoom
+### P1 ✅ Battleground pinch-to-zoom *(1.34.0)*
 
 **Asked:** *"I agree that pinch-to-zoom is the better solution. IMPLEMENT
 PINCH-TO-ZOOM ON ALL SUPPORTED SCREEN SIZES. However, zooming/panning must
@@ -988,7 +988,7 @@ Requirements, verbatim in substance:
   interaction — it does need checking, single-tap is placement
 - not solved by changing global Android display scaling
 
-### P2 ⬜ Tutorial — core server integrity
+### P2 ✅ Tutorial — core server integrity *(1.34.0)*
 
 **Audit first.** Done: the tutorial has eleven steps and **none of them says
 what the Core Server is, where its integrity is shown, or that zero integrity
@@ -997,7 +997,7 @@ as long as you hold the server" (step 2), which assume the player already knows.
 
 So this is a real gap, not a redundant page.
 
-### P3 ⬜ Game over terminology — **report, do not replace**
+### P3 ✅ Game over terminology — reported, unchanged, owner's call
 
 **Audit first.** Done. Current wording is already themed:
 
@@ -1008,7 +1008,7 @@ The brief says explicitly not to blindly replace themed text and to report it
 for a decision. So: report, change nothing, unless the owner picks
 "SERVER BREACHED — GAME OVER".
 
-### P4 ◐ About section — **exists, and is now factually wrong**
+### P4 ✅ About section — rewritten *(1.34.0)*
 
 An About screen exists and is reachable from the main menu. But its "WHAT THIS
 GAME DOES NOT DO" panel was written for the offline build and the monetisation
@@ -1030,7 +1030,7 @@ Also to add: game title, version (already there), developer identity, a short
 development/educational statement, the AI disclosure (P5), the trademark notice
 (P6), and a copyright line (P9).
 
-### P5 ⬜ AI-assisted development statement
+### P5 ✅ AI-assisted development statement *(1.34.0)*
 
 Owner supplied wording. Constraints: must not imply the game was autonomously
 generated, must not imply any AI company sponsors/endorses/owns/publishes it,
@@ -1043,7 +1043,7 @@ Kotlin game is inaccurate in a statement whose whole purpose is accuracy, so
 the wording will say "programming and software development" and the owner can
 override. Flagged in the completion report.
 
-### P6 ⬜ Trademark / third-party terminology notice
+### P6 ✅ Trademark / third-party terminology notice *(1.34.0)*
 
 Owner supplied wording. Hard constraints, all of which are about *not*
 overclaiming:
@@ -1059,7 +1059,7 @@ anywhere in `app/src/main`. So there is nothing to rename today — but the
 notice should go in now, and §D2 must be revisited before those units ship.
 Red Hat's own guidance is two words, "Red Hat".
 
-### P7 ⬜ Agents section — real-world / in-game split
+### P7 ✅ Agents section — real-world / in-game split *(1.34.0)*
 
 **Audit first.** Done. Eleven agents, each already carrying two fields:
 `abilitySummary` (in-game) and `codexEntry` (real-world). The data is mostly
@@ -1073,7 +1073,7 @@ there; two problems:
 So: separate the two cleanly, show both, and audit each for accuracy. No new
 agents — the brief says not to create duplicates to satisfy documentation.
 
-### P8 ⬜ Terminology accuracy audit
+### P8 ✅ Terminology accuracy audit *(1.34.0)*
 
 Across agent names and descriptions, tutorial, store, upgrades, menus, About,
 codex, game over and docs. Looking for anything implying real hacking
@@ -1083,7 +1083,7 @@ certification, or sponsorship.
 Known already: ◇ Crypto is disclaimed on the About screen today and that
 disclaimer must survive the P4 rewrite.
 
-### P9 ⬜ Copyright line
+### P9 ✅ Copyright line *(1.34.0)*
 
 Developer identity established in the project is **`HamieTon.dev`**
 (`DeveloperSplashScreen.DEVELOPER_NAME`). No `LICENSE` file exists; `LICENSES.md`
@@ -1092,7 +1092,7 @@ README says the same. Nothing declares an open-source licence for the game
 itself, so "All rights reserved" does not contradict anything. Year computed at
 runtime rather than baked in. Do not invent a legal entity.
 
-### P10 ⬜ Responsive UI testing after zoom
+### P10 ✅ Responsive UI testing after zoom *(1.34.0)*
 
 The owner listed twenty-odd interaction cases: rapid switching between adjacent
 nodes, pinch with and without a selection, pinch beginning and ending over a
@@ -1101,7 +1101,7 @@ background/resume, losing and restarting while zoomed. Required outcome: no
 phantom or duplicate placements, no stuck touch state, no coordinate drift, no
 HUD or agent-menu scaling, no crash, no slowdown.
 
-### P11 ⬜ Tests and documentation
+### P11 ✅ Tests and documentation *(1.34.0)*
 
 Minimum: world↔screen transforms, zoom bounds, pan bounds, selection under a
 transform, touch cancellation when a pinch starts, tutorial strings, About
@@ -1113,3 +1113,51 @@ duplicates.
 *"Do not make unrelated gameplay balance changes. Do not remove existing
 features. Do not rename working units without a clear reason. Do not redesign
 the overall HUD. Do not alter monetization behavior."*
+
+---
+
+### §P outcome (v1.34.0)
+
+**Pinch-to-zoom.** Zoom lives in `WorldTransform`, which is the single place a
+world coordinate has ever become a screen coordinate in this project. That is
+the whole design: a `graphicsLayer` transform would scale the pixels the
+renderer already drew and leave hit-testing to be corrected separately, which
+is exactly how a zoomable board ends up placing agents a finger's width from
+where they were tapped. Here drawing and hit-testing are the same expression
+evaluated twice, so they cannot disagree.
+
+- **1.0× to 3.0×.** Minimum *is* the fitted board, so "the whole battlefield is
+  understandable at minimum zoom" holds by construction. Maximum was derived
+  from the problem rather than picked: nodes are ≥56 world units apart, the
+  smallest supported window (568×320dp) fits at 0.355, and 56 × 0.355 × z ≥ 48
+  needs z ≥ 2.4. Three gives headroom.
+- **Pan is clamped by geometry**, not by a rule: the allowed slack is how far
+  the drawn board overflows the viewport, which is zero when it does not
+  overflow. The board cannot be lost off-screen because there is nowhere to
+  lose it to.
+- **One gesture loop**, not a tap detector racing a transform detector. A
+  gesture that ever had two fingers in it can never be a tap.
+- **No double-tap reset.** A double-tap detector must hold every single tap for
+  the double-tap timeout before delivering it, and a single tap is a placement
+  — the most common action in the game. Pinching out below 1.04× snaps to
+  exactly fitted instead, which is a reset with no cost to anything else.
+- **Zoom is view state**: on the view model, not the engine and not the save.
+  A test asserts `SavedRun` carries no field that looks like it.
+
+**Game over wording — unchanged, and the owner's call.** The screen already
+reads **NETWORK COMPROMISED** over **CORE-SERVER INTEGRITY 0 · CONNECTION
+TERMINATED**. The brief said not to blindly replace themed text, so nothing
+was replaced.
+
+**One HUD word changed.** The integrity readout said `HP 100 / 100` while
+every other surface — game over, About, boss dossier, and now the tutorial —
+called it integrity. It now reads `INTEGRITY 100 / 100`. One word, not a
+redesign, and it is what the tutorial teaches by name.
+
+**Ambiguous terminology found and handled** (§P8): "zero-day hunter" and "root
+admin" are informal and now say so; "quantum" conflates quantum key
+distribution with post-quantum cryptography, and the entry separates them;
+CRYPTOGRAPHER implied encryption could be broken and now states the fictional
+licence outright. `[REDHAT]`/`[BLUEHAT]` (§D2) still exist only in this
+backlog — when they ship, Red Hat's guidance is two words and the hat-colour
+sense must be the one explained.

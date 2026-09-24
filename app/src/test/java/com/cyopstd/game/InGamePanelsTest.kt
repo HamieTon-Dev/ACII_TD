@@ -157,11 +157,14 @@ class InGamePanelsTest {
         compose.onNodeWithText("SKIP \u00D7").assertIsDisplayed()
 
         // Walk to a step that waits for a tap and draws no buttons of its own,
-        // the way a player does: through the two explaining cards and past the
-        // briefing offer.
-        viewModel.advanceTutorial()   // -> the wave readout
-        viewModel.advanceTutorial()   // -> the crypto readout
-        viewModel.advanceTutorial()   // -> the briefing offer
+        // the way a player does: through the explaining cards and past the
+        // briefing offer. Walked by destination rather than by a count of
+        // cards, so adding one to the script does not fail this test with an
+        // off-by-one that says nothing about SKIP.
+        var guard = 0
+        while (viewModel.tutorialStep < TutorialScript.BRIEFING_OFFER && guard++ < 50) {
+            viewModel.advanceTutorial()
+        }
         viewModel.answerBriefing(wanted = false)
         assertEquals(TutorialScript.OPEN_ROSTER, viewModel.tutorialStep)
         shadowOf(Looper.getMainLooper()).idle()

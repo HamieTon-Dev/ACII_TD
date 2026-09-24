@@ -76,7 +76,12 @@ fun GameHud(
                 )
                 Spacer(Modifier.width(8.dp))
                 Text(
-                    text = "HP ${hud.serverHp} / ${hud.serverMaxHp}",
+                    // "INTEGRITY", not "HP". Every other surface in the game
+                    // calls this integrity -- the game over screen, the About
+                    // screen, the boss dossier -- and the tutorial now teaches
+                    // it by that name. One readout saying something else is
+                    // the word the player has to translate.
+                    text = "INTEGRITY ${hud.serverHp} / ${hud.serverMaxHp}",
                     style = MaterialTheme.typography.labelMedium,
                     color = Palette.healthColor(hud.serverFraction)
                 )

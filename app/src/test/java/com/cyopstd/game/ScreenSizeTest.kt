@@ -363,6 +363,52 @@ class ScreenSizeTest(
         assertEquals("the font scale never reached the composition", fontScale, seen, 0.001f)
     }
 
+    /**
+     * Zoom has to earn its keep on every size, not just the small one.
+     *
+     * The feature exists for the 568x320dp phone, but a maximum zoom that is
+     * too weak on a large phone or absurd on a tablet is still a bug. This
+     * checks the property that matters at each size: the fitted board shows
+     * the whole battlefield, and the fully zoomed board makes adjacent
+     * deployment nodes at least a 48dp touch target.
+     */
+    @Test
+    fun `zoom makes nodes tappable at this screen size`() {
+        val fitted = com.cyopstd.game.ui.game.WorldTransform(
+            expectedWidth.toFloat(),
+            expectedHeight.toFloat()
+        )
+        val zoomed = com.cyopstd.game.ui.game.WorldTransform(
+            expectedWidth.toFloat(),
+            expectedHeight.toFloat(),
+            com.cyopstd.game.ui.game.WorldTransform.MAX_ZOOM
+        )
+
+        // The whole board is visible when fitted.
+        assertTrue(
+            "the fitted board does not fit at $label",
+            fitted.toScreenX(com.cyopstd.game.core.WorldGeometry.WIDTH) <= expectedWidth + 1f &&
+                fitted.toScreenY(com.cyopstd.game.core.WorldGeometry.HEIGHT) <= expectedHeight + 1f
+        )
+
+        var closest = Float.MAX_VALUE
+        val nodes = com.cyopstd.game.core.Maps.PERIMETER.nodes
+        for (i in nodes.indices) {
+            for (j in i + 1 until nodes.size) {
+                val dx = nodes[i].x - nodes[j].x
+                val dy = nodes[i].y - nodes[j].y
+                closest = minOf(closest, kotlin.math.sqrt(dx * dx + dy * dy))
+            }
+        }
+        val spacingDp = closest * zoomed.scale
+        assertTrue(
+            "at maximum zoom adjacent nodes are ${spacingDp.toInt()}dp apart at " +
+                "$label, which is under the 48dp touch-target guidance this " +
+                "feature exists to satisfy",
+            spacingDp >= 48f
+        )
+    }
+
     @Test
     fun `the store fits`() {
         compose.setContent {
