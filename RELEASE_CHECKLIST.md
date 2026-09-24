@@ -126,6 +126,24 @@ usually not a bug — check `AD_LOAD_FAILED ... code=3`, which is "no fill".
 
 ---
 
+## Audit result — v1.34.0 (versionCode 38)
+
+Verified against the built artifacts, not against the build file.
+
+| Checked | Result |
+| --- | --- |
+| compileSdk / targetSdk | **36** in the built APK's badging, not just in Gradle |
+| minSdk | 24 |
+| applicationId | `com.cyopstd.game` (release carries no suffix) |
+| versionName / versionCode | 1.34.0 / 38 |
+| Release debuggable | No |
+| Release signing | **Unsigned** — correct (it is not debug-signed), but not uploadable |
+| Signing pipeline | Proven end to end with a throwaway key, since destroyed |
+| Test ad ids in release | None. Application id is the explicit `…0000~0000` placeholder |
+| ABIs | arm64-v8a, armeabi-v7a, x86, x86_64 |
+| Launcher icon | Adaptive + monochrome for API 26+, layer-list fallback for 24–25 |
+| Tests | 632 passing |
+
 ## Known blockers carried into this release
 
 These are true today and none of them can be closed from this repository.

@@ -185,7 +185,10 @@ fun CyOpsApp(
                     backgroundAnimation = viewModel.settings.backgroundAnimation,
                     onBuy = { sku -> viewModel.buy(sku) },
                     onRestore = { viewModel.restorePurchases() },
-                    onBack = { viewModel.playClick(); screen = Screen.MainMenu }
+                    onBack = { viewModel.playClick(); screen = Screen.MainMenu },
+                    // A build with no AdMob ids has no interstitials, so it
+                    // must not offer to sell their removal.
+                    adsConfigured = PlayServices.adsConfigured
                 )
             }
 

@@ -40,7 +40,30 @@ import com.cyopstd.game.ui.theme.Palette
  */
 data class StoreSection(val title: String, val accent: Color, val items: List<Sku>)
 
-/** The left column, in order. */
+/**
+ * The catalogue, filtered to what this build can actually deliver.
+ *
+ * REMOVE ADS is the only product whose entire value is the absence of
+ * something. In a build with no AdMob ids configured there are no
+ * interstitials to remove, so selling it would be charging £4.99 for a change
+ * the player cannot perceive — which is a refund request at best and a policy
+ * problem at worst.
+ *
+ * A no-op once the ids are configured, which is the intended shipping state.
+ * It exists so that the unconfigured build, which is what a checkout produces
+ * and what an accidental release would ship, cannot sell something it cannot
+ * honour.
+ *
+ * REVIVE_PACK stays either way: it raises the revive allowance to three per
+ * run, which is worth buying whether or not an ad ever stood in front of it.
+ */
+fun storeSections(adsConfigured: Boolean): List<StoreSection> =
+    STORE_SECTIONS.mapNotNull { section ->
+        val items = section.items.filter { adsConfigured || it != Sku.NO_ADS }
+        if (items.isEmpty()) null else section.copy(items = items)
+    }
+
+/** The full catalogue, in order. Filtered through [storeSections] before display. */
 val STORE_SECTIONS: List<StoreSection> = listOf(
     StoreSection(
         "BEST VALUE",
@@ -86,9 +109,18 @@ fun StoreScreen(
     backgroundAnimation: Boolean,
     onBuy: (Sku) -> Unit,
     onRestore: () -> Unit,
-    onBack: () -> Unit
+    onBack: () -> Unit,
+    /**
+     * Whether this build serves ads at all.
+     *
+     * Defaulted true so every existing caller and test is unchanged; the app
+     * passes the real answer. It only removes REMOVE ADS from a build that has
+     * no ads to remove.
+     */
+    adsConfigured: Boolean = true
 ) {
     val available = status == BillingStatus.READY
+    val sections = storeSections(adsConfigured)
 
     ScreenScaffold(
         title = "STORE",
@@ -126,7 +158,7 @@ fun StoreScreen(
                     .weight(1f)
                     .verticalScroll(rememberScrollState())
             ) {
-                for ((index, section) in STORE_SECTIONS.withIndex()) {
+                for ((index, section) in sections.withIndex()) {
                     if (index > 0) Spacer(Modifier.height(12.dp))
                     Section(section.title, section.accent) {
                         for (sku in section.items) {

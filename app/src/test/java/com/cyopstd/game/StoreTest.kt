@@ -228,4 +228,47 @@ class StoreTest {
         }
     }
 
+
+    // ------------------------------------------------ nothing unsellable
+
+    @Test
+    fun `a build with no ads does not sell their removal`() {
+        // REMOVE ADS is the one product whose entire value is the absence of
+        // something. With no AdMob ids configured there are no interstitials,
+        // so selling it charges real money for a change the player cannot
+        // perceive.
+        val withoutAds = com.cyopstd.game.ui.menu.storeSections(adsConfigured = false)
+            .flatMap { it.items }
+        assertFalse(
+            "a build with no ads still offered REMOVE ADS",
+            com.cyopstd.game.store.Sku.NO_ADS in withoutAds
+        )
+
+        // ...but the revive pack stays: three revives per run is worth buying
+        // whether or not an ad ever stood in front of them.
+        assertTrue(
+            "the revive pack should survive -- it is not an ad product",
+            com.cyopstd.game.store.Sku.REVIVE_PACK in withoutAds
+        )
+    }
+
+    @Test
+    fun `a build with ads sells the whole catalogue`() {
+        val withAds = com.cyopstd.game.ui.menu.storeSections(adsConfigured = true)
+            .flatMap { it.items }
+        assertTrue(com.cyopstd.game.store.Sku.NO_ADS in withAds)
+        assertEquals(
+            "filtering must not drop anything else",
+            com.cyopstd.game.ui.menu.STORE_SECTIONS.flatMap { it.items },
+            withAds
+        )
+    }
+
+    @Test
+    fun `no section is left empty by the filter`() {
+        for (section in com.cyopstd.game.ui.menu.storeSections(adsConfigured = false)) {
+            assertTrue("empty section '${section.title}' would render as a bare heading",
+                section.items.isNotEmpty())
+        }
+    }
 }
