@@ -949,3 +949,167 @@ None of these can be done from this repository:
 - A **privacy policy URL**, mandatory because the app shows ads.
 - The closed test: **12 testers, 14 continuous days**, which is a calendar
   delay rather than a work item.
+
+---
+
+## P. Pinch-to-zoom, and the content/legal audit
+
+Logged 2026-09-24 from a twelve-part owner brief. The owner's numbering is kept
+so nothing gets lost.
+
+### P1 ⬜ Battleground pinch-to-zoom
+
+**Asked:** *"I agree that pinch-to-zoom is the better solution. IMPLEMENT
+PINCH-TO-ZOOM ON ALL SUPPORTED SCREEN SIZES. However, zooming/panning must
+apply ONLY to the actual battleground/playfield."*
+
+Closes the open question from §N1. Nodes are ~20dp apart on the smallest
+screen, and no tap radius can separate targets that close — a bigger radius
+only eats the empty-space tap that clears a selection.
+
+**Must zoom:** the battlefield canvas only.
+**Must NOT zoom:** the top banner, integrity readout, wave readout, crypto
+readout, pause/settings, the agent roster and its cards, the control bar, and
+anything else that is HUD rather than ground.
+
+Requirements, verbatim in substance:
+
+- two-finger pinch, smooth; pan while zoomed
+- **no accidental placement, selection or deselection during a pinch** —
+  including the second finger landing, and a pinch that begins or ends over a
+  node
+- single-tap placement and nearest-node behaviour unchanged when not zooming
+- stable world coordinates at every zoom level; agents stay on their nodes;
+  enemies, projectiles and effects stay aligned
+- sensible min/max: the whole board readable at minimum, nodes comfortably
+  tappable at maximum on a small phone
+- pan clamped so the board cannot be lost off-screen
+- double-tap to reset **only if** it does not conflict with existing
+  interaction — it does need checking, single-tap is placement
+- not solved by changing global Android display scaling
+
+### P2 ⬜ Tutorial — core server integrity
+
+**Audit first.** Done: the tutorial has eleven steps and **none of them says
+what the Core Server is, where its integrity is shown, or that zero integrity
+ends the run.** The closest are "stop them before they land" (step 1) and "for
+as long as you hold the server" (step 2), which assume the player already knows.
+
+So this is a real gap, not a redundant page.
+
+### P3 ⬜ Game over terminology — **report, do not replace**
+
+**Audit first.** Done. Current wording is already themed:
+
+> **NETWORK COMPROMISED**
+> CORE-SERVER INTEGRITY 0 · CONNECTION TERMINATED
+
+The brief says explicitly not to blindly replace themed text and to report it
+for a decision. So: report, change nothing, unless the owner picks
+"SERVER BREACHED — GAME OVER".
+
+### P4 ◐ About section — **exists, and is now factually wrong**
+
+An About screen exists and is reachable from the main menu. But its "WHAT THIS
+GAME DOES NOT DO" panel was written for the offline build and the monetisation
+work has made five of its seven claims false:
+
+| Claim on screen | Actually |
+| --- | --- |
+| "No internet connection — the app has no INTERNET permission" | it has INTERNET |
+| "No account, no login, no cloud save" | optional Play Games cloud save |
+| "No advertisements" | interstitial + rewarded |
+| "No in-app purchases or subscriptions" | a full store |
+| "No analytics or telemetry" | the ads SDK collects |
+
+This is the most serious single item in the brief. A store listing whose own
+About screen denies that the app shows ads is a Data Safety contradiction, and
+it is in front of the player rather than buried in a document.
+
+Also to add: game title, version (already there), developer identity, a short
+development/educational statement, the AI disclosure (P5), the trademark notice
+(P6), and a copyright line (P9).
+
+### P5 ⬜ AI-assisted development statement
+
+Owner supplied wording. Constraints: must not imply the game was autonomously
+generated, must not imply any AI company sponsors/endorses/owns/publishes it,
+no third-party logos, plain-text factual product references only.
+
+**One discrepancy to settle:** the supplied wording says *"while learning
+Python"*. This project is Kotlin/Android and contains no Python beyond two
+build helper scripts in `tools/`. Putting "Python" on the About screen of a
+Kotlin game is inaccurate in a statement whose whole purpose is accuracy, so
+the wording will say "programming and software development" and the owner can
+override. Flagged in the completion report.
+
+### P6 ⬜ Trademark / third-party terminology notice
+
+Owner supplied wording. Hard constraints, all of which are about *not*
+overclaiming:
+
+- **Do not claim a trademark licence.** No evidence of one in the repository —
+  checked.
+- Do not assert who owns "Blue Hat" without verifying the specific mark.
+- No third-party logos, no imitation of Red Hat branding or trade dress.
+
+**Audit result:** `[REDHAT]` and `[BLUEHAT]` appear **only in this backlog**
+(§D2, still unimplemented and blocked on the owner). Neither string exists
+anywhere in `app/src/main`. So there is nothing to rename today — but the
+notice should go in now, and §D2 must be revisited before those units ship.
+Red Hat's own guidance is two words, "Red Hat".
+
+### P7 ⬜ Agents section — real-world / in-game split
+
+**Audit first.** Done. Eleven agents, each already carrying two fields:
+`abilitySummary` (in-game) and `codexEntry` (real-world). The data is mostly
+there; two problems:
+
+1. **The Agents screen shows only `abilitySummary`.** The educational half
+   exists and is not displayed on the screen the brief is about.
+2. Several `codexEntry` lines blend the two — "It sees further than anything
+   else you can deploy" is gameplay inside a sentence about what an IDS is.
+
+So: separate the two cleanly, show both, and audit each for accuracy. No new
+agents — the brief says not to create duplicates to satisfy documentation.
+
+### P8 ⬜ Terminology accuracy audit
+
+Across agent names and descriptions, tutorial, store, upgrades, menus, About,
+codex, game over and docs. Looking for anything implying real hacking
+capability, real cryptocurrency value, corporate affiliation, official
+certification, or sponsorship.
+
+Known already: ◇ Crypto is disclaimed on the About screen today and that
+disclaimer must survive the P4 rewrite.
+
+### P9 ⬜ Copyright line
+
+Developer identity established in the project is **`HamieTon.dev`**
+(`DeveloperSplashScreen.DEVELOPER_NAME`). No `LICENSE` file exists; `LICENSES.md`
+covers third-party dependencies and states first-party content is original.
+README says the same. Nothing declares an open-source licence for the game
+itself, so "All rights reserved" does not contradict anything. Year computed at
+runtime rather than baked in. Do not invent a legal entity.
+
+### P10 ⬜ Responsive UI testing after zoom
+
+The owner listed twenty-odd interaction cases: rapid switching between adjacent
+nodes, pinch with and without a selection, pinch beginning and ending over a
+node, pan at every boundary, zoom during motion and animation, pause/resume,
+background/resume, losing and restarting while zoomed. Required outcome: no
+phantom or duplicate placements, no stuck touch state, no coordinate drift, no
+HUD or agent-menu scaling, no crash, no slowdown.
+
+### P11 ⬜ Tests and documentation
+
+Minimum: world↔screen transforms, zoom bounds, pan bounds, selection under a
+transform, touch cancellation when a pinch starts, tutorial strings, About
+navigation, agent-index data integrity. Update existing docs rather than adding
+duplicates.
+
+### Standing constraints on all of §P
+
+*"Do not make unrelated gameplay balance changes. Do not remove existing
+features. Do not rename working units without a clear reason. Do not redesign
+the overall HUD. Do not alter monetization behavior."*
