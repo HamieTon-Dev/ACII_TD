@@ -159,7 +159,7 @@ class CombatSystem(private val engine: GameEngine, private val random: Random) {
                 val dx = enemy.x - agent.x
                 val dy = enemy.y - agent.y
                 if (dx * dx + dy * dy > rangeSq) continue
-                val score = enemy.pathFraction()
+                val score = enemy.pathFraction(engine.map.laneLength[enemy.lane])
                 if (score > bestScore) {
                     bestScore = score
                     best = enemy
@@ -214,8 +214,8 @@ class CombatSystem(private val engine: GameEngine, private val random: Random) {
             if (bestIsBoss && !isBoss) continue
 
             val score = when (agent.targetingMode) {
-                TargetingMode.FIRST -> enemy.pathFraction()
-                TargetingMode.LAST -> -enemy.pathFraction()
+                TargetingMode.FIRST -> enemy.pathFraction(engine.map.laneLength[enemy.lane])
+                TargetingMode.LAST -> -enemy.pathFraction(engine.map.laneLength[enemy.lane])
                 TargetingMode.STRONGEST -> enemy.health
                 TargetingMode.WEAKEST -> -enemy.health
             }

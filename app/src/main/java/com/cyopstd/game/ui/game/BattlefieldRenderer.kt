@@ -3,6 +3,8 @@ package com.cyopstd.game.ui.game
 import android.graphics.Paint
 import android.graphics.Typeface
 import com.cyopstd.game.core.GameMode
+import com.cyopstd.game.core.GameMap
+import com.cyopstd.game.core.Maps
 import com.cyopstd.game.core.WorldGeometry
 import com.cyopstd.game.engine.GameEngine
 import com.cyopstd.game.engine.RunPhase
@@ -166,6 +168,8 @@ class BattlefieldRenderer {
         time: Float
     ) {
         frameTime = time
+        // Taken once per frame, before anything is drawn.
+        map = engine.map
         advanceRackAnimation(time, engine)
         val tint = backdropTint(engine.currentWave, time)
         // The letterbox picks up a trace of the same shift so the shift reads
@@ -332,6 +336,16 @@ class BattlefieldRenderer {
      * move. Drawn *from* this rather than alongside it, so an arrow aimed here
      * can never point at where the readout used to be.
      */
+    /**
+     * The level being drawn, taken from the engine at the top of every frame.
+     *
+     * An instance field rather than a parameter on a dozen private draw calls,
+     * and read from the engine rather than from a global: the renderer draws
+     * what the simulation is running, and the one thing that must be
+     * impossible is for those two to disagree about which map that is.
+     */
+    private var map: GameMap = Maps.PERIMETER
+
     val fieldStatusAnchors: FieldStatusAnchors by lazy {
         FieldStatusAnchors.measure(rightTextPaint)
     }
@@ -522,8 +536,8 @@ class BattlefieldRenderer {
         options: BattlefieldRenderOptions,
         time: Float
     ) {
-        for (lane in 0 until WorldGeometry.LANE_COUNT) {
-            val points = WorldGeometry.laneWaypoints[lane]
+        for (lane in 0 until map.laneCount) {
+            val points = map.laneWaypoints[lane]
 
             lanePath.rewind()
             lanePath.moveTo(points[0].x, points[0].y)
@@ -557,7 +571,7 @@ class BattlefieldRenderer {
 
         // Entry marker, sitting in the gap between the field status line above
         // it and the top lane below it.
-        val entry = WorldGeometry.entryPoint(0)
+        val entry = map.entryPoint(0)
         leftTextPaint.textSize = 17f
         leftTextPaint.color = colRed
         leftTextPaint.alpha = 200
@@ -577,7 +591,7 @@ class BattlefieldRenderer {
         options: BattlefieldRenderOptions,
         time: Float
     ) {
-        val length = WorldGeometry.laneLength[lane]
+        val length = map.laneLength[lane]
         val spacing = 96f
         val speed = if (options.backgroundAnimation && !options.batterySaver) 46f else 0f
         val shift = (time * speed) % spacing
@@ -588,7 +602,7 @@ class BattlefieldRenderer {
 
         var distance = shift
         while (distance < length - 30f) {
-            WorldGeometry.positionAt(lane, distance, pathScratch)
+            map.positionAt(lane, distance, pathScratch)
             val pulse = 0.55f + 0.45f * sin(distance * 0.012f - time * 2.6f)
             thinTextPaint.alpha = (baseAlpha * pulse).toInt().coerceIn(0, 255)
 
@@ -615,7 +629,7 @@ class BattlefieldRenderer {
      * passing over it occlude it cleanly now that they carry opaque chips.
      */
     private fun drawLaneLabel(canvas: android.graphics.Canvas, lane: Int) {
-        val entry = WorldGeometry.entryPoint(lane)
+        val entry = map.entryPoint(lane)
         leftTextPaint.textSize = 14f
         leftTextPaint.color = colCyanDim
         leftTextPaint.alpha = 165
@@ -1047,7 +1061,7 @@ class BattlefieldRenderer {
         val placing = pending != null
         val affordable = pending?.let { engine.crypto >= it.cost } ?: false
 
-        for (node in WorldGeometry.nodes) {
+        for (node in map.nodes) {
             if (engine.agentAt(node.id) != null) continue
 
             // A spot the agent being placed could not actually shoot from is
@@ -1119,7 +1133,7 @@ class BattlefieldRenderer {
         var bestDistanceSq = Float.MAX_VALUE
         val centreX = WorldGeometry.SERVER_X * 0.5f
         val centreY = WorldGeometry.HEIGHT * 0.5f
-        for (node in WorldGeometry.nodes) {
+        for (node in map.nodes) {
             if (engine.agentAt(node.id) != null) continue
             val dx = node.x - centreX
             val dy = node.y - centreY

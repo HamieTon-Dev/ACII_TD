@@ -1,6 +1,7 @@
 package com.cyopstd.game
 
 import com.cyopstd.game.core.Balance
+import com.cyopstd.game.core.Maps
 import com.cyopstd.game.core.WorldGeometry
 import com.cyopstd.game.engine.GameEngine
 import com.cyopstd.game.engine.RunPhase
@@ -33,9 +34,9 @@ class ProgressionTest {
         var bestProgress = 0f
         var bestDistance = Float.MAX_VALUE
         var progress = 0f
-        val length = WorldGeometry.laneLength[lane]
+        val length = Maps.PERIMETER.laneLength[lane]
         while (progress <= length) {
-            WorldGeometry.positionAt(lane, progress, scratch)
+            Maps.PERIMETER.positionAt(lane, progress, scratch)
             val d = kotlin.math.hypot(scratch[0] - x, scratch[1] - y)
             if (d < bestDistance) {
                 bestDistance = d
@@ -280,7 +281,7 @@ class ProgressionTest {
             val engine = newEngine(seed = 5)
             engine.firmwareDamageMultiplier = Balance.firmwareDamageMultiplier(firmware)
             engine.addCrypto(10_000, countAsEarned = false)
-            val node = WorldGeometry.nodesByCoverage.first()
+            val node = Maps.PERIMETER.nodesByCoverage.first()
             engine.placeAgent(AgentType.FIREWALL, node.id)
             val agent = engine.agentAt(node.id)!!
 

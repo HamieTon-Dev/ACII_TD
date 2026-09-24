@@ -1,5 +1,6 @@
 package com.cyopstd.game
 
+import com.cyopstd.game.core.Maps
 import com.cyopstd.game.core.WorldGeometry
 import com.cyopstd.game.engine.GameEngine
 import com.cyopstd.game.model.AgentType
@@ -114,19 +115,19 @@ class SaveSerializationTest {
             crypto = 400,
             placements = listOf(
                 GameEngine.SavedPlacement(
-                    nodeId = WorldGeometry.nodesByCoverage[0].id,
+                    nodeId = Maps.PERIMETER.nodesByCoverage[0].id,
                     agentTypeName = "FIREWALL",
                     level = 4,
                     targetingOrdinal = 0
                 ),
                 GameEngine.SavedPlacement(
-                    nodeId = WorldGeometry.nodesByCoverage[1].id,
+                    nodeId = Maps.PERIMETER.nodesByCoverage[1].id,
                     agentTypeName = "SANDBOX",
                     level = 7,
                     targetingOrdinal = 0
                 ),
                 GameEngine.SavedPlacement(
-                    nodeId = WorldGeometry.nodesByCoverage[2].id,
+                    nodeId = Maps.PERIMETER.nodesByCoverage[2].id,
                     agentTypeName = "TARPIT",
                     level = 2,
                     targetingOrdinal = 0
@@ -150,15 +151,15 @@ class SaveSerializationTest {
         )
         assertEquals(
             AgentType.FIREWALL,
-            engine.agentAt(WorldGeometry.nodesByCoverage[0].id)?.type
+            engine.agentAt(Maps.PERIMETER.nodesByCoverage[0].id)?.type
         )
         assertEquals(
             "the spot the removed agent held should be free",
-            null, engine.agentAt(WorldGeometry.nodesByCoverage[1].id)
+            null, engine.agentAt(Maps.PERIMETER.nodesByCoverage[1].id)
         )
         assertEquals(
             AgentType.TARPIT,
-            engine.agentAt(WorldGeometry.nodesByCoverage[2].id)?.type
+            engine.agentAt(Maps.PERIMETER.nodesByCoverage[2].id)?.type
         )
     }
 

@@ -1,6 +1,5 @@
 package com.cyopstd.game.model
 
-import com.cyopstd.game.core.WorldGeometry
 
 /**
  * Runtime entities are deliberately mutable classes rather than data classes.
@@ -123,11 +122,19 @@ class Enemy : Poolable {
         return speed
     }
 
-    /** 0f at the spawn point, 1f at the server. Used for FIRST/LAST targeting. */
-    fun pathFraction(): Float {
-        val length = WorldGeometry.laneLength.getOrElse(lane) { 1f }
-        return if (length <= 0f) 0f else (progress / length).coerceIn(0f, 1f)
-    }
+    /**
+     * 0f at the spawn point, 1f at the server. Used for FIRST/LAST targeting.
+     *
+     * [routeLength] is supplied by the caller rather than stored here. With
+     * more than one map there is no longer a single global answer to "how long
+     * is lane 1", and the first attempt at this cached the length on the enemy
+     * at spawn — which worked, and quietly broke every targeting test, because
+     * anything that set `progress` without also setting the cached length made
+     * every threat read as 100% advanced. A number that has to be kept in sync
+     * is a number that will not be; asking the map each time cannot go stale.
+     */
+    fun pathFraction(routeLength: Float): Float =
+        if (routeLength <= 0f) 0f else (progress / routeLength).coerceIn(0f, 1f)
 
     override fun reset() {
         active = false

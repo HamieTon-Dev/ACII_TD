@@ -61,7 +61,7 @@ class EnemySystem(private val engine: GameEngine, private val random: Random) {
         enemy.reset()
         enemy.active = true
         enemy.type = type
-        enemy.lane = lane.coerceIn(0, WorldGeometry.LANE_COUNT - 1)
+        enemy.lane = lane.coerceIn(0, engine.map.laneCount - 1)
         enemy.progress = 0f
         enemy.phase = random.nextFloat() * 6.283f
         // A boss fills the corridor on its own and stays on the centreline.
@@ -130,7 +130,7 @@ class EnemySystem(private val engine: GameEngine, private val random: Random) {
             enemy.progress += enemy.currentSpeed() * dt
             placeOnPath(enemy)
 
-            if (enemy.progress >= WorldGeometry.laneLength[enemy.lane]) {
+            if (enemy.progress >= engine.map.laneLength[enemy.lane]) {
                 onReachedServer(enemy)
             }
         }
@@ -199,7 +199,7 @@ class EnemySystem(private val engine: GameEngine, private val random: Random) {
         }
     }
 
-    /** Scratch for [WorldGeometry.positionAt]; the mover must not allocate. */
+    /** Scratch for [com.cyopstd.game.core.GameMap.positionAt]; the mover must not allocate. */
     private val pathScratch = FloatArray(3)
 
     /**
@@ -210,7 +210,7 @@ class EnemySystem(private val engine: GameEngine, private val random: Random) {
      * any other system needing to know.
      */
     private fun placeOnPath(enemy: Enemy) {
-        WorldGeometry.positionAt(enemy.lane, enemy.progress, pathScratch)
+        engine.map.positionAt(enemy.lane, enemy.progress, pathScratch)
         val heading = pathScratch[2]
         enemy.heading = heading
         // Perpendicular to the direction of travel, so the offset holds through

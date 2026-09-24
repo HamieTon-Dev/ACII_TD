@@ -1,5 +1,6 @@
 package com.cyopstd.game
 
+import com.cyopstd.game.core.Maps
 import com.cyopstd.game.core.WorldGeometry
 import com.cyopstd.game.model.AgentType
 import org.junit.Assert.assertEquals
@@ -28,10 +29,10 @@ class MapGeometryTest {
     @Test
     fun `every pocket between route levels is wide enough to hold a tower`() {
         val pockets = listOf(
-            "upper route, top pocket" to (WorldGeometry.A1 to WorldGeometry.A2),
-            "upper route, lower pocket" to (WorldGeometry.A2 to WorldGeometry.A3),
-            "lower route, upper pocket" to (WorldGeometry.B1 to WorldGeometry.B2),
-            "lower route, bottom pocket" to (WorldGeometry.B2 to WorldGeometry.B3)
+            "upper route, top pocket" to (Maps.A1 to Maps.A2),
+            "upper route, lower pocket" to (Maps.A2 to Maps.A3),
+            "lower route, upper pocket" to (Maps.B1 to Maps.B2),
+            "lower route, bottom pocket" to (Maps.B2 to Maps.B3)
         )
         for ((label, bounds) in pockets) {
             val gap = bounds.second - bounds.first
@@ -45,7 +46,7 @@ class MapGeometryTest {
 
     @Test
     fun `the convergence gap is deliberately too tight to build inside`() {
-        val gap = WorldGeometry.B1 - WorldGeometry.A3
+        val gap = Maps.B1 - Maps.A3
         assertTrue(
             "the two routes should run close together across the middle",
             gap < 2 * requiredClearance
@@ -55,8 +56,8 @@ class MapGeometryTest {
         // routes have turned inward and that same band of y is a wide-open
         // corridor 130 units from anything, which is prime building ground --
         // checking y alone would forbid the best spots on the board.
-        val inConvergence = WorldGeometry.nodes.count {
-            it.y > WorldGeometry.A3 && it.y < WorldGeometry.B1 &&
+        val inConvergence = Maps.PERIMETER.nodes.count {
+            it.y > Maps.A3 && it.y < Maps.B1 &&
                 it.x > CONVERGENCE_LEFT && it.x < CONVERGENCE_RIGHT
         }
         assertEquals("no node may sit inside the convergence", 0, inConvergence)
@@ -67,16 +68,16 @@ class MapGeometryTest {
         // The counterpart to the test above: right of the convergence the two
         // routes are far apart, and that band is where the strongest spots on
         // the map are -- a tower there covers both routes at once.
-        val corridor = WorldGeometry.nodes.filter {
-            it.y > WorldGeometry.A3 && it.y < WorldGeometry.B1 && it.x >= CONVERGENCE_RIGHT
+        val corridor = Maps.PERIMETER.nodes.filter {
+            it.y > Maps.A3 && it.y < Maps.B1 && it.x >= CONVERGENCE_RIGHT
         }
         assertTrue("the mid-map corridor has no nodes", corridor.isNotEmpty())
 
-        val all = WorldGeometry.nodes
-            .map { WorldGeometry.laneCoverage(it.x, it.y, 168f) }
+        val all = Maps.PERIMETER.nodes
+            .map { Maps.PERIMETER.laneCoverage(it.x, it.y, 168f) }
             .sorted()
         val median = all[all.size / 2]
-        val bestInCorridor = corridor.maxOf { WorldGeometry.laneCoverage(it.x, it.y, 168f) }
+        val bestInCorridor = corridor.maxOf { Maps.PERIMETER.laneCoverage(it.x, it.y, 168f) }
         assertTrue(
             "the corridor's best spot covers $bestInCorridor, median is $median",
             bestInCorridor > median * 1.5f
@@ -90,21 +91,21 @@ class MapGeometryTest {
     @Test
     fun `every pocket actually received deployment nodes`() {
         val pocketCentres = listOf(
-            (WorldGeometry.A1 + WorldGeometry.A2) / 2f,
-            (WorldGeometry.A2 + WorldGeometry.A3) / 2f,
-            (WorldGeometry.B1 + WorldGeometry.B2) / 2f,
-            (WorldGeometry.B2 + WorldGeometry.B3) / 2f
+            (Maps.A1 + Maps.A2) / 2f,
+            (Maps.A2 + Maps.A3) / 2f,
+            (Maps.B1 + Maps.B2) / 2f,
+            (Maps.B2 + Maps.B3) / 2f
         )
         for (centre in pocketCentres) {
-            val count = WorldGeometry.nodes.count { hypot(0f, it.y - centre) < 1f }
+            val count = Maps.PERIMETER.nodes.count { hypot(0f, it.y - centre) < 1f }
             assertTrue("pocket centred at $centre has no nodes", count >= 2)
         }
     }
 
     @Test
     fun `no node sits on a route`() {
-        for (node in WorldGeometry.nodes) {
-            val distance = WorldGeometry.distanceToNearestLane(node.x, node.y)
+        for (node in Maps.PERIMETER.nodes) {
+            val distance = Maps.PERIMETER.distanceToNearestLane(node.x, node.y)
             assertTrue(
                 "node ${node.id} at (${node.x}, ${node.y}) is $distance from a " +
                     "route; it needs $requiredClearance",
@@ -121,8 +122,8 @@ class MapGeometryTest {
         // 170-200 units from anything -- ground an ANALYST covers perfectly
         // well. What must never exist is a spot no agent at all can use.
         val longestRange = AgentType.entries.maxOf { it.baseRange }
-        for (node in WorldGeometry.nodes) {
-            val coverage = WorldGeometry.laneCoverage(node.x, node.y, longestRange)
+        for (node in Maps.PERIMETER.nodes) {
+            val coverage = Maps.PERIMETER.laneCoverage(node.x, node.y, longestRange)
             assertTrue(
                 "node ${node.id} covers only $coverage units at any range",
                 coverage >= 90f
@@ -135,18 +136,18 @@ class MapGeometryTest {
         // The above only holds because the deploy overlay can tell the player
         // which spots the agent in hand actually reaches. That depends on
         // laneDistance being both present and honest.
-        for (node in WorldGeometry.nodes) {
+        for (node in Maps.PERIMETER.nodes) {
             assertEquals(
                 "node ${node.id} reports the wrong distance to the route",
-                WorldGeometry.distanceToNearestLane(node.x, node.y),
+                Maps.PERIMETER.distanceToNearestLane(node.x, node.y),
                 node.laneDistance,
                 0.01f
             )
         }
 
         val shortest = AgentType.entries.minOf { it.baseRange }
-        for (node in WorldGeometry.nodes) {
-            val coverage = WorldGeometry.laneCoverage(node.x, node.y, shortest)
+        for (node in Maps.PERIMETER.nodes) {
+            val coverage = Maps.PERIMETER.laneCoverage(node.x, node.y, shortest)
             // Anything the shortest-ranged agent cannot cover must be reported
             // as out of its reach, or the overlay would wave it through.
             if (coverage <= 0f) {
@@ -163,7 +164,7 @@ class MapGeometryTest {
 
     @Test
     fun `nodes are clear of the server rack and inside the world`() {
-        for (node in WorldGeometry.nodes) {
+        for (node in Maps.PERIMETER.nodes) {
             assertTrue(
                 "node ${node.id} overlaps the server rack",
                 node.x + WorldGeometry.NODE_RADIUS < WorldGeometry.SERVER_X
@@ -177,18 +178,18 @@ class MapGeometryTest {
     fun `both routes are long enough to give towers repeated passes`() {
         // The straight-lane map was 1378 units and gave a tower one pass at each
         // target, which is what made slow bosses unkillable.
-        for (lane in 0 until WorldGeometry.LANE_COUNT) {
+        for (lane in 0 until Maps.PERIMETER.laneCount) {
             assertTrue(
-                "route $lane is only ${WorldGeometry.laneLength[lane]} units",
-                WorldGeometry.laneLength[lane] > 2000f
+                "route $lane is only ${Maps.PERIMETER.laneLength[lane]} units",
+                Maps.PERIMETER.laneLength[lane] > 2000f
             )
         }
     }
 
     @Test
     fun `both routes end at the core`() {
-        for (lane in 0 until WorldGeometry.LANE_COUNT) {
-            val last = WorldGeometry.laneWaypoints[lane].last()
+        for (lane in 0 until Maps.PERIMETER.laneCount) {
+            val last = Maps.PERIMETER.laneWaypoints[lane].last()
             assertEquals(WorldGeometry.SERVER_X, last.x, 0.01f)
             assertEquals(WorldGeometry.CORE_Y, last.y, 0.01f)
         }
@@ -197,20 +198,20 @@ class MapGeometryTest {
     @Test
     fun `position and heading are derived from route progress`() {
         val scratch = FloatArray(3)
-        for (lane in 0 until WorldGeometry.LANE_COUNT) {
-            val length = WorldGeometry.laneLength[lane]
+        for (lane in 0 until Maps.PERIMETER.laneCount) {
+            val length = Maps.PERIMETER.laneLength[lane]
             var previousX = Float.NEGATIVE_INFINITY
             var progress = 0f
             while (progress <= length) {
-                WorldGeometry.positionAt(lane, progress, scratch)
+                Maps.PERIMETER.positionAt(lane, progress, scratch)
                 assertTrue(
                     "progress $progress on route $lane left the path",
-                    WorldGeometry.distanceToNearestLane(scratch[0], scratch[1]) < 1f
+                    Maps.PERIMETER.distanceToNearestLane(scratch[0], scratch[1]) < 1f
                 )
                 progress += 25f
             }
             // The end of the route must be the core, not somewhere short of it.
-            WorldGeometry.positionAt(lane, length, scratch)
+            Maps.PERIMETER.positionAt(lane, length, scratch)
             assertEquals(WorldGeometry.SERVER_X, scratch[0], 1f)
             previousX = scratch[0]
             assertTrue(previousX > 0f)

@@ -2,6 +2,7 @@ package com.cyopstd.game
 
 import com.cyopstd.game.core.Balance
 import com.cyopstd.game.core.GameMode
+import com.cyopstd.game.core.Maps
 import com.cyopstd.game.core.WorldGeometry
 import com.cyopstd.game.engine.GameEngine
 import com.cyopstd.game.model.AgentType
@@ -109,9 +110,9 @@ class GameModeTest {
             )
             var i = 0
             repeat(6) {
-                while (i < WorldGeometry.nodesByCoverage.size) {
-                    engine.placeAgent(AgentType.ROOT_ADMIN, WorldGeometry.nodesByCoverage[i].id)
-                    val ok = engine.agentAt(WorldGeometry.nodesByCoverage[i].id) != null
+                while (i < Maps.PERIMETER.nodesByCoverage.size) {
+                    engine.placeAgent(AgentType.ROOT_ADMIN, Maps.PERIMETER.nodesByCoverage[i].id)
+                    val ok = engine.agentAt(Maps.PERIMETER.nodesByCoverage[i].id) != null
                     i++
                     if (ok) break
                 }

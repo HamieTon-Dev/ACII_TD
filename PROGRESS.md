@@ -4,7 +4,7 @@
 reads first. It records where the project actually stands, what is proven and
 what is not, and what comes next.
 
-_Last updated: v1.27.0 — the menu boot sequence. See `CHANGELOG.md` for the full per-version history._
+_Last updated: v1.28.0 — splash fix, boot sound, menu music restored. See `CHANGELOG.md` for the full per-version history._
 
 ---
 
@@ -28,7 +28,8 @@ this section is the position marker. Update it when an item ships.
 | 6 | F2 — revive pack + ×10 € rescale | ✅ 1.24.0 |
 | 7 | H1 — the tutorial overhaul | ✅ 1.25.0 |
 | 8 | D2 — `[REDHAT]` / `[BLUEHAT]` | ⛔ **blocked on the owner** — the four guard rails in §D2 need a pick |
-| 9 | M1 — main-menu boot sequence | ✅ 1.27.0 |
+| 9 | M1 — main-menu boot sequence | ❌ withdrawn 1.28.0 — read §M1, the failure is instructive |
+| 9b | M2 — boot sound over the ident | ✅ 1.28.0 |
 | 10 | E1 — the "Hugging-Face" map | ⬜ **next workable item** — largest; its own version |
 | 11 | E2 — AI bosses `[₩₩₩]` / `[¥¥¥]` | ⬜ needs C1 + D2 + E1 |
 | 12 | F3 — two-device cloud-save check | ⛔ needs a real Play Console |
@@ -39,12 +40,20 @@ its own track — and `trackForMode()` in `audio/AudioEngine.kt` is the single
 place to redirect when real audio arrives. Do not spend more effort tuning
 the generated tracks unless asked.
 
-**Start-up budget.** Three timed screens now run before the menu is usable:
-the studio ident (1.9s), the boot splash (1.9s) and the menu power-on
-(1.64s) — about 5.4 seconds. That is at the edge of where a reviewer writes
-"slow to start". The obvious saving is that the boot splash and the menu
-power-on are the same beat and could be merged, which would take it back
-under four. Raise it with the owner before the store listing goes live.
+**Start-up budget.** The menu power-on is gone, so it is back to two timed
+screens: the studio ident (1.9s, now carrying the boot sound) and the boot
+splash (1.9s) — about 3.8 seconds. The boot splash and the ident are
+arguably still one beat too many; worth raising before the store listing
+goes live, but no longer urgent.
+
+**Two things the test renderer cannot check.** Both cost a shipped bug.
+Robolectric substitutes its own **fonts**, so anything whose correctness
+depends on font metrics is unverifiable there — the 1.26.0 splash banner
+looked perfect in a captured preview and was garbage on hardware. And a
+preview that looks right is worse than no preview, because it stops you
+asking. Second: **staggered opacity is not "hardware powering on"**, however
+carefully the beats are timed. 1.27.0's menu boot passed every test it had
+and was cut on sight.
 
 **Pick up at E1**, skipping D2 until the owner chooses. E1 is the second map,
 "Hugging-Face", the largest remaining item and worth its own version. The
@@ -84,7 +93,7 @@ when it ships rather than leaving it in both.
 
 ```bash
 cd /home/user/ACII_TD
-./gradlew :app:testDebugUnitTest      # 411 tests, all passing
+./gradlew :app:testDebugUnitTest      # 400 tests, all passing
 ./gradlew :app:assembleRelease        # -> app/build/outputs/apk/release/CyOpsTD-v<ver>.apk
 ```
 
@@ -194,6 +203,7 @@ rather than loosened.
 | 1.25 | Tutorial: forced placements, arrows onto the Canvas readouts, briefing |
 | 1.26 | HamieTon.dev studio ident, block ASCII, fades in and out before the menu |
 | 1.27 | Main menu powers on like a server; MENU INITIALIZATION toggle |
+| 1.28 | Splash banner fixed on device; menu power-on removed; boot sound; menu music restored |
 
 ---
 

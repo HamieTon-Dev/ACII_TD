@@ -2,7 +2,7 @@ package com.cyopstd.game.engine
 
 import com.cyopstd.game.core.Balance
 import com.cyopstd.game.core.GameMode
-import com.cyopstd.game.core.WorldGeometry
+import com.cyopstd.game.core.Maps
 import com.cyopstd.game.model.BossModifier
 import com.cyopstd.game.model.BossVariant
 import com.cyopstd.game.model.EnemyType
@@ -46,6 +46,15 @@ class WaveGenerator(private val random: Random = Random.Default) {
      */
     var mode: GameMode = GameMode.STANDARD
 
+    /**
+     * How many routes the current level has.
+     *
+     * Set by the engine when the map is chosen. A wave plan that spreads
+     * across two routes on a three-route map leaves one of them permanently
+     * empty, which is not a difficulty setting, it is a bug.
+     */
+    var laneCount: Int = Maps.PERIMETER.laneCount
+
     fun generate(wave: Int): WavePlan {
         if (Balance.isBossWave(wave)) return generateBossWave(wave)
         return generateStandardWave(wave)
@@ -70,7 +79,7 @@ class WaveGenerator(private val random: Random = Random.Default) {
             // reads very differently from a steady trickle and is the whole
             // point of DDoS and BOT packets.
             val burst = if (type.isSwarm()) swarmSize(wave) else 1
-            val lane = random.nextInt(WorldGeometry.LANE_COUNT)
+            val lane = random.nextInt(laneCount)
 
             val burstDelay = Balance.swarmBurstDelay(type.baseSpeed)
             for (b in 0 until burst) {
@@ -79,7 +88,7 @@ class WaveGenerator(private val random: Random = Random.Default) {
                 orders += SpawnOrder(
                     time = time + b * burstDelay,
                     type = type,
-                    lane = if (burst > 1) lane else random.nextInt(WorldGeometry.LANE_COUNT),
+                    lane = if (burst > 1) lane else random.nextInt(laneCount),
                     elite = elite,
                     boss = false
                 )
@@ -125,7 +134,7 @@ class WaveGenerator(private val random: Random = Random.Default) {
             orders += SpawnOrder(
                 time = time,
                 type = pickWeighted(escortPool),
-                lane = random.nextInt(WorldGeometry.LANE_COUNT),
+                lane = random.nextInt(laneCount),
                 elite = random.nextFloat() < Balance.eliteChance(wave),
                 boss = false
             )
@@ -140,12 +149,12 @@ class WaveGenerator(private val random: Random = Random.Default) {
         // rather than an unreadable pair.
         val variant = rollVariant(cycle)
 
-        val firstLane = (cycle - 1).mod(WorldGeometry.LANE_COUNT)
+        val firstLane = (cycle - 1).mod(laneCount)
         for (i in 0 until bossCount) {
             orders += SpawnOrder(
                 time = 1.2f + i * 2.4f,
                 type = EnemyType.BOSS,
-                lane = (firstLane + i).mod(WorldGeometry.LANE_COUNT),
+                lane = (firstLane + i).mod(laneCount),
                 elite = false,
                 boss = true,
                 bossModifiers = modifiers,

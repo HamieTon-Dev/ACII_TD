@@ -3,6 +3,7 @@ package com.cyopstd.game
 import com.cyopstd.game.core.Balance
 import com.cyopstd.game.model.AgentType
 import com.cyopstd.game.model.EnemyType
+import com.cyopstd.game.core.Maps
 import com.cyopstd.game.core.WorldGeometry
 import com.cyopstd.game.engine.GameEngine
 import com.cyopstd.game.engine.PlacementResult
@@ -78,10 +79,10 @@ class AgentIdentityTest {
     fun `a jam lands on an ordinary agent and slides off a hardened one`() {
         val engine = GameEngine()
         engine.startNewRun()
-        engine.placeAgent(AgentType.IDS, WorldGeometry.nodes[0].id)
-        engine.placeAgent(AgentType.FIREWALL, WorldGeometry.nodes[1].id)
-        val ordinary = engine.agentAt(WorldGeometry.nodes[0].id)!!
-        val hardened = engine.agentAt(WorldGeometry.nodes[1].id)!!
+        engine.placeAgent(AgentType.IDS, Maps.PERIMETER.nodes[0].id)
+        engine.placeAgent(AgentType.FIREWALL, Maps.PERIMETER.nodes[1].id)
+        val ordinary = engine.agentAt(Maps.PERIMETER.nodes[0].id)!!
+        val hardened = engine.agentAt(Maps.PERIMETER.nodes[1].id)!!
 
         ordinary.jam(3f)
         hardened.jam(3f)
@@ -99,8 +100,8 @@ class AgentIdentityTest {
     fun `a jam slows the agent it lands on`() {
         val engine = GameEngine()
         engine.startNewRun()
-        engine.placeAgent(AgentType.IDS, WorldGeometry.nodes[0].id)
-        val agent = engine.agentAt(WorldGeometry.nodes[0].id)!!
+        engine.placeAgent(AgentType.IDS, Maps.PERIMETER.nodes[0].id)
+        val agent = engine.agentAt(Maps.PERIMETER.nodes[0].id)!!
         val before = agent.effectiveCooldown()
 
         agent.jam(3f)
@@ -153,7 +154,7 @@ class AgentIdentityTest {
         engine.isAgentUnlocked = { true }
         engine.startNewRun()
 
-        val node = WorldGeometry.nodes.first { it.laneDistance <= type.baseRange * 0.5f }
+        val node = Maps.PERIMETER.nodes.first { it.laneDistance <= type.baseRange * 0.5f }
         assertEquals(
             "could not place a $type in reach of a lane",
             PlacementResult.SUCCESS,

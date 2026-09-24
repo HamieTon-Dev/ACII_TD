@@ -11,6 +11,7 @@ import androidx.compose.ui.test.assertIsNotDisplayed
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
+import com.cyopstd.game.core.Maps
 import com.cyopstd.game.core.WorldGeometry
 import com.cyopstd.game.engine.GameEngine
 import com.cyopstd.game.engine.PlacementResult
@@ -50,7 +51,7 @@ class InGamePanelsTest {
     private fun agent(level: Int = 20): Agent {
         val engine = GameEngine()
         engine.startNewRun()
-        val node = WorldGeometry.nodes.first {
+        val node = Maps.PERIMETER.nodes.first {
             engine.placeAgent(AgentType.FIREWALL, it.id) == PlacementResult.SUCCESS
         }
         return engine.agentAt(node.id)!!.also { it.level = level }

@@ -2,8 +2,10 @@ package com.cyopstd.game.audio
 
 import android.content.Context
 import android.media.AudioAttributes
+import android.media.MediaPlayer
 import android.media.SoundPool
 import android.util.Log
+import com.cyopstd.game.R
 import com.cyopstd.game.core.GameMode
 import com.cyopstd.game.engine.GameSound
 import kotlinx.coroutines.CoroutineScope
@@ -180,6 +182,49 @@ class AudioEngine(private val context: Context) {
      * today it comes from the game mode, and when the second map lands it may
      * come from the map instead. Either way this only has to switch players.
      */
+    /**
+     * Show the menu, and play its music.
+     *
+     * Separate from [setInMatch] because that early-returns when the state has
+     * not changed, and at launch it has not: `inMatch` starts false, so the
+     * very first menu never asked anyone to start playing. Menu music only
+     * ever began after a player had been into a match and come back out,
+     * which is why it was silent on a fresh launch for every version of this
+     * game so far.
+     */
+    fun enterMenu() {
+        inMatch = false
+        pauseMatchTracks()
+        if (musicVolume <= 0.01f) return
+        menuMusic.start()
+    }
+
+    /**
+     * The machine coming up: played once, over the studio ident.
+     *
+     * The only audio file in the game. Everything else is synthesized, which
+     * is a deliberate property -- no licensing surface, nothing to ship -- and
+     * this is the one exception because the owner supplied it and owns it.
+     * Played through its own MediaPlayer rather than the effect pool: two
+     * seconds at 48kHz is far too long for a SoundPool, which is built for
+     * 70-millisecond blips.
+     */
+    fun playBootChime() {
+        if (bootChimePlayed || musicVolume <= 0.01f) return
+        bootChimePlayed = true
+        try {
+            val player = MediaPlayer.create(context, R.raw.boot_chime) ?: return
+            player.setVolume(musicVolume, musicVolume)
+            player.setOnCompletionListener { it.release() }
+            player.start()
+        } catch (error: Exception) {
+            Log.w(TAG, "Boot chime would not play", error)
+        }
+    }
+
+    /** Once per launch. It is an ident, not a UI sound. */
+    private var bootChimePlayed = false
+
     fun setInMatch(
         value: Boolean,
         track: ChiptuneComposer.Track = ChiptuneComposer.Track.GAME

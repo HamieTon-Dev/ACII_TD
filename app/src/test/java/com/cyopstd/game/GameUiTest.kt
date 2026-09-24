@@ -1,5 +1,6 @@
 package com.cyopstd.game
 
+import com.cyopstd.game.core.Maps
 import android.app.Application
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.hasText
@@ -440,7 +441,7 @@ class GameUiTest {
         assertFalse("choosing an agent closes the picker", viewModel.showDeployPanel)
         assertEquals(TutorialScript.PLACE_FIREWALLS, viewModel.tutorialStep)
 
-        val node = com.cyopstd.game.core.WorldGeometry.nodes[10]
+        val node = com.cyopstd.game.core.Maps.PERIMETER.nodes[10]
         viewModel.onBattlefieldTap(androidx.compose.ui.geometry.Offset(node.x, node.y))
         viewModel.onFrame(0.016f)
 
@@ -457,7 +458,7 @@ class GameUiTest {
         val viewModel = freshViewModel()
         viewModel.startNewGame()
 
-        val node = com.cyopstd.game.core.WorldGeometry.nodes[10]
+        val node = com.cyopstd.game.core.Maps.PERIMETER.nodes[10]
         viewModel.choosePendingAgent(AgentType.FIREWALL)
         viewModel.onBattlefieldTap(androidx.compose.ui.geometry.Offset(node.x, node.y))
 
@@ -493,7 +494,7 @@ class GameUiTest {
 
         viewModel.toggleDeployPanel()
         viewModel.choosePendingAgent(AgentType.FIREWALL)
-        val node = com.cyopstd.game.core.WorldGeometry.nodes[10]
+        val node = com.cyopstd.game.core.Maps.PERIMETER.nodes[10]
         viewModel.onBattlefieldTap(androidx.compose.ui.geometry.Offset(node.x, node.y))
 
         viewModel.startNextWave()

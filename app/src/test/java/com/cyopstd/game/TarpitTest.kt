@@ -1,6 +1,7 @@
 package com.cyopstd.game
 
 import com.cyopstd.game.core.Balance
+import com.cyopstd.game.core.Maps
 import com.cyopstd.game.core.WorldGeometry
 import com.cyopstd.game.engine.CombatSystem
 import com.cyopstd.game.engine.GameEngine
@@ -51,7 +52,7 @@ class TarpitTest {
         seed: Int
     ): Int {
         val engine = armed(wave, seed)
-        val nodes = WorldGeometry.nodesByCoverage
+        val nodes = Maps.PERIMETER.nodesByCoverage
         val used = ArrayList<Int>()
         var next = 0
         for (type in damage) {
@@ -61,7 +62,7 @@ class TarpitTest {
                 next++
             }
         }
-        val anchor = WorldGeometry.node(used.first())!!
+        val anchor = Maps.PERIMETER.node(used.first())!!
         val neighbours = nodes.filter { it.id !in used }
             .sortedBy { hypot(it.x - anchor.x, it.y - anchor.y) }
         var n = 0
@@ -113,7 +114,7 @@ class TarpitTest {
         // as 0.6 hp of integrity saved for 20 crypto -- worse value than an
         // upgrade, i.e. a unit nobody would ever buy.
         val engine = armed(wave = 12, seed = 7)
-        val node = WorldGeometry.nodesByCoverage.first()
+        val node = Maps.PERIMETER.nodesByCoverage.first()
         engine.placeAgent(AgentType.TARPIT, node.id)
         engine.startNextWave()
 
@@ -155,7 +156,7 @@ class TarpitTest {
     fun `stacking tarpits buys area, never a deeper slow`() {
         // This is what keeps a 20-crypto unit from being spammed into a lock.
         val engine = armed(wave = 12, seed = 3)
-        val nodes = WorldGeometry.nodesByCoverage
+        val nodes = Maps.PERIMETER.nodesByCoverage
         var placed = 0
         var i = 0
         while (placed < 4 && i < nodes.size) {
@@ -184,7 +185,7 @@ class TarpitTest {
         // what stops a wall of cheap tarpits becoming a lock rather than a
         // delay.
         val engine = armed(wave = 8, seed = 5, crypto = 1_000_000)
-        val node = WorldGeometry.nodesByCoverage.first().id
+        val node = Maps.PERIMETER.nodesByCoverage.first().id
         engine.placeAgent(AgentType.TARPIT, node)
         engine.upgradeAgent(node, 60)
         engine.startNextWave()

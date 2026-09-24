@@ -9,6 +9,10 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import android.graphics.Paint
+import android.graphics.Typeface
+import androidx.compose.foundation.Canvas
+import androidx.compose.foundation.layout.width
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -22,6 +26,11 @@ import androidx.compose.runtime.withFrameNanos
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.drawscope.drawIntoCanvas
+import androidx.compose.ui.graphics.nativeCanvas
+import androidx.compose.ui.graphics.toArgb
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.PlatformTextStyle
@@ -77,12 +86,9 @@ fun DeveloperSplashScreen(onFinished: () -> Unit) {
             },
         contentAlignment = Alignment.Center
     ) {
-        // Sized to the screen rather than set in sp. The banner is
-        // BANNER_COLUMNS characters of monospace and wrapping it would turn a
-        // logo into wreckage, so the type is scaled to fit the width it has.
+        // Sized to the screen. The banner is BANNER_COLUMNS characters of
+        // monospace and wrapping it would turn a logo into wreckage.
         val available = maxWidth.value - SIDE_GUTTER * 2f
-        val fitted = (available / (BANNER_COLUMNS * MONOSPACE_ADVANCE))
-            .coerceIn(MIN_BANNER_SP, MAX_BANNER_SP)
 
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
@@ -90,35 +96,12 @@ fun DeveloperSplashScreen(onFinished: () -> Unit) {
                 .padding(horizontal = SIDE_GUTTER.dp)
                 .alpha(developerIdentAlpha(elapsed))
         ) {
-            Text(
-                text = DEVELOPER_BANNER,
+            BlockBanner(
+                lines = DEVELOPER_BANNER.lines(),
+                columns = BANNER_COLUMNS,
+                availableWidth = available,
                 color = Palette.Green,
-                textAlign = TextAlign.Center,
-                fontSize = fitted.sp,
-                lineHeight = (fitted * LINE_HEIGHT_RATIO).sp,
-                // Block ASCII only forms letters when its rows touch
-                // exactly. Compose's default leading -- font padding plus
-                // whatever the style's lineHeight adds -- pushes them apart
-                // into scattered punctuation, or overlaps them into a smear.
-                // Turning both off makes lineHeight mean what it says, so the
-                // ratio below is the real cell height and nothing else.
-                style = MaterialTheme.typography.bodySmall.copy(
-                    // Zero letter spacing. The theme gives body text 0.3sp for
-                    // legibility, which is right for prose and fatal here: a
-                    // block of ASCII is a grid, and a third of a point added
-                    // to every cell is what turns letterforms into a smear.
-                    letterSpacing = 0.sp,
-                    platformStyle = PlatformTextStyle(includeFontPadding = false),
-                    lineHeightStyle = LineHeightStyle(
-                        alignment = LineHeightStyle.Alignment.Center,
-                        trim = LineHeightStyle.Trim.Both
-                    )
-                ),
-                // Block ASCII is a picture of a word. A screen reader given
-                // the raw text reads out pipes and underscores, so it is told
-                // the name instead -- which is also the only way a test can
-                // check that the banner still says what it is meant to say.
-                modifier = Modifier.semantics { contentDescription = DEVELOPER_NAME }
+                contentDescription = DEVELOPER_NAME
             )
             Spacer(Modifier.height(18.dp))
             Text(
@@ -130,6 +113,93 @@ fun DeveloperSplashScreen(onFinished: () -> Unit) {
         }
     }
 }
+
+/**
+ * Block ASCII drawn row by row at measured positions.
+ *
+ * The first version of this was a single `Text` with a `lineHeight` tuned so
+ * the `#` blocks would touch. It looked right in the test renderer and
+ * **sheared into garbage on a real phone** — the leading was derived from the
+ * ink height of `#` in Robolectric's substitute font, and a device's monospace
+ * face has different metrics entirely, so the rows overlapped and slid.
+ *
+ * There is no line height that is correct on every device, because the number
+ * depends on a font that is chosen at runtime. So nothing is guessed: the
+ * glyph is measured with the paint that is about to draw it, and each row is
+ * placed at an explicit baseline exactly one ink-height below the last. The
+ * blocks meet on any font, on any device, because the spacing is derived from
+ * the font actually in use rather than from one that was available when the
+ * code was written.
+ */
+@Composable
+private fun BlockBanner(
+    lines: List<String>,
+    columns: Int,
+    availableWidth: Float,
+    color: Color,
+    contentDescription: String
+) {
+    val density = LocalDensity.current
+    val paint = remember {
+        Paint(Paint.ANTI_ALIAS_FLAG).apply {
+            typeface = Typeface.MONOSPACE
+            textAlign = Paint.Align.LEFT
+        }
+    }
+
+    // Measured, not assumed: advance width and ink height both come from the
+    // paint at the size it will actually draw at.
+    val metrics = remember(availableWidth, columns, density) {
+        with(density) {
+            val widthPx = availableWidth.dp.toPx()
+            // Binary search would be overkill -- the advance is linear in size
+            // for a monospace face, so one measurement scales exactly.
+            paint.textSize = 100f
+            val advanceAt100 = paint.measureText("#")
+            val size = (widthPx / columns) / (advanceAt100 / 100f)
+            paint.textSize = size
+            val bounds = android.graphics.Rect()
+            paint.getTextBounds("#", 0, 1, bounds)
+            BannerMetrics(
+                textSize = size,
+                rowHeight = bounds.height().toFloat(),
+                // drawText places the baseline; the ink sits above it.
+                baselineOffset = -bounds.top.toFloat(),
+                width = paint.measureText("#") * columns
+            )
+        }
+    }
+
+    val heightDp = with(density) { (metrics.rowHeight * lines.size).toDp() }
+    val widthDp = with(density) { metrics.width.toDp() }
+
+    Canvas(
+        Modifier
+            .width(widthDp)
+            .height(heightDp)
+            .semantics { this.contentDescription = contentDescription }
+    ) {
+        drawIntoCanvas { canvas ->
+            paint.textSize = metrics.textSize
+            paint.color = color.toArgb()
+            for ((row, line) in lines.withIndex()) {
+                canvas.nativeCanvas.drawText(
+                    line,
+                    0f,
+                    metrics.baselineOffset + row * metrics.rowHeight,
+                    paint
+                )
+            }
+        }
+    }
+}
+
+private class BannerMetrics(
+    val textSize: Float,
+    val rowHeight: Float,
+    val baselineOffset: Float,
+    val width: Float
+)
 
 /**
  * Fade up, hold, fade down — as a function of elapsed seconds.
@@ -158,22 +228,7 @@ const val DEVELOPER_NAME = "HamieTon.dev"
 /** Columns in [DEVELOPER_BANNER]; the type is scaled so they all fit. */
 const val BANNER_COLUMNS = 70
 
-/** Width of a monospace character as a fraction of its point size. */
-private const val MONOSPACE_ADVANCE = 0.6f
-
-/**
- * Leading, as a fraction of the font size.
- *
- * Not a taste call: the banner is built from `#` blocks, and they only form
- * solid letters when consecutive rows touch. Measured rather than guessed --
- * a `#` inks exactly 0.71 of its point size in the platform monospace face, so
- * that is the line height that makes the blocks meet. The font's natural
- * leading (1.172) leaves visible gaps and the letters read as dot matrix.
- */
-private const val LINE_HEIGHT_RATIO = 0.71f
 private const val SIDE_GUTTER = 16f
-private const val MIN_BANNER_SP = 6f
-private const val MAX_BANNER_SP = 30f
 
 /**
  * "HamieTon.dev" as block ASCII.

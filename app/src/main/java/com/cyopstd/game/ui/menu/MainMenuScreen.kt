@@ -65,30 +65,18 @@ fun MainMenuScreen(
     onStatistics: () -> Unit,
     onSettings: () -> Unit,
     onAbout: () -> Unit,
-    onExit: () -> Unit,
-    /**
-     * How lit element n is while the menu powers on, 1 for everything once it
-     * has settled. A function rather than a flag so the screen does not have
-     * to know whether a boot is running, only how to draw one frame of it.
-     */
-    bootAlpha: (Int) -> Float = { 1f },
-    /** The power LED, 0 when there is no boot running. */
-    ledGlow: Float = 0f
+    onExit: () -> Unit
 ) {
     Box(
         modifier = Modifier
             .fillMaxSize()
             .background(Palette.Background)
     ) {
-        // The backdrop comes up with the rest of the interface rather than
-        // before it: it is the room's lighting, and the room starts dark.
         AsciiBackdrop(
-            modifier = Modifier.fillMaxSize().alpha(bootAlpha(0)),
+            modifier = Modifier.fillMaxSize(),
             enabled = backgroundAnimation,
             density = 40
         )
-
-        if (ledGlow > 0f) PowerLed(ledGlow)
 
         Row(
             modifier = Modifier
@@ -106,33 +94,29 @@ fun MainMenuScreen(
                 Text(
                     text = "CyOps TD",
                     style = MaterialTheme.typography.displayMedium,
-                    color = Palette.Cyan,
-                    modifier = Modifier.alpha(bootAlpha(1))
+                    color = Palette.Cyan
                 )
                 Text(
                     text = "ASCII CYBER DEFENSE",
                     style = MaterialTheme.typography.titleLarge,
-                    color = Palette.Green,
-                    modifier = Modifier.alpha(bootAlpha(2))
+                    color = Palette.Green
                 )
 
                 Spacer(Modifier.height(10.dp))
-                AsciiRule(color = Palette.CyanDim, modifier = Modifier.alpha(bootAlpha(2)))
+                AsciiRule(color = Palette.CyanDim)
                 Spacer(Modifier.height(14.dp))
 
                 Text(
                     text = TITLE_ART,
                     style = MaterialTheme.typography.bodySmall,
-                    color = Palette.CyanDim,
-                    modifier = Modifier.alpha(bootAlpha(3))
+                    color = Palette.CyanDim
                 )
 
                 Spacer(Modifier.height(16.dp))
 
                 TerminalPanel(
                     title = "NETWORK STATUS",
-                    accent = Palette.Green,
-                    modifier = Modifier.alpha(bootAlpha(4))
+                    accent = Palette.Green
                 ) {
                     StatRow(
                         "BEST WAVE",
@@ -171,8 +155,7 @@ fun MainMenuScreen(
 
                 TerminalPanel(
                     title = "RUN MODE",
-                    accent = Palette.Red,
-                    modifier = Modifier.alpha(bootAlpha(5))
+                    accent = Palette.Red
                 ) {
                     for (mode in GameMode.entries) {
                         val unlocked = mode in availableModes
@@ -191,7 +174,7 @@ fun MainMenuScreen(
                 // PURCHASES". Three quarters of that stopped being true the
                 // moment billing and ads were wired in, and a menu that lies
                 // about ads is worse than one that says nothing.
-                Caption(playsOfflineCaption(adsRemoved), Modifier.alpha(bootAlpha(6)))
+                Caption(playsOfflineCaption(adsRemoved))
             }
 
             Spacer(Modifier.width(24.dp))
@@ -205,7 +188,6 @@ fun MainMenuScreen(
                 verticalArrangement = Arrangement.Center
             ) {
                 BastionButton(
-                    modifier = Modifier.alpha(bootAlpha(7)),
                     text = "PLAY",
                     subtitle = if (selectedMode == GameMode.STANDARD) {
                         "Start a new defence run"
@@ -220,7 +202,6 @@ fun MainMenuScreen(
                 )
                 Spacer(Modifier.height(10.dp))
                 BastionButton(
-                    modifier = Modifier.alpha(bootAlpha(8)),
                     text = "CONTINUE",
                     subtitle = if (hasSavedRun) "Resume your saved session" else "No saved session",
                     leadingGlyph = "[=]",
@@ -229,7 +210,6 @@ fun MainMenuScreen(
                 )
                 Spacer(Modifier.height(10.dp))
                 BastionButton(
-                    modifier = Modifier.alpha(bootAlpha(9)),
                     text = "AGENTS",
                     subtitle = "Review your cyber agent roster",
                     leadingGlyph = "[@]",
@@ -237,7 +217,6 @@ fun MainMenuScreen(
                 )
                 Spacer(Modifier.height(10.dp))
                 BastionButton(
-                    modifier = Modifier.alpha(bootAlpha(10)),
                     text = "FIRMWARE",
                     subtitle = if (budget > 0) {
                         "\u20AC $budget to spend on permanent damage"
@@ -250,7 +229,6 @@ fun MainMenuScreen(
                 )
                 Spacer(Modifier.height(10.dp))
                 BastionButton(
-                    modifier = Modifier.alpha(bootAlpha(11)),
                     text = "STORE",
                     subtitle = "Skins, budget packs and conveniences",
                     leadingGlyph = "[$]",
@@ -259,7 +237,6 @@ fun MainMenuScreen(
                 )
                 Spacer(Modifier.height(10.dp))
                 BastionButton(
-                    modifier = Modifier.alpha(bootAlpha(12)),
                     text = "LOADOUT",
                     subtitle = "Equip the skins and backgrounds you own",
                     leadingGlyph = "[#]",
@@ -268,7 +245,6 @@ fun MainMenuScreen(
                 )
                 Spacer(Modifier.height(10.dp))
                 BastionButton(
-                    modifier = Modifier.alpha(bootAlpha(13)),
                     text = "GOOGLE PLAY",
                     subtitle = "Purchases, restore and what leaves this device",
                     leadingGlyph = "[G]",
@@ -277,7 +253,6 @@ fun MainMenuScreen(
                 )
                 Spacer(Modifier.height(10.dp))
                 BastionButton(
-                    modifier = Modifier.alpha(bootAlpha(14)),
                     text = "LEADERBOARD",
                     subtitle = "Ranked by deepest wave reached",
                     leadingGlyph = "[#]",
@@ -286,7 +261,6 @@ fun MainMenuScreen(
                 )
                 Spacer(Modifier.height(10.dp))
                 BastionButton(
-                    modifier = Modifier.alpha(bootAlpha(15)),
                     text = "CODEX",
                     subtitle = "Threats, agents and network terms",
                     leadingGlyph = "[?]",
@@ -295,7 +269,6 @@ fun MainMenuScreen(
                 )
                 Spacer(Modifier.height(10.dp))
                 BastionButton(
-                    modifier = Modifier.alpha(bootAlpha(16)),
                     text = "STATISTICS",
                     subtitle = "Lifetime defence record",
                     leadingGlyph = "[#]",
@@ -303,7 +276,6 @@ fun MainMenuScreen(
                 )
                 Spacer(Modifier.height(10.dp))
                 BastionButton(
-                    modifier = Modifier.alpha(bootAlpha(17)),
                     text = "SETTINGS",
                     subtitle = "Audio, haptics, visuals",
                     leadingGlyph = "[*]",
@@ -311,7 +283,6 @@ fun MainMenuScreen(
                 )
                 Spacer(Modifier.height(10.dp))
                 BastionButton(
-                    modifier = Modifier.alpha(bootAlpha(18)),
                     text = "ABOUT",
                     subtitle = "Version and credits",
                     leadingGlyph = "[i]",
@@ -319,7 +290,6 @@ fun MainMenuScreen(
                 )
                 Spacer(Modifier.height(10.dp))
                 BastionButton(
-                    modifier = Modifier.alpha(bootAlpha(19)),
                     text = "EXIT",
                     subtitle = "Close the application",
                     leadingGlyph = "[X]",
@@ -415,37 +385,3 @@ private val TITLE_ART = """
     >>> ---- LANE 3 ---------------->  |  . . . . . . |
                                        +==============+
 """.trimIndent()
-
-/**
- * The power LED: one point of light, before any of the interface.
- *
- * Off-centre on purpose. Centred, it reads as a loading spinner; off to one
- * side it reads as a light on a box. Drawn as two overlapping radial washes
- * so there is a hot core inside a soft bloom, which is what a small bright
- * LED does to a camera and to an eye in a dark room.
- */
-@Composable
-private fun PowerLed(glow: Float) {
-    Canvas(Modifier.fillMaxSize()) {
-        val centre = Offset(size.width * 0.34f, size.height * 0.42f)
-        val bloom = size.minDimension * 0.30f * glow.coerceAtMost(1.4f)
-        drawCircle(
-            brush = Brush.radialGradient(
-                colors = listOf(
-                    Palette.Green.copy(alpha = 0.34f * glow.coerceAtMost(1f)),
-                    Palette.Green.copy(alpha = 0f)
-                ),
-                center = centre,
-                radius = bloom
-            ),
-            radius = bloom,
-            center = centre
-        )
-        val core = size.minDimension * 0.012f * glow.coerceIn(0f, 1.4f)
-        drawCircle(
-            color = Palette.Green.copy(alpha = glow.coerceIn(0f, 1f)),
-            radius = core,
-            center = centre
-        )
-    }
-}

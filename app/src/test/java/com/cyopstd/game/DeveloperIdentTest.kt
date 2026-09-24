@@ -177,7 +177,11 @@ class DeveloperIdentTest {
         }
         compose.mainClock.advanceTimeBy(100)
 
-        compose.onNodeWithText(DEVELOPER_BANNER).assertIsDisplayed()
+        // Found by its label rather than its text: the banner is drawn glyph
+        // by glyph onto a Canvas now, because a Text centred each row
+        // independently and sheared the whole logo into a diagonal on a real
+        // device while looking perfect in this renderer.
+        compose.onNodeWithContentDescription(DEVELOPER_NAME).assertIsDisplayed()
         compose.onNodeWithText("P R E S E N T S").assertIsDisplayed()
         assertEquals("it handed over before it had been read", 0, finished)
 
@@ -198,7 +202,7 @@ class DeveloperIdentTest {
         }
         compose.mainClock.advanceTimeBy(100)
 
-        compose.onNodeWithText(DEVELOPER_BANNER).performClick()
+        compose.onNodeWithContentDescription(DEVELOPER_NAME).performClick()
         assertEquals(1, finished)
 
         // Letting the timer run out must not hand over a second time: two

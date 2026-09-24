@@ -1,5 +1,6 @@
 package com.cyopstd.game
 
+import com.cyopstd.game.core.Maps
 import com.cyopstd.game.core.WorldGeometry
 import com.cyopstd.game.engine.GameEngine
 import com.cyopstd.game.model.AgentType
@@ -108,7 +109,7 @@ class AgentCurveTest {
                 serverDamageTaken = 0, agentsDeployed = 0, agentUpgrades = 0
             )
             engine.isAgentUnlocked = { true }
-            val node = WorldGeometry.nodesByCoverage.first().id
+            val node = Maps.PERIMETER.nodesByCoverage.first().id
             engine.placeAgent(AgentType.ZERO_DAY_HUNTER, node)
             assertTrue("the hunter was not placed", engine.activeAgentCount() == 1)
             engine.startNextWave()
@@ -143,7 +144,7 @@ class AgentCurveTest {
         // agent's range moves and that constant does not follow, spots appear
         // that literally nothing can use.
         val longest = AgentType.entries.maxOf { it.baseRange }
-        for (node in WorldGeometry.nodes) {
+        for (node in Maps.PERIMETER.nodes) {
             assertTrue(
                 "node ${node.id} is ${node.laneDistance} from a route and the " +
                     "furthest-seeing agent reaches $longest",

@@ -1,6 +1,7 @@
 package com.cyopstd.game
 
 import com.cyopstd.game.core.Balance
+import com.cyopstd.game.core.Maps
 import com.cyopstd.game.core.WorldGeometry
 import com.cyopstd.game.engine.GameEngine
 import com.cyopstd.game.engine.PlacementResult
@@ -51,7 +52,7 @@ class GameEngineTest {
      */
     private fun GameEngine.deployStrongDefence() {
         addCrypto(1_000_000, countAsEarned = false)
-        for (node in WorldGeometry.nodesByCoverage.take(14).map { it.id }) {
+        for (node in Maps.PERIMETER.nodesByCoverage.take(14).map { it.id }) {
             placeAgent(AgentType.ANALYST, node)
             repeat(Balance.MAX_AGENT_LEVEL - 1) { upgradeAgent(node) }
         }
@@ -132,7 +133,7 @@ class GameEngineTest {
         assertNotNull(agent)
         assertEquals(AgentType.FIREWALL, agent!!.type)
         assertEquals(1, agent.level)
-        assertEquals(WorldGeometry.node(5)!!.x, agent.x, 0.01f)
+        assertEquals(Maps.PERIMETER.node(5)!!.x, agent.x, 0.01f)
     }
 
     @Test
@@ -149,7 +150,7 @@ class GameEngineTest {
         val engine = newEngine()
         // Drain the wallet on affordable agents first.
         var node = 0
-        while (engine.crypto >= AgentType.FIREWALL.cost && node < WorldGeometry.nodes.size) {
+        while (engine.crypto >= AgentType.FIREWALL.cost && node < Maps.PERIMETER.nodes.size) {
             engine.placeAgent(AgentType.FIREWALL, node)
             node++
         }
@@ -290,7 +291,7 @@ class GameEngineTest {
         // Position is derived from route progress, so it must sit on the path.
         assertTrue(
             "attacks track their route",
-            WorldGeometry.distanceToNearestLane(enemy.x, enemy.y) < 1f
+            Maps.PERIMETER.distanceToNearestLane(enemy.x, enemy.y) < 1f
         )
     }
 
@@ -386,8 +387,8 @@ class GameEngineTest {
         val farAway = engine.enemies.obtain()!!
         farAway.reset()
         farAway.active = true
-        farAway.lane = WorldGeometry.LANE_COUNT - 1
-        farAway.progress = WorldGeometry.laneLength[WorldGeometry.LANE_COUNT - 1] - 40f
+        farAway.lane = Maps.PERIMETER.laneCount - 1
+        farAway.progress = Maps.PERIMETER.laneLength[Maps.PERIMETER.laneCount - 1] - 40f
         farAway.baseSpeed = 0f
         farAway.health = 100f
         farAway.maxHealth = 100f
@@ -747,7 +748,7 @@ class GameEngineTest {
     fun `entity pools are never exceeded during a long match`() {
         val engine = newEngine()
         engine.addCrypto(500_000, countAsEarned = false)
-        for (node in WorldGeometry.nodesByCoverage.take(6).map { it.id }) {
+        for (node in Maps.PERIMETER.nodesByCoverage.take(6).map { it.id }) {
             engine.placeAgent(AgentType.IPS, node)
         }
 
@@ -770,7 +771,7 @@ class GameEngineTest {
      * between compositions mean anything.
      */
     private fun spreadNodes(count: Int): List<com.cyopstd.game.core.NodePosition> =
-        WorldGeometry.nodesByCoverage.take(count)
+        Maps.PERIMETER.nodesByCoverage.take(count)
 
     /**
      * Fill [nodes] deployment nodes with [type] at [level].
@@ -859,7 +860,7 @@ class GameEngineTest {
         // overwhelmed - not by a wave that never resolves, a pool that
         // overflows, or an economy that runs away.
         val engine = newEngine(seed = 21)
-        engine.deployMixedDefence(nodes = WorldGeometry.nodes.size, level = Balance.MAX_AGENT_LEVEL)
+        engine.deployMixedDefence(nodes = Maps.PERIMETER.nodes.size, level = Balance.MAX_AGENT_LEVEL)
 
         val died = engine.playUntilOverwhelmed(waveCap = 120)
 
@@ -875,7 +876,7 @@ class GameEngineTest {
     fun `difficulty keeps climbing far into the run`() {
         fun peakHealthOnWaveDeep(wave: Int): Float {
             val engine = newEngine(seed = 33)
-            engine.deployMixedDefence(nodes = WorldGeometry.nodes.size, level = Balance.MAX_AGENT_LEVEL)
+            engine.deployMixedDefence(nodes = Maps.PERIMETER.nodes.size, level = Balance.MAX_AGENT_LEVEL)
             engine.fastForwardTo(wave)
             engine.startNextWave()
             var peak = 0f
@@ -903,7 +904,7 @@ class GameEngineTest {
         addCrypto(budget, countAsEarned = false)
         val placed = ArrayList<Int>()
         var i = 0
-        for (node in WorldGeometry.nodesByCoverage) {
+        for (node in Maps.PERIMETER.nodesByCoverage) {
             val type = rotation[i % rotation.size]
             if (crypto < type.cost) break
             if (placeAgent(type, node.id) == PlacementResult.SUCCESS) {
@@ -975,7 +976,7 @@ class GameEngineTest {
         for (agentCount in intArrayOf(3, 4, 5)) {
             val engine = newEngine(seed = 7)
             engine.addCrypto(50_000, countAsEarned = false)
-            for (node in WorldGeometry.nodesByCoverage.take(agentCount)) {
+            for (node in Maps.PERIMETER.nodesByCoverage.take(agentCount)) {
                 engine.placeAgent(AgentType.FIREWALL, node.id)
                 engine.upgradeAgent(node.id, 4)
             }
@@ -1001,7 +1002,7 @@ class GameEngineTest {
     fun `a boss is targeted ahead of the trash escorting it`() {
         val engine = newEngine()
         engine.addCrypto(5_000, countAsEarned = false)
-        val node = WorldGeometry.nodesByCoverage.first()
+        val node = Maps.PERIMETER.nodesByCoverage.first()
         engine.placeAgent(AgentType.FIREWALL, node.id)
         val agent = engine.agentAt(node.id)!!
 
@@ -1060,12 +1061,12 @@ class GameEngineTest {
         var wave = 0
         while (wave < 6 && engine.phase != RunPhase.GAME_OVER) {
             // Spend on upgrades and a new agent whenever the run can afford it.
-            for (node in WorldGeometry.nodesByCoverage.take(6).map { it.id }) {
+            for (node in Maps.PERIMETER.nodesByCoverage.take(6).map { it.id }) {
                 if (engine.agentAt(node) == null && engine.crypto >= AgentType.FIREWALL.cost * 2) {
                     engine.placeAgent(AgentType.FIREWALL, node)
                 }
             }
-            for (node in WorldGeometry.nodesByCoverage.take(4).map { it.id }) {
+            for (node in Maps.PERIMETER.nodesByCoverage.take(4).map { it.id }) {
                 val agent = engine.agentAt(node) ?: continue
                 if (engine.crypto >= agent.type.upgradeCost(agent.level) * 2) {
                     engine.upgradeAgent(node)

@@ -188,7 +188,7 @@ class GameViewModel @JvmOverloads constructor(
             speed = boss.currentSpeed(),
             modifiers = BossModifier.entries.filter { boss.hasModifier(it) },
             revived = boss.revived,
-            distanceToCore = (WorldGeometry.laneLength[boss.lane] - boss.progress)
+            distanceToCore = (engine.map.laneLength[boss.lane] - boss.progress)
                 .coerceAtLeast(0f)
         )
     }
@@ -988,7 +988,7 @@ class GameViewModel @JvmOverloads constructor(
     private fun nearestNode(point: Offset): com.cyopstd.game.core.NodePosition? {
         var best: com.cyopstd.game.core.NodePosition? = null
         var bestDistanceSq = Float.MAX_VALUE
-        for (node in WorldGeometry.nodes) {
+        for (node in engine.map.nodes) {
             val dx = node.x - point.x
             val dy = node.y - point.y
             val distanceSq = dx * dx + dy * dy
@@ -1385,6 +1385,16 @@ class GameViewModel @JvmOverloads constructor(
         engine.startNewRun()
         matchActive = false
         gameOverSummary = null
+    }
+
+    /** The menu is on screen: start its music. */
+    fun onMenuShown() {
+        audio.enterMenu()
+    }
+
+    /** The studio ident is on screen: play the machine coming up. */
+    fun playBootChime() {
+        audio.playBootChime()
     }
 
     fun playClick() {

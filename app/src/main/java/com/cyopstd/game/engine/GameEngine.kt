@@ -2,6 +2,8 @@ package com.cyopstd.game.engine
 
 import com.cyopstd.game.core.Balance
 import com.cyopstd.game.core.GameMode
+import com.cyopstd.game.core.GameMap
+import com.cyopstd.game.core.Maps
 import com.cyopstd.game.core.WorldGeometry
 import com.cyopstd.game.model.Agent
 import com.cyopstd.game.model.AgentType
@@ -38,7 +40,10 @@ class GameEngine(
     // ------------------------------------------------------------ entity pools
 
     val enemies = ObjectPool(MAX_ENEMIES) { Enemy() }
-    val agents = ObjectPool(WorldGeometry.nodes.size) { Agent() }
+    // Sized from the largest map rather than the current one: the pool is
+    // allocated once at construction and switching level must not have to
+    // rebuild it, so it is sized for the worst case.
+    val agents = ObjectPool(Maps.all.maxOf { it.nodes.size }) { Agent() }
     val projectiles = ObjectPool(MAX_PROJECTILES) { Projectile() }
     val effects = ObjectPool(MAX_EFFECTS) { Effect() }
 
@@ -57,6 +62,16 @@ class GameEngine(
      * every balance change made to the normal one.
      */
     var mode: GameMode = GameMode.STANDARD
+        private set
+
+    /**
+     * The level being played.
+     *
+     * Held here rather than read from a global, because the renderer draws
+     * whatever the engine is simulating and those two must never be able to
+     * disagree about which map that is.
+     */
+    var map: GameMap = Maps.PERIMETER
         private set
 
     var serverMaxHp: Int = Balance.SERVER_MAX_HP
@@ -187,6 +202,15 @@ class GameEngine(
         waveGenerator.mode = next
     }
 
+    /**
+     * Choose the level. Must happen before [startNewRun], which sizes the
+     * agent pool from the map's node count.
+     */
+    fun selectMap(next: GameMap) {
+        map = next
+        waveGenerator.laneCount = next.laneCount
+    }
+
     fun startNewRun() {
         enemies.clear()
         agents.clear()
@@ -253,7 +277,7 @@ class GameEngine(
 
         for (placement in placements) {
             val type = AgentType.fromNameSafe(placement.agentTypeName) ?: continue
-            val node = WorldGeometry.node(placement.nodeId) ?: continue
+            val node = map.node(placement.nodeId) ?: continue
             if (agentAt(placement.nodeId) != null) continue
             val agent = agents.obtain() ?: continue
             agent.reset()
@@ -557,7 +581,7 @@ class GameEngine(
     }
 
     fun placeAgent(type: AgentType, nodeId: Int): PlacementResult {
-        val node = WorldGeometry.node(nodeId) ?: return PlacementResult.NODE_INVALID
+        val node = map.node(nodeId) ?: return PlacementResult.NODE_INVALID
         if (!isAgentUnlocked(type)) return PlacementResult.AGENT_LOCKED
         if (agentAt(nodeId) != null) return PlacementResult.NODE_OCCUPIED
         if (crypto < type.cost) {

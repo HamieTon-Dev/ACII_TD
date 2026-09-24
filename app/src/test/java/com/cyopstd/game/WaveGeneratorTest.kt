@@ -1,6 +1,7 @@
 package com.cyopstd.game
 
 import com.cyopstd.game.core.Balance
+import com.cyopstd.game.core.Maps
 import com.cyopstd.game.core.WorldGeometry
 import com.cyopstd.game.engine.WaveGenerator
 import com.cyopstd.game.model.EnemyType
@@ -104,7 +105,7 @@ class WaveGeneratorTest {
             plan.orders.forEach { order ->
                 assertTrue(
                     "wave $wave lane ${order.lane}",
-                    order.lane in 0 until WorldGeometry.LANE_COUNT
+                    order.lane in 0 until Maps.PERIMETER.laneCount
                 )
                 assertTrue("wave $wave time ${order.time}", order.time >= 0f)
             }

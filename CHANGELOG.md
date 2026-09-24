@@ -7,6 +7,40 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [1.28.0]
+
+### Fixed — the studio logo was unreadable on a real phone
+
+The `HamieTon.dev` banner sheared into a diagonal mess on hardware while
+looking perfect in the test renderer. Two causes, and the second is the one
+that mattered: the row spacing came from a font measurement taken in the test
+renderer rather than on the device, and — worse — centred text centres each
+line *independently*, so every row of the logo was centred to a different
+width and the whole thing slid sideways as it went down.
+
+It is drawn glyph by glyph now, left-aligned, at spacing measured from the
+font actually in use. There is no longer a number that can be wrong.
+
+### Fixed — menu music never played on a fresh launch
+
+Not since it was added, in 1.11.0. The menu track only ever started after
+you had been into a match and come back out; open the game and go straight to
+the menu and there was silence. Every arrival at the menu now starts it.
+
+### Changed — the menu power-on is gone, and a boot sound takes its place
+
+The menu no longer flickers in. It was meant to read as hardware coming up and
+it read as icons flashing, which is not the same thing and is not worth a
+second and a half of everyone's time. `MENU INITIALIZATION` has gone from
+SETTINGS with it.
+
+In its place, **a PC boot sound plays once over the studio ident**. It is the
+only audio file in the game — everything else is generated — and it is there
+because it does the job the animation was failing to do, in a fifth of the
+screen time.
+
+---
+
 ## [1.27.0]
 
 ### Added — the main menu powers on

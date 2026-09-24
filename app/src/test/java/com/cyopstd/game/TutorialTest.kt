@@ -8,6 +8,7 @@ import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithText
 import androidx.test.core.app.ApplicationProvider
 import com.cyopstd.game.core.Balance
+import com.cyopstd.game.core.Maps
 import com.cyopstd.game.core.WorldGeometry
 import com.cyopstd.game.model.AgentType
 import com.cyopstd.game.state.GameViewModel
@@ -124,7 +125,7 @@ class TutorialTest {
 
     private fun GameViewModel.place(type: AgentType, nodeIndex: Int) {
         choosePendingAgent(type)
-        val node = WorldGeometry.nodes[nodeIndex]
+        val node = Maps.PERIMETER.nodes[nodeIndex]
         onBattlefieldTap(Offset(node.x, node.y))
     }
 
@@ -158,7 +159,7 @@ class TutorialTest {
         viewModel.toggleDeployPanel()
         viewModel.place(AgentType.FIREWALL, 10)
 
-        val node = WorldGeometry.nodes[10]
+        val node = Maps.PERIMETER.nodes[10]
         viewModel.onBattlefieldTap(Offset(node.x, node.y))
         viewModel.sellSelectedAgent()
 

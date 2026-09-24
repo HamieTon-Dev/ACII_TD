@@ -2,6 +2,7 @@ package com.cyopstd.game
 
 import android.graphics.Bitmap
 import android.graphics.Canvas
+import com.cyopstd.game.core.Maps
 import com.cyopstd.game.core.WorldGeometry
 import com.cyopstd.game.engine.GameEngine
 import com.cyopstd.game.model.EnemyType
@@ -35,7 +36,7 @@ class FieldStatusRenderTest {
     private val height = WorldGeometry.HEIGHT.toInt()
 
     /** The top edge of lane 1 — the first pixel the player needs to see. */
-    private val laneTop = (WorldGeometry.A1 - WorldGeometry.LANE_HEIGHT / 2f).toInt()
+    private val laneTop = (Maps.A1 - WorldGeometry.LANE_HEIGHT / 2f).toInt()
 
     private fun frame(wave: Int, crypto: Int): Bitmap {
         val engine = GameEngine()
@@ -131,7 +132,7 @@ class FieldStatusRenderTest {
         // This corner was chosen because nothing else uses it: no deployment
         // node is placed past x=1240 and the core rack starts at y=168. If
         // either readout grows out of that block it lands on something.
-        val nodeRight = WorldGeometry.nodes.maxOf { it.x } + WorldGeometry.NODE_RADIUS
+        val nodeRight = Maps.PERIMETER.nodes.maxOf { it.x } + WorldGeometry.NODE_RADIUS
         for ((name, ink) in listOf("wave" to waveInk, "crypto" to cryptoInk)) {
             assertTrue(
                 "$name ink starts at x=${ink.minX}, and nodes reach $nodeRight",
@@ -157,8 +158,8 @@ class FieldStatusRenderTest {
         // for a collision that cannot happen.
         val half = WorldGeometry.LANE_HEIGHT / 2f
         for ((name, ink) in listOf("wave" to waveInk, "crypto" to cryptoInk)) {
-            for (lane in 0 until WorldGeometry.LANE_COUNT) {
-                val points = WorldGeometry.laneWaypoints[lane]
+            for (lane in 0 until Maps.PERIMETER.laneCount) {
+                val points = Maps.PERIMETER.laneWaypoints[lane]
                 for (i in 0 until points.size - 1) {
                     val a = points[i]
                     val b = points[i + 1]

@@ -400,7 +400,33 @@ pooled effect carries a seed and the renderer derives every shard from it, so a
 
 ---
 
-## L. Studio ident — ✅ shipped in 1.26.0
+## L. Studio ident — ✅ shipped in 1.26.0, fixed in 1.28.0
+
+### L2 ✅ 1.28.0 — the banner rendered as garbage on a real device
+
+The block-ASCII logo sheared into an unreadable diagonal on hardware while
+looking perfect in the test renderer. Two separate causes, and the second is
+the one that matters:
+
+1. The row spacing was a `lineHeight` derived from the ink height of `#` **in
+   Robolectric's substitute font**. A device's monospace face has different
+   metrics, so the rows overlapped.
+2. `textAlign = Center` centres each line *independently*, and trailing spaces
+   do not count toward a line's measured width — so every row of the banner
+   was centred to a different width and the whole logo slid diagonally.
+
+There is no constant that is correct on every device, because the number
+depends on a font chosen at runtime. So nothing is guessed now: the banner is
+drawn row by row onto a Canvas with `Paint.Align.LEFT`, at baselines one
+measured ink-height apart, using the paint that is about to draw it. Neither
+per-line centring nor a stale metric can affect it.
+
+**The lesson, which is wider than this bug:** the test renderer substitutes
+its own fonts. Anything whose correctness depends on font metrics cannot be
+verified there, however convincing the preview looks — and a preview that
+looks right is worse than no preview, because it stops you asking.
+
+
 
 **Asked:** *"Need a splash page before menu upon loading the game that shows
 the developer fading in and out. It should be ASCII in big format
@@ -442,55 +468,49 @@ meant to say.
 
 ## M. Menu boot sequence
 
-### M1 ✅ shipped in 1.27.0 — the main menu powers on like a server
+### M1 ❌ withdrawn in 1.28.0 — the menu power-on
 
-**Asked:** *"I want the main menu start off black (like a dark room) and slowly
-initialize (like turning on a server) UI flickers and turns on like a glow of a
-server led and then main menu is ready to go. In options menu players can turn
-off main menu 'initialization'."*
+Shipped in 1.27.0 and **removed in 1.28.0 at the owner's request**: *"the main
+menu looks nothing like a server boot or pc or anything similar. icons just
+flash in lol. forget the menu flash cut all that shit out."*
 
-Four beats, in `MenuBoot`, as a plain function of elapsed seconds:
+Worth keeping the entry rather than deleting it, because the failure is
+instructive. The spec asked for something that reads as *hardware coming up*,
+and what got built was elements fading in on a stagger. Every individual beat
+matched the description — dark, an LED, a flicker, a settle — and the whole
+thing still read as a UI animation, because staggered opacity is what a UI
+animation is made of whatever order you put it in. Nothing in the tests could
+have caught that: they asserted the beats existed and held, which they did.
 
-| | | |
-| --- | ---: | --- |
-| Dark | 0.26s | Black. Long enough to read as a room, not a slow frame |
-| LED | 0.42s | One point of light, off-centre, that **overshoots and settles** |
-| Flicker | 0.80s | Panels arriving scattered and unstable |
-| Settle | 0.16s | Everything up, nothing moving |
+`MenuBoot`, the power LED, the per-element reveal and the MENU INITIALIZATION
+setting are all gone. What replaced it is M2.
 
-**1.64s total**, so start-up grew by well under two seconds.
+### M2 ✅ shipped in 1.28.0 — the machine comes up, on the soundtrack
 
-A function rather than animation specs for two reasons. A held beat that is a
-frame short reads as a flicker rather than as a timing bug, and a function can
-be asserted at the moments that matter. And the flicker is **seeded** from the
-element index — a menu that boots differently every launch reads as a
-rendering fault, which is the same reason the shard bursts are derived from a
-seed rather than from `Random`.
+**Asked:** *"add in a sound that sounds like a Windows 95 pc booting up while
+the menu loads in."*
 
-**Once per launch**, not once per visit: backing out of the store does not
-power the menu on again. **Any tap skips it.** `MENU INITIALIZATION` in
-SETTINGS turns it off, and off means off — the menu is drawn complete with no
-fade. Battery saver suppresses it, for the same reason it drops the living
-backgrounds.
+The owner supplied the audio, which settles the obvious question: the Windows
+95 startup sound is Microsoft's, and imitating it closely enough to be
+recognisable would be the same problem wearing a different hat. Their file
+ships as `res/raw/boot_chime.wav` and plays once per launch over the studio
+ident.
 
-#### Two things measurement caught
+**It is the only audio file in the game.** Everything else is synthesized —
+no licensing surface, nothing to ship — so this is a deliberate exception,
+noted here because the next person to look will wonder why `res/raw` exists
+at all. It plays through its own `MediaPlayer` rather than the effect pool:
+two seconds at 48kHz is far too long for a `SoundPool`, which is built for
+70-millisecond blips.
 
-**The LED was a ramp.** It peaked at 1.015, which is not an overshoot by any
-useful definition — the rise and the ring were tuned so they never landed
-together. A linear fade up is what every app does and no piece of hardware
-does, so the overshoot is asserted rather than left as an intention in a
-comment. It peaks near 1.17 now.
+#### The bug found while wiring it up
 
-**Two elements shared a flicker pattern.** The hash was one mixing round short.
-Not visible, but a hash that collides at twenty inputs will collide worse at
-forty, and the next person to add a menu button would have inherited it.
-
-#### Also
-
-`ToggleRow` gained an `enabled` parameter. A switch that battery saver
-overrides should look overridden rather than lying about its state — the rule
-from 1.16.0 applies to controls that are temporarily overruled, not just ones
-that are missing.
+**Menu music has never played on a fresh launch.** Not since it was added in
+1.11.0. `setInMatch` early-returns when the state has not changed, and at
+launch it has not — `inMatch` starts false — so nothing ever asked the menu
+track to start. It only ever began after a player had been into a match and
+come back out. `AudioEngine.enterMenu()` now exists and every arrival at the
+menu calls it, including the first.
 
 ---
 
