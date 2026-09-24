@@ -48,7 +48,18 @@ fun SettingsScreen(
     backgroundAnimation: Boolean,
     onUpdate: ((GameSettings) -> GameSettings) -> Unit,
     onResetProgress: () -> Unit,
-    onBack: () -> Unit
+    onBack: () -> Unit,
+    /**
+     * True only when Google's consent SDK says this player is in a region
+     * that requires an in-app privacy entry point.
+     *
+     * Defaulted so every existing caller and every test is unaffected, and
+     * gated rather than always-on for the 1.16.0 reason: outside those
+     * regions the button has no form to show, and a control that cannot act
+     * must not be offered.
+     */
+    privacyOptionsRequired: Boolean = false,
+    onPrivacyOptions: () -> Unit = {}
 ) {
     var confirmingReset by remember { mutableStateOf(false) }
 
@@ -154,6 +165,24 @@ fun SettingsScreen(
                         "Battery saver only changes what is drawn. Wave difficulty, " +
                             "damage and timing are completely unaffected."
                     )
+                }
+
+                if (privacyOptionsRequired) {
+                    Spacer(Modifier.height(12.dp))
+                    TerminalPanel(title = "PRIVACY", accent = Palette.Crypto) {
+                        Caption(
+                            "Reopen Google's consent form to change what advertising " +
+                                "partners may do with data from this device. Your game " +
+                                "progress is stored on this device and is never part of it."
+                        )
+                        Spacer(Modifier.height(10.dp))
+                        BastionButton(
+                            text = "PRIVACY OPTIONS",
+                            accent = Palette.Crypto,
+                            leadingGlyph = "[i]",
+                            onClick = onPrivacyOptions
+                        )
+                    }
                 }
 
                 Spacer(Modifier.height(12.dp))

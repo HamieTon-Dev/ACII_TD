@@ -18,7 +18,10 @@ import com.cyopstd.game.ads.AdGateway
 import com.cyopstd.game.ads.AdMobGateway
 import com.cyopstd.game.ads.PlayServices
 import com.cyopstd.game.ads.AdPolicy
+import com.cyopstd.game.ads.ConsentGateway
+import com.cyopstd.game.ads.NoConsentGateway
 import com.cyopstd.game.ads.NoAdGateway
+import com.cyopstd.game.ads.UmpConsentGateway
 import com.cyopstd.game.core.GameMode
 import com.cyopstd.game.core.Maps
 import com.cyopstd.game.model.BossModifier
@@ -81,7 +84,14 @@ class GameViewModel @JvmOverloads constructor(
      * for, exactly as before. There is no way to reach a test gateway from a
      * shipped build.
      */
-    adsOverride: AdGateway? = null
+    adsOverride: AdGateway? = null,
+    /**
+     * Injectable so the consent flow can be tested without Google.
+     *
+     * Same rule as [adsOverride]: production passes nothing and gets whatever
+     * the build is configured for.
+     */
+    consentOverride: ConsentGateway? = null
 ) : AndroidViewModel(application) {
 
     private val audio = AudioEngine(application)
@@ -349,16 +359,55 @@ class GameViewModel @JvmOverloads constructor(
     fun attachActivity(activity: android.app.Activity) {
         (billing as? PlayBillingGateway)?.attach(activity)
         (ads as? AdMobGateway)?.attach(activity)
-        ads.preload()
-        // Loaded up front, because the moment it is wanted -- the instant the
-        // core falls -- is the worst possible moment to start fetching one.
-        ads.preloadRewarded()
+        startConsentThenAds(activity)
         (cloud as? PlayGamesCloudSave)?.let { games ->
             games.attach(activity)
             // Refresh rather than sign in: a player who has linked before is
             // signed in again silently by Play Games, and one who has not must
             // not be met by a dialog they did not ask for.
             viewModelScope.launch { games.refresh() }
+        }
+    }
+
+    /**
+     * Consent first, then the ad SDK. Never the other way round.
+     *
+     * The Mobile Ads SDK used to be initialised in [AdMobGateway]'s
+     * constructor, which meant it started the moment this ViewModel was built
+     * — before anything had asked Google whether this player had consented.
+     * That ordering is the one thing the UMP integration exists to fix, so the
+     * SDK now stays dormant until [ConsentGateway.canRequestAds] says
+     * otherwise.
+     *
+     * A player who declines, or who is offline on first launch, gets the game
+     * with no ads and no revive offer. That is the harmless failure; the other
+     * one loses the listing.
+     */
+    private fun startConsentThenAds(activity: android.app.Activity) {
+        consent.refresh(activity) {
+            privacyOptionsRequired = consent.privacyOptionsRequired
+            if (!consent.canRequestAds) return@refresh
+            (ads as? AdMobGateway)?.start()
+            ads.preload()
+            // Loaded up front, because the moment it is wanted -- the instant
+            // the core falls -- is the worst possible moment to start
+            // fetching one.
+            ads.preloadRewarded()
+        }
+    }
+
+    /**
+     * Re-open Google's privacy form, from Settings.
+     *
+     * Required by Play in the regions where [privacyOptionsRequired] is true:
+     * a player who consented must be able to withdraw it without reinstalling.
+     * Any failure is reported as a transient message rather than swallowed,
+     * because a button that silently does nothing is worse than one that says
+     * why not.
+     */
+    fun showPrivacyOptions(activity: android.app.Activity) {
+        consent.showPrivacyOptions(activity) { error ->
+            if (error != null) showTransient(error.uppercase())
         }
     }
 
@@ -488,6 +537,32 @@ class GameViewModel @JvmOverloads constructor(
     } else {
         NoAdGateway()
     }
+
+    /**
+     * Google's consent layer, or a no-op when this build has no ads.
+     *
+     * Paired with [ads] deliberately: a build with no AdMob ids has nothing to
+     * ask consent about, and constructing the UMP client in that build would
+     * mean a network call and a possible form for a game that is never going
+     * to show an advert.
+     */
+    private val consent: ConsentGateway = consentOverride ?: if (PlayServices.adsConfigured) {
+        UmpConsentGateway(application)
+    } else {
+        NoConsentGateway()
+    }
+
+    /**
+     * True when Google says this player must be offered a privacy control.
+     *
+     * Read by the settings screen, which shows a PRIVACY OPTIONS row only when
+     * it is true — the 1.16.0 rule again, that a control which cannot act must
+     * not be offered. Backed by state rather than read straight from the
+     * gateway so that Compose recomposes when consent settles.
+     */
+    var privacyOptionsRequired by mutableStateOf(false)
+        private set
+
     private val adPolicy = AdPolicy()
 
     /** True while an interstitial is on screen and the game is waiting on it. */
@@ -788,8 +863,11 @@ class GameViewModel @JvmOverloads constructor(
             speedIndex = 0
             gameOverSummary = null
             runRecorded = false
-            revivesUsed = 0
-            reviveSpentThisRun = false
+            // Resumed, not restarted: a revive already spent on this run stays
+            // spent. Resetting here is what would turn "one per run" into "one
+            // per session", and backgrounding the game is free.
+            revivesUsed = run.revivesUsed
+            reviveSpentThisRun = run.revivesUsed > 0
             matchActive = true
             tutorialStep = -1
             pushHud()
@@ -1281,6 +1359,12 @@ class GameViewModel @JvmOverloads constructor(
         showBossPanel = false
         showDeployPanel = false
         pushHud()
+        // Written down now rather than at the next pause. "One revive per run"
+        // has to survive the process being killed while the ad's own Activity
+        // is in front of the game, which is precisely when Android is most
+        // willing to kill it.
+        viewModelScope.launch { persistRun() }
+        android.util.Log.d("CyOpsAds", "REVIVE_GRANTED wave=${engine.currentWave} paidWithAd=$spentAnAd")
         showTransient("SYSTEMS RESTORED — INTEGRITY ${engine.serverHp}")
     }
 
@@ -1356,7 +1440,8 @@ class GameViewModel @JvmOverloads constructor(
                 budgetEarned = engine.runBudgetEarned,
                 savedAtMillis = System.currentTimeMillis(),
                 mapId = engine.map.id,
-                modeId = engine.mode.id
+                modeId = engine.mode.id,
+                revivesUsed = revivesUsed
             )
         )
         hasSavedRun = true

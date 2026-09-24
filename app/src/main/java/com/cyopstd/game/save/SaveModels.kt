@@ -52,7 +52,20 @@ data class SavedRun(
      * resumed as a standard one — wrong integrity, wrong health curve, wrong
      * spawn pressure — and nothing said so.
      */
-    val modeId: String = "standard"
+    val modeId: String = "standard",
+    /**
+     * Rewarded revives already spent on this run.
+     *
+     * Carried in the save because the rule is *one revive per run*, and a run
+     * outlives the process it was started in. Without this, backgrounding the
+     * game after a revive and coming back to a killed process handed the
+     * player a second one — the counter lived only in the ViewModel, which is
+     * exactly as durable as the Activity that owns it.
+     *
+     * Defaults to zero, which is both the right answer for a save written
+     * before this field existed and the right answer for a fresh run.
+     */
+    val revivesUsed: Int = 0
 ) {
     /** A run is only worth offering as CONTINUE if the server is still standing. */
     val isResumable: Boolean get() = serverHp > 0 && wave >= 0

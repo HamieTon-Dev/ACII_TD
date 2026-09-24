@@ -2,15 +2,31 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
     <!--
+      PERMISSION AUDIT. Four are declared here and every one has a caller; the
+      rest of what ends up in the merged manifest comes from the Play SDKs and
+      is inventoried in PRIVACY_AND_DATA_SAFETY.md.
+
       The game itself is entirely offline: every asset is generated at runtime
-      and no gameplay feature needs a network. INTERNET and the ad id are here
-      solely for Google Play billing and AdMob, and a build with no Play ids
-      configured never opens a connection at all: it selects no-op gateways
-      and behaves exactly as the offline build did.
+      and no gameplay feature needs a network. A build with no Play ids
+      configured never opens a connection at all: it selects the no-op
+      gateways and behaves exactly as the offline build did.
     -->
+
+    <!-- Haptics. Used by HapticEngine, and switchable off in settings. -->
     <uses-permission android:name="android.permission.VIBRATE" />
+
+    <!-- Billing, AdMob and the consent form. Nothing in gameplay uses it. -->
     <uses-permission android:name="android.permission.INTERNET" />
+
+    <!-- Required by the Mobile Ads SDK to avoid requesting with no network. -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <!--
+      The advertising id. Declared because the Mobile Ads SDK reads it, which
+      is what Play's Data Safety form has to be told. It is the only device
+      identifier anything in this app touches, the game never reads it itself,
+      and a player can reset or delete it in Android's own settings.
+    -->
     <uses-permission android:name="com.google.android.gms.permission.AD_ID" />
 
     <uses-feature

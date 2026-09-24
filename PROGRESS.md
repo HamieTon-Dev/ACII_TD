@@ -4,7 +4,7 @@
 reads first. It records where the project actually stands, what is proven and
 what is not, and what comes next.
 
-_Last updated: v1.32.0 — the screen-size audit (N1) and the overlapping-node fix it found. See `CHANGELOG.md` for the full per-version history._
+_Last updated: v1.33.0 — Play release preparation (§O1): API 36, UMP consent, ad-id split per build type, and the two faults that audit found. See `CHANGELOG.md` for the full per-version history._
 
 ---
 
@@ -34,6 +34,7 @@ this section is the position marker. Update it when an item ships.
 | 11 | E1 — the "Hugging-Face" map | ⬜ in progress; the refactor landed in 1.28.0 |
 | 12 | E2 — AI bosses `[₩₩₩]` / `[¥¥¥]` | ⬜ needs C1 + D2 + E1 |
 | 13 | F3 — two-device cloud-save check | ⛔ needs a real Play Console |
+| 14 | O1 — Play release + AdMob rewarded | ◐ 1.33.0; blocked on the owner's AdMob ids, upload key and Console setup |
 
 **On the music:** the owner has set the generated mode tracks aside and will
 source music another way. The work stays in place and passing — HACK:AI has
@@ -66,6 +67,23 @@ enlarging the tap radius — nearest-node already wins every tap inside it, so a
 larger radius only eats the empty-space tap that clears a selection, and
 `WorldFitTest` pins that ceiling. It needs a sparser grid on small screens or
 pinch-to-zoom, which is a design change.
+
+**The Play release (§O1), and what auditing it turned up.** The rewarded-revive
+behaviour the brief described was already built and already correct — voluntary,
+rewarded-only, one per run, same wave at 50% integrity, granted from
+`onUserEarnedReward` and nowhere else. What the audit found was two things
+around it. **One revive per run lived only in the ViewModel**, so a process kill
+during the ad — which is exactly when Android is most willing to kill what is
+behind a full-screen Activity — handed the player a second one; it is now in the
+saved run. And **a keystore password was a string literal in a committed build
+file**. Both are fixed; the details are in §O1.
+
+Also worth carrying forward: **unit tests compile against the debug build
+config**, so any assertion about release configuration made by reading a
+`BuildConfig` value is answering the wrong question. Two `PlayServicesTest`
+cases did exactly that and only stopped being true when debug got its own test
+ad ids. The rule is now a pure function of its inputs so both build types can be
+asked properly.
 
 **Three things the test renderer cannot check.** Each cost a shipped bug.
 Robolectric substitutes its own **fonts**, so anything whose correctness

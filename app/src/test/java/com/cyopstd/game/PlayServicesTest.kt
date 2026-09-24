@@ -18,25 +18,92 @@ import org.junit.Test
 class PlayServicesTest {
 
     @Test
-    fun `an unconfigured build never claims to have ads`() {
-        // This is the state of the repository as checked in: no ids set.
+    fun `a release with no ids configured never claims to have ads`() {
+        // The rule that matters, asked of the *release* inputs.
+        //
+        // This used to be asserted by reading `PlayServices.adsConfigured`
+        // directly, which worked only while debug and release shared one
+        // configuration. Unit tests compile against the debug build config, so
+        // once debug gained its own test ids that assertion was answering a
+        // different question than the one it claimed to. The rule is now a
+        // function of its inputs, so both build types can be asked properly.
         assertFalse(
-            "a build with no AdMob ids must select the no-op gateway",
-            PlayServices.adsConfigured
+            "a release with no AdMob ids must select the no-op gateway",
+            PlayServices.adsConfigured(usingTestAds = false, appId = "", interstitialId = "")
+        )
+        assertFalse(
+            "a rewarded unit alone is not a configuration",
+            PlayServices.rewardedConfigured(
+                usingTestAds = false,
+                appId = "",
+                interstitialId = "",
+                rewardedId = "ca-app-pub-1234567890123456/1111111111"
+            )
         )
     }
 
     @Test
-    fun `google's sample ids do not count as configured`() {
+    fun `google's sample ids never count as a configured release`() {
         // The manifest falls back to the sample application id so the SDK can
-        // initialise at all. Without this check, a build that forgot to set
-        // the real ids would serve test ads to real players.
+        // initialise at all. Without this check, a release that forgot to set
+        // the real ids would serve test ads to real players -- which earns
+        // nothing and breaks AdMob policy.
         assertTrue(PlayServices.SAMPLE_APP_ID.startsWith("ca-app-pub-"))
         assertTrue(PlayServices.SAMPLE_INTERSTITIAL_ID.startsWith("ca-app-pub-"))
+
         assertFalse(
-            "the sample ids look real but must not be treated as configured",
-            PlayServices.adMobAppId == PlayServices.SAMPLE_APP_ID &&
-                PlayServices.adsConfigured
+            "the sample ids look real but must not configure a release",
+            PlayServices.adsConfigured(
+                usingTestAds = false,
+                appId = PlayServices.SAMPLE_APP_ID,
+                interstitialId = PlayServices.SAMPLE_INTERSTITIAL_ID
+            )
+        )
+        assertFalse(
+            "a real app id with a sample rewarded unit is still a test ad",
+            PlayServices.rewardedConfigured(
+                usingTestAds = false,
+                appId = "ca-app-pub-1234567890123456~1234567890",
+                interstitialId = "ca-app-pub-1234567890123456/2222222222",
+                rewardedId = PlayServices.SAMPLE_REWARDED_ID
+            )
+        )
+    }
+
+    @Test
+    fun `a properly configured release is recognised`() {
+        // The other way to be wrong: a build that is configured and silently
+        // uses the no-op gateway sells nothing at all.
+        assertTrue(
+            PlayServices.rewardedConfigured(
+                usingTestAds = false,
+                appId = "ca-app-pub-1234567890123456~1234567890",
+                interstitialId = "ca-app-pub-1234567890123456/2222222222",
+                rewardedId = "ca-app-pub-1234567890123456/3333333333"
+            )
+        )
+    }
+
+    @Test
+    fun `a debug build is configured, and only with Google's own units`() {
+        // Debug carries the test units so the whole revive path can be tried
+        // on a phone without an AdMob account. It must not accept anything
+        // else under that flag.
+        assertTrue(
+            PlayServices.rewardedConfigured(
+                usingTestAds = true,
+                appId = PlayServices.SAMPLE_APP_ID,
+                interstitialId = PlayServices.SAMPLE_INTERSTITIAL_ID,
+                rewardedId = PlayServices.SAMPLE_REWARDED_ID
+            )
+        )
+        assertFalse(
+            "a test-ad build must not be pointed at production units",
+            PlayServices.adsConfigured(
+                usingTestAds = true,
+                appId = "ca-app-pub-1234567890123456~1234567890",
+                interstitialId = "ca-app-pub-1234567890123456/2222222222"
+            )
         )
     }
 

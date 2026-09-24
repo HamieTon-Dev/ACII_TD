@@ -283,7 +283,15 @@ fun CyOpsApp(
                         settingsReturn = Screen.MainMenu
                         screen = Screen.MainMenu
                     },
-                    onBack = { viewModel.playClick(); screen = settingsReturn }
+                    onBack = { viewModel.playClick(); screen = settingsReturn },
+                    privacyOptionsRequired = viewModel.privacyOptionsRequired,
+                    onPrivacyOptions = {
+                        viewModel.playClick()
+                        // Google's form needs a real Activity. The composition
+                        // is inside one; anything else means the SDK is not in
+                        // a position to show it anyway.
+                        (context as? android.app.Activity)?.let(viewModel::showPrivacyOptions)
+                    }
                 )
             }
 

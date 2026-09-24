@@ -12,8 +12,15 @@ CyOpsTD-*-source.tar.gz
 *.ap_
 *.dex
 
-# Local SDK location and signing material
+# Local SDK location, signing material and Play/AdMob configuration.
+#
+# `secrets.properties` is where the AdMob ids and the upload key's password
+# live. The repository's own `gradle.properties` is TRACKED and holds build
+# settings only -- putting a secret there commits it, which is why there is a
+# separate file with an obvious name.
 local.properties
+secrets.properties
+keystore.properties
 keystore/
 *.jks
 *.keystore

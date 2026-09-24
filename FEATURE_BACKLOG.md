@@ -802,3 +802,150 @@ Backgrounds (§F) can slot in anywhere; they touch nothing else.
 
 Ship as a new version when a group lands, not per item — the owner asked for
 this build to be pushed as a new version once the agents are in.
+
+---
+
+## O. Production Google Play release with AdMob rewarded ads
+
+### O1 ◐ **RELEASE BLOCKER** — 2026 Play requirements, UMP consent, release pathway *(landed 1.33.0; owner input required to finish)*
+
+**Asked, verbatim spec (2026-09-24).** The owner supplied a 23-point brief.
+Summarised here; the numbering below is the owner's so nothing gets lost.
+
+> "We are preparing CyOpsTD / Packet Bastion for a production Google Play
+> release with Google AdMob rewarded advertising. Do NOT redesign or remove
+> the existing revive system."
+
+**Also said, and it corrects a mistake of mine:** *"even the Samsung S9 was
+2960 x 1440 pixels. youre focusing on the wrong things now."* The N1 sweep was
+in **dp**, not pixels — an S9 is roughly 845×411dp in landscape, so 640×360dp
+was a real budget-phone window and not an absurd one. But the point behind it
+stands: N1 is done, further screen-size work is not where the release risk is,
+and this section is.
+
+#### Intended revive behaviour — already built, must not regress
+
+Audited before touching anything, and the existing implementation already
+matches every line of the brief:
+
+| Requirement | Where it lives | State |
+| --- | --- | --- |
+| Voluntary "WATCH AD TO CONTINUE" | `GameOverOverlay`, offered only when `canReviveNow` | ✅ |
+| Rewarded format only | `AdGateway.showRewarded`, a separate unit from the interstitial | ✅ |
+| One revive per run | `Balance.REVIVES_PER_RUN = 1`, checked in `canReviveNow` | ✅ |
+| Resume the same wave | `GameEngine.reviveRun()` steps `currentWave` back so the wave is rebuilt | ✅ |
+| Core to 50% | `Balance.REVIVE_INTEGRITY_FRACTION = 0.5f` | ✅ |
+| Agents and currency preserved | `reviveRun()` clears enemies/projectiles/effects only | ✅ |
+| Never soft-lock | every path through `AdMobGateway` calls back exactly once | ✅ |
+| Grant only from the reward callback | `earned` is latched in `onUserEarnedReward` and read on dismissal | ✅ |
+| User-initiated only | nothing calls `watchAdToRevive()` but the button | ✅ |
+
+The REVIVE PACK (§F2) raises the allowance and skips the ad for someone who
+paid to be rid of it. That is a purchase, not a second free revive, and it
+stays.
+
+#### What the brief actually adds
+
+1. `compileSdk` / `targetSdk` **36**. Needs an AGP bump; 8.7.3 does not know
+   API 36.
+2. Confirm `minSdk 24` against the current Mobile Ads SDK.
+3. Current stable Mobile Ads SDK (was 23.6.0).
+4. App ID and rewarded unit ID kept **separate** and clearly documented.
+   `ca-app-pub-…~…` is the app; `ca-app-pub-…/…` is the unit. Already
+   separate; the documentation is what is missing.
+5. **Debug builds must always use Google's test rewarded unit**
+   `ca-app-pub-3940256099942544/5224354917`, never a production one.
+6. Release builds take the rewarded unit from `cyops.admob.rewardedId`.
+7. **UMP (consent) SDK** — none today. Refresh at startup, show the form when
+   required, survive errors, expose a Privacy Options entry from Settings when
+   Google says one is required, and request ads only when consent allows.
+8. Manifest audit: app-id metadata, network permissions, `AD_ID`, merged SDK
+   permissions, nothing the game does not need.
+9. Rewarded lifecycle — mostly built; the gap is the debug logging in (11).
+10. One revive per run, surviving Activity recreation, reset on a new run.
+11. Debug logging: `AD_LOAD_STARTED`, `AD_LOADED`, `AD_LOAD_FAILED`,
+    `AD_SHOW_STARTED`, `AD_SHOW_FAILED`, `AD_DISMISSED`, `REWARD_EARNED`,
+    `REVIVE_GRANTED`. No user data in logs.
+12. Release config: not debuggable, no dev menus, no test-only controls, **no
+    test ad ids**, API 36, builds as an `.aab`, APK still available locally.
+13. **Signing audit.** No keystores or passwords in source control.
+    *Today's build has a keystore password in `app/build.gradle.kts`.* That is
+    the finding, and it must be fixed.
+14. `versionCode` an incrementable integer.
+15. Four documents: `PLAY_STORE_RELEASE.md`, `ADMOB_SETUP.md`,
+    `PRIVACY_AND_DATA_SAFETY.md`, `RELEASE_CHECKLIST.md`.
+16–19. What each document must cover.
+20. Full test suite, plus tests for the rewarded-revive state machine.
+21. Debug APK on the test rewarded unit.
+22. Release AAB, failing safely or using explicit placeholders rather than
+    inventing production ids.
+23. A completion report listing every id, path and remaining blocker.
+
+**On versionName.** The brief says *"Preserve versionName 1.23.0 unless a
+version bump is required by the existing build history."* It is: the build
+history is at 1.32.0 and Play refuses a `versionCode` it has already seen.
+1.23.0 shipped as versionCode 27.
+
+#### Standing constraints
+
+*"Do not make unrelated gameplay or visual changes. Do not remove existing
+functionality. Run tests before declaring the release ready."*
+
+#### What landed in 1.33.0
+
+| # | Requirement | State |
+| --- | --- | --- |
+| 1 | `compileSdk` / `targetSdk` 36 | ✅ via AGP 8.13.2 + Gradle 8.13 |
+| 2 | `minSdk` vs the Ads SDK | ✅ 24, above the SDK's own floor |
+| 3 | Current Mobile Ads SDK | ◐ 24.5.0, **not** 25.x — see the note below |
+| 4 | App id separate from unit id | ✅ separate properties, documented in ADMOB_SETUP.md |
+| 5 | Debug always uses the test rewarded unit | ✅ set per build type, not a flag |
+| 6 | Release uses `cyops.admob.rewardedId` | ✅ |
+| 7 | UMP consent | ✅ startup refresh, form when required, errors survived, PRIVACY OPTIONS in Settings, SDK not initialised until consent allows |
+| 8 | Manifest audit | ✅ four declared permissions, each justified in the file; SDK-merged ones inventoried in PRIVACY_AND_DATA_SAFETY.md |
+| 9 | Rewarded lifecycle | ✅ was already correct; logging added |
+| 10 | One revive per run, across recreation | ✅ **was broken** — see below |
+| 11 | Debug logging vocabulary | ✅ all eight events under tag `CyOpsAds` |
+| 12 | Release configuration | ✅ not debuggable, minified, no test ids, builds as `.aab`, APK still available |
+| 13 | Signing audit | ✅ **found a password in the build file**; now read from outside source control |
+| 14 | Incrementable `versionCode` | ✅ 37 |
+| 15–19 | Four documents | ✅ |
+| 20 | Tests | ✅ 580 green, including a new rewarded-revive state machine suite |
+| 21 | Debug APK on the test unit | ✅ |
+| 22 | Release AAB | ✅ builds; **unsigned and ad-free** without the owner's ids and key, by design |
+
+#### Two things the audit actually found
+
+**A revive could be spent twice.** "One per run" lived only in the ViewModel.
+A rewarded ad puts its own Activity in front of the game, which is precisely
+when Android is most willing to kill what is behind it — so the rule was really
+"one per process". The count is now written into the saved run the instant a
+revive is granted, and `RewardedReviveStateMachineTest` kills and rebuilds the
+ViewModel to prove it survives.
+
+**A keystore password was in a committed file.** `app/build.gradle.kts` carried
+`storePassword = "cyopstd"` for the local self-signed dev key. Throwaway key,
+real password in source control. Signing now reads four values from Gradle
+properties, an untracked `keystore.properties`, or the environment.
+
+#### Why the Ads SDK is 24.5.0 and not 25.5.0
+
+25.x resolves and downloads fine, and then fails to compile: its artifacts
+carry Kotlin **2.3** metadata and this project is on Kotlin 2.0.21. Adopting it
+means a Kotlin upgrade, which drags the Compose compiler with it — a separate
+piece of work with its own risk, and not something to bundle into a release
+change. 24.5.0 is current, supported, and satisfies every requirement in the
+brief.
+
+#### Still blocked on the owner
+
+None of these can be done from this repository:
+
+- AdMob **application id**, **interstitial unit id**, **rewarded unit id**.
+- An **upload keystore**. Release builds are currently unsigned.
+- A **consent message published in the AdMob console** — UMP shows whatever is
+  published there, and shows nothing if nothing is.
+- Play Console products, `revive_pack` included.
+- A **privacy policy URL**, mandatory because the app shows ads.
+- The closed test: **12 testers, 14 continuous days**, which is a calendar
+  delay rather than a work item.

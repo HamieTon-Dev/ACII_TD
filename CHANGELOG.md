@@ -7,6 +7,59 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [1.33.0]
+
+### Added — Google Play release preparation, and the consent layer it needs
+
+Targets Android API 36, which is what Play requires for new uploads. Build
+tooling moved with it (Gradle 8.13, Android Gradle Plugin 8.13.2) and the
+Google Mobile Ads SDK is now 24.5.0.
+
+**Consent.** The game now runs Google's User Messaging Platform before any ad
+is requested: consent is refreshed at startup, the form is shown where a region
+requires one, and the ads SDK is not initialised at all until consent permits
+it. Previously the SDK started the moment the game did. A player who declines,
+or who is offline on first launch, gets the game with no ads and no ad revive —
+which is the harmless outcome.
+
+Where Google says a privacy entry point is required, **Settings gains a PRIVACY
+OPTIONS control** that reopens the form, so consent can be withdrawn without
+reinstalling. It is hidden everywhere it would have nothing to show.
+
+**Debug builds now use Google's test ad units, always.** The whole revive path
+— preload, offer, show, reward, revive — can be exercised on a real phone with
+no AdMob account and without a single real impression. Release builds use only
+the ids supplied at build time, and a release with none configured shows no ads
+rather than falling back to a test one.
+
+### Fixed — a revive could be spent twice across a process restart
+
+One rewarded revive per run, and the counter lived only in memory. A rewarded
+ad puts its own Activity in front of the game, which is exactly when Android is
+most willing to kill what is behind it — so "one per run" quietly became "one
+per process". The count is now written into the saved run the moment a revive
+is granted.
+
+### Changed — the keystore password is out of the build file
+
+Release signing reads its path, password, alias and key password from Gradle
+properties, an untracked `keystore.properties`, or environment variables. A
+build with none of them configured still succeeds and produces an unsigned
+bundle, which is the honest failure — the previous arrangement had a password
+as a string literal in a committed file.
+
+### Added — four release documents
+
+`PLAY_STORE_RELEASE.md`, `ADMOB_SETUP.md`, `PRIVACY_AND_DATA_SAFETY.md` and
+`RELEASE_CHECKLIST.md`, plus `tools/verify-release-ads.sh`, which reads the ad
+ids back out of a built bundle and fails if a Google test id is in it.
+
+Nothing about the revive rules changed: still voluntary, still rewarded-only,
+still one per run, still the same wave at 50% integrity with every agent and
+every coin intact, and still granted from the reward callback and nowhere else.
+
+---
+
 ## [1.32.0]
 
 ### Fixed — two deployment nodes were drawn on top of each other
