@@ -1440,6 +1440,9 @@ class GameViewModel @JvmOverloads constructor(
     /** Whether any music is currently asked to play. */
     val musicWanted: Boolean get() = audio.musicWanted
 
+    /** The level music is actually playing at: the setting, times the launch fade. */
+    val musicLevel: Float get() = audio.musicLevel
+
     override fun onCleared() {
         super.onCleared()
         collectJobs.forEach { it.cancel() }

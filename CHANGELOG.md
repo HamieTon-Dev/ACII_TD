@@ -7,6 +7,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [1.31.0]
+
+### Changed — the music eases in at launch
+
+It used to arrive at full volume a fraction of a second after the boot chime
+finished, which read as one sound interrupting the other. Now there are five
+seconds of quiet from opening the app, then the music rises over four seconds.
+
+It rises to **your** volume, not past it. The fade is a multiplier on the
+music setting, so if you have music at 20% it ends at 20%, and if you have it
+off you hear nothing at any point. Moving the slider during the fade takes
+effect immediately.
+
+Launch only — coming back to the menu from a run does not replay it.
+
+---
+
 ## [1.30.0]
 
 ### Changed — integrity is shown once, not twice

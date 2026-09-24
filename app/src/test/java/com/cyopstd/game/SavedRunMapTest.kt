@@ -72,8 +72,26 @@ class SavedRunMapTest {
         return result
     }
 
+    /**
+     * Pumps for a fixed stretch regardless of any condition.
+     *
+     * Needed where the thing being waited for is a write that has not been
+     * *issued* yet. `pumpUntil { readSavedRun() == null }` looked like it
+     * waited for startNewGame's clear to land, and on a fresh store it
+     * returned instantly because there was never a save to clear -- so the
+     * clear arrived after the persist below and wiped the run under test.
+     * A condition that is already true is not a wait.
+     */
+    private fun settle(millis: Long = 1_500) {
+        val deadline = System.currentTimeMillis() + millis
+        while (System.currentTimeMillis() < deadline) {
+            shadowOf(Looper.getMainLooper()).idle()
+            Thread.sleep(5)
+        }
+    }
+
     private fun pumpUntil(ready: () -> Boolean) {
-        val deadline = System.currentTimeMillis() + 5_000
+        val deadline = System.currentTimeMillis() + 15_000
         while (!ready() && System.currentTimeMillis() < deadline) {
             shadowOf(Looper.getMainLooper()).idle()
             Thread.sleep(5)
@@ -106,11 +124,10 @@ class SavedRunMapTest {
     fun `a saved run records its level and its mode`() {
         val viewModel = freshViewModel()
         viewModel.startNewGame()
-        // startNewGame clears any previous save on its own coroutine. Waiting
-        // for that to land first is not ceremony: left running, the clear
-        // arrives *after* the persist below and wipes the run this test is
-        // about to read.
-        pumpUntil { readSavedRun() == null }
+        // startNewGame clears any previous save on its own coroutine, and
+        // that clear has to land before the persist below or it wipes the run
+        // this test is about to read.
+        settle()
 
         viewModel.leaveMatch()
         // leaveMatch persists on its own scope, so the read has to wait for

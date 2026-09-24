@@ -4,11 +4,13 @@ import android.content.Context
 import android.media.AudioAttributes
 import android.media.MediaPlayer
 import android.media.SoundPool
+import android.os.SystemClock
 import android.util.Log
 import com.cyopstd.game.R
 import com.cyopstd.game.core.GameMode
 import com.cyopstd.game.engine.GameSound
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.io.File
@@ -101,6 +103,7 @@ class AudioEngine(private val context: Context) {
 
     fun initialize(scope: CoroutineScope) {
         audioScope = scope
+        beginStartupFade(scope)
         engineFor(ChiptuneComposer.Track.GAME).prepare(scope)
         menuMusic.prepare(scope)
         if (soundPool != null) return
@@ -298,9 +301,59 @@ class AudioEngine(private val context: Context) {
     fun applyVolumes(music: Float, sfx: Float) {
         musicVolume = music
         sfxVolume = sfx
-        synchronized(matchMusic) { matchMusic.values.toList() }.forEach { it.setVolume(music) }
-        menuMusic.setVolume(music)
+        applyMusicLevel()
     }
+
+    // ------------------------------------------------------- the startup fade
+
+    /**
+     * How far through the launch fade the music is, 0 to 1.
+     *
+     * A **multiplier** on the player's setting rather than a level of its own.
+     * That distinction is the whole feature: ramping an absolute volume would
+     * quietly override somebody who turned music down to 20%, taking them to
+     * full and back, which is the same bug as ignoring the setting outright.
+     */
+    @Volatile
+    private var startupRamp = 0f
+
+    /** The level actually being sent to the players, setting and ramp combined. */
+    val musicLevel: Float get() = musicVolume * startupRamp
+
+    private fun applyMusicLevel() {
+        val level = musicLevel
+        synchronized(matchMusic) { matchMusic.values.toList() }.forEach { it.setVolume(level) }
+        menuMusic.setVolume(level)
+    }
+
+    /**
+     * Silence, then a slow rise, once per launch.
+     *
+     * The music used to arrive at full volume a fraction of a second after the
+     * boot chime finished — the ident and the boot screen take about 3.9s
+     * between them — and two sounds back to back with no gap read as one
+     * interrupting the other.
+     *
+     * Driven off `elapsedRealtime`, so backgrounding the app mid-fade and
+     * coming back does not restart the wait. The fade belongs to the launch,
+     * and the launch already happened.
+     */
+    private fun beginStartupFade(scope: CoroutineScope) {
+        if (startupFading) return
+        startupFading = true
+        val startedAt = SystemClock.elapsedRealtime()
+        scope.launch {
+            while (true) {
+                val elapsed = (SystemClock.elapsedRealtime() - startedAt) / 1000f
+                startupRamp = startupRampAt(elapsed)
+                applyMusicLevel()
+                if (startupRamp >= 1f) return@launch
+                delay(FADE_TICK_MS)
+            }
+        }
+    }
+
+    private var startupFading = false
 
     fun release() {
         synchronized(matchMusic) {
@@ -319,8 +372,29 @@ class AudioEngine(private val context: Context) {
         ready = false
     }
 
-    private companion object {
-        const val TAG = "CyOpsAudio"
-        const val MAX_STREAMS = 12
+    companion object {
+        private const val TAG = "CyOpsAudio"
+        private const val MAX_STREAMS = 12
+        private const val FADE_TICK_MS = 40L
+
+        /** Nothing at all for this long after launch. */
+        const val STARTUP_SILENCE_SECONDS = 5f
+
+        /** Then a rise to the player's chosen level over this long. */
+        const val STARTUP_FADE_SECONDS = 4f
+
+        /**
+         * The launch ramp at [seconds] after start, 0 to 1.
+         *
+         * A pure function so the shape can be asserted rather than watched:
+         * silent for the whole delay, a straight rise, and pinned at 1
+         * afterwards so nothing keeps recomputing it for the rest of the
+         * session.
+         */
+        fun startupRampAt(seconds: Float): Float = when {
+            seconds <= STARTUP_SILENCE_SECONDS -> 0f
+            seconds >= STARTUP_SILENCE_SECONDS + STARTUP_FADE_SECONDS -> 1f
+            else -> (seconds - STARTUP_SILENCE_SECONDS) / STARTUP_FADE_SECONDS
+        }
     }
 }

@@ -544,7 +544,7 @@ have caught that: they asserted the beats existed and held, which they did.
 `MenuBoot`, the power LED, the per-element reveal and the MENU INITIALIZATION
 setting are all gone. What replaced it is M2.
 
-### M4 ⬜ Menu music should ease in, not arrive
+### M4 ✅ shipped in 1.31.0 — menu music eases in
 
 **Reported on 1.28.0:** *"the music starts from app open. delay music for 5
 seconds then slowly introduce it by scaling volume from 0% → 100% (of volume
@@ -586,9 +586,13 @@ back to back with no gap reads as one of them interrupting the other.
 - **Do not delay the boot chime with it.** That is a separate sound with its
   own moment and should still fire on the ident.
 
-Small, but it touches `AudioEngine`, `MusicEngine` and the view model's
-settings path, so it wants the fade fraction in one place with a test that a
-zero setting stays silent throughout.
+Done: five seconds of silence, then a four-second rise.
+`AudioEngine.startupRampAt` is a plain function of elapsed seconds so the shape
+is asserted rather than watched, and the ramp is applied as a multiplier
+wherever the level is set — so moving the slider mid-fade tracks immediately,
+and a player at zero hears nothing at any point in it. Driven off
+`elapsedRealtime`, so backgrounding mid-fade and returning does not restart the
+wait.
 
 ### M3 ✅ fixed in 1.29.0 — music kept playing with the app in the background
 
