@@ -10,6 +10,10 @@ _Last updated: v1.17.0 — legibility pass, panel rebuild, and the rack animatio
 
 ## 0. What is queued
 
+**When the owner says "continue", take the first unfinished item from
+`FEATURE_BACKLOG.md` §K and work it.** That is a standing instruction, not a
+one-off; it does not need re-asking each time.
+
 Requested but **not built**: `FEATURE_BACKLOG.md`. It holds the owner's
 add-on list (HUD sizing, a boss dossier panel, boss identities, REDHAT and
 BLUEHAT, a revive on a rewarded ad, a second map, new living-background
