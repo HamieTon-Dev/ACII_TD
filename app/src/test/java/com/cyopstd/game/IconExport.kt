@@ -79,7 +79,30 @@ class IconExport {
      */
     @Test
     fun `themed monochrome layer 512`() {
-        val size = 512
+        write("cyops-td-icon-512-monochrome", monochrome(512))
+    }
+
+    /**
+     * The monochrome layer at the sizes a launcher actually draws it.
+     *
+     * 48 through 192 is mdpi to xxxhdpi for a launcher icon. This is where a
+     * themed icon either survives or turns to mush, and it is the only
+     * question worth asking about one: the 512 render flatters everything.
+     *
+     * Written under a fixed name; a before-and-after is produced by running
+     * this twice and renaming between runs. Passing the variant in as a system
+     * property was the first attempt and was quietly worse: the default fired
+     * whether or not the property arrived, so both runs could write the same
+     * file and the comparison would have been a picture of one version twice.
+     */
+    @Test
+    fun `themed monochrome layer at launcher sizes`() {
+        for (size in listOf(48, 72, 96, 144, 192)) {
+            write("mono-$size", monochrome(size), minBytes = 100)
+        }
+    }
+
+    private fun monochrome(size: Int): Bitmap {
         val bitmap = Bitmap.createBitmap(size, size, Bitmap.Config.ARGB_8888)
         val canvas = Canvas(bitmap)
         canvas.drawColor(Color.BLACK)
@@ -88,7 +111,7 @@ class IconExport {
             setTint(Color.WHITE)
             draw(canvas)
         }
-        write("cyops-td-icon-512-monochrome", bitmap)
+        return bitmap
     }
 
     // ------------------------------------------------------------- machinery
@@ -140,7 +163,7 @@ class IconExport {
         }
     }
 
-    private fun write(name: String, bitmap: Bitmap) {
+    private fun write(name: String, bitmap: Bitmap, minBytes: Int = 1_000) {
         outputDir.mkdirs()
         val file = File(outputDir, "$name.png")
         file.outputStream().use { bitmap.compress(Bitmap.CompressFormat.PNG, 100, it) }
@@ -149,7 +172,7 @@ class IconExport {
         // than one that fails: the whole point is that somebody looks at the
         // result, and a 0-byte PNG looks like a missing file rather than a
         // broken render.
-        assertTrue("$name.png was not written", file.exists() && file.length() > 1_000)
+        assertTrue("$name.png was not written", file.exists() && file.length() > minBytes)
         assertTrue(
             "$name.png rendered blank — nothing but one flat colour",
             distinctColours(bitmap) > 3

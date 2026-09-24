@@ -5,9 +5,25 @@
     android:height="108dp"
     android:viewportWidth="108"
     android:viewportHeight="108">
+    <!--
+      Stroked, not a filled donut, and that is the whole fix.
+
+      As a donut the ring's inner wall sat at x=35 while the chevron strokes
+      below reach 37-2.1 = 34.9, so the ">" and "<" fused with the shield and
+      the face read as a blob rather than >_<. The colour foreground uses the
+      identical chevron coordinates and never had the problem, because its
+      shield is a stroked outline with nothing for them to collide with. This
+      now matches it.
+
+      3.6 rather than the colour layer's 3.2: a themed icon is drawn as a flat
+      silhouette with no fill behind it, so the outline carries the whole shape
+      and needs the extra weight to hold at 48px.
+    -->
     <path
-        android:fillColor="#FFFFFFFF"
-        android:pathData="M54,25 L79,34 L79,56 C79,70 68,79 54,85 C40,79 29,70 29,56 L29,34 Z M54,31 L35,38 L35,56 C35,66 43,74 54,79 C65,74 73,66 73,56 L73,38 Z" />
+        android:strokeColor="#FFFFFFFF"
+        android:strokeWidth="3.6"
+        android:strokeLineJoin="round"
+        android:pathData="M54,25 L79,34 L79,56 C79,70 68,79 54,85 C40,79 29,70 29,56 L29,34 Z" />
     <path
         android:strokeColor="#FFFFFFFF"
         android:strokeWidth="4.2"
