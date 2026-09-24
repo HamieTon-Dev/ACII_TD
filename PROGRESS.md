@@ -12,7 +12,8 @@ _Last updated: v1.17.0 — legibility pass, panel rebuild, and the rack animatio
 
 Requested but **not built**: `FEATURE_BACKLOG.md`. It holds the owner's
 add-on list (HUD sizing, a boss dossier panel, boss identities, REDHAT and
-BLUEHAT, a second map, new living-background shapes), what each one touches in
+BLUEHAT, a revive on a rewarded ad, a second map, new living-background
+shapes), what each one touches in
 this codebase, and the decisions still open. Read it before starting new work,
 and move an item into `CHANGELOG.md` when it ships rather than leaving it in
 both.

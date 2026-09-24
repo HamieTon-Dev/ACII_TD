@@ -237,7 +237,98 @@ the boss does nothing. Whichever way it goes, it wants a test.
 
 ---
 
-## F. Options for the owner to choose
+## F. Revive on a rewarded ad
+
+### F1 ❓ Watch an ad to continue from the same wave at half integrity
+
+**Asked:** *"if player loses add a button to choose to watch a 30 second ad to
+revive player at same round with half health of core server and continue."*
+
+The offer belongs on the game-over overlay (`ui/game/GameOverlays.kt`), beside
+the existing actions: *CONTINUE — WATCH AD*, and whatever the player does, the
+run either resumes or ends properly.
+
+**This is a rewarded ad, not the interstitial the app already shows.** The
+distinction matters and is the first piece of work: `AdGateway` today has one
+method, `showInterstitial(onFinished)`, and it calls back on *dismissal*. A
+revive granted on dismissal is a revive granted for closing the ad after two
+seconds. A rewarded ad has a separate SDK path (`RewardedAd`) with a **reward
+callback that fires only on completion**, and the revive must hang off that and
+nothing else. The gateway grows a second method whose continuation carries
+whether the reward was actually earned.
+
+Keep the discipline the interstitial path already has: every path calls the
+continuation exactly once, including when the SDK delivers both a dismissal and
+a failure. A player who is owed a revive and gets a dead screen instead has lost
+a run to a bug.
+
+**"30 seconds" is not ours to set** — the same caveat as the loss interstitial,
+now in `RELEASING.md`. Length belongs to the ad format and the network; rewarded
+ads are typically 15–30s with the reward at the end. The app decides *whether*
+to offer one and what it grants, not how long it runs.
+
+#### What the revive restores
+
+Owner's spec: same wave, **half** core integrity, continue. Concretely:
+
+- `serverHp = ceil(serverMaxHp / 2)` — from the mode's max, so it is half of 70
+  on Hack:AI and half of 100 on standard.
+- **Clear the threats currently on the field.** Reviving into the swarm that
+  just killed the player is not a revive; they would lose again inside a second
+  and would rightly feel cheated of the ad they watched.
+- Keep the wave number, the deployed agents, their levels and the ◇ crypto —
+  the run continues, it does not restart.
+- ❓ **Resume where, exactly.** Re-entering the *preparing* phase for the same
+  wave gives a moment to spend crypto and re-place, which is what makes the
+  revive feel like a second chance. Resuming mid-wave is harsher and closer to
+  a literal reading of "continue". Recommendation: preparing phase.
+
+#### The part that will bite
+
+`GameViewModel.onRunEnded()` currently does everything at once: it records the
+run result, submits the leaderboard entry, clears the saved run, and may show
+the loss interstitial. **A revive after that double-counts.** One run would post
+two leaderboard entries — one at the wave it died on and one at the wave it
+finally reached — and its attacks, kills and crypto would land twice in lifetime
+stats.
+
+So the order has to change: on game over, *offer* first, and only record,
+submit and clear the save once the player declines, or once a revive has been
+spent and the run ends for real. That reordering is the actual work here; the ad
+is the easy half. It wants a test that a revived run produces exactly one
+leaderboard entry and one set of stats.
+
+#### Policy questions
+
+- ❓ **How many per run.** Unlimited revives mean the run never ends and the
+  leaderboard stops meaning anything. Recommendation: **once per run**, stated
+  on the button so nobody watches an ad expecting a second.
+- ❓ **Players who bought REMOVE ADS.** There is no ad to show them. Either they
+  lose access to the revive — which is charging someone $4.99 to be given less —
+  or they get it free. Recommendation: **free, once per run, same limit.** It
+  makes REMOVE ADS strictly better, which is what a paid convenience should be.
+- **The loss interstitial.** A player who watches a rewarded ad must not then be
+  shown an interstitial when the run finally ends. A revive spends the run's ad
+  budget; suppress the interstitial for that run.
+- **The cooldown.** `AdPolicy`'s 180s gap exists to stop *unsolicited*
+  interstitials stacking up. A revive is player-initiated and should be exempt,
+  or a quick second loss offers a revive the player cannot take.
+- **An unconfigured build** (`PlayServices.adsConfigured == false`, which is how
+  the repo ships) has no ad to offer. The button is hidden rather than dead —
+  the rule from §1.16: a control that cannot act must say so, and must never
+  quietly do something else.
+
+#### Why it is worth building
+
+It is the one monetisation in the list that a player is *glad* to see: it
+arrives exactly when they want something, it is opt-in, and it converts a lost
+run into two more minutes of play. Google's own policy is comfortable with
+rewarded ads on that shape as long as the value is stated up front and nothing
+auto-plays, which is how the button reads.
+
+---
+
+## G. Options for the owner to choose
 
 Asked for: *"if you think of other boss options or level options let me know and
 I'll choose."*
@@ -290,7 +381,7 @@ mistakable for a threat — cool, desaturated, low alpha, drawn under the lanes:
 
 ---
 
-## G. Sequence
+## H. Sequence
 
 The dependencies decide most of this:
 
@@ -299,8 +390,11 @@ The dependencies decide most of this:
 3. **C1** — boss variants. Unblocks B1's dossier, C2, and E2.
 4. **B1** — the dossier, once there is something worth showing in it.
 5. **D2** — RH/BH, once the guard rails in §D2 are chosen.
-6. **E1** — the map layer. Largest, and worth its own version.
-7. **E2** — the AI bosses, last, because they need C1, D2 and E1.
+6. **F1** — the revive. Independent of the boss and map work, but it reorders
+   the run-end path, so it is better done while that path is quiet than
+   alongside a change to it.
+7. **E1** — the map layer. Largest, and worth its own version.
+8. **E2** — the AI bosses, last, because they need C1, D2 and E1.
 
 Backgrounds (§F) can slot in anywhere; they touch nothing else.
 
