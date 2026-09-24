@@ -1161,3 +1161,62 @@ CRYPTOGRAPHER implied encryption could be broken and now states the fictional
 licence outright. `[REDHAT]`/`[BLUEHAT]` (§D2) still exist only in this
 backlog — when they ship, Red Hat's guidance is two words and the hat-colour
 sense must be the one explained.
+
+---
+
+## Q. Encryption of account-linking and cloud-save data
+
+### Q1 ✅ Audited and hardened *(1.34.0)*
+
+**Asked:** *"make sure that the user data used to link account and save to
+cloud is encrypted as per google play policy."*
+
+**Audited, and the position was already sound.** The finding worth recording is
+*why*, because it is structural rather than a setting:
+
+- **The app opens no connections of its own.** No HTTP client, no socket, no
+  URL anywhere in `app/src/main`. Every byte that leaves the device goes
+  through a Google SDK — Play Games Services for linking and cloud save, Play
+  Billing for purchases, Mobile Ads and UMP for advertising — and each is TLS
+  to Google. There is no code path that *could* send cleartext.
+- **Account linking never touches a credential.** The app does not implement
+  sign-in; it hands off to `GamesSignInClient` and receives a boolean and a
+  display name. No password, token, session or refresh token exists in this
+  codebase to encrypt or leak.
+- **The callsign cannot hold personal data.** It is sanitised to `A–Z`, `0–9`,
+  `_`, `-`, capped at 16 characters, on the way in. An email or a phone number
+  does not survive it. That was done for the monospace UI; the privacy
+  property is a side effect worth keeping.
+- **At rest:** app-private DataStore on a file-based-encrypted partition
+  (mandatory since Android 10); the Play Games snapshot on Google's
+  infrastructure; Auto Backup encrypted with a client-side secret from the
+  device lock screen on Android 9+, which Google itself cannot read.
+
+**What changed.** `usesCleartextTraffic="false"` is now declared explicitly on
+the application. It changes no behaviour — it is already the platform default
+at targetSdk 28+ — but it turns "encrypted in transit" from an inherited
+default into a property of the built artifact that can be read back out of it,
+which is what Play's Data Safety form is actually asking about. It also makes a
+dependency that ever permits cleartext fail the manifest merge instead of
+winning it silently.
+
+**Deliberately NOT done: encrypting the local DataStore.** Play's User Data
+policy requires secure *transmission*, not encryption of app-private files at
+rest, and the platform already encrypts the partition. Jetpack Security would
+add a hardware-keystore dependency, a migration for every existing install, and
+a failure mode where an invalidated key destroys a player's whole progress —
+real risk, taken on behalf of game statistics and a sixteen-character handle.
+**Revisit if anything genuinely sensitive is ever stored.**
+
+**Verification added.** `DataEncryptionTest` asserts the no-raw-networking
+guarantee, that no credential is stored, that the callsign rejects personal
+data, and that the cloud payload carries no entitlements or settings. It was
+checked against an injected `HttpURLConnection` to confirm it can fail.
+`tools/verify-release.sh` (renamed from `verify-release-ads.sh`) now also reads
+cleartext and debuggable state out of the compiled manifest of the built APK,
+and was confirmed to fail on the debug APK.
+
+**One trap recorded:** the *merged text* manifest carries source comments
+through, so a grep of it for a cleartext declaration reported one that was only
+the wording of a comment explaining the rule. Check the compiled binary
+manifest via `aapt2 dump xmltree`, not the merged text.

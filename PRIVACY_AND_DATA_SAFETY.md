@@ -125,6 +125,92 @@ Collect nothing. No disclosure.
 
 ---
 
+## 3a. Encryption: account linking and cloud save
+
+The question Play's Data Safety form asks is whether user data is **encrypted
+in transit**. The answer is yes, and it is worth writing down *why*, because the
+reason is structural rather than a setting somebody remembered to enable.
+
+### The app opens no connections of its own
+
+There is no HTTP client, no socket and no URL anywhere in this codebase —
+verified, not assumed. Every byte that leaves the device goes through a Google
+SDK:
+
+| Path | Carried by | Transport |
+| --- | --- | --- |
+| Account linking | Play Games Services v2 (`GamesSignInClient`) | TLS to Google |
+| Cloud save read/write | Play Games Services (`SnapshotsClient`) | TLS to Google |
+| Purchases | Play Billing | TLS to Google |
+| Ads and consent | Mobile Ads SDK, UMP | TLS to Google |
+
+Because the app never makes a raw request, there is no code path that *could*
+send anything unencrypted. `usesCleartextTraffic="false"` is declared on the
+application anyway, so the prohibition is a property of the built artifact that
+can be read back out of it rather than a default inherited from the target SDK.
+`tools/verify-release.sh` checks it on the APK's compiled manifest before every
+release.
+
+### Account linking never touches a credential
+
+The app does not implement sign-in. It asks Play Games to sign the player in
+and receives two things back: a boolean, and a display name. There is no
+password, no OAuth token, no refresh token and no session — nothing of that
+kind is handled, stored or transmitted by this code, so there is nothing of
+that kind to encrypt or to leak. The "link account" button is a handover to
+Google and back.
+
+### What the cloud save actually contains
+
+A JSON document, UTF-8 encoded, written into the player's **own** Play Games
+snapshot on their **own** Google account:
+
+- lifetime statistics and unlocked agents;
+- € budget and firmware level;
+- cosmetic choices;
+- the run in progress, if any;
+- the local leaderboard, which is the player's own past scores;
+- `PlayerIdentity` — a "callsign" the player types.
+
+The callsign is the only free-text field in the app, and it is sanitised to
+`A–Z`, `0–9`, `_` and `-`, capped at 16 characters, on the way in. It cannot
+hold an email address, a phone number or a sentence, which is deliberate: the
+ASCII UI needs it to fit a monospace cell, and the side effect is that the one
+place a player could type personal data into this game will not accept it.
+
+Two things are deliberately **not** in the payload. **Entitlements**, because
+Play is the only honest source of truth for what someone has bought.
+**Settings**, because they belong to a device rather than to a player.
+
+### At rest
+
+| Where | Protection |
+| --- | --- |
+| On the device | Jetpack DataStore in app-private storage, inside the app sandbox, on a file-based-encrypted userdata partition (mandatory since Android 10) |
+| In the Play Games snapshot | Google's infrastructure, encrypted at rest |
+| In Android Auto Backup | Encrypted in transit and at rest; on Android 9+ additionally encrypted with a client-side secret derived from the device lock screen, so Google itself cannot read it |
+
+**The local DataStore is deliberately not additionally encrypted**, and that is
+a decision rather than an omission. Play's User Data policy requires secure
+*transmission*; it does not require app-private files to be encrypted at rest,
+and the platform already encrypts the partition they sit on. Wrapping them in
+Jetpack Security would add a hardware-keystore dependency, a migration path for
+every existing install, and a failure mode where an unavailable or invalidated
+key destroys a player's entire progress — which is a real risk taken on behalf
+of data that is game statistics and a sixteen-character handle. If anything
+genuinely sensitive is ever stored, this decision has to be revisited, and that
+is the trigger to look for.
+
+### Auto Backup
+
+`allowBackup="true"` with `datastore/` included in both `backup_rules.xml` and
+`data_extraction_rules.xml`, covering cloud backup and device-to-device
+transfer. This is how progress survives a new phone for a player who never
+links a Google account, and it is the floor the no-op cloud-save gateway falls
+back to. It carries exactly the same data as the cloud save above.
+
+---
+
 ## 4. Permissions, and why each one is there
 
 The manifest declares four. The rest arrive from the SDKs and cannot be removed
@@ -186,7 +272,9 @@ Declare:
 - **Device or other IDs** — collected, shared, advertising.
 
 **Is all of the user data collected by your app encrypted in transit?**
-→ **Yes.** Google's SDKs use HTTPS.
+→ **Yes.** The app opens no connections of its own; everything goes through a
+Google SDK over TLS, and `usesCleartextTraffic="false"` is declared on the
+application and verified against the built artifact. See §3a.
 
 **Do you provide a way for users to request that their data be deleted?**
 → **Yes.** The advertising id is resettable and deletable in Android settings;

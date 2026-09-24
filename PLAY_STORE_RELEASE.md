@@ -132,7 +132,7 @@ same place as the key.
   -Pcyops.admob.interstitialId=ca-app-pub-…/… \
   -Pcyops.admob.rewardedId=ca-app-pub-…/…
 
-tools/verify-release-ads.sh
+tools/verify-release.sh
 ```
 
 The verifier reads the ids back out of the artifact and fails if a Google test
@@ -263,7 +263,7 @@ most likely to be the reason a launch date slips.
 ```bash
 # bump versionCode in app/build.gradle.kts
 ./gradlew clean bundleRelease -Pcyops.admob.appId=… -Pcyops.admob.interstitialId=… -Pcyops.admob.rewardedId=…
-tools/verify-release-ads.sh
+tools/verify-release.sh
 ./gradlew testDebugUnitTest
 ```
 

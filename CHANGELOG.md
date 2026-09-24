@@ -7,6 +7,29 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [1.34.1]
+
+### Changed — cleartext networking is now refused outright
+
+The app has never opened a connection of its own: account linking, cloud save,
+purchases and ads all go through Google's SDKs over TLS. That is now stated in
+the manifest rather than inherited from the target SDK, so "encrypted in
+transit" is a property of the built app that can be checked rather than a
+default that happens to apply.
+
+### Changed — the store no longer sells ad removal in a build with no ads
+
+REMOVE ADS is hidden when no AdMob ids are configured. Nothing changes once
+they are.
+
+### Added — release verification covers more than ads
+
+`tools/verify-release.sh` (was `verify-release-ads.sh`) now also reports
+whether the built artifact permits cleartext traffic and whether it is
+debuggable, read from the compiled manifest.
+
+---
+
 ## [1.34.0]
 
 ### Added — pinch to zoom the battlefield
@@ -113,7 +136,7 @@ as a string literal in a committed file.
 ### Added — four release documents
 
 `PLAY_STORE_RELEASE.md`, `ADMOB_SETUP.md`, `PRIVACY_AND_DATA_SAFETY.md` and
-`RELEASE_CHECKLIST.md`, plus `tools/verify-release-ads.sh`, which reads the ad
+`RELEASE_CHECKLIST.md`, plus `tools/verify-release.sh`, which reads the ad
 ids back out of a built bundle and fails if a Google test id is in it.
 
 Nothing about the revive rules changed: still voluntary, still rewarded-only,

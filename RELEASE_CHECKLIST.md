@@ -30,7 +30,7 @@ your Play Console, your AdMob account or your keystore.
       `cyops.admob.rewardedId`.
 - [ ] The interstitial and rewarded ids are **different units**. Sharing one
       would mean the revive was granted on a dismissal.
-- [ ] `tools/verify-release-ads.sh` passes against the built `.aab`. This is
+- [ ] `tools/verify-release.sh` passes against the built `.aab`. This is
       the only check that inspects what actually ships.
 - [ ] **Owner only** — a consent message is published in AdMob under
       *Privacy & messaging*. Without one, UMP has nothing to show and ads will

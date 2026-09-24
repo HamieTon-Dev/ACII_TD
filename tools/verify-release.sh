@@ -1,16 +1,17 @@
 #!/usr/bin/env bash
 #
-# Read the ad configuration back out of a BUILT release artifact.
+# Read the release configuration back out of a BUILT artifact.
 #
-# The build file says a release never carries a Google test ad id. This checks
-# the thing that actually ships, because "the build file says so" and "the
-# bundle contains so" are different claims and only the second one is submitted
+# Checks three things the build file claims and only the artifact can prove:
+# that no Google test ad id is present, that cleartext networking is refused,
+# and that the build is not debuggable. "The build file says so" and "the
+# bundle contains so" are different claims, and only the second is submitted
 # to Google.
 #
 # Usage:
-#   tools/verify-release-ads.sh [path-to-.aab-or-.apk]
+#   tools/verify-release.sh [path-to-.aab-or-.apk]
 #
-# Exit codes: 0 clean, 1 a test id is present, 2 could not inspect the file.
+# Exit codes: 0 clean, 1 a check failed, 2 could not inspect the file.
 #
 # NOTE ON METHOD. The first version of this script grepped the archive for
 # "ca-app-pub-3940256099942544" and reported a clean bill of health on a bundle
@@ -80,8 +81,60 @@ else
 fi
 echo
 
-# --- 3. the verdict ----------------------------------------------------------
+# --- 3. network encryption and debuggability ---------------------------------
+#
+# Read from the COMPILED manifest, which has no comments in it. An earlier
+# version of this grepped the merged text manifest and reported a cleartext
+# declaration that was only the wording of a comment explaining the rule.
+case "$TARGET" in
+    *.aab)
+        # aapt2 cannot open a bundle, and the bundle's manifest is protobuf.
+        # Its attribute values survive as plain strings once inflated, but
+        # telling `false` from `true` that way is guesswork, so the APK is the
+        # artifact this pair is checked on.
+        CLEARTEXT="(not checked on a bundle - run this against the release APK)"
+        DEBUGGABLE="$CLEARTEXT"
+        ;;
+    *)
+        TREE="$("$AAPT2" dump xmltree --file AndroidManifest.xml "$TARGET" 2>/dev/null || true)"
+        if echo "$TREE" | grep -q 'usesCleartextTraffic.*=false'; then
+            CLEARTEXT="refused"
+        elif echo "$TREE" | grep -q 'usesCleartextTraffic.*=true'; then
+            CLEARTEXT="PERMITTED"
+        else
+            CLEARTEXT="not declared (platform default applies)"
+        fi
+        if echo "$TREE" | grep -q 'android:debuggable.*=true'; then
+            DEBUGGABLE="YES"
+        else
+            DEBUGGABLE="no"
+        fi
+        ;;
+esac
+
+echo "  cleartext      : $CLEARTEXT"
+echo "  debuggable     : $DEBUGGABLE"
+echo
+
+# --- 4. the verdict ----------------------------------------------------------
 FAILED=0
+
+if [ "$CLEARTEXT" = "PERMITTED" ]; then
+    echo "FAIL: this artifact permits cleartext (unencrypted) network traffic."
+    echo
+    echo "Play's Data Safety form asks whether all user data is encrypted in"
+    echo "transit. Something in the dependency tree has declared cleartext"
+    echo "traffic and won the manifest merge."
+    echo
+    FAILED=1
+fi
+
+if [ "$DEBUGGABLE" = "YES" ]; then
+    echo "FAIL: this artifact is debuggable. Play rejects debuggable uploads,"
+    echo "and a debuggable build exposes the app's private data on any device."
+    echo
+    FAILED=1
+fi
 
 if printf '%s\n%s\n' "$APP_ID" "$UNIT_IDS" | grep -q "$TEST_PUBLISHER"; then
     echo "FAIL: this artifact contains a Google TEST ad id (publisher ${TEST_PUBLISHER})."

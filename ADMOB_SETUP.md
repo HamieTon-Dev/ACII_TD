@@ -135,7 +135,7 @@ AdMob account and without a single real impression.
 
 ```bash
 ./gradlew bundleRelease -Pcyops.admob.appId=… -Pcyops.admob.interstitialId=… -Pcyops.admob.rewardedId=…
-tools/verify-release-ads.sh
+tools/verify-release.sh
 ```
 
 The script reads the ids back out of the built `.aab` and fails if a test id is

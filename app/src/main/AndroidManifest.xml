@@ -2,6 +2,30 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
     <!--
+      NETWORK ENCRYPTION. `usesCleartextTraffic="false"` on the application
+      below states outright that nothing may leave this app unencrypted.
+
+      It is already the platform default at targetSdk 28 and above, so this
+      changes no behaviour today. It is declared anyway for two reasons. It is
+      the difference between "encrypted in transit" being an inherited default
+      and being a property of this app that can be read out of the built
+      artifact and checked: which is what Play's Data Safety form is asking
+      about. And a dependency that ever permits cleartext would otherwise win
+      the manifest merge silently; with this declared here the merge fails
+      instead, and somebody has to decide deliberately rather than finding out
+      from a policy email. No `tools:replace` for the same reason: quietly
+      overriding such a library is the outcome worth avoiding.
+
+      (The literal attribute is deliberately not spelled out in this comment.
+      The merger copies comments into the merged manifest, so writing it here
+      made a grep for it report a cleartext declaration that did not exist.)
+
+      The app itself opens no connections at all. Every byte that leaves the
+      device goes through a Google SDK (Play Games Services for cloud save,
+      Play Billing for purchases, Mobile Ads and UMP for advertising and
+      consent) and each of those is TLS to Google. There is no HTTP client,
+      no socket and no URL in this codebase.
+
       PERMISSION AUDIT. Four are declared here and every one has a caller; the
       rest of what ends up in the merged manifest comes from the Play SDKs and
       is inventoried in PRIVACY_AND_DATA_SAFETY.md.
@@ -37,6 +61,7 @@
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
+        android:usesCleartextTraffic="false"
         android:icon="@mipmap/ic_launcher"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:label="@string/app_name"
