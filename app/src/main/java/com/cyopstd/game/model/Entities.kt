@@ -142,6 +142,26 @@ class Agent : Poolable {
 
     /** Boss AGENT_DISRUPTION jam timer — halves effective fire rate while > 0. */
     var disruptedFor: Float = 0f
+        private set
+
+    /**
+     * Jams this agent for [seconds], unless it is built not to care.
+     *
+     * The immunity check lives here rather than at the call site on purpose.
+     * There is one thing that jams today and there are two more coming, and a
+     * rule enforced by every caller remembering to check it is a rule that
+     * eventually is not enforced. Asking the agent means a new jammer gets the
+     * behaviour for free.
+     */
+    fun jam(seconds: Float) {
+        if (type.immuneToJam) return
+        if (seconds > disruptedFor) disruptedFor = seconds
+    }
+
+    /** Runs the jam timer down. */
+    fun tickJam(dt: Float) {
+        if (disruptedFor > 0f) disruptedFor -= dt
+    }
 
     /** Buff contributed by nearby NETWORK_ARCHITECT agents; recomputed each tick. */
     var damageBuff: Float = 1f

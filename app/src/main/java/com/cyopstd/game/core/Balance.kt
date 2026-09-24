@@ -185,13 +185,41 @@ object Balance {
     /** Per-level stat growth, as a fraction of the agent's base stat. */
     const val UPGRADE_DAMAGE_GROWTH = 0.20f
     const val UPGRADE_RATE_GROWTH = 0.018f
-    const val UPGRADE_RANGE_GROWTH = 0.007f
 
     /**
-     * Range is the strongest stat in a tower defence game — unbounded growth
-     * would make node placement irrelevant, so it alone is capped.
+     * Range grows in steps, not per level: ×1.25 every five levels.
+     *
+     * The old curve was +0.7% of base per level, which came to ×1.69 over a
+     * hundred levels while damage multiplied twenty-fold over the same span. A
+     * levelled agent therefore hit like a truck and still could not see
+     * anything, and the late game read as impossible for a reason that was
+     * arithmetic rather than design.
+     *
+     * Compounding in five-level steps is what the owner asked for, and it is
+     * steep: uncapped it reaches ×9.3 at level 50 and ×86.7 at level 100. The
+     * map is 1600 units wide, so somewhere around level 45 every agent would
+     * cover all of it from wherever it stood and placement — the thing the 79
+     * deployment nodes exist for — would stop being a decision.
+     *
+     * So the steps are the owner's and the ceiling is the compromise: ×6, which
+     * the curve reaches at level 45 and which still leaves the far corners of
+     * the board out of reach. It is one constant, deliberately, so it can be
+     * loosened later without touching the shape of the curve.
      */
-    const val UPGRADE_RANGE_CAP = 1.75f
+    const val UPGRADE_RANGE_STEP = 1.25f
+    const val UPGRADE_RANGE_STEP_LEVELS = 5
+    const val UPGRADE_RANGE_CAP = 6f
+
+    /** The range multiplier an agent at [level] has earned. */
+    fun rangeMultiplier(level: Int): Float {
+        val steps = level.coerceIn(1, MAX_AGENT_LEVEL) / UPGRADE_RANGE_STEP_LEVELS
+        var multiplier = 1f
+        repeat(steps) {
+            multiplier *= UPGRADE_RANGE_STEP
+            if (multiplier >= UPGRADE_RANGE_CAP) return UPGRADE_RANGE_CAP
+        }
+        return multiplier
+    }
 
     /**
      * Cost to go from [level] to [level] + 1 for an agent whose deployment cost

@@ -205,7 +205,17 @@ class GameEngineTest {
         val statsAfter = agent.stats()
         assertTrue(statsAfter.damage > statsBefore.damage)
         assertTrue(statsAfter.fireRate > statsBefore.fireRate)
-        assertTrue(statsAfter.range > statsBefore.range)
+
+        // Range moves in five-level steps rather than every level, so a single
+        // upgrade is not expected to change it. The step itself is asserted
+        // against the curve rather than by buying four more levels here, which
+        // would be a test of whether this engine happened to start with enough
+        // crypto.
+        assertEquals(statsBefore.range, statsAfter.range, 0.001f)
+        assertTrue(
+            "range should have stepped up by level 5",
+            agent.type.statsAtLevel(5).range > agent.type.statsAtLevel(1).range
+        )
     }
 
     @Test

@@ -170,8 +170,10 @@ class EnemySystem(private val engine: GameEngine, private val random: Random) {
                     val dx = agent.x - enemy.x
                     val dy = agent.y - enemy.y
                     if (dx * dx + dy * dy <= DISRUPT_RADIUS_SQ) {
-                        agent.disruptedFor = 3.0f
-                        jammed++
+                        // Agent.jam decides whether it lands; some are built to
+                        // stand in this.
+                        agent.jam(3.0f)
+                        if (agent.disruptedFor > 0f) jammed++
                     }
                 }
                 if (jammed > 0) {

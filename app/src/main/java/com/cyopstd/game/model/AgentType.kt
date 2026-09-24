@@ -54,7 +54,25 @@ enum class AgentType(
     val abilitySummary: String,
     val codexEntry: String,
     /** Advanced agents expose the targeting selector. */
-    val allowsTargetingModes: Boolean = false
+    val allowsTargetingModes: Boolean = false,
+    /**
+     * Cannot be jammed.
+     *
+     * JAM (`BossModifier.AGENT_DISRUPTION`) halves an agent's fire rate for
+     * three seconds, and it is the only debuff in the game that lands on the
+     * defender. Immunity is therefore a real identity rather than a stat, and
+     * it belongs to the agent that has no choice but to stand close enough to
+     * be jammed in the first place.
+     */
+    val immuneToJam: Boolean = false,
+    /**
+     * Radius of the collateral damage each shot deals, or zero for none.
+     *
+     * The answer to a swarm. Splash exists because every cheap agent in the
+     * roster killed one thing at a time, which made a pack of BOTs a test of
+     * how many turrets you had rather than of what you built.
+     */
+    val splashRadius: Float = 0f
 ) {
     TARPIT(
         displayName = "TARPIT",
@@ -64,7 +82,7 @@ enum class AgentType(
         // A token amount. What you buy is the field, not the output.
         baseDamage = 1.2f,
         baseFireRate = 1.6f,
-        baseRange = 200f,
+        baseRange = 300f,
         attackStyle = AttackStyle.THROTTLE,
         unlockWave = 0,
         abilityName = "RATE LIMIT",
@@ -81,14 +99,19 @@ enum class AgentType(
         cost = 40,
         baseDamage = 9f,
         baseFireRate = 1.15f,
-        baseRange = 168f,
+        baseRange = 195f,
         attackStyle = AttackStyle.BOLT,
         unlockWave = 0,
-        abilityName = "TRAFFIC FILTER",
-        abilitySummary = "Reliable all-round damage. No weaknesses, no tricks.",
+        abilityName = "HARDENED",
+        abilitySummary = "Reliable all-round damage, and it cannot be jammed.",
         codexEntry = "A firewall inspects traffic against a rule set and drops " +
             "anything that does not belong. It is the first thing you put " +
-            "between the outside world and anything you care about."
+            "between the outside world and anything you care about -- and the " +
+            "last thing a breach manages to talk its way past.",
+        // The agent with the shortest reach has no choice but to stand where a
+        // boss can jam it, so immunity is the identity that makes standing
+        // there worth doing.
+        immuneToJam = true
     ),
     IDS(
         displayName = "IDS",
@@ -97,7 +120,7 @@ enum class AgentType(
         cost = 55,
         baseDamage = 9f,
         baseFireRate = 1.0f,
-        baseRange = 290f,
+        baseRange = 330f,
         attackStyle = AttackStyle.SCAN,
         unlockWave = 0,
         abilityName = "DEEP SCAN",
@@ -113,14 +136,19 @@ enum class AgentType(
         cost = 70,
         baseDamage = 5.4f,
         baseFireRate = 3.3f,
-        baseRange = 170f,
+        baseRange = 260f,
         attackStyle = AttackStyle.BURST,
         unlockWave = 3,
-        abilityName = "RAPID BLOCK",
-        abilitySummary = "Extremely high rate of fire. Shreds swarms.",
+        abilityName = "BLAST RADIUS",
+        abilitySummary = "Extremely high rate of fire, and every shot splashes.",
         codexEntry = "An Intrusion Prevention System is an IDS that is allowed to " +
             "act: instead of only reporting a threat it blocks the traffic " +
-            "outright, and it does so continuously."
+            "outright, and it does so continuously -- and to everything in the " +
+            "same connection.",
+        // IPS was the roster's outlier: dearer than IDS and reaching 120 units
+        // less, with an identity nobody could feel next to FIREWALL. Splash is
+        // the job no other cheap agent does -- the answer to a swarm.
+        splashRadius = 78f
     ),
     ANALYST(
         displayName = "ANALYST",
@@ -129,7 +157,7 @@ enum class AgentType(
         cost = 95,
         baseDamage = 38f,
         baseFireRate = 0.62f,
-        baseRange = 212f,
+        baseRange = 268f,
         attackStyle = AttackStyle.PRECISION,
         unlockWave = 5,
         abilityName = "THREAT ASSESSMENT",
@@ -146,7 +174,7 @@ enum class AgentType(
         cost = 105,
         baseDamage = 26f,
         baseFireRate = 1.05f,
-        baseRange = 220f,
+        baseRange = 276f,
         attackStyle = AttackStyle.CIPHER,
         unlockWave = 10,
         abilityName = "CIPHER BREAK",
@@ -162,7 +190,7 @@ enum class AgentType(
         cost = 150,
         baseDamage = 42f,
         baseFireRate = 1.15f,
-        baseRange = 242f,
+        baseRange = 284f,
         attackStyle = AttackStyle.HUNTER,
         unlockWave = 15,
         abilityName = "ZERO-DAY STRIKE",
@@ -180,7 +208,7 @@ enum class AgentType(
         cost = 185,
         baseDamage = 22f,
         baseFireRate = 1.5f,
-        baseRange = 256f,
+        baseRange = 292f,
         attackStyle = AttackStyle.SENTINEL,
         unlockWave = 20,
         abilityName = "MULTI-LOCK",
@@ -197,7 +225,7 @@ enum class AgentType(
         cost = 240,
         baseDamage = 60f,
         baseFireRate = 1.05f,
-        baseRange = 278f,
+        baseRange = 300f,
         attackStyle = AttackStyle.QUANTUM,
         unlockWave = 30,
         abilityName = "ENTANGLED CHAIN",
@@ -214,7 +242,7 @@ enum class AgentType(
         cost = 320,
         baseDamage = 122f,
         baseFireRate = 0.95f,
-        baseRange = 285f,
+        baseRange = 316f,
         attackStyle = AttackStyle.ROOT,
         unlockWave = 40,
         abilityName = "SUDO TERMINATE",
@@ -230,7 +258,7 @@ enum class AgentType(
         cost = 210,
         baseDamage = 16f,
         baseFireRate = 0.8f,
-        baseRange = 264f,
+        baseRange = 296f,
         attackStyle = AttackStyle.ARCHITECT,
         unlockWave = 50,
         abilityName = "SEGMENT UPLINK",
@@ -248,10 +276,9 @@ enum class AgentType(
         return AgentStats(
             damage = baseDamage * (1f + Balance.UPGRADE_DAMAGE_GROWTH * steps),
             fireRate = baseFireRate * (1f + Balance.UPGRADE_RATE_GROWTH * steps),
-            // Range alone is capped: unbounded range would make node placement
-            // stop mattering long before level 100.
-            range = baseRange * (1f + Balance.UPGRADE_RANGE_GROWTH * steps)
-                .coerceAtMost(Balance.UPGRADE_RANGE_CAP)
+            // Range climbs in five-level steps and stops at a ceiling; see
+            // Balance.rangeMultiplier for why it is shaped that way.
+            range = baseRange * Balance.rangeMultiplier(level)
         )
     }
 

@@ -4,7 +4,7 @@
 reads first. It records where the project actually stands, what is proven and
 what is not, and what comes next.
 
-_Last updated: v1.18.0 — control bar, corner readouts, and the HUD strip that was never drawn. See `CHANGELOG.md` for the full per-version history._
+_Last updated: v1.19.0 — the balance pass: range scaling, TARPIT aura, IPS splash, jam immunity. See `CHANGELOG.md` for the full per-version history._
 
 ---
 
@@ -28,7 +28,7 @@ both.
 
 ```bash
 cd /home/user/ACII_TD
-./gradlew :app:testDebugUnitTest      # 276 tests, all passing
+./gradlew :app:testDebugUnitTest      # 286 tests, all passing
 ./gradlew :app:assembleRelease        # -> app/build/outputs/apk/release/CyOpsTD-v<ver>.apk
 ```
 
@@ -122,6 +122,7 @@ rather than loosened.
 | 1.16 | LOADOUT (equip skins), RUN MODE (pick HACK:AI), locked 5× speed fixed |
 | 1.17 | Rack animation glitch fixed; legibility pass; two-column agent panel |
 | 1.18 | Half-height control bar, stacked corner readouts, HUD strip unblocked |
+| 1.19 | Range scales ×1.25/5 levels; TARPIT aura ×1.5; IPS splash; FIREWALL jam-proof |
 
 ---
 

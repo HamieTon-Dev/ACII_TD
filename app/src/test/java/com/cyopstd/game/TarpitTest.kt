@@ -234,7 +234,7 @@ class TarpitTest {
     @Test
     fun `the tarpit is a cheap starter with real reach`() {
         assertEquals(20, AgentType.TARPIT.cost)
-        assertEquals(200f, AgentType.TARPIT.baseRange, 0.01f)
+        assertEquals(300f, AgentType.TARPIT.baseRange, 0.01f)
         assertEquals("it should be available from the first wave", 0, AgentType.TARPIT.unlockWave)
         assertTrue(
             "it must be the cheapest thing on the board",

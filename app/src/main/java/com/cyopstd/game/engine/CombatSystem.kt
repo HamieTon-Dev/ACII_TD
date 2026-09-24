@@ -62,7 +62,7 @@ class CombatSystem(private val engine: GameEngine, private val random: Random) {
 
             if (agent.fireFlash > 0f) agent.fireFlash -= dt
             if (agent.upgradeFlash > 0f) agent.upgradeFlash -= dt
-            if (agent.disruptedFor > 0f) agent.disruptedFor -= dt
+            agent.tickJam(dt)
 
             if (agent.type == AgentType.TARPIT) applyTarpitField(agent)
 

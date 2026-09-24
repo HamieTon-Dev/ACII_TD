@@ -117,7 +117,46 @@ class ProjectileSystem(private val engine: GameEngine, private val random: Rando
             chain(projectile, target)
         }
 
+        val splashRadius = projectile.sourceType.splashRadius
+        if (splashRadius > 0f) {
+            splash(projectile, target, splashRadius)
+        }
+
         engine.soundListener?.invoke(GameSound.PACKET_HIT)
+    }
+
+    /**
+     * Collateral damage around a hit.
+     *
+     * Splash is what makes an agent an answer to a *swarm* rather than to a
+     * queue, and it is deliberately unlike the QUANTUM DEFENDER's chain above:
+     * a chain picks a fixed number of further targets and pays full attention
+     * to each, while splash pays a fraction to everything standing close. One
+     * rewards a line of threats, the other rewards a pack of them.
+     *
+     * It never re-hits the enemy that was struck directly, or the shot would
+     * silently be worth more than its damage number says.
+     */
+    private fun splash(projectile: Projectile, origin: Enemy, radius: Float) {
+        val radiusSq = radius * radius
+        val splashDamage = projectile.damage * SPLASH_RATIO
+        val enemies = engine.enemies.items
+        for (i in enemies.indices) {
+            val enemy = enemies[i]
+            if (!enemy.active || enemy === origin || enemy.health <= 0f) continue
+            val dx = enemy.x - origin.x
+            val dy = enemy.y - origin.y
+            if (dx * dx + dy * dy > radiusSq) continue
+
+            applyDamage(
+                enemy = enemy,
+                rawDamage = splashDamage,
+                sourceType = projectile.sourceType,
+                ignoresArmor = false,
+                heavy = false,
+                sourceNodeId = projectile.sourceNodeId
+            )
+        }
     }
 
     /** QUANTUM DEFENDER: strike nearby packets for a fraction of the hit. */
@@ -234,6 +273,15 @@ class ProjectileSystem(private val engine: GameEngine, private val random: Rando
         const val IDS_VS_FAST = 1.45f
         const val IPS_VS_SWARM = 1.35f
         const val FIREWALL_RESISTED = 0.65f
+
+        /**
+         * What a splashed enemy takes, as a fraction of the direct hit.
+         *
+         * Under a half on purpose: splash is meant to clear a pack, not to
+         * multiply a single agent's damage by however many threats happen to
+         * be standing together.
+         */
+        const val SPLASH_RATIO = 0.45f
 
         const val QUANTUM_CHAINS = 2
         const val QUANTUM_CHAIN_RATIO = 0.55f

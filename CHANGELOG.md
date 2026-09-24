@@ -7,6 +7,61 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [1.19.0]
+
+### Changed — range finally grows, because the late game was impossible for an arithmetic reason
+
+The owner's report was that the late game feels impossible and that reaching
+very high waves needs range that scales. The numbers agreed with them:
+
+```kotlin
+UPGRADE_DAMAGE_GROWTH = 0.20f   // +20% of base per level -> x20.8 at level 100
+UPGRADE_RANGE_GROWTH  = 0.007f  // +0.7% of base per level -> x1.69 at level 100
+```
+
+Damage multiplied twentyfold over a run while range barely moved, so a levelled
+agent hit like a truck and still could not see anything. A level-50 TARPIT had
+an aura of 269 units on a 1,600-unit board.
+
+Range now climbs **×1.25 every five levels** — the owner's formula — **capped at
+×6**, which the curve reaches at level 45. The cap is the one liberty taken, and
+the reason is arithmetic too: uncapped, that formula reaches ×9.3 by level 50
+and ×86.7 by level 100, at which point every agent covers the whole map from
+wherever it stands and placement — the thing the 79 deployment nodes exist for —
+stops being a decision. It is a single constant, deliberately, so it can be
+loosened without touching the shape of the curve.
+
+A level-50 agent went from ×1.34 of its base reach to ×6. That is the change the
+owner asked for, and there is a test that states it in those terms.
+
+### Changed — TARPIT's aura, and the end of IPS being the roster's embarrassment
+
+- **TARPIT** base aura 200 → **300**, as asked. With the new curve a maxed
+  tarpit covers over a thousand units, which is the "late game builds that could
+  not work" problem answered.
+- **IPS** 170 → **260** and it now **splashes** every shot to 78 units for 45% of
+  the hit. It cost more than IDS for 120 less range and had an identity nobody
+  could feel next to FIREWALL; splash is the job no other cheap agent does, and
+  it makes a pack of BOTs a question of what you built rather than of how many
+  turrets you own.
+- **FIREWALL** 168 → **195**, and it **cannot be jammed**. The agent with the
+  shortest reach has no choice but to stand where a boss can jam it, so
+  immunity is what makes standing there worth doing.
+- Every dearer agent's reach was **raised** to keep the owner's rule from the
+  1.8.0 rebalance — a dearer agent must never reach less far than a cheaper one
+  — and raised rather than cut, which is the owner's other rule. IDS still sees
+  furthest of anything at 330.
+
+### Changed — a jam is now the agent's business
+
+`AGENT_DISRUPTION` used to set `agent.disruptedFor` directly from the enemy
+system. Immunity implemented there would have been a rule that every future
+jammer has to remember to check — and two more are already in the backlog
+(`[₩₩₩]` and `[¥¥¥]` each jam a specific agent). It moved onto `Agent.jam()`,
+which decides for itself, so a new jammer gets the behaviour for free.
+
+---
+
 ## [1.18.0]
 
 ### Fixed — the top status strip has never been drawn

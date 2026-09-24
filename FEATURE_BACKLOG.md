@@ -88,38 +88,11 @@ variants exist.
 
 ## D. Agents
 
-### D1 ⬜ Range buffs and identities for the weaker agents
+### D1 ✅ shipped in 1.19.0
 
-**Asked:** *"add range buffs to IPS and lower level agents that range isn't long
-enough and make them more unique ie immune to JAM or other."*
-
-Current base ranges, for reference:
-
-| Agent | Cost | Range |
-| --- | ---: | ---: |
-| TARPIT | 20 | 200 |
-| FIREWALL | 40 | 168 |
-| IDS | 55 | 290 |
-| **IPS** | **70** | **170** |
-| ANALYST | 95 | 212 |
-| CRYPTOGRAPHER | 105 | 220 |
-| ZERO-DAY HUNTER | 150 | 242 |
-| AI SENTINEL | 185 | 256 |
-| QUANTUM DEFENDER | 240 | 278 |
-| ROOT ADMIN | 320 | 285 |
-| NETWORK ARCHITECT | 280 | 264 |
-
-IPS is the clear outlier: it costs more than IDS and reaches 120 units less.
-FIREWALL's 168 is the shortest in the game but it is also the cheapest, which is
-defensible.
-
-The "make them more unique" half is the more interesting one. JAM immunity is a
-real lever because jamming already exists — `BossModifier.AGENT_DISRUPTION` sets
-`agent.disruptedFor`, which halves fire rate (`Entities.kt`). An agent that
-ignores it has a clear, legible identity.
-
-Keep the rule the owner set earlier: **never cut a number to fix balance if
-raising another will do.** Raise IPS's range; do not lower IDS's.
+IPS 170 → 260 and given splash; FIREWALL 168 → 195 and made immune to JAM;
+every dearer agent raised so reach stays monotone with price. Detail in
+`CHANGELOG.md` [1.19.0].
 
 ### D2 ❓ [REDHAT] and [BLUEHAT]
 
@@ -384,91 +357,13 @@ about losing.
 
 ---
 
-## G. Balance and scaling
+## G. Balance and scaling — ✅ shipped in 1.19.0
 
-### G1 ❓ Range scaling: ×1.25 every 5 levels
-
-**Asked:** *"level ups need to scale multiplied by 1.25x the amount if range
-scaling every 5 levels. Late game feels impossible... scaling multiplier level
-ups every 5 levels means the ability to reach extremely high waves. Long play
-time means long user interaction... trust me on this. balance isn't going to be
-broken. waves past 100 will just feel more possible."*
-
-**The goal is right and the diagnosis is right.** Range is the stat that barely
-moves today:
-
-```kotlin
-UPGRADE_DAMAGE_GROWTH = 0.20f   // +20% of base per level -> x20.8 at level 100
-UPGRADE_RANGE_GROWTH  = 0.007f  // +0.7% of base per level -> x1.69 at level 100
-UPGRADE_RANGE_CAP     = 1.75f
-```
-
-Damage multiplies twenty-fold over a run and range barely moves — so a level-50
-agent hits like a truck and still cannot see anything, which is exactly the
-"late game feels impossible" the owner describes. TARPIT at level 50 has an aura
-of 269 units on a 1600-unit map.
-
-**The one number that needs a decision is the top end**, because ×1.25
-compounding every 5 levels is very steep:
-
-| Level | multiplier | FIREWALL (base 168) | TARPIT (base 300 after §G2) |
-| ---: | ---: | ---: | ---: |
-| 25 | ×3.1 | 512 | 915 |
-| 50 | ×9.3 | 1,564 | 2,794 |
-| 75 | ×28.4 | 4,769 | 8,517 |
-| 100 | ×86.7 | 14,568 | 26,017 |
-
-The map is 1,600 × 760. At level 50 every agent already covers the entire
-battlefield from wherever it stands, and placement — the thing the 79 deployment
-nodes exist for — stops being a decision. That is not an argument against the
-change; it is an argument about **where it stops**.
-
-Three shapes, all of which deliver "late game feels possible":
-
-| | Level 25 | Level 50 | Level 100 | Placement still matters? |
-| --- | ---: | ---: | ---: | --- |
-| **(a)** ×1.25 / 5 levels, uncapped — as asked | ×3.1 | ×9.3 | ×86.7 | No, from ~L45 |
-| **(b)** ×1.25 / 5 levels, capped at ×6 | ×3.1 | ×6 | ×6 | Yes, and the cap arrives ~L37 |
-| **(c)** +25% of base / 5 levels (linear) | ×2.25 | ×3.5 | ×6 | Yes |
-
-**Recommendation: (b).** It is the owner's formula exactly, for every level a
-player will actually be upgrading through, and the cap only bites past the point
-where uncapped range has already erased the map. It is also a single constant to
-change later if it wants loosening.
-
-❓ Needs a pick. **If no answer comes, build (b)** — it honours the request and
-leaves the map intact, and the cap is one number to revisit.
-
-### G2 ⬜ TARPIT base range ×1.5
-
-**Asked:** *"Multiply 1.5X tarpit starting range. the aura is too small for late
-game builds even when leveled to 50. This prevents some late game builds from
-working."*
-
-200 → **300**. Straightforward, and it compounds with §G1 — worth setting both
-in one change so the aura is judged once, at its real size, rather than twice.
-
-TARPIT is a slow field rather than a gun, so its "range" is an aura the player
-reads as an area on screen. Check the rendered circle at level 50 under whatever
-§G1 lands on before calling it done; the renderer draws it in
-`drawTarpitFields`.
-
-### G3 ❓ Give one of the samey units splash damage
-
-**Asked:** *"Modify a unit that is almost the same as others to do splash
-damage."*
-
-The candidate is **IPS**. It costs 70, hits for 5.4 and reaches 170 — more
-expensive than IDS (55) for 120 less range, and its "RAPID BLOCK" identity is
-hard to feel next to FIREWALL. It is already flagged in §D1 as the roster's
-outlier, and splash gives it a reason to exist that none of the others cover:
-the answer to a swarm.
-
-That also tidies §D2: with IPS owning crowds, REDHAT and BLUEHAT can stay
-single-target siege units without leaving a hole.
-
-❓ Confirm IPS is the unit meant — CRYPTOGRAPHER (105 / 26 dmg / 220) is the
-other candidate that reads as a near-duplicate.
+- **G1** — range now climbs ×1.25 every five levels, capped at ×6 (reached at
+  level 45). The owner's formula; the cap is the compromise, and it is one
+  constant if it wants loosening.
+- **G2** — TARPIT base aura 200 → 300.
+- **G3** — IPS is the splash unit.
 
 ---
 
@@ -611,18 +506,16 @@ mistakable for a threat — cool, desaturated, low alpha, drawn under the lanes:
 The dependencies decide most of this. When the owner says *continue*, take the
 first unfinished item here and work it.
 
-**Quick wins with no decisions outstanding: G2, I1.**
+**Quick wins with no decisions outstanding: I1.**
 
 
 1. ~~A1, A2~~ — ✅ 1.18.0.
-2. **D1** — numbers and one new trait; no dependencies.
+2. ~~D1~~ — ✅ 1.19.0, together with all of §G.
 3. **C1** — boss variants. Unblocks B1's dossier, C2, and E2.
 4. **B1** — the dossier, once there is something worth showing in it.
 5. **D2** — RH/BH, once the guard rails in §D2 are chosen.
 6. **I1** — the death explosions. Self-contained, and the owner rates it the
    highest-value item in the list for how the game *feels*.
-7. **G1, G2, G3** — the scaling pass. One change, judged once, so the aura and
-   the curve are not tuned twice against each other.
 8. **F1** — the revive. Independent of the boss and map work, but it reorders
    the run-end path, so it is better done while that path is quiet than
    alongside a change to it.
