@@ -87,6 +87,10 @@ revive button, no revive pack purchase — so neither blocks development.
 Also still open and owner-facing: §J's boss, level and background options, and
 the remaining `BossVariant` rows.
 
+**Small and unsequenced:** §A3 — drop the duplicated integrity numbers off the
+server rack (the HUD strip already carries them). Keep the rack's *bar* and
+the INTEGRITY LOW alarm; only the figures go. Fold it into the next release.
+
 **Rendering ASCII art as UI** (learned in 1.26.0, and it will come up again for
 any big lettering): the theme's body styles carry `letterSpacing`, which smears
 a character grid; Compose's default leading has to be turned off with

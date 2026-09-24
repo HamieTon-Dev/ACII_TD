@@ -24,6 +24,37 @@ Both items are done and their detail now lives in `CHANGELOG.md` [1.18.0]:
 Found while doing them: the battlefield had been painting over the top status
 strip every frame since 1.5.2. Also fixed in 1.18.0.
 
+### A3 ⬜ Drop the integrity numbers off the rack
+
+**Asked:** *"since we have a HP bar at the top now, the numbers for HP on the
+server in the wave area is unnecessary."*
+
+Correct — they are drawn twice. The HUD strip carries `CORE-SERVER · HP 100 /
+100` with a coloured `IntegrityBar` beside it, and `BattlefieldRenderer
+.drawServer` then paints `100 / 100` at 27pt inside the rack as well. The
+second one costs a chunk of the most valuable space on the board and says
+nothing the first did not.
+
+**Remove the numbers only.** Two things nearby look like the same thing and
+are not:
+
+- **The bar on the rack stays.** It is a *spatial* cue — integrity where the
+  damage is landing — and it reads at a glance without moving your eyes off
+  the lanes. That is a different job from a figure in the status strip, which
+  is the one you read deliberately.
+- **`!! INTEGRITY LOW !!` stays.** It is an alarm, not a readout, and it is
+  the only thing on the board that tells a player mid-wave that they are
+  about to lose.
+
+**The bit to watch:** the rack's chase circuit is drawn *around* the figures —
+the comment in `drawServer` says as much, "the number the chase circuit is
+drawn around, so it is set large enough to be worth framing". Deleting the
+text leaves the animation framing empty space, so the bar wants centring in
+the space the numbers vacate rather than being left where it is.
+
+Small — an afternoon at most, and worth folding into whatever ships next
+rather than taking a version of its own.
+
 ---
 
 ## B. The boss panel
@@ -675,7 +706,8 @@ first unfinished item here and work it.
 either depends on another or needs a decision noted in its section.**
 
 
-1. ~~A1, A2~~ — ✅ 1.18.0.
+1. ~~A1, A2~~ — ✅ 1.18.0. **A3** is outstanding and small; fold it into the
+   next release rather than sequencing it.
 2. ~~D1~~ — ✅ 1.19.0, together with all of §G.
 3. ~~C1~~ — ✅ 1.21.0. B1, C2 and E2 are unblocked.
 4. ~~B1~~ — ✅ 1.22.0.
