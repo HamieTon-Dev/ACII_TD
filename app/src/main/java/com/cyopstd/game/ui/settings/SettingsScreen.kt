@@ -154,6 +154,19 @@ fun SettingsScreen(
                         "Battery saver only changes what is drawn. Wave difficulty, " +
                             "damage and timing are completely unaffected."
                     )
+                    ToggleRow(
+                        label = "MENU INITIALIZATION",
+                        description = "The main menu powers on like a server",
+                        checked = settings.menuBootSequence && !settings.batterySaver,
+                        enabled = !settings.batterySaver,
+                        onCheckedChange = { v -> onUpdate { it.copy(menuBootSequence = v) } }
+                    )
+                    if (settings.batterySaver) {
+                        Caption(
+                            "Battery saver is on, so the menu appears immediately. " +
+                                "It is a decorative animation."
+                        )
+                    }
                 }
 
                 Spacer(Modifier.height(12.dp))

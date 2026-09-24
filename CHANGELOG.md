@@ -7,6 +7,30 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [1.27.0]
+
+### Added — the main menu powers on
+
+The menu no longer just appears. It starts black, one green LED catches
+off-centre and settles, the interface flickers in panel by panel in a scattered
+order, and then everything is lit and ready. About a second and a half.
+
+It runs **once per launch**, not every time you come back from the store, and
+**any tap skips it**. `MENU INITIALIZATION` in SETTINGS turns it off entirely —
+off means off, not faster, so the menu is drawn complete with no fade at all.
+Battery saver switches it off too, for the same reason it drops the living
+backgrounds.
+
+The flicker is the same on every launch. That is deliberate: a menu that boots
+differently each time reads as something being broken rather than as a feature.
+
+### Fixed
+
+A settings switch that another setting overrides now dims and says so instead
+of showing a state it is not actually in.
+
+---
+
 ## [1.26.0]
 
 ### Added — the studio ident

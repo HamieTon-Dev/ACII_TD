@@ -64,6 +64,7 @@ class GameRepository(private val store: DataStore<Preferences>) {
                 backgroundAnimation = prefs[Keys.BACKGROUND_ANIMATION] ?: true,
                 damageNumbers = prefs[Keys.DAMAGE_NUMBERS] ?: true,
                 showAgentRange = prefs[Keys.SHOW_RANGE] ?: true,
+                menuBootSequence = prefs[Keys.MENU_BOOT] ?: true,
                 autoStartWaves = prefs[Keys.AUTO_START] ?: false,
                 screenShake = prefs[Keys.SCREEN_SHAKE] ?: true,
                 batterySaver = prefs[Keys.BATTERY_SAVER] ?: false
@@ -119,6 +120,7 @@ class GameRepository(private val store: DataStore<Preferences>) {
             prefs[Keys.BACKGROUND_ANIMATION] = updated.backgroundAnimation
             prefs[Keys.DAMAGE_NUMBERS] = updated.damageNumbers
             prefs[Keys.SHOW_RANGE] = updated.showAgentRange
+            prefs[Keys.MENU_BOOT] = updated.menuBootSequence
             prefs[Keys.AUTO_START] = updated.autoStartWaves
             prefs[Keys.SCREEN_SHAKE] = updated.screenShake
             prefs[Keys.BATTERY_SAVER] = updated.batterySaver
@@ -328,6 +330,7 @@ class GameRepository(private val store: DataStore<Preferences>) {
         val BACKGROUND_ANIMATION = booleanPreferencesKey("background_animation")
         val DAMAGE_NUMBERS = booleanPreferencesKey("damage_numbers")
         val SHOW_RANGE = booleanPreferencesKey("show_range")
+        val MENU_BOOT = booleanPreferencesKey("menu_boot")
         val AUTO_START = booleanPreferencesKey("auto_start")
         val SCREEN_SHAKE = booleanPreferencesKey("screen_shake")
         val BATTERY_SAVER = booleanPreferencesKey("battery_saver")

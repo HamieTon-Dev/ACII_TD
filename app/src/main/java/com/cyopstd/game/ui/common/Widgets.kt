@@ -293,13 +293,23 @@ fun ToggleRow(
     checked: Boolean,
     onCheckedChange: (Boolean) -> Unit,
     modifier: Modifier = Modifier,
-    description: String? = null
+    description: String? = null,
+    /**
+     * False when something else is overriding this setting.
+     *
+     * The row stays visible and dims rather than disappearing: a switch that
+     * vanishes when another switch is on leaves the player with no way to
+     * find out why. The rule from 1.16.0 -- a control that cannot act has to
+     * say so -- applies to the ones that are temporarily overruled too.
+     */
+    enabled: Boolean = true
 ) {
     Row(
         modifier = modifier
             .fillMaxWidth()
             .defaultMinSize(minHeight = MIN_TOUCH_HEIGHT_DP.dp)
-            .clickable(role = Role.Switch) { onCheckedChange(!checked) }
+            .alpha(if (enabled) 1f else 0.45f)
+            .clickable(enabled = enabled, role = Role.Switch) { onCheckedChange(!checked) }
             .padding(vertical = 6.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
@@ -327,6 +337,7 @@ fun ToggleRow(
         Switch(
             checked = checked,
             onCheckedChange = onCheckedChange,
+            enabled = enabled,
             colors = SwitchDefaults.colors(
                 checkedThumbColor = Palette.Green,
                 checkedTrackColor = Palette.GreenDim.copy(alpha = 0.6f),

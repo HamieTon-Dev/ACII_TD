@@ -442,73 +442,55 @@ meant to say.
 
 ## M. Menu boot sequence
 
-### M1 ⬜ The main menu powers on like a server
+### M1 ✅ shipped in 1.27.0 — the main menu powers on like a server
 
 **Asked:** *"I want the main menu start off black (like a dark room) and slowly
 initialize (like turning on a server) UI flickers and turns on like a glow of a
 server led and then main menu is ready to go. In options menu players can turn
 off main menu 'initialization'."*
 
-A one-off animation on the main menu: black, then the UI comes up the way
-hardware does — not a fade, a **power-on**. The distinction matters, because a
-fade is what every app does and a boot sequence is the thing being asked for.
+Four beats, in `MenuBoot`, as a plain function of elapsed seconds:
 
-#### What "turns on like a server" means here
+| | | |
+| --- | ---: | --- |
+| Dark | 0.26s | Black. Long enough to read as a room, not a slow frame |
+| LED | 0.42s | One point of light, off-centre, that **overshoots and settles** |
+| Flicker | 0.80s | Panels arriving scattered and unstable |
+| Settle | 0.16s | Everything up, nothing moving |
 
-Four beats, and each of them is a thing a rack actually does:
+**1.64s total**, so start-up grew by well under two seconds.
 
-1. **Dark.** A genuinely black screen, held long enough to read as a room with
-   the lights off rather than as a slow frame.
-2. **The LED.** One point of light comes up first — a single glow, somewhere
-   off-centre, like a power LED catching before anything else. It should
-   *overshoot* and settle rather than ramp linearly; that overshoot is most of
-   what reads as electrical.
-3. **The flicker.** Panels arrive out of order and unstably: a row appears,
-   drops out for a frame or two, comes back. A CRT and a cold fluorescent both
-   do this and neither does it evenly, so the flicker has to be driven by a
-   seeded pattern rather than by `Random` — the same reason the shard bursts
-   are (see 1.20.0). A menu that boots differently every launch reads as a bug.
-4. **Settled.** Everything at full brightness, nothing still moving, and the
-   menu is ready. This beat has to be unmistakable: a player who cannot tell
-   whether the animation has finished will not know whether their tap will land.
+A function rather than animation specs for two reasons. A held beat that is a
+frame short reads as a flicker rather than as a timing bug, and a function can
+be asserted at the moments that matter. And the flicker is **seeded** from the
+element index — a menu that boots differently every launch reads as a
+rendering fault, which is the same reason the shard bursts are derived from a
+seed rather than from `Random`.
 
-#### The setting
+**Once per launch**, not once per visit: backing out of the store does not
+power the menu on again. **Any tap skips it.** `MENU INITIALIZATION` in
+SETTINGS turns it off, and off means off — the menu is drawn complete with no
+fade. Battery saver suppresses it, for the same reason it drops the living
+backgrounds.
 
-`GameSettings` gains `menuBootSequence: Boolean = true`, a `ToggleRow` in
-SETTINGS beside BACKGROUND ANIMATION. Off means the menu simply appears, with
-no fade at all — "off" should mean off, not "faster".
+#### Two things measurement caught
 
-Two things the toggle has to get right:
+**The LED was a ramp.** It peaked at 1.015, which is not an overshoot by any
+useful definition — the rise and the ring were tuned so they never landed
+together. A linear fade up is what every app does and no piece of hardware
+does, so the overshoot is asserted rather than left as an intention in a
+comment. It peaks near 1.17 now.
 
-- **It must be reachable without watching the animation.** The player who wants
-  it off is the player it is annoying, and making them sit through it to reach
-  the switch is the joke writing itself. Every launch after the first should
-  also be able to skip it: **any tap during the sequence jumps to settled**,
-  the same rule as the studio ident in 1.26.0.
-- **Battery saver should imply it off.** `batterySaver` already drops the
-  living backgrounds; a two-second animated boot belongs in the same bucket.
+**Two elements shared a flicker pattern.** The hash was one mixing round short.
+Not visible, but a hash that collides at twenty inputs will collide worse at
+forty, and the next person to add a menu button would have inherited it.
 
-#### Where it touches
+#### Also
 
-`MainMenuScreen` takes the state and one more callback; `CyOpsApp` owns
-"has the menu already booted this session", because it should play on **launch**,
-not every time the player backs out of the store. The studio ident already
-establishes the pattern for a timed, skippable, seeded sequence
-(`DeveloperSplashScreen`, and `developerIdentAlpha` as a plain function of
-elapsed seconds so the beats can be asserted rather than eyeballed).
-
-#### The part that will bite
-
-The ident, the boot splash and now this are three timed screens in a row before
-a player reaches a button. Measured today: ident ~1.9s + boot splash 1.9s =
-3.8s. A two-second menu boot makes it **~5.8 seconds from tap to playable**,
-every launch, and that is the point at which a reviewer writes "slow to start".
-
-So M1 is not just an animation, it is a budget. Either the menu boot replaces
-part of what is already there — the likeliest answer is that the boot splash's
-progress bar and the menu's power-on are the *same beat* and should be merged —
-or the whole sequence needs timing down. Worth deciding before building it
-rather than after.
+`ToggleRow` gained an `enabled` parameter. A switch that battery saver
+overrides should look overridden rather than lying about its state — the rule
+from 1.16.0 applies to controls that are temporarily overruled, not just ones
+that are missing.
 
 ---
 
@@ -583,10 +565,7 @@ either depends on another or needs a decision noted in its section.**
    a pick before this can be built. Skipped rather than stalled on.
 7. ~~F2~~ — ✅ 1.24.0.
 8. ~~H1~~ — ✅ 1.25.0.
-9. **M1** — the menu boot sequence. Independent of everything else and
-   self-contained, but read §M1's last section first: it adds to a start-up
-   time that is already 3.8 seconds, and the answer is probably to merge it
-   with the boot splash rather than to add to it.
+9. ~~M1~~ — ✅ 1.27.0.
 10. **E1** — the map layer. Largest, and worth its own version.
 11. **E2** — the AI bosses, last, because they need C1, D2 and E1.
 12. **F3** — the two-device verification, once there is a Play Console.

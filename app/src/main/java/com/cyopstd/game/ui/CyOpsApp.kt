@@ -4,7 +4,12 @@ import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.mutableFloatStateOf
+import androidx.compose.runtime.withFrameNanos
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -21,6 +26,7 @@ import com.cyopstd.game.ui.menu.LoadoutScreen
 import com.cyopstd.game.ui.menu.PlayAccountScreen
 import com.cyopstd.game.ui.menu.StoreScreen
 import com.cyopstd.game.ui.menu.MainMenuScreen
+import com.cyopstd.game.ui.menu.MenuBoot
 import com.cyopstd.game.ui.settings.SettingsScreen
 import com.cyopstd.game.ui.splash.DeveloperSplashScreen
 import com.cyopstd.game.ui.splash.SplashScreen
@@ -71,6 +77,9 @@ fun CyOpsApp(
     // Where SETTINGS should return to: it is reachable from both the main menu
     // and the in-match pause menu.
     var settingsReturn by remember { mutableStateOf<Screen>(Screen.MainMenu) }
+
+    /** The menu powers on once per launch, however often it is returned to. */
+    var menuHasBooted by remember { mutableStateOf(false) }
     // The Play account screen links out to Google Play; opening a URI needs a
     // Context, and this is the one place in the graph that already has one.
     val context = LocalContext.current
@@ -87,6 +96,28 @@ fun CyOpsApp(
 
             Screen.MainMenu -> {
                 BackHandler(enabled = true) { onExitApp() }
+
+                // Once per launch, not once per visit: backing out of the
+                // store should not power the menu on again.
+                val wantsBoot = viewModel.settings.menuBootSequence &&
+                    !viewModel.settings.batterySaver &&
+                    !menuHasBooted
+                var bootElapsed by remember { mutableFloatStateOf(0f) }
+                var bootSkipped by remember { mutableStateOf(false) }
+
+                LaunchedEffect(wantsBoot) {
+                    if (!wantsBoot) return@LaunchedEffect
+                    val startedAt = withFrameNanos { it }
+                    while (!MenuBoot.isSettled(bootElapsed) && !bootSkipped) {
+                        withFrameNanos { nanos ->
+                            bootElapsed = (nanos - startedAt) / 1_000_000_000f
+                        }
+                    }
+                    menuHasBooted = true
+                }
+
+                val booting = wantsBoot && !bootSkipped && !MenuBoot.isSettled(bootElapsed)
+
                 MainMenuScreen(
                     hasSavedRun = viewModel.hasSavedRun,
                     stats = viewModel.stats,
@@ -96,6 +127,10 @@ fun CyOpsApp(
                     availableModes = viewModel.availableModes,
                     selectedMode = viewModel.selectedMode,
                     backgroundAnimation = viewModel.settings.backgroundAnimation,
+                    bootAlpha = { index ->
+                        if (booting) MenuBoot.elementAlpha(index, bootElapsed) else 1f
+                    },
+                    ledGlow = if (booting) MenuBoot.ledGlow(bootElapsed) else 0f,
                     onSelectMode = { viewModel.selectMode(it) },
                     onPlay = {
                         viewModel.playClick()
