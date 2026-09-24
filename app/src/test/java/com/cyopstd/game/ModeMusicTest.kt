@@ -97,12 +97,58 @@ class ModeMusicTest {
         assertTrue("the driven version has no bass punch", Track.BOTTLE_DRIVE.bassPunch > 0f)
         assertEquals("the slow version should not punch", 0f, Track.BOTTLE.bassPunch, 0.001f)
 
-        val loud = rms(samples(Track.BOTTLE_DRIVE))
-        val quiet = rms(samples(Track.BOTTLE))
+        // Measured as transient impact, not as loudness. A track hits harder
+        // by having sharper attacks, not by being turned up -- chasing RMS
+        // here just pushed the peak toward clipping while the punch itself
+        // stayed the same.
+        val driven = bassPunch(Track.BOTTLE_DRIVE)
+        val slow = bassPunch(Track.BOTTLE)
         assertTrue(
-            "driven RMS $loud is not meaningfully above the slow version's $quiet",
-            loud > quiet * 1.15f
+            "the driven version's low end moves $driven against the slow " +
+                "version's $slow -- it is not hitting any harder",
+            driven > slow * 1.2f
         )
+    }
+
+    /**
+     * How hard the low end hits: the average jump in the bass envelope.
+     *
+     * Low-passed first, so this is about the bass and the kick rather than
+     * hats and lead; then the mean of the *positive* steps between short
+     * windows, normalised by the level. A sustained bass line scores near
+     * zero however loud it is, and a line of hard hits scores high however
+     * quiet. That is the property the driven track was asked for.
+     */
+    private fun bassPunch(track: Track): Float {
+        val s = samples(track)
+        val rate = track.sampleRate
+        // One-pole low-pass at roughly 250 Hz.
+        val alpha = 1f - kotlin.math.exp(-2f * Math.PI.toFloat() * 250f / rate)
+        var low = 0f
+        // 40ms windows. At 10ms the envelope is dominated by the waveform's
+        // own ripple rather than by note onsets, and the measurement washed
+        // out the difference it exists to find.
+        val window = rate / 25
+        val levels = ArrayList<Float>()
+        var acc = 0f
+        var n = 0
+        for (i in rate * 8 until s.size - rate * 8) {
+            low += alpha * (s[i] - low)
+            acc += low * low
+            if (++n == window) {
+                levels += kotlin.math.sqrt(acc / window)
+                acc = 0f
+                n = 0
+            }
+        }
+        val mean = levels.average().toFloat()
+        if (mean <= 0f) return 0f
+        var jumps = 0f
+        for (i in 1 until levels.size) {
+            val step = levels[i] - levels[i - 1]
+            if (step > 0f) jumps += step
+        }
+        return jumps / levels.size / mean
     }
 
     @Test
@@ -156,16 +202,17 @@ class ModeMusicTest {
     }
 
     /** Spectral centroid in Hz: the single honest number for "how bright". */
-    private fun brightness(track: Track): Float {
+    private fun brightness(track: Track): Float =
+        centroid(track, track.sampleRate * 8, samples(track).size - track.sampleRate * 8)
+
+    private fun centroid(track: Track, from: Int, to: Int): Float {
         val s = samples(track)
         val rate = track.sampleRate
-        // Past the fade-in, and a whole number of windows.
-        val from = rate * 8
         val window = 2048
-        val windows = ((s.size - rate * 8) - from) / window
+        val windows = (to - from) / window
         var weighted = 0.0
         var total = 0.0
-        for (w in 0 until windows step 4) {
+        for (w in 0 until windows) {
             val re = DoubleArray(window)
             val im = DoubleArray(window)
             for (i in 0 until window) {
@@ -259,22 +306,149 @@ class ModeMusicTest {
         }
     }
 
+    // ----------------------------------------------------------- the form
+
+    /**
+     * The form as it was asked for, in the words it was asked in:
+     *
+     * *"hard bass hits faster beat and a little tune, followed by distorted
+     * guitar riffs, shakey tune followed by a repeat of the beat. some higher
+     * end synth a repeat / glitch chords x6 and then repeat the whole thing"*
+     */
+    private val requested = listOf("GROOVE", "GUITAR", "SHAKY", "GROOVE", "SYNTH", "GLITCH")
+
     @Test
-    fun `the arrangements develop instead of repeating`() {
+    fun `the form is the one that was asked for, and it repeats`() {
         for (track in listOf(Track.BOTTLE, Track.BOTTLE_DRIVE)) {
-            val s = samples(track)
-            val sections = 6
-            val per = s.size / sections
-            // Skip the first and last: both are faded, so they would show as
-            // "different" for a reason that is not the arrangement.
-            val levels = (1 until sections - 1).map { rms(s, it * per, (it + 1) * per) }
-            val spread = (levels.max() - levels.min()) / levels.max()
-            assertTrue(
-                "$track's sections are all the same loudness ($levels), so the " +
-                    "arrangement is not doing anything",
-                spread > 0.15f
+            val form = ChiptuneComposer.form(track)
+            assertEquals(
+                "$track's form is not the requested one played twice",
+                requested + requested,
+                form
             )
         }
+    }
+
+    @Test
+    fun `both mode tracks are the same form, so the fast one is the same song`() {
+        assertEquals(
+            ChiptuneComposer.form(Track.BOTTLE),
+            ChiptuneComposer.form(Track.BOTTLE_DRIVE)
+        )
+        assertEquals(
+            ChiptuneComposer.sectionBars(Track.BOTTLE),
+            ChiptuneComposer.sectionBars(Track.BOTTLE_DRIVE)
+        )
+    }
+
+    @Test
+    fun `each part of the form actually sounds different from its neighbours`() {
+        // Measured per real section rather than by cutting the track into
+        // equal slices. Equal slices stopped working the moment sections
+        // stopped being the same length -- each slice averaged two parts
+        // together and every part came out looking identical, which is a
+        // measurement failure that reads exactly like a music failure.
+        for (track in listOf(Track.BOTTLE, Track.BOTTLE_DRIVE)) {
+            val parts = sectionAudio(track)
+            // One pass of the form, skipping the faded opening section.
+            val window = parts.drop(1).take(5)
+            val loud = window.map { rms(samples(track), it.first, it.second) }
+            val bright = window.map { centroid(track, it.first, it.second) }
+
+            // Adjacent pairs, not the range across all of them. The range
+            // rewards having one odd part and punishes fixing it -- brightening
+            // the dullest section made this metric *worse* while making the
+            // track better, which is a sign the metric was measuring the wrong
+            // thing. What a listener notices is the change at a boundary.
+            for (i in 1 until window.size) {
+                val loudness = kotlin.math.abs(loud[i] - loud[i - 1]) / loud.max()
+                val colour = kotlin.math.abs(bright[i] - bright[i - 1]) / bright.max()
+                assertTrue(
+                    "$track: nothing happens between part ${i - 1} and part $i " +
+                        "(loudness moved ${(loudness * 100).toInt()}%, brightness " +
+                        "${(colour * 100).toInt()}%)",
+                    loudness > 0.06f || colour > 0.06f
+                )
+            }
+        }
+    }
+
+    @Test
+    fun `the glitch is the sharpest thing in the track, not the quietest`() {
+        // It was the quietest, first time around, which is backwards: it is
+        // the one moment the rhythm section stops, so it has the whole mix to
+        // itself and has to cut.
+        for (track in listOf(Track.BOTTLE, Track.BOTTLE_DRIVE)) {
+            val parts = sectionAudio(track)
+            val form = ChiptuneComposer.form(track)
+            val glitch = parts[form.indexOf("GLITCH")]
+            val grooves = form.withIndex().filter { it.value == "GROOVE" }
+                .map { centroid(track, parts[it.index].first, parts[it.index].second) }
+
+            val sharp = centroid(track, glitch.first, glitch.second)
+            assertTrue(
+                "the glitch ($sharp Hz) is duller than the grooves it interrupts " +
+                    "($grooves Hz)",
+                sharp > grooves.max()
+            )
+        }
+    }
+
+    @Test
+    fun `the glitch fires exactly six stabs`() {
+        // "x6" is a count. Counted off the rendered audio rather than off the
+        // constant, because an earlier version fired the burst once per bar
+        // and produced twelve while the constant still said six.
+        assertEquals(6, ChiptuneComposer.GLITCH_STABS)
+        for (track in listOf(Track.BOTTLE, Track.BOTTLE_DRIVE)) {
+            val form = ChiptuneComposer.form(track)
+            val (from, to) = sectionAudio(track)[form.indexOf("GLITCH")]
+            assertEquals(
+                "$track's glitch section does not fire six stabs",
+                6,
+                onsets(samples(track), from, to)
+            )
+        }
+    }
+
+    /** Start and end frame of every section, in order. */
+    private fun sectionAudio(track: Track): List<Pair<Int, Int>> {
+        val perBar = ChiptuneComposer.barSeconds(track) * track.sampleRate
+        var at = 0
+        return ChiptuneComposer.sectionBars(track).map { bars ->
+            val frames = (perBar * bars).toInt()
+            val span = at to at + frames
+            at += frames
+            span
+        }
+    }
+
+    /**
+     * Counts attacks: a jump in the envelope that follows a quiet patch.
+     *
+     * Deliberately crude, because what it has to distinguish is six stabs from
+     * twelve, not one drum from another.
+     */
+    private fun onsets(s: FloatArray, from: Int, to: Int): Int {
+        val window = 128
+        val levels = ArrayList<Float>()
+        var i = from
+        while (i + window < to) {
+            levels += rms(s, i, i + window)
+            i += window
+        }
+        val threshold = levels.max() * 0.35f
+        var count = 0
+        var armed = true
+        for (level in levels) {
+            if (armed && level > threshold) {
+                count++
+                armed = false
+            } else if (level < threshold * 0.5f) {
+                armed = true
+            }
+        }
+        return count
     }
 
     @Test

@@ -45,7 +45,7 @@ object ChiptuneComposer {
     private var sampleRate = 16_000
 
     /** Bump this when an arrangement changes so cached renders are replaced. */
-    const val TRACK_VERSION = 4
+    const val TRACK_VERSION = 5
 
     private const val BEATS_PER_BAR = 4
     private const val BARS_PER_SECTION = 8
@@ -113,7 +113,9 @@ object ChiptuneComposer {
          * attack above the root rather than anything below it. That is what
          * actually reads as a hit on the device most people will play on.
          */
-        val bassPunch: Float = 0f
+        val bassPunch: Float = 0f,
+        /** Kick level. The other half of "harder", and the half you feel. */
+        val kickGain: Float = 1f
     ) {
         GAME(bpm = 72f, cutoffHz = 2600f, masterGain = 1.25f, wow = 1f),
         MENU(bpm = 132f, cutoffHz = 7200f, masterGain = 1.15f, wow = 0.15f),
@@ -149,9 +151,9 @@ object ChiptuneComposer {
          * is one palette and two arrangements rather than two pieces of music.
          */
         BOTTLE_DRIVE(
-            bpm = 90f, cutoffHz = 7600f, masterGain = 1.10f, wow = 0.05f,
+            bpm = 90f, cutoffHz = 7600f, masterGain = 0.97f, wow = 0.05f,
             sampleRate = 24_000, hiss = 0.0005f, leadDuty = 0.26f,
-            air = 2.7f, lowCutHz = 80f, bassPunch = 1f
+            air = 2.7f, lowCutHz = 80f, bassPunch = 2.1f, kickGain = 1.55f
         )
     }
 
@@ -175,7 +177,7 @@ object ChiptuneComposer {
     // ----------------------------------------------------------- the music
 
     /** Which oscillator a note is played on. */
-    private enum class Voice { LEAD, PAD, BASS, KICK, HAT, RIM, SUB }
+    private enum class Voice { LEAD, PAD, BASS, KICK, HAT, RIM, SUB, GUITAR, SYNTH }
 
     private class Note(
         val startFrame: Int,
@@ -187,7 +189,9 @@ object ChiptuneComposer {
         val attack: Float,
         val release: Float,
         val decay: Float,
-        val vibrato: Float
+        val vibrato: Float,
+        /** Amplitude wobble, in Hz. Zero is steady. */
+        val tremoloHz: Float = 0f
     )
 
     /**
@@ -280,6 +284,33 @@ object ChiptuneComposer {
      * breakdown, and the outro thins back down to the intro's chords so the
      * track folds into its own beginning.
      */
+    /**
+     * What a section *is*, rather than how loud its parts are.
+     *
+     * The original arrangement had one kind of section and varied its density,
+     * which is enough for a track meant to sit under an hour of play and not
+     * enough for a piece with an actual form. These are named parts because
+     * the owner described the song as a sequence of them — groove, guitar,
+     * shaky tune, groove again, synth, glitch, repeat — and a form written as
+     * a list of names can be read back and checked against what was asked for.
+     */
+    private enum class Part {
+        /** Bass hits, beat, and a small tune over the top. */
+        GROOVE,
+
+        /** Distorted power chords and palm-muted chugs. */
+        GUITAR,
+
+        /** The same melodic idea, pitched unstable. */
+        SHAKY,
+
+        /** A bright arpeggio two octaves up. */
+        SYNTH,
+
+        /** Six stabs of one chord, retriggered. */
+        GLITCH
+    }
+
     private class Section(
         val progression: Int,
         val melodyDensity: Float,
@@ -289,7 +320,11 @@ object ChiptuneComposer {
         val padGain: Float,
         val bassGain: Float = 1f,
         /** The lazy second bass note. Dropping it is what thins a section out. */
-        val bassPickup: Boolean = true
+        val bassPickup: Boolean = true,
+        /** Which part of the form this is. */
+        val part: Part = Part.GROOVE,
+        /** Length. A form is not made of equal blocks. */
+        val bars: Int = BARS_PER_SECTION
     )
 
     /**
@@ -322,77 +357,114 @@ object ChiptuneComposer {
     )
 
     /**
-     * HACK:AI's arrangement: six sections, slow, and it never really lifts.
+     * The form, as the owner described it.
      *
-     * Deliberately shaped differently from the standard track. That one opens
-     * quiet, builds, breaks down and rebuilds — the ordinary arc. This one
-     * arrives almost fully formed, thins in the middle, and ends emptier than
-     * it started. A mode that takes an hour and usually ends badly does not
-     * want a track that keeps promising a chorus.
+     * *"hard bass hits faster beat and a little tune, followed by distorted
+     * guitar riffs, shakey tune followed by a repeat of the beat. some higher
+     * end synth a repeat / glitch chords x6 and then repeat the whole thing"*
+     *
+     * Written out as six named parts in that order, played twice. The repeat
+     * is the second half of the list rather than a loop flag, because the two
+     * passes are not identical — the second is denser and the second glitch
+     * runs into the fade — and a form you can read down the page is a form you
+     * can check against what was asked for.
+     *
+     * Sections are no longer eight bars each: the glitch is two, because six
+     * stabs that accelerate are over long before eight bars are.
      */
     private val BOTTLE_ARRANGEMENT = arrayOf(
-        Section(0, melodyDensity = 0.00f, drums = 0, melodyOctave = 0, padGain = 0.78f,
-            bassGain = 0.70f, bassPickup = false),
-        Section(0, melodyDensity = 0.26f, drums = 1, melodyOctave = 0, padGain = 0.95f,
-            bassGain = 0.90f),
-        Section(2, melodyDensity = 0.34f, drums = 2, melodyOctave = 0, padGain = 1.00f),
-        Section(1, melodyDensity = 0.00f, drums = 1, melodyOctave = 0, padGain = 0.68f,
-            bassGain = 0.64f, bassPickup = false),
-        Section(3, melodyDensity = 0.38f, drums = 2, melodyOctave = 0, padGain = 1.00f),
-        Section(0, melodyDensity = 0.14f, drums = 0, melodyOctave = 0, padGain = 0.60f,
-            bassGain = 0.58f, bassPickup = false)
+        // 1. Hard bass hits, the beat, and a little tune over the top.
+        Section(0, melodyDensity = 0.30f, drums = 2, melodyOctave = 0, padGain = 0.85f,
+            bassGain = 1.10f, part = Part.GROOVE, bars = 8),
+        // 2. Distorted guitar riffs.
+        Section(0, melodyDensity = 0f, drums = 2, melodyOctave = 0, padGain = 0.42f,
+            bassGain = 0.72f, part = Part.GUITAR, bars = 8),
+        // 3. The shaky tune.
+        Section(2, melodyDensity = 0f, drums = 1, melodyOctave = 0, padGain = 0.80f,
+            bassGain = 0.85f, bassPickup = false, part = Part.SHAKY, bars = 4),
+        // 4. The beat again.
+        Section(0, melodyDensity = 0.34f, drums = 2, melodyOctave = 0, padGain = 0.85f,
+            bassGain = 1.10f, part = Part.GROOVE, bars = 8),
+        // 5. Higher-end synth.
+        Section(1, melodyDensity = 0.22f, drums = 2, melodyOctave = 1, padGain = 0.75f,
+            bassGain = 1.05f, part = Part.SYNTH, bars = 4),
+        // 6. Glitch chords, six of them.
+        Section(3, melodyDensity = 0f, drums = 0, melodyOctave = 0, padGain = 0f,
+            bassGain = 0f, bassPickup = false, part = Part.GLITCH, bars = 1),
+
+        // ---- and then the whole thing again, harder ----------------------
+        Section(0, melodyDensity = 0.38f, drums = 2, melodyOctave = 0, padGain = 0.90f,
+            bassGain = 1.15f, part = Part.GROOVE, bars = 8),
+        Section(2, melodyDensity = 0f, drums = 2, melodyOctave = 0, padGain = 0.45f,
+            bassGain = 0.75f, part = Part.GUITAR, bars = 8),
+        Section(3, melodyDensity = 0f, drums = 1, melodyOctave = 0, padGain = 0.85f,
+            bassGain = 0.90f, bassPickup = false, part = Part.SHAKY, bars = 4),
+        Section(1, melodyDensity = 0.40f, drums = 2, melodyOctave = 0, padGain = 0.90f,
+            bassGain = 1.15f, part = Part.GROOVE, bars = 8),
+        Section(2, melodyDensity = 0.26f, drums = 2, melodyOctave = 1, padGain = 0.80f,
+            bassGain = 1.10f, part = Part.SYNTH, bars = 4),
+        Section(0, melodyDensity = 0f, drums = 0, melodyOctave = 0, padGain = 0f,
+            bassGain = 0f, bassPickup = false, part = Part.GLITCH, bars = 1)
     )
 
     /**
-     * The same piece, driven: six sections with the floor never dropping out.
+     * The same form for the second map, and deliberately the same form.
      *
-     * Full kit from the first bar and no quiet intro, because this one plays
-     * over a map rather than under an endurance mode. The one breakdown keeps
-     * its drums, so the bass punch carries straight through it.
+     * At 90bpm the identical bar count runs a third shorter, which is the
+     * whole trick: it is recognisably the same song arriving faster, rather
+     * than a different one.
      */
-    private val BOTTLE_DRIVE_ARRANGEMENT = arrayOf(
-        Section(0, melodyDensity = 0.40f, drums = 2, melodyOctave = 0, padGain = 0.95f,
-            bassGain = 1.05f),
-        Section(2, melodyDensity = 0.50f, drums = 2, melodyOctave = 1, padGain = 1.00f,
-            bassGain = 1.10f),
-        Section(1, melodyDensity = 0.44f, drums = 2, melodyOctave = 0, padGain = 1.00f,
-            bassGain = 1.10f),
-        Section(3, melodyDensity = 0.20f, drums = 2, melodyOctave = 0, padGain = 0.80f,
-            bassGain = 1.00f, bassPickup = false),
-        Section(2, melodyDensity = 0.56f, drums = 2, melodyOctave = 1, padGain = 1.00f,
-            bassGain = 1.12f),
-        Section(0, melodyDensity = 0.46f, drums = 2, melodyOctave = 0, padGain = 0.95f,
-            bassGain = 1.05f)
-    )
+    private val BOTTLE_DRIVE_ARRANGEMENT = BOTTLE_ARRANGEMENT
 
-    /**
-     * Total length of [which] in seconds.
-     *
-     * Computed from the track rather than by borrowing the renderer's state
-     * and putting it back. That save-and-restore worked while tempo was the
-     * only thing a track changed; the moment sample rate joined it, the
-     * restore was one line short and [totalFrames] started answering with the
-     * wrong rate — which is the number `MusicEngine` checks a cached file's
-     * length against. A function that reads no shared state cannot go stale
-     * that way.
-     */
     fun trackSeconds(which: Track = Track.GAME): Float =
-        arrangementFor(which).size * BARS_PER_SECTION * secondsPerBar(which)
+        totalFrames(which).toFloat() / which.sampleRate
 
     fun totalFrames(which: Track = Track.GAME): Int =
-        arrangementFor(which).size * framesPerSection(which)
+        arrangementFor(which).sumOf { framesOf(which, it.bars) }
 
     private fun secondsPerBar(which: Track): Float = (60f / which.bpm) * BEATS_PER_BAR
 
     /**
-     * The block size a render writes at a time.
+     * Frames in [bars] bars of [which].
      *
-     * The same function feeds the WAV header's length and the loop that
-     * writes the samples, so the two cannot disagree by a rounding step and
-     * leave a file that is a few bytes short of what its header claims.
+     * The same function feeds the WAV header's length and the loop that writes
+     * the samples, so the two cannot disagree by a rounding step and leave a
+     * file that is a few bytes short of what its header claims. That matters
+     * more now than it did: sections are no longer all the same length, so the
+     * total is a sum rather than a multiplication and there are more places for
+     * a rounding difference to hide.
      */
-    private fun framesPerSection(which: Track): Int =
-        (secondsPerBar(which) * BARS_PER_SECTION * which.sampleRate).toInt()
+    private fun framesOf(which: Track, bars: Int): Int =
+        (secondsPerBar(which) * bars * which.sampleRate).toInt()
+
+    /**
+     * The song form, as part names in order.
+     *
+     * Public because the form *is* the specification for these two tracks —
+     * it was given as a sentence ("groove, guitar, shaky, groove, synth,
+     * glitch, repeat") and a test that reads it back is the only thing that
+     * can say whether the music still does what was asked. It also lets a
+     * test measure each part against its neighbours, which equal-sized slices
+     * of the track cannot do now that sections have different lengths.
+     */
+    fun form(which: Track = Track.GAME): List<String> =
+        arrangementFor(which).map { it.part.name }
+
+    /** Length of each section in bars, in order. */
+    fun sectionBars(which: Track = Track.GAME): List<Int> =
+        arrangementFor(which).map { it.bars }
+
+    /** Seconds one bar lasts in [which]. */
+    fun barSeconds(which: Track = Track.GAME): Float = secondsPerBar(which)
+
+    /**
+     * How many stabs a glitch section fires.
+     *
+     * Six, because six is what was asked for, and it is worth being literal:
+     * a stutter that runs on until the bar fills is a different effect and
+     * reads as a mistake.
+     */
+    const val GLITCH_STABS = 6
 
     private fun arrangementFor(which: Track): Array<Section> = when (which) {
         Track.MENU -> MENU_ARRANGEMENT
@@ -433,24 +505,27 @@ object ChiptuneComposer {
 
         val notes = compose()
         // One section at a time, so peak memory stays near a couple of MB.
-        val blockFrames = framesPerSection(which)
-        val mix = FloatArray(blockFrames)
-        val bytes = ByteArray(blockFrames * 2)
+        // Sized to the longest section, since they are no longer equal.
+        val widest = sections.maxOf { framesOf(which, it.bars) }
+        val mix = FloatArray(widest)
+        val bytes = ByteArray(widest * 2)
         val master = Master(track, sampleRate)
 
-        for (section in sections.indices) {
-            java.util.Arrays.fill(mix, 0f)
-            val blockStart = section * blockFrames
+        var blockStart = 0
+        for (section in sections) {
+            val blockFrames = framesOf(which, section.bars)
+            java.util.Arrays.fill(mix, 0, blockFrames, 0f)
             val blockEnd = blockStart + blockFrames
 
             for (note in notes) {
                 if (note.startFrame >= blockEnd) break
                 if (note.startFrame + note.frames <= blockStart) continue
-                renderNote(note, mix, blockStart)
+                renderNote(note, mix, blockStart, blockFrames)
             }
 
-            master.finish(mix, blockStart, frames, bytes)
-            out.write(bytes)
+            master.finish(mix, blockFrames, blockStart, frames, bytes)
+            out.write(bytes, 0, blockFrames * 2)
+            blockStart += blockFrames
         }
         out.flush()
     }
@@ -458,25 +533,54 @@ object ChiptuneComposer {
     // ---------------------------------------------------------- composition
 
     private fun compose(): List<Note> {
-        val notes = ArrayList<Note>(2048)
+        val notes = ArrayList<Note>(4096)
         val rng = Rng(0x5EED_1F0Fu)
         var scaleIndex = 2
+        var barsSoFar = 0
 
-        for (s in sections.indices) {
-            val section = sections[s]
+        for (section in sections) {
             val progression = palette.progressions[section.progression]
 
-            for (bar in 0 until BARS_PER_SECTION) {
+            for (bar in 0 until section.bars) {
                 val chord = palette.chords[progression[(bar / 2) % progression.size]]
-                val barTime = (s * BARS_PER_SECTION + bar) * SECONDS_PER_BAR
+                val barTime = (barsSoFar + bar) * SECONDS_PER_BAR
 
-                if (bar % 2 == 0) addPad(notes, chord, barTime, section.padGain)
-                addBass(notes, chord, barTime, bar, section)
-                if (section.drums > 0) addDrums(notes, barTime, bar, section.drums, rng)
-                if (section.melodyDensity > 0f) {
-                    scaleIndex = addMelody(notes, chord, barTime, section, scaleIndex, rng)
+                // Everything carries the rhythm section except the glitch,
+                // which is the one part that has to stop the track dead. A
+                // stutter over a groove that keeps playing underneath is not
+                // a stutter, it is an overdub.
+                if (section.part != Part.GLITCH) {
+                    if (bar % 2 == 0) addPad(notes, chord, barTime, section.padGain)
+                    addBass(notes, chord, barTime, bar, section)
+                    if (section.drums > 0) addDrums(notes, barTime, bar, section.drums, rng)
+                }
+
+                when (section.part) {
+                    Part.GROOVE ->
+                        if (section.melodyDensity > 0f) {
+                            scaleIndex =
+                                addMelody(notes, chord, barTime, section, scaleIndex, rng)
+                        }
+
+                    Part.GUITAR -> addGuitar(notes, chord, barTime, bar)
+
+                    Part.SHAKY -> scaleIndex =
+                        addShakyMelody(notes, chord, barTime, scaleIndex, rng)
+
+                    Part.SYNTH -> {
+                        addSynth(notes, chord, barTime, bar)
+                        if (section.melodyDensity > 0f) {
+                            scaleIndex =
+                                addMelody(notes, chord, barTime, section, scaleIndex, rng)
+                        }
+                    }
+
+                    // Once per section, not once per bar. Firing it every
+                    // bar gave twelve stabs, and "x6" is a count.
+                    Part.GLITCH -> if (bar == 0) addGlitch(notes, chord, barTime)
                 }
             }
+            barsSoFar += section.bars
         }
 
         notes.sortBy { it.startFrame }
@@ -606,7 +710,7 @@ object ChiptuneComposer {
         freq = 118f,
         endFreq = 46f,
         voice = Voice.KICK,
-        amp = 0.52f * gain,
+        amp = 0.52f * gain * track.kickGain,
         attack = 0.002f,
         release = 0.03f,
         decay = 17f,
@@ -672,6 +776,161 @@ object ChiptuneComposer {
         return index
     }
 
+    // ------------------------------------------------------- the other parts
+
+    /**
+     * Distorted guitar: palm-muted chugs with a power chord on top of them.
+     *
+     * The chug is sixteenth notes on the root, clipped short — that dead,
+     * percussive thud is most of what a listener identifies as "guitar" before
+     * any chord arrives. The power chord is root and fifth only, never the
+     * third: through this much distortion a third turns to mud, which is why
+     * no guitarist plays one through a fuzz.
+     */
+    private fun addGuitar(notes: MutableList<Note>, chord: Chord, time: Float, bar: Int) {
+        // Two octaves above the bass root, not one. Written an octave lower
+        // it measured as the *darkest* section of the track -- the clipped
+        // harmonics were landing under the low-pass instead of over it, so the
+        // riff added low-mid weight and no bite at all. A fuzz guitar is
+        // upper harmonics; it has to be written where they survive the filter.
+        val root = chord.bass + 24f
+        val sixteenth = SECONDS_PER_BEAT * 0.25f
+
+        for (step in 0 until 16) {
+            // A gap where the ring-out lands, so the chug is a rhythm rather
+            // than a continuous buzz.
+            val ringing = step % 8 == 0
+            if (step % 8 == 1 || step % 8 == 2) continue
+
+            val accent = step % 4 == 0
+            notes += note(
+                time + sixteenth * step,
+                if (ringing) SECONDS_PER_BEAT * 1.1f else sixteenth * 0.62f,
+                midi(root),
+                Voice.GUITAR,
+                amp = if (accent) 0.225f else 0.155f,
+                attack = 0.001f,
+                release = if (ringing) 0.18f else 0.012f,
+                decay = if (ringing) 1.1f else 7f
+            )
+            if (!ringing) continue
+            // The fifth, and the octave above it: a power chord.
+            for (interval in intArrayOf(7, 12)) {
+                notes += note(
+                    time + sixteenth * step, SECONDS_PER_BEAT * 1.1f,
+                    midi(root + interval), Voice.GUITAR,
+                    amp = 0.135f, attack = 0.001f, release = 0.18f, decay = 1.1f
+                )
+            }
+        }
+
+        // A lick over the last bar of the riff, so it is a riff and not a loop.
+        if (bar % 4 != 3) return
+        val lick = intArrayOf(0, 3, 5, 7, 5, 3)
+        for ((i, step) in lick.withIndex()) {
+            notes += note(
+                time + SECONDS_PER_BEAT * 2f + sixteenth * i * 1.5f,
+                sixteenth * 1.3f, midi(root + 12 + step), Voice.GUITAR,
+                amp = 0.130f, attack = 0.002f, release = 0.03f, decay = 3.2f
+            )
+        }
+    }
+
+    /**
+     * The shaky tune: the melody's own notes, pitched unstable.
+     *
+     * Deep vibrato and a tremolo that is slower than the vibrato, so the two
+     * never line up and the line never settles into a pattern. Long notes, so
+     * there is time to hear it wobble — a shake on a sixteenth note is just a
+     * blip.
+     */
+    private fun addShakyMelody(
+        notes: MutableList<Note>,
+        chord: Chord,
+        time: Float,
+        startIndex: Int,
+        rng: Rng
+    ): Int {
+        var index = nearestScaleDegree(chord.voicing[rng.int(3)] % 12, startIndex)
+        var beat = 0f
+        while (beat < BEATS_PER_BAR) {
+            val length = if (rng.float() < 0.4f) 1f else 2f
+            notes += note(
+                time + SECONDS_PER_BEAT * beat,
+                SECONDS_PER_BEAT * length * 0.94f,
+                midi((palette.scale[index] + 12).toFloat()),
+                Voice.LEAD,
+                amp = 0.105f * sqrt(track.air),
+                attack = 0.05f, release = 0.10f, decay = 0.35f,
+                vibrato = 0.028f,
+                tremoloHz = 6.4f
+            )
+            beat += length
+            index = (index + rng.int(5) - 2).coerceIn(0, palette.scale.size - 1)
+        }
+        return index
+    }
+
+    /**
+     * The high synth: a sixteenth-note arpeggio two octaves up.
+     *
+     * Straight up and down the chord rather than anything clever. This part
+     * exists to put something at the top of the mix, and a line that is busy
+     * *and* unpredictable competes with the melody instead of lifting it.
+     */
+    private fun addSynth(notes: MutableList<Note>, chord: Chord, time: Float, bar: Int) {
+        val sixteenth = SECONDS_PER_BEAT * 0.25f
+        val up = bar % 2 == 0
+        for (step in 0 until 16) {
+            val degree = if (up) step % 4 else 3 - (step % 4)
+            val octave = 12 + if (step >= 8) 12 else 0
+            notes += note(
+                time + sixteenth * step, sixteenth * 0.86f,
+                midi((chord.voicing[degree] + octave).toFloat()), Voice.SYNTH,
+                amp = 0.058f * sqrt(track.air), attack = 0.002f,
+                release = 0.02f, decay = 5.5f
+            )
+        }
+    }
+
+    /**
+     * Six stabs of one chord, each shorter than the last.
+     *
+     * Six exactly, because that is what was asked for, and it is worth being
+     * literal: a stutter that runs on until the bar fills is a different
+     * effect and reads as a mistake. The interval shrinks and the pitch steps
+     * up a semitone at a time, which is the retrigger every glitch record
+     * does — a buffer being replayed faster than it was recorded.
+     */
+    private fun addGlitch(notes: MutableList<Note>, chord: Chord, time: Float) {
+        var at = 0f
+        var gap = SECONDS_PER_BEAT * 0.75f
+        for (stab in 0 until GLITCH_STABS) {
+            val detune = stab.toFloat()
+            val length = gap * 0.78f
+            for (voice in chord.voicing) {
+                notes += note(
+                    time + at, length, midi(voice + 12 + detune), Voice.SYNTH,
+                    amp = 0.115f * sqrt(track.air), attack = 0.001f,
+                    release = 0.008f, decay = 2.4f
+                )
+            }
+            notes += note(
+                time + at, length * 0.9f, midi(chord.bass + 24 + detune), Voice.GUITAR,
+                amp = 0.185f, attack = 0.001f, release = 0.008f, decay = 3f
+            )
+            // A hard tick of noise on the front of each stab: the sound of a
+            // buffer being cut mid-sample, which is what the effect imitates.
+            notes += note(
+                time + at, 0.02f, 0f, Voice.HAT,
+                amp = 0.16f, attack = 0.0005f, release = 0.004f, decay = 90f
+            )
+            notes += kick(time + at, 1.15f)
+            at += gap
+            gap *= 0.78f
+        }
+    }
+
     /** Pull [pitchClass] into the scale and pick the degree nearest [near]. */
     private fun nearestScaleDegree(pitchClass: Int, near: Int): Int {
         var best = near
@@ -701,7 +960,8 @@ object ChiptuneComposer {
         attack: Float,
         release: Float,
         decay: Float = 0f,
-        vibrato: Float = 0f
+        vibrato: Float = 0f,
+        tremoloHz: Float = 0f
     ): Note = Note(
         startFrame = frameOf(time),
         frames = frameOf(duration),
@@ -712,7 +972,8 @@ object ChiptuneComposer {
         attack = attack,
         release = release,
         decay = decay,
-        vibrato = vibrato
+        vibrato = vibrato,
+        tremoloHz = tremoloHz
     )
 
     private fun frameOf(seconds: Float): Int = (seconds * sampleRate).toInt().coerceAtLeast(1)
@@ -732,9 +993,9 @@ object ChiptuneComposer {
         return ((noiseState.toInt() and 0xFFFF) / 32768f) - 1f
     }
 
-    private fun renderNote(note: Note, mix: FloatArray, blockStart: Int) {
+    private fun renderNote(note: Note, mix: FloatArray, blockStart: Int, length: Int) {
         val from = maxOf(note.startFrame, blockStart)
-        val to = minOf(note.startFrame + note.frames, blockStart + mix.size)
+        val to = minOf(note.startFrame + note.frames, blockStart + length)
         if (to <= from) return
 
         val duration = note.frames.toFloat() / sampleRate
@@ -782,6 +1043,25 @@ object ChiptuneComposer {
                     val driven = sin(TWO_PI * phase) * 2.4f
                     driven / (1f + kotlin.math.abs(driven) * 0.55f)
                 }
+
+                // A sawtooth driven into a hard clip, which is what a fuzz
+                // pedal is. Clipping rather than the soft saturation the
+                // master uses on purpose: soft is warmth, hard is teeth, and
+                // a guitar that only warms up is a guitar nobody hears as
+                // distorted.
+                Voice.GUITAR -> {
+                    val saw = 2f * phase - 1f
+                    (saw * 7f).coerceIn(-1f, 1f)
+                }
+
+                // Narrow pulse with a second one a hair sharp underneath. The
+                // beating between them is what stops a high synth line
+                // sounding like a test tone.
+                Voice.SYNTH -> {
+                    val a = if (phase < 0.18f) 1f else -1f
+                    val b = if ((phase * 1.004f) % 1f < 0.18f) 1f else -1f
+                    (a * 0.7f + b * 0.5f) * 0.8f
+                }
             }
 
             mix[frame - blockStart] += raw * note.amp * envelope(note, t, duration)
@@ -790,13 +1070,18 @@ object ChiptuneComposer {
 
     private fun envelope(note: Note, t: Float, duration: Float): Float {
         val attack = if (note.attack <= 0f) 1f else (t / note.attack).coerceAtMost(1f)
+        val tremolo = if (note.tremoloHz > 0f) {
+            0.62f + 0.38f * sin(TWO_PI * note.tremoloHz * t)
+        } else {
+            1f
+        }
         val release = if (note.release > 0f && t > duration - note.release) {
             ((duration - t) / note.release).coerceIn(0f, 1f)
         } else {
             1f
         }
         val decay = if (note.decay > 0f) exp(-note.decay * t) else 1f
-        return attack * release * decay
+        return attack * release * decay * tremolo
     }
 
     /**
@@ -818,8 +1103,14 @@ object ChiptuneComposer {
         private val lowAlpha = lowAlphaFor(track.cutoffHz, rate)
         private val highAlpha = highAlphaFor(rate, track.lowCutHz)
 
-        fun finish(mix: FloatArray, blockStart: Int, totalFrames: Int, out: ByteArray) {
-            for (i in mix.indices) {
+        fun finish(
+            mix: FloatArray,
+            length: Int,
+            blockStart: Int,
+            totalFrames: Int,
+            out: ByteArray
+        ) {
+            for (i in 0 until length) {
                 var sample = mix[i] * track.masterGain + noise() * track.hiss
 
                 lowA += lowAlpha * (sample - lowA)
