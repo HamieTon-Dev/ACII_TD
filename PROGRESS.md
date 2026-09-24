@@ -87,6 +87,12 @@ revive button, no revive pack purchase — so neither blocks development.
 Also still open and owner-facing: §J's boss, level and background options, and
 the remaining `BossVariant` rows.
 
+**Small and unsequenced:** §M4 — menu music should wait five seconds from app
+open and fade up to the player's chosen volume rather than arriving at full
+level right after the boot chime. The trap is in the entry: the ramp has to
+*multiply* `settings.musicVolume`, not replace it, or it silently overrides a
+player who turned music down.
+
 **A note for anyone writing a Robolectric test that touches the repository:**
 `runBlocking { repository.saveRun(...) }` **deadlocks**. Robolectric runs the
 test on the main looper, and blocking that thread stops the one the DataStore

@@ -544,6 +544,52 @@ have caught that: they asserted the beats existed and held, which they did.
 `MenuBoot`, the power LED, the per-element reveal and the MENU INITIALIZATION
 setting are all gone. What replaced it is M2.
 
+### M4 ⬜ Menu music should ease in, not arrive
+
+**Reported on 1.28.0:** *"the music starts from app open. delay music for 5
+seconds then slowly introduce it by scaling volume from 0% → 100% (of volume
+modifier set in settings for music — do not bypass music modifier in settings).
+this is just for startup to slowly introduce the music."*
+
+Right, and the timing is worse than it looks on paper. Start-up runs the studio
+ident (2.0s, carrying the boot chime) and then the boot splash (1.9s), so the
+menu appears at about 3.9s — which means the music currently lands **a fraction
+of a second after the boot chime finishes**, at full volume. Two pieces of audio
+back to back with no gap reads as one of them interrupting the other.
+
+#### The shape
+
+- **Five seconds of silence from app open**, then a fade up. That puts roughly
+  three seconds between the chime ending and the music starting, which is the
+  gap the startup is missing.
+- **Fade to the player's setting, not past it.** The ramp is a *multiplier* on
+  `GameSettings.musicVolume`, so 0% → 100% means 0 → whatever they chose. A
+  player who set music to 20% gets a fade that ends at 20%, and one who set it
+  to zero hears nothing at any point in the fade. This is the part to get right
+  — the obvious implementation ramps an absolute volume and quietly overrides
+  the setting, which is the same bug as bypassing it outright.
+- **Startup only.** Coming back to the menu from a match must not re-fade; that
+  would make every trip through the menu feel like the app relaunching.
+
+#### The details that will bite
+
+- **The slider has to stay live during the fade.** If a player opens SETTINGS
+  and moves music while the ramp is running, the ramp must track the new
+  setting rather than finish to the old one. That falls out naturally if the
+  ramp is stored as a fraction and multiplied at the point `setVolume` is
+  called, and does not if the ramp writes an absolute level.
+- **`MusicEngine` already applies `MUSIC_TRIM` (0.55)** on top of the setting.
+  The ramp is a third multiplier, not a replacement for either.
+- **Backgrounding during the fade.** 1.29.0 made pausing silence everything;
+  resuming should not restart the five-second wait. The fade belongs to the
+  launch, and the launch already happened.
+- **Do not delay the boot chime with it.** That is a separate sound with its
+  own moment and should still fire on the ident.
+
+Small, but it touches `AudioEngine`, `MusicEngine` and the view model's
+settings path, so it wants the fade fraction in one place with a test that a
+zero setting stays silent throughout.
+
 ### M3 ✅ fixed in 1.29.0 — music kept playing with the app in the background
 
 **Reported:** *"when app is minimized the music keeps going — this will be
