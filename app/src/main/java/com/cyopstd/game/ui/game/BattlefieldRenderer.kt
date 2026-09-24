@@ -306,72 +306,73 @@ class BattlefieldRenderer {
      * it runs at two-thirds alpha so it reads as a watermark rather than as
      * another panel.
      */
+    /**
+     * WAVE and ◇ CRYPTO, stacked in the top-right corner.
+     *
+     * They used to sit in opposite corners, and both were in trouble there. The
+     * top-left is crowded — the ATTACK ORIGIN marker is directly under it and
+     * the first lane starts at y=73, which leaves no room for a second line —
+     * and *both* corners sat on the row of deployment nodes along y=38, so in
+     * 1.17.0 the readouts had to be drawn last simply to win the pixels.
+     *
+     * The block above the rack is the one piece of the field nothing else uses:
+     * no node is placed past x=1240 and the rack itself starts at y=168, so a
+     * stack here collides with nothing at all. Putting the wave directly above
+     * the money also puts the two numbers a player checks most in one glance
+     * instead of at opposite ends of a 1600-unit board.
+     */
     private fun drawFieldStatus(canvas: android.graphics.Canvas, engine: GameEngine) {
-        // Both readouts sit on a soft plate. They are drawn over whatever the
-        // backdrop and the living background happen to be doing, and a number
-        // that is legible on the plain grid can disappear over AURORA -- the
-        // plate makes legibility independent of what is behind it.
+        rightTextPaint.textSize = FIELD_STATUS_TEXT
         val waveText = "WAVE ${engine.currentWave}"
         val cryptoText = "\u25C7 ${engine.crypto}"
-        leftTextPaint.textSize = FIELD_STATUS_TEXT
-        rightTextPaint.textSize = FIELD_STATUS_TEXT
 
-        // Sized from a template, not from the live text. A plate measured
-        // against the number itself grows and shrinks every time the number
-        // does, and crypto changes several times a second during a wave --
-        // a dark rectangle breathing in the corner is worse than no plate.
-        val waveWidth = leftTextPaint.measureText(WAVE_PLATE_TEMPLATE) + 16f
-        val cryptoWidth = rightTextPaint.measureText(CRYPTO_PLATE_TEMPLATE) + 16f
-        plate(canvas, FIELD_STATUS_MARGIN - 8f, waveWidth)
-        plate(canvas, WorldGeometry.WIDTH - FIELD_STATUS_MARGIN + 8f - cryptoWidth, cryptoWidth)
+        // One plate behind both lines, sized from templates rather than from
+        // the live text: a plate measured against the number itself grows and
+        // shrinks every time the number does, and crypto changes several times
+        // a second during a wave.
+        val plateWidth = maxOf(
+            rightTextPaint.measureText(WAVE_PLATE_TEMPLATE),
+            rightTextPaint.measureText(CRYPTO_PLATE_TEMPLATE)
+        ) + 20f
+        val right = WorldGeometry.WIDTH - FIELD_STATUS_MARGIN
+        fillPaint.color = colBackground
+        fillPaint.alpha = FIELD_STATUS_PLATE_ALPHA
+        canvas.drawRoundRect(
+            right + 10f - plateWidth,
+            FIELD_STATUS_BASELINE - FIELD_STATUS_TEXT - 2f,
+            right + 10f,
+            FIELD_STATUS_BASELINE + FIELD_STATUS_LINE + 10f,
+            6f,
+            6f,
+            fillPaint
+        )
+        fillPaint.alpha = 255
 
-        leftTextPaint.color = colWhite
-        leftTextPaint.alpha = 255
+        rightTextPaint.color = colWhite
+        rightTextPaint.alpha = 255
+        canvas.drawText(waveText, right, FIELD_STATUS_BASELINE, rightTextPaint)
+
+        rightTextPaint.color = colCrypto
         canvas.drawText(
-            waveText,
-            FIELD_STATUS_MARGIN,
-            FIELD_STATUS_BASELINE,
-            leftTextPaint
+            cryptoText,
+            right,
+            FIELD_STATUS_BASELINE + FIELD_STATUS_LINE,
+            rightTextPaint
         )
 
-        // The run's name, centred between the two corner readouts and set
-        // smaller than either: it identifies the run without competing with
-        // the numbers that change during it.
+        // The run's name, set smaller than either number and away from them:
+        // it identifies the run without competing with the figures that change
+        // during it.
         textPaint.textSize = RUN_NAME_TEXT
         textPaint.color = if (engine.mode == GameMode.STANDARD) colMuted else colOrange
         textPaint.alpha = RUN_NAME_ALPHA
         canvas.drawText(
             engine.mode.runName,
             WorldGeometry.WIDTH * 0.5f,
-            FIELD_STATUS_BASELINE - 2f,
+            FIELD_STATUS_BASELINE - 4f,
             textPaint
         )
         textPaint.alpha = 255
-
-        rightTextPaint.color = colCrypto
-        rightTextPaint.alpha = 255
-        canvas.drawText(
-            cryptoText,
-            WorldGeometry.WIDTH - FIELD_STATUS_MARGIN,
-            FIELD_STATUS_BASELINE,
-            rightTextPaint
-        )
-    }
-
-    /** The dark strip a corner readout is drawn on. */
-    private fun plate(canvas: android.graphics.Canvas, x: Float, width: Float) {
-        fillPaint.color = colBackground
-        fillPaint.alpha = FIELD_STATUS_PLATE_ALPHA
-        canvas.drawRoundRect(
-            x,
-            FIELD_STATUS_BASELINE - FIELD_STATUS_TEXT + 1f,
-            x + width,
-            FIELD_STATUS_BASELINE + 9f,
-            5f,
-            5f,
-            fillPaint
-        )
-        fillPaint.alpha = 255
     }
 
     /**
@@ -1717,8 +1718,10 @@ class BattlefieldRenderer {
         // The in-field wave and crypto readouts. The baseline is set so the
         // text clears both the top of the field and the ATTACK ORIGIN label
         // below it, and so the whole thing stays above the top lane at y=73.
-        const val FIELD_STATUS_TEXT = 31f
-        const val FIELD_STATUS_BASELINE = 34f
+        const val FIELD_STATUS_TEXT = 35f
+        const val FIELD_STATUS_BASELINE = 40f
+        /** Baseline-to-baseline gap between the wave and the crypto line. */
+        const val FIELD_STATUS_LINE = 44f
         const val FIELD_STATUS_MARGIN = 16f
         /** How dark the plate under a corner readout is. */
         const val FIELD_STATUS_PLATE_ALPHA = 185

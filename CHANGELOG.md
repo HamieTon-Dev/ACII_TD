@@ -7,6 +7,75 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [1.18.0]
+
+### Fixed — the top status strip has never been drawn
+
+Found while doing the two small HUD items below, and it is the bigger news.
+
+The renderer opens every frame with `canvas.drawColor`, which fills the whole
+**clip** rather than the composable's box — and Compose does not clip a draw to
+its layout bounds unless it is asked to. The battlefield sits directly below the
+status strip in the same column, so every frame it painted straight over the
+strip above it.
+
+The HUD composed. It laid out. It reported perfectly correct bounds. Only its
+pixels were missing — which is exactly why the question *"is the top HUD strip
+actually visible on a device?"* has sat unanswered in `PROGRESS.md` since 1.5.2,
+and why the in-field corner readouts were added that release "partly to hedge
+against it". They were not a hedge; they were the only reason the wave and the
+crypto were readable at all.
+
+The fix is one `clipToBounds()`. The test is the interesting part:
+`MatchScreenRenderTest` draws the real screen and counts the **pixels** inside
+the bounds Compose reports for the HUD. Removing the fix fails it; that was
+checked rather than assumed. A semantics assertion proves a composable exists —
+only pixels prove it is seen, and twelve releases went by on the difference.
+
+### Changed — the control bar is half its old height
+
+*"the AGENTS 1X 2X 3X 5X bar… it blocks the level of lower towers."*
+
+46dp buttons plus 8dp of row padding each side made a 62dp strip across the
+bottom of the screen. It is ~32dp now: a `dense` flag on `CompactButton` that
+shrinks the minimum height, the padding and the text, used by the in-match bar
+and nothing else. `NEXT WAVE · BREACH` is one line rather than two, since a
+two-line label was setting the bar's height by itself.
+
+This is a deliberate, narrow exception to the project's own
+`MIN_TOUCH_HEIGHT_DP = 52`: five large, well-spaced, low-consequence buttons on
+a screen held in two hands, where a mis-tap costs a speed change. Every other
+button in the game keeps the full target, which is why it is a flag rather than
+a smaller default.
+
+The bar does not overlap the board — the world is scaled into whatever is left
+over — so the win is that the board is now bigger, and everything drawn on it,
+including the level under each agent, is drawn larger.
+
+### Changed — WAVE and ◇ CRYPTO are stacked in the top-right
+
+*"Put the wave number above the money count. make the money and wave number
+slightly larger."*
+
+31pt → 35pt, and both now sit in one right-aligned stack instead of at opposite
+ends of a 1600-unit board.
+
+The corner was chosen by measurement, not taste. The top-left is crowded: the
+ATTACK ORIGIN marker is directly beneath it and lane 1 starts at y=73, which
+leaves no room for a second line. And *both* corners sat on the row of nineteen
+deployment nodes along y=38 — which is why 1.17.0 had to draw the readouts last
+simply to win those pixels. No node is placed past x=1240 and the rack starts at
+y=168, so the block above the rack is the one piece of the field nothing else
+uses.
+
+`FieldStatusRenderTest` moved with them, and one of its assertions got more
+honest on the way: "neither readout touches the lanes" was a single y ceiling,
+which was a fair proxy while the readouts spanned the whole width and is simply
+wrong in a corner no corridor reaches. It now tests the real thing — the ink's
+box against every route segment, in two dimensions.
+
+---
+
 ## [1.17.0]
 
 ### Fixed — the chase lights glitched every time you killed something

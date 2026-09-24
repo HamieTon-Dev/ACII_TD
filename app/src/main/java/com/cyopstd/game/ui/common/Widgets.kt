@@ -47,6 +47,9 @@ import com.cyopstd.game.ui.theme.Palette
 
 const val MIN_TOUCH_HEIGHT_DP = 52
 
+/** The in-match control bar's exception to it. See [CompactButton]'s `dense`. */
+const val DENSE_BUTTON_HEIGHT_DP = 28
+
 /** A bordered terminal panel with an optional title rendered in its top rule. */
 @Composable
 fun TerminalPanel(
@@ -183,7 +186,23 @@ fun CompactButton(
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
     selected: Boolean = false,
-    accent: Color = Palette.Cyan
+    accent: Color = Palette.Cyan,
+    /**
+     * Half-height, for the in-match control bar only.
+     *
+     * That bar runs the full width of the screen directly under the
+     * battlefield, and every pixel it takes is a pixel the board does not get:
+     * the world is scaled to the space left over, so a tall bar shrinks
+     * everything on it, including the level printed under each agent — which is
+     * what the owner was reading when they asked for this.
+     *
+     * It is a deliberate, narrow exception to [MIN_TOUCH_HEIGHT_DP]. These are
+     * four or five large, well-spaced, low-consequence buttons on a screen
+     * being held in two hands; a mis-tap costs a speed change. Every other
+     * button in the game keeps the full target, which is why this is a flag
+     * here rather than a smaller default.
+     */
+    dense: Boolean = false
 ) {
     val interactionSource = remember { MutableInteractionSource() }
     val pressed by interactionSource.collectIsPressedAsState()
@@ -195,7 +214,10 @@ fun CompactButton(
 
     Box(
         modifier = modifier
-            .defaultMinSize(minHeight = 46.dp, minWidth = 62.dp)
+            .defaultMinSize(
+                minHeight = if (dense) DENSE_BUTTON_HEIGHT_DP.dp else 46.dp,
+                minWidth = if (dense) 54.dp else 62.dp
+            )
             .background(
                 when {
                     !enabled -> Palette.Surface.copy(alpha = 0.35f)
@@ -216,13 +238,20 @@ fun CompactButton(
                 role = Role.Button,
                 onClick = onClick
             )
-            .padding(horizontal = 12.dp, vertical = 8.dp),
+            .padding(
+                horizontal = if (dense) 8.dp else 12.dp,
+                vertical = if (dense) 2.dp else 8.dp
+            ),
         contentAlignment = Alignment.Center
     ) {
         Text(
             text = text,
             color = if (enabled) Palette.TextPrimary else Palette.TextMuted,
-            style = MaterialTheme.typography.labelMedium,
+            style = if (dense) {
+                MaterialTheme.typography.labelSmall
+            } else {
+                MaterialTheme.typography.labelMedium
+            },
             textAlign = TextAlign.Center
         )
     }

@@ -3,6 +3,7 @@ package com.cyopstd.game.ui.game
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
+import androidx.compose.ui.draw.clipToBounds
 import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -265,6 +266,20 @@ private fun Battlefield(
         Canvas(
             modifier = Modifier
                 .fillMaxSize()
+                // Clipped to its own bounds, and it has to be.
+                //
+                // The renderer opens every frame with `canvas.drawColor`, which
+                // fills the whole *clip* rather than the composable's box --
+                // and Compose does not clip a draw to its layout bounds unless
+                // it is asked to. So the battlefield was painting over the top
+                // status strip, which is drawn before it in the Column, every
+                // frame: the HUD composed, laid out, reported correct bounds,
+                // and was then wiped before anyone saw it.
+                //
+                // That is the "is the top HUD strip actually visible?" question
+                // that has been open in DEVELOPMENT_STATUS since 1.5.2, and the
+                // answer was no.
+                .clipToBounds()
                 .pointerInput(transform) {
                     detectTapGestures { offset ->
                         viewModel.onBattlefieldTap(transform.toWorld(offset))
@@ -295,25 +310,30 @@ private fun ControlBar(viewModel: GameViewModel) {
     val hud = viewModel.hud
     val canStart = hud.phase == RunPhase.PREPARING
 
+    // Half the height it used to be. The bar is as wide as the screen and sits
+    // directly under the battlefield, so every pixel of it is a pixel the board
+    // does not get -- and the board is where the agent levels are printed.
     Row(
         modifier = Modifier
             .fillMaxWidth()
             .background(Palette.Surface)
-            .padding(horizontal = 10.dp, vertical = 8.dp),
+            .padding(horizontal = 8.dp, vertical = 3.dp),
         verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.spacedBy(8.dp)
+        horizontalArrangement = Arrangement.spacedBy(6.dp)
     ) {
         CompactButton(
             text = "AGENTS",
             onClick = viewModel::toggleDeployPanel,
             selected = viewModel.showDeployPanel,
-            accent = Palette.Cyan
+            accent = Palette.Cyan,
+            dense = true
         )
 
         CompactButton(
             text = if (viewModel.paused) "RESUME" else "PAUSE",
             onClick = viewModel::togglePause,
-            accent = Palette.Orange
+            accent = Palette.Orange,
+            dense = true
         )
 
         // Speed selector: discrete buttons rather than a cycling toggle, so the
@@ -329,7 +349,8 @@ private fun ControlBar(viewModel: GameViewModel) {
                     text = if (unlocked) "${speed.toInt()}X" else "${speed.toInt()}X\u2022",
                     onClick = { viewModel.applySpeedIndex(index) },
                     selected = viewModel.speedIndex == index,
-                    accent = if (unlocked) Palette.Purple else Palette.TextMuted
+                    accent = if (unlocked) Palette.Purple else Palette.TextMuted,
+                    dense = true
                 )
             }
         }
@@ -357,15 +378,20 @@ private fun ControlBar(viewModel: GameViewModel) {
             CompactButton(
                 text = "CANCEL",
                 onClick = viewModel::clearPendingAgent,
-                accent = Palette.Red
+                accent = Palette.Red,
+                dense = true
             )
         }
 
         CompactButton(
-            text = if (hud.nextWaveIsBoss) "NEXT WAVE\nBREACH" else "NEXT WAVE",
+            // One line now: a two-line label is what set the bar's height in
+            // the first place, and the boss warning is already shouted by the
+            // banner, the HUD border and the colour of this button.
+            text = if (hud.nextWaveIsBoss) "NEXT WAVE \u00B7 BREACH" else "NEXT WAVE",
             onClick = viewModel::startNextWave,
             enabled = canStart,
-            accent = if (hud.nextWaveIsBoss) Palette.Red else Palette.Green
+            accent = if (hud.nextWaveIsBoss) Palette.Red else Palette.Green,
+            dense = true
         )
     }
 }

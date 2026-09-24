@@ -9,6 +9,7 @@ import com.cyopstd.game.ui.game.BattlefieldRenderOptions
 import com.cyopstd.game.ui.game.BattlefieldRenderer
 import com.cyopstd.game.ui.game.BattlefieldSelection
 import com.cyopstd.game.ui.game.WorldTransform
+import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -106,50 +107,90 @@ class FieldStatusRenderTest {
     private val cryptoInk get() = diff(frame(1, 7), frame(1, 999_999))
 
     @Test
-    fun `the wave number is drawn in the top-left corner`() {
-        val ink = waveInk
-        assertTrue("the wave number is not drawn at all", ink.pixels > 20)
-        assertTrue("wave ink starts at x=${ink.minX}", ink.minX < width / 4)
-        assertTrue("wave ink starts at y=${ink.minY}", ink.minY < 40)
+    fun `both readouts are stacked in the top-right corner`() {
+        val wave = waveInk
+        val crypto = cryptoInk
+        assertTrue("the wave number is not drawn at all", wave.pixels > 20)
+        assertTrue("the crypto number is not drawn at all", crypto.pixels > 20)
+
+        for ((name, ink) in listOf("wave" to wave, "crypto" to crypto)) {
+            assertTrue("$name ink ends at x=${ink.maxX}", ink.maxX > width * 3 / 4)
+        }
+
+        // The wave sits above the money: the two numbers a player checks most,
+        // in one glance rather than at opposite ends of the board.
+        assertTrue(
+            "wave ink (y=${wave.minY}..${wave.maxY}) is not above crypto ink " +
+                "(y=${crypto.minY}..${crypto.maxY})",
+            wave.maxY < crypto.minY
+        )
     }
 
     @Test
-    fun `the crypto number is drawn in the top-right corner`() {
-        val ink = cryptoInk
-        assertTrue("the crypto number is not drawn at all", ink.pixels > 20)
-        assertTrue("crypto ink ends at x=${ink.maxX}", ink.maxX > width * 3 / 4)
-        assertTrue("crypto ink starts at y=${ink.minY}", ink.minY < 40)
-    }
-
-    @Test
-    fun `neither readout touches the lanes`() {
-        // This is the whole point of putting them where they are. The top lane
-        // is the one the player was complaining about not being able to see.
+    fun `the stack fits in the empty block above the rack`() {
+        // This corner was chosen because nothing else uses it: no deployment
+        // node is placed past x=1240 and the core rack starts at y=168. If
+        // either readout grows out of that block it lands on something.
+        val nodeRight = WorldGeometry.nodes.maxOf { it.x } + WorldGeometry.NODE_RADIUS
         for ((name, ink) in listOf("wave" to waveInk, "crypto" to cryptoInk)) {
             assertTrue(
-                "$name ink reaches y=${ink.maxY}, and lane 1 starts at $laneTop",
-                ink.maxY < laneTop
+                "$name ink starts at x=${ink.minX}, and nodes reach $nodeRight",
+                ink.minX > nodeRight
+            )
+            assertTrue(
+                "$name ink reaches y=${ink.maxY}, and the rack starts at " +
+                    "${WorldGeometry.SERVER_TOP}",
+                ink.maxY < WorldGeometry.SERVER_TOP
             )
         }
     }
 
     @Test
-    fun `the wave readout clears the ATTACK ORIGIN label`() {
-        // ATTACK ORIGIN is drawn at 17pt on a baseline twelve units above the
-        // top lane, so the top of its capitals is where the wave readout has
-        // to stop. Asserted against that position rather than a number typed
-        // in once: the readout was enlarged for legibility and a hard-coded
-        // ceiling would have failed for the wrong reason.
-        val labelBaseline =
-            WorldGeometry.entryPoint(0).y - WorldGeometry.LANE_HEIGHT * 0.5f - 12f
-        val labelTop = (labelBaseline - 13f).toInt()
+    fun `neither readout touches the lanes`() {
+        // The whole point of putting them where they are: a readout drawn over
+        // a corridor hides the threats in it.
+        //
+        // Checked against the real route segments rather than against a single
+        // y ceiling. The ceiling was a fair proxy while the readouts spanned
+        // the full width of the board, but the stack now lives in the corner
+        // past x=1240 where no corridor reaches, and a y-only test fails there
+        // for a collision that cannot happen.
+        val half = WorldGeometry.LANE_HEIGHT / 2f
+        for ((name, ink) in listOf("wave" to waveInk, "crypto" to cryptoInk)) {
+            for (lane in 0 until WorldGeometry.LANE_COUNT) {
+                val points = WorldGeometry.laneWaypoints[lane]
+                for (i in 0 until points.size - 1) {
+                    val a = points[i]
+                    val b = points[i + 1]
+                    val left = minOf(a.x, b.x) - half
+                    val right = maxOf(a.x, b.x) + half
+                    val top = minOf(a.y, b.y) - half
+                    val bottom = maxOf(a.y, b.y) + half
+                    val overlaps = ink.maxX >= left && ink.minX <= right &&
+                        ink.maxY >= top && ink.minY <= bottom
+                    assertFalse(
+                        "$name ink (x ${ink.minX}..${ink.maxX}, y ${ink.minY}..${ink.maxY}) " +
+                            "lands on lane $lane segment $i " +
+                            "(x $left..$right, y $top..$bottom)",
+                        overlaps
+                    )
+                }
+            }
+        }
+    }
 
-        assertTrue(
-            "wave ink descends to y=${waveInk.maxY}, and ATTACK ORIGIN starts at $labelTop",
-            waveInk.maxY < labelTop
-        )
-        // The crypto readout is in the other corner; nothing shares its line.
-        assertTrue("crypto ink descends to y=${cryptoInk.maxY}", cryptoInk.maxY < laneTop)
+    @Test
+    fun `the readouts leave the ATTACK ORIGIN corner alone`() {
+        // Both readouts moved to the right in 1.18.0. The top-left is crowded
+        // -- ATTACK ORIGIN sits under it and lane 1 starts at y=73, which
+        // leaves no room for a second line -- so the test that used to police
+        // that overlap now polices the corner staying empty.
+        for ((name, ink) in listOf("wave" to waveInk, "crypto" to cryptoInk)) {
+            assertTrue(
+                "$name ink starts at x=${ink.minX}, inside the ATTACK ORIGIN corner",
+                ink.minX > width / 2
+            )
+        }
     }
 
     @Test
@@ -224,8 +265,8 @@ class FieldStatusRenderTest {
         // number and nothing else; the same for crypto. If either number ever
         // starts driving some other part of the render, this catches it.
         val wave = waveInk
-        assertTrue("wave ink is ${wave.pixels} px wide-spread", wave.pixels < 2_000)
-        assertTrue("wave ink spans to x=${wave.maxX}", wave.maxX < width / 4)
+        assertTrue("wave ink is ${wave.pixels} px wide-spread", wave.pixels < 2_500)
+        assertTrue("wave ink spans from x=${wave.minX}", wave.minX > width * 3 / 4)
 
         val crypto = cryptoInk
         assertTrue("crypto ink is ${crypto.pixels} px wide-spread", crypto.pixels < 4_000)

@@ -12,51 +12,17 @@ changelog) · ❓ needs a decision from the owner first.
 
 ---
 
-## A. HUD and readability
+## A. HUD and readability — ✅ shipped in 1.18.0
 
-### A1 ⬜ Halve the height of the speed bar
+Both items are done and their detail now lives in `CHANGELOG.md` [1.18.0]:
 
-**Asked:** *"let's make the in game AGENTS 1X 2X 3X 5X bar skinnier like half the
-height. it blocks the level of lower towers."*
+- **A1** — the control bar is half its old height, via a `dense` flag on
+  `CompactButton` used by that bar alone.
+- **A2** — WAVE and ◇ CRYPTO are stacked in the top-right, larger, in the one
+  block of the field nothing else uses.
 
-The control bar is a Compose strip under the battlefield
-(`ui/game/GameScreen.kt`, `ControlBar`), and `CompactButton` has a
-`defaultMinSize(minHeight = 46.dp)` floor that sets its height
-(`ui/common/Widgets.kt`). Halving it means a shorter variant rather than
-changing `CompactButton` everywhere — the menus rely on that 46dp for touch
-targets.
-
-Watch the floor: Android's touch-target guidance is 48dp, and the project has
-`MIN_TOUCH_HEIGHT_DP = 52` written down on purpose. A 24dp-tall speed button is
-under it. Options, cheapest first:
-
-1. Keep the buttons' *tap* height and shrink only the **padding and text**, so
-   the bar loses most of its visual weight without losing its target size.
-2. Let the speed row be genuinely short (~28dp) and accept the smaller target
-   for those four buttons only — they are low-risk taps, and the field being
-   blocked is the worse problem.
-
-Recommendation: (1) first, measure how much height it actually recovers, and
-only go to (2) if it is not enough.
-
-### A2 ⬜ Stack WAVE above ◇ CRYPTO, both slightly larger
-
-**Asked:** *"Put the wave number above the money count. make the money and wave
-number slightly larger."*
-
-These are the in-field corner readouts drawn by
-`BattlefieldRenderer.drawFieldStatus` — `WAVE n` top-left, `◇ n` top-right,
-both raised to 31pt in 1.17.0. Stacking them means one corner with two lines.
-
-❓ **Which corner.** Top-left keeps the eye where the threats enter; top-right
-keeps the money where it has always been. The run name currently sits centred
-between them and would gain the freed corner.
-
-Both plates are sized from a template (`WAVE_PLATE_TEMPLATE`,
-`CRYPTO_PLATE_TEMPLATE`) so they do not resize as the numbers change — keep
-that. `FieldStatusRenderTest` asserts where each readout may paint and will need
-its expectations moved with the layout; it is written against the ATTACK ORIGIN
-label's real position, so it should follow without becoming a magic number.
+Found while doing them: the battlefield had been painting over the top status
+strip every frame since 1.5.2. Also fixed in 1.18.0.
 
 ---
 
@@ -645,10 +611,10 @@ mistakable for a threat — cool, desaturated, low alpha, drawn under the lanes:
 The dependencies decide most of this. When the owner says *continue*, take the
 first unfinished item here and work it.
 
-**Quick wins with no decisions outstanding: A1, A2, G2, I1.**
+**Quick wins with no decisions outstanding: G2, I1.**
 
 
-1. **A1, A2** — self-contained UI, no decisions needed beyond the corner in A2.
+1. ~~A1, A2~~ — ✅ 1.18.0.
 2. **D1** — numbers and one new trait; no dependencies.
 3. **C1** — boss variants. Unblocks B1's dossier, C2, and E2.
 4. **B1** — the dossier, once there is something worth showing in it.

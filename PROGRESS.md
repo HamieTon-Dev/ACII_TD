@@ -4,7 +4,7 @@
 reads first. It records where the project actually stands, what is proven and
 what is not, and what comes next.
 
-_Last updated: v1.17.0 — legibility pass, panel rebuild, and the rack animation fix. See `CHANGELOG.md` for the full per-version history._
+_Last updated: v1.18.0 — control bar, corner readouts, and the HUD strip that was never drawn. See `CHANGELOG.md` for the full per-version history._
 
 ---
 
@@ -28,7 +28,7 @@ both.
 
 ```bash
 cd /home/user/ACII_TD
-./gradlew :app:testDebugUnitTest      # 273 tests, all passing
+./gradlew :app:testDebugUnitTest      # 276 tests, all passing
 ./gradlew :app:assembleRelease        # -> app/build/outputs/apk/release/CyOpsTD-v<ver>.apk
 ```
 
@@ -121,6 +121,7 @@ rather than loosened.
 | 1.15 | Cloud save: progress follows a linked Google account across devices |
 | 1.16 | LOADOUT (equip skins), RUN MODE (pick HACK:AI), locked 5× speed fixed |
 | 1.17 | Rack animation glitch fixed; legibility pass; two-column agent panel |
+| 1.18 | Half-height control bar, stacked corner readouts, HUD strip unblocked |
 
 ---
 
@@ -136,9 +137,17 @@ rather than loosened.
 - **Audio has never been heard.** The emulator ran `-no-audio`. The music is
   verified numerically (length, peak, per-section levels, loop-seam continuity,
   FFT showing the intended chords) but nobody has listened through the app.
-- **Whether the top Compose HUD strip is visible on the user's device** is
-  still unconfirmed; the in-field corner readouts in 1.5.2 were added partly to
-  hedge against it.
+- ~~**Whether the top Compose HUD strip is visible on the user's device**~~ —
+  **answered in 1.18.0, and the answer was no.** The battlefield opens every
+  frame with `canvas.drawColor`, which fills the whole *clip* rather than the
+  composable's box, and Compose does not clip a draw to its bounds unless asked
+  — so the battlefield painted over the strip above it every frame. One
+  `clipToBounds()` fixes it. The in-field readouts added in 1.5.2 to hedge
+  against this were, it turns out, the only reason the wave and crypto were
+  readable at all.
+  - The lesson is in `MatchScreenRenderTest`: a semantics assertion proves a
+    composable *exists*; only pixels prove it is *seen*. The HUD laid out with
+    perfectly correct bounds for twelve releases.
 
 ---
 
