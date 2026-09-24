@@ -7,6 +7,31 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [1.29.0]
+
+### Fixed — the studio logo now scales to any screen
+
+It is a drawable rather than text. Two attempts at rendering it as monospace
+ASCII looked right in testing and were unreadable on a real phone, because the
+spacing depended on a font chosen at runtime and those differ by device.
+
+Every character is still a drawn `#`, so it is the same mark — it simply has
+no font in it any more, and looks identical at every size.
+
+### Fixed — music kept playing when the app was minimised
+
+Worse than it sounded: backgrounding the game *mid-run* switched it to the
+menu music and carried on playing over whatever you opened instead. The pause
+handler was calling the "you have left a match" path, which starts music
+rather than stopping it.
+
+Backgrounding now silences everything, including the boot sound, and coming
+back resumes whichever screen you were on. Previously, returning to the menu
+after minimising left it silent too — resume only restarted music if a run was
+in progress.
+
+---
+
 ## [1.28.0]
 
 ### Fixed — the studio logo was unreadable on a real phone

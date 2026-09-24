@@ -37,6 +37,9 @@ class MusicEngine(
     @Volatile
     private var wantPlaying = false
 
+    /** What the game has asked for, regardless of whether the file is ready yet. */
+    val wantsToPlay: Boolean get() = wantPlaying
+
     @Volatile
     private var volume = 0.5f
 

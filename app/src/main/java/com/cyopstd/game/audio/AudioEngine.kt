@@ -214,13 +214,20 @@ class AudioEngine(private val context: Context) {
         bootChimePlayed = true
         try {
             val player = MediaPlayer.create(context, R.raw.boot_chime) ?: return
+            bootChime = player
             player.setVolume(musicVolume, musicVolume)
-            player.setOnCompletionListener { it.release() }
+            player.setOnCompletionListener {
+                it.release()
+                if (bootChime === it) bootChime = null
+            }
             player.start()
         } catch (error: Exception) {
             Log.w(TAG, "Boot chime would not play", error)
         }
     }
+
+    /** Held so backgrounding the app silences it like everything else. */
+    private var bootChime: MediaPlayer? = null
 
     /** Once per launch. It is an ident, not a UI sound. */
     private var bootChimePlayed = false
@@ -259,10 +266,34 @@ class AudioEngine(private val context: Context) {
         if (inMatch) engineFor(matchTrack).start() else menuMusic.start()
     }
 
+    /**
+     * Silence everything, without forgetting which track belongs where.
+     *
+     * Called when the app goes to the background. It deliberately does *not*
+     * touch `inMatch`: the player is coming back to the same screen they left,
+     * and [startMusic] needs to know which one that was.
+     */
     fun stopMusic() {
         pauseMatchTracks()
         menuMusic.pause()
+        try {
+            bootChime?.takeIf { it.isPlaying }?.pause()
+        } catch (error: Exception) {
+            Log.w(TAG, "Boot chime would not pause", error)
+        }
     }
+
+    /**
+     * Whether anything has been asked to play.
+     *
+     * Exposed because "is the game making noise right now" is the whole
+     * subject of a bug that shipped: backgrounding the app used to *start*
+     * the menu music rather than stop it, and nothing in the suite could see
+     * that.
+     */
+    val musicWanted: Boolean
+        get() = menuMusic.wantsToPlay ||
+            synchronized(matchMusic) { matchMusic.values.any { it.wantsToPlay } }
 
     fun applyVolumes(music: Float, sfx: Float) {
         musicVolume = music

@@ -1402,7 +1402,11 @@ class GameViewModel @JvmOverloads constructor(
     }
 
     fun onAppPaused() {
-        audio.setInMatch(false)
+        // Silence, not "switch to the menu track". This used to call
+        // setInMatch(false), which *starts* the menu music -- so backgrounding
+        // the game during a run swapped to menu music and kept playing it over
+        // whatever the player had opened instead.
+        audio.stopMusic()
         // One coroutine, in order: the run is written first and the upload
         // reads it afterwards. Launching both separately raced, and the race
         // was silent — the pushed snapshot would simply be missing the run the
@@ -1419,8 +1423,13 @@ class GameViewModel @JvmOverloads constructor(
     }
 
     fun onAppResumed() {
-        if (matchActive && settings.musicVolume > 0.01f) audio.startMusic()
+        // Whichever screen they left, not only a match: pausing no longer
+        // clears which track that was, so startMusic picks the right one.
+        if (settings.musicVolume > 0.01f) audio.startMusic()
     }
+
+    /** Whether any music is currently asked to play. */
+    val musicWanted: Boolean get() = audio.musicWanted
 
     override fun onCleared() {
         super.onCleared()

@@ -4,7 +4,7 @@
 reads first. It records where the project actually stands, what is proven and
 what is not, and what comes next.
 
-_Last updated: v1.28.0 — splash fix, boot sound, menu music restored. See `CHANGELOG.md` for the full per-version history._
+_Last updated: v1.29.0 — splash as a drawable, background-music fix. See `CHANGELOG.md` for the full per-version history._
 
 ---
 
@@ -30,9 +30,10 @@ this section is the position marker. Update it when an item ships.
 | 8 | D2 — `[REDHAT]` / `[BLUEHAT]` | ⛔ **blocked on the owner** — the four guard rails in §D2 need a pick |
 | 9 | M1 — main-menu boot sequence | ❌ withdrawn 1.28.0 — read §M1, the failure is instructive |
 | 9b | M2 — boot sound over the ident | ✅ 1.28.0 |
-| 10 | E1 — the "Hugging-Face" map | ⬜ **next workable item** — largest; its own version |
-| 11 | E2 — AI bosses `[₩₩₩]` / `[¥¥¥]` | ⬜ needs C1 + D2 + E1 |
-| 12 | F3 — two-device cloud-save check | ⛔ needs a real Play Console |
+| 10 | N1 — screen-size audit | ⬜ **RELEASE BLOCKER** — do before anything ships |
+| 11 | E1 — the "Hugging-Face" map | ⬜ in progress; the refactor landed in 1.28.0 |
+| 12 | E2 — AI bosses `[₩₩₩]` / `[¥¥¥]` | ⬜ needs C1 + D2 + E1 |
+| 13 | F3 — two-device cloud-save check | ⛔ needs a real Play Console |
 
 **On the music:** the owner has set the generated mode tracks aside and will
 source music another way. The work stays in place and passing — HACK:AI has
@@ -46,17 +47,29 @@ splash (1.9s) — about 3.8 seconds. The boot splash and the ident are
 arguably still one beat too many; worth raising before the store listing
 goes live, but no longer urgent.
 
-**Two things the test renderer cannot check.** Both cost a shipped bug.
+**Three things the test renderer cannot check.** Each cost a shipped bug.
 Robolectric substitutes its own **fonts**, so anything whose correctness
 depends on font metrics is unverifiable there — the 1.26.0 splash banner
 looked perfect in a captured preview and was garbage on hardware. And a
 preview that looks right is worse than no preview, because it stops you
 asking. Second: **staggered opacity is not "hardware powering on"**, however
 carefully the beats are timed. 1.27.0's menu boot passed every test it had
-and was cut on sight.
+and was cut on sight. Third: **nothing could answer "is the game making noise
+right now"** — the state lived inside two MediaPlayers — so backgrounding the
+app *starting* the menu music went unnoticed until a player found it.
 
-**Pick up at E1**, skipping D2 until the owner chooses. E1 is the second map,
-"Hugging-Face", the largest remaining item and worth its own version. The
+**E1 is half done.** 1.28.0 landed the architecture: `WorldGeometry` split
+into the shared frame plus a `GameMap` class, `Maps.PERIMETER` and a new
+three-route `Maps.HUGGING_FACE`, the engine owning its map and the renderer
+taking it from the engine. What is left is the part the backlog warned about:
+**`SavedRun` has no map id**, so a run saved on one level would restore onto
+the other with every agent at a node that means something else. That guard,
+the wave-100-on-Hack:AI unlock (which needs a per-mode best wave) and the
+menu wiring are the remainder.
+
+**N1 comes first, though.** It is a release blocker, not a feature, and the
+splash bug is the evidence: it looked right in every preview captured here
+and was unreadable on the owner's phone twice running. The
 thing to understand before starting: the map is *derived* from named constants
 in `WorldGeometry`, and a great deal assumes there is exactly one of it. §E1
 has the detail; E2 (the AI bosses `[₩₩₩]` / `[¥¥¥]`) needs E1 and D2 first.
@@ -204,6 +217,7 @@ rather than loosened.
 | 1.26 | HamieTon.dev studio ident, block ASCII, fades in and out before the menu |
 | 1.27 | Main menu powers on like a server; MENU INITIALIZATION toggle |
 | 1.28 | Splash banner fixed on device; menu power-on removed; boot sound; menu music restored |
+| 1.29 | Wordmark is a scalable drawable; music stops when the app is backgrounded |
 
 ---
 

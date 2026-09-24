@@ -9,10 +9,9 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import android.graphics.Paint
-import android.graphics.Typeface
-import androidx.compose.foundation.Canvas
-import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.aspectRatio
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -26,18 +25,15 @@ import androidx.compose.runtime.withFrameNanos
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.drawscope.drawIntoCanvas
-import androidx.compose.ui.graphics.nativeCanvas
-import androidx.compose.ui.graphics.toArgb
-import androidx.compose.ui.platform.LocalDensity
-import androidx.compose.ui.semantics.contentDescription
-import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.PlatformTextStyle
 import androidx.compose.ui.text.style.LineHeightStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.cyopstd.game.R
 import com.cyopstd.game.ui.theme.Palette
 
 /**
@@ -96,12 +92,30 @@ fun DeveloperSplashScreen(onFinished: () -> Unit) {
                 .padding(horizontal = SIDE_GUTTER.dp)
                 .alpha(developerIdentAlpha(elapsed))
         ) {
-            BlockBanner(
-                lines = DEVELOPER_BANNER.lines(),
-                columns = BANNER_COLUMNS,
-                availableWidth = available,
-                color = Palette.Green,
-                contentDescription = DEVELOPER_NAME
+            // The wordmark is a drawable, not text.
+            //
+            // Two attempts at rendering it as monospace ASCII both looked
+            // perfect in the test renderer and were unreadable on a phone: the
+            // row spacing depends on the metrics of a font chosen at runtime,
+            // and there is no constant that is right on every device. Centred
+            // text also centres each line independently, which sheared the
+            // whole logo into a diagonal.
+            //
+            // A vector has no font, no line height and no per-line centring.
+            // Every cell is still a drawn '#', so it is the same mark -- it
+            // just scales to any screen instead of depending on one.
+            Image(
+                painter = painterResource(R.drawable.hamieton_banner),
+                contentDescription = DEVELOPER_NAME,
+                colorFilter = ColorFilter.tint(Palette.Green),
+                contentScale = ContentScale.Fit,
+                // Width from the screen, height from the mark's own
+                // proportions. Without the aspect ratio the image has no
+                // height to fit *into* and collapses to its intrinsic size,
+                // which is a logo a fifth of the width it should be.
+                modifier = Modifier
+                    .fillMaxWidth(BANNER_WIDTH_FRACTION)
+                    .aspectRatio(BANNER_ASPECT)
             )
             Spacer(Modifier.height(18.dp))
             Text(
@@ -114,92 +128,6 @@ fun DeveloperSplashScreen(onFinished: () -> Unit) {
     }
 }
 
-/**
- * Block ASCII drawn row by row at measured positions.
- *
- * The first version of this was a single `Text` with a `lineHeight` tuned so
- * the `#` blocks would touch. It looked right in the test renderer and
- * **sheared into garbage on a real phone** — the leading was derived from the
- * ink height of `#` in Robolectric's substitute font, and a device's monospace
- * face has different metrics entirely, so the rows overlapped and slid.
- *
- * There is no line height that is correct on every device, because the number
- * depends on a font that is chosen at runtime. So nothing is guessed: the
- * glyph is measured with the paint that is about to draw it, and each row is
- * placed at an explicit baseline exactly one ink-height below the last. The
- * blocks meet on any font, on any device, because the spacing is derived from
- * the font actually in use rather than from one that was available when the
- * code was written.
- */
-@Composable
-private fun BlockBanner(
-    lines: List<String>,
-    columns: Int,
-    availableWidth: Float,
-    color: Color,
-    contentDescription: String
-) {
-    val density = LocalDensity.current
-    val paint = remember {
-        Paint(Paint.ANTI_ALIAS_FLAG).apply {
-            typeface = Typeface.MONOSPACE
-            textAlign = Paint.Align.LEFT
-        }
-    }
-
-    // Measured, not assumed: advance width and ink height both come from the
-    // paint at the size it will actually draw at.
-    val metrics = remember(availableWidth, columns, density) {
-        with(density) {
-            val widthPx = availableWidth.dp.toPx()
-            // Binary search would be overkill -- the advance is linear in size
-            // for a monospace face, so one measurement scales exactly.
-            paint.textSize = 100f
-            val advanceAt100 = paint.measureText("#")
-            val size = (widthPx / columns) / (advanceAt100 / 100f)
-            paint.textSize = size
-            val bounds = android.graphics.Rect()
-            paint.getTextBounds("#", 0, 1, bounds)
-            BannerMetrics(
-                textSize = size,
-                rowHeight = bounds.height().toFloat(),
-                // drawText places the baseline; the ink sits above it.
-                baselineOffset = -bounds.top.toFloat(),
-                width = paint.measureText("#") * columns
-            )
-        }
-    }
-
-    val heightDp = with(density) { (metrics.rowHeight * lines.size).toDp() }
-    val widthDp = with(density) { metrics.width.toDp() }
-
-    Canvas(
-        Modifier
-            .width(widthDp)
-            .height(heightDp)
-            .semantics { this.contentDescription = contentDescription }
-    ) {
-        drawIntoCanvas { canvas ->
-            paint.textSize = metrics.textSize
-            paint.color = color.toArgb()
-            for ((row, line) in lines.withIndex()) {
-                canvas.nativeCanvas.drawText(
-                    line,
-                    0f,
-                    metrics.baselineOffset + row * metrics.rowHeight,
-                    paint
-                )
-            }
-        }
-    }
-}
-
-private class BannerMetrics(
-    val textSize: Float,
-    val rowHeight: Float,
-    val baselineOffset: Float,
-    val width: Float
-)
 
 /**
  * Fade up, hold, fade down — as a function of elapsed seconds.
@@ -221,6 +149,21 @@ fun developerIdentAlpha(elapsed: Float): Float = when {
 const val FADE_SECONDS = 0.6f
 const val HOLD_SECONDS = 0.8f
 const val IDENT_SECONDS = FADE_SECONDS + HOLD_SECONDS + FADE_SECONDS
+
+/**
+ * How wide the mark sits, as a fraction of the screen.
+ *
+ * Not the full width: a wordmark that touches both edges reads as a banner
+ * rather than as a logo, and on a tall narrow phone it would be a thin strip.
+ */
+private const val BANNER_WIDTH_FRACTION = 0.78f
+
+/**
+ * The mark's proportions, derived from the grid it is drawn on rather than
+ * typed in, so regenerating the drawable cannot leave this behind.
+ */
+private val BANNER_ASPECT: Float
+    get() = BANNER_COLUMNS.toFloat() / DEVELOPER_BANNER.lines().size
 
 /** The studio, in plain text: what the block ASCII is a picture of. */
 const val DEVELOPER_NAME = "HamieTon.dev"
