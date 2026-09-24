@@ -193,6 +193,10 @@ class BattlefieldRenderer {
         drawTarpitFields(canvas, engine)
         drawRangeIndicator(canvas, engine, selection, options)
         drawAgents(canvas, engine, selection, time)
+        // Under the threats, deliberately: a 700-unit blast would otherwise
+        // hide the wave that is still coming while the player celebrates the
+        // one that is not.
+        drawShardBursts(canvas, engine)
         drawEnemies(canvas, engine, time)
         drawProjectiles(canvas, engine)
         drawEffects(canvas, engine)
@@ -1498,6 +1502,86 @@ class BattlefieldRenderer {
 
     // ---------------------------------------------------------------- effects
 
+    /**
+     * The pixel blast a boss or elite leaves behind.
+     *
+     * Every shard is *derived* rather than stored: angle, speed and size come
+     * out of the effect's seed, so a three-hundred-piece explosion is one
+     * pooled object and allocates nothing. That is the same trick the backdrop
+     * columns and the rack's chase lights use, and it is what lets the engine
+     * keep its promise of no per-frame allocation while still throwing this
+     * much across the screen.
+     *
+     * The shards ease outward — fast at first, then slowing, as if through
+     * drag — and shrink and fade as they go. `1 - (1 - p)^2` is the whole of
+     * the physics, which is as much as a half-second effect can show.
+     */
+    private fun drawShardBursts(canvas: android.graphics.Canvas, engine: GameEngine) {
+        for (effect in engine.effects.items) {
+            if (!effect.active || effect.kind != EffectKind.SHARD_BURST) continue
+
+            val progress = effect.progress
+            // Held bright, then dropped late. A squared fade -- the obvious
+            // first choice -- put the blast at a third of its alpha by the
+            // time the shards had spread over a 700-unit disc, which rendered
+            // as a faint speckle rather than as an explosion. Brightness has
+            // to outlast the spread.
+            val remaining = 1f - progress
+            val fade = if (progress < 0.55f) 1f else remaining / 0.45f
+            val reach = 1f - remaining * remaining
+            val shards = if (engine.batterySaver) SHARDS / 3 else SHARDS
+
+            fillPaint.color = effect.colorArgb
+            var state = effect.seed
+            for (i in 0 until shards) {
+                // xorshift: a different angle and speed per shard, the same
+                // ones every frame of the same explosion.
+                state = state xor (state shl 13)
+                state = state xor (state ushr 17)
+                state = state xor (state shl 5)
+                val a = (state ushr 8 and 0xFFFF) / 65535f
+                val b = (state ushr 20 and 0x7FF) / 2047f
+
+                val angle = a * TWO_PI_F
+                // Squared so shards bunch nearer the middle and thin out at the
+                // edge, which reads as a blast rather than as a ring.
+                val distance = effect.scale * (0.15f + 0.85f * b * b) * reach
+                val px = effect.x + cos(angle) * distance
+                val py = effect.y + sin(angle) * distance
+
+                fillPaint.alpha = (255 * fade).toInt().coerceIn(0, 255)
+                // Chunky on purpose: a one-pixel shard on a phone is not an
+                // explosion, it is dust.
+                val size = (2.4f + 5.0f * b) * (0.55f + 0.45f * fade)
+                canvas.drawRect(px, py, px + size, py + size, fillPaint)
+            }
+
+            // The shockwave: a ring that expands and thins, over the first
+            // third. It is what makes the moment read as a detonation rather
+            // than as confetti, and it is drawn white-hot at the centre
+            // because every explosion worth looking at has a core.
+            if (progress < 0.35f) {
+                val flash = 1f - progress / 0.35f
+                glowPaint.color = effect.colorArgb
+                glowPaint.alpha = (235 * flash).toInt().coerceIn(0, 255)
+                glowPaint.strokeWidth = 4f + 34f * (1f - flash)
+                canvas.drawCircle(
+                    effect.x,
+                    effect.y,
+                    26f + effect.scale * 0.42f * (1f - flash),
+                    glowPaint
+                )
+
+                fillPaint.color = 0xFFFFFFFF.toInt()
+                fillPaint.alpha = (215 * flash * flash).toInt().coerceIn(0, 255)
+                canvas.drawCircle(effect.x, effect.y, 10f + 46f * flash, fillPaint)
+                fillPaint.color = effect.colorArgb
+            }
+            fillPaint.alpha = 255
+        }
+    }
+
+
     private fun drawEffects(canvas: android.graphics.Canvas, engine: GameEngine) {
         for (effect in engine.effects.items) {
             if (!effect.active) continue
@@ -1505,6 +1589,9 @@ class BattlefieldRenderer {
             val fade = (1f - progress).coerceIn(0f, 1f)
 
             when (effect.kind) {
+                // Drawn in its own pass, under the threats. See drawShardBursts.
+                EffectKind.SHARD_BURST -> Unit
+
                 EffectKind.HIT -> {
                     textPaint.textSize = 18f * effect.scale
                     textPaint.color = effect.colorArgb
@@ -1711,6 +1798,9 @@ class BattlefieldRenderer {
         const val LED_ROWS = 5
         const val LED_COLUMNS = 8
         const val BACKDROP_GLYPHS = 42
+
+        /** Pixels thrown by one boss or elite death blast. */
+        const val SHARDS = 420
 
         /** How long a backdrop colour change takes to cross-fade. */
         const val TINT_FADE_SECONDS = 2.5f

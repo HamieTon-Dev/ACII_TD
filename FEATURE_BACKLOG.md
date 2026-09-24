@@ -414,37 +414,12 @@ completed."*
 
 ---
 
-## I. Feel
+## I. Feel — ✅ shipped in 1.20.0
 
-### I1 ⬜ Boss and elite death explosions
-
-**Asked:** *"Need to add an animation when bosses and elites are killed like a
-blast radiating out of pixels of their unit color... can radiate out 500-700
-range starting from where unit died and will make the game feel premium. this is
-one of the most important things I'd like to make the whole game feel more
-prevalent."*
-
-Agreed, and it is cheap for how much it buys. The renderer already has an
-effects pass (`drawEffects`, `drawBossExplosion`) and the engine already has
-fixed-capacity pools, so this is a new effect kind rather than new machinery.
-
-Shape: on a boss or elite death, emit a few hundred pixel shards from the death
-point in the threat's own colour, travelling out to 500–700 units with drag, a
-brief bright core flash, and a fade. Because the simulation allocates nothing
-per frame by design, the shards want a **pre-sized pool** — a fixed array reused
-per explosion, not a list built on death.
-
-Two things to hold on to while building it:
-
-- **It must not hide the board.** A 700-unit blast covers nearly half the map.
-  Short-lived and quickly transparent, drawn *under* the threat chips and the
-  HUD so nothing it covers is something the player needs mid-fight.
-- **Battery saver and `backgroundAnimation = false` must scale it down**, the
-  way every other effect in the renderer already does.
-
-Verifiable the way the other visual work has been: rasterize a frame a few
-hundred milliseconds after a boss dies and measure that the ink is there, is the
-right colour, and is gone by the time it would interfere.
+**I1** — bosses and elites now die in a blast of pixel shards in their own
+colour, out to 700 / 500 units, with a shockwave ring and a white core. One
+pooled effect carries a seed and the renderer derives every shard from it, so a
+420-piece explosion allocates nothing. Detail in `CHANGELOG.md` [1.20.0].
 
 ---
 
@@ -506,7 +481,8 @@ mistakable for a threat — cool, desaturated, low alpha, drawn under the lanes:
 The dependencies decide most of this. When the owner says *continue*, take the
 first unfinished item here and work it.
 
-**Quick wins with no decisions outstanding: I1.**
+**Quick wins with no decisions outstanding: none left — every remaining item
+either depends on another or needs a decision noted in its section.**
 
 
 1. ~~A1, A2~~ — ✅ 1.18.0.
@@ -514,8 +490,6 @@ first unfinished item here and work it.
 3. **C1** — boss variants. Unblocks B1's dossier, C2, and E2.
 4. **B1** — the dossier, once there is something worth showing in it.
 5. **D2** — RH/BH, once the guard rails in §D2 are chosen.
-6. **I1** — the death explosions. Self-contained, and the owner rates it the
-   highest-value item in the list for how the game *feels*.
 8. **F1** — the revive. Independent of the boss and map work, but it reorders
    the run-end path, so it is better done while that path is quiet than
    alongside a change to it.

@@ -188,7 +188,7 @@ writing the store listing, so the two say the same thing.
 
 ## 6. What has and has not been proven
 
-**Verified here:** the app builds and signs; 286 tests pass; the Play SDKs
+**Verified here:** the app builds and signs; 294 tests pass; the Play SDKs
 resolve, link and survive R8 (billing and ads classes are present in the
 release DEX); the merged manifest carries INTERNET, `AD_ID` and the
 `com.android.vending.BILLING` permission the billing library adds.

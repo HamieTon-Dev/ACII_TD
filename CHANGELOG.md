@@ -7,6 +7,51 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [1.20.0]
+
+### Added — bosses and elites die properly now
+
+*"an animation when bosses and elites are killed like a blast radiating out of
+pixels of their unit color… this is one of the most important things I'd like to
+make the whole game feel more prevalent."*
+
+A boss death throws **420 pixel shards** out to 700 units in the threat's own
+colour, behind an expanding shockwave ring and a white-hot core. Elites get the
+same at 500 units. It is over in under a second, and it is drawn **under** the
+threat chips — a blast that covers a third of the board must not hide the wave
+walking in underneath it.
+
+**It costs one pooled object.** Every shard's angle, speed and size is derived
+in the renderer from a seed on the effect, so a 420-piece explosion allocates
+nothing and does not flood a pool sized for ordinary hits. That is the same
+trick the backdrop columns and the rack's chase lights already use, and it is
+what lets the engine keep its no-allocation-per-frame promise while throwing
+this much across the screen. Each explosion seeds itself, so the same boss dying
+twice is not the same picture twice.
+
+Battery saver halves the radius rather than skipping the effect: the feedback
+survives even when the spectacle does not.
+
+### The tuning, because the first version was invisible
+
+Written the obvious way — alpha fading as the square of remaining life — it
+rendered as a faint speckle. By the time 260 one-pixel shards had spread across
+a 700-unit disc they were at a third of their alpha and averaged less than a
+pixel of coverage each. Brightness has to *outlast* the spread, so the alpha now
+holds at full for the first 55% and only then drops, the shards are 2.4–7.4px
+rather than 1.2–3.8, and there are 420 of them.
+
+That is a change nothing but looking could have caught, which is why
+`ShardBurstRenderTest` rasterizes real frames and measures them — that the
+shards appear, that they travel outward, that an elite blast is smaller than a
+boss one, and that it is *gone* by the time its lifetime is up. Its first
+version measured red-dominant pixels anywhere on the board and reported the same
+answer every time, because the ATTACK ORIGIN label is red and sits at x=16; it
+now diffs against a control frame, which is the technique the field-status tests
+already used for exactly that reason.
+
+---
+
 ## [1.19.0]
 
 ### Changed — range finally grows, because the late game was impossible for an arithmetic reason

@@ -222,6 +222,26 @@ class EnemySystem(private val engine: GameEngine, private val random: Random) {
         val reward = enemy.reward
         engine.economySystem().award(reward)
         engine.effectSystem().spawnDeath(enemy.x, enemy.y, enemy.isBoss)
+
+        // Bosses and elites go out with a bang. Ordinary traffic does not, or
+        // the board would be a firework display at every wave.
+        if (enemy.isBoss || enemy.isElite) {
+            engine.effectSystem().spawnShards(
+                x = enemy.x,
+                y = enemy.y,
+                colorArgb = if (enemy.isBoss) {
+                    GameEngine.COLOR_HOSTILE
+                } else {
+                    GameEngine.COLOR_ELITE
+                },
+                radius = if (enemy.isBoss) Balance.BOSS_SHARD_RADIUS else Balance.ELITE_SHARD_RADIUS,
+                lifetime = if (enemy.isBoss) {
+                    Balance.BOSS_SHARD_LIFETIME
+                } else {
+                    Balance.ELITE_SHARD_LIFETIME
+                }
+            )
+        }
         engine.effectSystem().spawnCryptoGain(enemy.x, enemy.y - 24f, reward)
         engine.effectSystem().maybeSpawnTerminalMessage(enemy.x, enemy.y)
 

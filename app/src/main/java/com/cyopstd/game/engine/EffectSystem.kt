@@ -48,6 +48,32 @@ class EffectSystem(private val engine: GameEngine, private val random: Random) {
         effect.scale = if (boss) 2.2f else 1f
     }
 
+    /**
+     * The blast a boss or elite leaves when it dies.
+     *
+     * Shards fly out in the threat's own colour and fade. It is the one purely
+     * decorative thing in the engine that is allowed to be large, because a
+     * boss dying is the moment the whole run has been building to and it
+     * deserves to land.
+     *
+     * Cheap in spite of its size: one pooled effect carries a seed, and the
+     * renderer derives every shard from it. Battery saver drops the blast
+     * radius rather than the effect, so the feedback survives even when the
+     * spectacle does not.
+     */
+    fun spawnShards(x: Float, y: Float, colorArgb: Int, radius: Float, lifetime: Float) {
+        val effect = engine.effects.obtain() ?: return
+        effect.reset()
+        effect.active = true
+        effect.kind = EffectKind.SHARD_BURST
+        effect.x = x
+        effect.y = y
+        effect.colorArgb = colorArgb
+        effect.scale = if (engine.batterySaver) radius * 0.5f else radius
+        effect.lifetime = lifetime
+        effect.seed = random.nextInt(1, Int.MAX_VALUE)
+    }
+
     fun spawnDamageNumber(x: Float, y: Float, amount: Float, heavy: Boolean) {
         if (!engine.showDamageNumbers) return
         if (engine.batterySaver && !heavy) return

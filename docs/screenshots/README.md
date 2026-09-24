@@ -38,6 +38,7 @@ few frames per second.
 | `menu-run-modes.png` | Main menu with the RUN MODE panel, HACK:AI selected |
 | `loadout.png` | LOADOUT, with some skins owned and the rest locked |
 | `battlefield.png` | A wave in progress, with the enlarged corner readouts and integrity figures |
+| `boss-death-blast.png` | A boss death blast, a tenth of a second in |
 | `match-hud.png` | The whole match screen at 1.18.0: top strip drawn at last, stacked readouts, half-height control bar |
 | `upgrade-panel.png` | The two-column agent panel, actions on the right, scroll hint on the left |
 | `cloud-save-unlinked.png` | The Google Play account screen before a Google account is linked |

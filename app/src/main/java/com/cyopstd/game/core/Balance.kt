@@ -317,6 +317,20 @@ object Balance {
     const val DEATH_EFFECT_LIFETIME = 0.45f
     const val BOSS_DEATH_EFFECT_LIFETIME = 1.1f
 
+    /**
+     * How far a boss's or an elite's death blast throws its shards, and for
+     * how long.
+     *
+     * The radii are large on purpose — a boss blast crosses a third of the
+     * board — because the moment is the payoff for the whole wave. The
+     * lifetimes are short for the same reason the radii are large: it has to
+     * be over before it is in the way.
+     */
+    const val BOSS_SHARD_RADIUS = 700f
+    const val ELITE_SHARD_RADIUS = 500f
+    const val BOSS_SHARD_LIFETIME = 0.85f
+    const val ELITE_SHARD_LIFETIME = 0.6f
+
     // ------------------------------------------------------------ pacing / UX
 
     /** Seconds of preparation time offered between waves when auto-start is on. */

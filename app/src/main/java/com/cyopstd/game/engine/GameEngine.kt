@@ -644,6 +644,9 @@ class GameEngine(
         const val COLOR_CRYPTO = 0xFFFFC94D.toInt()
         const val COLOR_HOSTILE = 0xFFFF4D6A.toInt()
         const val COLOR_WARNING = 0xFFFF8A3D.toInt()
+
+        /** Elites, matching the magenta the renderer draws their chips in. */
+        const val COLOR_ELITE = 0xFFFF5BD1.toInt()
         const val COLOR_NEUTRAL = 0xFFD7E3F4.toInt()
         const val COLOR_BUDGET = 0xFF7CE0FF.toInt()
     }

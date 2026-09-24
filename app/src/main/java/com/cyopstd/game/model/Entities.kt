@@ -241,7 +241,19 @@ class Projectile : Poolable {
 }
 
 /** Short-lived ASCII flourishes: hit sparks, death glyphs, floating numbers. */
-enum class EffectKind { HIT, DEATH, BOSS_DEATH, DAMAGE_NUMBER, TEXT, CRYPTO_GAIN, UPGRADE }
+enum class EffectKind {
+    HIT, DEATH, BOSS_DEATH, DAMAGE_NUMBER, TEXT, CRYPTO_GAIN, UPGRADE,
+
+    /**
+     * The pixel blast a boss or elite leaves behind.
+     *
+     * One effect, not one per shard. Every shard's angle, speed and size is
+     * derived in the renderer from [Effect.seed] and the effect's progress, so
+     * a three-hundred-piece explosion costs a single pooled object and
+     * allocates nothing — which is the rule the whole simulation is built on.
+     */
+    SHARD_BURST
+}
 
 class Effect : Poolable {
     override var active = false
@@ -256,6 +268,9 @@ class Effect : Poolable {
     var colorArgb: Int = 0xFFFFFFFF.toInt()
     var scale: Float = 1f
 
+    /** Seeds a derived effect, so two explosions never look identical. */
+    var seed: Int = 0
+
     val progress: Float get() = if (lifetime <= 0f) 1f else (age / lifetime).coerceIn(0f, 1f)
 
     override fun reset() {
@@ -264,6 +279,7 @@ class Effect : Poolable {
         text = ""
         scale = 1f
         velocityY = 0f
+        seed = 0
     }
 }
 
