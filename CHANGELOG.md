@@ -7,6 +7,32 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [1.30.0]
+
+### Changed — integrity is shown once, not twice
+
+The `100 / 100` printed inside the server rack is gone. The top bar already
+carries `CORE-SERVER · HP 100 / 100`, and the second copy cost a chunk of the
+most valuable space on the board to say nothing new.
+
+The bar on the rack stays — it shows integrity *where the damage is landing*,
+readable without taking your eyes off the lanes — and so does the INTEGRITY
+LOW alarm, which is the only warning you get mid-wave. The bar has moved up
+into the space the figures left, so the rack's chase lights still frame
+something.
+
+### Fixed — a saved run now remembers which level it was played on
+
+Groundwork for the second map, and a bug waiting to happen without it. Agents
+are saved by node id, and node 17 is one patch of ground on one level and a
+completely different one on another — so a run resumed on the wrong map would
+have scattered your whole board, silently. Saves now record the level and the
+mode, and restore onto them.
+
+Runs saved before this release resume exactly where they were played.
+
+---
+
 ## [1.29.0]
 
 ### Fixed — the studio logo now scales to any screen

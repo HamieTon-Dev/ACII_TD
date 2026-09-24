@@ -24,7 +24,7 @@ Both items are done and their detail now lives in `CHANGELOG.md` [1.18.0]:
 Found while doing them: the battlefield had been painting over the top status
 strip every frame since 1.5.2. Also fixed in 1.18.0.
 
-### A3 ⬜ Drop the integrity numbers off the rack
+### A3 ✅ shipped in 1.30.0 — the integrity numbers are off the rack
 
 **Asked:** *"since we have a HP bar at the top now, the numbers for HP on the
 server in the wave area is unnecessary."*
@@ -52,8 +52,11 @@ drawn around, so it is set large enough to be worth framing". Deleting the
 text leaves the animation framing empty space, so the bar wants centring in
 the space the numbers vacate rather than being left where it is.
 
-Small — an afternoon at most, and worth folding into whatever ships next
-rather than taking a version of its own.
+Done. The bar moved up into the space the figures vacated so the chase
+circuit still frames something, and a test diffs two frames that differ only
+in integrity: whatever pixels move are the integrity display by construction,
+and their *shape* says whether it is a bar or a line of digits. Deleting the
+bar by mistake would otherwise have looked exactly like a successful change.
 
 ---
 
@@ -164,11 +167,15 @@ with the numbers tuned against the existing dps-per-crypto curve in
 
 ## E. A second map
 
-### E1 ❓ "Hugging-Face", unlocked at wave 100 of Hack:AI
+### E1 ◐ "Hugging-Face" — architecture and the save guard done
 
 **Asked:** *"Create another base level named Hugging-face with a different lane
 layout. this level unlocks by reaching wave 100 of Hack AI level. this one will
 include new AI bosses and elites with new debuffs and modifiers."*
+
+**Status: the architecture and the save guard landed in 1.28.0 and 1.30.0.**
+What remains is the unlock condition (wave 100 on Hack:AI specifically, which
+needs a per-mode best wave) and the menu wiring to choose a level.
 
 **This is the largest item in the list, and it is architecture before content.**
 `WorldGeometry` is a Kotlin `object` — a singleton of hard-coded constants from
@@ -179,11 +186,15 @@ A second map means turning it into an interface with two implementations, and
 the derivation is the good news — a new layout is a new set of constants, and
 the nodes come out of it automatically, the same way the current map's do.
 
-The trap to write down now: **`SavedRun` stores placements by node id**, and
-node ids are positions in a per-map array. A run saved on one map must never
-restore onto the other. The save needs the map's id alongside the run, and
-`CONTINUE` must refuse (or discard) a run whose map does not match — a test for
-that belongs with the first line of this work.
+~~The trap to write down now: **`SavedRun` stores placements by node id**, and
+node ids are positions in a per-map array.~~ **Closed in 1.30.0.** `SavedRun`
+carries `mapId` and `modeId`, both defaulting to the original so saves already
+on players' phones resume where they were played, and `continueGame` selects
+the level and the mode *before* restoring — placements are node ids, so
+restoring first and selecting after would scatter the board. An unknown id
+falls back to the original map rather than throwing. Six tests, including one
+that asserts the two maps genuinely disagree about what node 17 means, so the
+rest of the file is not guarding against nothing.
 
 Unlock: wave 100 **on Hack:AI specifically**, so the identity needs a per-mode
 best wave rather than the single `highestWave` it keeps today. `GameMode`
@@ -706,8 +717,7 @@ first unfinished item here and work it.
 either depends on another or needs a decision noted in its section.**
 
 
-1. ~~A1, A2~~ — ✅ 1.18.0. **A3** is outstanding and small; fold it into the
-   next release rather than sequencing it.
+1. ~~A1, A2, A3~~ — ✅ 1.18.0 and 1.30.0.
 2. ~~D1~~ — ✅ 1.19.0, together with all of §G.
 3. ~~C1~~ — ✅ 1.21.0. B1, C2 and E2 are unblocked.
 4. ~~B1~~ — ✅ 1.22.0.

@@ -20,6 +20,7 @@ import com.cyopstd.game.ads.PlayServices
 import com.cyopstd.game.ads.AdPolicy
 import com.cyopstd.game.ads.NoAdGateway
 import com.cyopstd.game.core.GameMode
+import com.cyopstd.game.core.Maps
 import com.cyopstd.game.model.BossModifier
 import com.cyopstd.game.ui.game.BossDossier
 import com.cyopstd.game.ui.game.TutorialGate
@@ -750,6 +751,12 @@ class GameViewModel @JvmOverloads constructor(
                 onFailed()
                 return@launch
             }
+            // The level and the mode come back before anything is restored.
+            // Placements are node ids, and a node id means a different patch
+            // of ground on a different map, so restoring first and selecting
+            // afterwards would put every agent somewhere else.
+            engine.selectMap(Maps.fromIdSafe(run.mapId))
+            engine.selectMode(GameMode.fromIdSafe(run.modeId))
             engine.restore(
                 wave = run.wave,
                 serverHp = run.serverHp,
@@ -1341,7 +1348,9 @@ class GameViewModel @JvmOverloads constructor(
                 agentsDeployed = engine.runAgentsDeployed,
                 agentUpgrades = engine.runAgentUpgrades,
                 budgetEarned = engine.runBudgetEarned,
-                savedAtMillis = System.currentTimeMillis()
+                savedAtMillis = System.currentTimeMillis(),
+                mapId = engine.map.id,
+                modeId = engine.mode.id
             )
         )
         hasSavedRun = true

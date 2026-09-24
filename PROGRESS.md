@@ -4,7 +4,7 @@
 reads first. It records where the project actually stands, what is proven and
 what is not, and what comes next.
 
-_Last updated: v1.29.0 — splash as a drawable, background-music fix. See `CHANGELOG.md` for the full per-version history._
+_Last updated: v1.30.0 — rack readout, saved-run map guard. See `CHANGELOG.md` for the full per-version history._
 
 ---
 
@@ -87,9 +87,13 @@ revive button, no revive pack purchase — so neither blocks development.
 Also still open and owner-facing: §J's boss, level and background options, and
 the remaining `BossVariant` rows.
 
-**Small and unsequenced:** §A3 — drop the duplicated integrity numbers off the
-server rack (the HUD strip already carries them). Keep the rack's *bar* and
-the INTEGRITY LOW alarm; only the figures go. Fold it into the next release.
+**A note for anyone writing a Robolectric test that touches the repository:**
+`runBlocking { repository.saveRun(...) }` **deadlocks**. Robolectric runs the
+test on the main looper, and blocking that thread stops the one the DataStore
+write has to hand back through — it hangs for the full timeout with no output.
+Launch on `Dispatchers.IO` and pump the looper until it lands
+(`SavedRunMapTest.pumpUntil` is the pattern). Plain JUnit tests are fine;
+it is only the Robolectric ones.
 
 **Rendering ASCII art as UI** (learned in 1.26.0, and it will come up again for
 any big lettering): the theme's body styles carry `letterSpacing`, which smears
@@ -222,6 +226,7 @@ rather than loosened.
 | 1.27 | Main menu powers on like a server; MENU INITIALIZATION toggle |
 | 1.28 | Splash banner fixed on device; menu power-on removed; boot sound; menu music restored |
 | 1.29 | Wordmark is a scalable drawable; music stops when the app is backgrounded |
+| 1.30 | Integrity figures off the rack; saved runs record their map and mode |
 
 ---
 

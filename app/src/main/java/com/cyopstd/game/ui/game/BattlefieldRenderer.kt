@@ -757,10 +757,22 @@ class BattlefieldRenderer {
         drawRacetrack(canvas, left, right, top, bottom, damaged, load, time)
 
         // Integrity bar: [==========]
+        //
+        // The figures that used to sit under it are gone -- the HUD strip
+        // carries CORE-SERVER and HP n / n already, and printing them twice
+        // cost a chunk of the most valuable space on the board to say nothing
+        // new. The bar stays because it is a different kind of signal: it
+        // shows integrity *where the damage is landing*, readable without
+        // taking your eyes off the lanes, which a figure in the status strip
+        // cannot do.
+        //
+        // Centred in the space the numbers vacated rather than left where it
+        // was: the chase circuit is drawn around this block, and framing an
+        // empty gap looks like something failed to render.
         val barLeft = left + 26f
         val barRight = right - 26f
-        val barTop = bottom - 76f
-        val barBottom = barTop + 22f
+        val barTop = bottom - 52f
+        val barBottom = barTop + 26f
 
         fillPaint.color = colSurfaceSunken
         fillPaint.alpha = 255
@@ -778,17 +790,10 @@ class BattlefieldRenderer {
         strokePaint.alpha = 200
         canvas.drawRect(barLeft, barTop, barRight, barBottom, strokePaint)
 
-        // Integrity figures. The number the chase circuit is drawn around, so
-        // it is set large enough to be worth framing.
-        textPaint.textSize = INTEGRITY_TEXT
-        textPaint.color = colWhite
-        textPaint.alpha = 255
-        canvas.drawText(
-            "${engine.serverHp} / ${engine.serverMaxHp}",
-            (left + right) * 0.5f, bottom - 20f, textPaint
-        )
-
-        // Alarm banner while integrity is critical.
+        // Alarm banner while integrity is critical. This is not a readout --
+        // it is the only thing on the board that tells a player mid-wave that
+        // they are about to lose -- so it stays.
+        //
         if (hpFraction <= 0.3f && engine.phase != RunPhase.GAME_OVER) {
             val flash = (0.5f + 0.5f * sin(time * 7f))
             textPaint.textSize = 17f
@@ -1878,7 +1883,6 @@ class BattlefieldRenderer {
         const val AGENT_LEVEL_TEXT = 17f
 
         /** The core's integrity figures, inside the chase circuit. */
-        const val INTEGRITY_TEXT = 27f
 
 
 

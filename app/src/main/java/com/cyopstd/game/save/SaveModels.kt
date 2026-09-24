@@ -31,7 +31,28 @@ data class SavedRun(
     val agentsDeployed: Int = 0,
     val agentUpgrades: Int = 0,
     val budgetEarned: Int = 0,
-    val savedAtMillis: Long = 0L
+    val savedAtMillis: Long = 0L,
+    /**
+     * Which level the run was played on.
+     *
+     * **This is what makes the save safe.** Agents are stored by node id, and
+     * a node id is a position in a per-map array — node 17 on one level is a
+     * different patch of ground on another. Without this, resuming after the
+     * second map shipped would have scattered a player's whole board across
+     * the wrong map, silently, with no error anywhere.
+     *
+     * Defaults to the original map so saves written before this field existed
+     * resume onto the level they were actually played on.
+     */
+    val mapId: String = "perimeter",
+    /**
+     * Which mode the run was played on.
+     *
+     * Same reasoning, different symptom: without it a saved HACK:AI run
+     * resumed as a standard one — wrong integrity, wrong health curve, wrong
+     * spawn pressure — and nothing said so.
+     */
+    val modeId: String = "standard"
 ) {
     /** A run is only worth offering as CONTINUE if the server is still standing. */
     val isResumable: Boolean get() = serverHp > 0 && wave >= 0
