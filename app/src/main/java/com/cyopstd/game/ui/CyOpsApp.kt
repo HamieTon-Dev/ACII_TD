@@ -22,6 +22,7 @@ import com.cyopstd.game.ui.menu.PlayAccountScreen
 import com.cyopstd.game.ui.menu.StoreScreen
 import com.cyopstd.game.ui.menu.MainMenuScreen
 import com.cyopstd.game.ui.settings.SettingsScreen
+import com.cyopstd.game.ui.splash.DeveloperSplashScreen
 import com.cyopstd.game.ui.splash.SplashScreen
 import com.cyopstd.game.ui.stats.StatisticsScreen
 import androidx.compose.ui.Alignment
@@ -43,6 +44,8 @@ import com.cyopstd.game.ui.theme.Palette
  * transition. A hand-rolled stack is smaller, faster and easier to follow here.
  */
 sealed interface Screen {
+    /** The studio ident, before anything else. */
+    data object DeveloperIdent : Screen
     data object Splash : Screen
     data object MainMenu : Screen
     data object Game : Screen
@@ -64,7 +67,7 @@ fun CyOpsApp(
     onExitApp: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    var screen by remember { mutableStateOf<Screen>(Screen.Splash) }
+    var screen by remember { mutableStateOf<Screen>(Screen.DeveloperIdent) }
     // Where SETTINGS should return to: it is reachable from both the main menu
     // and the in-match pause menu.
     var settingsReturn by remember { mutableStateOf<Screen>(Screen.MainMenu) }
@@ -77,6 +80,9 @@ fun CyOpsApp(
     CompositionLocalProvider(LocalLivingBackground provides living) {
     Box(modifier.fillMaxSize().background(Palette.Background)) {
         when (screen) {
+            Screen.DeveloperIdent ->
+                DeveloperSplashScreen(onFinished = { screen = Screen.Splash })
+
             Screen.Splash -> SplashScreen(onFinished = { screen = Screen.MainMenu })
 
             Screen.MainMenu -> {

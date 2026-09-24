@@ -7,6 +7,38 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [1.26.0]
+
+### Added — the studio ident
+
+`HamieTon.dev` in big block ASCII now opens the game: it fades up, holds still
+long enough to be read, and fades away, then the CyOps TD boot screen and the
+menu. Tap it to skip — an ident is for the first launch, and by the twentieth
+it is between the player and the game.
+
+The boot screen lost its own small HAMIETON-DEV mark in the same change. The
+studio has a screen to itself now, and signing the game twice in four seconds
+is worse than signing it once.
+
+### The part that was not obvious
+
+Getting ASCII to render as a logo took three measurements rather than three
+guesses, and each one on its own made the banner unreadable:
+
+- the theme adds a third of a point of letter spacing to body text, which is
+  right for prose and fatal for a grid
+- Compose's default line spacing pushed the rows apart into scattered
+  punctuation, or overlapped them into a smear
+- a `#` inks exactly 0.71 of its point size in the platform monospace face, so
+  that is the line height at which the blocks touch and form solid letters
+
+The banner is also scaled to the screen rather than set at a fixed size — it is
+seventy characters wide, and wrapping it would turn a logo into wreckage — and
+it carries the plain-text name as its accessibility label, because a screen
+reader handed the raw art reads out pipes and hashes.
+
+---
+
 ## [1.25.0]
 
 ### Added — the tutorial actually teaches the game now

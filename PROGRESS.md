@@ -4,7 +4,7 @@
 reads first. It records where the project actually stands, what is proven and
 what is not, and what comes next.
 
-_Last updated: v1.25.0 — the guided first run. See `CHANGELOG.md` for the full per-version history._
+_Last updated: v1.26.0 — the studio ident. See `CHANGELOG.md` for the full per-version history._
 
 ---
 
@@ -51,6 +51,14 @@ revive button, no revive pack purchase — so neither blocks development.
 Also still open and owner-facing: §J's boss, level and background options, and
 the remaining `BossVariant` rows.
 
+**Rendering ASCII art as UI** (learned in 1.26.0, and it will come up again for
+any big lettering): the theme's body styles carry `letterSpacing`, which smears
+a character grid; Compose's default leading has to be turned off with
+`includeFontPadding = false` and a trimmed `LineHeightStyle` before
+`lineHeight` means anything; and the right leading is the glyph's *ink* height,
+measured with `Paint.getTextBounds` — 0.71 of the point size for `#` in the
+platform monospace face.
+
 Requested but **not built**: `FEATURE_BACKLOG.md`. It holds the owner's
 add-on list, what each item touches in this codebase, and the decisions still
 open. Read it before starting new work, and move an item into `CHANGELOG.md`
@@ -62,7 +70,7 @@ when it ships rather than leaving it in both.
 
 ```bash
 cd /home/user/ACII_TD
-./gradlew :app:testDebugUnitTest      # 368 tests, all passing
+./gradlew :app:testDebugUnitTest      # 381 tests, all passing
 ./gradlew :app:assembleRelease        # -> app/build/outputs/apk/release/CyOpsTD-v<ver>.apk
 ```
 
@@ -170,6 +178,7 @@ rather than loosened.
 | 1.23 | Revive on a rewarded ad: same wave, half integrity, one per run |
 | 1.24 | REVIVE PACK ($4.99, 3/run, no revive ads); whole € economy ×10 |
 | 1.25 | Tutorial: forced placements, arrows onto the Canvas readouts, briefing |
+| 1.26 | HamieTon.dev studio ident, block ASCII, fades in and out before the menu |
 
 ---
 

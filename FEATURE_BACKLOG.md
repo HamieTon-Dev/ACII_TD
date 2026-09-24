@@ -400,6 +400,46 @@ pooled effect carries a seed and the renderer derives every shard from it, so a
 
 ---
 
+## L. Studio ident — ✅ shipped in 1.26.0
+
+**Asked:** *"Need a splash page before menu upon loading the game that shows
+the developer fading in and out. It should be ASCII in big format
+'HamieTon.dev'."*
+
+A publisher card before the boot screen: `HamieTon.dev` in block ASCII, faded
+up over 0.6s, held still for 0.8s, faded down over 0.6s, then the existing
+CyOps TD boot splash and the menu. Tappable to skip, because by the twentieth
+launch an ident is between the player and the game.
+
+The boot splash lost its own small `HAMIETON-DEV` mark in the same change —
+the studio now has a screen to itself, and signing the game twice in four
+seconds is worse than signing it once.
+
+**What the work actually was: getting ASCII to render as a logo.** Three
+separate things had to be measured rather than guessed, and each of them made
+the banner unreadable on its own.
+
+- **The theme gives body text `letterSpacing = 0.3.sp`.** Right for prose,
+  fatal for a grid: a third of a point added to every cell smears the
+  letterforms. Set to zero here.
+- **Compose's default leading pushed the rows apart** (or overlapped them),
+  so the block read as scattered punctuation. `includeFontPadding = false`
+  plus a trimmed `LineHeightStyle` makes `lineHeight` mean what it says.
+- **A `#` inks exactly 0.71 of its point size** in the platform monospace
+  face — measured with `Paint.getTextBounds`, not estimated — so that is the
+  line height at which the blocks touch and form solid letters. The font's
+  natural leading of 1.172 leaves visible gaps.
+
+The type is scaled to the screen rather than set in `sp`: the banner is 70
+columns wide and wrapping it would turn a logo into wreckage.
+
+The block is also given the plain-text name as its accessibility label, since
+a screen reader handed the raw art reads out pipes and hashes — and that label
+is the only thing a test can check to prove the banner still says what it is
+meant to say.
+
+---
+
 ## J. Options for the owner to choose
 
 Asked for: *"if you think of other boss options or level options let me know and
