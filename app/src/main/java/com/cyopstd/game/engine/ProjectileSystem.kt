@@ -216,6 +216,19 @@ class ProjectileSystem(private val engine: GameEngine, private val random: Rando
         engine.effectSystem().spawnDamageNumber(enemy.x, enemy.y, damage, heavy)
 
         if (enemy.health <= 0f) {
+            // Some bosses do not stay down. Asked of the enemy rather than
+            // checked here, so every way of landing a killing blow -- a shot,
+            // splash, a chain -- goes through the same rule.
+            if (enemy.tryRevive()) {
+                engine.effectSystem().spawnText(
+                    enemy.x,
+                    enemy.y - 48f,
+                    "REANIMATED",
+                    GameEngine.COLOR_HOSTILE,
+                    1.1f
+                )
+                return
+            }
             enemy.health = 0f
             // Credit the kill to the agent that landed the finishing hit, so the
             // management panel can show what each deployment is actually doing.

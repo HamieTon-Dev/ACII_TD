@@ -3,6 +3,7 @@ package com.cyopstd.game.engine
 import com.cyopstd.game.core.Balance
 import com.cyopstd.game.core.WorldGeometry
 import com.cyopstd.game.model.BossModifier
+import com.cyopstd.game.model.BossVariant
 import com.cyopstd.game.model.Enemy
 import com.cyopstd.game.model.EnemyType
 import com.cyopstd.game.model.ThreatTrait
@@ -24,7 +25,10 @@ class EnemySystem(private val engine: GameEngine, private val random: Random) {
             engine.notifyEnemyRemoved(wasKilled = false, enemy = null)
             return
         }
-        configure(enemy, order.type, order.lane, wave, order.elite, order.boss, order.bossModifiers)
+        configure(
+            enemy, order.type, order.lane, wave, order.elite, order.boss,
+            order.bossModifiers, order.bossVariant
+        )
     }
 
     /** Boss PACKET_REPLICATION escorts route through here too. */
@@ -51,7 +55,8 @@ class EnemySystem(private val engine: GameEngine, private val random: Random) {
         wave: Int,
         elite: Boolean,
         boss: Boolean,
-        modifiers: List<BossModifier>
+        modifiers: List<BossModifier>,
+        variant: BossVariant = BossVariant.BREACH
     ) {
         enemy.reset()
         enemy.active = true
@@ -82,6 +87,14 @@ class EnemySystem(private val engine: GameEngine, private val random: Random) {
         }
 
         if (boss) {
+            // The variant's own weighting, applied before the modifiers so a
+            // modifier is still worth the same proportion of whatever this
+            // opponent is.
+            enemy.variant = variant
+            health *= variant.healthScale
+            armor += variant.armorBonus
+            speed *= variant.speedScale
+
             for (modifier in modifiers) enemy.addModifier(modifier)
             if (enemy.hasModifier(BossModifier.ARMOR_PLATING)) armor += 8f + wave * 0.25f
             enemy.burstTimer = 6f

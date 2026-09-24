@@ -7,6 +7,50 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [1.21.0]
+
+### Added — bosses have identities now
+
+Until this release there was exactly one boss in the game. `[!!!]` BREACH, every
+time, with a different set of modifiers rolled onto it — and modifiers make a
+boss *harder*, they do not make it a different opponent. A player at wave 60 had
+met the same thing a dozen times.
+
+`BossVariant` is a table: glyph, health/armour/speed weighting, a signature line
+and the earliest boss cycle it may appear on. Everything else — the modifier
+roll, the rewards, the route rotation — is untouched and applies on top.
+
+| | | |
+| --- | --- | --- |
+| `[!!!]` | **BREACH** | The original. No tricks, just weight |
+| `[GG]` | **GOOD GAME** | ×1.6 health, +7 armour, 22% slower. The wall — bring something that ignores armour |
+| `[ZZ]` | **ZOMBIE** | 12% faster, and **gets back up once at 40% health** |
+
+New opponents arrive one at a time as the cycles climb, the way modifiers
+already did, and cycle 1 stays a plain fight against a plain opponent. The boss
+banner names which one is coming and what it does, while there is still time to
+build for it.
+
+The remaining variants from the backlog's list are one table row each, and are
+waiting on the owner to choose.
+
+### The two details that were not obvious
+
+**ZOMBIE's revive lives on the enemy, not in the damage path.** `Enemy.tryRevive()`
+is asked before a death is finalised, so every way of landing a killing blow — a
+shot, splash, a chain — goes through the same rule and none of them has to
+remember it. That is the same reasoning that moved jamming onto `Agent.jam()`
+last release.
+
+**A chip is measured from what will be drawn.** The threat chips that stop
+labels smearing were sized from `EnemyType.glyph` and cached per type — but a
+boss draws its *variant's* mark now, and `[GG]` is a character narrower than
+`[!!!]`. A chip sized for the wrong string does not fit its label, which is the
+one job the chip has. Bosses are measured live; ordinary threats keep the cache,
+because there are dozens of them and their glyph never varies.
+
+---
+
 ## [1.20.0]
 
 ### Added — bosses and elites die properly now

@@ -58,6 +58,30 @@ class Enemy : Poolable {
     var isElite: Boolean = false
     var isBoss: Boolean = false
 
+    /** Which boss this is. Meaningless unless [isBoss]. */
+    var variant: BossVariant = BossVariant.BREACH
+
+    /** A ZOMBIE only comes back once. */
+    var revived: Boolean = false
+
+    /**
+     * Brings a ZOMBIE back, once, instead of dying.
+     *
+     * Returns true if the death was cancelled. Kept on the enemy rather than
+     * in the damage path so that every way of dealing a killing blow — a
+     * shot, splash, a chain — goes through the same rule and none of them has
+     * to remember it.
+     */
+    fun tryRevive(): Boolean {
+        if (!isBoss || revived || variant != BossVariant.ZOMBIE) return false
+        revived = true
+        health = maxHealth * BossVariant.ZOMBIE_REVIVE_FRACTION
+        return true
+    }
+
+    /** What to draw for this threat. */
+    fun renderedGlyph(): String = if (isBoss) variant.glyph else type.glyph
+
     /** Remaining seconds of slow, and the strongest slow currently applied. */
     var slowRemaining: Float = 0f
     var slowFactor: Float = 1f
@@ -119,6 +143,8 @@ class Enemy : Poolable {
         disruptTimer = 0f
         isElite = false
         isBoss = false
+        variant = BossVariant.BREACH
+        revived = false
     }
 }
 

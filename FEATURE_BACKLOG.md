@@ -52,23 +52,19 @@ variant it is and what that variant does.
 
 ## C. Boss identity
 
-### C1 ⬜ Unique boss glyphs and identities
+### C1 ✅ shipped in 1.21.0 — the mechanism, plus the two you named
 
-**Asked:** *"make text for some bosses different like unique boss identities ie
-[GG] [ZZ] or similar."*
+`BossVariant` is a table: glyph, health/armour/speed weighting, a signature
+line and the earliest cycle it may appear on. Adding one is a row.
 
-Today there is exactly one boss: `EnemyType.BOSS`, glyph `[!!!]`, and every
-boss in the game is that type with different modifiers rolled on. Giving bosses
-identities means **a boss family** — a set of variants with their own glyph,
-stat weighting and signature behaviour — which is also the prerequisite for C2,
-D2 and E1 below. This is the first real piece of engine work in the list.
+Shipped with `[!!!]` BREACH (the original), **`[GG]` GOOD GAME** (the wall —
+huge, armoured, slow) and **`[ZZ]` ZOMBIE** (gets back up once at 40%). The
+banner now names the boss and what it does while there is still time to build
+for it.
 
-Sketch: keep `EnemyType.BOSS` as the shared shape, add a `BossVariant` enum
-(glyph, name, health/armour/speed multipliers, signature ability, which cycles
-it can appear on), roll the variant alongside the modifiers in `EnemySystem`,
-and let the renderer take its glyph from the variant.
-
-Owner's examples: `[GG]`, `[ZZ]`. See §F for more to choose from.
+❓ **The rest of §J's list is still yours to pick from** — `[SS]`, `[RM]`,
+`[∑∑∑]`, `[©©©]`, `[∆∆∆]`, `[XX]`. Each is now one table row plus, where it has
+a signature behaviour, a hook like ZOMBIE's.
 
 ### C2 ❓ Agent-versus-variant damage bonuses
 
@@ -487,7 +483,7 @@ either depends on another or needs a decision noted in its section.**
 
 1. ~~A1, A2~~ — ✅ 1.18.0.
 2. ~~D1~~ — ✅ 1.19.0, together with all of §G.
-3. **C1** — boss variants. Unblocks B1's dossier, C2, and E2.
+3. ~~C1~~ — ✅ 1.21.0. B1, C2 and E2 are unblocked.
 4. **B1** — the dossier, once there is something worth showing in it.
 5. **D2** — RH/BH, once the guard rails in §D2 are chosen.
 8. **F1** — the revive. Independent of the boss and map work, but it reorders

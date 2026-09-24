@@ -4,6 +4,7 @@ import com.cyopstd.game.core.Balance
 import com.cyopstd.game.core.GameMode
 import com.cyopstd.game.core.WorldGeometry
 import com.cyopstd.game.model.BossModifier
+import com.cyopstd.game.model.BossVariant
 import com.cyopstd.game.model.EnemyType
 import kotlin.math.max
 import kotlin.random.Random
@@ -16,14 +17,16 @@ data class SpawnOrder(
     val lane: Int,
     val elite: Boolean,
     val boss: Boolean,
-    val bossModifiers: List<BossModifier> = emptyList()
+    val bossModifiers: List<BossModifier> = emptyList(),
+    val bossVariant: BossVariant = BossVariant.BREACH
 )
 
 data class WavePlan(
     val wave: Int,
     val isBossWave: Boolean,
     val orders: List<SpawnOrder>,
-    val bossModifiers: List<BossModifier>
+    val bossModifiers: List<BossModifier>,
+    val bossVariant: BossVariant = BossVariant.BREACH
 ) {
     val enemyCount: Int get() = orders.size
     val duration: Float get() = orders.lastOrNull()?.time ?: 0f
@@ -132,6 +135,11 @@ class WaveGenerator(private val random: Random = Random.Default) {
         // Boss routes rotate by cycle, so consecutive boss waves never arrive
         // down the same route and a board built for one side is not a permanent
         // answer. Extra bosses in a cycle take the remaining routes.
+        // Which opponent this is. Rolled once per wave so that two bosses in
+        // the same cycle are the same kind of fight arriving down two routes,
+        // rather than an unreadable pair.
+        val variant = rollVariant(cycle)
+
         val firstLane = (cycle - 1).mod(WorldGeometry.LANE_COUNT)
         for (i in 0 until bossCount) {
             orders += SpawnOrder(
@@ -140,12 +148,24 @@ class WaveGenerator(private val random: Random = Random.Default) {
                 lane = (firstLane + i).mod(WorldGeometry.LANE_COUNT),
                 elite = false,
                 boss = true,
-                bossModifiers = modifiers
+                bossModifiers = modifiers,
+                bossVariant = variant
             )
         }
 
         orders.sortBy { it.time }
-        return WavePlan(wave, isBossWave = true, orders = orders, bossModifiers = modifiers)
+        return WavePlan(
+            wave,
+            isBossWave = true,
+            orders = orders,
+            bossModifiers = modifiers,
+            bossVariant = variant
+        )
+    }
+
+    private fun rollVariant(cycle: Int): BossVariant {
+        val pool = BossVariant.poolForCycle(cycle)
+        return pool.randomOrNull(random) ?: BossVariant.BREACH
     }
 
     private fun rollModifiers(cycle: Int): List<BossModifier> {

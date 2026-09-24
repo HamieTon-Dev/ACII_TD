@@ -88,6 +88,10 @@ class GameEngine(
 
     /** Modifiers on the boss wave currently being fought (for the HUD banner). */
     var activeBossModifiers: List<com.cyopstd.game.model.BossModifier> = emptyList()
+
+    /** Which boss the current or approaching boss wave brings. */
+    var activeBossVariant: com.cyopstd.game.model.BossVariant =
+        com.cyopstd.game.model.BossVariant.BREACH
         private set
 
     // ------------------------------------------------------------- wave state
@@ -201,6 +205,7 @@ class GameEngine(
         autoStartRemaining = 0f
         serverHitFlash = 0f
         activeBossModifiers = emptyList()
+        activeBossVariant = com.cyopstd.game.model.BossVariant.BREACH
 
         plan = null
         waveTimer = 0f
@@ -301,6 +306,7 @@ class GameEngine(
         enemiesRemaining = newPlan.enemyCount
         autoStartRemaining = 0f
         activeBossModifiers = newPlan.bossModifiers
+        activeBossVariant = newPlan.bossVariant
 
         if (newPlan.isBossWave) {
             phase = RunPhase.BOSS_WARNING
@@ -409,6 +415,8 @@ class GameEngine(
     private fun completeWave() {
         phase = RunPhase.PREPARING
         activeBossModifiers = emptyList()
+        activeBossVariant = com.cyopstd.game.model.BossVariant.BREACH
+        activeBossVariant = com.cyopstd.game.model.BossVariant.BREACH
 
         val bonus = Balance.waveClearBonus(currentWave)
         val bossBonus = Balance.bossClearBonus(currentWave)

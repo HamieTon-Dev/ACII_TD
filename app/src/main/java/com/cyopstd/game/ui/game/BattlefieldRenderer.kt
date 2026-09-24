@@ -1310,7 +1310,7 @@ class BattlefieldRenderer {
 
     private fun drawThreatChip(canvas: android.graphics.Canvas, enemy: Enemy) {
         val glyphSize = 26f * enemy.type.glyphScale
-        val halfWidth = glyphWidth(enemy.type, glyphSize) * 0.5f + 9f
+        val halfWidth = glyphWidth(enemy, glyphSize) * 0.5f + 9f
         val halfHeight = glyphSize * 0.62f + 3f
 
         // Threats walk in from off the left edge. The fade is measured from
@@ -1356,7 +1356,7 @@ class BattlefieldRenderer {
         textPaint.textSize = glyphSize
         textPaint.color = if (flashing) colText else baseColor
         textPaint.alpha = (255 * entering).toInt()
-        canvas.drawText(enemy.type.glyph, enemy.x, enemy.y + glyphSize * 0.34f, textPaint)
+        canvas.drawText(enemy.renderedGlyph(), enemy.x, enemy.y + glyphSize * 0.34f, textPaint)
 
         if (enemy.encrypted) {
             // Tucked against the chip's top edge. Any higher and it collides
@@ -1408,7 +1408,7 @@ class BattlefieldRenderer {
         textPaint.textSize = glyphSize
         textPaint.color = if (enemy.hitFlash > 0f) colText else enemyColor(enemy)
         textPaint.alpha = 255
-        canvas.drawText(enemy.type.glyph, enemy.x, enemy.y + glyphSize * 0.34f, textPaint)
+        canvas.drawText(enemy.renderedGlyph(), enemy.x, enemy.y + glyphSize * 0.34f, textPaint)
 
         if (enemy.encrypted) {
             thinTextPaint.textSize = 14f
@@ -1471,12 +1471,29 @@ class BattlefieldRenderer {
     }
 
     /** Measured once per threat type; the glyph and its scale never change. */
-    private fun glyphWidth(type: EnemyType, size: Float): Float {
-        val cached = glyphWidths[type.ordinal]
+    /**
+     * How wide this threat's chip has to be.
+     *
+     * Measured from what will actually be drawn, not from the type's glyph:
+     * a boss draws its variant's mark now, and `[GG]` is a character narrower
+     * than `[!!!]`. A chip sized for the wrong string is a chip that does not
+     * fit its label, and the chip exists precisely so labels stop smearing
+     * into each other.
+     *
+     * Ordinary threats keep the per-type cache, because there are dozens of
+     * them on screen and their glyph never varies. A boss is measured live,
+     * which costs nothing: there are at most a handful, once every five waves.
+     */
+    private fun glyphWidth(enemy: Enemy, size: Float): Float {
+        if (enemy.isBoss) {
+            textPaint.textSize = size
+            return textPaint.measureText(enemy.renderedGlyph())
+        }
+        val cached = glyphWidths[enemy.type.ordinal]
         if (cached >= 0f) return cached
         textPaint.textSize = size
-        val measured = textPaint.measureText(type.glyph)
-        glyphWidths[type.ordinal] = measured
+        val measured = textPaint.measureText(enemy.type.glyph)
+        glyphWidths[enemy.type.ordinal] = measured
         return measured
     }
 
@@ -1691,9 +1708,24 @@ class BattlefieldRenderer {
         textPaint.alpha = 255
         canvas.drawText("!!! CYBERATTACK INCOMING !!!", cx, WorldGeometry.HEIGHT * 0.40f, textPaint)
 
+        // Named, now that bosses have names. A player who has learned what
+        // [GG] does should be told which one is coming while there is still
+        // time to build for it.
+        val variant = engine.activeBossVariant
         textPaint.textSize = 30f
         textPaint.color = colOrange
-        canvas.drawText("MAJOR BREACH DETECTED", cx, WorldGeometry.HEIGHT * 0.50f, textPaint)
+        canvas.drawText(
+            "${variant.glyph}  ${variant.displayName}",
+            cx,
+            WorldGeometry.HEIGHT * 0.50f,
+            textPaint
+        )
+
+        thinTextPaint.textSize = 19f
+        thinTextPaint.color = colSecondary
+        thinTextPaint.alpha = 235
+        canvas.drawText(variant.signature, cx, WorldGeometry.HEIGHT * 0.555f, thinTextPaint)
+        thinTextPaint.alpha = 255
 
         val modifiers = engine.activeBossModifiers
         if (modifiers.isNotEmpty()) {
@@ -1702,7 +1734,7 @@ class BattlefieldRenderer {
             thinTextPaint.alpha = 255
             canvas.drawText(
                 modifiers.joinToString("  /  ") { it.displayName },
-                cx, WorldGeometry.HEIGHT * 0.58f, thinTextPaint
+                cx, WorldGeometry.HEIGHT * 0.615f, thinTextPaint
             )
         }
 
