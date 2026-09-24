@@ -5,6 +5,7 @@ import kotlin.math.PI
 import kotlin.math.exp
 import kotlin.math.pow
 import kotlin.math.sin
+import kotlin.math.sqrt
 
 /**
  * Writes the game's background music: a three-and-a-half minute lo-fi chiptune,
@@ -30,11 +31,21 @@ import kotlin.math.sin
  */
 object ChiptuneComposer {
 
-    /** Deliberately low: it is half the cost of 32 kHz and sounds warmer. */
-    const val SAMPLE_RATE = 16_000
+    /**
+     * The rate a track is rendered at, and a hard ceiling on how bright it can
+     * possibly be.
+     *
+     * 16 kHz puts everything above 8 kHz out of reach, which is most of the
+     * reason the original two tracks sound like tape: there is no air in them
+     * because there is nowhere for air to live. It is the right call for those
+     * two — half the cost, and warmth is what they are for — and the wrong one
+     * for a track that is supposed to sound like a machine, so it is a track
+     * property rather than a constant.
+     */
+    private var sampleRate = 16_000
 
     /** Bump this when an arrangement changes so cached renders are replaced. */
-    const val TRACK_VERSION = 3
+    const val TRACK_VERSION = 4
 
     private const val BEATS_PER_BAR = 4
     private const val BARS_PER_SECTION = 8
@@ -58,6 +69,43 @@ object ChiptuneComposer {
         /** Tape-wow depth. Zero is a clean machine. */
         val wow: Float,
         /**
+         * Render rate, and a hard ceiling on brightness: nothing above half of
+         * it can exist in the file at all.
+         */
+        val sampleRate: Int = 16_000,
+        /** Noise floor. Audible hiss is a tape artefact; a machine has none. */
+        val hiss: Float = 0.0035f,
+        /**
+         * Pulse width of the lead, 0.5 being a square.
+         *
+         * A square is mellow — odd harmonics only. Narrowing it brings in the
+         * even harmonics too and the lead goes from warm to biting, which is
+         * most of the difference between a chiptune that sounds nostalgic and
+         * one that sounds like a machine talking.
+         */
+        val leadDuty: Float = 0.5f,
+        /**
+         * How much of the mix is allowed to live above the bass, 1 being the
+         * original balance.
+         *
+         * Opening the filter turned out to be only half of "less lo-fi". The
+         * other half is that the bright elements were not there to let
+         * through: hats at a twelfth of the kick's level and a lead under half
+         * the bass's, so a track could be wide open and still measure as
+         * bass-and-nothing-else. This lifts the hats and the lead together,
+         * and above 1.2 it doubles the lead an octave up — the cheapest real
+         * top end there is.
+         */
+        val air: Float = 1f,
+        /**
+         * Master high-pass corner in Hz.
+         *
+         * 38 Hz removes essentially nothing, which is right for a warm track.
+         * Lifting it thins the low end so everything above it is heard rather
+         * than merely present.
+         */
+        val lowCutHz: Float = 38f,
+        /**
          * Extra transient on every bass note, 0 for none.
          *
          * A "harder" bass on a phone speaker is not a deeper one — the driver
@@ -71,28 +119,39 @@ object ChiptuneComposer {
         MENU(bpm = 132f, cutoffHz = 7200f, masterGain = 1.15f, wow = 0.15f),
 
         /**
-         * HACK:AI's track. Slow, murky and deliberately unsettled.
+         * HACK:AI's track.
          *
-         * Same harmonic palette as [BOTTLE_DRIVE] — they are two performances
-         * of one piece, which is the point — but taken slowly, filtered dark
-         * and with the tape wow pushed until the tuning audibly drifts. The
-         * mode is the hardest thing in the game and the music is the only part
-         * of it that is allowed to sound resigned about that.
+         * Slow and unsettled, but **not** lo-fi — and the difference is four
+         * specific things rather than a mood. It renders at 24 kHz instead of
+         * 16, so there is somewhere above 8 kHz for the hats and the lead's
+         * upper harmonics to live at all. The filter sits at 6.4 kHz instead
+         * of 1.9, so those harmonics actually arrive. The tape wow is
+         * effectively off, so the tuning holds instead of warbling. And the
+         * hiss is down near nothing, because hiss is a cassette artefact and
+         * this is meant to sound like a machine.
+         *
+         * What stays is the writing: the same uneasy palette, the same slow
+         * tempo, the same arrangement that never quite lifts. Dark is the
+         * harmony's job, not the filter's.
          */
-        BOTTLE(bpm = 58f, cutoffHz = 1900f, masterGain = 1.30f, wow = 1.75f),
+        BOTTLE(
+            bpm = 60f, cutoffHz = 6400f, masterGain = 1.10f, wow = 0.08f,
+            sampleRate = 24_000, hiss = 0.0006f, leadDuty = 0.30f,
+            air = 2.4f, lowCutHz = 74f
+        ),
 
         /**
          * The same piece at speed, for the second map.
          *
-         * Half again as fast, brighter, the wow almost gone so the tuning
-         * holds, and every bass note given a hard swept attack. Same chords,
-         * same melody vocabulary, same progressions — it is recognisably the
-         * other track, which is why it is one palette and two arrangements
-         * rather than two pieces of music.
+         * Half again as fast, brighter still, and every bass note given a hard
+         * swept attack. Same chords, same melody vocabulary, same
+         * progressions — it is recognisably the other track, which is why it
+         * is one palette and two arrangements rather than two pieces of music.
          */
         BOTTLE_DRIVE(
-            bpm = 88f, cutoffHz = 3100f, masterGain = 1.30f, wow = 0.45f,
-            bassPunch = 1f
+            bpm = 90f, cutoffHz = 7600f, masterGain = 1.10f, wow = 0.05f,
+            sampleRate = 24_000, hiss = 0.0005f, leadDuty = 0.26f,
+            air = 2.7f, lowCutHz = 80f, bassPunch = 1f
         )
     }
 
@@ -110,10 +169,6 @@ object ChiptuneComposer {
 
     private val SECONDS_PER_BEAT get() = 60f / bpm
     private val SECONDS_PER_BAR get() = SECONDS_PER_BEAT * BEATS_PER_BAR
-
-    /** Rendered in chunks of one section so peak memory stays near 2 MB. */
-    private val FRAMES_PER_SECTION
-        get() = (SECONDS_PER_BAR * BARS_PER_SECTION * SAMPLE_RATE).toInt()
 
     private const val TWO_PI = (2.0 * PI).toFloat()
 
@@ -310,22 +365,34 @@ object ChiptuneComposer {
             bassGain = 1.05f)
     )
 
-    /** Total length of [which] in seconds. */
-    fun trackSeconds(which: Track = Track.GAME): Float {
-        val saved = bpm
-        bpm = which.bpm
-        val result = arrangementFor(which).size * BARS_PER_SECTION * SECONDS_PER_BAR
-        bpm = saved
-        return result
-    }
+    /**
+     * Total length of [which] in seconds.
+     *
+     * Computed from the track rather than by borrowing the renderer's state
+     * and putting it back. That save-and-restore worked while tempo was the
+     * only thing a track changed; the moment sample rate joined it, the
+     * restore was one line short and [totalFrames] started answering with the
+     * wrong rate — which is the number `MusicEngine` checks a cached file's
+     * length against. A function that reads no shared state cannot go stale
+     * that way.
+     */
+    fun trackSeconds(which: Track = Track.GAME): Float =
+        arrangementFor(which).size * BARS_PER_SECTION * secondsPerBar(which)
 
-    fun totalFrames(which: Track = Track.GAME): Int {
-        val saved = bpm
-        bpm = which.bpm
-        val result = arrangementFor(which).size * FRAMES_PER_SECTION
-        bpm = saved
-        return result
-    }
+    fun totalFrames(which: Track = Track.GAME): Int =
+        arrangementFor(which).size * framesPerSection(which)
+
+    private fun secondsPerBar(which: Track): Float = (60f / which.bpm) * BEATS_PER_BAR
+
+    /**
+     * The block size a render writes at a time.
+     *
+     * The same function feeds the WAV header's length and the loop that
+     * writes the samples, so the two cannot disagree by a rounding step and
+     * leave a file that is a few bytes short of what its header claims.
+     */
+    private fun framesPerSection(which: Track): Int =
+        (secondsPerBar(which) * BARS_PER_SECTION * which.sampleRate).toInt()
 
     private fun arrangementFor(which: Track): Array<Section> = when (which) {
         Track.MENU -> MENU_ARRANGEMENT
@@ -354,6 +421,7 @@ object ChiptuneComposer {
     fun writeWav(out: OutputStream, which: Track = Track.GAME) {
         track = which
         bpm = which.bpm
+        sampleRate = which.sampleRate
         sections = arrangementFor(which)
         palette = paletteFor(which)
         val frames = totalFrames(which)
@@ -364,14 +432,16 @@ object ChiptuneComposer {
         noiseState = NOISE_SEED
 
         val notes = compose()
-        val mix = FloatArray(FRAMES_PER_SECTION)
-        val bytes = ByteArray(FRAMES_PER_SECTION * 2)
-        val master = Master(track)
+        // One section at a time, so peak memory stays near a couple of MB.
+        val blockFrames = framesPerSection(which)
+        val mix = FloatArray(blockFrames)
+        val bytes = ByteArray(blockFrames * 2)
+        val master = Master(track, sampleRate)
 
         for (section in sections.indices) {
             java.util.Arrays.fill(mix, 0f)
-            val blockStart = section * FRAMES_PER_SECTION
-            val blockEnd = blockStart + FRAMES_PER_SECTION
+            val blockStart = section * blockFrames
+            val blockEnd = blockStart + blockFrames
 
             for (note in notes) {
                 if (note.startFrame >= blockEnd) break
@@ -517,10 +587,15 @@ object ChiptuneComposer {
         val hatSlots = if (intensity >= 2) intArrayOf(1, 3, 5, 7) else intArrayOf(2, 6)
         for (slot in hatSlots) {
             if (intensity >= 2 && rng.float() < 0.12f) continue
+            // On an airy track the hat is the only thing in the mix with any
+            // real top end, and at a 70 decay it lasted about fifteen
+            // milliseconds -- a tick, not a hat. Letting it ring is worth more
+            // brightness than any amount of filter.
             notes += note(
-                time + SECONDS_PER_BEAT * 0.5f * slot, 0.06f, 0f, Voice.HAT,
-                amp = if (intensity >= 2) 0.075f else 0.05f,
-                attack = 0.001f, release = 0.01f, decay = 70f
+                time + SECONDS_PER_BEAT * 0.5f * slot,
+                0.06f * track.air.coerceAtLeast(1f), 0f, Voice.HAT,
+                amp = (if (intensity >= 2) 0.075f else 0.05f) * track.air,
+                attack = 0.001f, release = 0.01f, decay = 70f / track.air.coerceAtLeast(1f)
             )
         }
     }
@@ -576,12 +651,22 @@ object ChiptuneComposer {
             val duration = SECONDS_PER_BEAT * 0.5f * lengthSlots * 0.92f
             val pitch = palette.scale[index] + section.melodyOctave * 12
 
+            val start = barTime + SECONDS_PER_BEAT * 0.5f * slot
+            val base = (if (section.melodyOctave > 0) 0.10f else 0.135f) *
+                (if (strong) 1f else 0.82f) * sqrt(track.air)
             notes += note(
-                barTime + SECONDS_PER_BEAT * 0.5f * slot, duration, midi(pitch.toFloat()),
-                Voice.LEAD,
-                amp = (if (section.melodyOctave > 0) 0.10f else 0.135f) * if (strong) 1f else 0.82f,
-                attack = 0.014f, release = 0.06f, decay = 1.1f, vibrato = 0.005f
+                start, duration, midi(pitch.toFloat()), Voice.LEAD,
+                amp = base, attack = 0.014f, release = 0.06f, decay = 1.1f, vibrato = 0.005f
             )
+            if (track.air > 1.2f) {
+                // A quiet octave above the line. It is not heard as a second
+                // melody, it is heard as the first one being brighter.
+                notes += note(
+                    start, duration * 0.8f, midi(pitch + 12f), Voice.LEAD,
+                    amp = base * 0.30f, attack = 0.010f, release = 0.05f,
+                    decay = 1.6f, vibrato = 0.005f
+                )
+            }
             slot += lengthSlots
         }
         return index
@@ -630,7 +715,7 @@ object ChiptuneComposer {
         vibrato = vibrato
     )
 
-    private fun frameOf(seconds: Float): Int = (seconds * SAMPLE_RATE).toInt().coerceAtLeast(1)
+    private fun frameOf(seconds: Float): Int = (seconds * sampleRate).toInt().coerceAtLeast(1)
 
     private fun midi(note: Float): Float = 440f * 2f.pow((note - 69f) / 12f)
 
@@ -652,14 +737,14 @@ object ChiptuneComposer {
         val to = minOf(note.startFrame + note.frames, blockStart + mix.size)
         if (to <= from) return
 
-        val duration = note.frames.toFloat() / SAMPLE_RATE
+        val duration = note.frames.toFloat() / sampleRate
         // A note that began in an earlier block resumes with the right phase.
-        val skipped = (from - note.startFrame).toFloat() / SAMPLE_RATE
+        val skipped = (from - note.startFrame).toFloat() / sampleRate
         var phase = (note.freq * skipped) % 1f
 
         for (frame in from until to) {
-            val t = (frame - note.startFrame).toFloat() / SAMPLE_RATE
-            val absolute = frame.toFloat() / SAMPLE_RATE
+            val t = (frame - note.startFrame).toFloat() / sampleRate
+            val absolute = frame.toFloat() / sampleRate
 
             var freq = note.freq
             if (note.endFreq != note.freq) {
@@ -680,11 +765,11 @@ object ChiptuneComposer {
                     )
             }
 
-            phase += freq / SAMPLE_RATE
+            phase += freq / sampleRate
             if (phase >= 1f) phase -= phase.toInt().toFloat()
 
             val raw = when (note.voice) {
-                Voice.LEAD -> if (phase < 0.5f) 1f else -1f
+                Voice.LEAD -> if (phase < track.leadDuty) 1f else -1f
                 Voice.PAD -> if (phase < 0.25f) 1f else -1f
                 Voice.BASS -> if (phase < 0.5f) 4f * phase - 1f else 3f - 4f * phase
                 Voice.KICK -> sin(TWO_PI * phase)
@@ -722,23 +807,27 @@ object ChiptuneComposer {
      * rather than heard. Filter state persists across blocks so the section
      * boundaries are inaudible.
      */
-    private class Master(private val track: Track) {
+    private class Master(private val track: Track, private val rate: Int) {
         private var lowA = 0f
         private var lowB = 0f
         private var highY = 0f
         private var highX = 0f
 
+        // Hoisted: these were recomputed (via a map lookup) once per sample,
+        // and they cannot change inside a render.
+        private val lowAlpha = lowAlphaFor(track.cutoffHz, rate)
+        private val highAlpha = highAlphaFor(rate, track.lowCutHz)
+
         fun finish(mix: FloatArray, blockStart: Int, totalFrames: Int, out: ByteArray) {
             for (i in mix.indices) {
-                var sample = mix[i] * track.masterGain + noise() * 0.0035f
+                var sample = mix[i] * track.masterGain + noise() * track.hiss
 
-                val alpha = lowAlphaFor(track.cutoffHz)
-                lowA += alpha * (sample - lowA)
-                lowB += alpha * (lowA - lowB)
+                lowA += lowAlpha * (sample - lowA)
+                lowB += lowAlpha * (lowA - lowB)
                 sample = lowB
 
                 val input = sample
-                highY = HIGH_ALPHA * (highY + input - highX)
+                highY = highAlpha * (highY + input - highX)
                 highX = input
                 sample = highY
 
@@ -755,8 +844,8 @@ object ChiptuneComposer {
 
         /** Silence at both ends, so the loop seam cannot click. */
         private fun fade(frame: Int, totalFrames: Int): Float {
-            val inFrames = SAMPLE_RATE * 2
-            val outFrames = SAMPLE_RATE * 3
+            val inFrames = rate * 2
+            val outFrames = rate * 3
             val rise = (frame.toFloat() / inFrames).coerceIn(0f, 1f)
             val fall = ((totalFrames - frame).toFloat() / outFrames).coerceIn(0f, 1f)
             return rise * fall
@@ -790,8 +879,8 @@ object ChiptuneComposer {
         ascii("fmt "); int32(16)
         int16(1)                     // PCM
         int16(1)                     // mono
-        int32(SAMPLE_RATE)
-        int32(SAMPLE_RATE * 2)       // byte rate
+        int32(sampleRate)
+        int32(sampleRate * 2)        // byte rate
         int16(2)                     // block align
         int16(16)                    // bits per sample
         ascii("data"); int32(dataSize)
@@ -812,17 +901,16 @@ object ChiptuneComposer {
         fun int(bound: Int): Int = (next() % bound.toUInt()).toInt()
     }
 
-    /** One-pole coefficient for a cutoff, cached per distinct value. */
-    private val lowAlphaCache = HashMap<Float, Float>()
-
-    private fun lowAlphaFor(cutoffHz: Float): Float = lowAlphaCache.getOrPut(cutoffHz) {
-        val dt = 1f / SAMPLE_RATE
+    /** One-pole low-pass coefficient for a cutoff at a given rate. */
+    private fun lowAlphaFor(cutoffHz: Float, rate: Int): Float {
+        val dt = 1f / rate
         val rc = 1f / (TWO_PI * cutoffHz)
-        dt / (rc + dt)
+        return dt / (rc + dt)
     }
-    private val HIGH_ALPHA = run {
-        val dt = 1f / SAMPLE_RATE
-        val rc = 1f / (TWO_PI * 38f)
-        rc / (rc + dt)
+
+    private fun highAlphaFor(rate: Int, cornerHz: Float): Float {
+        val dt = 1f / rate
+        val rc = 1f / (TWO_PI * cornerHz)
+        return rc / (rc + dt)
     }
 }

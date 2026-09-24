@@ -62,7 +62,7 @@ class ChiptuneComposerTest {
 
         assertEquals(1, int16(20))                              // PCM
         assertEquals(1, int16(22))                              // mono
-        assertEquals(ChiptuneComposer.SAMPLE_RATE, int32(24))
+        assertEquals(ChiptuneComposer.Track.GAME.sampleRate, int32(24))
         assertEquals(16, int16(34))                             // bits per sample
         assertEquals(ChiptuneComposer.totalFrames() * 2, int32(40))
         assertEquals(44 + ChiptuneComposer.totalFrames() * 2, rendered.size)

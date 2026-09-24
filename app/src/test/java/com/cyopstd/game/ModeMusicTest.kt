@@ -8,7 +8,6 @@ import java.io.ByteArrayOutputStream
 import kotlin.math.abs
 import kotlin.math.sqrt
 import org.junit.Assert.assertEquals
-import org.junit.Assert.assertNotEquals
 import org.junit.Assert.assertTrue
 import org.junit.Test
 
@@ -107,18 +106,125 @@ class ModeMusicTest {
     }
 
     @Test
-    fun `the eerie tracks do not sound like the standard one`() {
-        // Not a taste assertion: the two palettes have different chord roots,
-        // so a track built from one cannot be built from the other.
-        assertNotEquals(Track.GAME.bpm, Track.BOTTLE.bpm)
-        assertTrue(
-            "HACK:AI's track should be darker than the standard one",
-            Track.BOTTLE.cutoffHz < Track.GAME.cutoffHz
-        )
-        assertTrue(
-            "and more warped -- that is most of what 'slowed' sounds like",
-            Track.BOTTLE.wow > Track.GAME.wow
-        )
+    fun `the mode tracks are not lo-fi`() {
+        // The first version of these was, and it was the wrong call: it is a
+        // machine, not a cassette. Dark is the harmony's job -- the palette
+        // has a bII and a b9 in it -- and a filter closed down over the whole
+        // mix is not "dark", it is "muffled".
+        //
+        // Four things made it lo-fi and all four are asserted, because each
+        // one on its own is enough to put it back.
+        for (track in listOf(Track.BOTTLE, Track.BOTTLE_DRIVE)) {
+            assertTrue(
+                "$track renders at ${track.sampleRate}Hz, so nothing above " +
+                    "${track.sampleRate / 2}Hz can exist in it at all",
+                track.sampleRate >= 24_000
+            )
+            assertTrue(
+                "$track is filtered at ${track.cutoffHz}Hz, darker than the " +
+                    "standard track's ${Track.GAME.cutoffHz}Hz",
+                track.cutoffHz > Track.GAME.cutoffHz * 2f
+            )
+            assertTrue(
+                "$track still has ${track.wow} of tape wow; warble is the " +
+                    "single most recognisable lo-fi tell",
+                track.wow < 0.15f
+            )
+            assertTrue(
+                "$track still has an audible hiss floor at ${track.hiss}",
+                track.hiss < Track.GAME.hiss / 4f
+            )
+        }
+    }
+
+    @Test
+    fun `the mode tracks actually carry high frequencies, not just permission to`() {
+        // Opening the filter was only half of it. The bright elements were not
+        // in the mix to let through -- hats at a twelfth of the kick and a lead
+        // under half the bass -- so the track measured as bass and nothing
+        // else however wide open the filter was. This measures the render
+        // rather than the settings, because the settings lied about this once.
+        val plain = brightness(Track.GAME)
+        for (track in listOf(Track.BOTTLE, Track.BOTTLE_DRIVE)) {
+            val bright = brightness(track)
+            assertTrue(
+                "$track's spectral centroid is ${bright.toInt()}Hz against the " +
+                    "standard track's ${plain.toInt()}Hz -- that is still lo-fi",
+                bright > plain * 1.5f
+            )
+        }
+    }
+
+    /** Spectral centroid in Hz: the single honest number for "how bright". */
+    private fun brightness(track: Track): Float {
+        val s = samples(track)
+        val rate = track.sampleRate
+        // Past the fade-in, and a whole number of windows.
+        val from = rate * 8
+        val window = 2048
+        val windows = ((s.size - rate * 8) - from) / window
+        var weighted = 0.0
+        var total = 0.0
+        for (w in 0 until windows step 4) {
+            val re = DoubleArray(window)
+            val im = DoubleArray(window)
+            for (i in 0 until window) {
+                // Hann, so the transform is not dominated by edge steps.
+                val hann = 0.5 - 0.5 * kotlin.math.cos(2.0 * Math.PI * i / (window - 1))
+                re[i] = s[from + w * window + i] * hann
+            }
+            dft(re, im)
+            for (k in 1 until window / 2) {
+                val mag = kotlin.math.sqrt(re[k] * re[k] + im[k] * im[k])
+                weighted += mag * k * rate / window
+                total += mag
+            }
+        }
+        return if (total == 0.0) 0f else (weighted / total).toFloat()
+    }
+
+    /** In-place radix-2 FFT. A DFT would take minutes; this takes milliseconds. */
+    private fun dft(re: DoubleArray, im: DoubleArray) {
+        val n = re.size
+        var j = 0
+        for (i in 1 until n) {
+            var bit = n shr 1
+            while (j and bit != 0) {
+                j = j xor bit
+                bit = bit shr 1
+            }
+            j = j or bit
+            if (i < j) {
+                re[i] = re[j].also { re[j] = re[i] }
+                im[i] = im[j].also { im[j] = im[i] }
+            }
+        }
+        var len = 2
+        while (len <= n) {
+            val angle = -2.0 * Math.PI / len
+            val wr = kotlin.math.cos(angle)
+            val wi = kotlin.math.sin(angle)
+            var i = 0
+            while (i < n) {
+                var curR = 1.0
+                var curI = 0.0
+                for (k in 0 until len / 2) {
+                    val ur = re[i + k]
+                    val ui = im[i + k]
+                    val vr = re[i + k + len / 2] * curR - im[i + k + len / 2] * curI
+                    val vi = re[i + k + len / 2] * curI + im[i + k + len / 2] * curR
+                    re[i + k] = ur + vr
+                    im[i + k] = ui + vi
+                    re[i + k + len / 2] = ur - vr
+                    im[i + k + len / 2] = ui - vi
+                    val nextR = curR * wr - curI * wi
+                    curI = curR * wi + curI * wr
+                    curR = nextR
+                }
+                i += len
+            }
+            len = len shl 1
+        }
     }
 
     // --------------------------------------------- the usual survival checks
