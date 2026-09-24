@@ -5,6 +5,10 @@ app/build/
 captures/
 *.apk
 *.aab
+# Delivery tarballs: `git archive` output handed to the owner each release,
+# because the GitHub push is blocked. A snapshot of the repo does not belong
+# inside the repo.
+CyOpsTD-*-source.tar.gz
 *.ap_
 *.dex
 
