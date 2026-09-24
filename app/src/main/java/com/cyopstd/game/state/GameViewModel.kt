@@ -11,6 +11,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.geometry.Offset
 import com.cyopstd.game.audio.AudioEngine
 import com.cyopstd.game.audio.HapticEngine
+import com.cyopstd.game.audio.trackForMode
 import com.cyopstd.game.core.Balance
 import android.util.Log
 import com.cyopstd.game.ads.AdGateway
@@ -704,7 +705,10 @@ class GameViewModel @JvmOverloads constructor(
     // ----------------------------------------------------------- run control
 
     fun startNewGame() {
-        audio.setInMatch(true)
+        // The mode decides the music as well as the numbers, and it is read
+        // here rather than inside the audio layer so the second map can change
+        // one call site instead of a rule buried two packages away.
+        audio.setInMatch(true, trackForMode(selectedMode))
         // Selected before the run starts: the mode sets starting integrity, so
         // it has to be in place before startNewRun reads it.
         engine.selectMode(selectedMode)
@@ -776,6 +780,11 @@ class GameViewModel @JvmOverloads constructor(
             matchActive = true
             tutorialStep = -1
             pushHud()
+            // Says "in a match" as well as "play something". Without it a
+            // resumed run kept the menu's track running underneath it, because
+            // startMusic() only picks the match track once it has been told a
+            // match is happening.
+            audio.setInMatch(true, trackForMode(engine.mode))
             audio.startMusic()
             onLoaded()
         }
@@ -1253,7 +1262,7 @@ class GameViewModel @JvmOverloads constructor(
         gameOverSummary = null
         matchActive = true
         paused = false
-        audio.setInMatch(true)
+        audio.setInMatch(true, trackForMode(engine.mode))
         if (settings.musicVolume > 0.01f) audio.startMusic()
         selection = BattlefieldSelection()
         showBossPanel = false

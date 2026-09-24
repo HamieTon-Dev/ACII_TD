@@ -34,7 +34,7 @@ object ChiptuneComposer {
     const val SAMPLE_RATE = 16_000
 
     /** Bump this when an arrangement changes so cached renders are replaced. */
-    const val TRACK_VERSION = 2
+    const val TRACK_VERSION = 3
 
     private const val BEATS_PER_BAR = 4
     private const val BARS_PER_SECTION = 8
@@ -56,10 +56,44 @@ object ChiptuneComposer {
         val cutoffHz: Float,
         val masterGain: Float,
         /** Tape-wow depth. Zero is a clean machine. */
-        val wow: Float
+        val wow: Float,
+        /**
+         * Extra transient on every bass note, 0 for none.
+         *
+         * A "harder" bass on a phone speaker is not a deeper one — the driver
+         * rolls off long before the fundamental — so this adds a short swept
+         * attack above the root rather than anything below it. That is what
+         * actually reads as a hit on the device most people will play on.
+         */
+        val bassPunch: Float = 0f
     ) {
         GAME(bpm = 72f, cutoffHz = 2600f, masterGain = 1.25f, wow = 1f),
-        MENU(bpm = 132f, cutoffHz = 7200f, masterGain = 1.15f, wow = 0.15f)
+        MENU(bpm = 132f, cutoffHz = 7200f, masterGain = 1.15f, wow = 0.15f),
+
+        /**
+         * HACK:AI's track. Slow, murky and deliberately unsettled.
+         *
+         * Same harmonic palette as [BOTTLE_DRIVE] — they are two performances
+         * of one piece, which is the point — but taken slowly, filtered dark
+         * and with the tape wow pushed until the tuning audibly drifts. The
+         * mode is the hardest thing in the game and the music is the only part
+         * of it that is allowed to sound resigned about that.
+         */
+        BOTTLE(bpm = 58f, cutoffHz = 1900f, masterGain = 1.30f, wow = 1.75f),
+
+        /**
+         * The same piece at speed, for the second map.
+         *
+         * Half again as fast, brighter, the wow almost gone so the tuning
+         * holds, and every bass note given a hard swept attack. Same chords,
+         * same melody vocabulary, same progressions — it is recognisably the
+         * other track, which is why it is one palette and two arrangements
+         * rather than two pieces of music.
+         */
+        BOTTLE_DRIVE(
+            bpm = 88f, cutoffHz = 3100f, masterGain = 1.30f, wow = 0.45f,
+            bassPunch = 1f
+        )
     }
 
     /**
@@ -72,6 +106,7 @@ object ChiptuneComposer {
     private var bpm = Track.GAME.bpm
     private var track = Track.GAME
     private var sections: Array<Section> = emptyArray()
+    private var palette = Palette.DIATONIC
 
     private val SECONDS_PER_BEAT get() = 60f / bpm
     private val SECONDS_PER_BAR get() = SECONDS_PER_BEAT * BEATS_PER_BAR
@@ -85,7 +120,7 @@ object ChiptuneComposer {
     // ----------------------------------------------------------- the music
 
     /** Which oscillator a note is played on. */
-    private enum class Voice { LEAD, PAD, BASS, KICK, HAT, RIM }
+    private enum class Voice { LEAD, PAD, BASS, KICK, HAT, RIM, SUB }
 
     private class Note(
         val startFrame: Int,
@@ -107,25 +142,81 @@ object ChiptuneComposer {
      */
     private class Chord(val bass: Int, val voicing: IntArray)
 
-    private val CHORDS = arrayOf(
-        Chord(45, intArrayOf(57, 60, 64, 67)),  // Am7
-        Chord(50, intArrayOf(57, 62, 65, 69)),  // Dm7
-        Chord(43, intArrayOf(55, 59, 62, 67)),  // G
-        Chord(48, intArrayOf(55, 60, 64, 67)),  // Cmaj7
-        Chord(41, intArrayOf(57, 60, 65, 69)),  // Fmaj7
-        Chord(40, intArrayOf(55, 59, 62, 64))   // Em7
-    )
+    /**
+     * A harmonic world: the chords available, the orders they are played in,
+     * and the notes the melody may use.
+     *
+     * Pulled out of top-level constants so a track can have its own tonality
+     * rather than every piece in the game being the same four diatonic
+     * sevenths. That is most of what makes two tracks sound like different
+     * music rather than the same music at different speeds.
+     */
+    private class Palette(
+        val chords: Array<Chord>,
+        /** Four-chord progressions, two bars per chord. */
+        val progressions: Array<IntArray>,
+        /** The melody's whole vocabulary, in MIDI numbers. */
+        val scale: IntArray
+    ) {
+        companion object {
 
-    /** Four-chord progressions, two bars per chord. */
-    private val PROGRESSIONS = arrayOf(
-        intArrayOf(0, 4, 3, 2),   // i  - VI - III - VII
-        intArrayOf(1, 2, 3, 0),   // iv - VII - III - i
-        intArrayOf(0, 5, 4, 2),   // i  - v  - VI  - VII
-        intArrayOf(4, 3, 1, 0)    // VI - III - iv - i
-    )
+            /**
+             * A minor, diatonic sevenths. The original, warm and resolved.
+             */
+            val DIATONIC = Palette(
+                chords = arrayOf(
+                    Chord(45, intArrayOf(57, 60, 64, 67)),  // Am7
+                    Chord(50, intArrayOf(57, 62, 65, 69)),  // Dm7
+                    Chord(43, intArrayOf(55, 59, 62, 67)),  // G
+                    Chord(48, intArrayOf(55, 60, 64, 67)),  // Cmaj7
+                    Chord(41, intArrayOf(57, 60, 65, 69)),  // Fmaj7
+                    Chord(40, intArrayOf(55, 59, 62, 64))   // Em7
+                ),
+                progressions = arrayOf(
+                    intArrayOf(0, 4, 3, 2),   // i  - VI - III - VII
+                    intArrayOf(1, 2, 3, 0),   // iv - VII - III - i
+                    intArrayOf(0, 5, 4, 2),   // i  - v  - VI  - VII
+                    intArrayOf(4, 3, 1, 0)    // VI - III - iv - i
+                ),
+                // A minor pentatonic.
+                scale = intArrayOf(69, 72, 74, 76, 79, 81)
+            )
 
-    /** A minor pentatonic, the melody's whole vocabulary. */
-    private val PENTATONIC = intArrayOf(69, 72, 74, 76, 79, 81)
+            /**
+             * A Phrygian with a harmonic-minor dominant: the unsettled one.
+             *
+             * Two chords do the work. The **bII** (Bbmaj7) puts a flat second
+             * directly above the tonic, which is the interval every piece of
+             * uneasy music in history has reached for, and the **V7b9**
+             * (E7b9) pulls back to the tonic hard enough that the flat second
+             * reads as dread rather than as a mistake. Everything else is
+             * ordinary A minor, so the two colour chords land rather than
+             * becoming the whole texture.
+             *
+             * The melody scale is A Phrygian plus the raised seventh, so the
+             * line can follow the dominant instead of stepping around it.
+             */
+            val UNEASY = Palette(
+                chords = arrayOf(
+                    Chord(45, intArrayOf(57, 59, 60, 64)),  // 0  Am(add9)
+                    Chord(41, intArrayOf(57, 60, 64, 65)),  // 1  Fmaj7
+                    Chord(50, intArrayOf(57, 62, 64, 65)),  // 2  Dm(add9)
+                    Chord(46, intArrayOf(57, 58, 62, 65)),  // 3  Bbmaj7  (bII)
+                    Chord(40, intArrayOf(56, 59, 62, 65)),  // 4  E7b9    (V)
+                    Chord(43, intArrayOf(58, 62, 65, 69))   // 5  Gm9
+                ),
+                progressions = arrayOf(
+                    intArrayOf(0, 3, 1, 0),   // i   - bII - VI  - i
+                    intArrayOf(0, 2, 5, 4),   // i   - iv  - bVII- V7b9
+                    intArrayOf(1, 3, 0, 4),   // VI  - bII - i   - V7b9
+                    intArrayOf(2, 0, 3, 1)    // iv  - i   - bII - VI
+                ),
+                // A Phrygian + raised 7th: A Bb C D E F G G#.
+                scale = intArrayOf(69, 70, 72, 74, 76, 77, 79, 80, 81)
+            )
+        }
+    }
+
 
     /**
      * How each eight-bar section is played. This is the arrangement, and it is
@@ -175,6 +266,50 @@ object ChiptuneComposer {
             bassGain = 0.72f, bassPickup = false)
     )
 
+    /**
+     * HACK:AI's arrangement: six sections, slow, and it never really lifts.
+     *
+     * Deliberately shaped differently from the standard track. That one opens
+     * quiet, builds, breaks down and rebuilds — the ordinary arc. This one
+     * arrives almost fully formed, thins in the middle, and ends emptier than
+     * it started. A mode that takes an hour and usually ends badly does not
+     * want a track that keeps promising a chorus.
+     */
+    private val BOTTLE_ARRANGEMENT = arrayOf(
+        Section(0, melodyDensity = 0.00f, drums = 0, melodyOctave = 0, padGain = 0.78f,
+            bassGain = 0.70f, bassPickup = false),
+        Section(0, melodyDensity = 0.26f, drums = 1, melodyOctave = 0, padGain = 0.95f,
+            bassGain = 0.90f),
+        Section(2, melodyDensity = 0.34f, drums = 2, melodyOctave = 0, padGain = 1.00f),
+        Section(1, melodyDensity = 0.00f, drums = 1, melodyOctave = 0, padGain = 0.68f,
+            bassGain = 0.64f, bassPickup = false),
+        Section(3, melodyDensity = 0.38f, drums = 2, melodyOctave = 0, padGain = 1.00f),
+        Section(0, melodyDensity = 0.14f, drums = 0, melodyOctave = 0, padGain = 0.60f,
+            bassGain = 0.58f, bassPickup = false)
+    )
+
+    /**
+     * The same piece, driven: six sections with the floor never dropping out.
+     *
+     * Full kit from the first bar and no quiet intro, because this one plays
+     * over a map rather than under an endurance mode. The one breakdown keeps
+     * its drums, so the bass punch carries straight through it.
+     */
+    private val BOTTLE_DRIVE_ARRANGEMENT = arrayOf(
+        Section(0, melodyDensity = 0.40f, drums = 2, melodyOctave = 0, padGain = 0.95f,
+            bassGain = 1.05f),
+        Section(2, melodyDensity = 0.50f, drums = 2, melodyOctave = 1, padGain = 1.00f,
+            bassGain = 1.10f),
+        Section(1, melodyDensity = 0.44f, drums = 2, melodyOctave = 0, padGain = 1.00f,
+            bassGain = 1.10f),
+        Section(3, melodyDensity = 0.20f, drums = 2, melodyOctave = 0, padGain = 0.80f,
+            bassGain = 1.00f, bassPickup = false),
+        Section(2, melodyDensity = 0.56f, drums = 2, melodyOctave = 1, padGain = 1.00f,
+            bassGain = 1.12f),
+        Section(0, melodyDensity = 0.46f, drums = 2, melodyOctave = 0, padGain = 0.95f,
+            bassGain = 1.05f)
+    )
+
     /** Total length of [which] in seconds. */
     fun trackSeconds(which: Track = Track.GAME): Float {
         val saved = bpm
@@ -192,8 +327,21 @@ object ChiptuneComposer {
         return result
     }
 
-    private fun arrangementFor(which: Track): Array<Section> =
-        if (which == Track.MENU) MENU_ARRANGEMENT else ARRANGEMENT
+    private fun arrangementFor(which: Track): Array<Section> = when (which) {
+        Track.MENU -> MENU_ARRANGEMENT
+        Track.BOTTLE -> BOTTLE_ARRANGEMENT
+        Track.BOTTLE_DRIVE -> BOTTLE_DRIVE_ARRANGEMENT
+        Track.GAME -> ARRANGEMENT
+    }
+
+    /**
+     * BOTTLE and BOTTLE_DRIVE share one palette on purpose: they are the same
+     * piece of music, played twice.
+     */
+    private fun paletteFor(which: Track): Palette = when (which) {
+        Track.BOTTLE, Track.BOTTLE_DRIVE -> Palette.UNEASY
+        Track.GAME, Track.MENU -> Palette.DIATONIC
+    }
 
     // --------------------------------------------------------------- output
 
@@ -207,6 +355,7 @@ object ChiptuneComposer {
         track = which
         bpm = which.bpm
         sections = arrangementFor(which)
+        palette = paletteFor(which)
         val frames = totalFrames(which)
         out.write(wavHeader(frames))
 
@@ -245,10 +394,10 @@ object ChiptuneComposer {
 
         for (s in sections.indices) {
             val section = sections[s]
-            val progression = PROGRESSIONS[section.progression]
+            val progression = palette.progressions[section.progression]
 
             for (bar in 0 until BARS_PER_SECTION) {
-                val chord = CHORDS[progression[(bar / 2) % progression.size]]
+                val chord = palette.chords[progression[(bar / 2) % progression.size]]
                 val barTime = (s * BARS_PER_SECTION + bar) * SECONDS_PER_BAR
 
                 if (bar % 2 == 0) addPad(notes, chord, barTime, section.padGain)
@@ -300,11 +449,46 @@ object ChiptuneComposer {
             time, SECONDS_PER_BEAT * 1.6f, root, Voice.BASS,
             amp = 0.34f * section.bassGain, attack = 0.012f, release = 0.10f, decay = 0.55f
         )
+        addBassPunch(notes, root, time, section)
+
         if (!section.bassPickup) return
         val offset = if (bar % 4 == 3) 2.0f else 2.5f
         notes += note(
             time + SECONDS_PER_BEAT * offset, SECONDS_PER_BEAT * 1.2f, root, Voice.BASS,
             amp = 0.26f * section.bassGain, attack = 0.012f, release = 0.10f, decay = 0.7f
+        )
+        addBassPunch(notes, root, time + SECONDS_PER_BEAT * offset, section, 0.8f)
+    }
+
+    /**
+     * The transient that makes a bass note hit rather than arrive.
+     *
+     * A short note that starts two octaves above the root and falls onto it in
+     * a fraction of a beat. It is not a sub — a phone speaker cannot reproduce
+     * one, and writing an inaudible 40 Hz layer is how a mix ends up sounding
+     * thin on the hardware it actually ships to. Starting high and dropping
+     * puts the energy in the band the driver can move, and the ear hears the
+     * arrival rather than the sweep.
+     */
+    private fun addBassPunch(
+        notes: MutableList<Note>,
+        root: Float,
+        time: Float,
+        section: Section,
+        gain: Float = 1f
+    ) {
+        if (track.bassPunch <= 0f) return
+        notes += Note(
+            startFrame = frameOf(time),
+            frames = frameOf(SECONDS_PER_BEAT * 0.42f),
+            freq = root * 4f,
+            endFreq = root,
+            voice = Voice.SUB,
+            amp = 0.30f * track.bassPunch * section.bassGain * gain,
+            attack = 0.001f,
+            release = 0.04f,
+            decay = 9f,
+            vibrato = 0f
         )
     }
 
@@ -355,7 +539,7 @@ object ChiptuneComposer {
     )
 
     /**
-     * The melody walks the pentatonic scale rather than jumping around it:
+     * The melody walks the scale rather than jumping around it:
      * strong beats snap to a chord tone, weak beats step at most two scale
      * degrees from the last note. That constraint is what keeps a generated
      * line sounding like a tune instead of like a random-note generator.
@@ -381,7 +565,7 @@ object ChiptuneComposer {
             index = if (strong) {
                 nearestScaleDegree(chord.voicing[rng.int(3)] % 12, index)
             } else {
-                (index + rng.int(5) - 2).coerceIn(0, PENTATONIC.size - 1)
+                (index + rng.int(5) - 2).coerceIn(0, palette.scale.size - 1)
             }
 
             val lengthSlots = when {
@@ -390,7 +574,7 @@ object ChiptuneComposer {
                 else -> 1
             }
             val duration = SECONDS_PER_BEAT * 0.5f * lengthSlots * 0.92f
-            val pitch = PENTATONIC[index] + section.melodyOctave * 12
+            val pitch = palette.scale[index] + section.melodyOctave * 12
 
             notes += note(
                 barTime + SECONDS_PER_BEAT * 0.5f * slot, duration, midi(pitch.toFloat()),
@@ -403,21 +587,21 @@ object ChiptuneComposer {
         return index
     }
 
-    /** Pull [pitchClass] into the pentatonic and pick the octave nearest [near]. */
+    /** Pull [pitchClass] into the scale and pick the degree nearest [near]. */
     private fun nearestScaleDegree(pitchClass: Int, near: Int): Int {
         var best = near
         var bestDistance = Int.MAX_VALUE
-        for (i in PENTATONIC.indices) {
-            if (PENTATONIC[i] % 12 != pitchClass) continue
+        for (i in palette.scale.indices) {
+            if (palette.scale[i] % 12 != pitchClass) continue
             val distance = kotlin.math.abs(i - near)
             if (distance < bestDistance) {
                 bestDistance = distance
                 best = i
             }
         }
-        // Not a pentatonic tone (the 7th of a maj7, say): step gently instead.
+        // Not in the scale (the 7th of a maj7, say): step gently instead.
         return if (bestDistance == Int.MAX_VALUE) {
-            (near + if (near < 3) 1 else -1).coerceIn(0, PENTATONIC.size - 1)
+            (near + if (near < 3) 1 else -1).coerceIn(0, palette.scale.size - 1)
         } else {
             best
         }
@@ -487,7 +671,9 @@ object ChiptuneComposer {
             }
             // Tape wow: two slow, mutually prime drifts. Barely a fifth of a
             // semitone, but it is what stops the pads sounding like a computer.
-            if (note.voice != Voice.HAT && note.voice != Voice.RIM) {
+            if (note.voice != Voice.HAT && note.voice != Voice.RIM &&
+                note.voice != Voice.SUB
+            ) {
                 freq *= 1f + track.wow * (
                     0.0024f * sin(TWO_PI * 0.13f * absolute) +
                         0.0012f * sin(TWO_PI * 0.37f * absolute + 1.7f)
@@ -504,6 +690,13 @@ object ChiptuneComposer {
                 Voice.KICK -> sin(TWO_PI * phase)
                 Voice.HAT -> noise()
                 Voice.RIM -> noise() * 0.7f + sin(t * 1180f) * 0.3f
+                // Driven hard on purpose: the master's soft saturation turns
+                // the overdrive into grit rather than into clipping, which is
+                // what makes a bass hit audible through a phone speaker.
+                Voice.SUB -> {
+                    val driven = sin(TWO_PI * phase) * 2.4f
+                    driven / (1f + kotlin.math.abs(driven) * 0.55f)
+                }
             }
 
             mix[frame - blockStart] += raw * note.amp * envelope(note, t, duration)

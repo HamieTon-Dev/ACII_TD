@@ -4,11 +4,30 @@ import android.content.Context
 import android.media.AudioAttributes
 import android.media.SoundPool
 import android.util.Log
+import com.cyopstd.game.core.GameMode
 import com.cyopstd.game.engine.GameSound
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.io.File
+
+/**
+ * The track a mode plays under.
+ *
+ * An exhaustive `when` rather than a field on [GameMode] or a lookup by name:
+ * adding a mode then has to answer this question, and the compiler is what
+ * asks. It lives in the audio package because audio may know about the game,
+ * and the game should not have to know about audio.
+ *
+ * The second map's track, [ChiptuneComposer.Track.BOTTLE_DRIVE], is composed
+ * and rendering already but has nothing to select it yet — the map it belongs
+ * to is not built. It becomes audible the moment there is a mode or a map to
+ * name here.
+ */
+fun trackForMode(mode: GameMode): ChiptuneComposer.Track = when (mode) {
+    GameMode.STANDARD -> ChiptuneComposer.Track.GAME
+    GameMode.HACK_AI -> ChiptuneComposer.Track.BOTTLE
+}
 
 /**
  * Plays the synthesized effect bank through a SoundPool, and owns the
@@ -41,27 +60,46 @@ class AudioEngine(private val context: Context) {
     private var ready: Boolean = false
 
     /**
-     * The background track. Synthesized rather than shipped, like everything
-     * else here, but long-form and streamed from disk instead of looped out of
-     * a sample pool.
-     */
-    private val music = MusicEngine(context, ChiptuneComposer.Track.GAME)
-
-    /**
      * The menu's own track.
      *
-     * A second engine rather than one that reloads: switching screens is
+     * A separate engine rather than one that reloads: switching screens is
      * frequent and a MediaPlayer that has to re-prepare a multi-megabyte file
-     * each time would stutter the transition. Two prepared players cost a few
-     * megabytes of cache and swap instantly.
+     * each time would stutter the transition. A prepared player costs a few
+     * megabytes of cache and swaps instantly.
      */
     private val menuMusic = MusicEngine(context, ChiptuneComposer.Track.MENU)
 
+    /**
+     * One engine per match track, built the first time that track is asked for.
+     *
+     * Lazily, and that is the point: HACK:AI is behind wave 100 and most
+     * players will never hear its track, so rendering six megabytes of it on
+     * every install would be work done for nobody. The standard track is
+     * prepared up front because every player hears it.
+     */
+    private val matchMusic = HashMap<ChiptuneComposer.Track, MusicEngine>()
+
+    /** Kept so a track asked for later can still be prepared off the main thread. */
+    @Volatile
+    private var audioScope: CoroutineScope? = null
+
     /** Which track should be playing. */
     private var inMatch = false
+    private var matchTrack: ChiptuneComposer.Track = ChiptuneComposer.Track.GAME
+
+    private fun engineFor(track: ChiptuneComposer.Track): MusicEngine =
+        synchronized(matchMusic) {
+            matchMusic.getOrPut(track) {
+                MusicEngine(context, track).also { engine ->
+                    engine.setVolume(musicVolume)
+                    audioScope?.let(engine::prepare)
+                }
+            }
+        }
 
     fun initialize(scope: CoroutineScope) {
-        music.prepare(scope)
+        audioScope = scope
+        engineFor(ChiptuneComposer.Track.GAME).prepare(scope)
         menuMusic.prepare(scope)
         if (soundPool != null) return
         val attributes = AudioAttributes.Builder()
@@ -135,39 +173,64 @@ class AudioEngine(private val context: Context) {
      * returning to the menu mid-track picks the menu music up where it was
      * instead of restarting it.
      */
-    fun setInMatch(value: Boolean) {
-        if (inMatch == value) return
+    /**
+     * Enter or leave a match, and say which track the match wants.
+     *
+     * The track is the caller's decision rather than something derived here:
+     * today it comes from the game mode, and when the second map lands it may
+     * come from the map instead. Either way this only has to switch players.
+     */
+    fun setInMatch(
+        value: Boolean,
+        track: ChiptuneComposer.Track = ChiptuneComposer.Track.GAME
+    ) {
+        val trackChanged = value && track != matchTrack
+        if (inMatch == value && !trackChanged) return
+
+        // Whatever was playing stops, including a *different* match track: a
+        // player who finishes a HACK:AI run and starts a standard one must not
+        // end up with two pieces of music at once.
+        if (trackChanged || !value) pauseMatchTracks()
+
         inMatch = value
+        if (value) matchTrack = track
         if (musicVolume <= 0.01f) return
+
         if (value) {
             menuMusic.pause()
-            music.start()
+            engineFor(matchTrack).start()
         } else {
-            music.pause()
             menuMusic.start()
         }
+    }
+
+    private fun pauseMatchTracks() {
+        synchronized(matchMusic) { matchMusic.values.toList() }.forEach { it.pause() }
     }
 
     /** Starts (or resumes) whichever track belongs to the current screen. */
     fun startMusic() {
         if (musicVolume <= 0.01f) return
-        if (inMatch) music.start() else menuMusic.start()
+        if (inMatch) engineFor(matchTrack).start() else menuMusic.start()
     }
 
     fun stopMusic() {
-        music.pause()
+        pauseMatchTracks()
         menuMusic.pause()
     }
 
     fun applyVolumes(music: Float, sfx: Float) {
         musicVolume = music
         sfxVolume = sfx
-        this.music.setVolume(music)
+        synchronized(matchMusic) { matchMusic.values.toList() }.forEach { it.setVolume(music) }
         menuMusic.setVolume(music)
     }
 
     fun release() {
-        music.release()
+        synchronized(matchMusic) {
+            matchMusic.values.forEach { it.release() }
+            matchMusic.clear()
+        }
         menuMusic.release()
         try {
             soundPool?.release()

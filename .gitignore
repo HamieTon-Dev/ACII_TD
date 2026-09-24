@@ -28,3 +28,5 @@ keystore/
 
 # Kotlin 2.x build session scratch
 .kotlin/
+# Rendered audio previews sent for review; the tracks are generated from code.
+*.wav
