@@ -10,6 +10,7 @@ import com.cyopstd.game.engine.GameEngine
 import com.cyopstd.game.engine.RunPhase
 import com.cyopstd.game.model.AgentType
 import com.cyopstd.game.model.EffectKind
+import com.cyopstd.game.model.BossPalette
 import com.cyopstd.game.model.Enemy
 import com.cyopstd.game.model.EnemyType
 import com.cyopstd.game.ui.theme.CoreSkin
@@ -1414,18 +1415,27 @@ class BattlefieldRenderer {
             enemy.x + halfWidth, enemy.y + halfHeight
         )
 
-        fillPaint.color = Palette.RedDeep.toArgb()
+        // One accent drives the whole chassis, so a HUGGING-FACE boss reads as
+        // a different *kind* of thing at a glance rather than as the usual red
+        // one wearing a different glyph.
+        val accent = bossAccent(enemy, time)
+
+        fillPaint.color = if (enemy.variant.palette == BossPalette.HOSTILE) {
+            Palette.RedDeep.toArgb()
+        } else {
+            darken(accent, 0.42f)
+        }
         fillPaint.alpha = 150
         canvas.drawRoundRect(scratchRect, 6f, 6f, fillPaint)
 
-        strokePaint.color = colRed
+        strokePaint.color = accent
         strokePaint.alpha = 235
         strokePaint.strokeWidth = 3f
         canvas.drawRoundRect(scratchRect, 6f, 6f, strokePaint)
 
         val pulse = 0.5f + 0.5f * sin(time * 5.5f + enemy.phase)
         scratchRect.inset(-6f, -6f)
-        glowPaint.color = colRed
+        glowPaint.color = accent
         glowPaint.alpha = (55 + 105 * pulse).toInt().coerceIn(0, 255)
         glowPaint.strokeWidth = 5f
         canvas.drawRoundRect(scratchRect, 9f, 9f, glowPaint)
@@ -1433,7 +1443,7 @@ class BattlefieldRenderer {
 
         val glyphSize = 26f * enemy.type.glyphScale
         textPaint.textSize = glyphSize
-        textPaint.color = if (enemy.hitFlash > 0f) colText else enemyColor(enemy)
+        textPaint.color = if (enemy.hitFlash > 0f) colText else accent
         textPaint.alpha = 255
         canvas.drawText(enemy.renderedGlyph(), enemy.x, enemy.y + glyphSize * 0.34f, textPaint)
 
@@ -1833,6 +1843,48 @@ class BattlefieldRenderer {
         AgentType.BLUEHAT -> colBlue
     }
 
+    /**
+     * What colour a boss is lit in, from its variant's theme.
+     *
+     * [BossPalette] names the theme and this is the only place that decides
+     * what the theme looks like, so the four HUGGING-FACE opponents got their
+     * "cool color theme" without a single ARGB value entering the model.
+     */
+    private fun bossAccent(enemy: Enemy, time: Float): Int =
+        when (enemy.variant.palette) {
+            BossPalette.HOSTILE -> colRed
+            BossPalette.ICE -> colCyan
+            BossPalette.VIOLET -> colPurple
+            BossPalette.SPECTRUM -> spectrumAccent(time, enemy.phase)
+        }
+
+    /** Scratch for [spectrumAccent]; the render loop must not allocate. */
+    private val hsvScratch = FloatArray(3)
+
+    /**
+     * A hue sweeping back and forth across the cool end of the wheel.
+     *
+     * Cyan through violet and back, never crossing into green or red — those
+     * are the agents' colours and the threats' colour respectively, and a boss
+     * that flashes through either would read for a frame as something it is
+     * not. Offset by the enemy's phase so two eyes on the board are never in
+     * lockstep.
+     */
+    private fun spectrumAccent(time: Float, phase: Float): Int {
+        val t = 0.5f + 0.5f * sin(time * SPECTRUM_RATE + phase)
+        hsvScratch[0] = SPECTRUM_HUE_MIN + (SPECTRUM_HUE_MAX - SPECTRUM_HUE_MIN) * t
+        hsvScratch[1] = 0.82f
+        hsvScratch[2] = 1f
+        return android.graphics.Color.HSVToColor(hsvScratch)
+    }
+
+    /** [color] scaled toward black, for the chassis behind a lit outline. */
+    private fun darken(color: Int, factor: Float): Int = android.graphics.Color.rgb(
+        (android.graphics.Color.red(color) * factor).toInt().coerceIn(0, 255),
+        (android.graphics.Color.green(color) * factor).toInt().coerceIn(0, 255),
+        (android.graphics.Color.blue(color) * factor).toInt().coerceIn(0, 255)
+    )
+
     private fun enemyColor(enemy: Enemy): Int = when {
         enemy.isBoss -> colRed
         enemy.isElite -> colMagenta
@@ -1848,6 +1900,15 @@ class BattlefieldRenderer {
     internal companion object {
         /** Lights around the circuit that frames the integrity block. */
         const val LOOP_LEDS = 46
+
+        /** Radians per second the SPECTRUM hue sweeps at. Deliberately quick. */
+        const val SPECTRUM_RATE = 4.6f
+
+        /** Cyan. */
+        const val SPECTRUM_HUE_MIN = 172f
+
+        /** Violet. */
+        const val SPECTRUM_HUE_MAX = 286f
 
         /** NEONGRID's ring: lights around it, its radius, and its skim rate. */
         const val RING_LEDS = 26

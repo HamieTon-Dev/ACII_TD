@@ -55,6 +55,16 @@ class WaveGenerator(private val random: Random = Random.Default) {
      */
     var laneCount: Int = Maps.PERIMETER.laneCount
 
+    /**
+     * Which level the plan is for, by [com.cyopstd.game.core.GameMap.id].
+     *
+     * Set by the engine alongside [laneCount]. Boss identities are partly
+     * per-map now — the gauntlet fields four of its own — and a generator that
+     * does not know where it is would either never roll them or roll them on
+     * the wrong board.
+     */
+    var mapId: String = Maps.PERIMETER.id
+
     fun generate(wave: Int): WavePlan {
         if (Balance.isBossWave(wave)) return generateBossWave(wave)
         return generateStandardWave(wave)
@@ -173,7 +183,7 @@ class WaveGenerator(private val random: Random = Random.Default) {
     }
 
     private fun rollVariant(cycle: Int): BossVariant {
-        val pool = BossVariant.poolForCycle(cycle)
+        val pool = BossVariant.poolFor(cycle, mapId)
         return pool.randomOrNull(random) ?: BossVariant.BREACH
     }
 

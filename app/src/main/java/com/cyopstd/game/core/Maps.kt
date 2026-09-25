@@ -144,61 +144,98 @@ object Maps {
      * touching a single balance number: the same wave is split three ways and
      * arrives from three places at once.
      */
-    private const val H_TOP = 118f
-    private const val H_UPPER_MID = 250f
-    private const val H_CENTRE = WorldGeometry.CORE_Y   // 380
-    private const val H_LOWER_MID = 510f
-    private const val H_BOTTOM = 642f
+    // Five lane bands, 132 apart. The gap is what lets a deployment node fit
+    // between two routes at all: a node needs NODE_CLEARANCE (58) from each.
+    private const val G_TOP = 118f
+    private const val G_UPPER = 250f
+    private const val G_LOWER = 510f
+    private const val G_BOTTOM = 642f
 
-    /** Where all three routes pass within a few dozen units of each other. */
-    private const val CHOKE_X = 880f
+    /** Where both lanes meet and the shared tail begins. */
+    private const val G_TAIL_IN = 1035f
 
+    /**
+     * The circuit before the rack: up, across, down, back, and in.
+     *
+     * Shared by both lanes, so the last 1,900 units are ground every threat
+     * covers. An agent posted here works both routes.
+     */
+    private val GAUNTLET_TAIL = arrayOf(
+        Waypoint(G_TAIL_IN, 96f),
+        Waypoint(1262f, 96f),
+        Waypoint(1262f, 664f),
+        Waypoint(1120f, 664f),
+        Waypoint(1120f, WorldGeometry.CORE_Y),
+        Waypoint(WorldGeometry.SERVER_X, WorldGeometry.CORE_Y)
+    )
+
+    /**
+     * The owner's own layout, sketched and then measured.
+     *
+     * Two lanes that switchback across the full width, converge, and then run
+     * a long circuit around a block before reaching the rack. **4340 world
+     * units** on both routes, against 1772 on the perimeter — a threat spends
+     * nearly two and a half times as long inside the defence.
+     *
+     * That is the entire point of it. The owner's report was specific: *"wave
+     * 101 is impossible with the best build on the map."* More damage does not
+     * answer that; more *time under fire* does, and it compounds with the hat
+     * agents rather than merely adding to them.
+     *
+     * The spacing is not arbitrary. The first build of this shape packed the
+     * switchbacks 110 units apart and came out with 38 nodes and almost none
+     * alongside the tail, because a node must clear every route by
+     * `NODE_CLEARANCE` on both sides. Undefended path is only delay — a boss
+     * that walks a corridor nothing can shoot arrives just as healthy. Five
+     * bands 132 apart is what the derivation actually wants.
+     */
     val HUGGING_FACE = GameMap(
         id = "hugging_face",
         displayName = "HUGGING-FACE",
-        tagline = "Three routes through one choke. Hold the middle, lose the flanks.",
+        tagline = "A gauntlet. Two routes, doubled back, then a circuit before the rack.",
         laneWaypoints = arrayOf(
-            // Upper route: out wide, back in, then down into the choke.
             arrayOf(
-                Waypoint(WorldGeometry.SPAWN_X, H_UPPER_MID),
-                Waypoint(260f, H_UPPER_MID),
-                Waypoint(260f, H_TOP),
-                Waypoint(620f, H_TOP),
-                Waypoint(620f, H_UPPER_MID),
-                Waypoint(CHOKE_X, H_UPPER_MID),
-                Waypoint(CHOKE_X, H_CENTRE),
-                Waypoint(1140f, H_CENTRE),
-                Waypoint(WorldGeometry.SERVER_X, WorldGeometry.CORE_Y)
+                Waypoint(WorldGeometry.SPAWN_X, G_TOP),
+                Waypoint(880f, G_TOP),
+                Waypoint(880f, G_UPPER),
+                Waypoint(240f, G_UPPER),
+                Waypoint(240f, WorldGeometry.CORE_Y),
+                Waypoint(G_TAIL_IN, WorldGeometry.CORE_Y),
+                *GAUNTLET_TAIL
             ),
-            // Centre route: nearly straight, and the fastest way to the rack.
             arrayOf(
-                Waypoint(WorldGeometry.SPAWN_X, H_CENTRE),
-                Waypoint(430f, H_CENTRE),
-                Waypoint(430f, H_CENTRE),
-                Waypoint(CHOKE_X, H_CENTRE),
-                Waypoint(1140f, H_CENTRE),
-                Waypoint(WorldGeometry.SERVER_X, WorldGeometry.CORE_Y)
-            ),
-            // Lower route: the upper one mirrored.
-            arrayOf(
-                Waypoint(WorldGeometry.SPAWN_X, H_LOWER_MID),
-                Waypoint(260f, H_LOWER_MID),
-                Waypoint(260f, H_BOTTOM),
-                Waypoint(620f, H_BOTTOM),
-                Waypoint(620f, H_LOWER_MID),
-                Waypoint(CHOKE_X, H_LOWER_MID),
-                Waypoint(CHOKE_X, H_CENTRE),
-                Waypoint(1140f, H_CENTRE),
-                Waypoint(WorldGeometry.SERVER_X, WorldGeometry.CORE_Y)
+                Waypoint(WorldGeometry.SPAWN_X, G_BOTTOM),
+                Waypoint(880f, G_BOTTOM),
+                Waypoint(880f, G_LOWER),
+                Waypoint(240f, G_LOWER),
+                Waypoint(240f, WorldGeometry.CORE_Y),
+                Waypoint(G_TAIL_IN, WorldGeometry.CORE_Y),
+                *GAUNTLET_TAIL
             )
         ),
-        candidateRows = floatArrayOf(
-            H_TOP - 62f,
-            (H_TOP + H_UPPER_MID) / 2f,
-            (H_UPPER_MID + H_CENTRE) / 2f,
-            (H_CENTRE + H_LOWER_MID) / 2f,
-            (H_LOWER_MID + H_BOTTOM) / 2f,
-            H_BOTTOM + 62f
+        candidateRows = floatArrayOf(56f, 184f, 315f, 445f, 576f, 704f),
+        /**
+         * Spots the owner marked by hand on a render of the map.
+         *
+         * Each is a pocket the grid declined because no column lands there:
+         * the strip above the tail, the gap before its first vertical, two
+         * against the left edge, and the inside of the loop the tail wraps
+         * around — which the route passes on three sides and is the strongest
+         * ground on the board.
+         *
+         * Five of the eight were nudged a few units clear of a route. They sat
+         * 40–56 units away where 58 is required, so an agent there would have
+         * been drawn overlapping the lane it was shooting into.
+         */
+        extraNodes = listOf(
+            Waypoint(1000f, 36f),
+            Waypoint(1160f, 34f),
+            Waypoint(944f, 197f),
+            Waypoint(178f, 297f),
+            Waypoint(176f, 427f),
+            Waypoint(1181f, 463f),
+            Waypoint(1190f, 560f),
+            Waypoint(1180f, 726f)
         )
     )
 

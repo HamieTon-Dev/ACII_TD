@@ -7,6 +7,57 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [1.36.0]
+
+### Added — four opponents that only exist on the gauntlet
+
+HUGGING-FACE fields two families of its own, on top of the three bosses every
+level has.
+
+**The eyes.** `[○_○]` **WHITE EYE** jams RED HAT agents within 100 units,
+for two seconds, every five. `[●_●]` **BLACK EYE** does the same to BLUE
+HAT. Neither touches the other's colour, which is the point: eight hats is no
+longer one answer to every boss, because half of them go quiet for two seconds
+in five while the other half are the wrong colour for the fight. A hat posted
+back at the edge of its own 272-unit reach is never jammed at all — the
+counterplay is where you put them.
+
+**The heavies.** `[₩₩₩]` **BOUNTY** and `[¥¥¥]` **PAYOUT** have no
+trick whatsoever and twenty per cent more health than anything else. They are
+what makes the eyes land: nothing tells you which of the two problems is
+walking out of the spawn until it does.
+
+The eyes arrive at wave 30, the wave the hats unlock on. The heavies from the
+second boss cycle.
+
+All four are lit cool rather than red — the eyes sweeping rapidly through
+cyan and violet, the heavies steady — so a gauntlet boss reads as a different
+kind of thing at a glance.
+
+### Added — the real music
+
+The six tracks the owner composed now play under the levels, two per level,
+alternating so nothing repeats until you have heard both. **The menu keeps the
+music it already had.**
+
+Music follows the level rather than the difficulty: HACK:AI on the perimeter
+is the same place with harder waves in it. A device that will not decode the
+files falls back to the generated track rather than playing a level in
+silence.
+
+The music slider and the five-second launch fade apply to all of it, exactly
+as before.
+
+### Changed
+
+- RED HAT's description no longer uses the phrase "real attacker"; the store
+  and codex audit reads that as a capability claim, and the sentence says the
+  same thing without it.
+- The unused `CHOKE_X` constant left over from the old HUGGING-FACE layout is
+  gone.
+
+---
+
 ## [1.35.0]
 
 ### Removed — the advert you did not ask for

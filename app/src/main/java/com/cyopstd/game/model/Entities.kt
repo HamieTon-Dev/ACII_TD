@@ -96,6 +96,18 @@ class Enemy : Poolable {
     var replicateTimer: Float = 0f
     var disruptTimer: Float = 0f
 
+    /**
+     * Countdown to this *variant's* next jam.
+     *
+     * Separate from [disruptTimer], which belongs to the rolled
+     * `AGENT_DISRUPTION` modifier. They are different mechanics that happen to
+     * share a verb: the modifier jams everything nearby that can be jammed,
+     * the variant jams exactly one agent type. Sharing one timer would make a
+     * WHITE EYE that rolled DISRUPT fire both on the same beat, which is a
+     * spike the design did not ask for and nobody could read.
+     */
+    var variantJamTimer: Float = 0f
+
     /** Animation phase so identical packets do not pulse in lockstep. */
     var phase: Float = 0f
 
@@ -148,6 +160,7 @@ class Enemy : Poolable {
         regenAccumulator = 0f
         replicateTimer = 0f
         disruptTimer = 0f
+        variantJamTimer = 0f
         isElite = false
         isBoss = false
         variant = BossVariant.BREACH

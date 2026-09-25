@@ -209,6 +209,7 @@ class GameEngine(
     fun selectMap(next: GameMap) {
         map = next
         waveGenerator.laneCount = next.laneCount
+        waveGenerator.mapId = next.id
     }
 
     fun startNewRun() {

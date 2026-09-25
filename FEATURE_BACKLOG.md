@@ -230,7 +230,44 @@ already has `unlockAtWave`; this extends it to "on which mode".
 The leaderboard already carries `modeId` per entry, so a third mode lands on the
 board with no change.
 
-### E2 ✅ DECIDED — the Hugging-Face bosses
+### E2 ✅ SHIPPED in 1.36.0 — the Hugging-Face bosses
+
+Four opponents, two families, on HUGGING-FACE only. `BossVariant` gained
+`mapId`, `jamsAgentType` and `palette`; `poolFor(cycle, mapId)` adds a map's
+own bosses to the common roster rather than replacing it, so the gauntlet
+still fields BREACH, GOOD GAME and ZOMBIE.
+
+| Boss | Id | Jams | Health | Lit |
+| --- | --- | --- | --- | --- |
+| `[○_○]` WHITE EYE | `white_eye` | RED HAT only | ×1.0 | spectrum sweep |
+| `[●_●]` BLACK EYE | `black_eye` | BLUE HAT only | ×1.0 | spectrum sweep |
+| `[₩₩₩]` BOUNTY | `bounty` | nothing | **×1.2** | steady cyan |
+| `[¥¥¥]` PAYOUT | `payout` | nothing | **×1.2** | steady violet |
+
+The jam is the owner's numbers exactly: **100 units, every 5 seconds, for 2
+seconds**, one agent type and only that one. `jamsAgentType` is a single
+string rather than a set, deliberately — a field that can express "jams both"
+is a field that eventually holds it.
+
+The eyes arrive at **cycle 6 (wave 30)**, the wave the hats unlock on; the
+heavies from cycle 2. Jamming an agent the player cannot own yet is not
+difficulty.
+
+**The immunity trap in the note below did not materialise**: the decided D2
+table dropped "immune to JAM", so the hats *can* be jammed and these bosses do
+something. `GauntletBossTest` asserts that, so the two rules cannot silently
+cancel later.
+
+**Checked by rendering, not by reading** (`GauntletBossRenderTest`): every
+codepoint has a glyph in the battlefield's font, the hollow and filled eyes
+are genuinely different pictures, the four measure cool against the originals'
+red, and the spectrum pair's hue actually moves while the steady pair's does
+not. That last pair of tests first measured the *health bar* — full green,
+the most saturated thing on the board — and reported 156° for all seven
+bosses.
+
+**Original note follows.**
+
 
 **Owner's spec (2026-09-25). Four bosses, two families, different jobs.**
 
@@ -1396,11 +1433,22 @@ in-game is free and removes the question entirely** — the audio is unaffected.
 Recommended, not assumed; the files keep their supplied names until the owner
 says otherwise.
 
-### ♡2 ⬜ File-based music architecture
+### ♡2 ✅ SHIPPED in 1.36.0 — File-based music architecture
 
-Independent of the rights question and worth doing either way. Today every
-sound is generated at runtime and the APK ships no audio files, which is why
-`res/raw` does not exist yet. Needs: the raw resources, a loop-aware player
-(the first track is specified **on loop**), the existing music-volume setting
-and the 5-second startup fade honoured, and `trackForMode()` pointed at files
-instead of the composer. Roughly +12 MB to the APK.
+`LevelMusic` names each level's pair of supplied tracks; `PlaylistEngine`
+plays them one after another and round again. Both kinds of background music
+now implement `BackgroundTrack`, so the volume rule, the 5-second startup fade
+and the backgrounding behaviour are written once and cannot drift apart.
+
+- **The menu keeps the music it already had** — the generated `MENU` track,
+  untouched, as asked.
+- **Two variants per level, alternating.** *"Can add to the loops so that it's
+  not repetitive."* One track on repeat is noticeable inside three waves.
+- **Music follows the level, not the mode.** HACK:AI on the perimeter is the
+  same place with harder waves in it.
+- **The generated match tracks stay as the fallback** — for a level whose
+  music is not supplied yet, and for a device whose decoder refuses the files.
+  `PlaylistEngine` reports that case and `AudioEngine` switches.
+- LEVEL_THREE is supplied and deliberately unmapped until the third map lands.
+
+About +25 MB to the download.

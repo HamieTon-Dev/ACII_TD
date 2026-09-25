@@ -100,6 +100,9 @@ class EnemySystem(private val engine: GameEngine, private val random: Random) {
             enemy.burstTimer = 6f
             enemy.replicateTimer = 4.5f
             enemy.disruptTimer = 5.5f
+            // The first variant jam lands a full interval after it walks out
+            // of the spawn, not the moment it does.
+            enemy.variantJamTimer = BossVariant.VARIANT_JAM_INTERVAL
         }
 
         enemy.maxHealth = health
@@ -173,6 +176,8 @@ class EnemySystem(private val engine: GameEngine, private val random: Random) {
             }
         }
 
+        updateVariantJam(enemy, dt)
+
         if (enemy.hasModifier(BossModifier.AGENT_DISRUPTION)) {
             enemy.disruptTimer -= dt
             if (enemy.disruptTimer <= 0f) {
@@ -196,6 +201,42 @@ class EnemySystem(private val engine: GameEngine, private val random: Random) {
                     )
                 }
             }
+        }
+    }
+
+    /**
+     * The HUGGING-FACE eyes: jam one agent type, and only that one.
+     *
+     * The type test is here rather than in `Agent.jam` on purpose. `jam`
+     * answers "can this agent be jammed at all" — that is the agent's own
+     * business and FIREWALL's whole identity. "Which agents is *this* boss
+     * looking for" is the boss's business, and putting it in the agent would
+     * mean every future jammer editing a `when` in the wrong file.
+     */
+    private fun updateVariantJam(enemy: Enemy, dt: Float) {
+        val target = enemy.variant.jamsAgentType ?: return
+        enemy.variantJamTimer -= dt
+        if (enemy.variantJamTimer > 0f) return
+        enemy.variantJamTimer = BossVariant.VARIANT_JAM_INTERVAL
+
+        var jammed = 0
+        for (agent in engine.agents.items) {
+            if (!agent.active || agent.type.name != target) continue
+            val dx = agent.x - enemy.x
+            val dy = agent.y - enemy.y
+            if (dx * dx + dy * dy > VARIANT_JAM_RADIUS_SQ) continue
+            agent.jam(BossVariant.VARIANT_JAM_SECONDS)
+            if (agent.disruptedFor > 0f) jammed++
+        }
+
+        if (jammed > 0) {
+            val label = com.cyopstd.game.model.AgentType.entries
+                .first { it.name == target }
+                .displayName
+            engine.effectSystem().spawnText(
+                enemy.x, enemy.y - 52f, "$label JAMMED",
+                GameEngine.COLOR_HOSTILE, 1.0f
+            )
         }
     }
 
@@ -302,5 +343,7 @@ class EnemySystem(private val engine: GameEngine, private val random: Random) {
 
         private const val DISRUPT_RADIUS = 260f
         private const val DISRUPT_RADIUS_SQ = DISRUPT_RADIUS * DISRUPT_RADIUS
+        private const val VARIANT_JAM_RADIUS_SQ =
+            BossVariant.VARIANT_JAM_RADIUS * BossVariant.VARIANT_JAM_RADIUS
     }
 }

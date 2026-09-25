@@ -11,6 +11,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.geometry.Offset
 import com.cyopstd.game.audio.AudioEngine
 import com.cyopstd.game.audio.HapticEngine
+import com.cyopstd.game.audio.musicForMap
 import com.cyopstd.game.audio.trackForMode
 import com.cyopstd.game.core.Balance
 import android.util.Log
@@ -761,10 +762,11 @@ class GameViewModel @JvmOverloads constructor(
     // ----------------------------------------------------------- run control
 
     fun startNewGame() {
-        // The mode decides the music as well as the numbers, and it is read
-        // here rather than inside the audio layer so the second map can change
-        // one call site instead of a rule buried two packages away.
-        audio.setInMatch(true, trackForMode(selectedMode))
+        // The level decides the music and the mode decides what it falls back
+        // to, and both are read here rather than inside the audio layer so a
+        // new level changes one call site instead of a rule buried two
+        // packages away.
+        audio.setInMatch(true, musicForMap(engine.map), trackForMode(selectedMode))
         // Selected before the run starts: the mode sets starting integrity, so
         // it has to be in place before startNewRun reads it.
         engine.selectMode(selectedMode)
@@ -857,7 +859,7 @@ class GameViewModel @JvmOverloads constructor(
             // resumed run kept the menu's track running underneath it, because
             // startMusic() only picks the match track once it has been told a
             // match is happening.
-            audio.setInMatch(true, trackForMode(engine.mode))
+            audio.setInMatch(true, musicForMap(engine.map), trackForMode(engine.mode))
             audio.startMusic()
             onLoaded()
         }
@@ -1335,7 +1337,7 @@ class GameViewModel @JvmOverloads constructor(
         gameOverSummary = null
         matchActive = true
         paused = false
-        audio.setInMatch(true, trackForMode(engine.mode))
+        audio.setInMatch(true, musicForMap(engine.map), trackForMode(engine.mode))
         if (settings.musicVolume > 0.01f) audio.startMusic()
         selection = BattlefieldSelection()
         showBossPanel = false

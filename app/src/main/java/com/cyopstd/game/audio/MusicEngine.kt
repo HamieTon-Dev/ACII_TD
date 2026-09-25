@@ -28,7 +28,7 @@ class MusicEngine(
     private val context: Context,
     /** Which of the two pieces this engine plays. */
     private val track: ChiptuneComposer.Track = ChiptuneComposer.Track.GAME
-) {
+) : BackgroundTrack {
 
     private val lock = Any()
     private var player: MediaPlayer? = null
@@ -38,7 +38,7 @@ class MusicEngine(
     private var wantPlaying = false
 
     /** What the game has asked for, regardless of whether the file is ready yet. */
-    val wantsToPlay: Boolean get() = wantPlaying
+    override val wantsToPlay: Boolean get() = wantPlaying
 
     @Volatile
     private var volume = 0.5f
@@ -50,7 +50,7 @@ class MusicEngine(
      * Render (if needed) and prepare the track on a background thread. Safe to
      * call repeatedly; only the first call does any work.
      */
-    fun prepare(scope: CoroutineScope) {
+    override fun prepare(scope: CoroutineScope) {
         synchronized(lock) {
             if (player != null || preparing) return
             preparing = true
@@ -120,7 +120,7 @@ class MusicEngine(
         return file
     }
 
-    fun start() {
+    override fun start() {
         wantPlaying = true
         synchronized(lock) {
             val active = player ?: return
@@ -130,7 +130,7 @@ class MusicEngine(
     }
 
     /** Pauses rather than stops, so the track resumes where the player left it. */
-    fun pause() {
+    override fun pause() {
         wantPlaying = false
         synchronized(lock) {
             val active = player ?: return
@@ -139,7 +139,7 @@ class MusicEngine(
         }
     }
 
-    fun setVolume(value: Float) {
+    override fun setVolume(value: Float) {
         volume = value.coerceIn(0f, 1f)
         synchronized(lock) {
             val active = player ?: return
@@ -158,7 +158,7 @@ class MusicEngine(
         safely("volume") { target.setVolume(level, level) }
     }
 
-    fun release() {
+    override fun release() {
         wantPlaying = false
         synchronized(lock) {
             val active = player ?: return
@@ -180,7 +180,5 @@ class MusicEngine(
 
     private companion object {
         const val TAG = "CyOpsMusic"
-        const val MIN_AUDIBLE = 0.01f
-        const val MUSIC_TRIM = 0.55f
     }
 }

@@ -16,7 +16,11 @@ import kotlinx.coroutines.launch
 import java.io.File
 
 /**
- * The track a mode plays under.
+ * The generated track a mode falls back to.
+ *
+ * Since the owner supplied the level music, a match normally plays the files
+ * in [LevelMusic]. This is what plays when it cannot: a level with no music of
+ * its own yet, or a device whose decoder will not take the bundled files.
  *
  * An exhaustive `when` rather than a field on [GameMode] or a lookup by name:
  * adding a mode then has to answer this question, and the compiler is what
@@ -74,12 +78,21 @@ class AudioEngine(private val context: Context) {
     private val menuMusic = MusicEngine(context, ChiptuneComposer.Track.MENU)
 
     /**
-     * One engine per match track, built the first time that track is asked for.
+     * One playlist per level, built the first time that level is played.
      *
-     * Lazily, and that is the point: HACK:AI is behind wave 100 and most
-     * players will never hear its track, so rendering six megabytes of it on
-     * every install would be work done for nobody. The standard track is
-     * prepared up front because every player hears it.
+     * Lazily, and that is the point: a player who never reaches the second map
+     * never pays to open its music.
+     */
+    private val levelMusic = HashMap<LevelMusic, PlaylistEngine>()
+
+    /**
+     * The generated tracks, kept as what plays when the supplied files cannot.
+     *
+     * Not dead weight and not a second music system: these render from code,
+     * so they work on a device whose decoder refuses the bundled MP3s, and on
+     * a level that has no music of its own yet. Built lazily for the same
+     * reason the playlists are — HACK:AI is behind wave 100 and most players
+     * will never hear its track.
      */
     private val matchMusic = HashMap<ChiptuneComposer.Track, MusicEngine>()
 
@@ -90,6 +103,36 @@ class AudioEngine(private val context: Context) {
     /** Which track should be playing. */
     private var inMatch = false
     private var matchTrack: ChiptuneComposer.Track = ChiptuneComposer.Track.GAME
+
+    /** The level whose music the current match wants, if it has one. */
+    private var matchLevel: LevelMusic? = null
+
+    /** Set when this device will not play the supplied files at all. */
+    @Volatile
+    private var levelMusicUnavailable = false
+
+    private fun playlistFor(level: LevelMusic): PlaylistEngine =
+        synchronized(levelMusic) {
+            levelMusic.getOrPut(level) {
+                PlaylistEngine(context, level, onUnavailable = ::onLevelMusicUnavailable).also {
+                    it.setVolume(musicLevel)
+                    audioScope?.let(it::prepare)
+                }
+            }
+        }
+
+    /**
+     * The supplied files would not open. Fall back to something we can render.
+     *
+     * Reached only on a device whose decoder refuses the bundled MP3s. It is
+     * not a hypothetical — OEM decoders vary — and the alternative is a level
+     * that is silently, permanently quiet.
+     */
+    private fun onLevelMusicUnavailable() {
+        levelMusicUnavailable = true
+        Log.w(TAG, "Level music will not play here; falling back to the generated track")
+        if (inMatch && musicLevel > 0.01f) engineFor(matchTrack).start()
+    }
 
     private fun engineFor(track: ChiptuneComposer.Track): MusicEngine =
         synchronized(matchMusic) {
@@ -237,36 +280,58 @@ class AudioEngine(private val context: Context) {
 
     fun setInMatch(
         value: Boolean,
+        level: LevelMusic? = null,
         track: ChiptuneComposer.Track = ChiptuneComposer.Track.GAME
     ) {
-        val trackChanged = value && track != matchTrack
-        if (inMatch == value && !trackChanged) return
+        val changed = value && (track != matchTrack || level != matchLevel)
+        if (inMatch == value && !changed) return
 
         // Whatever was playing stops, including a *different* match track: a
-        // player who finishes a HACK:AI run and starts a standard one must not
+        // player who finishes a run on one level and starts another must not
         // end up with two pieces of music at once.
-        if (trackChanged || !value) pauseMatchTracks()
+        if (changed || !value) pauseMatchTracks()
 
         inMatch = value
-        if (value) matchTrack = track
+        if (value) {
+            matchTrack = track
+            matchLevel = level
+        }
         if (musicVolume <= 0.01f) return
 
         if (value) {
             menuMusic.pause()
-            engineFor(matchTrack).start()
+            startMatchTrack()
         } else {
             menuMusic.start()
         }
     }
 
-    private fun pauseMatchTracks() {
-        synchronized(matchMusic) { matchMusic.values.toList() }.forEach { it.pause() }
+    /**
+     * The level's own music if there is any and this device will play it,
+     * otherwise the generated track for the mode.
+     */
+    private fun startMatchTrack() {
+        val level = matchLevel
+        if (level != null && !levelMusicUnavailable) {
+            playlistFor(level).start()
+        } else {
+            engineFor(matchTrack).start()
+        }
     }
+
+    private fun pauseMatchTracks() {
+        matchEngines().forEach { it.pause() }
+    }
+
+    /** Every background track that belongs to a match, of either kind. */
+    private fun matchEngines(): List<BackgroundTrack> =
+        synchronized(levelMusic) { levelMusic.values.toList<BackgroundTrack>() } +
+            synchronized(matchMusic) { matchMusic.values.toList<BackgroundTrack>() }
 
     /** Starts (or resumes) whichever track belongs to the current screen. */
     fun startMusic() {
         if (musicVolume <= 0.01f) return
-        if (inMatch) engineFor(matchTrack).start() else menuMusic.start()
+        if (inMatch) startMatchTrack() else menuMusic.start()
     }
 
     /**
@@ -295,8 +360,17 @@ class AudioEngine(private val context: Context) {
      * that.
      */
     val musicWanted: Boolean
-        get() = menuMusic.wantsToPlay ||
-            synchronized(matchMusic) { matchMusic.values.any { it.wantsToPlay } }
+        get() = menuMusic.wantsToPlay || matchEngines().any { it.wantsToPlay }
+
+    /**
+     * How many match tracks are currently asking to play. Should never be two.
+     *
+     * Exposed because "one piece of music at a time" is not something the
+     * player can be asked to verify and is exactly the kind of thing that
+     * breaks quietly when a second kind of track is added — which is what the
+     * level playlists are.
+     */
+    val matchTracksWanting: Int get() = matchEngines().count { it.wantsToPlay }
 
     fun applyVolumes(music: Float, sfx: Float) {
         musicVolume = music
@@ -322,7 +396,7 @@ class AudioEngine(private val context: Context) {
 
     private fun applyMusicLevel() {
         val level = musicLevel
-        synchronized(matchMusic) { matchMusic.values.toList() }.forEach { it.setVolume(level) }
+        matchEngines().forEach { it.setVolume(level) }
         menuMusic.setVolume(level)
     }
 
@@ -356,6 +430,10 @@ class AudioEngine(private val context: Context) {
     private var startupFading = false
 
     fun release() {
+        synchronized(levelMusic) {
+            levelMusic.values.forEach { it.release() }
+            levelMusic.clear()
+        }
         synchronized(matchMusic) {
             matchMusic.values.forEach { it.release() }
             matchMusic.clear()

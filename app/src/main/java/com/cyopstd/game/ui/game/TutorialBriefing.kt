@@ -25,9 +25,18 @@ object TutorialBriefing {
             .take(limit)
             .map { "${it.glyph} ${it.displayName} — ${firstSentence(it.codexEntry)}" }
 
-    /** One line per boss identity. */
+    /**
+     * One line per boss identity the player can meet anywhere.
+     *
+     * Map-specific opponents are left out. The briefing is offered before the
+     * first run, on the first level; listing four bosses that only exist on a
+     * level the player has not unlocked is not a briefing, it is a spoiler
+     * with no use attached.
+     */
     fun bosses(): List<String> =
-        BossVariant.entries.map { "${it.glyph} ${it.displayName} — ${it.signature}" }
+        BossVariant.entries
+            .filter { it.mapId == null }
+            .map { "${it.glyph} ${it.displayName} — ${it.signature}" }
 
     /**
      * The two mechanics a new player meets without being told their names.

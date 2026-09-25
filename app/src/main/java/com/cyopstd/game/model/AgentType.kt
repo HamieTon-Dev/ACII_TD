@@ -368,7 +368,7 @@ enum class AgentType(
         abilitySummary = "Fires as fast as anything in the roster and always " +
             "shoots a boss first. Double damage to [GG] GOOD GAME. Four maximum.",
         realWorld = "A \"red team\" attacks a system with permission, to find what " +
-            "a real attacker would find first. \"Red hat\" is informal slang " +
+            "an attacker would find first. \"Red hat\" is informal slang " +
             "rather than a job title or a certification, and its meaning varies " +
             "between people who use it; the red team half is the part that is " +
             "standard.",
