@@ -4,7 +4,7 @@
 reads first. It records where the project actually stands, what is proven and
 what is not, and what comes next.
 
-_Last updated: v1.34.0 — pinch-to-zoom (§P1) and the content/legal audit (§P2–P11). See `CHANGELOG.md` for the full per-version history._
+_Last updated: v1.36.2 — F3's UI half (revives listed on the GOOGLE PLAY screen); the §K table below brought up to date with 1.35.0–1.36.1. See `CHANGELOG.md` for the full per-version history._
 
 ---
 
@@ -27,15 +27,21 @@ this section is the position marker. Update it when an item ships.
 | 5 | F1 — revive on a rewarded ad | ✅ 1.23.0 |
 | 6 | F2 — revive pack + ×10 € rescale | ✅ 1.24.0 |
 | 7 | H1 — the tutorial overhaul | ✅ 1.25.0 |
-| 8 | D2 — `[REDHAT]` / `[BLUEHAT]` | ⛔ **blocked on the owner** — the four guard rails in §D2 need a pick |
+| 8 | D2 + C2 — `[REDHAT]` / `[BLUEHAT]` and the ×2 counters | ✅ 1.36.0 |
 | 9 | M1 — main-menu boot sequence | ❌ withdrawn 1.28.0 — read §M1, the failure is instructive |
 | 9b | M2 — boot sound over the ident | ✅ 1.28.0 |
-| 10 | N1 — screen-size audit | ◐ 1.32.0 — the audit landed and found a real fault; see below |
-| 11 | E1 — the "Hugging-Face" map | ⬜ in progress; the refactor landed in 1.28.0 |
-| 12 | E2 — AI bosses `[₩₩₩]` / `[¥¥¥]` | ⬜ needs C1 + D2 + E1 |
-| 13 | F3 — two-device cloud-save check | ⛔ needs a real Play Console |
+| 10 | N1 — screen-size audit | ◐ 1.32.0 audit; node density answered by pinch-to-zoom (1.34.0); a real-phone pass remains |
+| 11 | E1 — the "Hugging-Face" map | ✅ 1.36.0 |
+| 12 | E2 — Hugging-Face bosses (eyes + `[₩₩₩]` / `[¥¥¥]`) | ✅ 1.36.0 |
+| 13 | F3 — cloud-save/purchases, said plainly | ◐ UI wording 1.36.2; two-device check ⛔ needs a real Play Console |
 | 14 | O1 — Play release + AdMob rewarded | ◐ 1.33.0; blocked on the owner's AdMob ids, upload key and Console setup |
 | 15 | P1–P11 — pinch-to-zoom + content/legal audit | ✅ 1.34.0 |
+| 16 | Q1 — cloud-save encryption audit | ✅ 1.34.1 |
+| 17 | ♡1–♡2 — the owner's music | ✅ 1.36.0 |
+
+**Nothing left is buildable without the owner.** O1 needs the AdMob ids, an
+upload key and Console setup; F3 and N1 need real devices; §J has options
+waiting for a pick.
 
 **On the music:** the owner has set the generated mode tracks aside and will
 source music another way. The work stays in place and passing — HACK:AI has

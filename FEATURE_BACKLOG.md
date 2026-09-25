@@ -448,7 +448,12 @@ it fails with the offending id named.
 `revive_pack` is a new Play Console product id and must be created before
 release. `RELEASING.md` §2 carries the row and the revised € column.
 
-### F3 ⬜ Confirm what reaches the Google account, and say so in the UI
+### F3 ◐ Confirm what reaches the Google account, and say so in the UI *(UI half landed 1.36.2)*
+
+**1.36.2:** the wording half is done. THIS ACCOUNT OWNS lists the REVIVE PACK
+with the allowance it gives, and a caption says purchases, revives included,
+come back from Play with RESTORE and are never in the cloud save.
+**Still open:** the two-device check — needs a Play Console and two phones.
 
 **Asked:** *"make sure purchases and player progress and money, damage, highest
 wave save to google account/google drive (requires permission) [only saves
@@ -838,8 +843,9 @@ save being misread could not stop anything.
   the tap radius: nearest-node already wins every tap inside it, so a bigger
   radius only eats the empty-space tap that clears a selection
   (`WorldFitTest` pins that ceiling). Fixing it properly means a sparser grid
-  on small screens, or pinch-to-zoom on the board. **Owner's call** — it is a
-  design change, not a bug fix.
+  on small screens, or pinch-to-zoom on the board. **Answered by §P1:**
+  pinch-to-zoom shipped in 1.34.0, so a player on a small phone zooms in to
+  separate the nodes.
 
 ---
 
@@ -910,16 +916,19 @@ either depends on another or needs a decision noted in its section.**
 3. ~~C1~~ — ✅ 1.21.0. B1, C2 and E2 are unblocked.
 4. ~~B1~~ — ✅ 1.22.0.
 5. ~~F1~~ — ✅ 1.23.0.
-6. **D2** — RH/BH. **Blocked on the owner:** the four guard rails in §D2 need
-   a pick before this can be built. Skipped rather than stalled on.
+6. ~~D2~~ — ✅ RED HAT / BLUE HAT, with C2's ×2 counters; shipped by 1.36.0.
 7. ~~F2~~ — ✅ 1.24.0.
 8. ~~H1~~ — ✅ 1.25.0.
 9. ~~M1~~ — ✅ 1.27.0.
-10. **E1** — the map layer. Largest, and worth its own version.
-10b. **N1** — the screen-size audit. A release blocker rather than a feature,
-    so it comes before anything else ships to the store.
-11. **E2** — the AI bosses, last, because they need C1, D2 and E1.
-12. **F3** — the two-device verification, once there is a Play Console.
+10. ~~E1~~ — ✅ 1.36.0.
+10b. **N1** — ◐ audit landed 1.32.0; the small-screen node-density question
+    was answered by pinch-to-zoom (§P1, 1.34.0). Only a real-phone pass remains.
+11. ~~E2~~ — ✅ 1.36.0.
+12. **F3** — ◐ UI wording 1.36.2; the two-device verification waits on a Play
+    Console.
+
+**Everything left needs the owner or real hardware:** O1's ids, upload key and
+Console setup; F3's and N1's on-device checks; and any further picks from §J.
 
 Backgrounds (§F) can slot in anywhere; they touch nothing else.
 

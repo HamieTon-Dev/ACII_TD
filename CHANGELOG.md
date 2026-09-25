@@ -7,6 +7,29 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [1.36.2]
+
+### Added — the GOOGLE PLAY screen lists revives owned (§F3)
+
+The backlog's F3 asked for two things: verify on two real devices that
+progress *and* purchases arrive, and make the GOOGLE PLAY screen say plainly
+which comes from where. The second half is code and has landed; the first
+needs a Play Console and two phones and is still open.
+
+- **THIS ACCOUNT OWNS** gains a **REVIVE PACK** row that states the allowance
+  it actually gives — `NOT OWNED · 1 PER RUN ON AN AD` or
+  `OWNED · 3 PER RUN NO AD` — read from the same `Entitlements` and
+  `Balance.REVIVES_PER_RUN` the game uses, so the screen cannot drift from
+  the rule. Revives were the next thing a player would worry about losing on
+  a new phone.
+- A caption under it says outright that everything owned, revives included,
+  comes back from Google Play with RESTORE and is never part of the cloud
+  save, so no save file can grant or take away a purchase.
+
+`PlayAccountTest` covers both labels and the rendered row.
+
+---
+
 ## [1.36.1]
 
 ### Changed — Play Billing Library 7.1.1 → 9.1.0

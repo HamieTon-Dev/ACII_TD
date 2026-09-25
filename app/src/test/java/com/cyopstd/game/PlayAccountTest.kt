@@ -7,6 +7,7 @@ import androidx.compose.ui.test.assertCountEquals
 import androidx.compose.ui.test.onAllNodesWithText
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
+import com.cyopstd.game.core.Balance
 import com.cyopstd.game.save.CloudSaveStatus
 import com.cyopstd.game.save.PlayerIdentity
 import com.cyopstd.game.store.BillingStatus
@@ -15,6 +16,7 @@ import com.cyopstd.game.store.PlayLinks
 import com.cyopstd.game.store.Sku
 import com.cyopstd.game.ui.menu.PlayAccountScreen
 import com.cyopstd.game.ui.menu.relativeTime
+import com.cyopstd.game.ui.menu.reviveLabel
 import com.cyopstd.game.ui.theme.CyOpsTheme
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
@@ -238,5 +240,23 @@ class PlayAccountTest {
         assertEquals("market", listing.first().scheme)
         assertTrue(listing.all { it.toString().contains("com.cyopstd.game") })
         assertTrue(listing.any { it.scheme == "https" })
+    }
+
+    @Test
+    fun `revives owned are listed with what they are worth`() {
+        // The free allowance, shown as such, so a player who never bought the
+        // pack is not left wondering whether they lost one.
+        assertEquals(
+            "NOT OWNED · ${Balance.REVIVES_PER_RUN} PER RUN ON AN AD",
+            reviveLabel(Entitlements())
+        )
+        assertEquals(
+            "OWNED · 3 PER RUN NO AD",
+            reviveLabel(Entitlements(setOf(Sku.REVIVE_PACK.id)))
+        )
+
+        show(entitlements = Entitlements(setOf(Sku.REVIVE_PACK.id)))
+        compose.onNodeWithText("REVIVE PACK").assertExists()
+        compose.onNodeWithText("OWNED · 3 PER RUN NO AD").assertExists()
     }
 }
