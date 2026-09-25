@@ -237,6 +237,14 @@ board with no change.
 **Family 1 — the jammers.** `[○_○]` and `[●_●]`, the deliberately silly
 hugging-face look.
 
+**The glyph is the literal text**, clarified 2026-09-25: *"[●_●] should be the
+text I entered or similar for boss text."* So `[○_○]` and `[●_●]` as written,
+using U+25CB WHITE CIRCLE and U+25CF BLACK CIRCLE — not an ASCII stand-in like
+`[o_o]`. Non-ASCII boss glyphs are already shipping (`[₩₩₩]`, `[¥¥¥]`), so the
+renderer handles them; it must still be **checked by rendering**, because the
+1.26.0 splash proved that a glyph looking right in a preview here says nothing
+about a device.
+
 | Boss | Jams | Range | Cadence |
 | --- | --- | --- | --- |
 | `[○_○]` | **[REDHAT] only** | ~100 units | once every 5s |
@@ -1290,11 +1298,31 @@ manifest via `aapt2 dump xmltree`, not the merged text.
 
 **Asked (2026-09-25):** three MP3s supplied, one per level.
 
-| Level | File | Size |
+| Where | Track | Size |
 | --- | --- | --- |
-| First level (Perimeter / standard) | `matrix (bl studio loop) (slowed) [Remix]` — **on loop** | 3.4 MB |
+| **Main menu** | **unchanged — the existing generated track stays** | — |
+| First level (Perimeter / standard) | `matrix (bl studio loop) (slowed) [Remix]` | 3.4 MB |
 | Hack:AI | `Falling [Remix]` | 4.5 MB |
 | Hugging-Face | `VXLLAIN, iGRES, ENXK — Promise me the Sk… [Remix]` | 4.5 MB |
+
+**Clarified 2026-09-25:**
+
+- *"keep the music we had as main menu music"* — the generated menu track is
+  **not** replaced. Only in-match music changes, so `enterMenu()` keeps using
+  the composer and only `trackForMode()` switches to files.
+- *"level music will loop"* — **all three** level tracks loop, not just the
+  first. Looping is the default for match music rather than a per-track flag.
+- **Two variants per level**, supplied 2026-09-25: *"music names match same
+  levels and can add to the loops so that its not repetitive."* Six distinct
+  files (md5-verified distinct), so each level is a **playlist of two** that
+  alternates rather than a single track on repeat. The loop is over the
+  playlist, not over one file.
+
+**Size.** 24.7 MB of audio against a current release APK of 3.3 MB — roughly
+an eightfold increase, to ~28 MB. Well inside Play's limits and not a blocker.
+Worth knowing: these are MP3 at a fairly generous bitrate, and re-encoding to
+OGG Vorbis at a rate suited to a phone speaker would likely halve it with no
+audible loss in a game mix. Offered, not assumed.
 
 This closes the music thread that has been open since the generated chiptune
 work was set aside: *"skip the track for now I'll find another solution for
