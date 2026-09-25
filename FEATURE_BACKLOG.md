@@ -1294,7 +1294,7 @@ manifest via `aapt2 dump xmltree`, not the merged text.
 
 ## ♡. Music — real tracks replace the generated ones
 
-### ♡1 ✅ **RIGHTS CLEARED** — six supplied tracks, owner's own work
+### ♡1 ◐ **ONE QUESTION LEFT** — six supplied tracks, owner's own remixes
 
 **Asked (2026-09-25):** three MP3s supplied, one per level.
 
@@ -1348,9 +1348,35 @@ Each certifies the work as **AI music created by the owner** using Mureka
 (SKYWORK AI PTE. LTD.), with *"ownership, title and interest ... including,
 without limitation, all intellectual property rights"* belonging to the user.
 
-So the premise of the concern was wrong: these are not remixes of other
-people's recordings. The filenames are style prompts, not samples. **Cleared to
-ship, and cleared to commit.**
+#### What the certificate does and does not cover
+
+The owner then clarified: *"the music is remixes of original songs made by me.
+I can acquire licenses if necessary."*
+
+That leaves exactly one question, and it is worth stating precisely because
+the answer changes nothing else about the plan.
+
+A Mureka ownership certificate is **Mureka granting the owner rights in
+Mureka's output**. It is the only thing Mureka is in a position to grant. It
+cannot, and does not claim to, clear rights in anything that went *into* the
+generation, or in an underlying composition the output is derived from.
+
+So:
+
+| If the underlying songs are... | Then |
+| --- | --- |
+| **the owner's own compositions** | Nothing further is needed. The certificate covers the output, the owner already owns the input, and the chain is complete. |
+| **someone else's** | A remix is a derivative work, and it needs permission from the owner of the **composition** (publishing) and, if any audio was used, the **master recording**. Two separate rights, often two separate parties. |
+
+The titles name VXLLAIN, iGRES and ENXK, which is what makes the question
+worth asking rather than assuming. It may well be that those are style
+references for a generator rather than sources — in which case the first row
+applies and this is closed.
+
+**Until the owner confirms which row applies, the audio is not committed.**
+That costs nothing: ♡2 builds the music system file-based and swappable, so
+cleared audio is a drop-in whenever it arrives, and a local test build can use
+the files meanwhile.
 
 The certificates themselves are **not** committed — they carry the owner's full
 name and email address, and a public repository is not the place for that. They
