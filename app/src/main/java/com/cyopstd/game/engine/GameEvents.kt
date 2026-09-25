@@ -37,5 +37,15 @@ enum class PlacementResult {
     NODE_OCCUPIED,
     NODE_INVALID,
     AGENT_LOCKED,
-    NO_CAPACITY
+    NO_CAPACITY,
+
+    /**
+     * This agent has a per-type cap and it is already reached.
+     *
+     * Distinct from NO_CAPACITY, which means the board is full. Telling a
+     * player "deployment limit reached" when they have three free nodes and
+     * only this one agent is capped would send them looking for the wrong
+     * problem.
+     */
+    TYPE_LIMIT_REACHED
 }

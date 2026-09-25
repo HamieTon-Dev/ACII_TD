@@ -267,6 +267,13 @@ class ProjectileSystem(private val engine: GameEngine, private val random: Rando
             multiplier *= IPS_VS_SWARM
         }
 
+        // Boss counters (C2). Read off the variant's own table rather than
+        // branched on here, so adding a counter is a row in BossVariant and
+        // this function never grows.
+        if (enemy.isBoss) {
+            enemy.variant.bonusDamageFrom[sourceType.name]?.let { multiplier *= it }
+        }
+
         if (sourceType == AgentType.FIREWALL && enemy.hasModifier(BossModifier.FIREWALL_RESISTANCE)) {
             multiplier *= FIREWALL_RESISTED
         }

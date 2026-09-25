@@ -573,6 +573,13 @@ class GameEngine(
 
     // ------------------------------------------------------------ agent actions
 
+    /** How many of [type] are currently deployed. */
+    fun activeCountOf(type: AgentType): Int {
+        var n = 0
+        for (agent in agents.items) if (agent.active && agent.type == type) n++
+        return n
+    }
+
     fun agentAt(nodeId: Int): Agent? {
         for (agent in agents.items) {
             if (agent.active && agent.nodeId == nodeId) return agent
@@ -588,6 +595,13 @@ class GameEngine(
             soundListener?.invoke(GameSound.INSUFFICIENT)
             return PlacementResult.INSUFFICIENT_CRYPTO
         }
+        // Per-type cap, where one exists. The hat agents are capped at four
+        // each so that answering a four-boss wave does not also become the
+        // answer to everything else.
+        if (type.maxDeployed > 0 && activeCountOf(type) >= type.maxDeployed) {
+            return PlacementResult.TYPE_LIMIT_REACHED
+        }
+
         val agent = agents.obtain() ?: return PlacementResult.NO_CAPACITY
 
         economySystem.spend(type.cost)

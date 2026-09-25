@@ -37,6 +37,12 @@ enum class AttackStyle(val trail: String) {
  * A deployable cyber agent. Base stats are level-1 values; [statsAtLevel] applies
  * the shared upgrade curve from [Balance].
  */
+/** The fastest rate anything in the roster fires at. IPS set it; the hats match it. */
+private const val HIGHEST_FIRE_RATE = 3.3f
+
+/** How many of each hat agent may stand on the board at once. */
+private const val MAX_HATS = 4
+
 enum class AgentType(
     val displayName: String,
     val shortName: String,
@@ -90,7 +96,26 @@ enum class AgentType(
      * roster killed one thing at a time, which made a pack of BOTs a test of
      * how many turrets you had rather than of what you built.
      */
-    val splashRadius: Float = 0f
+    val splashRadius: Float = 0f,
+    /**
+     * Always shoots a boss in range before anything else.
+     *
+     * Ordinary agents prioritise bosses only in FIRST and STRONGEST modes;
+     * this overrides the mode entirely. It is the identity of the two hat
+     * agents and the reason they exist: past wave 100 the board carries four
+     * or more bosses at once, and every other agent picks its target by
+     * *position* along the lane, so a swarm of ordinary packets walking in
+     * front of a boss pulls the whole roster off it.
+     */
+    val alwaysPrioritisesBosses: Boolean = false,
+    /**
+     * How many of this agent may be on the board at once. Zero means no cap.
+     *
+     * A cap rather than a price is what keeps a boss-seeker from becoming the
+     * only thing anybody builds: at four, it answers a four-boss wave and
+     * cannot answer everything else as well.
+     */
+    val maxDeployed: Int = 0
 ) {
     TARPIT(
         displayName = "TARPIT",
@@ -315,6 +340,68 @@ enum class AgentType(
             "most expensive agent in the game and unlocked very late. Exposes " +
             "the targeting selector.",
         allowsTargetingModes = true
+    ),
+    /**
+     * The boss-seekers. Late, expensive, capped, and deliberately narrow.
+     *
+     * Added because the owner tested the wall and named it precisely: *"wave
+     * 101 is impossible with the best build on the map"*. The reason is
+     * structural rather than a numbers problem — every other agent in the
+     * roster chooses its target by position along the lane, so four bosses
+     * arriving inside a swarm are the *last* things anything shoots at. No
+     * amount of damage fixes a targeting problem.
+     *
+     * The colour split is the "hat" convention from security, and the
+     * educational text says so rather than implying either is a job title.
+     */
+    REDHAT(
+        displayName = "RED HAT",
+        shortName = "REDHAT",
+        glyph = "R",
+        cost = 400,
+        baseDamage = 34f,
+        baseFireRate = HIGHEST_FIRE_RATE,
+        baseRange = 272f,
+        attackStyle = AttackStyle.PRECISION,
+        unlockWave = 30,
+        abilityName = "OFFENSIVE SWEEP",
+        abilitySummary = "Fires as fast as anything in the roster and always " +
+            "shoots a boss first. Double damage to [GG] GOOD GAME. Four maximum.",
+        realWorld = "A \"red team\" attacks a system with permission, to find what " +
+            "a real attacker would find first. \"Red hat\" is informal slang " +
+            "rather than a job title or a certification, and its meaning varies " +
+            "between people who use it; the red team half is the part that is " +
+            "standard.",
+        inGame = "Very high rate of fire, always targets bosses over anything " +
+            "else in range, and deals double damage to [GG] GOOD GAME. " +
+            "Unlocks at wave 30 and no more than four may be deployed.",
+        allowsTargetingModes = false,
+        alwaysPrioritisesBosses = true,
+        maxDeployed = MAX_HATS
+    ),
+    BLUEHAT(
+        displayName = "BLUE HAT",
+        shortName = "BLUEHAT",
+        glyph = "B",
+        cost = 400,
+        baseDamage = 34f,
+        baseFireRate = HIGHEST_FIRE_RATE,
+        baseRange = 272f,
+        attackStyle = AttackStyle.SENTINEL,
+        unlockWave = 30,
+        abilityName = "DEFENSIVE SWEEP",
+        abilitySummary = "Fires as fast as anything in the roster and always " +
+            "shoots a boss first. Double damage to [!!!] BREACH. Four maximum.",
+        realWorld = "A \"blue team\" defends a system and responds to incidents — " +
+            "the counterpart to a red team. \"Blue hat\" is used in more than one " +
+            "way in the industry and is not a standardised term, so only the " +
+            "blue team meaning is described here.",
+        inGame = "Very high rate of fire, always targets bosses over anything " +
+            "else in range, and deals double damage to [!!!] BREACH. " +
+            "Unlocks at wave 30 and no more than four may be deployed.",
+        allowsTargetingModes = false,
+        alwaysPrioritisesBosses = true,
+        maxDeployed = MAX_HATS
     ),
     NETWORK_ARCHITECT(
         displayName = "NETWORK ARCHITECT",

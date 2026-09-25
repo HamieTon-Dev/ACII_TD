@@ -19,6 +19,14 @@ package com.cyopstd.game.model
  * several more waiting on the owner to choose, and two AI bosses that must
  * exist before the second map can.
  */
+/**
+ * What a counter is worth. The owner's answer to C2: *"2x damage for both."*
+ *
+ * Flat rather than a curve, so a player can reason about it without a
+ * spreadsheet: the right hat against the right boss hits twice as hard.
+ */
+const val COUNTER_MULTIPLIER = 2f
+
 enum class BossVariant(
     /** Stable id, for saves and for the leaderboard. */
     val id: String,
@@ -31,8 +39,21 @@ enum class BossVariant(
     /** One line for the dossier panel and the codex. */
     val signature: String,
     /** The earliest boss cycle this may appear on. */
-    val firstCycle: Int
+    val firstCycle: Int,
+    /**
+     * Agents that hit this variant harder, and by how much.
+     *
+     * Keyed by `AgentType.name` rather than by the enum itself, deliberately.
+     * Two enums that name each other in their constructors can deadlock during
+     * class initialisation, and the failure is a hang at startup with no stack
+     * worth reading. A string key cannot do that.
+     *
+     * A table rather than a branch in the damage path, so a new counter is a
+     * row here and nothing else changes.
+     */
+    val bonusDamageFrom: Map<String, Float> = emptyMap()
 ) {
+
     /**
      * The original, and still the one a player meets first.
      *
@@ -47,7 +68,10 @@ enum class BossVariant(
         armorBonus = 0f,
         speedScale = 1f,
         signature = "A coordinated breach attempt. No tricks, just weight.",
-        firstCycle = 1
+        firstCycle = 1,
+        // BLUE HAT is the defensive counter: a breach is what a blue team is
+        // for.
+        bonusDamageFrom = mapOf("BLUEHAT" to COUNTER_MULTIPLIER)
     ),
 
     /**
@@ -65,7 +89,10 @@ enum class BossVariant(
         speedScale = 0.78f,
         signature = "Enormous and heavily armoured, but slow. Bring something " +
             "that ignores armour.",
-        firstCycle = 2
+        firstCycle = 2,
+        // RED HAT is the offensive counter: GOOD GAME is a wall, and the way
+        // past a wall is to go at it rather than wait it out.
+        bonusDamageFrom = mapOf("REDHAT" to COUNTER_MULTIPLIER)
     ),
 
     /**

@@ -1294,7 +1294,7 @@ manifest via `aapt2 dump xmltree`, not the merged text.
 
 ## ♡. Music — real tracks replace the generated ones
 
-### ♡1 ⚠️ **BLOCKED ON A RIGHTS ANSWER** — three supplied tracks
+### ♡1 ✅ **RIGHTS CLEARED** — six supplied tracks, owner's own work
 
 **Asked (2026-09-25):** three MP3s supplied, one per level.
 
@@ -1329,38 +1329,41 @@ work was set aside: *"skip the track for now I'll find another solution for
 music."* `AudioEngine.trackForMode()` is the single place all three redirect
 through, exactly as the earlier note said it would be.
 
-#### The blocker, stated once
+#### The rights question, asked and answered
 
-All three filenames name identifiable commercial recordings and artists, and
-all three are labelled "Remix". The ID3 tags have been stripped by an ffmpeg
-re-encode, so the files carry no licence information of their own.
+Raised because every filename named identifiable commercial recordings and
+artists and was labelled "Remix", and the ID3 tags had been stripped by an
+ffmpeg re-encode, so the files carried no licence of their own.
 
-Two separate exposures, and the second is the sharper one:
+**Answered 2026-09-25 with seven Mureka ownership certificates**, covering all
+six files:
 
-1. **Shipping them on Google Play.** Publishing a recording you do not hold
-   rights to is copyright infringement and a Play policy violation. The
-   consequence is not a warning — it is a takedown, and repeated strikes end
-   developer accounts.
-2. **Committing them to the repository.** `HamieTon-Dev/ACII_TD` — if that
-   repo is public, committing the MP3s *is itself publication*, before the
-   game ships at all.
+| Track | Certificates |
+| --- | --- |
+| `matrix (bl studio loop) (slowed)(Remix)` | 2 |
+| `Falling(Remix)` | 3 |
+| `VXLLAIN, iGRES, ENXK - Promise me the Sk...(Remix)` | 2 |
 
-**So the files are deliberately NOT committed.** Nothing about this is a
-judgement on the owner's taste — the tracks fit the game well. It is that the
-one question that decides whether they can ship has not been asked yet.
+Each certifies the work as **AI music created by the owner** using Mureka
+(SKYWORK AI PTE. LTD.), with *"ownership, title and interest ... including,
+without limitation, all intellectual property rights"* belonging to the user.
 
-#### What unblocks it
+So the premise of the concern was wrong: these are not remixes of other
+people's recordings. The filenames are style prompts, not samples. **Cleared to
+ship, and cleared to commit.**
 
-Any one of:
+The certificates themselves are **not** committed — they carry the owner's full
+name and email address, and a public repository is not the place for that. They
+live with the owner.
 
-- a licence or written permission covering game use for each track;
-- the tracks being the owner's own work, or a friend's with permission;
-- replacement with royalty-free / CC-licensed music, or commissioned audio.
+#### One residual point, worth one line
 
-Until then: the music system is being built **file-based and swappable**, so
-the moment cleared audio exists it is a drop-in. A **local test APK** with the
-supplied tracks can be built for the owner's own evaluation, which is not
-distribution — but that build must not be uploaded anywhere.
+The *titles* still name real artists — VXLLAIN, iGRES, ENXK. Owning the
+recording does not give you their names, and a track credited that way inside a
+shipped game could imply an association that does not exist. **Renaming them
+in-game is free and removes the question entirely** — the audio is unaffected.
+Recommended, not assumed; the files keep their supplied names until the owner
+says otherwise.
 
 ### ♡2 ⬜ File-based music architecture
 

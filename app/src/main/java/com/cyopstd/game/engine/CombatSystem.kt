@@ -193,7 +193,10 @@ class CombatSystem(private val engine: GameEngine, private val random: Random) {
         val range = agent.range()
         val rangeSq = range * range
         val enemies = engine.enemies.items
-        val prioritiseBoss = when (agent.targetingMode) {
+        // The hat agents override the mode entirely: a boss in range is the
+        // target, whatever else is on the lane. That is the whole reason they
+        // exist -- see AgentType.alwaysPrioritisesBosses.
+        val prioritiseBoss = agent.type.alwaysPrioritisesBosses || when (agent.targetingMode) {
             TargetingMode.FIRST, TargetingMode.STRONGEST -> true
             TargetingMode.LAST, TargetingMode.WEAKEST -> false
         }

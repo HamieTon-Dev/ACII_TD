@@ -1828,6 +1828,9 @@ class BattlefieldRenderer {
         AgentType.QUANTUM_DEFENDER -> colPurple
         AgentType.ROOT_ADMIN -> colGreen
         AgentType.NETWORK_ARCHITECT -> colPurple
+        // The hats are named for their colour, so they are drawn in it.
+        AgentType.REDHAT -> colRed
+        AgentType.BLUEHAT -> colBlue
     }
 
     private fun enemyColor(enemy: Enemy): Int = when {

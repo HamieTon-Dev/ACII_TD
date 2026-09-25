@@ -1044,6 +1044,8 @@ class GameViewModel @JvmOverloads constructor(
                 PlacementResult.AGENT_LOCKED -> showTransient("AGENT LOCKED")
                 PlacementResult.NODE_INVALID -> showTransient("INVALID NODE")
                 PlacementResult.NO_CAPACITY -> showTransient("DEPLOYMENT LIMIT REACHED")
+                PlacementResult.TYPE_LIMIT_REACHED ->
+                    showTransient("${pending.displayName} LIMIT — ${pending.maxDeployed} MAX")
             }
             pushHud()
             return
