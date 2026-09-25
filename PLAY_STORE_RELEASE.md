@@ -129,7 +129,6 @@ same place as the key.
 ```bash
 ./gradlew clean bundleRelease \
   -Pcyops.admob.appId=ca-app-pub-…~… \
-  -Pcyops.admob.interstitialId=ca-app-pub-…/… \
   -Pcyops.admob.rewardedId=ca-app-pub-…/…
 
 tools/verify-release.sh
@@ -262,7 +261,6 @@ most likely to be the reason a launch date slips.
 
 ```bash
 # bump versionCode in app/build.gradle.kts
-./gradlew clean bundleRelease -Pcyops.admob.appId=… -Pcyops.admob.interstitialId=… -Pcyops.admob.rewardedId=…
 tools/verify-release.sh
 ./gradlew testDebugUnitTest
 ```

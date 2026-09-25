@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <!--
       NETWORK ENCRYPTION. `usesCleartextTraffic="false"` on the application
@@ -46,12 +47,30 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <!--
-      The advertising id. Declared because the Mobile Ads SDK reads it, which
-      is what Play's Data Safety form has to be told. It is the only device
-      identifier anything in this app touches, the game never reads it itself,
-      and a player can reset or delete it in Android's own settings.
+      THE ADVERTISING ID IS REMOVED, ON PURPOSE.
+
+      The Mobile Ads SDK declares this permission in its own manifest, so it
+      arrives by dependency merge rather than by anyone asking for it. It is
+      stripped back out here.
+
+      The reason is the audience. This game is played by children, it collects
+      no age and has no age gate, so every ad request carries child-directed
+      treatment (see AdPrivacy.kt). A child-directed request must not carry a
+      resettable advertising identifier, and the most reliable way to be sure
+      one is never read is to withhold the permission that allows reading it:
+      a runtime configuration can be got wrong by a future edit, an absent
+      permission cannot.
+
+      This also makes the Play Data Safety answer a fact about the artifact
+      rather than a promise about the code. A merged manifest with no AD_ID in
+      it is checkable, and tools/verify-release.sh checks it.
+
+      tools:node="remove" is required: without it the SDK's declaration simply
+      merges in and wins, because nothing here would contradict it.
     -->
-    <uses-permission android:name="com.google.android.gms.permission.AD_ID" />
+    <uses-permission
+        android:name="com.google.android.gms.permission.AD_ID"
+        tools:node="remove" />
 
     <uses-feature
         android:name="android.hardware.touchscreen"

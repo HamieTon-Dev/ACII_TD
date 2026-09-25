@@ -23,14 +23,17 @@ The separator is the tell: **`~` is an app, `/` is a unit.** Paste an
 application id where a unit belongs and the SDK fails at runtime with a message
 that does not say that is what happened.
 
-This game uses **two different ad units**:
+This game uses **exactly one ad unit**: a **rewarded** unit, which is the only
+thing that can grant a revive and the only advertising in the game.
 
-- an **interstitial**, shown at most once after a lost run, on a cooldown;
-- a **rewarded** unit, which is the only thing that can grant a revive.
+There is no interstitial, banner, app-open or native ad, and none should be
+added. The audience includes children, and a game played by children should not
+show an advert nobody pressed a button for. The lost-run interstitial that used
+to exist was removed in 1.35.0 for exactly that reason.
 
-They must be separate units. A rewarded ad has a reward callback that fires
-only on completion; an interstitial calls back on *dismissal*. Granting a
-revive on a dismissal means granting it for closing the ad after two seconds.
+**Create the unit as a Rewarded unit.** A rewarded ad has a reward callback
+that fires only on completion; an interstitial calls back on *dismissal*, so a
+revive hung off one would be granted for closing the ad after two seconds.
 
 ---
 
@@ -41,9 +44,7 @@ revive on a dismissal means granting it for closing the ad after two seconds.
    and search for `com.cyopstd.game`; if not, choose "not listed yet" and
    link it later.
 3. Copy the **App ID** shown under *App settings*. It has a `~`.
-4. **Ad units → Add ad unit → Interstitial.** Name it something you will
-   recognise in reports, e.g. `CyOpsTD run-lost interstitial`. Copy the id.
-5. **Ad units → Add ad unit → Rewarded.** Name it e.g. `CyOpsTD revive`.
+4. **Ad units → Add ad unit → Rewarded.** Name it e.g. `CyOpsTD revive`.
    Set the reward to anything — the game ignores the reward's declared amount
    and type and only cares that the callback fired. Copy the id.
 
@@ -51,7 +52,7 @@ revive on a dismissal means granting it for closing the ad after two seconds.
 
 ## 3. Where you paste them
 
-**One file, three lines, and it is not in source control.**
+**One file, two lines, and it is not in source control.**
 
 Copy `secrets.properties.example` to **`secrets.properties`** in the repository
 root and fill in the three AdMob lines:
@@ -63,11 +64,10 @@ cp secrets.properties.example secrets.properties
 ```properties
 # secrets.properties
 cyops.admob.appId=ca-app-pub-1234567890123456~1234567890
-cyops.admob.interstitialId=ca-app-pub-1234567890123456/2222222222
 cyops.admob.rewardedId=ca-app-pub-1234567890123456/3333333333
 ```
 
-Replace all three with the ids from step 2. Keep the property names exactly as
+Replace both with the ids from step 2. Keep the property names exactly as
 written.
 
 **Not** the repository's own `gradle.properties`. That file is *tracked* — it
@@ -84,7 +84,6 @@ They can also be passed on the command line, which is what CI does:
 ```bash
 ./gradlew bundleRelease \
   -Pcyops.admob.appId=ca-app-pub-…~… \
-  -Pcyops.admob.interstitialId=ca-app-pub-…/… \
   -Pcyops.admob.rewardedId=ca-app-pub-…/…
 ```
 
@@ -119,7 +118,6 @@ control because they serve test creatives to anybody:
 
 ```
 application   ca-app-pub-3940256099942544~3347511713
-interstitial  ca-app-pub-3940256099942544/1033173712
 rewarded      ca-app-pub-3940256099942544/5224354917
 ```
 
@@ -134,7 +132,6 @@ AdMob account and without a single real impression.
 ### Before you upload
 
 ```bash
-./gradlew bundleRelease -Pcyops.admob.appId=… -Pcyops.admob.interstitialId=… -Pcyops.admob.rewardedId=…
 tools/verify-release.sh
 ```
 
@@ -195,3 +192,24 @@ Neither of these can be done from this repository:
   User Messaging Platform, which fetches whatever message you have published.
   If you never publish one, UMP has nothing to show, and players in regions
   requiring consent will not be able to consent — so ads will not serve there.
+
+
+---
+
+## 8. Families settings you must also set in AdMob
+
+The app configures itself for a child-directed audience — non-personalized,
+G-rated, no advertising ID — and does so for every request. That is the client
+half. The account half is yours:
+
+- **App settings → this app → set the app as child-directed / Designed for
+  Families**, so AdMob serves only Families-eligible demand.
+- **Blocking controls → ad content rating:** confirm it is capped at **G**.
+  The app requests G; the account should not be configured looser.
+- **Do not enable mediation.** A mediation adapter routes requests to a network
+  that has made none of the guarantees above, and Families requires every ad
+  source to be compatible. `FamiliesAdPolicyTest` fails the build if an adapter
+  is ever added to the Gradle file.
+
+Expect lower eCPM than personalized advertising. That is the cost of the
+audience, not a misconfiguration.

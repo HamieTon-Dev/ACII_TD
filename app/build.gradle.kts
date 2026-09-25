@@ -16,9 +16,10 @@ plugins {
 //     AD UNIT id       ca-app-pub-XXXXXXXXXXXXXXXX/ZZZZZZZZZZ   (slash)
 //
 // The application id identifies the whole app to the SDK and goes in the
-// manifest. An ad unit id identifies one placement of one format, and the
-// rewarded unit the revive hangs off is a *different unit* from the
-// interstitial shown after a lost run.
+// manifest. An ad unit id identifies one placement of one format. There is
+// exactly one unit in this game: the rewarded ad behind the voluntary revive.
+// The lost-run interstitial was removed in 1.35.0 -- an audience that includes
+// children should not be shown an advert it did not ask for.
 //
 // Empty by default, on purpose: an unset id selects the no-op gateway, so a
 // checkout with no AdMob account behind it builds and plays exactly as the
@@ -27,14 +28,12 @@ plugins {
 // NOT in this repository's own `gradle.properties`, which is tracked:
 //
 //     cyops.admob.appId=ca-app-pub-XXXXXXXXXXXXXXXX~YYYYYYYYYY
-//     cyops.admob.interstitialId=ca-app-pub-XXXXXXXXXXXXXXXX/ZZZZZZZZZZ
 //     cyops.admob.rewardedId=ca-app-pub-XXXXXXXXXXXXXXXX/WWWWWWWWWW
 //
 // These reach RELEASE builds only. Debug builds ignore them and use Google's
 // published test units instead — see the buildTypes block. ADMOB_SETUP.md has
 // the walkthrough.
 val admobAppId = secret("cyops.admob.appId").orEmpty()
-val admobInterstitialId = secret("cyops.admob.interstitialId").orEmpty()
 val admobRewardedId = secret("cyops.admob.rewardedId").orEmpty()
 
 // Google's published test units. Safe to commit — they are documented sample
@@ -43,7 +42,6 @@ val admobRewardedId = secret("cyops.admob.rewardedId").orEmpty()
 //
 // https://developers.google.com/admob/android/test-ads
 val testAdmobAppId = "ca-app-pub-3940256099942544~3347511713"
-val testInterstitialId = "ca-app-pub-3940256099942544/1033173712"
 val testRewardedId = "ca-app-pub-3940256099942544/5224354917"
 
 // What an unconfigured RELEASE puts in the manifest. Not a real id, not one of
@@ -93,8 +91,8 @@ android {
         applicationId = "com.cyopstd.game"
         minSdk = 24
         targetSdk = 36
-        versionCode = 39
-        versionName = "1.34.1"
+        versionCode = 40
+        versionName = "1.35.0"
 
         // Stamped into the APK so the build identifier on screen is the real
         // one, not a string someone remembered to update. Reported by
@@ -160,7 +158,6 @@ android {
             // is invalid traffic against the owner's AdMob account, and the
             // way that rule gets broken is by making it a setting.
             buildConfigField("String", "ADMOB_APP_ID", quoted(testAdmobAppId))
-            buildConfigField("String", "ADMOB_INTERSTITIAL_ID", quoted(testInterstitialId))
             buildConfigField("String", "ADMOB_REWARDED_ID", quoted(testRewardedId))
             buildConfigField("boolean", "USING_TEST_ADS", "true")
             manifestPlaceholders["admobAppId"] = testAdmobAppId
@@ -181,7 +178,6 @@ android {
             // alternative, falling back to a test id, would serve Google's
             // test creatives to real players.
             buildConfigField("String", "ADMOB_APP_ID", quoted(admobAppId))
-            buildConfigField("String", "ADMOB_INTERSTITIAL_ID", quoted(admobInterstitialId))
             buildConfigField("String", "ADMOB_REWARDED_ID", quoted(admobRewardedId))
             buildConfigField("boolean", "USING_TEST_ADS", "false")
 
@@ -214,10 +210,6 @@ android {
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
-    }
-
-    kotlinOptions {
-        jvmTarget = "17"
     }
 
     buildFeatures {
@@ -266,6 +258,19 @@ android {
                 "app-${buildType.name}.apk"
             }
         }
+    }
+}
+
+/**
+ * JVM target, in the DSL Kotlin 2.3 requires.
+ *
+ * `kotlinOptions { jvmTarget = "17" }` inside `android { }` became a hard
+ * error rather than a warning in Kotlin 2.3, which is the one migration the
+ * Mobile Ads 25.x upgrade cost. Same target, current spelling.
+ */
+kotlin {
+    compilerOptions {
+        jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_17)
     }
 }
 

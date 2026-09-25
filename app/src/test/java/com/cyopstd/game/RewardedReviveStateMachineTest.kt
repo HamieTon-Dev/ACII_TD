@@ -72,15 +72,8 @@ class RewardedReviveStateMachineTest {
 
         var showCalls = 0
         var preloadRewardedCalls = 0
-        var interstitialsShown = 0
 
-        override val isReady = true
         override val isRewardedReady: Boolean get() = rewardedLoaded
-
-        override fun showInterstitial(onFinished: () -> Unit) {
-            interstitialsShown++
-            onFinished()
-        }
 
         override fun showRewarded(onResult: (earned: Boolean) -> Unit) {
             showCalls++
@@ -98,7 +91,6 @@ class RewardedReviveStateMachineTest {
             }
         }
 
-        override fun preload() = Unit
         override fun preloadRewarded() {
             preloadRewardedCalls++
         }

@@ -81,6 +81,29 @@ else
 fi
 echo
 
+# --- 2b. advertising identifier ----------------------------------------------
+#
+# A game whose audience includes children must not read the advertising id.
+# The Mobile Ads SDK declares the permission itself, so it is stripped in our
+# manifest with tools:node="remove" -- and this is where that is confirmed
+# against the artifact rather than against the source.
+case "$TARGET" in
+    *.aab)
+        unzip -qo "$TARGET" -d "$WORK" 'base/manifest/AndroidManifest.xml' 2>/dev/null || true
+        MANIFEST_TEXT="$(strings -a "$WORK/base/manifest/AndroidManifest.xml" 2>/dev/null || true)"
+        ;;
+    *)
+        MANIFEST_TEXT="$("$AAPT2" dump xmltree --file AndroidManifest.xml "$TARGET" 2>/dev/null || true)"
+        ;;
+esac
+
+if echo "$MANIFEST_TEXT" | grep -q "gms.permission.AD_ID"; then
+    AD_ID_STATE="PRESENT"
+else
+    AD_ID_STATE="removed"
+fi
+echo "  AD_ID perm     : $AD_ID_STATE"
+
 # --- 3. network encryption and debuggability ---------------------------------
 #
 # Read from the COMPILED manifest, which has no comments in it. An earlier
@@ -129,6 +152,18 @@ if [ "$CLEARTEXT" = "PERMITTED" ]; then
     FAILED=1
 fi
 
+if [ "$AD_ID_STATE" = "PRESENT" ]; then
+    echo "FAIL: the advertising id permission is in this artifact."
+    echo
+    echo "This game's audience includes children and every ad request carries"
+    echo "child-directed treatment, which must not use a resettable advertising"
+    echo "identifier. Something re-introduced com.google.android.gms.permission.AD_ID"
+    echo "-- most likely a dependency whose manifest merged in ahead of the"
+    echo "tools:node=\"remove\" in AndroidManifest.xml."
+    echo
+    FAILED=1
+fi
+
 if [ "$DEBUGGABLE" = "YES" ]; then
     echo "FAIL: this artifact is debuggable. Play rejects debuggable uploads,"
     echo "and a debuggable build exposes the app's private data on any device."
@@ -143,7 +178,7 @@ if printf '%s\n%s\n' "$APP_ID" "$UNIT_IDS" | grep -q "$TEST_PUBLISHER"; then
     echo "serving them to real users breaks AdMob policy."
     echo
     echo "Most likely cause: the release was built without"
-    echo "  -Pcyops.admob.appId / -Pcyops.admob.interstitialId / -Pcyops.admob.rewardedId"
+    echo "  -Pcyops.admob.appId / -Pcyops.admob.rewardedId"
     echo "See ADMOB_SETUP.md."
     FAILED=1
 fi

@@ -112,16 +112,29 @@ actually supports.
 | Language | None |
 | Controlled substances | None |
 | Gambling / simulated gambling | **None.** Every purchase is a named, deterministic item. No loot boxes and no randomised paid rewards. |
+| Ads shown to children | **Yes, and they are child-directed, non-personalized and rated G.** The only ad is a rewarded ad the player opts into on the game-over screen to continue a run. |
 | User-generated content | **None**, with one caveat: the player types a "callsign" for the local leaderboard. It is stored on the device and shown only to that player. If you enable Play Games leaderboards later, this becomes shared content and the answer changes. |
 | Digital purchases | **Yes** |
-| Advertising | **Yes**, once AdMob ids are configured |
+| Advertising | **Yes** — one voluntary rewarded ad, and nothing else. No interstitials, banners, app-open or native ads |
 | Shares location | No |
 | Personal info shared | No, by the game itself |
 
 Expected outcome: **Everyone / PEGI 3 / ESRB Everyone**.
 
-**Target audience:** 13+. Do **not** declare a child audience — it changes the
-advertising rules substantially and this game is not built for one.
+**Target audience: all ages, including children.** Declare the child age
+brackets in the Play Console target-audience questionnaire. This is a
+deliberate product decision and the app is configured for it:
+
+- the game collects **no age** and has **no age gate**;
+- therefore **every** ad request is treated as child-directed, for every
+  player, with no per-user branch;
+- ads are non-personalized, G-rated, with no behavioural targeting or
+  remarketing, and the advertising ID permission is stripped from the
+  manifest.
+
+Declaring a child audience commits you to the **Designed for Families**
+requirements and to Play's Families ads policy. Both are satisfied by the
+configuration above, but the Console questionnaire is where you assert it.
 
 ---
 

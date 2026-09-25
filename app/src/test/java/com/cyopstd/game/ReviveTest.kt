@@ -132,18 +132,11 @@ class ReviveTest {
     /** A gateway that always has a rewarded ad, and grants what it is told to. */
     private class FakeAds(private val grants: Boolean) : AdGateway {
         var rewardedShown = 0
-        var interstitialsShown = 0
-        override val isReady = true
         override val isRewardedReady = true
-        override fun showInterstitial(onFinished: () -> Unit) {
-            interstitialsShown++
-            onFinished()
-        }
         override fun showRewarded(onResult: (Boolean) -> Unit) {
             rewardedShown++
             onResult(grants)
         }
-        override fun preload() = Unit
         override fun preloadRewarded() = Unit
     }
 
@@ -271,7 +264,15 @@ class ReviveTest {
     }
 
     @Test
-    fun `a revived run is not also charged the loss interstitial`() {
+    fun `a run shows no advertising the player did not ask for`() {
+        // This replaces a test that checked a revived run was not *also*
+        // charged the lost-run interstitial. The interstitial is gone --
+        // removed in 1.35.0 because a game played by children should not show
+        // an advert nobody pressed a button for -- so the budget it was
+        // rationing no longer exists. What is worth keeping is the stronger
+        // claim underneath it: across a whole run, including losing, reviving,
+        // losing again and walking away, the only ad shown is the one the
+        // player explicitly asked for.
         val ads = FakeAds(grants = true)
         val viewModel = freshViewModel(ads)
         viewModel.loseARun()
@@ -283,7 +284,11 @@ class ReviveTest {
         viewModel.abandonMatch()
         shadowOf(Looper.getMainLooper()).idle()
 
-        assertEquals("a rewarded ad already spent this run's ad budget", 0, ads.interstitialsShown)
+        assertEquals(
+            "exactly one ad, and it was the one the player pressed a button for",
+            1,
+            ads.rewardedShown
+        )
     }
 
     @Test

@@ -29,14 +29,13 @@ class PlayServicesTest {
         // function of its inputs, so both build types can be asked properly.
         assertFalse(
             "a release with no AdMob ids must select the no-op gateway",
-            PlayServices.adsConfigured(usingTestAds = false, appId = "", interstitialId = "")
+            PlayServices.adsConfigured(usingTestAds = false, appId = "", rewardedId = "")
         )
         assertFalse(
             "a rewarded unit alone is not a configuration",
             PlayServices.rewardedConfigured(
                 usingTestAds = false,
                 appId = "",
-                interstitialId = "",
                 rewardedId = "ca-app-pub-1234567890123456/1111111111"
             )
         )
@@ -49,14 +48,13 @@ class PlayServicesTest {
         // the real ids would serve test ads to real players -- which earns
         // nothing and breaks AdMob policy.
         assertTrue(PlayServices.SAMPLE_APP_ID.startsWith("ca-app-pub-"))
-        assertTrue(PlayServices.SAMPLE_INTERSTITIAL_ID.startsWith("ca-app-pub-"))
 
         assertFalse(
             "the sample ids look real but must not configure a release",
             PlayServices.adsConfigured(
                 usingTestAds = false,
                 appId = PlayServices.SAMPLE_APP_ID,
-                interstitialId = PlayServices.SAMPLE_INTERSTITIAL_ID
+                rewardedId = PlayServices.SAMPLE_REWARDED_ID
             )
         )
         assertFalse(
@@ -64,7 +62,6 @@ class PlayServicesTest {
             PlayServices.rewardedConfigured(
                 usingTestAds = false,
                 appId = "ca-app-pub-1234567890123456~1234567890",
-                interstitialId = "ca-app-pub-1234567890123456/2222222222",
                 rewardedId = PlayServices.SAMPLE_REWARDED_ID
             )
         )
@@ -78,7 +75,6 @@ class PlayServicesTest {
             PlayServices.rewardedConfigured(
                 usingTestAds = false,
                 appId = "ca-app-pub-1234567890123456~1234567890",
-                interstitialId = "ca-app-pub-1234567890123456/2222222222",
                 rewardedId = "ca-app-pub-1234567890123456/3333333333"
             )
         )
@@ -93,7 +89,6 @@ class PlayServicesTest {
             PlayServices.rewardedConfigured(
                 usingTestAds = true,
                 appId = PlayServices.SAMPLE_APP_ID,
-                interstitialId = PlayServices.SAMPLE_INTERSTITIAL_ID,
                 rewardedId = PlayServices.SAMPLE_REWARDED_ID
             )
         )
@@ -102,7 +97,7 @@ class PlayServicesTest {
             PlayServices.adsConfigured(
                 usingTestAds = true,
                 appId = "ca-app-pub-1234567890123456~1234567890",
-                interstitialId = "ca-app-pub-1234567890123456/2222222222"
+                rewardedId = "ca-app-pub-1234567890123456/3333333333"
             )
         )
     }

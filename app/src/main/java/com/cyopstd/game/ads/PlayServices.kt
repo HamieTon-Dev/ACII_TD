@@ -16,7 +16,6 @@ object PlayServices {
 
     /** AdMob ids as supplied at build time. */
     val adMobAppId: String get() = BuildConfig.ADMOB_APP_ID
-    val adMobInterstitialId: String get() = BuildConfig.ADMOB_INTERSTITIAL_ID
     val adMobRewardedId: String get() = BuildConfig.ADMOB_REWARDED_ID
 
     /**
@@ -38,7 +37,7 @@ object PlayServices {
      *   whole flow — load, show, reward, revive — can be exercised on a device
      *   without an AdMob account and without a single real impression;
      * - a **release** build with real ids configured through
-     *   `cyops.admob.appId` and `cyops.admob.interstitialId`.
+     *   `cyops.admob.appId` and `cyops.admob.rewardedId`.
      *
      * A release build that carries a *sample* id is explicitly false. The
      * manifest has to fall back to the sample application id or the SDK
@@ -46,59 +45,48 @@ object PlayServices {
      * ids would serve Google's test creatives to real players — which is both
      * a policy violation and a revenue of exactly zero.
      */
-    val adsConfigured: Boolean get() = adsConfigured(usingTestAds, adMobAppId, adMobInterstitialId)
+    val adsConfigured: Boolean get() = adsConfigured(usingTestAds, adMobAppId, adMobRewardedId)
 
     /**
      * True when this build can offer a revive on a rewarded ad.
      *
-     * Deliberately separate from [adsConfigured]: they are different ad units
-     * and different formats, and a build that has one and not the other must
-     * do the half it can rather than the half it cannot. A build with no
-     * rewarded id never shows the revive button at all — the rule from 1.16.0,
-     * that a control which cannot act must not be offered.
+     * Identical to [adsConfigured] now that the rewarded unit is the only ad
+     * in the game. Both names are kept because they answer different
+     * questions -- "does this build show advertising at all" and "can it offer
+     * the revive" -- and a future format would make them diverge again.
      */
-    val rewardedConfigured: Boolean
-        get() = rewardedConfigured(usingTestAds, adMobAppId, adMobInterstitialId, adMobRewardedId)
+    val rewardedConfigured: Boolean get() = adsConfigured
 
     /**
      * The rule itself, as a function of its inputs rather than of the build.
      *
      * Split out because the interesting half cannot otherwise be tested. Unit
      * tests compile against the *debug* build config, so
-     * `PlayServices.adsConfigured` can only ever answer the debug question —
+     * `PlayServices.adsConfigured` can only ever answer the debug question --
      * and the question that matters for a release ("would a release with no
-     * ids configured think it had ads?") had no way to be asked at all. Two
-     * tests used to assert the release rule by reading the debug value, which
-     * worked only for as long as the two build types shared one configuration.
-     * They stopped being true the moment debug got its own test ids, and what
-     * they were guarding was still worth guarding.
+     * ids configured think it had ads?") had no way to be asked at all.
      */
     fun adsConfigured(
         usingTestAds: Boolean,
         appId: String,
-        interstitialId: String
+        rewardedId: String
     ): Boolean = if (usingTestAds) {
         // A test-ad build is configured by definition: the ids are Google's
         // and they always work.
-        appId == SAMPLE_APP_ID && interstitialId == SAMPLE_INTERSTITIAL_ID
+        appId == SAMPLE_APP_ID && rewardedId == SAMPLE_REWARDED_ID
     } else {
         appId.startsWith(ADMOB_PREFIX) &&
-            interstitialId.startsWith(ADMOB_PREFIX) &&
+            rewardedId.startsWith(ADMOB_PREFIX) &&
             appId != SAMPLE_APP_ID &&
-            interstitialId != SAMPLE_INTERSTITIAL_ID
+            rewardedId != SAMPLE_REWARDED_ID
     }
 
-    /** As [adsConfigured], for the rewarded unit the revive hangs off. */
+    /** Kept as the name the revive path reads. */
     fun rewardedConfigured(
         usingTestAds: Boolean,
         appId: String,
-        interstitialId: String,
         rewardedId: String
-    ): Boolean = adsConfigured(usingTestAds, appId, interstitialId) && if (usingTestAds) {
-        rewardedId == SAMPLE_REWARDED_ID
-    } else {
-        rewardedId.startsWith(ADMOB_PREFIX) && rewardedId != SAMPLE_REWARDED_ID
-    }
+    ): Boolean = adsConfigured(usingTestAds, appId, rewardedId)
 
     /** The Play Games Services project id, as supplied at build time. */
     val gamesAppId: String get() = BuildConfig.GAMES_APP_ID

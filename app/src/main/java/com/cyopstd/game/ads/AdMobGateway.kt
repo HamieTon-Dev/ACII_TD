@@ -10,14 +10,12 @@ import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.FullScreenContentCallback
 import com.google.android.gms.ads.LoadAdError
 import com.google.android.gms.ads.MobileAds
-import com.google.android.gms.ads.interstitial.InterstitialAd
-import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 import com.google.android.gms.ads.rewarded.RewardedAd
 import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback
 import java.lang.ref.WeakReference
 
 /**
- * AdMob interstitials and rewarded ads.
+ * The rewarded ad, and nothing else.
  *
  * The single rule this is written around: **the game must never be stuck
  * waiting on an ad.** Every path through here ends in the continuation being
@@ -40,15 +38,11 @@ import java.lang.ref.WeakReference
  */
 class AdMobGateway(
     context: Context,
-    private val interstitialUnitId: String,
     /** Empty when this build has no rewarded unit; the revive is then never offered. */
     private val rewardedUnitId: String = ""
 ) : AdGateway {
 
     private val appContext = context.applicationContext
-
-    private var loaded: InterstitialAd? = null
-    private var loading = false
 
     private var rewarded: RewardedAd? = null
     private var loadingRewarded = false
@@ -93,95 +87,23 @@ class AdMobGateway(
         if (started) return
         started = true
         try {
+            // BEFORE initialize, not after. The configuration governs the SDK
+            // itself, so it has to be in place before the SDK is allowed to do
+            // anything -- including whatever it does on its own at startup.
+            MobileAds.setRequestConfiguration(AdPrivacy.requestConfiguration())
             MobileAds.initialize(appContext) {
-                Log.d(TAG, "SDK_INITIALISED")
+                Log.d(TAG, "SDK_INITIALISED childDirected=true personalization=DISABLED rating=G")
             }
         } catch (error: Throwable) {
             Log.w(TAG, "AdMob would not initialise; running without ads", error)
         }
     }
 
-    override val isReady: Boolean get() = started && loaded != null && activity.get() != null
-
     override val isRewardedReady: Boolean
         get() = started && rewarded != null && activity.get() != null
 
     fun attach(current: Activity) {
         activity = WeakReference(current)
-    }
-
-    override fun preload() {
-        if (!started) return
-        if (interstitialUnitId.isEmpty()) return
-        if (loading || loaded != null) return
-        val host = activity.get() ?: return
-        loading = true
-        Log.d(TAG, "AD_LOAD_STARTED format=interstitial unit=$interstitialUnitId")
-        try {
-            InterstitialAd.load(
-                host,
-                interstitialUnitId,
-                AdRequest.Builder().build(),
-                object : InterstitialAdLoadCallback() {
-                    override fun onAdLoaded(ad: InterstitialAd) {
-                        Log.d(TAG, "AD_LOADED format=interstitial")
-                        loaded = ad
-                        loading = false
-                    }
-
-                    override fun onAdFailedToLoad(error: LoadAdError) {
-                        // Not worth surfacing to the player: no fill is normal,
-                        // and the game simply carries on without one.
-                        Log.i(TAG, "AD_LOAD_FAILED format=interstitial code=${error.code}")
-                        loaded = null
-                        loading = false
-                    }
-                }
-            )
-        } catch (error: Throwable) {
-            Log.w(TAG, "AD_LOAD_FAILED format=interstitial threw", error)
-            loading = false
-        }
-    }
-
-    override fun showInterstitial(onFinished: () -> Unit) {
-        val ad = loaded
-        val host = activity.get()
-        if (ad == null || host == null) {
-            onFinished()
-            return
-        }
-        Log.d(TAG, "AD_SHOW_STARTED format=interstitial")
-
-        // Guarded so the continuation cannot run twice if the SDK delivers both
-        // a dismissal and a failure, which it is entitled to do.
-        var finished = false
-        fun finishOnce() {
-            if (finished) return
-            finished = true
-            loaded = null
-            preload()
-            onFinished()
-        }
-
-        ad.fullScreenContentCallback = object : FullScreenContentCallback() {
-            override fun onAdDismissedFullScreenContent() {
-                Log.d(TAG, "AD_DISMISSED format=interstitial")
-                finishOnce()
-            }
-
-            override fun onAdFailedToShowFullScreenContent(error: AdError) {
-                Log.w(TAG, "AD_SHOW_FAILED format=interstitial code=${error.code}")
-                finishOnce()
-            }
-        }
-
-        try {
-            ad.show(host)
-        } catch (error: Throwable) {
-            Log.w(TAG, "AD_SHOW_FAILED format=interstitial threw", error)
-            finishOnce()
-        }
     }
 
     // ---------------------------------------------------------- rewarded

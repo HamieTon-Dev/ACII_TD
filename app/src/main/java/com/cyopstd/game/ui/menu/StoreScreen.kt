@@ -41,25 +41,29 @@ import com.cyopstd.game.ui.theme.Palette
 data class StoreSection(val title: String, val accent: Color, val items: List<Sku>)
 
 /**
- * The catalogue, filtered to what this build can actually deliver.
+ * The catalogue, filtered to what the game can actually deliver.
  *
- * REMOVE ADS is the only product whose entire value is the absence of
- * something. In a build with no AdMob ids configured there are no
- * interstitials to remove, so selling it would be charging £4.99 for a change
- * the player cannot perceive — which is a refund request at best and a policy
- * problem at worst.
+ * REMOVE ADS is withheld, and this is pending an owner decision rather than a
+ * settled design. Its entire function was suppressing the lost-run
+ * interstitial, and that interstitial no longer exists: the game's only
+ * advertising is the rewarded revive, which is voluntary and which REMOVE ADS
+ * never covered (REVIVE PACK does). Its own store text promises "No
+ * interstitial after a failed run, ever" — a promise about a thing that is
+ * gone.
  *
- * A no-op once the ids are configured, which is the intended shipping state.
- * It exists so that the unconfigured build, which is what a checkout produces
- * and what an accidental release would ship, cannot sell something it cannot
- * honour.
+ * So it is hidden rather than deleted. Hidden, because selling a product whose
+ * description names a feature the game does not have is the exact fault this
+ * function was written to prevent. Not deleted, because the product still
+ * grants €5,000 and removing a purchasable is the owner's call — and because
+ * the decision is reversible in one line while a deletion is not.
  *
- * REVIVE_PACK stays either way: it raises the revive allowance to three per
- * run, which is worth buying whether or not an ad ever stood in front of it.
+ * Worth knowing for that decision: at $4.99 for €5,000 it is now strictly
+ * worse value than BUDGET_MEDIUM, which is €5,000 for $2.99. It has never been
+ * published, so nobody owns it and nothing breaks either way.
  */
 fun storeSections(adsConfigured: Boolean): List<StoreSection> =
     STORE_SECTIONS.mapNotNull { section ->
-        val items = section.items.filter { adsConfigured || it != Sku.NO_ADS }
+        val items = section.items.filter { it != Sku.NO_ADS }
         if (items.isEmpty()) null else section.copy(items = items)
     }
 

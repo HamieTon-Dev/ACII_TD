@@ -24,14 +24,15 @@ your Play Console, your AdMob account or your keystore.
 
 - [ ] **Owner only** — AdMob **application** id (`~`) set via
       `cyops.admob.appId` in an untracked `secrets.properties`.
-- [ ] **Owner only** — **interstitial** unit id (`/`) set via
-      `cyops.admob.interstitialId`.
 - [ ] **Owner only** — **rewarded** unit id (`/`) set via
       `cyops.admob.rewardedId`.
-- [ ] The interstitial and rewarded ids are **different units**. Sharing one
-      would mean the revive was granted on a dismissal.
-- [ ] `tools/verify-release.sh` passes against the built `.aab`. This is
-      the only check that inspects what actually ships.
+- [ ] The rewarded unit is created as a **Rewarded** unit, not an interstitial.
+- [ ] **Owner only** — the AdMob app is marked **child-directed / Designed for
+      Families**, and ad content rating is capped at **G**.
+- [ ] **No mediation** is enabled in AdMob.
+- [ ] `tools/verify-release.sh` passes against the built `.aab`: no Google test
+      ids, **AD_ID absent**, cleartext refused, not debuggable. This is the only
+      check that inspects what actually ships.
 - [ ] **Owner only** — a consent message is published in AdMob under
       *Privacy & messaging*. Without one, UMP has nothing to show and ads will
       not serve in regions that require consent.
@@ -60,6 +61,8 @@ your Play Console, your AdMob account or your keystore.
 Uses Google's test ad units, so the whole path can be exercised with no real
 impressions.
 
+- [ ] No advert appears that you did not press a button for. There should be
+      no interstitial after a lost run — that was removed in 1.35.0.
 - [ ] Lose a run. **WATCH AD TO CONTINUE** appears.
 - [ ] Complete the ad → the run resumes, **same wave**, core at **50%**,
       agents still deployed, crypto unchanged.
@@ -105,8 +108,11 @@ usually not a bug — check `AD_LOAD_FAILED ... code=3`, which is "no fill".
 - [ ] Privacy policy URL — mandatory, the app shows ads.
 - [ ] Content rating questionnaire completed.
 - [ ] **Data safety form** completed from `PRIVACY_AND_DATA_SAFETY.md`.
+      **Do not declare Advertising ID collection** — the permission is removed
+      and Play cross-checks the declaration against the manifest.
 - [ ] Ads declaration: **contains ads = yes**.
-- [ ] Target audience set; **not** a child audience.
+- [ ] Target audience set to **all ages, including children**, and the
+      Designed for Families requirements reviewed.
 - [ ] In-app products created with ids matching `store/Sku.kt` **exactly** — a
       mismatched id is a product that can never be bought.
 - [ ] `revive_pack` created, if the revive pack is being sold.
@@ -148,7 +154,7 @@ Verified against the built artifacts, not against the build file.
 
 These are true today and none of them can be closed from this repository.
 
-- [ ] AdMob application id, interstitial id and rewarded id — not supplied.
+- [ ] AdMob application id and rewarded unit id — not supplied.
 - [ ] Upload keystore — not supplied. Release builds are currently **unsigned**.
 - [ ] Play Console products, including `revive_pack` — not created.
 - [ ] Two-device cloud-save verification (backlog §F3) — needs a real Play

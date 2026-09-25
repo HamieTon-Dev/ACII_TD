@@ -232,36 +232,40 @@ class StoreTest {
     // ------------------------------------------------ nothing unsellable
 
     @Test
-    fun `a build with no ads does not sell their removal`() {
-        // REMOVE ADS is the one product whose entire value is the absence of
-        // something. With no AdMob ids configured there are no interstitials,
-        // so selling it charges real money for a change the player cannot
-        // perceive.
-        val withoutAds = com.cyopstd.game.ui.menu.storeSections(adsConfigured = false)
-            .flatMap { it.items }
-        assertFalse(
-            "a build with no ads still offered REMOVE ADS",
-            com.cyopstd.game.store.Sku.NO_ADS in withoutAds
-        )
-
-        // ...but the revive pack stays: three revives per run is worth buying
-        // whether or not an ad ever stood in front of them.
-        assertTrue(
-            "the revive pack should survive -- it is not an ad product",
-            com.cyopstd.game.store.Sku.REVIVE_PACK in withoutAds
-        )
+    fun `REMOVE ADS is not sold, because there are no ads to remove`() {
+        // Its entire function was suppressing the lost-run interstitial, and
+        // that interstitial was removed in 1.35.0. Its own store text still
+        // promises "No interstitial after a failed run, ever" -- a promise
+        // about something the game no longer has.
+        //
+        // Hidden rather than deleted, pending an owner decision: the product
+        // still grants EUR 5,000 and nobody has ever been able to buy it, so
+        // both keeping and removing it are live options. What is not an option
+        // is selling it as described.
+        for (ads in listOf(true, false)) {
+            val onSale = com.cyopstd.game.ui.menu.storeSections(adsConfigured = ads)
+                .flatMap { it.items }
+            assertFalse(
+                "REMOVE ADS was offered with adsConfigured=$ads, but the game " +
+                    "has no interstitials to remove",
+                com.cyopstd.game.store.Sku.NO_ADS in onSale
+            )
+            assertTrue(
+                "the revive pack must survive -- three revives per run is worth " +
+                    "buying whether or not an ad ever stood in front of them",
+                com.cyopstd.game.store.Sku.REVIVE_PACK in onSale
+            )
+        }
     }
 
     @Test
-    fun `a build with ads sells the whole catalogue`() {
-        val withAds = com.cyopstd.game.ui.menu.storeSections(adsConfigured = true)
+    fun `everything else in the catalogue is still on sale`() {
+        val onSale = com.cyopstd.game.ui.menu.storeSections(adsConfigured = true)
             .flatMap { it.items }
-        assertTrue(com.cyopstd.game.store.Sku.NO_ADS in withAds)
-        assertEquals(
-            "filtering must not drop anything else",
-            com.cyopstd.game.ui.menu.STORE_SECTIONS.flatMap { it.items },
-            withAds
-        )
+        val expected = com.cyopstd.game.ui.menu.STORE_SECTIONS
+            .flatMap { it.items }
+            .filter { it != com.cyopstd.game.store.Sku.NO_ADS }
+        assertEquals("the filter dropped something other than REMOVE ADS", expected, onSale)
     }
 
     @Test

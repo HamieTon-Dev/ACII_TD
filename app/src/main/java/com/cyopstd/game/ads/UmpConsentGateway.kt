@@ -11,6 +11,24 @@ import com.google.android.ump.UserMessagingPlatform
 /**
  * The real consent layer, on Google's User Messaging Platform.
  *
+ * **Consent decides whether an ad may be requested. It never decides whether
+ * an ad is personalized** -- that is settled in [AdPrivacy], globally and
+ * unconditionally, before this class has said anything. A player who consents
+ * to everything still gets non-personalized, G-rated, child-directed ads,
+ * because the game does not know their age and treats everyone as a child.
+ *
+ * ### What a player actually sees
+ *
+ * | Where | What UMP does |
+ * | --- | --- |
+ * | EEA / UK / Switzerland | GDPR message, if the publisher has one, and a Privacy Options entry point afterwards |
+ * | US states with their own rules | The applicable US state message, where configured |
+ * | Everywhere else | Usually nothing; `canRequestAds()` is true and the game starts |
+ * | Age unknown (everyone) | No age assertion is made either way -- see `refresh` |
+ *
+ * All four are the same as far as advertising content goes. The only thing
+ * that varies is whether a form appears and whether a request is permitted.
+ *
  * Written around one rule, the same one that governs [AdMobGateway]: **the
  * game must never be stuck waiting on Google.** Consent runs at startup, in
  * front of the menu, on a network that may not be there. Every path through
@@ -71,10 +89,26 @@ class UmpConsentGateway(
             onSettled()
         }
 
+        // NOTE what is not called here: `setTagForUnderAgeOfConsent`.
+        //
+        // It used to be set to `false`, which asserted to Google that the
+        // player is known NOT to be under the applicable age of consent. That
+        // was written when the game was documented as a 13+ audience. It is
+        // now a general-audience game that includes children, and it collects
+        // no age at all -- so `false` became a false statement.
+        //
+        // The fix is not to flip it to `true`. That is the opposite false
+        // statement: it asserts the player IS known to be under the age of
+        // consent, which is equally something this game does not know about
+        // anybody. It also changes what the consent SDK is permitted to
+        // present, so asserting it wrongly degrades a real player's choices.
+        //
+        // Leaving it unspecified is the only honest option, and it costs
+        // nothing: ad personalization is already off globally and
+        // unconditionally in AdPrivacy, so what consent returns cannot make an
+        // advert in this game personalized. Consent governs whether a request
+        // may be made at all; it does not govern what kind.
         val parameters = ConsentRequestParameters.Builder()
-            // The game is not directed at children and carries no age gate, so
-            // this is a truthful `false` rather than a default.
-            .setTagForUnderAgeOfConsent(false)
             .apply {
                 if (debugDeviceHash.isNotEmpty()) {
                     setConsentDebugSettings(

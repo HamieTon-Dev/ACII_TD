@@ -27,7 +27,6 @@ class ReleaseConfigTest {
     fun `a debug build uses Google's published test units and nothing else`() {
         assertTrue("debug builds must be marked as test-ad builds", PlayServices.usingTestAds)
         assertEquals(PlayServices.SAMPLE_APP_ID, PlayServices.adMobAppId)
-        assertEquals(PlayServices.SAMPLE_INTERSTITIAL_ID, PlayServices.adMobInterstitialId)
         assertEquals(
             "the rewarded unit must be Google's documented Android test unit",
             "ca-app-pub-3940256099942544/5224354917",
@@ -41,7 +40,6 @@ class ReleaseConfigTest {
         // fails here instead of at 3am against a live account.
         assertEquals("ca-app-pub-3940256099942544/5224354917", PlayServices.SAMPLE_REWARDED_ID)
         assertEquals("ca-app-pub-3940256099942544~3347511713", PlayServices.SAMPLE_APP_ID)
-        assertEquals("ca-app-pub-3940256099942544/1033173712", PlayServices.SAMPLE_INTERSTITIAL_ID)
     }
 
     @Test
@@ -66,11 +64,4 @@ class ReleaseConfigTest {
         }
     }
 
-    @Test
-    fun `the interstitial and the rewarded unit are different units`() {
-        // They are different formats and must be different placements. Sharing
-        // one would mean the revive was granted on a dismissal, which is the
-        // exact failure the rewarded format exists to prevent.
-        assertTrue(PlayServices.adMobInterstitialId != PlayServices.adMobRewardedId)
-    }
 }

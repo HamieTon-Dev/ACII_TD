@@ -7,6 +7,45 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [1.35.0]
+
+### Removed — the advert you did not ask for
+
+The interstitial that appeared after a lost run is gone. CyOps TD has a
+general audience that includes children, and a game played by children should
+not show an advert nobody pressed a button for.
+
+The only advertising left is the rewarded ad behind **WATCH AD TO CONTINUE** —
+voluntary, on the game-over screen, and it was always opt-in.
+
+### Changed — every ad request is now child-directed
+
+The game collects no age and has no age gate, so there is no basis on which to
+show anyone a personalized advert. Every request now carries child-directed
+treatment, personalization disabled, and a maximum content rating of G — set
+globally before the ads SDK starts, for every player, with no per-user branch.
+
+The advertising ID permission is stripped from the app entirely. Not disabled
+at runtime — removed, so it cannot be read.
+
+Google Mobile Ads moves to 25.3.0 and Kotlin to 2.3.21, which is what the new
+age-treatment API required.
+
+### Changed — the consent layer no longer guesses your age
+
+It used to tell Google the player was known not to be under the age of
+consent. That was written for a 13+ audience and became untrue. It now asserts
+nothing either way, which is the only honest thing it can say about a game
+that never asks. Ads stay non-personalized whatever consent returns.
+
+### Note — REMOVE ADS is temporarily off sale
+
+Its only function was suppressing the interstitial that no longer exists. It
+has never been purchasable, so nobody is affected, and it is hidden rather
+than deleted pending a decision on what to do with it.
+
+---
+
 ## [1.34.1]
 
 ### Changed — cleartext networking is now refused outright

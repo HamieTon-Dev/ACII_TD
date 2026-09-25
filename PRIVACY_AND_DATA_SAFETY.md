@@ -37,47 +37,51 @@ Everything below is therefore about the SDKs, not about the game.
 
 | SDK | Version | Why it is here | Optional? |
 | --- | --- | --- | --- |
-| Google Mobile Ads (AdMob) | 24.5.0 | the interstitial after a lost run, and the rewarded ad that grants a revive | yes — absent ids, no ads |
-| Google User Messaging Platform (UMP) | 3.2.0 | the GDPR / US-states consent form in front of advertising | ships with Ads |
+| Google Mobile Ads (AdMob) | 25.3.0 | the rewarded ad that grants a revive — the only advertising in the game | yes — absent ids, no ads |
+| Google User Messaging Platform (UMP) | 4.0.0 | the GDPR / US-states consent form in front of advertising | ships with Ads |
 | Google Play Billing | 7.1.1 | in-app purchases | yes |
 | Play Games Services v2 | 20.1.2 | optional cloud save | yes — off by default |
 | AndroidX / Jetpack Compose | BOM 2024.12.01 | UI toolkit | no — collects nothing |
 | Kotlin / kotlinx.serialization | 2.0.21 / 1.7.3 | language and save format | no — collects nothing |
 
-> **On the Mobile Ads version.** 24.5.0 rather than the newest 25.x. The 25.x
-> artifacts are compiled with Kotlin 2.3 metadata, which this project's Kotlin
-> 2.0.21 toolchain cannot read; adopting it means a Kotlin and Compose-compiler
-> upgrade, which is a separate piece of work with its own risk. 24.5.0 is a
-> current, supported release and meets every requirement here.
+> **On the Mobile Ads version.** 25.3.0, which is the first release carrying
+> `RequestConfiguration.setAgeRestrictedTreatment`. Reaching it required
+> upgrading Kotlin 2.0.21 → 2.3.21, because the 25.x artifacts are compiled
+> with Kotlin 2.3 metadata. That upgrade was done and the full suite passed
+> unchanged.
 
 ---
 
 ## 3. What each SDK can collect
 
-### Google Mobile Ads — the only real answer on this form
+### Google Mobile Ads — child-directed, non-personalized
 
-This is where essentially all the Data Safety disclosure comes from.
+This game's audience includes children and it collects no age, so **every** ad
+request carries child-directed treatment with personalization disabled and a
+maximum content rating of G. That changes the Data Safety answers materially
+compared with an ordinary ad-supported app.
 
 | Category | Collected | Shared | Purpose |
 | --- | --- | --- | --- |
-| **Device or other IDs** — the Advertising ID (AAID) | yes | yes | advertising, fraud prevention |
-| **App activity** — ad interactions, impressions, clicks | yes | yes | advertising, analytics |
-| **App info and performance** — crashes, diagnostics | yes | yes | analytics |
-| **Location** — approximate, derived from IP | yes | yes | advertising |
-| **Device info** — model, OS version, locale, screen | yes | yes | advertising |
+| **Device or other IDs** — Advertising ID | **No** | **No** | the `AD_ID` permission is stripped from the merged manifest and ads are child-directed |
+| **App activity** — ad interactions | Yes | Yes | advertising (contextual only, not behavioural) |
+| **App info and performance** — crashes, diagnostics | Yes | Yes | analytics |
+| **Location** — approximate, from IP | Yes | Yes | advertising (coarse, not stored by the game) |
+| **Device info** — model, OS, locale, screen | Yes | Yes | advertising |
 
 Notes for the form:
 
-- This is **collected and shared**, not merely collected: it goes to Google
-  and to Google's ad partners.
-- It is **not** encrypted-at-rest-only data the app holds; it leaves the
-  device.
-- Users **can** request deletion — the AAID is resettable and deletable from
-  Android's own settings, which is the correct answer to "can users request
-  data deletion".
-- Data collection is **not optional per-user** in the sense Play means, but
-  consent is honoured where required (see UMP below), and a user who declines
-  gets no ads at all in this build.
+- **Do not declare Advertising ID collection.** `com.google.android.gms.permission.AD_ID`
+  is removed with `tools:node="remove"` and its absence is verified against the
+  built artifact by `tools/verify-release.sh`. Play cross-checks the
+  declaration against the manifest, so declaring it while the permission is
+  absent is itself an inconsistency.
+- Ads are **not personalized**, there is **no behavioural targeting** and **no
+  remarketing** — `PublisherPrivacyPersonalizationState.DISABLED` plus
+  `AgeRestrictedTreatment.CHILD`, set globally before SDK initialisation.
+- The one remaining ad-identifier-adjacent permission is
+  `android.permission.ACCESS_ADSERVICES_AD_ID`, declared by the Mobile Ads SDK
+  for the Android Privacy Sandbox. It is **not** removed — see §4.
 
 Google's own current disclosure is authoritative and should be checked before
 submitting:
@@ -223,13 +227,13 @@ without breaking them.
 | `VIBRATE` | haptics; switchable off in Settings |
 | `INTERNET` | ads, consent, billing, optional cloud save — no gameplay feature uses it |
 | `ACCESS_NETWORK_STATE` | required by the Mobile Ads SDK so it does not request with no network |
-| `com.google.android.gms.permission.AD_ID` | the Mobile Ads SDK reads the advertising id |
+| ~~`com.google.android.gms.permission.AD_ID`~~ | **REMOVED** with `tools:node="remove"`. A child-directed request must not use a resettable advertising identifier, and withholding the permission is stronger than trusting a runtime flag |
 
 **Merged in from SDKs:**
 
 | Permission | From | Note |
 | --- | --- | --- |
-| `ACCESS_ADSERVICES_AD_ID` | Mobile Ads | Android Privacy Sandbox |
+| `ACCESS_ADSERVICES_AD_ID` | Mobile Ads | Privacy Sandbox. **Kept, and flagged** — see the note below |
 | `ACCESS_ADSERVICES_ATTRIBUTION` | Mobile Ads | Privacy Sandbox attribution |
 | `ACCESS_ADSERVICES_TOPICS` | Mobile Ads | Privacy Sandbox topics |
 | `WAKE_LOCK` | Mobile Ads | ad serving |
@@ -253,6 +257,78 @@ at all.
 
 ---
 
+## 4a. Families configuration, and how consent behaves
+
+### The one decision everything follows from
+
+The game has a general audience **including children**, collects **no age**,
+and has **no age gate**. If you never learn who is playing, the only
+defensible treatment is the most restrictive one applied to everyone. So there
+is no per-user branch anywhere in the ad path, and there must never be one — a
+branch would imply knowledge the game does not have.
+
+Set globally in `ads/AdPrivacy.kt`, before `MobileAds.initialize`:
+
+| Setting | Value |
+| --- | --- |
+| `setAgeRestrictedTreatment` | `AgeRestrictedTreatment.CHILD` |
+| `setTagForChildDirectedTreatment` | `TRUE` (the same statement, for older backends) |
+| `setMaxAdContentRating` | `G` |
+| `setPublisherPrivacyPersonalizationState` | `DISABLED` |
+| `setTagForUnderAgeOfConsent` | **deliberately unspecified** |
+
+Global rather than per-request on purpose: per-request `Bundle` extras only
+cover the call sites somebody remembered to attach them to, and a request added
+later silently misses out. A global configuration cannot be forgotten by a
+future call site because there is nothing for that call site to remember.
+
+### Why under-age-of-consent is left unspecified
+
+It used to be `false`, asserting the player is known **not** to be under the
+age of consent. That was written when the game was documented as 13+, and it
+became a false statement the moment the audience changed.
+
+Flipping it to `true` is the opposite false statement: it asserts the player
+**is** known to be under the age of consent, which this game also does not know
+about anybody. It additionally changes what the consent SDK may present, so
+asserting it wrongly degrades a real user's choices.
+
+Unspecified is the only honest option, and it costs nothing — personalization
+is already off globally and unconditionally, so no consent answer can make an
+advert in this game personalized.
+
+### What UMP does, by region
+
+| Region | Behaviour |
+| --- | --- |
+| **EEA / UK / Switzerland** | The GDPR message you publish in AdMob is shown, if one is required. A Privacy Options entry point appears in Settings where Google reports one is required, so consent can be withdrawn without reinstalling. |
+| **US states with their own rules** | The applicable US state message is shown where you have configured one. |
+| **Everywhere else** | Usually no form. `canRequestAds()` returns true and the game starts normally. |
+| **Age unknown — i.e. every player** | No age is asserted to Google in either direction. |
+
+**In all four cases the advertising itself is identical**: child-directed,
+non-personalized, G-rated. Consent governs *whether* a request may be made, not
+*what kind*. A player who declines, or who is offline on first launch, simply
+sees no ads and no revive offer.
+
+### The permission that was kept, and why it is flagged
+
+`android.permission.ACCESS_ADSERVICES_AD_ID` is still in the merged manifest.
+It is declared by the Mobile Ads SDK for the Android Privacy Sandbox ad-ID API,
+which is a different surface from the legacy `AD_ID` permission that has been
+removed.
+
+It is **not** removed, for one reason: it could not be verified from a build
+environment whether the Mobile Ads SDK requires it to function under
+child-directed treatment, and stripping an SDK-declared permission on the
+strength of its name is how a supported configuration becomes an unsupported
+one. The conservative case for removing it is real — a Families app has no use
+for Privacy Sandbox ad-ID, attribution or topics — and it is a one-line change
+if the owner decides to take it. **Flagged as an open decision rather than
+silently made either way.**
+
+---
+
 ## 5. Answering the Data Safety form
 
 Assuming a release **with** AdMob configured and **without** Play Games:
@@ -269,7 +345,9 @@ Declare:
   analytics.
 - **App info and performance → Crash logs, Diagnostics** — collected, shared,
   analytics.
-- **Device or other IDs** — collected, shared, advertising.
+- **Device or other IDs** — **do NOT declare.** The `AD_ID` permission is
+  removed from the merged manifest and ads are child-directed, so no
+  advertising identifier is read or transmitted.
 
 **Is all of the user data collected by your app encrypted in transit?**
 → **Yes.** The app opens no connections of its own; everything goes through a
@@ -283,8 +361,10 @@ erases it in place.
 
 **Ads:** the app contains ads. **Yes.**
 
-**Target audience:** not children. Declaring a child audience changes the ad
-rules substantially and this game is not built for one.
+**Target audience:** **all ages, including children.** Declare the child
+brackets. The app is configured for Families: child-directed treatment on every
+request, no advertising ID, G-rated non-personalized ads only, and a single
+voluntary rewarded ad as the entire ad surface.
 
 ---
 
