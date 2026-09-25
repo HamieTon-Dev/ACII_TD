@@ -134,12 +134,18 @@ class MapPreview {
     // ------------------------------------------------------------ machinery
 
     private fun render(name: String, map: GameMap) {
-        val scale = 0.62f
+        val scale = 0.78f
+        val header = 64
         val w = (WorldGeometry.WIDTH * scale).toInt()
-        val h = (WorldGeometry.HEIGHT * scale).toInt()
+        val h = (WorldGeometry.HEIGHT * scale).toInt() + header
         val bmp = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888)
         val c = Canvas(bmp)
         c.drawColor(Color.parseColor("#070B14"))
+        // A header band, so the caption never sits on top of the board. The
+        // first version drew the text over the top row of nodes, which is a
+        // poor way to present something somebody has to read to decide.
+        c.save()
+        c.translate(0f, header.toFloat())
 
         val paint = Paint(Paint.ANTI_ALIAS_FLAG)
 
@@ -183,13 +189,17 @@ class MapPreview {
             c.drawCircle(node.x * scale, node.y * scale, WorldGeometry.NODE_RADIUS * scale, paint)
         }
 
+        c.restore()
         paint.color = Color.parseColor("#E6EEFA")
-        paint.textSize = 22f
-        c.drawText("${map.displayName}   ${map.nodes.size} nodes   ${map.laneCount} routes",
-            14f, 28f, paint)
-        paint.textSize = 16f
+        paint.textSize = 26f
+        c.drawText(
+            "${map.displayName}   ·   ${map.nodes.size} nodes   ·   " +
+                "${map.laneCount} routes   ·   longest ${map.laneLength.max().toInt()}u",
+            16f, 28f, paint
+        )
+        paint.textSize = 17f
         paint.color = Color.parseColor("#93A6C4")
-        c.drawText(map.tagline, 14f, 50f, paint)
+        c.drawText(map.tagline, 16f, 52f, paint)
 
         out.mkdirs()
         val f = File(out, "$name.png")

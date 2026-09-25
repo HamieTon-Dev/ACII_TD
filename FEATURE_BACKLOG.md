@@ -1294,7 +1294,7 @@ manifest via `aapt2 dump xmltree`, not the merged text.
 
 ## ♡. Music — real tracks replace the generated ones
 
-### ♡1 ◐ **ONE QUESTION LEFT** — six supplied tracks, owner's own remixes
+### ♡1 ✅ **RIGHTS CLEARED** — six supplied tracks, owner's own work throughout
 
 **Asked (2026-09-25):** three MP3s supplied, one per level.
 
@@ -1373,10 +1373,15 @@ worth asking rather than assuming. It may well be that those are style
 references for a generator rather than sources — in which case the first row
 applies and this is closed.
 
-**Until the owner confirms which row applies, the audio is not committed.**
-That costs nothing: ♡2 builds the music system file-based and swappable, so
-cleared audio is a drop-in whenever it arrives, and a local test build can use
-the files meanwhile.
+**Confirmed 2026-09-25: "my own compositions."** First row applies. The owner
+wrote the underlying songs, Mureka's certificate covers the generated output,
+and the chain is complete end to end. Cleared to ship and cleared to commit.
+
+The one remaining suggestion is cosmetic and stands unactioned until asked:
+the track *titles* name VXLLAIN, iGRES and ENXK. Owning the music does not
+give you their names, and a track credited that way in a shipped game could
+imply an association that does not exist. Renaming in-game is free and the
+audio is untouched.
 
 The certificates themselves are **not** committed — they carry the owner's full
 name and email address, and a public repository is not the place for that. They
