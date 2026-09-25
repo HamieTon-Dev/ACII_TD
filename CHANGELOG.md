@@ -7,6 +7,37 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [1.36.1]
+
+### Changed — Play Billing Library 7.1.1 → 9.1.0
+
+Google retires Billing Library versions on a schedule and stops accepting
+uploads below the floor. The Play Console flagged it on a finished bundle:
+*"currently uses Play Billing Library version 7.1.1 and must update to at
+least version 8.0.0."*
+
+Upgraded to **9.1.0** rather than the 8.0.0 minimum, because the warning
+returns as each version ages out and the newest release buys the longest
+runway.
+
+No code changed. The ktx `ProductDetailsResult` and `PurchasesResult`, and
+`ProductDetails.getOneTimePurchaseOfferDetails()`, all still exist in 9.1.0
+with the same accessors and none of them are deprecated — checked against
+the shipped classes rather than assumed, since a version bump that compiles is
+not the same as one that still works.
+
+### Added — a test that catches this before Play does
+
+`ReleaseConfigTest` now reads the version catalog and fails if the Billing
+major is below the floor Play accepts. Asserted as a floor rather than an
+exact version, so upgrading stays free and only falling behind fails. Verified
+by putting 7.1.1 back and watching it fail.
+
+Finding this out from a Play Console warning means finding out after the build
+is made and the release is already in progress.
+
+---
+
 ## [1.36.0]
 
 ### Added — four opponents that only exist on the gauntlet

@@ -1,5 +1,6 @@
 package com.cyopstd.game
 
+import java.io.File
 import com.cyopstd.game.ads.PlayServices
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
@@ -22,6 +23,39 @@ import org.junit.Test
  * ids back out of the built artifact.
  */
 class ReleaseConfigTest {
+
+    /**
+     * Play Billing must stay new enough for Play to accept an upload.
+     *
+     * Google retires Billing Library versions on a schedule and refuses new
+     * uploads below the floor. That arrived as a Play Console warning on a
+     * finished bundle — *"currently uses Play Billing Library version 7.1.1
+     * and must update to at least version 8.0.0"* — which is the worst moment
+     * to find out, because the build is already made and the release is
+     * already in progress.
+     *
+     * Asserting the floor rather than an exact version: upgrading must stay
+     * free, and only *falling behind* is the failure. The floor is raised by
+     * hand when Google raises theirs, which is a deliberate decision with a
+     * date on it rather than something that drifts.
+     */
+    @Test
+    fun `the Play Billing Library is new enough for Play to accept an upload`() {
+        val catalog = File("../gradle/libs.versions.toml").readText()
+        val declared = Regex("""^billing\s*=\s*"([0-9.]+)"""", RegexOption.MULTILINE)
+            .find(catalog)
+            ?.groupValues
+            ?.get(1)
+        assertTrue("no billing version found in the version catalog", declared != null)
+
+        val major = declared!!.substringBefore('.').toInt()
+        assertTrue(
+            "Play Billing $declared is below the floor Play accepts " +
+                "($MINIMUM_BILLING_MAJOR.x). Raise the version in " +
+                "gradle/libs.versions.toml.",
+            major >= MINIMUM_BILLING_MAJOR
+        )
+    }
 
     @Test
     fun `a debug build uses Google's published test units and nothing else`() {
@@ -64,4 +98,11 @@ class ReleaseConfigTest {
         }
     }
 
+    private companion object {
+        /**
+         * The major version Play required as of 2026-09-25. Google's notice
+         * named 8.0.0 as the minimum; the app ships 9.x.
+         */
+        const val MINIMUM_BILLING_MAJOR = 8
+    }
 }
