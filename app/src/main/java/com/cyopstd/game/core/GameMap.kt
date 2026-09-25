@@ -122,7 +122,23 @@ class GameMap(
      * the centre of every pocket guarantees the spots that *look* buildable
      * are.
      */
-    private val candidateRows: FloatArray
+    private val candidateRows: FloatArray,
+    /**
+     * Node positions placed by hand, in addition to the derived grid.
+     *
+     * The grid is a fixed set of columns crossed with [candidateRows], and it
+     * is deliberately conservative: it only offers a spot where one is clearly
+     * safe. That is right for most of a map and wrong in the corners — a
+     * pocket inside a tight loop, or a strip along the board edge, can be
+     * perfectly good ground that no column happens to land on.
+     *
+     * These fill those in. They are **not** a way around the rules: every one
+     * is still checked for route clearance and for spacing against every other
+     * node, exactly as a derived candidate is, so a hand-placed node can never
+     * sit on a lane or on top of its neighbour. If a position fails those
+     * checks it is silently dropped rather than bending them.
+     */
+    private val extraNodes: List<Waypoint> = emptyList()
 ) {
 
     val laneCount: Int get() = laneWaypoints.size
@@ -254,6 +270,11 @@ class GameMap(
             }
         }
     }
+        .let { grid ->
+            // The grid decides ids; hand-placed nodes are appended after it so
+            // that adding one cannot renumber the others.
+            grid
+        }
         // Top to bottom within each column, so ids read down the board the way
         // the board looks. They are also save keys, which is why the ordering
         // is pinned here rather than left to whatever the filter produced.
@@ -266,6 +287,29 @@ class GameMap(
                 id = index, column = col, row = row, x = x, y = y,
                 laneDistance = distanceToNearestLane(x, y)
             )
+        }
+        .let { derived ->
+            // Hand-placed nodes, held to the same rules as the derived ones.
+            val all = derived.toMutableList()
+            for (spot in extraNodes) {
+                if (distanceToNearestLane(spot.x, spot.y) < WorldGeometry.NODE_CLEARANCE) continue
+                if (spot.x > WorldGeometry.SERVER_X - 55f) continue
+                // Keep it on the board: a node whose circle hangs off the edge
+                // is drawn clipped and tapped unreliably.
+                if (spot.y < WorldGeometry.NODE_RADIUS + 6f) continue
+                if (spot.y > WorldGeometry.HEIGHT - WorldGeometry.NODE_RADIUS - 6f) continue
+                if (all.any {
+                        hypot(it.x - spot.x, it.y - spot.y) < WorldGeometry.MIN_NODE_SPACING
+                    }
+                ) {
+                    continue
+                }
+                all += NodePosition(
+                    id = all.size, column = -1, row = -1, x = spot.x, y = spot.y,
+                    laneDistance = distanceToNearestLane(spot.x, spot.y)
+                )
+            }
+            all
         }
         .toTypedArray()
 

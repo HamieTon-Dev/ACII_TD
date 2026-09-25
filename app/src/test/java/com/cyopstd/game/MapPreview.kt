@@ -215,7 +215,27 @@ class MapPreview {
                     Waypoint(240f, centre), Waypoint(1035f, centre)
                 )
             ),
-            candidateRows = floatArrayOf(56f, 184f, 315f, 445f, 576f, 704f)
+            candidateRows = floatArrayOf(56f, 184f, 315f, 445f, 576f, 704f),
+            // The owner's own red dots, read off the render they marked up.
+            // Every one is a pocket the grid declined: the strip above the
+            // tail, the gap between the top switchback and the tail's first
+            // vertical, two spots hard against the left edge, and -- the best
+            // of them -- the inside of the loop the tail wraps around, which
+            // is ground the route passes on three sides.
+            //
+            // Five of the eight were nudged a few units. Each was 40-56 units
+            // from a route and 58 is required, so they were rejected for
+            // clearance rather than for being bad ideas -- an agent standing
+            // that close would be drawn overlapping the lane it is shooting
+            // into. Moving them 6-22 units away keeps the intent exactly and
+            // makes them legal.
+            extraNodes = listOf(
+                Waypoint(1000f, 36f), Waypoint(1160f, 34f),
+                Waypoint(944f, 197f),
+                Waypoint(178f, 297f), Waypoint(176f, 427f),
+                Waypoint(1181f, 463f), Waypoint(1190f, 560f),
+                Waypoint(1180f, 726f)
+            )
         ))
     }
 
