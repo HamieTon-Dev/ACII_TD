@@ -131,6 +131,94 @@ class MapPreview {
         ))
     }
 
+    /**
+     * D — GAUNTLET. The owner's own sketch, built and measured.
+     *
+     * Two lanes that each switchback twice across the full width, converge,
+     * and then run a long tail around a tall block before reaching the rack.
+     *
+     * The tail is the idea worth stealing. Length added *before* the rack is
+     * length spent inside the defence a player has already built, and it is
+     * spent by everything — a boss that survives the serpentine still has the
+     * whole circuit to walk while four RED HATs shoot it. That is a much more
+     * direct answer to "wave 101 is impossible" than more nodes would be.
+     */
+    @Test
+    fun `D gauntlet`() {
+        val tail = arrayOf(
+            Waypoint(980f, 140f), Waypoint(1250f, 140f),
+            Waypoint(1250f, 668f), Waypoint(1080f, 668f),
+            Waypoint(1080f, centre), Waypoint(rack, centre)
+        )
+        fun lane(vararg head: Waypoint): Array<Waypoint> =
+            (head.toList() + tail.toList()).toTypedArray()
+
+        render("D-gauntlet", GameMap(
+            id = "preview_d",
+            displayName = "GAUNTLET",
+            tagline = "Two switchbacks, then a long circuit before the rack.",
+            laneWaypoints = arrayOf(
+                lane(
+                    Waypoint(spawn, 90f), Waypoint(820f, 90f),
+                    Waypoint(820f, 200f), Waypoint(250f, 200f),
+                    Waypoint(250f, 310f), Waypoint(980f, 310f)
+                ),
+                lane(
+                    Waypoint(spawn, 670f), Waypoint(820f, 670f),
+                    Waypoint(820f, 560f), Waypoint(250f, 560f),
+                    Waypoint(250f, 450f), Waypoint(980f, 450f)
+                )
+            ),
+            candidateRows = floatArrayOf(32f, 145f, 255f, centre, 505f, 615f, 728f)
+        ))
+    }
+
+    /**
+     * E — GAUNTLET, respaced. The owner's shape, with room to build in it.
+     *
+     * D proved the idea and exposed its flaw in the same render: packing the
+     * switchbacks 110 units apart leaves no gap wide enough for a deployment
+     * node, because a node must clear every route by `NODE_CLEARANCE` (58) on
+     * both sides. D came out at 38 nodes with almost none alongside the tail,
+     * and undefended path is only delay — a boss that walks a long corridor
+     * nothing can shoot arrives just as healthy.
+     *
+     * This keeps the shape and fixes the spacing: five lane bands 132 apart,
+     * which is what the existing Hugging-Face map uses and what its six
+     * candidate rows are built around. Same switchbacks, same long tail,
+     * nodes alongside all of it.
+     */
+    @Test
+    fun `E gauntlet respaced`() {
+        val tail = arrayOf(
+            Waypoint(1035f, centre), Waypoint(1035f, 96f),
+            Waypoint(1262f, 96f), Waypoint(1262f, 664f),
+            Waypoint(1120f, 664f), Waypoint(1120f, centre),
+            Waypoint(rack, centre)
+        )
+        fun lane(vararg head: Waypoint): Array<Waypoint> =
+            (head.toList() + tail.toList()).toTypedArray()
+
+        render("E-gauntlet-respaced", GameMap(
+            id = "preview_e",
+            displayName = "GAUNTLET (respaced)",
+            tagline = "The same shape, with gaps wide enough to deploy into.",
+            laneWaypoints = arrayOf(
+                lane(
+                    Waypoint(spawn, 118f), Waypoint(880f, 118f),
+                    Waypoint(880f, 250f), Waypoint(240f, 250f),
+                    Waypoint(240f, centre), Waypoint(1035f, centre)
+                ),
+                lane(
+                    Waypoint(spawn, 642f), Waypoint(880f, 642f),
+                    Waypoint(880f, 510f), Waypoint(240f, 510f),
+                    Waypoint(240f, centre), Waypoint(1035f, centre)
+                )
+            ),
+            candidateRows = floatArrayOf(56f, 184f, 315f, 445f, 576f, 704f)
+        ))
+    }
+
     // ------------------------------------------------------------ machinery
 
     private fun render(name: String, map: GameMap) {
