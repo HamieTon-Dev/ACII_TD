@@ -26,7 +26,9 @@ import androidx.compose.foundation.Canvas
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.unit.dp
+import com.cyopstd.game.core.GameMap
 import com.cyopstd.game.core.GameMode
+import com.cyopstd.game.core.Maps
 import com.cyopstd.game.save.PlayerStats
 import com.cyopstd.game.ui.common.AsciiBackdrop
 import com.cyopstd.game.ui.common.AsciiRule
@@ -51,8 +53,11 @@ fun MainMenuScreen(
     adsRemoved: Boolean,
     availableModes: List<GameMode>,
     selectedMode: GameMode,
+    availableMaps: List<GameMap>,
+    selectedMap: GameMap,
     backgroundAnimation: Boolean,
     onSelectMode: (GameMode) -> Unit,
+    onSelectMap: (GameMap) -> Unit,
     onPlay: () -> Unit,
     onContinue: () -> Unit,
     onAgents: () -> Unit,
@@ -170,6 +175,27 @@ fun MainMenuScreen(
                 }
 
                 Spacer(Modifier.height(12.dp))
+
+                TerminalPanel(
+                    title = "LEVEL",
+                    accent = Palette.Cyan
+                ) {
+                    for (map in Maps.all) {
+                        MapRow(
+                            map = map,
+                            selected = map == selectedMap,
+                            unlocked = map in availableMaps,
+                            bestOnUnlockMode = when (map.unlockMode) {
+                                GameMode.HACK_AI -> stats.highestWaveHackAi
+                                GameMode.STANDARD -> stats.highestWave
+                                null -> 0
+                            },
+                            onClick = { onSelectMap(map) }
+                        )
+                    }
+                }
+
+                Spacer(Modifier.height(12.dp))
                 // This line used to read "OFFLINE · NO ACCOUNT · NO ADS · NO
                 // PURCHASES". Three quarters of that stopped being true the
                 // moment billing and ads were wired in, and a menu that lies
@@ -189,12 +215,12 @@ fun MainMenuScreen(
             ) {
                 BastionButton(
                     text = "PLAY",
+                    // Choosing a mode or a level and forgetting is a wasted
+                    // run, so the button says exactly what is about to start.
                     subtitle = if (selectedMode == GameMode.STANDARD) {
-                        "Start a new defence run"
+                        "Start a run on ${selectedMap.displayName}"
                     } else {
-                        // Choosing the hard mode and forgetting is a wasted
-                        // run, so the button says which one is about to start.
-                        "Start a run on ${selectedMode.runName}"
+                        "${selectedMode.runName} on ${selectedMap.displayName}"
                     },
                     leadingGlyph = "[>]",
                     accent = Palette.Green,
@@ -298,6 +324,70 @@ fun MainMenuScreen(
                 )
                 Spacer(Modifier.height(8.dp))
             }
+        }
+    }
+}
+
+/**
+ * One selectable level.
+ *
+ * Shown locked rather than hidden, for the same reason a locked mode is: the
+ * gauntlet is what a player who has cleared HACK:AI is aiming at next, and
+ * nobody aims at something they have never seen.
+ */
+@Composable
+private fun MapRow(
+    map: GameMap,
+    selected: Boolean,
+    unlocked: Boolean,
+    bestOnUnlockMode: Int,
+    onClick: () -> Unit
+) {
+    val accent = when {
+        !unlocked -> Palette.TextMuted
+        selected -> Palette.Green
+        else -> Palette.CyanDim
+    }
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(vertical = 3.dp)
+            .background(
+                if (selected) Palette.SurfaceRaised else androidx.compose.ui.graphics.Color.Transparent,
+                androidx.compose.foundation.shape.RoundedCornerShape(4.dp)
+            )
+            .border(
+                androidx.compose.foundation.BorderStroke(
+                    1.dp,
+                    accent.copy(alpha = if (selected) 0.8f else 0.3f)
+                ),
+                androidx.compose.foundation.shape.RoundedCornerShape(4.dp)
+            )
+            .clickable(enabled = unlocked, role = androidx.compose.ui.semantics.Role.RadioButton) {
+                onClick()
+            }
+            .padding(horizontal = 10.dp, vertical = 8.dp),
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Text(
+            text = if (selected) "[*]" else if (unlocked) "[ ]" else "[X]",
+            style = MaterialTheme.typography.labelMedium,
+            color = accent
+        )
+        Spacer(Modifier.width(8.dp))
+        Column(Modifier.weight(1f)) {
+            Text(
+                text = map.displayName,
+                style = MaterialTheme.typography.titleSmall,
+                color = if (unlocked) Palette.TextPrimary else Palette.TextMuted
+            )
+            Caption(
+                if (unlocked) {
+                    map.tagline
+                } else {
+                    "LOCKED \u00B7 ${map.unlockRequirement} (best: $bestOnUnlockMode)"
+                }
+            )
         }
     }
 }

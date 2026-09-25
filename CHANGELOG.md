@@ -48,6 +48,16 @@ silence.
 The music slider and the five-second launch fade apply to all of it, exactly
 as before.
 
+### Added — choosing a level
+
+The main menu has a **LEVEL** panel beside RUN MODE, and the PLAY button says
+which level and which mode are about to start.
+
+HUGGING-FACE opens at **wave 100 on HACK:AI** — on that mode specifically,
+which meant keeping the record per mode rather than as one lifetime best. A
+huge standard run does not open it. It is shown locked rather than hidden,
+with what opens it and how far you have got.
+
 ### Changed
 
 - RED HAT's description no longer uses the phrase "real attacker"; the store

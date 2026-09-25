@@ -9,6 +9,7 @@ import androidx.compose.ui.test.performClick
 import android.app.Application
 import androidx.test.core.app.ApplicationProvider
 import com.cyopstd.game.core.GameMode
+import com.cyopstd.game.core.Maps
 import com.cyopstd.game.state.GameViewModel
 import com.cyopstd.game.save.PlayerStats
 import com.cyopstd.game.store.CosmeticChoice
@@ -200,8 +201,11 @@ class LoadoutTest {
                     adsRemoved = false,
                     availableModes = modes,
                     selectedMode = selected,
+                    availableMaps = listOf(Maps.PERIMETER),
+                    selectedMap = Maps.PERIMETER,
                     backgroundAnimation = false,
                     onSelectMode = onSelectMode,
+                    onSelectMap = {},
                     onPlay = {}, onContinue = {}, onAgents = {}, onFirmware = {},
                     onCodex = {}, onStore = {}, onLoadout = {}, onPlayAccount = {},
                     onLeaderboard = {}, onStatistics = {}, onSettings = {},
@@ -237,10 +241,19 @@ class LoadoutTest {
     }
 
     @Test
-    fun `the PLAY button names the mode it will start`() {
+    fun `the PLAY button names the mode and the level it will start`() {
         menu(highestWave = 100, modes = GameMode.entries.toList(), selected = GameMode.HACK_AI)
-        // Choosing a hard mode and forgetting is a wasted run.
-        compose.onNodeWithText("Start a run on ${GameMode.HACK_AI.runName}").assertIsDisplayed()
+        // Choosing a hard mode or a hard level and forgetting is a wasted run,
+        // so the button names both.
+        compose.onNodeWithText(
+            "${GameMode.HACK_AI.runName} on ${Maps.PERIMETER.displayName}"
+        ).assertIsDisplayed()
+    }
+
+    @Test
+    fun `the PLAY button names the level on the standard mode too`() {
+        menu(highestWave = 0, modes = listOf(GameMode.STANDARD), selected = GameMode.STANDARD)
+        compose.onNodeWithText("Start a run on ${Maps.PERIMETER.displayName}").assertIsDisplayed()
     }
 
     @Test

@@ -236,7 +236,10 @@ object Maps {
             Waypoint(1181f, 463f),
             Waypoint(1190f, 560f),
             Waypoint(1180f, 726f)
-        )
+        ),
+        // *"This level unlocks by reaching wave 100 of Hack AI level."*
+        unlockMode = GameMode.HACK_AI,
+        unlockAtWave = 100
     )
 
     val all: List<GameMap> = listOf(PERIMETER, HUGGING_FACE)

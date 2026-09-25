@@ -13,6 +13,7 @@ import androidx.datastore.preferences.core.longPreferencesKey
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
 import com.cyopstd.game.core.Balance
+import com.cyopstd.game.core.GameMode
 import com.cyopstd.game.model.AgentType
 import com.cyopstd.game.store.CosmeticChoice
 import com.cyopstd.game.store.Entitlements
@@ -75,6 +76,7 @@ class GameRepository(private val store: DataStore<Preferences>) {
         .map { prefs ->
             PlayerStats(
                 highestWave = prefs[Keys.HIGHEST_WAVE] ?: 0,
+                highestWaveHackAi = prefs[Keys.HIGHEST_WAVE_HACK_AI] ?: 0,
                 totalAttacksBlocked = (prefs[Keys.TOTAL_PACKETS] ?: 0).toLong(),
                 totalBossesDefeated = (prefs[Keys.TOTAL_BOSSES] ?: 0).toLong(),
                 totalCryptoEarned = (prefs[Keys.TOTAL_CRYPTO] ?: 0).toLong(),
@@ -231,11 +233,24 @@ class GameRepository(private val store: DataStore<Preferences>) {
         agentsDeployed: Int,
         agentUpgrades: Int,
         deploymentsByType: Map<String, Int>,
-        countAsGamePlayed: Boolean
+        countAsGamePlayed: Boolean,
+        /**
+         * Which mode the run was played on, by `GameMode.id`.
+         *
+         * Defaulted so that every existing caller and test keeps working, and
+         * so a run whose mode is somehow unknown is counted as the standard
+         * one rather than quietly unlocking the second level.
+         */
+        modeId: String = GameMode.STANDARD.id
     ) {
         writeSafely { prefs ->
             val bestWave = prefs[Keys.HIGHEST_WAVE] ?: 0
             if (waveReached > bestWave) prefs[Keys.HIGHEST_WAVE] = waveReached
+            if (modeId == GameMode.HACK_AI.id &&
+                waveReached > (prefs[Keys.HIGHEST_WAVE_HACK_AI] ?: 0)
+            ) {
+                prefs[Keys.HIGHEST_WAVE_HACK_AI] = waveReached
+            }
 
             prefs[Keys.TOTAL_PACKETS] = (prefs[Keys.TOTAL_PACKETS] ?: 0) + attacksBlocked
             prefs[Keys.TOTAL_BOSSES] = (prefs[Keys.TOTAL_BOSSES] ?: 0) + bossesDefeated
@@ -263,9 +278,14 @@ class GameRepository(private val store: DataStore<Preferences>) {
         }
     }
 
-    suspend fun updateHighestWave(wave: Int) {
+    suspend fun updateHighestWave(wave: Int, modeId: String = GameMode.STANDARD.id) {
         writeSafely { prefs ->
             if (wave > (prefs[Keys.HIGHEST_WAVE] ?: 0)) prefs[Keys.HIGHEST_WAVE] = wave
+            if (modeId == GameMode.HACK_AI.id &&
+                wave > (prefs[Keys.HIGHEST_WAVE_HACK_AI] ?: 0)
+            ) {
+                prefs[Keys.HIGHEST_WAVE_HACK_AI] = wave
+            }
         }
     }
 
@@ -333,6 +353,7 @@ class GameRepository(private val store: DataStore<Preferences>) {
         val BATTERY_SAVER = booleanPreferencesKey("battery_saver")
 
         val HIGHEST_WAVE = intPreferencesKey("highest_wave")
+        val HIGHEST_WAVE_HACK_AI = intPreferencesKey("highest_wave_hack_ai")
         val TOTAL_PACKETS = intPreferencesKey("total_attacks")
         val TOTAL_BOSSES = intPreferencesKey("total_bosses")
         val TOTAL_CRYPTO = intPreferencesKey("total_crypto")

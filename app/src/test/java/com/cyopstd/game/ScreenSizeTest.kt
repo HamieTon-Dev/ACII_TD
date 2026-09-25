@@ -12,6 +12,7 @@ import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onRoot
 import androidx.test.core.app.ApplicationProvider
 import com.cyopstd.game.core.GameMode
+import com.cyopstd.game.core.Maps
 import com.cyopstd.game.state.GameViewModel
 import com.cyopstd.game.ui.game.GameScreen
 import com.cyopstd.game.model.BossModifier
@@ -242,8 +243,11 @@ class ScreenSizeTest(
                         adsRemoved = false,
                         availableModes = GameMode.entries,
                         selectedMode = GameMode.STANDARD,
+                        availableMaps = Maps.all,
+                        selectedMap = Maps.PERIMETER,
                         backgroundAnimation = false,
-                        onSelectMode = {}, onPlay = {}, onContinue = {}, onAgents = {},
+                        onSelectMode = {}, onSelectMap = {},
+                        onPlay = {}, onContinue = {}, onAgents = {},
                         onFirmware = {}, onCodex = {}, onStore = {}, onLoadout = {},
                         onPlayAccount = {}, onLeaderboard = {}, onStatistics = {},
                         onSettings = {}, onAbout = {}, onExit = {}

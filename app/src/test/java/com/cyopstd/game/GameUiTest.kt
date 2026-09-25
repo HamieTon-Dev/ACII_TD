@@ -81,8 +81,11 @@ class GameUiTest {
                     adsRemoved = false,
                     availableModes = listOf(GameMode.STANDARD),
                     selectedMode = GameMode.STANDARD,
+                    availableMaps = listOf(Maps.PERIMETER),
+                    selectedMap = Maps.PERIMETER,
                     backgroundAnimation = false,
                     onSelectMode = {},
+                    onSelectMap = {},
                     onPlay = { played = true },
                     onContinue = {}, onAgents = {}, onFirmware = {}, onCodex = {}, onStore = {}, onLoadout = {}, onPlayAccount = {}, onLeaderboard = {},
                     onStatistics = {}, onSettings = {}, onAbout = {}, onExit = {}
@@ -116,8 +119,11 @@ class GameUiTest {
                     adsRemoved = false,
                     availableModes = listOf(GameMode.STANDARD),
                     selectedMode = GameMode.STANDARD,
+                    availableMaps = listOf(Maps.PERIMETER),
+                    selectedMap = Maps.PERIMETER,
                     backgroundAnimation = false,
                     onSelectMode = {},
+                    onSelectMap = {},
                     onPlay = {}, onContinue = { continued++ }, onAgents = {},
                     onFirmware = {}, onCodex = {}, onStore = {}, onLoadout = {}, onPlayAccount = {}, onLeaderboard = {}, onStatistics = {}, onSettings = {},
                     onAbout = {}, onExit = {}
@@ -146,8 +152,11 @@ class GameUiTest {
                     adsRemoved = false,
                     availableModes = listOf(GameMode.STANDARD),
                     selectedMode = GameMode.STANDARD,
+                    availableMaps = listOf(Maps.PERIMETER),
+                    selectedMap = Maps.PERIMETER,
                     backgroundAnimation = false,
                     onSelectMode = {},
+                    onSelectMap = {},
                     onPlay = {}, onContinue = {}, onAgents = {}, onFirmware = {}, onCodex = {}, onStore = {}, onLoadout = {}, onPlayAccount = {}, onLeaderboard = {},
                     onStatistics = {}, onSettings = {}, onAbout = {}, onExit = {}
                 )
@@ -311,8 +320,11 @@ class GameUiTest {
                     adsRemoved = false,
                     availableModes = listOf(GameMode.STANDARD),
                     selectedMode = GameMode.STANDARD,
+                    availableMaps = listOf(Maps.PERIMETER),
+                    selectedMap = Maps.PERIMETER,
                     backgroundAnimation = false,
                     onSelectMode = {},
+                    onSelectMap = {},
                     onPlay = {}, onContinue = {}, onAgents = {}, onFirmware = {},
                     onCodex = {}, onStore = {}, onLoadout = {}, onPlayAccount = {}, onLeaderboard = {}, onStatistics = {}, onSettings = {},
                     onAbout = {}, onExit = {}

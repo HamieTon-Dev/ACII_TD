@@ -83,6 +83,15 @@ data class SavedRun(
 @Serializable
 data class PlayerStats(
     val highestWave: Int = 0,
+    /**
+     * The best wave reached **on HACK:AI specifically**.
+     *
+     * Separate from [highestWave] because the second level is unlocked by
+     * clearing wave 100 *on that mode*, and a lifetime best cannot answer
+     * "on which mode". Defaults to 0, so a player who earned it before this
+     * existed re-earns it rather than being handed it on a technicality.
+     */
+    val highestWaveHackAi: Int = 0,
     val totalAttacksBlocked: Long = 0,
     val totalBossesDefeated: Long = 0,
     val totalCryptoEarned: Long = 0,

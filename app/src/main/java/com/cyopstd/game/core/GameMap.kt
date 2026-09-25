@@ -138,8 +138,30 @@ class GameMap(
      * sit on a lane or on top of its neighbour. If a position fails those
      * checks it is silently dropped rather than bending them.
      */
-    private val extraNodes: List<Waypoint> = emptyList()
+    private val extraNodes: List<Waypoint> = emptyList(),
+    /**
+     * The mode whose record unlocks this level, or null for one open from the
+     * start.
+     *
+     * Per-mode rather than a lifetime best because that is what was asked
+     * for — *"this level unlocks by reaching wave 100 of Hack AI level"* — and
+     * because the two are genuinely different achievements.
+     */
+    val unlockMode: GameMode? = null,
+    /** The wave that must be reached on [unlockMode]. */
+    val unlockAtWave: Int = 0
 ) {
+
+    /** Whether a player with these per-mode records may play this level. */
+    fun unlockedBy(bestWaveOnMode: (GameMode) -> Int): Boolean {
+        val mode = unlockMode ?: return true
+        return bestWaveOnMode(mode) >= unlockAtWave
+    }
+
+    /** One line for a locked row in the menu. */
+    val unlockRequirement: String
+        get() = unlockMode?.let { "clear wave $unlockAtWave on ${it.runName}" } ?: ""
+
 
     val laneCount: Int get() = laneWaypoints.size
 

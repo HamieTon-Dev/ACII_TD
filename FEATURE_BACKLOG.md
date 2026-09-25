@@ -194,7 +194,24 @@ with the numbers tuned against the existing dps-per-crypto curve in
 
 ## E. A second map
 
-### E1 ◐ "Hugging-Face" — architecture and the save guard done
+### E1 ✅ SHIPPED in 1.36.0 — "Hugging-Face", selectable and earned
+
+The last two pieces landed: a **LEVEL** panel in the main menu beside RUN MODE,
+and the unlock condition as asked — **wave 100 on HACK:AI specifically**.
+
+That needed a per-mode record, because a lifetime best cannot answer "on which
+mode": `PlayerStats.highestWaveHackAi` is written only by runs whose `modeId`
+is HACK:AI, and both `recordRunResult` and `updateHighestWave` now take the
+mode. A player with a 400-wave standard record and no HACK:AI run does not get
+the gauntlet, and there is a test that says so.
+
+A locked level is shown rather than hidden, with what opens it, for the same
+reason a locked mode is. `GameMap` carries `unlockMode`/`unlockAtWave`, so a
+third level is a constructor argument.
+
+**Original note follows.**
+
+### E1 ◐ architecture and the save guard (done earlier)
 
 **Asked:** *"Create another base level named Hugging-face with a different lane
 layout. this level unlocks by reaching wave 100 of Hack AI level. this one will

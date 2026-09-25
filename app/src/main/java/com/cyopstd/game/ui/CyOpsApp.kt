@@ -108,8 +108,11 @@ fun CyOpsApp(
                     adsRemoved = viewModel.entitlements.adsRemoved,
                     availableModes = viewModel.availableModes,
                     selectedMode = viewModel.selectedMode,
+                    availableMaps = viewModel.availableMaps,
+                    selectedMap = viewModel.selectedMap,
                     backgroundAnimation = viewModel.settings.backgroundAnimation,
                     onSelectMode = { viewModel.selectMode(it) },
+                    onSelectMap = { viewModel.selectMap(it) },
                     onPlay = {
                         viewModel.playClick()
                         viewModel.startNewGame()

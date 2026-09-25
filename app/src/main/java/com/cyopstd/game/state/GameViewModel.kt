@@ -22,6 +22,7 @@ import com.cyopstd.game.ads.ConsentGateway
 import com.cyopstd.game.ads.NoConsentGateway
 import com.cyopstd.game.ads.NoAdGateway
 import com.cyopstd.game.ads.UmpConsentGateway
+import com.cyopstd.game.core.GameMap
 import com.cyopstd.game.core.GameMode
 import com.cyopstd.game.core.Maps
 import com.cyopstd.game.model.BossModifier
@@ -285,6 +286,46 @@ class GameViewModel @JvmOverloads constructor(
 
     // --------------------------------------------------------------- setup
 
+    // Declared above the `init` block that starts the collectors, and that is
+    // load-bearing. Kotlin initialises properties in declaration order, so a
+    // delegated state property declared *below* an init block does not exist
+    // yet when a flow that writes to it emits — the collector then dies on a
+    // NullPointerException with nothing in the UI to show for it. The store
+    // collectors carry the same note for the same reason.
+    /** Levels this player has earned the right to play. */
+    var availableMaps by mutableStateOf(listOf(Maps.PERIMETER))
+        private set
+
+    /** The level the next run will be played on. */
+    var selectedMap by mutableStateOf(Maps.PERIMETER)
+        private set
+
+    fun selectMap(map: GameMap) {
+        if (map !in availableMaps) return
+        playClick()
+        selectedMap = map
+    }
+
+    /**
+     * Which levels are open, from the per-mode records.
+     *
+     * Recomputed whenever the stats change rather than worked out on read, so
+     * the menu and the run start from the same answer.
+     */
+    private fun refreshAvailableMaps(stats: PlayerStats) {
+        availableMaps = Maps.all.filter { map ->
+            map.unlockedBy { mode ->
+                when (mode) {
+                    GameMode.HACK_AI -> stats.highestWaveHackAi
+                    GameMode.STANDARD -> stats.highestWave
+                }
+            }
+        }
+        // A level can only be lost to a progress reset, but if it is, the
+        // selection must not survive it.
+        if (selectedMap !in availableMaps) selectedMap = Maps.PERIMETER
+    }
+
     init {
         audio.initialize(viewModelScope)
         wireEngine()
@@ -308,7 +349,7 @@ class GameViewModel @JvmOverloads constructor(
 
         engine.onWaveCleared = { wave ->
             viewModelScope.launch {
-                repository.updateHighestWave(wave)
+                repository.updateHighestWave(wave, engine.mode.id)
                 persistRun()
             }
         }
@@ -725,7 +766,10 @@ class GameViewModel @JvmOverloads constructor(
             }
         }
         collectJobs += viewModelScope.launch {
-            repository.stats.collectLatest { loaded -> stats = loaded }
+            repository.stats.collectLatest { loaded ->
+                stats = loaded
+                refreshAvailableMaps(loaded)
+            }
         }
         collectJobs += viewModelScope.launch {
             repository.progress.collectLatest { loaded ->
@@ -766,6 +810,10 @@ class GameViewModel @JvmOverloads constructor(
         // to, and both are read here rather than inside the audio layer so a
         // new level changes one call site instead of a rule buried two
         // packages away.
+        // The level is chosen before anything reads it: startNewRun sizes the
+        // agent pool from the map's node count, and the music belongs to the
+        // level.
+        engine.selectMap(selectedMap)
         audio.setInMatch(true, musicForMap(engine.map), trackForMode(selectedMode))
         // Selected before the run starts: the mode sets starting integrity, so
         // it has to be in place before startNewRun reads it.
@@ -1275,7 +1323,8 @@ class GameViewModel @JvmOverloads constructor(
                 agentsDeployed = engine.runAgentsDeployed,
                 agentUpgrades = engine.runAgentUpgrades,
                 deploymentsByType = engine.runDeploymentsByType.mapKeys { it.key.name },
-                countAsGamePlayed = false
+                countAsGamePlayed = false,
+                modeId = engine.mode.id
             )
             repository.clearSavedRun()
             // A finished run is the other moment worth carrying up: it is the
@@ -1383,7 +1432,8 @@ class GameViewModel @JvmOverloads constructor(
                     agentsDeployed = engine.runAgentsDeployed,
                     agentUpgrades = engine.runAgentUpgrades,
                     deploymentsByType = engine.runDeploymentsByType.mapKeys { it.key.name },
-                    countAsGamePlayed = false
+                    countAsGamePlayed = false,
+                    modeId = engine.mode.id
                 )
             }
         }
