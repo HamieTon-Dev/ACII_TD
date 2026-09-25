@@ -35,5 +35,10 @@ keystore/
 
 # Kotlin 2.x build session scratch
 .kotlin/
-# Rendered audio previews sent for review; the tracks are generated from code.
+# Rendered audio previews sent for review; the generated tracks come from code.
 *.wav
+# ...but res/raw is shipped resources, not previews. The boot chime is a file
+# the owner supplied and the app loads by resource id, so excluding it does not
+# make the build smaller, it makes the build fail — on CI and on any fresh
+# clone, with "Unresolved reference 'boot_chime'".
+!app/src/main/res/raw/*.wav
