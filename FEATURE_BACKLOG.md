@@ -1570,3 +1570,86 @@ the GLOBAL view is simply not shown.
 - **Privacy policy:** the owner has one, linked through the community Discord.
 - **Closed test, screen sizes (N1), cloud save (F3):** all wait on Play
   Console review.
+
+---
+
+## S. Owner's follow-ups, 2026-09-26 (second round)
+
+### S1 ✅ 1.38.0 — the revive question, and the loss ad's real rule
+
+*"I only want it on loss not every three minutes. If player didn't survive for
+3 minutes fine, don't run advert on loss. More than 3 minutes before loss then
+advert. No other time should ad play. 'Would you like to revive — Yes/No' and
+then if they choose No then short ad — if they choose Yes then 30 sec … then
+revive with half health."*
+
+Built as:
+
+- A loss with a revive available shows **WOULD YOU LIKE TO REVIVE? — YES / NO**.
+  RETRY and MAIN MENU are hidden until it is answered.
+- **YES** plays one rewarded ad (AdMob rewarded ads run up to about 30 seconds
+  and cannot be skipped before the reward) and resumes the same wave at
+  **half** integrity. Chaining three short ads is not offered: AdMob decides
+  each ad's length, so "three under 15 seconds" cannot be guaranteed.
+- **NO** plays the lost-run interstitial — only if the run lasted **three
+  minutes or more of real, unpaused play**. The cooldown is gone.
+- A loss with no revive on offer counts as the same moment and follows the same
+  three-minute rule. After a revive paid for with an ad, the next loss shows no
+  interstitial.
+- Nothing plays on quitting, pressing back, or backgrounding the app.
+- The play clock is saved with the run, so CONTINUE keeps the time already
+  played.
+
+### S2 ✅ NAMED — map 3 is **Neural-Mesh**
+
+Owner's pick from §R2. Before it is built: render layout options for the owner
+to choose from (§R2), then assign `[∆∆∆]` and `[©©©]` plus every earlier map's
+bosses (§R1). LEVEL_THREE music is already supplied (§♡2).
+
+### S3 ⬜ ♧1 — make every colour pop more
+
+*"Need all of the colors to pop more — turn up the saturation — this is true
+for all agents, boss explosions, menu colors, and all themes. Check for any
+conflicts this could cause during gameplay."*
+
+Scope: agent colours, boss explosion particles, menu accents, core skins and
+living backgrounds.
+
+**Conflicts found in the current palette, to resolve while doing it:**
+
+1. **Threat colours versus friendly colours.** Enemies own red, orange and
+   magenta (`Palette.Red`, `Orange`, `Magenta`). RED HAT already sits in the
+   red family. Raising saturation pushes everything towards pure hues, which
+   shrinks the gap between "my agent" and "their threat". Must stay above the
+   distance `PaletteTest` enforces, and RED HAT may need its hue moved rather
+   than its saturation raised.
+2. **Cyan and green have almost no headroom.** `Cyan #00E5FF` and
+   `Green #00FF9C` are already near full saturation. "More pop" for them has to
+   come from contrast (darker surroundings, a glow) rather than more
+   saturation.
+3. **Living backgrounds are deliberately quiet.** `PaletteTest` caps their
+   alpha and darkness so ASCII stays readable over them. They can take more
+   saturation at the same brightness and alpha, not more brightness.
+4. **Lane tints must stay away from enemy colours**, which was the cause of
+   ORBIT's first lane tint failing in 1.37.0. More saturated lanes make that
+   harder.
+5. **Crypto gold and orange.** `Crypto #FFC94D` (money) and `Orange #FF8A3D`
+   (a threat colour) converge as both saturate.
+6. **Red/green colour blindness.** Health, integrity and "good/bad" signals
+   already lean on red versus green; saturating both does not help a
+   colour-blind player. Keep a glyph or shape difference wherever colour
+   carries meaning.
+
+Approach when built: one saturation transform applied to the palette tables in
+one place (not colour by colour), `PaletteTest` extended with pairwise
+distance checks between friendly and threat colours, and before/after
+screenshots for the owner to approve.
+
+### S4 🟨 boss explosions — particles to the edge of the screen, with a slight shake
+
+*"Make sure the particles from explosion make a slight screen shake animation
+if possible — give me a video to review this before committing — make the
+particles go out, disappearing at center and travel all the way out of the
+view area."*
+
+In progress. **Not to be committed until the owner has approved the video.**

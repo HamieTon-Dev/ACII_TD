@@ -64,7 +64,9 @@ class ReviveOfferRenderTest {
     @Test
     fun `the offer states what it costs, what it gives back, and that there is one`() {
         show()
-        compose.onNodeWithText("WATCH AD TO CONTINUE", substring = true).assertIsDisplayed()
+        compose.onNodeWithText("WOULD YOU LIKE TO REVIVE?").assertIsDisplayed()
+        compose.onNodeWithText("YES — WATCH AD", substring = true).assertIsDisplayed()
+        compose.onNodeWithText("NO", useUnmergedTree = true).assertExists()
         compose.onNodeWithText("half integrity", substring = true).assertIsDisplayed()
         compose.onNodeWithText("One revive per run.", substring = true).assertIsDisplayed()
         compose.onNodeWithText("revive ads are separate", substring = true).assertIsDisplayed()
@@ -75,14 +77,23 @@ class ReviveOfferRenderTest {
         // The 1.22.0 lesson: a semantics assertion proves a composable exists,
         // and the boss dossier's signature line existed at a height of zero.
         show()
-        compose.onNodeWithText("WATCH AD TO CONTINUE", substring = true)
+        compose.onNodeWithText("YES — WATCH AD", substring = true)
             .assertHeightIsAtLeast(20.dp)
+    }
+
+    @Test
+    fun `the question is answered before the player can leave`() {
+        // RETRY and MAIN MENU appear only once YES or NO has been chosen, so
+        // the loss ad can only follow a NO.
+        show()
+        compose.onNodeWithText("RETRY", substring = true).assertDoesNotExist()
+        compose.onNodeWithText("MAIN MENU", substring = true).assertDoesNotExist()
     }
 
     @Test
     fun `no button at all when there is no ad to pay for it`() {
         show(onRevive = null)
-        compose.onNodeWithText("WATCH AD TO CONTINUE", substring = true).assertDoesNotExist()
+        compose.onNodeWithText("WOULD YOU LIKE TO REVIVE?").assertDoesNotExist()
         // The ordinary way out of a lost run is untouched.
         compose.onNodeWithText("RETRY", substring = true).assertIsDisplayed()
         compose.onNodeWithText("MAIN MENU", substring = true).assertIsDisplayed()

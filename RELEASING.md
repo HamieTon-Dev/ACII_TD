@@ -195,9 +195,8 @@ the version that works across two devices at once.
 2. Create one **Rewarded** ad unit and one **Interstitial** ad unit.
 3. Put the application id and both unit ids into the build (§1).
 
-The app shows at most one interstitial, only after a **lost** run, never after
-quitting to the menu, and never within 180 seconds of the last one. Those rules
-are in `ads/AdPolicy.kt` and are covered by tests.
+The interstitial plays only after the player answers NO to "revive?" (or loses with no revive on offer), only if the run lasted at least three minutes of real play, never after a revive paid for with an ad, and never to someone who owns REMOVE ADS. No cooldown; no ad at any other time. Those rules are in
+`ads/AdPolicy.kt` and `GameViewModel.declineRevive`, and are covered by tests.
 
 **"Skip after 30 seconds" is not something the app controls.** Skip timing
 belongs to the ad format and the network; the app decides *whether* an ad may

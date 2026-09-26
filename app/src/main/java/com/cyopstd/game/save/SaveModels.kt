@@ -65,7 +65,14 @@ data class SavedRun(
      * Defaults to zero, which is both the right answer for a save written
      * before this field existed and the right answer for a fresh run.
      */
-    val revivesUsed: Int = 0
+    val revivesUsed: Int = 0,
+    /**
+     * Real seconds of unpaused play in this run, across revives and restarts
+     * of the app. The lost-run ad is only shown once a run has lasted three
+     * minutes, and a run resumed from CONTINUE has to remember the time it
+     * had already put in. Zero for saves written before this field existed.
+     */
+    val playSeconds: Float = 0f
 ) {
     /** A run is only worth offering as CONTINUE if the server is still standing. */
     val isResumable: Boolean get() = serverHp > 0 && wave >= 0

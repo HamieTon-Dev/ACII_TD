@@ -7,6 +7,35 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [1.38.0]
+
+### Changed — "Would you like to revive?" comes first, and the loss ad has one rule
+
+A lost run with a revive available now asks **WOULD YOU LIKE TO REVIVE? —
+YES / NO** before anything else; RETRY and MAIN MENU appear once it is
+answered.
+
+- **YES** plays the rewarded ad and resumes the same wave at half integrity,
+  as before.
+- **NO** plays the lost-run ad, but **only if the run lasted at least three
+  minutes of real play**. Paused time and game speed do not count.
+- The three-minute cooldown between ads is gone. Every qualifying loss gets one
+  ad and nothing else ever does: not quitting, not pressing back, not leaving
+  the app on the question.
+- After a revive paid for with an ad, the next loss still shows no
+  interstitial.
+
+The run's play time is saved with it, so a run resumed from CONTINUE keeps the
+minutes already played.
+
+### Backlog
+
+- Map 3 is named **Neural-Mesh** (§S2).
+- New request ♧1, more saturated colours everywhere, logged with the six
+  palette conflicts it has to get past (§S3).
+
+---
+
 ## [1.37.0]
 
 ### Added — a global leaderboard on Google Play Games

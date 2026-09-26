@@ -61,11 +61,14 @@ your Play Console, your AdMob account or your keystore.
 Uses Google's test ad units, so the whole path can be exercised with no real
 impressions.
 
-- [ ] Lose a run and decline the revive → **one** test interstitial, then the
-      summary. Lose again inside three minutes → no interstitial.
+- [ ] Lose a run that lasted **under three minutes**, answer **NO** → no ad.
+- [ ] Lose a run that lasted **three minutes or more**, answer **NO** → one test
+      interstitial, then RETRY / MAIN MENU.
 - [ ] Revive with an ad, then lose again → **no** interstitial (the run's ad
       budget was already spent).
-- [ ] Lose a run. **WATCH AD TO CONTINUE** appears.
+- [ ] Background the app while "WOULD YOU LIKE TO REVIVE?" is up → no ad.
+- [ ] Lose a run. **WOULD YOU LIKE TO REVIVE? — YES / NO** appears, and RETRY /
+      MAIN MENU are hidden until it is answered. **YES** plays the rewarded ad.
 - [ ] Complete the ad → the run resumes, **same wave**, core at **50%**,
       agents still deployed, crypto unchanged.
 - [ ] Lose again → **no second revive is offered**.

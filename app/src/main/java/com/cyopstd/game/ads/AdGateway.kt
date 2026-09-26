@@ -80,54 +80,32 @@ class NoAdGateway : AdGateway {
 }
 
 /**
- * When an interstitial is allowed.
+ * When the lost-run interstitial is allowed.
  *
- * Separated from the gateway because this is the part with actual rules in it,
- * and the part a player will be angry about if it is wrong. Three of them:
+ * The owner's rules (2026-09-26), and the only ones:
  *
- * 1. **Paying to remove ads removes ads.** No exceptions, no "just this one".
- * 2. **One per lost run**, never mid-run and never on a run the player
- *    walked away from — an ad for quitting to the menu would punish the one
- *    action the player took deliberately. A player who already watched a
- *    rewarded ad this run has paid its ad budget and is not charged twice;
- *    that rule lives with the caller, which knows about revives.
- * 3. **A cooldown**, so a player losing repeatedly on an early wave is not
- *    shown an ad every thirty seconds. That player is the one most likely to
- *    uninstall.
+ * 1. **Only on a loss**, and only once the player has answered NO to the
+ *    revive (or no revive was on offer). Never mid-run, never on quitting,
+ *    never on backgrounding the app. That part is the caller's: it decides
+ *    *when* to ask; this decides *whether*.
+ * 2. **Only if the run lasted at least three minutes of real play.** A player
+ *    who lost inside three minutes goes straight back to the menu with no ad.
+ * 3. **Paying to remove ads removes ads.**
+ *
+ * There is deliberately no cooldown between ads: every qualifying loss gets
+ * one, and nothing else ever does.
  */
 class AdPolicy(
-    private val cooldownSeconds: Long = DEFAULT_COOLDOWN_SECONDS,
-    private val now: () -> Long = { System.currentTimeMillis() / 1000 }
+    private val minRunSeconds: Float = MIN_RUN_SECONDS
 ) {
-    /**
-     * Null until something has been shown.
-     *
-     * Deliberately nullable rather than a sentinel like `Long.MIN_VALUE`:
-     * `now() - Long.MIN_VALUE` overflows to a negative number, so the cooldown
-     * check failed on the very first run of a session and the player never saw
-     * the first ad. "Nothing has happened yet" is a different state from "it
-     * happened a long time ago" and is worth modelling as one.
-     */
-    private var lastShownAt: Long? = null
-
-    fun shouldShowOnRunLost(adsRemoved: Boolean, ready: Boolean): Boolean {
+    fun shouldShowOnRunLost(adsRemoved: Boolean, ready: Boolean, runSeconds: Float): Boolean {
         if (adsRemoved) return false
         if (!ready) return false
-        val last = lastShownAt ?: return true
-        return now() - last >= cooldownSeconds
-    }
-
-    fun recordShown() {
-        lastShownAt = now()
-    }
-
-    /** Seconds until an ad could next be shown; zero when one could now. */
-    fun secondsUntilEligible(): Long {
-        val last = lastShownAt ?: return 0
-        return (cooldownSeconds - (now() - last)).coerceAtLeast(0)
+        return runSeconds >= minRunSeconds
     }
 
     companion object {
-        const val DEFAULT_COOLDOWN_SECONDS = 180L
+        /** Three minutes of real, unpaused play. */
+        const val MIN_RUN_SECONDS = 180f
     }
 }

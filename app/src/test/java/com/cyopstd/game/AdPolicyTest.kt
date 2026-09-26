@@ -8,73 +8,53 @@ import org.junit.Assert.assertTrue
 import org.junit.Test
 
 /**
- * When an interstitial is allowed.
+ * When the lost-run interstitial is allowed.
  *
- * The ad itself needs AdMob and cannot be exercised here, but every rule
- * around it can — and these are the rules a player gets angry about if they
- * are wrong.
+ * The owner's rules (2026-09-26): only on a loss, only when the run lasted at
+ * least three minutes of real play, never for someone who bought REMOVE ADS,
+ * and no cooldown. When in the flow it is asked is the view model's job and is
+ * covered in ReviveTest; this covers whether.
  */
 class AdPolicyTest {
 
-    private class Clock(var seconds: Long = 1_000_000L)
-
-    private fun policy(clock: Clock, cooldown: Long = 180L) =
-        AdPolicy(cooldownSeconds = cooldown, now = { clock.seconds })
+    private val policy = AdPolicy()
 
     @Test
     fun `paying to remove ads removes ads`() {
-        val clock = Clock()
-        val policy = policy(clock)
-        // No cooldown, an ad loaded and waiting, a lost run: still no.
-        assertFalse(policy.shouldShowOnRunLost(adsRemoved = true, ready = true))
-
-        // And it stays no however long passes.
-        clock.seconds += 10_000
-        assertFalse(policy.shouldShowOnRunLost(adsRemoved = true, ready = true))
+        assertFalse(policy.shouldShowOnRunLost(adsRemoved = true, ready = true, runSeconds = 3_600f))
     }
 
     @Test
-    fun `an ad shows on a lost run when one is loaded`() {
-        val policy = policy(Clock())
-        assertTrue(policy.shouldShowOnRunLost(adsRemoved = false, ready = true))
+    fun `a run shorter than three minutes gets no ad`() {
+        assertFalse(policy.shouldShowOnRunLost(adsRemoved = false, ready = true, runSeconds = 0f))
+        assertFalse(
+            "one second short",
+            policy.shouldShowOnRunLost(adsRemoved = false, ready = true, runSeconds = 179f)
+        )
     }
 
     @Test
-    fun `nothing is shown when no ad is loaded`() {
-        // The game must never stall waiting for an ad that does not exist.
-        val policy = policy(Clock())
-        assertFalse(policy.shouldShowOnRunLost(adsRemoved = false, ready = false))
+    fun `a run of three minutes or more gets one`() {
+        assertTrue(policy.shouldShowOnRunLost(adsRemoved = false, ready = true, runSeconds = 180f))
+        assertTrue(policy.shouldShowOnRunLost(adsRemoved = false, ready = true, runSeconds = 5_000f))
     }
 
     @Test
-    fun `losing repeatedly does not mean an ad every time`() {
-        // The player losing over and over on an early wave is the one most
-        // likely to uninstall. The cooldown exists for them.
-        val clock = Clock()
-        val policy = policy(clock, cooldown = 180L)
-
-        assertTrue(policy.shouldShowOnRunLost(adsRemoved = false, ready = true))
-        policy.recordShown()
-
-        clock.seconds += 30
-        assertFalse("30s later", policy.shouldShowOnRunLost(adsRemoved = false, ready = true))
-        assertEquals(150L, policy.secondsUntilEligible())
-
-        clock.seconds += 149
-        assertFalse("one second short", policy.shouldShowOnRunLost(adsRemoved = false, ready = true))
-
-        clock.seconds += 1
-        assertTrue("cooldown elapsed", policy.shouldShowOnRunLost(adsRemoved = false, ready = true))
-        assertEquals(0L, policy.secondsUntilEligible())
+    fun `there is no cooldown between qualifying losses`() {
+        // Two long losses in a row each get their ad; the rule is per loss.
+        repeat(2) {
+            assertTrue(policy.shouldShowOnRunLost(adsRemoved = false, ready = true, runSeconds = 200f))
+        }
     }
 
     @Test
-    fun `the first run of a session is eligible`() {
-        // Nothing has been shown yet, so the cooldown must not be counted from
-        // an unset timestamp and lock the player out.
-        val policy = policy(Clock(seconds = 0))
-        assertTrue(policy.shouldShowOnRunLost(adsRemoved = false, ready = true))
-        assertEquals(0L, policy.secondsUntilEligible())
+    fun `nothing loaded means nothing shown`() {
+        assertFalse(policy.shouldShowOnRunLost(adsRemoved = false, ready = false, runSeconds = 600f))
+    }
+
+    @Test
+    fun `the threshold is three minutes`() {
+        assertEquals(180f, AdPolicy.MIN_RUN_SECONDS)
     }
 
     @Test

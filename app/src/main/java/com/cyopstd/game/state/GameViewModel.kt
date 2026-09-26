@@ -96,7 +96,9 @@ class GameViewModel @JvmOverloads constructor(
      * Same rule as [adsOverride]: production passes nothing and gets whatever
      * the build is configured for.
      */
-    consentOverride: ConsentGateway? = null
+    consentOverride: ConsentGateway? = null,
+    /** Injectable so tests can set the survival threshold for the loss ad. */
+    private val adPolicy: AdPolicy = AdPolicy()
 ) : AndroidViewModel(application) {
 
     private val audio = AudioEngine(application)
@@ -608,10 +610,15 @@ class GameViewModel @JvmOverloads constructor(
     var privacyOptionsRequired by mutableStateOf(false)
         private set
 
-    private val adPolicy = AdPolicy()
-
     /** True while an interstitial is on screen and the game is waiting on it. */
     var showingAd by mutableStateOf(false)
+        private set
+
+    /**
+     * Real seconds of unpaused play in the current run. Game speed does not
+     * count: a run played at 4× for one minute has lasted one minute.
+     */
+    var runPlaySeconds = 0f
         private set
 
     /**
@@ -622,11 +629,10 @@ class GameViewModel @JvmOverloads constructor(
      * dead screen, so the continuation is the caller's and is always invoked.
      */
     private fun maybeShowLossAd(then: () -> Unit) {
-        if (!adPolicy.shouldShowOnRunLost(entitlements.adsRemoved, ads.isReady)) {
+        if (!adPolicy.shouldShowOnRunLost(entitlements.adsRemoved, ads.isReady, runPlaySeconds)) {
             then()
             return
         }
-        adPolicy.recordShown()
         showingAd = true
         ads.showInterstitial {
             showingAd = false
@@ -918,6 +924,7 @@ class GameViewModel @JvmOverloads constructor(
         runRecorded = false
         revivesUsed = 0
         reviveSpentThisRun = false
+        runPlaySeconds = 0f
         // A new run starts looking at the whole board. Carrying a zoom over
         // from the last one would drop the player into a corner of a map they
         // have not seen yet.
@@ -988,6 +995,7 @@ class GameViewModel @JvmOverloads constructor(
             // per session", and backgrounding the game is free.
             revivesUsed = run.revivesUsed
             reviveSpentThisRun = run.revivesUsed > 0
+            runPlaySeconds = run.playSeconds
             matchActive = true
             tutorialStep = -1
             pushHud()
@@ -1006,6 +1014,9 @@ class GameViewModel @JvmOverloads constructor(
         renderTime += deltaSeconds
 
         if (!paused && matchActive && engine.phase != RunPhase.GAME_OVER) {
+            // Clamped: the first frame after the app comes back from the
+            // background can carry the whole time it was away.
+            runPlaySeconds += deltaSeconds.coerceIn(0f, MAX_FRAME_SECONDS)
             engine.update(deltaSeconds, currentSpeed)
         }
 
@@ -1344,7 +1355,9 @@ class GameViewModel @JvmOverloads constructor(
         // player either takes it or walks away from it.
         if (canReviveNow) return
 
-        finalizeRun()
+        // No revive to ask about, so this is the loss itself: the one moment
+        // the lost-run ad may play.
+        finalizeRun(offerLossAd = true)
     }
 
     /** The summary the game-over screen reads, from wherever the run got to. */
@@ -1368,7 +1381,7 @@ class GameViewModel @JvmOverloads constructor(
      * The guard is the whole contract: a revived run reaches here exactly once,
      * at the wave it finally reached.
      */
-    private fun finalizeRun() {
+    private fun finalizeRun(offerLossAd: Boolean = false) {
         if (runRecorded) return
         runRecorded = true
         matchActive = false
@@ -1377,7 +1390,9 @@ class GameViewModel @JvmOverloads constructor(
         // to leave, and charging them for that is the fastest way to make
         // leaving permanent. A player who already watched a rewarded ad for a
         // revive has paid this run's ad budget and is not charged twice.
-        if (engine.phase == RunPhase.GAME_OVER && !reviveSpentThisRun) maybeShowLossAd { }
+        if (offerLossAd && engine.phase == RunPhase.GAME_OVER && !reviveSpentThisRun) {
+            maybeShowLossAd { }
+        }
 
         val isRecord = engine.currentWave > stats.highestWave
         gameOverSummary = GameOverSummary(
@@ -1517,6 +1532,19 @@ class GameViewModel @JvmOverloads constructor(
     }
 
     /**
+     * The player answered NO to "revive?".
+     *
+     * The only path besides a loss with no offer on which the lost-run ad may
+     * play. Leaving the app, quitting or pressing back on the offer records the
+     * run through [finishRun] and shows nothing.
+     */
+    fun declineRevive() {
+        if (engine.phase != RunPhase.GAME_OVER) return
+        playClick()
+        finalizeRun(offerLossAd = true)
+    }
+
+    /**
      * Leaving an active match: persist it so CONTINUE works, and fold the run's
      * totals into lifetime statistics so nothing is lost by walking away.
      */
@@ -1578,7 +1606,8 @@ class GameViewModel @JvmOverloads constructor(
                 savedAtMillis = System.currentTimeMillis(),
                 mapId = engine.map.id,
                 modeId = engine.mode.id,
-                revivesUsed = revivesUsed
+                revivesUsed = revivesUsed,
+                playSeconds = runPlaySeconds
             )
         )
         hasSavedRun = true
@@ -1681,6 +1710,8 @@ class GameViewModel @JvmOverloads constructor(
 
     companion object {
         private const val TRANSIENT_MS = 1600L
+        /** Longest single frame counted towards [runPlaySeconds]. */
+        private const val MAX_FRAME_SECONDS = 0.25f
         private const val UNLOCK_BANNER_MS = 3200L
         private const val TAP_RADIUS_MULTIPLIER = 2.0f
     }

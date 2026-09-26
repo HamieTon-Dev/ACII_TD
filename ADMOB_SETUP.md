@@ -27,9 +27,8 @@ This game uses **two ad units**:
 
 - a **rewarded** unit (`cyops.admob.rewardedId`), the only thing that can grant
   a revive;
-- an **interstitial** unit (`cyops.admob.interstitialId`), shown at most once
-  after a *lost* run, never after a revive paid for with an ad, never to
-  someone who owns REMOVE ADS, and no more than once every three minutes.
+- an **interstitial** unit (`cyops.admob.interstitialId`), shown on a lost run
+  only after the player answers NO to "revive?" (or loses with no revive on offer), only if the run lasted at least three minutes of real play, never after a revive paid for with an ad, and never to someone who owns REMOVE ADS. No cooldown; no ad at any other time.
 
 The interstitial was removed in 1.35.0 and restored in 1.37.0 at the owner's
 instruction. It is optional: a release with only the rewarded id offers revives,
