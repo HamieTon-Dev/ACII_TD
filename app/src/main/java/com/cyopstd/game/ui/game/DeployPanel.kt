@@ -47,7 +47,9 @@ fun DeployPanel(
     onClose: () -> Unit,
     modifier: Modifier = Modifier,
     /** The player's best wave, for the "your best" line in the lock note. */
-    bestWave: Int = 0
+    bestWave: Int = 0,
+    /** Best wave on the beginner level, for agents only it unlocks. */
+    bestWaveBeginner: Int = 0
 ) {
     var lockedInfo by remember { mutableStateOf<AgentType?>(null) }
     Column(
@@ -82,7 +84,11 @@ fun DeployPanel(
         Spacer(Modifier.height(8.dp))
 
         lockedInfo?.let { type ->
-            LockNote(type = type, bestWave = bestWave, onDismiss = { lockedInfo = null })
+            LockNote(
+                type = type,
+                bestWave = if (type.beginnerLevelOnly) bestWaveBeginner else bestWave,
+                onDismiss = { lockedInfo = null }
+            )
             Spacer(Modifier.height(8.dp))
         }
 
@@ -248,7 +254,11 @@ private fun LockNote(type: AgentType, bestWave: Int, onDismiss: () -> Unit) {
                 color = Palette.TextPrimary
             )
             Text(
-                text = "Your best: wave $bestWave",
+                text = if (type.beginnerLevelOnly) {
+                    "Your best on ${AgentType.BEGINNER_LEVEL_NAME}: wave $bestWave"
+                } else {
+                    "Your best: wave $bestWave"
+                },
                 style = MaterialTheme.typography.labelSmall,
                 color = Palette.TextMuted
             )
