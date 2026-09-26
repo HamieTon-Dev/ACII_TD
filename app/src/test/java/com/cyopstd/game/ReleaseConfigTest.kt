@@ -101,6 +101,16 @@ class ReleaseConfigTest {
     }
 
     @Test
+    fun `the build stamp is a number, not the expression that should make one`() {
+        // build.gradle.kts wrote "${'$'}{System.currentTimeMillis() / 1000}"
+        // with the same escaped dollar as the ids above, so every build since
+        // 1.19.0 carried that text, BuildStamp could not parse it, and the
+        // identifier on screen always ended "unknown".
+        val stamp = com.cyopstd.game.BuildConfig.BUILD_STAMP
+        assertTrue("BUILD_STAMP is the literal \"$stamp\"", stamp.toLongOrNull() != null)
+    }
+
+    @Test
     fun `an app id and an ad unit id are never confused`() {
         // A tilde separates the application id; a slash separates an ad unit.
         // Pasting one where the other belongs is the classic AdMob mistake and

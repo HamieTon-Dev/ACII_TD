@@ -95,13 +95,13 @@ android {
         applicationId = "com.cyopstd.game"
         minSdk = 24
         targetSdk = 36
-        versionCode = 50
-        versionName = "1.41.0"
+        versionCode = 51
+        versionName = "1.41.1"
 
         // Stamped into the APK so the build identifier on screen is the real
         // one, not a string someone remembered to update. Reported by
         // BuildStamp and shown on every screen.
-        buildConfigField("String", "BUILD_STAMP", "\"${'$'}{System.currentTimeMillis() / 1000}\"")
+        buildConfigField("String", "BUILD_STAMP", "\"${System.currentTimeMillis() / 1000}\"")
 
         // --- Google Play configuration --------------------------------------
         //
