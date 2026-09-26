@@ -174,11 +174,26 @@ class GameRepository(private val store: DataStore<Preferences>) {
         }
     }
 
+    /**
+     * Records an unlock.
+     *
+     * Read and written inside one `edit`, which DataStore runs atomically.
+     * It used to read the set first and write it afterwards, and three agents
+     * unlock together at wave 30: all three reads saw the old set, each write
+     * added only its own agent, and the last one won. QUANTUM and RED HAT were
+     * lost and only BLUE HAT was kept.
+     */
     suspend fun unlockAgent(type: AgentType) {
-        val current = progress.first().unlockedAgents
-        if (type.name in current) return
-        val merged = (current + type.name).joinToString("|")
-        writeSafely { prefs -> prefs[Keys.UNLOCKED_AGENTS] = merged }
+        writeSafely { prefs ->
+            val current = prefs[Keys.UNLOCKED_AGENTS]
+                ?.split('|')
+                ?.filter { it.isNotBlank() }
+                ?.toSet()
+                ?: emptySet()
+            if (type.name !in current) {
+                prefs[Keys.UNLOCKED_AGENTS] = (current + type.name).joinToString("|")
+            }
+        }
     }
 
     suspend fun setTutorialCompleted(completed: Boolean) {

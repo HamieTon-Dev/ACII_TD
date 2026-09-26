@@ -7,6 +7,31 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [1.39.2]
+
+### Fixed — QUANTUM and RED HAT did not unlock at wave 30
+
+Reported by the owner: the agent bar said WAVE 30, wave 30 was reached, and
+QUANTUM and RED HAT stayed locked.
+
+Three agents unlock at wave 30 — QUANTUM, RED HAT and BLUE HAT — and each
+unlock was saved by its own coroutine that read the stored set, added one
+agent and wrote it back. All three read the same old set, so the last write
+won and only BLUE HAT was kept. The game then reloaded that set over its own
+in-memory copy, so the other two vanished mid-run.
+
+- The save now reads and writes inside one atomic DataStore edit.
+- Unlocks follow the best wave reached: any agent due by your best wave is
+  unlocked on load. **Saves already damaged by this are repaired on the next
+  launch**, with no need to play wave 30 again.
+- A wave start now unlocks every agent due by that wave that is still locked,
+  not only those due exactly then.
+
+Reproduced first: the new `GameRepositoryTest` case fails on the old code
+with "QUANTUM was lost".
+
+---
+
 ## [1.39.1]
 
 ### Fixed — the Play Games and leaderboard ids never reached the app

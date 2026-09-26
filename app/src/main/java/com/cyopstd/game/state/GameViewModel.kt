@@ -340,6 +340,9 @@ class GameViewModel @JvmOverloads constructor(
         observePersistence()
     }
 
+    private fun earnedAgentNames(highestWave: Int): Set<String> =
+        AgentType.earnedBy(highestWave).map { it.name }.toSet()
+
     private fun wireEngine() {
         engine.soundListener = { sound -> audio.play(sound) }
         engine.hapticListener = { cue -> haptics.fire(cue) }
@@ -861,11 +864,15 @@ class GameViewModel @JvmOverloads constructor(
             repository.stats.collectLatest { loaded ->
                 stats = loaded
                 refreshAvailableMaps(loaded)
+                // Unlocks follow the best wave reached; see AgentType.earnedBy.
+                unlockedAgents = unlockedAgents + earnedAgentNames(loaded.highestWave)
             }
         }
         collectJobs += viewModelScope.launch {
             repository.progress.collectLatest { loaded ->
-                unlockedAgents = loaded.unlockedAgents + AgentType.starters.map { it.name }
+                unlockedAgents = loaded.unlockedAgents +
+                    AgentType.starters.map { it.name } +
+                    earnedAgentNames(stats.highestWave)
                 // Never un-complete it. The flag is written asynchronously,
                 // so an emission from before that write still says false --
                 // and a player who skips the tutorial and immediately hits

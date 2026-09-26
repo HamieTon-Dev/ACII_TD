@@ -346,11 +346,18 @@ class GameEngine(
         unlockAgentsForWave(currentWave)
     }
 
+    /**
+     * Unlocks every agent due by [wave], not only those due exactly now.
+     *
+     * A run continued past an unlock wave, or a save that lost an unlock,
+     * otherwise never saw the equality hold again. The listener ignores agents
+     * that are already unlocked, so calling it for them is harmless.
+     */
     private fun unlockAgentsForWave(wave: Int) {
-        for (type in AgentType.entries) {
-            if (type.unlockWave == wave && wave > 0) {
-                onAgentUnlocked?.invoke(type)
-            }
+        if (wave <= 0) return
+        for (type in AgentType.earnedBy(wave)) {
+            if (isAgentUnlocked(type)) continue
+            onAgentUnlocked?.invoke(type)
         }
     }
 

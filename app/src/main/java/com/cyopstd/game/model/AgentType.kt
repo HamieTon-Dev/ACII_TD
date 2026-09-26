@@ -465,6 +465,17 @@ enum class AgentType(
     companion object {
         val starters: List<AgentType> = entries.filter { it.unlockedByDefault }
 
+        /**
+         * Every agent a player who has reached [highestWave] has earned.
+         *
+         * Unlocks are "reach wave N", so this is the source of truth: the
+         * stored set is a record of it, not a replacement for it. A save that
+         * lost an unlock (the wave-30 race), or that predates an agent being
+         * added, is repaired by this rather than needing the wave played again.
+         */
+        fun earnedBy(highestWave: Int): List<AgentType> =
+            entries.filter { it.unlockWave in 1..highestWave }
+
         /** Catalog order used by the deployment panel and the AGENTS screen. */
         val catalog: List<AgentType> = entries.sortedBy { it.unlockWave }
 
