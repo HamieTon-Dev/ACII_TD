@@ -1645,11 +1645,15 @@ one place (not colour by colour), `PaletteTest` extended with pairwise
 distance checks between friendly and threat colours, and before/after
 screenshots for the owner to approve.
 
-### S4 🟨 boss explosions — particles to the edge of the screen, with a slight shake
+### S4 ✅ 1.39.0 — boss explosions — particles to the edge of the screen, with a slight shake
 
 *"Make sure the particles from explosion make a slight screen shake animation
 if possible — give me a video to review this before committing — make the
 particles go out, disappearing at center and travel all the way out of the
 view area."*
 
-In progress. **Not to be committed until the owner has approved the video.**
+Approved on video by the owner, with one change: *"slow the particles down a
+little bit"* — the blast went from 1.1s to 1.5s. Shards travel from the boss
+until every one has left the view; the centre clears first; a slight shake
+over the first 40% of the blast, gated on the screen-shake setting.
+`ShardBurstRenderTest` covers all four.

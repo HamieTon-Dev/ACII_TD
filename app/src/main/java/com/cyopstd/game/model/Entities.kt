@@ -317,6 +317,12 @@ class Effect : Poolable {
     /** Seeds a derived effect, so two explosions never look identical. */
     var seed: Int = 0
 
+    /**
+     * A boss blast: every shard leaves the view area, the centre empties, and
+     * the screen shakes briefly. Elites keep the smaller, contained burst.
+     */
+    var toEdge: Boolean = false
+
     val progress: Float get() = if (lifetime <= 0f) 1f else (age / lifetime).coerceIn(0f, 1f)
 
     override fun reset() {
@@ -326,6 +332,7 @@ class Effect : Poolable {
         scale = 1f
         velocityY = 0f
         seed = 0
+        toEdge = false
     }
 }
 

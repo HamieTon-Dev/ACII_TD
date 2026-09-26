@@ -70,12 +70,30 @@ object SoundBank {
             gain = 0.55f
         ),
 
+        // A boss is the payoff for the whole wave, so it gets a sequence
+        // rather than a hit (owner, 2026-09-26: "dramatic, not just like a
+        // normal or elite enemy kill"). A sharp crack, a deep sub-bass boom
+        // under it, a system "power-down" wail falling two octaves, a second
+        // detonation a beat later, and a long low rumble that outlasts the
+        // shards. Nothing else in the game is longer than a second and a half
+        // except GAME OVER, and nothing else goes this low.
         GameSound.BOSS_DESTROYED to Recipe(
-            duration = 0.85f,
+            duration = 2.4f,
             voices = listOf(
-                ToneSynth.Voice(ToneSynth.Wave.NOISE, 1f, 1f, 0.5f, decay = 4.5f),
-                ToneSynth.Voice(ToneSynth.Wave.SQUARE, 300f, 60f, 0.42f, decay = 4f),
-                ToneSynth.Voice(ToneSynth.Wave.SINE, 150f, 40f, 0.5f, decay = 3f)
+                // The crack.
+                ToneSynth.Voice(ToneSynth.Wave.NOISE, 1f, 1f, 0.55f, decay = 7f),
+                ToneSynth.Voice(ToneSynth.Wave.SQUARE, 900f, 220f, 0.22f, decay = 14f),
+                // The boom.
+                ToneSynth.Voice(ToneSynth.Wave.SINE, 95f, 28f, 0.6f, decay = 1.4f),
+                // The power-down.
+                ToneSynth.Voice(ToneSynth.Wave.SQUARE, 640f, 70f, 0.2f, decay = 1.6f),
+                ToneSynth.Voice(ToneSynth.Wave.TRIANGLE, 320f, 35f, 0.3f, decay = 1.5f),
+                // The second detonation.
+                ToneSynth.Voice(ToneSynth.Wave.NOISE, 1f, 1f, 0.42f, decay = 4.5f, delay = 0.26f),
+                ToneSynth.Voice(ToneSynth.Wave.SQUARE, 210f, 45f, 0.3f, decay = 3.2f, delay = 0.26f),
+                // The rumble.
+                ToneSynth.Voice(ToneSynth.Wave.SINE, 48f, 30f, 0.4f, decay = 0.9f, delay = 0.45f),
+                ToneSynth.Voice(ToneSynth.Wave.NOISE, 1f, 1f, 0.12f, decay = 1.3f, delay = 0.45f)
             )
         ),
 

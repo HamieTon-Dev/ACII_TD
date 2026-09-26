@@ -40,7 +40,9 @@ class ShardBurstRenderTest {
     private fun blastFrame(
         afterSeconds: Float,
         boss: Boolean = true,
-        shards: Boolean = true
+        shards: Boolean = true,
+        toEdge: Boolean = false,
+        screenShake: Boolean = false
     ): Bitmap {
         val engine = GameEngine()
         engine.startNewRun()
@@ -49,7 +51,8 @@ class ShardBurstRenderTest {
             y = WorldGeometry.HEIGHT * 0.5f,
             colorArgb = GameEngine.COLOR_HOSTILE,
             radius = if (boss) Balance.BOSS_SHARD_RADIUS else Balance.ELITE_SHARD_RADIUS,
-            lifetime = if (boss) Balance.BOSS_SHARD_LIFETIME else Balance.ELITE_SHARD_LIFETIME
+            lifetime = if (boss) Balance.BOSS_SHARD_LIFETIME else Balance.ELITE_SHARD_LIFETIME,
+            toEdge = toEdge
         )
         // Advance the effect only; nothing else needs to move for this.
         var elapsed = 0f
@@ -63,7 +66,7 @@ class ShardBurstRenderTest {
             canvas = Canvas(bitmap),
             engine = engine,
             transform = WorldTransform(WorldGeometry.WIDTH, WorldGeometry.HEIGHT),
-            options = BattlefieldRenderOptions(backgroundAnimation = false),
+            options = BattlefieldRenderOptions(backgroundAnimation = false, screenShake = screenShake),
             selection = BattlefieldSelection(),
             time = 1f
         )
@@ -141,7 +144,8 @@ class ShardBurstRenderTest {
     @Test
     fun `an elite blast is smaller than a boss one`() {
         val control = controlFrame()
-        val boss = measure(blastFrame(0.5f, boss = true), control)
+        // The boss blast is the edge-to-edge one a real boss death spawns.
+        val boss = measure(blastFrame(0.5f, boss = true, toEdge = true), control)
         val elite = measure(blastFrame(0.5f, boss = false), control)
         assertTrue(
             "boss reached ${boss.spread}, elite ${elite.spread}",
@@ -184,6 +188,62 @@ class ShardBurstRenderTest {
         val seeds = engine.effects.items.filter { it.active }.map { it.seed }
         assertEquals(2, seeds.size)
         assertTrue("both explosions rolled the same seed", seeds[0] != seeds[1])
+    }
+
+    // ------------------------------------------- the boss blast (owner, 2026-09-26)
+
+    private val frames = HashMap<Float, Bitmap>()
+
+    @Test
+    fun `a boss blast reaches every edge of the view`() {
+        // Shards cross the near edges first and the far ones later, so the
+        // edges are checked across the flight rather than on one frame.
+        val control = controlFrame()
+        var left = false; var right = false; var top = false; var bottom = false
+        for (share in listOf(0.1f, 0.2f, 0.3f, 0.45f, 0.6f))
+        for (y in 0 until height) for (x in 0 until width) {
+            val frame = frames.getOrPut(share) { blastFrame(Balance.BOSS_SHARD_LIFETIME * share, toEdge = true) }
+            if (frame.getPixel(x, y) == control.getPixel(x, y)) continue
+            if (x < 40) left = true
+            if (x > width - 40) right = true
+            if (y < 40) top = true
+            if (y > height - 40) bottom = true
+        }
+        assertTrue("shards reached left=$left right=$right top=$top bottom=$bottom",
+            left && right && top && bottom)
+    }
+
+    @Test
+    fun `the centre empties while the shards are still flying`() {
+        val control = controlFrame()
+        val mid = blastFrame(Balance.BOSS_SHARD_LIFETIME * 0.45f, toEdge = true)
+        val cx = width / 2
+        val cy = height / 2
+        var changed = 0
+        for (y in cy - 60 until cy + 60) for (x in cx - 60 until cx + 60) {
+            if (mid.getPixel(x, y) != control.getPixel(x, y)) changed++
+        }
+        assertEquals("something is still drawn at the centre", 0, changed)
+    }
+
+    @Test
+    fun `every boss shard has left the view before the effect ends`() {
+        val control = controlFrame()
+        val end = measure(blastFrame(Balance.BOSS_SHARD_LIFETIME * 0.97f, toEdge = true), control)
+        assertEquals("shards are still on screen at the end", 0, end.count)
+    }
+
+    @Test
+    fun `a boss blast shakes the view, and only when shake is on`() {
+        // A static element moves: the corner of the board is compared, where
+        // no shard has reached yet on the first frames.
+        val still = blastFrame(0.02f, toEdge = true, screenShake = false)
+        val shaken = blastFrame(0.02f, toEdge = true, screenShake = true)
+        var differs = 0
+        for (y in 0 until 60) for (x in 0 until 200) {
+            if (still.getPixel(x, y) != shaken.getPixel(x, y)) differs++
+        }
+        assertTrue("the view did not move", differs > 0)
     }
 
     @Test

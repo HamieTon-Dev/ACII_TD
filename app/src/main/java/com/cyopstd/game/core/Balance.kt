@@ -347,7 +347,8 @@ object Balance {
 
     /** Seconds a packet-destruction glyph sequence takes to play out. */
     const val DEATH_EFFECT_LIFETIME = 0.45f
-    const val BOSS_DEATH_EFFECT_LIFETIME = 1.1f
+    /** Short, so the centre clears while the boss blast is still flying outward. */
+    const val BOSS_DEATH_EFFECT_LIFETIME = 0.5f
 
     /**
      * How far a boss's or an elite's death blast throws its shards, and for
@@ -360,7 +361,13 @@ object Balance {
      */
     const val BOSS_SHARD_RADIUS = 700f
     const val ELITE_SHARD_RADIUS = 500f
-    const val BOSS_SHARD_LIFETIME = 0.85f
+    /**
+     * Long enough for a boss's shards to cross the whole screen and leave it
+     * (owner, 2026-09-26), still short enough to be gone before the next
+     * threat walks in. 1.1s was reviewed on video and found a touch fast;
+     * 1.5s is the same path about a third slower.
+     */
+    const val BOSS_SHARD_LIFETIME = 1.5f
     const val ELITE_SHARD_LIFETIME = 0.6f
 
     // ------------------------------------------------------------ pacing / UX

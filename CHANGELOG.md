@@ -7,6 +7,30 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [1.39.0]
+
+### Changed — a boss goes out edge to edge
+
+When a boss dies, its shards now start at the boss and fly outward until
+every one of them has left the screen. The centre clears first, the old
+ASCII starburst there fades in half a second, and the whole view gives a
+slight shake on the detonation (only with screen shake on in Settings).
+The blast lasts 1.5 seconds, up from 0.85, so the shards are readable as they
+travel. Elites keep the smaller, contained burst.
+
+Reviewed by the owner on a rendered video before it was committed.
+
+### Changed — a boss kill sounds like one
+
+The boss-kill sound was a short thump from the same family as every other
+kill. It is now a 2.4-second sequence: a sharp crack over a deep sub-bass boom,
+a system "power-down" wail falling two octaves, a second detonation a beat
+later, and a low rumble that outlasts the shards. It goes lower than anything
+else in the game. The synthesiser gained a per-layer start delay to make the
+second stage possible; every other sound renders exactly as before.
+
+---
+
 ## [1.38.0]
 
 ### Changed — "Would you like to revive?" comes first, and the loss ad has one rule

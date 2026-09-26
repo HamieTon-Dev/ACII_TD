@@ -190,6 +190,17 @@ class BattlefieldRenderer {
                 cos(time * 73f) * strength * 0.6f
             )
         }
+        // A slight shake as a boss blows apart: strongest on the detonation,
+        // gone well before the shards are. Same setting as the impact shake.
+        if (options.screenShake) {
+            val shake = bossBlastShake(engine)
+            if (shake > 0f) {
+                canvas.translate(
+                    sin(time * 67f) * shake * BOSS_SHAKE_UNITS,
+                    cos(time * 59f) * shake * BOSS_SHAKE_UNITS * 0.7f
+                )
+            }
+        }
 
         drawBackdrop(canvas, engine, options, time)
         drawLanes(canvas, engine, options, time)
@@ -1629,9 +1640,26 @@ class BattlefieldRenderer {
      * drag — and shrink and fade as they go. `1 - (1 - p)^2` is the whole of
      * the physics, which is as much as a half-second effect can show.
      */
+    /** 0..1: how hard the newest boss blast is shaking the view right now. */
+    private fun bossBlastShake(engine: GameEngine): Float {
+        var strongest = 0f
+        for (effect in engine.effects.items) {
+            if (!effect.active || effect.kind != EffectKind.SHARD_BURST || !effect.toEdge) continue
+            val p = effect.progress
+            if (p >= BOSS_SHAKE_PORTION) continue
+            val left = 1f - p / BOSS_SHAKE_PORTION
+            strongest = maxOf(strongest, left * left)
+        }
+        return strongest
+    }
+
     private fun drawShardBursts(canvas: android.graphics.Canvas, engine: GameEngine) {
         for (effect in engine.effects.items) {
             if (!effect.active || effect.kind != EffectKind.SHARD_BURST) continue
+            if (effect.toEdge) {
+                drawEdgeBurst(canvas, engine, effect)
+                continue
+            }
 
             val progress = effect.progress
             // Held bright, then dropped late. A squared fade -- the obvious
@@ -1694,6 +1722,72 @@ class BattlefieldRenderer {
         }
     }
 
+
+    /**
+     * A boss blast: everything starts at the boss and leaves the screen.
+     *
+     * Each shard's travel is at least the distance from the boss to the
+     * farthest corner of the view, so by the end of the effect every shard is
+     * outside it — nothing lingers over the board and the centre is the first
+     * place to empty. Shards are staggered in speed so the blast reads as a
+     * burst with depth rather than one expanding ring. Full brightness the
+     * whole way: they leave by travelling, not by fading.
+     */
+    private fun drawEdgeBurst(
+        canvas: android.graphics.Canvas,
+        engine: GameEngine,
+        effect: com.cyopstd.game.model.Effect
+    ) {
+        val progress = effect.progress
+        val w = WorldGeometry.WIDTH
+        val h = WorldGeometry.HEIGHT
+        val farX = maxOf(effect.x, w - effect.x)
+        val farY = maxOf(effect.y, h - effect.y)
+        val travel = kotlin.math.sqrt(farX * farX + farY * farY) + EDGE_MARGIN
+        // Eased out, but gentler than the contained burst, so the shards are
+        // still visibly travelling when they cross the edge.
+        val remaining = 1f - progress
+        val reach = 1f - remaining * remaining
+        val shards = if (engine.batterySaver) SHARDS / 3 else SHARDS
+
+        fillPaint.color = effect.colorArgb
+        fillPaint.alpha = 255
+        var state = effect.seed
+        for (i in 0 until shards) {
+            state = state xor (state shl 13)
+            state = state xor (state ushr 17)
+            state = state xor (state shl 5)
+            val a = (state ushr 8 and 0xFFFF) / 65535f
+            val b = (state ushr 20 and 0x7FF) / 2047f
+
+            val angle = a * TWO_PI_F
+            // Every shard's end point is beyond the farthest corner; the
+            // spread in speed is what gives the blast its depth.
+            val distance = travel * (1f + 0.8f * b * b) * reach
+            val px = effect.x + cos(angle) * distance
+            val py = effect.y + sin(angle) * distance
+            if (px < -12f || px > w + 12f || py < -12f || py > h + 12f) continue
+
+            val size = 3.2f + 5.2f * b
+            canvas.drawRect(px, py, px + size, py + size, fillPaint)
+        }
+
+        // The detonation: a white-hot core and a shockwave over the first
+        // fifth, after which the centre is empty.
+        if (progress < 0.2f) {
+            val flash = 1f - progress / 0.2f
+            glowPaint.color = effect.colorArgb
+            glowPaint.alpha = (235 * flash).toInt().coerceIn(0, 255)
+            glowPaint.strokeWidth = 4f + 40f * (1f - flash)
+            canvas.drawCircle(effect.x, effect.y, 30f + 260f * (1f - flash), glowPaint)
+
+            fillPaint.color = 0xFFFFFFFF.toInt()
+            fillPaint.alpha = (225 * flash * flash).toInt().coerceIn(0, 255)
+            canvas.drawCircle(effect.x, effect.y, 12f + 54f * flash, fillPaint)
+            fillPaint.color = effect.colorArgb
+        }
+        fillPaint.alpha = 255
+    }
 
     private fun drawEffects(canvas: android.graphics.Canvas, engine: GameEngine) {
         for (effect in engine.effects.items) {
@@ -1983,6 +2077,15 @@ class BattlefieldRenderer {
 
         /** Pixels thrown by one boss or elite death blast. */
         const val SHARDS = 420
+
+        /** World units of the boss-blast shake at its strongest. Slight. */
+        const val BOSS_SHAKE_UNITS = 6f
+
+        /** Share of a boss blast's lifetime the shake lasts. */
+        const val BOSS_SHAKE_PORTION = 0.4f
+
+        /** How far past the farthest corner a boss shard is guaranteed to go. */
+        const val EDGE_MARGIN = 40f
 
         /** How long a backdrop colour change takes to cross-fade. */
         const val TINT_FADE_SECONDS = 2.5f
