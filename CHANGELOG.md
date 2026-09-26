@@ -7,6 +7,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [1.41.0]
+
+### Added
+
+- **SERVER SYSTEMS ENGINEER `[S]`**, the first agent that repairs instead of
+  shooting. It restores 1 CORE-SERVER integrity every 30 seconds of a running
+  wave, from any node on the map, and a green **+ +** floats above the core on
+  each repair. The timer does not run in the break between waves, in the boss
+  warning, or while paused. Levels shorten it, down to about 10 seconds at
+  level 100. ◇ 500, four maximum, never heals past full integrity.
+- It unlocks only by **reaching wave 100 on NETWORK PERIMETER in NETWORK
+  DEFENCE mode** (the beginner level). Until then it shows the lock and that
+  requirement. A new per-level best-wave record tracks it; existing saves are
+  seeded from the records they already have.
+
 ## [1.40.1]
 
 ### Fixed

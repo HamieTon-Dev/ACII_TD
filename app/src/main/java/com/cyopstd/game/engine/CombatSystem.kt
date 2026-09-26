@@ -64,6 +64,11 @@ class CombatSystem(private val engine: GameEngine, private val random: Random) {
             if (agent.upgradeFlash > 0f) agent.upgradeFlash -= dt
             agent.tickJam(dt)
 
+            if (agent.type.healsServer) {
+                tickRepair(agent, dt)
+                continue
+            }
+
             if (agent.type == AgentType.TARPIT) applyTarpitField(agent)
 
             if (agent.cooldownRemaining > 0f) {
@@ -76,6 +81,26 @@ class CombatSystem(private val engine: GameEngine, private val random: Random) {
                 agent.cooldownRemaining = agent.effectiveCooldown()
                 agent.fireFlash = FIRE_FLASH_SECONDS
             }
+        }
+    }
+
+    /**
+     * SERVER SYSTEMS ENGINEER: repairs CORE-SERVER on a timer.
+     *
+     * It never targets, so it needs no range and works from any node. The
+     * timer counts only while a wave is running — not in the break, not in
+     * the boss warning, and not while paused (a paused engine does not step at
+     * all). [Agent.cooldownRemaining] is reused as the elapsed time, and a
+     * repair at full integrity is simply skipped.
+     */
+    private fun tickRepair(agent: Agent, dt: Float) {
+        if (engine.phase != RunPhase.IN_WAVE) return
+        agent.cooldownRemaining += dt
+        val interval = com.cyopstd.game.core.Balance.engineerHealInterval(agent.level)
+        if (agent.cooldownRemaining < interval) return
+        agent.cooldownRemaining -= interval
+        if (engine.repairServer(com.cyopstd.game.core.Balance.ENGINEER_HEAL_AMOUNT)) {
+            agent.fireFlash = FIRE_FLASH_SECONDS
         }
     }
 

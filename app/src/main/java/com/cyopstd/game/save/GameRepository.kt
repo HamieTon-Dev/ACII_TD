@@ -80,6 +80,7 @@ class GameRepository(private val store: DataStore<Preferences>) {
             PlayerStats(
                 highestWave = prefs[Keys.HIGHEST_WAVE] ?: 0,
                 highestWaveHackAi = prefs[Keys.HIGHEST_WAVE_HACK_AI] ?: 0,
+                highestWaveBeginner = beginnerBest(prefs),
                 totalAttacksBlocked = (prefs[Keys.TOTAL_PACKETS] ?: 0).toLong(),
                 totalBossesDefeated = (prefs[Keys.TOTAL_BOSSES] ?: 0).toLong(),
                 totalCryptoEarned = (prefs[Keys.TOTAL_CRYPTO] ?: 0).toLong(),
@@ -271,16 +272,12 @@ class GameRepository(private val store: DataStore<Preferences>) {
          * so a run whose mode is somehow unknown is counted as the standard
          * one rather than quietly unlocking the second level.
          */
-        modeId: String = GameMode.STANDARD.id
+        modeId: String = GameMode.STANDARD.id,
+        /** Which level, by `GameMap.id`; null when unknown, which never counts as the beginner level. */
+        mapId: String? = null
     ) {
         writeSafely { prefs ->
-            val bestWave = prefs[Keys.HIGHEST_WAVE] ?: 0
-            if (waveReached > bestWave) prefs[Keys.HIGHEST_WAVE] = waveReached
-            if (modeId == GameMode.HACK_AI.id &&
-                waveReached > (prefs[Keys.HIGHEST_WAVE_HACK_AI] ?: 0)
-            ) {
-                prefs[Keys.HIGHEST_WAVE_HACK_AI] = waveReached
-            }
+            raiseRecords(prefs, waveReached, modeId, mapId)
 
             prefs[Keys.TOTAL_PACKETS] = (prefs[Keys.TOTAL_PACKETS] ?: 0) + attacksBlocked
             prefs[Keys.TOTAL_BOSSES] = (prefs[Keys.TOTAL_BOSSES] ?: 0) + bossesDefeated
@@ -308,14 +305,56 @@ class GameRepository(private val store: DataStore<Preferences>) {
         }
     }
 
-    suspend fun updateHighestWave(wave: Int, modeId: String = GameMode.STANDARD.id) {
-        writeSafely { prefs ->
-            if (wave > (prefs[Keys.HIGHEST_WAVE] ?: 0)) prefs[Keys.HIGHEST_WAVE] = wave
-            if (modeId == GameMode.HACK_AI.id &&
-                wave > (prefs[Keys.HIGHEST_WAVE_HACK_AI] ?: 0)
-            ) {
-                prefs[Keys.HIGHEST_WAVE_HACK_AI] = wave
-            }
+    suspend fun updateHighestWave(
+        wave: Int,
+        modeId: String = GameMode.STANDARD.id,
+        mapId: String? = null
+    ) {
+        writeSafely { prefs -> raiseRecords(prefs, wave, modeId, mapId) }
+    }
+
+    /** Raise every best-wave record [wave] counts toward; never lowers one. */
+    private fun raiseRecords(
+        prefs: androidx.datastore.preferences.core.MutablePreferences,
+        wave: Int,
+        modeId: String,
+        mapId: String?
+    ) {
+        // Pin the seed first: it is read from the other records, which the
+        // lines below may be about to raise with a wave from another level.
+        if (prefs[Keys.HIGHEST_WAVE_BEGINNER] == null) {
+            prefs[Keys.HIGHEST_WAVE_BEGINNER] = beginnerBest(prefs)
+        }
+        if (wave > (prefs[Keys.HIGHEST_WAVE] ?: 0)) prefs[Keys.HIGHEST_WAVE] = wave
+        if (modeId == GameMode.HACK_AI.id &&
+            wave > (prefs[Keys.HIGHEST_WAVE_HACK_AI] ?: 0)
+        ) {
+            prefs[Keys.HIGHEST_WAVE_HACK_AI] = wave
+        }
+        if (mapId != null && AgentType.isBeginnerLevel(mapId, modeId) &&
+            wave > beginnerBest(prefs)
+        ) {
+            prefs[Keys.HIGHEST_WAVE_BEGINNER] = wave
+        }
+    }
+
+    /**
+     * The best wave on the beginner level (NETWORK PERIMETER, NETWORK
+     * DEFENCE), which alone unlocks the SERVER SYSTEMS ENGINEER.
+     *
+     * Saves from before this record existed are seeded from what they prove.
+     * Until HACK:AI is played the only level and mode available are the
+     * beginner ones, so the lifetime best *is* the beginner best. Once HACK:AI
+     * has been played, the player must have cleared wave 100 on the beginner
+     * level to open it, so 100 is a floor that is certainly true.
+     */
+    private fun beginnerBest(prefs: Preferences): Int {
+        prefs[Keys.HIGHEST_WAVE_BEGINNER]?.let { return it }
+        val lifetime = prefs[Keys.HIGHEST_WAVE] ?: 0
+        return if ((prefs[Keys.HIGHEST_WAVE_HACK_AI] ?: 0) > 0) {
+            lifetime.coerceAtMost(GameMode.HACK_AI.unlockAtWave)
+        } else {
+            lifetime
         }
     }
 
@@ -386,6 +425,7 @@ class GameRepository(private val store: DataStore<Preferences>) {
 
         val HIGHEST_WAVE = intPreferencesKey("highest_wave")
         val HIGHEST_WAVE_HACK_AI = intPreferencesKey("highest_wave_hack_ai")
+        val HIGHEST_WAVE_BEGINNER = intPreferencesKey("highest_wave_beginner")
         val TOTAL_PACKETS = intPreferencesKey("total_attacks")
         val TOTAL_BOSSES = intPreferencesKey("total_bosses")
         val TOTAL_CRYPTO = intPreferencesKey("total_crypto")

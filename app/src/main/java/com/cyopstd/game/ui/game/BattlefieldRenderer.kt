@@ -2002,6 +2002,8 @@ class BattlefieldRenderer {
         // The hats are named for their colour, so they are drawn in it.
         AgentType.REDHAT -> colRed
         AgentType.BLUEHAT -> colBlue
+        // Green, like the "+ +" it floats over the core.
+        AgentType.SERVER_SYSTEMS_ENGINEER -> colGreen
     }
 
     /**
