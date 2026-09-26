@@ -55,14 +55,15 @@ object TutorialScript {
     const val CORE_INTEGRITY = 1
     const val WAVE_READOUT = 2
     const val CRYPTO_READOUT = 3
-    const val BRIEFING_OFFER = 4
-    const val BRIEFING = 5
-    const val OPEN_ROSTER = 6
-    const val PICK_FIREWALL = 7
-    const val PLACE_FIREWALLS = 8
-    const val PICK_TARPIT = 9
-    const val PLACE_TARPITS = 10
-    const val START_WAVE = 11
+    const val PINCH_ZOOM = 4
+    const val BRIEFING_OFFER = 5
+    const val BRIEFING = 6
+    const val OPEN_ROSTER = 7
+    const val PICK_FIREWALL = 8
+    const val PLACE_FIREWALLS = 9
+    const val PICK_TARPIT = 10
+    const val PLACE_TARPITS = 11
+    const val START_WAVE = 12
 
     /** How many of each the guided run insists on, as the owner asked. */
     const val REQUIRED_FIREWALLS = 2
@@ -101,6 +102,16 @@ object TutorialScript {
             body = "Money earned to buy agents to defend server. Crypto◇ earned " +
                 "for every kill and every wave completed.",
             target = TutorialTarget.CRYPTO_READOUT
+        ),
+        // Pinch-to-zoom shipped in 1.34.0 and nothing in the game said so:
+        // "users don't know about this unless we tell them" (owner,
+        // 2026-09-26). Taught here, just before the first placements, because
+        // zooming in is what makes a small phone's nodes easy to hit.
+        TutorialStep(
+            title = "ZOOM THE BATTLEFIELD",
+            body = "Pinch with two fingers to zoom in on the board — nodes are " +
+                "easier to tap up close. While zoomed, drag with one finger to " +
+                "move around. Pinch all the way out to see the whole board again."
         ),
         TutorialStep(
             title = "KNOW WHAT IS COMING?",

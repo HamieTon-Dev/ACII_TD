@@ -427,6 +427,18 @@ enum class AgentType(
     /** Agents available from the very first run. */
     val unlockedByDefault: Boolean get() = unlockWave <= 0
 
+    /**
+     * How to unlock this agent, in words, for the lock pop-up.
+     *
+     * The one place the requirement is phrased. Every agent today unlocks by
+     * reaching a wave on any level; an agent restricted to a map or a mode
+     * (see FEATURE_BACKLOG §R1) changes its wording here and every screen
+     * follows.
+     */
+    val unlockRequirement: String
+        get() = if (unlockedByDefault) "Available from the start."
+        else "Unlock this agent by reaching wave $unlockWave on any level."
+
     fun statsAtLevel(level: Int): AgentStats {
         val steps = (level - 1).coerceIn(0, Balance.MAX_AGENT_LEVEL - 1)
         return AgentStats(
@@ -464,6 +476,17 @@ enum class AgentType(
 
     companion object {
         val starters: List<AgentType> = entries.filter { it.unlockedByDefault }
+
+        /**
+         * Every agent a player who has reached [highestWave] has earned.
+         *
+         * Unlocks are "reach wave N", so this is the source of truth: the
+         * stored set is a record of it, not a replacement for it. A save that
+         * lost an unlock (the wave-30 race), or that predates an agent being
+         * added, is repaired by this rather than needing the wave played again.
+         */
+        fun earnedBy(highestWave: Int): List<AgentType> =
+            entries.filter { it.unlockWave in 1..highestWave }
 
         /** Catalog order used by the deployment panel and the AGENTS screen. */
         val catalog: List<AgentType> = entries.sortedBy { it.unlockWave }

@@ -123,7 +123,11 @@ data class PlayerProgress(
     /** Purchased CORE FIRMWARE level; a permanent damage multiplier. */
     val firmwareLevel: Int = 0,
     /** Lifetime € earned, for the statistics screen. */
-    val lifetimeBudgetEarned: Long = 0
+    val lifetimeBudgetEarned: Long = 0,
+    /** The main-menu tour has been shown (or skipped). */
+    val menuGuideSeen: Boolean = false,
+    /** The FIRMWARE screen's first-visit explainer has been shown (or skipped). */
+    val firmwareGuideSeen: Boolean = false
 )
 
 /**

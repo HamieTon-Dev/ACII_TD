@@ -670,6 +670,8 @@ class GameEngineTest {
         val engine = newEngine()
         val unlocked = mutableListOf<AgentType>()
         engine.onAgentUnlocked = { unlocked += it }
+        // As the view model does: once announced, an agent is unlocked.
+        engine.isAgentUnlocked = { it.unlockedByDefault || it in unlocked }
         engine.deployStrongDefence()
 
         repeat(10) {
@@ -684,6 +686,37 @@ class GameEngineTest {
             "no duplicate unlock notifications",
             unlocked.size, unlocked.distinct().size
         )
+    }
+
+    @Test
+    fun `an unlock that did not stick is offered again at the next wave`() {
+        // The wave-30 bug: the unlock was announced but lost before it was
+        // saved. With an exact-wave check it was never offered again; now any
+        // agent due by the current wave that is still locked is re-offered.
+        val engine = newEngine()
+        val offered = mutableListOf<AgentType>()
+        engine.onAgentUnlocked = { offered += it }
+        engine.isAgentUnlocked = { it.unlockedByDefault } // nothing ever sticks
+        engine.deployStrongDefence()
+
+        repeat(4) {
+            if (engine.phase == RunPhase.GAME_OVER) return@repeat
+            engine.startNextWave()
+            engine.runWaveToCompletion()
+        }
+
+        assertEquals("IPS offered at wave 3 and again at wave 4", 2, offered.count { it == AgentType.IPS })
+    }
+
+    @Test
+    fun `every wave-30 agent is earned by wave 30 and none before`() {
+        val wave30 = AgentType.entries.filter { it.unlockWave == 30 }.toSet()
+        assertTrue(AgentType.QUANTUM_DEFENDER in wave30)
+        assertTrue(AgentType.REDHAT in wave30)
+        assertTrue(AgentType.BLUEHAT in wave30)
+        assertTrue(AgentType.earnedBy(30).containsAll(wave30))
+        assertTrue(AgentType.earnedBy(29).none { it in wave30 })
+        assertTrue("starters are not 'earned'", AgentType.earnedBy(100).none { it.unlockedByDefault })
     }
 
     // ----------------------------------------------------------- game speed

@@ -7,6 +7,76 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [1.40.0]
+
+versionCode 48. Everything below the owner asked for on 2026-09-26 (§U of the
+backlog), on top of the 1.39.2 fixes further down, which ship in this same
+build.
+
+### Added
+
+- **Boss briefing before boss waves.** In the break before a boss wave, a
+  **NEXT BOSS** button sits where BOSS appears mid-fight. It opens who is coming
+  (every boss, with its health, armour and speed), any modifiers, what each is
+  **weak to** and what to **watch out for**. Every weakness is read from the
+  damage code's own tables, and the boss shown is the boss that arrives. The
+  countdown keeps running while it is open.
+- **Lock on locked agents.** The deploy bar shows 🔒 LOCKED instead of a bare
+  wave number; tapping a locked agent explains exactly how to unlock it and
+  how close you are.
+- **Main-menu tour** on first launch, including "scroll for more", and a
+  **FIRMWARE explainer** the first time that screen opens. Both can be replayed
+  from SETTINGS → HELP → REPLAY GUIDES.
+- **Pinch-to-zoom** is now taught in the first-run tutorial.
+- **AUTO START BOSS WAVES** setting, off by default: boss waves wait for you.
+
+### Changed
+
+- **RESTART asks first.** "Are you sure you want to restart your run?" YES / NO.
+- **Mixed bosses.** A wave with several bosses fields different types where
+  the map allows it.
+- **+10 upgrade** is greyed out unless all ten levels are affordable.
+
+---
+
+## [1.39.2]
+
+### Fixed — QUANTUM and RED HAT did not unlock at wave 30
+
+Reported by the owner: the agent bar said WAVE 30, wave 30 was reached, and
+QUANTUM and RED HAT stayed locked.
+
+Three agents unlock at wave 30 — QUANTUM, RED HAT and BLUE HAT — and each
+unlock was saved by its own coroutine that read the stored set, added one
+agent and wrote it back. All three read the same old set, so the last write
+won and only BLUE HAT was kept. The game then reloaded that set over its own
+in-memory copy, so the other two vanished mid-run.
+
+- The save now reads and writes inside one atomic DataStore edit.
+- Unlocks follow the best wave reached: any agent due by your best wave is
+  unlocked on load. **Saves already damaged by this are repaired on the next
+  launch**, with no need to play wave 30 again.
+- A wave start now unlocks every agent due by that wave that is still locked,
+  not only those due exactly then.
+
+Reproduced first: the new `GameRepositoryTest` case fails on the old code
+with "QUANTUM was lost".
+
+### Backlog
+
+Three new requests logged in `FEATURE_BACKLOG.md` §U: lock glyph and unlock
+pop-up for locked agents, a main-menu tour and FIRMWARE explainer, and a boss
+briefing before boss waves.
+
+### Changed — CONTINUE leads the main menu when there is a saved run
+
+With a saved run, **CONTINUE** is now the first and green button, and the
+start button below it reads **NEW RUN** — "Start over on … · replaces your
+save", because starting a run does delete the saved one. With no saved run
+the menu is unchanged: PLAY first, CONTINUE greyed out beneath it.
+
+---
+
 ## [1.39.1]
 
 ### Fixed — the Play Games and leaderboard ids never reached the app

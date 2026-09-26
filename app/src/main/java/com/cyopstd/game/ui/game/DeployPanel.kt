@@ -18,6 +18,10 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
@@ -29,8 +33,9 @@ import com.cyopstd.game.ui.theme.Palette
 /**
  * The agent picker. Tap AGENTS, tap an agent, then tap a highlighted node.
  *
- * Locked agents stay visible with their unlock wave shown, because knowing what
- * you are working toward is half the reason to keep playing. Agents you cannot
+ * Locked agents stay visible behind a lock, because knowing what you are
+ * working toward is half the reason to keep playing. Tapping one opens a short
+ * note saying exactly how to unlock it (owner, 2026-09-26). Agents you cannot
  * currently afford are shown dimmed with the cost in red rather than hidden.
  */
 @Composable
@@ -40,8 +45,11 @@ fun DeployPanel(
     selected: AgentType?,
     onSelect: (AgentType) -> Unit,
     onClose: () -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    /** The player's best wave, for the "your best" line in the lock note. */
+    bestWave: Int = 0
 ) {
+    var lockedInfo by remember { mutableStateOf<AgentType?>(null) }
     Column(
         modifier = modifier
             .fillMaxWidth()
@@ -73,6 +81,11 @@ fun DeployPanel(
         AsciiRule(color = Palette.CyanDim)
         Spacer(Modifier.height(8.dp))
 
+        lockedInfo?.let { type ->
+            LockNote(type = type, bestWave = bestWave, onDismiss = { lockedInfo = null })
+            Spacer(Modifier.height(8.dp))
+        }
+
         LazyRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
             items(AgentType.catalog, key = { it.name }) { type ->
                 val unlocked = type.name in unlockedAgents
@@ -82,7 +95,14 @@ fun DeployPanel(
                     unlocked = unlocked,
                     affordable = affordable,
                     selected = selected == type,
-                    onClick = { onSelect(type) }
+                    onClick = {
+                        if (unlocked) {
+                            lockedInfo = null
+                            onSelect(type)
+                        } else {
+                            lockedInfo = type
+                        }
+                    }
                 )
             }
         }
@@ -187,16 +207,49 @@ private fun AgentCard(
             )
         } else {
             Text(
-                text = "UNLOCKS AT",
-                style = MaterialTheme.typography.labelSmall,
-                color = Palette.TextMuted
-            )
-            Text(
-                text = "WAVE ${type.unlockWave}",
+                text = "\uD83D\uDD12 LOCKED",
                 style = MaterialTheme.typography.labelMedium,
                 color = Palette.Purple
             )
+            Text(
+                text = "TAP FOR DETAILS",
+                style = MaterialTheme.typography.labelSmall,
+                color = Palette.TextMuted
+            )
         }
+    }
+}
+
+/** What a locked agent needs, shown when its card is tapped. */
+@Composable
+private fun LockNote(type: AgentType, bestWave: Int, onDismiss: () -> Unit) {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .background(Palette.SurfaceRaised, RoundedCornerShape(4.dp))
+            .border(1.dp, Palette.Purple.copy(alpha = 0.7f), RoundedCornerShape(4.dp))
+            .padding(10.dp),
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Column(Modifier.weight(1f)) {
+            Text(
+                text = "\uD83D\uDD12 [${type.glyph}] ${type.displayName} \u00B7 LOCKED",
+                style = MaterialTheme.typography.labelMedium,
+                color = Palette.Purple
+            )
+            Text(
+                text = type.unlockRequirement,
+                style = MaterialTheme.typography.bodySmall,
+                color = Palette.TextPrimary
+            )
+            Text(
+                text = "Your best: wave $bestWave",
+                style = MaterialTheme.typography.labelSmall,
+                color = Palette.TextMuted
+            )
+        }
+        Spacer(Modifier.width(10.dp))
+        CompactButton(text = "OK", onClick = onDismiss, accent = Palette.Purple)
     }
 }
 

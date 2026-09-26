@@ -29,6 +29,10 @@ data class WavePlan(
     val bossVariant: BossVariant = BossVariant.BREACH
 ) {
     val enemyCount: Int get() = orders.size
+
+    /** Every boss type in this wave, in the order they arrive, without repeats. */
+    val bossVariants: List<BossVariant>
+        get() = orders.filter { it.boss }.map { it.bossVariant }.distinct()
     val duration: Float get() = orders.lastOrNull()?.time ?: 0f
 }
 
@@ -154,10 +158,13 @@ class WaveGenerator(private val random: Random = Random.Default) {
         // Boss routes rotate by cycle, so consecutive boss waves never arrive
         // down the same route and a board built for one side is not a permanent
         // answer. Extra bosses in a cycle take the remaining routes.
-        // Which opponent this is. Rolled once per wave so that two bosses in
-        // the same cycle are the same kind of fight arriving down two routes,
-        // rather than an unreadable pair.
-        val variant = rollVariant(cycle)
+        // Which opponents these are. A wave with more than one boss now
+        // fields different types where the pool allows (owner, 2026-09-26:
+        // "make sure different types of bosses spawn on a wave"); it used to
+        // roll one type for the whole wave. Only repeats once every type
+        // available on this map and cycle is already in the wave.
+        val variants = rollVariants(cycle, bossCount)
+        val variant = variants.first()
 
         val firstLane = (cycle - 1).mod(laneCount)
         for (i in 0 until bossCount) {
@@ -168,7 +175,7 @@ class WaveGenerator(private val random: Random = Random.Default) {
                 elite = false,
                 boss = true,
                 bossModifiers = modifiers,
-                bossVariant = variant
+                bossVariant = variants[i]
             )
         }
 
@@ -182,9 +189,11 @@ class WaveGenerator(private val random: Random = Random.Default) {
         )
     }
 
-    private fun rollVariant(cycle: Int): BossVariant {
+    private fun rollVariants(cycle: Int, count: Int): List<BossVariant> {
         val pool = BossVariant.poolFor(cycle, mapId)
-        return pool.randomOrNull(random) ?: BossVariant.BREACH
+        if (pool.isEmpty()) return List(count) { BossVariant.BREACH }
+        val shuffled = pool.shuffled(random)
+        return List(count) { shuffled[it % shuffled.size] }
     }
 
     private fun rollModifiers(cycle: Int): List<BossModifier> {

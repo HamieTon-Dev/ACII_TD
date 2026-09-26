@@ -1904,8 +1904,11 @@ class BattlefieldRenderer {
         val variant = engine.activeBossVariant
         textPaint.textSize = 30f
         textPaint.color = colOrange
+        // A wave can now field more than one boss type; name them all.
+        val variants = engine.activeBossVariants
         canvas.drawText(
-            "${variant.glyph}  ${variant.displayName}",
+            if (variants.size <= 1) "${variant.glyph}  ${variant.displayName}"
+            else variants.joinToString("  +  ") { "${it.glyph} ${it.displayName}" },
             cx,
             WorldGeometry.HEIGHT * 0.50f,
             textPaint
@@ -1914,7 +1917,12 @@ class BattlefieldRenderer {
         thinTextPaint.textSize = 19f
         thinTextPaint.color = colSecondary
         thinTextPaint.alpha = 235
-        canvas.drawText(variant.signature, cx, WorldGeometry.HEIGHT * 0.555f, thinTextPaint)
+        canvas.drawText(
+            if (variants.size <= 1) variant.signature else "Different bosses, different weaknesses.",
+            cx,
+            WorldGeometry.HEIGHT * 0.555f,
+            thinTextPaint
+        )
         thinTextPaint.alpha = 255
 
         val modifiers = engine.activeBossModifiers

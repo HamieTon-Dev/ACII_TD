@@ -6,6 +6,7 @@ import com.cyopstd.game.save.GameRepository
 import com.cyopstd.game.save.SavedAgent
 import com.cyopstd.game.save.SavedRun
 import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
@@ -168,6 +169,22 @@ class GameRepositoryTest {
         )
         // Starters survive alongside earned unlocks.
         assertTrue(AgentType.FIREWALL.name in progress.unlockedAgents)
+    }
+
+    @Test
+    fun `agents unlocked at the same moment are all kept`() = runTest {
+        // Wave 30 unlocks three agents at once, each saved by its own
+        // coroutine. The old read-then-write kept only the last of them.
+        kotlinx.coroutines.coroutineScope {
+            listOf(AgentType.QUANTUM_DEFENDER, AgentType.REDHAT, AgentType.BLUEHAT)
+                .map { type -> launch(kotlinx.coroutines.Dispatchers.Default) { repository.unlockAgent(type) } }
+                .forEach { it.join() }
+        }
+
+        val unlocked = repository.progress.first().unlockedAgents
+        assertTrue("QUANTUM was lost", AgentType.QUANTUM_DEFENDER.name in unlocked)
+        assertTrue("RED HAT was lost", AgentType.REDHAT.name in unlocked)
+        assertTrue("BLUE HAT was lost", AgentType.BLUEHAT.name in unlocked)
     }
 
     @Test

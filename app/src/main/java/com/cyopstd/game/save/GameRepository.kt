@@ -66,6 +66,7 @@ class GameRepository(private val store: DataStore<Preferences>) {
                 damageNumbers = prefs[Keys.DAMAGE_NUMBERS] ?: true,
                 showAgentRange = prefs[Keys.SHOW_RANGE] ?: true,
                 autoStartWaves = prefs[Keys.AUTO_START] ?: false,
+                autoStartBossWaves = prefs[Keys.AUTO_START_BOSS] ?: false,
                 screenShake = prefs[Keys.SCREEN_SHAKE] ?: true,
                 batterySaver = prefs[Keys.BATTERY_SAVER] ?: false
             )
@@ -99,6 +100,8 @@ class GameRepository(private val store: DataStore<Preferences>) {
             PlayerProgress(
                 unlockedAgents = stored + AgentType.starters.map { it.name },
                 tutorialCompleted = prefs[Keys.TUTORIAL_DONE] ?: false,
+                menuGuideSeen = prefs[Keys.MENU_GUIDE_SEEN] ?: false,
+                firmwareGuideSeen = prefs[Keys.FIRMWARE_GUIDE_SEEN] ?: false,
                 budget = prefs[Keys.BUDGET] ?: 0L,
                 firmwareLevel = prefs[Keys.FIRMWARE_LEVEL] ?: 0,
                 lifetimeBudgetEarned = prefs[Keys.LIFETIME_BUDGET] ?: 0L
@@ -122,6 +125,7 @@ class GameRepository(private val store: DataStore<Preferences>) {
             prefs[Keys.DAMAGE_NUMBERS] = updated.damageNumbers
             prefs[Keys.SHOW_RANGE] = updated.showAgentRange
             prefs[Keys.AUTO_START] = updated.autoStartWaves
+            prefs[Keys.AUTO_START_BOSS] = updated.autoStartBossWaves
             prefs[Keys.SCREEN_SHAKE] = updated.screenShake
             prefs[Keys.BATTERY_SAVER] = updated.batterySaver
         }
@@ -174,15 +178,38 @@ class GameRepository(private val store: DataStore<Preferences>) {
         }
     }
 
+    /**
+     * Records an unlock.
+     *
+     * Read and written inside one `edit`, which DataStore runs atomically.
+     * It used to read the set first and write it afterwards, and three agents
+     * unlock together at wave 30: all three reads saw the old set, each write
+     * added only its own agent, and the last one won. QUANTUM and RED HAT were
+     * lost and only BLUE HAT was kept.
+     */
     suspend fun unlockAgent(type: AgentType) {
-        val current = progress.first().unlockedAgents
-        if (type.name in current) return
-        val merged = (current + type.name).joinToString("|")
-        writeSafely { prefs -> prefs[Keys.UNLOCKED_AGENTS] = merged }
+        writeSafely { prefs ->
+            val current = prefs[Keys.UNLOCKED_AGENTS]
+                ?.split('|')
+                ?.filter { it.isNotBlank() }
+                ?.toSet()
+                ?: emptySet()
+            if (type.name !in current) {
+                prefs[Keys.UNLOCKED_AGENTS] = (current + type.name).joinToString("|")
+            }
+        }
     }
 
     suspend fun setTutorialCompleted(completed: Boolean) {
         writeSafely { prefs -> prefs[Keys.TUTORIAL_DONE] = completed }
+    }
+
+    suspend fun setMenuGuideSeen(seen: Boolean) {
+        writeSafely { prefs -> prefs[Keys.MENU_GUIDE_SEEN] = seen }
+    }
+
+    suspend fun setFirmwareGuideSeen(seen: Boolean) {
+        writeSafely { prefs -> prefs[Keys.FIRMWARE_GUIDE_SEEN] = seen }
     }
 
     /** Bank € BUDGET earned by clearing a ten-wave milestone. */
@@ -349,6 +376,7 @@ class GameRepository(private val store: DataStore<Preferences>) {
         val DAMAGE_NUMBERS = booleanPreferencesKey("damage_numbers")
         val SHOW_RANGE = booleanPreferencesKey("show_range")
         val AUTO_START = booleanPreferencesKey("auto_start")
+        val AUTO_START_BOSS = booleanPreferencesKey("auto_start_boss")
         val SCREEN_SHAKE = booleanPreferencesKey("screen_shake")
         val BATTERY_SAVER = booleanPreferencesKey("battery_saver")
 
@@ -376,6 +404,8 @@ class GameRepository(private val store: DataStore<Preferences>) {
         val FIRMWARE_LEVEL = intPreferencesKey("firmware_level")
         val UNLOCKED_AGENTS = stringPreferencesKey("unlocked_agents")
         val TUTORIAL_DONE = booleanPreferencesKey("tutorial_done")
+        val MENU_GUIDE_SEEN = booleanPreferencesKey("menu_guide_seen")
+        val FIRMWARE_GUIDE_SEEN = booleanPreferencesKey("firmware_guide_seen")
         val SAVED_RUN = stringPreferencesKey("saved_run")
 
         // --- store, identity and the local leaderboard ---------------------

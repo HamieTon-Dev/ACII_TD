@@ -1,6 +1,8 @@
 package com.cyopstd.game.ui.menu
 
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -41,13 +43,17 @@ fun FirmwareScreen(
     lifetimeBudgetEarned: Long,
     backgroundAnimation: Boolean,
     onBuy: (levels: Int) -> Unit,
-    onBack: () -> Unit
+    onBack: () -> Unit,
+    /** Show the first-visit explainer (owner, 2026-09-26). */
+    showGuide: Boolean = false,
+    onGuideDone: () -> Unit = {}
 ) {
     val nextCost = Balance.firmwareCost(firmwareLevel)
     val affordable = Balance.firmwareLevelsAffordable(firmwareLevel, budget)
     val maxed = firmwareLevel >= Balance.MAX_FIRMWARE_LEVEL
     val canAffordOne = !maxed && budget >= nextCost
 
+    Box(Modifier.fillMaxSize()) {
     ScreenScaffold(
         title = "CORE FIRMWARE",
         subtitle = "Permanent damage upgrades · applies to every agent, every match",
@@ -212,6 +218,17 @@ fun FirmwareScreen(
                 Spacer(Modifier.height(12.dp))
             }
         }
+    }
+
+    if (showGuide) {
+        com.cyopstd.game.ui.common.GuideCard(
+            steps = com.cyopstd.game.ui.common.FirmwareGuide.steps,
+            onFinished = onGuideDone,
+            modifier = Modifier
+                .align(androidx.compose.ui.Alignment.BottomEnd)
+                .padding(16.dp)
+        )
+    }
     }
 }
 

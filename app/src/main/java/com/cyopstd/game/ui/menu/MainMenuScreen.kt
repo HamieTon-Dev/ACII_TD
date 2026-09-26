@@ -70,7 +70,10 @@ fun MainMenuScreen(
     onStatistics: () -> Unit,
     onSettings: () -> Unit,
     onAbout: () -> Unit,
-    onExit: () -> Unit
+    onExit: () -> Unit,
+    /** Show the one-time menu tour (owner, 2026-09-26). */
+    showGuide: Boolean = false,
+    onGuideDone: () -> Unit = {}
 ) {
     Box(
         modifier = Modifier
@@ -213,27 +216,53 @@ fun MainMenuScreen(
                     .verticalScroll(rememberScrollState()),
                 verticalArrangement = Arrangement.Center
             ) {
-                BastionButton(
-                    text = "PLAY",
-                    // Choosing a mode or a level and forgetting is a wasted
-                    // run, so the button says exactly what is about to start.
-                    subtitle = if (selectedMode == GameMode.STANDARD) {
-                        "Start a run on ${selectedMap.displayName}"
-                    } else {
-                        "${selectedMode.runName} on ${selectedMap.displayName}"
-                    },
-                    leadingGlyph = "[>]",
-                    accent = Palette.Green,
-                    onClick = onPlay
-                )
-                Spacer(Modifier.height(10.dp))
-                BastionButton(
-                    text = "CONTINUE",
-                    subtitle = if (hasSavedRun) "Resume your saved session" else "No saved session",
-                    leadingGlyph = "[=]",
-                    enabled = hasSavedRun,
-                    onClick = onContinue
-                )
+                // Choosing a mode or a level and forgetting is a wasted run,
+                // so the start button says exactly what is about to start.
+                val runDescription = if (selectedMode == GameMode.STANDARD) {
+                    "on ${selectedMap.displayName}"
+                } else {
+                    "${selectedMode.runName} on ${selectedMap.displayName}"
+                }
+                // With a saved run, resuming it is the likely intent, so
+                // CONTINUE leads and is the green button, and the start button
+                // becomes NEW RUN and says it replaces the save (owner,
+                // 2026-09-26). With no save, PLAY leads as it always has.
+                if (hasSavedRun) {
+                    BastionButton(
+                        text = "CONTINUE",
+                        subtitle = "Resume your saved session",
+                        leadingGlyph = "[=]",
+                        accent = Palette.Green,
+                        onClick = onContinue
+                    )
+                    Spacer(Modifier.height(10.dp))
+                    BastionButton(
+                        text = "NEW RUN",
+                        subtitle = "Start over ${runDescription} \u00B7 replaces your save",
+                        leadingGlyph = "[>]",
+                        onClick = onPlay
+                    )
+                } else {
+                    BastionButton(
+                        text = "PLAY",
+                        subtitle = if (selectedMode == GameMode.STANDARD) {
+                            "Start a run ${runDescription}"
+                        } else {
+                            runDescription
+                        },
+                        leadingGlyph = "[>]",
+                        accent = Palette.Green,
+                        onClick = onPlay
+                    )
+                    Spacer(Modifier.height(10.dp))
+                    BastionButton(
+                        text = "CONTINUE",
+                        subtitle = "No saved session",
+                        leadingGlyph = "[=]",
+                        enabled = false,
+                        onClick = onContinue
+                    )
+                }
                 Spacer(Modifier.height(10.dp))
                 BastionButton(
                     text = "AGENTS",
@@ -324,6 +353,16 @@ fun MainMenuScreen(
                 )
                 Spacer(Modifier.height(8.dp))
             }
+        }
+
+        if (showGuide) {
+            com.cyopstd.game.ui.common.GuideCard(
+                steps = com.cyopstd.game.ui.common.MenuGuide.steps,
+                onFinished = onGuideDone,
+                modifier = Modifier
+                    .align(Alignment.BottomStart)
+                    .padding(16.dp)
+            )
         }
     }
 }

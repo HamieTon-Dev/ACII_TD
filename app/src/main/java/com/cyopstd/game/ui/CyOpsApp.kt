@@ -102,6 +102,8 @@ fun CyOpsApp(
                 LaunchedEffect(Unit) { viewModel.onMenuShown() }
 
                 MainMenuScreen(
+                    showGuide = !viewModel.menuGuideSeen,
+                    onGuideDone = viewModel::markMenuGuideSeen,
                     hasSavedRun = viewModel.hasSavedRun,
                     stats = viewModel.stats,
                     budget = viewModel.budget,
@@ -175,7 +177,9 @@ fun CyOpsApp(
                     lifetimeBudgetEarned = viewModel.lifetimeBudgetEarned,
                     backgroundAnimation = viewModel.settings.backgroundAnimation,
                     onBuy = { levels -> viewModel.buyFirmware(levels) },
-                    onBack = { viewModel.playClick(); screen = Screen.MainMenu }
+                    onBack = { viewModel.playClick(); screen = Screen.MainMenu },
+                    showGuide = !viewModel.firmwareGuideSeen,
+                    onGuideDone = viewModel::markFirmwareGuideSeen
                 )
             }
 
@@ -308,7 +312,8 @@ fun CyOpsApp(
                         // is inside one; anything else means the SDK is not in
                         // a position to show it anyway.
                         (context as? android.app.Activity)?.let(viewModel::showPrivacyOptions)
-                    }
+                    },
+                    onReplayGuides = viewModel::replayGuides
                 )
             }
 
