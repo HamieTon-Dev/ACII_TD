@@ -18,6 +18,13 @@ data class GameSettings(
      * (owner, 2026-09-26). Only matters when [autoStartWaves] is on.
      */
     val autoStartBossWaves: Boolean = false,
+    /**
+     * How opaque the in-game pop-up panels are (boss briefing, boss dossier,
+     * agent panel, deploy bar), so the board shows through them (owner,
+     * 2026-09-26). Backgrounds only: text stays solid. Kept within
+     * [MIN_PANEL_OPACITY]..1.
+     */
+    val panelOpacity: Float = DEFAULT_PANEL_OPACITY,
     val screenShake: Boolean = true,
     val batterySaver: Boolean = false,
     /**
@@ -29,3 +36,9 @@ data class GameSettings(
      */
     val menuBootSequence: Boolean = true
 )
+
+/** Below this a panel's text fights the board behind it. */
+const val MIN_PANEL_OPACITY = 0.4f
+
+/** 35% see-through: inside the 30-50% the owner asked for. */
+const val DEFAULT_PANEL_OPACITY = 0.65f

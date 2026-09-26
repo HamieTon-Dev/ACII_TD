@@ -88,7 +88,7 @@ fun BossDossierPanel(
             // vertical weight to keep CLOSE pinned under it, and a weight
             // inside a column of unbounded height collapses to nothing.
             .height(PANEL_HEIGHT)
-            .background(Palette.Surface.copy(alpha = 0.97f), RoundedCornerShape(6.dp))
+            .background(Palette.Surface.copy(alpha = LocalPanelOpacity.current), RoundedCornerShape(6.dp))
             .border(1.dp, Palette.Red.copy(alpha = 0.6f), RoundedCornerShape(6.dp))
             .padding(10.dp),
         horizontalArrangement = Arrangement.spacedBy(10.dp)

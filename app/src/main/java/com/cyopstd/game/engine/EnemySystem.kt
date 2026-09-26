@@ -273,8 +273,9 @@ class EnemySystem(private val engine: GameEngine, private val random: Random) {
 
     /** Called by [ProjectileSystem] when an enemy's health reaches zero. */
     fun onEnemyDestroyed(enemy: Enemy) {
-        val reward = enemy.reward
-        engine.economySystem().award(reward)
+        // What was actually credited, firmware bonus included, so the "+◇"
+        // popup shows what the player really got.
+        val reward = engine.economySystem().award(enemy.reward)
         engine.effectSystem().spawnDeath(enemy.x, enemy.y, enemy.isBoss)
 
         // Bosses and elites go out with a bang. Ordinary traffic does not, or

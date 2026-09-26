@@ -309,6 +309,20 @@ object Balance {
     fun firmwareDamageMultiplier(level: Int): Float =
         1f + level.coerceIn(0, MAX_FIRMWARE_LEVEL) * FIRMWARE_DAMAGE_PER_LEVEL
 
+    /**
+     * Crypto bonus per firmware level: every level also raises the crypto a
+     * run pays out (owner, 2026-09-26: "a passive multiplier to money earned in
+     * rounds that scales with levels"). Half the damage rate, because money
+     * compounds -- more crypto buys more agents -- and capped at double.
+     */
+    const val FIRMWARE_CRYPTO_PER_LEVEL = 0.0025f
+    const val FIRMWARE_CRYPTO_MAX_BONUS = 1.0f
+
+    /** Multiplier on crypto earned in a run (kills and wave bonuses), from firmware. */
+    fun firmwareCryptoMultiplier(level: Int): Float =
+        1f + (level.coerceIn(0, MAX_FIRMWARE_LEVEL) * FIRMWARE_CRYPTO_PER_LEVEL)
+            .coerceAtMost(FIRMWARE_CRYPTO_MAX_BONUS)
+
     /** € cost to go from firmware [level] to [level] + 1. */
     fun firmwareCost(level: Int): Int =
         (3 + level.coerceAtLeast(0)) * BUDGET_SCALE

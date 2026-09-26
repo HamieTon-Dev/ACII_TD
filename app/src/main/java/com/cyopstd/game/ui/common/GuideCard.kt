@@ -121,8 +121,10 @@ object FirmwareGuide {
             ),
             GuideStep(
                 "INSTALLED FIRMWARE",
-                "Each firmware level adds +$percentPerLevel% damage to every agent, " +
-                    "in every future match. It never goes away."
+                "Each firmware level adds +$percentPerLevel% damage to every agent " +
+                    "and +${"%.2f".format(Balance.FIRMWARE_CRYPTO_PER_LEVEL * 100)}% " +
+                    "\u25C7 crypto earned in runs (up to double), in every future " +
+                    "match. It never goes away."
             ),
             GuideStep(
                 "INSTALL",

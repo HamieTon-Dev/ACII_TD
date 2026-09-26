@@ -114,11 +114,26 @@ fun MainMenuScreen(
                 AsciiRule(color = Palette.CyanDim)
                 Spacer(Modifier.height(14.dp))
 
-                Text(
-                    text = TITLE_ART,
-                    style = MaterialTheme.typography.bodySmall,
-                    color = Palette.CyanDim
-                )
+                // Never wraps: a wrapped line breaks the box apart. On a column
+                // too narrow for it at the normal size, the text shrinks to fit.
+                androidx.compose.foundation.layout.BoxWithConstraints(Modifier.fillMaxWidth()) {
+                    val base = MaterialTheme.typography.bodySmall
+                    val widest = TITLE_ART.lines().maxOf { it.length }
+                    // A monospace glyph is about 0.62 em wide.
+                    val fitting = with(androidx.compose.ui.platform.LocalDensity.current) {
+                        (maxWidth.toPx() / (widest * 0.62f)).toSp()
+                    }
+                    Text(
+                        text = TITLE_ART,
+                        style = base.copy(
+                            fontSize = if (fitting < base.fontSize) fitting else base.fontSize,
+                            lineHeight = if (fitting < base.fontSize) fitting * 1.3f else base.lineHeight
+                        ),
+                        color = Palette.CyanDim,
+                        softWrap = false,
+                        maxLines = TITLE_ART.lines().size
+                    )
+                }
 
                 Spacer(Modifier.height(16.dp))
 
@@ -508,9 +523,18 @@ private fun playsOfflineCaption(adsRemoved: Boolean): String = buildString {
     if (adsRemoved) append(" \u00B7 AD-FREE")
 }
 
-private val TITLE_ART = """
-    >>> ---- LANE 1 ---------------->  +==============+
-    >>> ---- LANE 2 ---------------->  |  CORE-SERVER |
-    >>> ---- LANE 3 ---------------->  |  . . . . . . |
-                                       +==============+
-""".trimIndent()
+/**
+ * The lanes feeding the server, drawn in text.
+ *
+ * Each lane arrow lands on a row *inside* the box, and every row inside is
+ * centred and exactly as wide as the border, so the right-hand edge lines up
+ * (owner, 2026-09-26: the core-server art was misaligned). `MainMenuArtTest`
+ * checks both, so an edit that breaks the box fails a test.
+ */
+internal val TITLE_ART = listOf(
+    "                                  +===============+",
+    ">>> ---- LANE 1 ----------------> |  CORE-SERVER  |",
+    ">>> ---- LANE 2 ----------------> |  . . . . . .  |",
+    ">>> ---- LANE 3 ----------------> |  ## ## ## ##  |",
+    "                                  +===============+"
+).joinToString("\n")

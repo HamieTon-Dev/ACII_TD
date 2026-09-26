@@ -15,7 +15,11 @@ class EffectSystem(private val engine: GameEngine, private val random: Random) {
     fun update(dt: Float) {
         for (effect in engine.effects.items) {
             if (!effect.active) continue
-            effect.age += dt
+            // The boss blast runs on real time, so it looks the same at 1x and
+            // at 4x (owner, 2026-09-26: "the animations are multiplied by the
+            // speed"). Purely visual, so nothing in the simulation depends on
+            // how long it lasts. Everything else keeps game time.
+            effect.age += if (effect.onRealTime) dt / engine.simulationSpeed else dt
             effect.y += effect.velocityY * dt
             if (effect.age >= effect.lifetime) effect.reset()
         }

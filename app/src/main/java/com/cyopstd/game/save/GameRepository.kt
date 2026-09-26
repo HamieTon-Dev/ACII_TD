@@ -61,6 +61,8 @@ class GameRepository(private val store: DataStore<Preferences>) {
             GameSettings(
                 musicVolume = prefs[Keys.MUSIC_VOLUME] ?: 0.5f,
                 sfxVolume = prefs[Keys.SFX_VOLUME] ?: 0.8f,
+                panelOpacity = (prefs[Keys.PANEL_OPACITY] ?: DEFAULT_PANEL_OPACITY)
+                    .coerceIn(MIN_PANEL_OPACITY, 1f),
                 vibrationEnabled = prefs[Keys.VIBRATION] ?: true,
                 backgroundAnimation = prefs[Keys.BACKGROUND_ANIMATION] ?: true,
                 damageNumbers = prefs[Keys.DAMAGE_NUMBERS] ?: true,
@@ -120,6 +122,7 @@ class GameRepository(private val store: DataStore<Preferences>) {
         writeSafely { prefs ->
             prefs[Keys.MUSIC_VOLUME] = updated.musicVolume.coerceIn(0f, 1f)
             prefs[Keys.SFX_VOLUME] = updated.sfxVolume.coerceIn(0f, 1f)
+            prefs[Keys.PANEL_OPACITY] = updated.panelOpacity.coerceIn(MIN_PANEL_OPACITY, 1f)
             prefs[Keys.VIBRATION] = updated.vibrationEnabled
             prefs[Keys.BACKGROUND_ANIMATION] = updated.backgroundAnimation
             prefs[Keys.DAMAGE_NUMBERS] = updated.damageNumbers
@@ -371,6 +374,7 @@ class GameRepository(private val store: DataStore<Preferences>) {
     private object Keys {
         val MUSIC_VOLUME = floatPreferencesKey("music_volume")
         val SFX_VOLUME = floatPreferencesKey("sfx_volume")
+        val PANEL_OPACITY = floatPreferencesKey("panel_opacity")
         val VIBRATION = booleanPreferencesKey("vibration")
         val BACKGROUND_ANIMATION = booleanPreferencesKey("background_animation")
         val DAMAGE_NUMBERS = booleanPreferencesKey("damage_numbers")

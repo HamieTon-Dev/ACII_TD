@@ -940,6 +940,9 @@ class GameViewModel @JvmOverloads constructor(
                 engine.firmwareDamageMultiplier = Balance.firmwareDamageMultiplier(
                     loaded.firmwareLevel
                 )
+                engine.firmwareCryptoMultiplier = Balance.firmwareCryptoMultiplier(
+                    loaded.firmwareLevel
+                )
             }
         }
         collectJobs += viewModelScope.launch {
@@ -977,6 +980,7 @@ class GameViewModel @JvmOverloads constructor(
         engine.batterySaver = settings.batterySaver
         engine.showDamageNumbers = settings.damageNumbers
         engine.firmwareDamageMultiplier = Balance.firmwareDamageMultiplier(firmwareLevel)
+        engine.firmwareCryptoMultiplier = Balance.firmwareCryptoMultiplier(firmwareLevel)
         lastPhaseSeen = null
         selection = BattlefieldSelection()
         showDeployPanel = false
@@ -1046,6 +1050,7 @@ class GameViewModel @JvmOverloads constructor(
             engine.batterySaver = settings.batterySaver
             engine.showDamageNumbers = settings.damageNumbers
             engine.firmwareDamageMultiplier = Balance.firmwareDamageMultiplier(firmwareLevel)
+            engine.firmwareCryptoMultiplier = Balance.firmwareCryptoMultiplier(firmwareLevel)
             lastPhaseSeen = null
             selection = BattlefieldSelection()
             showDeployPanel = false
@@ -1709,6 +1714,7 @@ class GameViewModel @JvmOverloads constructor(
             firmwareLevel = 0
             lifetimeBudgetEarned = 0L
             engine.firmwareDamageMultiplier = 1f
+            engine.firmwareCryptoMultiplier = 1f
             hasSavedRun = false
             stats = PlayerStats()
             settings = GameSettings()

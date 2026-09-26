@@ -1751,3 +1751,89 @@ waves automatically and add an AUTO START BOSS WAVE setting."*
 
 *"Users don't know about this unless we tell them."* A ZOOM THE BATTLEFIELD
 card now sits in the first-run tutorial, just before the first placement.
+
+---
+
+## V. Owner's requests, 2026-09-26 (fourth round)
+
+### V1 ✅ 1.40.1 — Callsign entry floats above the keyboard
+
+*"When registering a call sign we need a floating text box because users'
+keyboards cover the text-entering area."* The callsign is now typed in a box
+pinned to the top of the screen, which opens the keyboard itself. CANCEL / SAVE,
+and DONE on the keyboard saves.
+
+### V2 ✅ 1.40.1 — Main-menu core-server art aligned
+
+The lane arrows pointed at the box's top border and the text inside was off
+centre. The lanes now feed the middle rows, every row is the same width, the
+text is centred, and it shrinks to fit rather than wrapping on a narrow phone.
+
+### V3 ✅ 1.40.1 — Boss explosion runs on real time
+
+*"The animations are multiplied by the speed of the wave."* The boss blast,
+its shake and its starburst now take the same real time at 1x and 4x. Purely
+visual, so nothing else changes. Other effects still follow game speed.
+
+### V4 ✅ 1.40.1 — See-through in-game pop-ups, with a slider
+
+*"The pop-up window needs a slightly see-through effect, 30-50%, or an opacity
+slider."* SETTINGS → VISUALS → IN-GAME PANEL OPACITY, default 65% opaque (35%
+see-through), minimum 40%. It covers the boss briefing, boss dossier, agent
+panel and deploy bar. Backgrounds only; text stays solid.
+
+### V5 ✅ ANSWERED — Why [ZZ] ZOMBIE's health jumps
+
+Intended. ZOMBIE comes back once: the first time it is killed it is
+REANIMATED at 40% health instead of dying. A boss with the REGENERATION
+modifier also heals 1.2% of its health per second while it moves. The boss
+dossier and the NEXT BOSS briefing both say which applies.
+
+### V6 ✅ 1.40.1 — Firmware also multiplies crypto earned in runs
+
+*"Make firmware add a passive multiplier to money earned in rounds that scales
+with levels."* Each firmware level now also adds **+0.25%** to ◇ crypto earned
+in a run (kill rewards and wave-clear bonuses), **capped at double** (reached
+at level 400). Half the damage rate, because money compounds. Sell refunds are
+not boosted, or buying and selling would print money. The "+◇" popups show
+the boosted amount. Tunable: `Balance.FIRMWARE_CRYPTO_PER_LEVEL` and
+`FIRMWARE_CRYPTO_MAX_BONUS`.
+
+### W1 ⬜ New agent [++] — heals CORE-SERVER integrity
+
+Owner's spec (2026-09-26), to build as given:
+
+| | |
+| --- | --- |
+| Glyph | `[++]` |
+| Target | **CORE-SERVER only**, never threats |
+| Range | none: works from **any node on the map** |
+| Cap | **4** deployed |
+| Unlock | **wave 100 on the beginner level** (STANDARD mode, first map). Shows the 🔒 lock and the unlock note (§U1) until then |
+| Heal at level 1 | **1 integrity per 30 seconds**, counted **only while a wave is running** — not in the break between waves, not while paused |
+| Feedback | green **+ +** symbols float up above CORE-SERVER on each heal |
+
+To decide when building (recommendations, not the owner's words):
+
+- How it scales with upgrade level. Suggest the interval shortens with level
+  (for example 30s at level 1 down to about 10s at level 100) rather than the
+  heal amount growing, so it stays a trickle.
+- Whether four of them stack. Suggest yes, independently, which is what "max
+  4" implies.
+- It can never raise integrity above the mode's maximum.
+- Cost: it earns nothing and fights nothing, so price it for what it is worth
+  late: suggest ◇ 500.
+- The unlock needs a "reached wave N on this level and mode" record, which
+  exists for HACK:AI but not per level; AgentType.unlockRequirement (§U1) is
+  where the wording goes.
+
+### W2 ✅ 1.40.1 — QUANTUM still locked "at wave 30"
+
+*"Quantum is still locked at wave 30 — is this a bug or is it unlocked on
+later waves?"* A bug, and a different one from the save race fixed in 1.39.2.
+Wave-N agents unlocked only when wave N **started**, so through the whole break
+before wave 30 (the banner already reads NEXT: WAVE 30, and that is when you
+build for it) QUANTUM, RED HAT and BLUE HAT were still locked. They now unlock
+the moment wave 29 is cleared, and a run resumed in that break gets them too.
+`Wave30UnlockFlowTest` drives the real game into the break before wave 30 and
+checks all three unlock and survive a restart. It failed before the fix.

@@ -98,6 +98,13 @@ class GameEngine(
     var autoStartWaves: Boolean = false
 
     /**
+     * The game speed of the current frame. Effects that must look the same at
+     * any speed divide by it to run on real time; see EffectSystem.update.
+     */
+    var simulationSpeed: Float = 1f
+        private set
+
+    /**
      * Whether [autoStartWaves] also starts boss waves. Off by default, so a
      * boss wave waits for the player (owner, 2026-09-26).
      */
@@ -220,6 +227,9 @@ class GameEngine(
      */
     var firmwareDamageMultiplier: Float = 1f
 
+    /** From firmware: raises crypto earned in a run. See Balance.firmwareCryptoMultiplier. */
+    var firmwareCryptoMultiplier: Float = 1f
+
     /** € BUDGET earned during this run, from ten-wave milestones. */
     var runBudgetEarned: Int = 0
         private set
@@ -330,6 +340,9 @@ class GameEngine(
 
         // The wave the player was on has not been completed, so it is replayed.
         phase = RunPhase.PREPARING
+        // A run resumed in the break before a wave gets that wave's agents,
+        // exactly as if it had just cleared the wave before.
+        unlockAgentsForWave(currentWave + 1)
     }
 
     /** A persistable agent placement. */
@@ -412,6 +425,7 @@ class GameEngine(
      */
     fun update(realDelta: Float, speed: Float) {
         if (phase == RunPhase.GAME_OVER) return
+        simulationSpeed = speed.coerceAtLeast(0.01f)
 
         val clamped = realDelta.coerceIn(0f, Balance.MAX_FRAME_DELTA)
         var remaining = clamped * speed
@@ -486,15 +500,20 @@ class GameEngine(
 
     private fun completeWave() {
         phase = RunPhase.PREPARING
+        // Reaching wave N means reaching the break before it, which is when
+        // there is time to deploy for it. Unlocking only once wave N had
+        // started left QUANTUM locked through the whole build-up to wave 30
+        // (owner, 2026-09-26).
+        unlockAgentsForWave(currentWave + 1)
         activeBossModifiers = emptyList()
         activeBossVariant = com.cyopstd.game.model.BossVariant.BREACH
         activeBossVariant = com.cyopstd.game.model.BossVariant.BREACH
 
         val bonus = Balance.waveClearBonus(currentWave)
         val bossBonus = Balance.bossClearBonus(currentWave)
-        economySystem.award(bonus + bossBonus)
+        val credited = economySystem.award(bonus + bossBonus)
 
-        val payout = if (bossBonus > 0) "+${bonus + bossBonus} (BOSS)" else "+$bonus"
+        val payout = if (bossBonus > 0) "+$credited (BOSS)" else "+$credited"
         effectSystem.spawnText(
             WorldGeometry.WIDTH * 0.5f,
             WorldGeometry.HEIGHT * 0.34f,
