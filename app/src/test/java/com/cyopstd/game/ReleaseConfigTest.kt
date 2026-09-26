@@ -85,6 +85,22 @@ class ReleaseConfigTest {
     }
 
     @Test
+    fun `build-time ids are values, not the names of variables`() {
+        // build.gradle.kts once wrote "${'$'}gamesAppId", which Kotlin
+        // reads as a literal dollar sign followed by text: every build shipped
+        // the text "$gamesAppId" instead of the configured id, and cloud
+        // save and the global board could never switch on. This checkout
+        // configures none of them, so each must be exactly empty.
+        for ((name, value) in listOf(
+            "GAMES_APP_ID" to com.cyopstd.game.BuildConfig.GAMES_APP_ID,
+            "LEADERBOARD_STANDARD_ID" to com.cyopstd.game.BuildConfig.LEADERBOARD_STANDARD_ID,
+            "LEADERBOARD_HACK_AI_ID" to com.cyopstd.game.BuildConfig.LEADERBOARD_HACK_AI_ID
+        )) {
+            assertFalse("$name is the literal \"$value\"", value.startsWith("${'$'}"))
+        }
+    }
+
+    @Test
     fun `an app id and an ad unit id are never confused`() {
         // A tilde separates the application id; a slash separates an ad unit.
         // Pasting one where the other belongs is the classic AdMob mistake and
