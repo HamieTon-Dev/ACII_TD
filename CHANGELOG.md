@@ -7,6 +7,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [1.39.1]
+
+### Fixed — the Play Games and leaderboard ids never reached the app
+
+`build.gradle.kts` wrote each id as `"${'$'}gamesAppId"`. In Kotlin that is
+a literal dollar sign followed by the text `gamesAppId`, so every build since
+cloud save was added shipped the string `$gamesAppId` instead of the
+configured project id — and `$boardStandard` / `$boardHackAi` for the two
+leaderboards. A literal like that is not all digits, so cloud save, account
+linking and the global board would have stayed switched off in every build,
+however they were configured. Caught from a Gradle "variable is never used"
+warning on the owner's machine.
+
+`ReleaseConfigTest` now fails if any of the three is a variable name rather
+than a value.
+
+---
+
 ## [1.39.0]
 
 ### Changed — a boss goes out edge to edge

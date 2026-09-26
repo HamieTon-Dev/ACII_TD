@@ -95,8 +95,8 @@ android {
         applicationId = "com.cyopstd.game"
         minSdk = 24
         targetSdk = 36
-        versionCode = 46
-        versionName = "1.39.0"
+        versionCode = 47
+        versionName = "1.39.1"
 
         // Stamped into the APK so the build identifier on screen is the real
         // one, not a string someone remembered to update. Reported by
@@ -122,7 +122,7 @@ android {
         // at. It used to be read from Gradle properties only, which silently
         // ignored that file.
         val gamesAppId = project.secret("cyops.games.appId").orEmpty()
-        buildConfigField("String", "GAMES_APP_ID", "\"${'$'}gamesAppId\"")
+        buildConfigField("String", "GAMES_APP_ID", "\"$gamesAppId\"")
 
         // The global leaderboards, one per game mode. Each is the id Play
         // Console shows for a leaderboard ("CgkI..."). Either may be left
@@ -133,8 +133,8 @@ android {
         //     cyops.games.leaderboard.hack_ai=CgkIxxxxxxxxxxxxEAIQAg
         val boardStandard = project.secret("cyops.games.leaderboard.standard").orEmpty()
         val boardHackAi = project.secret("cyops.games.leaderboard.hack_ai").orEmpty()
-        buildConfigField("String", "LEADERBOARD_STANDARD_ID", "\"${'$'}boardStandard\"")
-        buildConfigField("String", "LEADERBOARD_HACK_AI_ID", "\"${'$'}boardHackAi\"")
+        buildConfigField("String", "LEADERBOARD_STANDARD_ID", "\"$boardStandard\"")
+        buildConfigField("String", "LEADERBOARD_HACK_AI_ID", "\"$boardHackAi\"")
         // The Games SDK insists this be a string *resource*, and refuses to
         // initialise without one. "0" is a syntactically valid placeholder that
         // is never used: CloudSaveGateways.create() returns the no-op gateway
