@@ -38,8 +38,8 @@ enum class CoreSkin(
         productId = "core_skin_reactor",
         displayName = "REACTOR",
         chassis = Color(0xFF17100A),
-        accent = Color(0xFFFFB13D),
-        trim = Color(0xFFB48A5C),
+        accent = Color(0xFFFF9A03),
+        trim = Color(0xFFB47D42),
         flourish = Flourish.RING
     ),
 
@@ -47,8 +47,8 @@ enum class CoreSkin(
         productId = "core_skin_meridian",
         displayName = "MERIDIAN",
         chassis = Color(0xFF0B0A1E),
-        accent = Color(0xFFE8C877),
-        trim = Color(0xFF8E85C0),
+        accent = Color(0xFFE8BE55),
+        trim = Color(0xFF7F73C0),
         flourish = Flourish.TRACES
     ),
 
@@ -56,8 +56,8 @@ enum class CoreSkin(
         productId = "core_skin_glacier",
         displayName = "GLACIER",
         chassis = Color(0xFF071620),
-        accent = Color(0xFFAEE7FF),
-        trim = Color(0xFF6FA8C0),
+        accent = Color(0xFF96E0FF),
+        trim = Color(0xFF57A1C0),
         flourish = Flourish.FROST
     ),
 
@@ -65,8 +65,8 @@ enum class CoreSkin(
         productId = "core_skin_mainframe",
         displayName = "MAINFRAME",
         chassis = Color(0xFF031008),
-        accent = Color(0xFF3BFF7A),
-        trim = Color(0xFF3F8F5C),
+        accent = Color(0xFF00FF52),
+        trim = Color(0xFF278F4D),
         flourish = Flourish.SCANLINES
     ),
 
@@ -74,8 +74,8 @@ enum class CoreSkin(
         productId = "core_skin_cascade",
         displayName = "CASCADE",
         chassis = Color(0xFF020C06),
-        accent = Color(0xFF27F58C),
-        trim = Color(0xFF2E7F58),
+        accent = Color(0xFF00F578),
+        trim = Color(0xFF167F4C),
         flourish = Flourish.CASCADE
     ),
 
@@ -83,8 +83,8 @@ enum class CoreSkin(
         productId = "core_skin_neongrid",
         displayName = "NEONGRID",
         chassis = Color(0xFF030E24),
-        accent = Color(0xFF3A86FF),
-        trim = Color(0xFF4A79C8),
+        accent = Color(0xFF0062FF),
+        trim = Color(0xFF2461C8),
         flourish = Flourish.GRID,
         chase = Chase.LOOP_HOLOGRAPHIC
     ),
@@ -93,8 +93,8 @@ enum class CoreSkin(
         productId = "core_skin_void",
         displayName = "VOID",
         chassis = Color(0xFF0D0716),
-        accent = Color(0xFFC77BFF),
-        trim = Color(0xFF7D6296),
+        accent = Color(0xFFB653FF),
+        trim = Color(0xFF765296),
         flourish = Flourish.STARFIELD
     );
 

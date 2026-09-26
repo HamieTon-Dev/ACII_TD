@@ -1326,12 +1326,12 @@ class BattlefieldRenderer {
 
             // Platform.
             fillPaint.color = color
-            fillPaint.alpha = if (agent.disruptedFor > 0f) 18 else 34
+            fillPaint.alpha = if (agent.disruptedFor > 0f) 22 else 58
             canvas.drawCircle(agent.x, agent.y, WorldGeometry.NODE_RADIUS, fillPaint)
 
             strokePaint.color = if (agent.disruptedFor > 0f) colRed else color
-            strokePaint.alpha = 190
-            strokePaint.strokeWidth = 1.8f
+            strokePaint.alpha = 245
+            strokePaint.strokeWidth = 2.4f
             canvas.drawCircle(agent.x, agent.y, WorldGeometry.NODE_RADIUS, strokePaint)
 
             // Muzzle flash ring.

@@ -48,70 +48,70 @@ enum class LivingBackground(
         productId = "bg_drift",
         displayName = "DRIFT",
         description = "Slow diagonal data currents crossing the field.",
-        tint = Color(0xFF2A6E8C),
+        tint = Color(0xFF0D658C),
         intensity = 34,
         speed = 0.055f,
-        laneTint = Color(0xFF14384F)
+        laneTint = Color(0xFF02314F)
     ),
 
     LATTICE(
         productId = "bg_lattice",
         displayName = "LATTICE",
         description = "A circuit lattice that breathes with the wave.",
-        tint = Color(0xFF2E7D63),
+        tint = Color(0xFF167D5B),
         intensity = 40,
         speed = 0.18f,
-        laneTint = Color(0xFF123E35)
+        laneTint = Color(0xFF053E32)
     ),
 
     AURORA(
         productId = "bg_aurora",
         displayName = "AURORA",
         description = "Broad bands of cold light moving behind everything.",
-        tint = Color(0xFF3C6BA8),
+        tint = Color(0xFF1C59A8),
         intensity = 30,
         speed = 0.04f,
-        laneTint = Color(0xFF1B3A66)
+        laneTint = Color(0xFF052D66)
     ),
 
     RAINFALL(
         productId = "bg_rainfall",
         displayName = "RAINFALL",
         description = "Sparse columns of falling characters.",
-        tint = Color(0xFF2F7F72),
+        tint = Color(0xFF177F6E),
         intensity = 36,
         speed = 0.5f,
-        laneTint = Color(0xFF113B33)
+        laneTint = Color(0xFF043B31)
     ),
 
     PULSE(
         productId = "bg_pulse",
         displayName = "PULSE",
         description = "Rings travelling outward from the core.",
-        tint = Color(0xFF4A5FA8),
+        tint = Color(0xFF2E49A8),
         intensity = 32,
         speed = 0.22f,
-        laneTint = Color(0xFF26325F)
+        laneTint = Color(0xFF15245F)
     ),
 
     ORBIT(
         productId = "bg_orbit",
         displayName = "ORBIT",
         description = "Slow elliptical traces around the core, like a scheduler at work.",
-        tint = Color(0xFF5566A6),
+        tint = Color(0xFF3D53A6),
         intensity = 34,
         speed = 0.035f,
-        laneTint = Color(0xFF16305E)
+        laneTint = Color(0xFF00225E)
     ),
 
     HEATMAP(
         productId = "bg_heatmap",
         displayName = "HEATMAP",
         description = "A coarse grid whose cells warm and cool with the traffic.",
-        tint = Color(0xFF3A7F8C),
+        tint = Color(0xFF217B8C),
         intensity = 30,
         speed = 0.12f,
-        laneTint = Color(0xFF153D45)
+        laneTint = Color(0xFF073B45)
     );
 
     companion object {

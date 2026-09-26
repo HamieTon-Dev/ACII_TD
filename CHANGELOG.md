@@ -7,6 +7,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [1.42.0]
+
+### Changed
+
+- **Colours pop more (♧1).** Blue, purple, red, orange and magenta are more
+  saturated; agent rings and fills are stronger; the boss blast is a deeper
+  red; menu panel and button borders are sharper. Core skins and living
+  backgrounds are about 30% more saturated at the same brightness. Cyan and
+  green were already at full saturation, so their extra pop comes from the
+  stronger rings.
+- **Crypto gold moved towards yellow**, away from the orange threat colour it
+  was drifting into.
+- Lanes and backgrounds still clear every enemy colour by the same margin
+  `PaletteTest` has always enforced.
+
 ## [1.41.0]
 
 ### Added
