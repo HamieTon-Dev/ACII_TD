@@ -427,6 +427,18 @@ enum class AgentType(
     /** Agents available from the very first run. */
     val unlockedByDefault: Boolean get() = unlockWave <= 0
 
+    /**
+     * How to unlock this agent, in words, for the lock pop-up.
+     *
+     * The one place the requirement is phrased. Every agent today unlocks by
+     * reaching a wave on any level; an agent restricted to a map or a mode
+     * (see FEATURE_BACKLOG §R1) changes its wording here and every screen
+     * follows.
+     */
+    val unlockRequirement: String
+        get() = if (unlockedByDefault) "Available from the start."
+        else "Unlock this agent by reaching wave $unlockWave on any level."
+
     fun statsAtLevel(level: Int): AgentStats {
         val steps = (level - 1).coerceIn(0, Balance.MAX_AGENT_LEVEL - 1)
         return AgentStats(

@@ -12,6 +12,12 @@ data class GameSettings(
     val damageNumbers: Boolean = true,
     val showAgentRange: Boolean = true,
     val autoStartWaves: Boolean = false,
+    /**
+     * Whether auto-start also starts boss waves. Off by default: a boss wave
+     * waits for the player to press start, so they can build up for it
+     * (owner, 2026-09-26). Only matters when [autoStartWaves] is on.
+     */
+    val autoStartBossWaves: Boolean = false,
     val screenShake: Boolean = true,
     val batterySaver: Boolean = false,
     /**

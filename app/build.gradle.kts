@@ -96,7 +96,7 @@ android {
         minSdk = 24
         targetSdk = 36
         versionCode = 48
-        versionName = "1.39.2"
+        versionName = "1.40.0"
 
         // Stamped into the APK so the build identifier on screen is the real
         // one, not a string someone remembered to update. Reported by

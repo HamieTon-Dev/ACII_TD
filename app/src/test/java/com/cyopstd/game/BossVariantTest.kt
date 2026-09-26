@@ -200,22 +200,28 @@ class BossVariantTest {
         // Found by playing real boss waves rather than by a test-only spawn
         // hook: what matters is that the weighting survives the path the game
         // actually takes, configure() included.
-        val bosses = HashMap<BossVariant, Float>()
-        val armour = HashMap<BossVariant, Float>()
-        val speed = HashMap<BossVariant, Float>()
+        // Every boss on the field is sampled, and the comparison is lowest to
+        // lowest and highest to highest: a single sample also carries its
+        // wave's random modifiers, some of which add armour or speed, so
+        // "the first GG against the first BREACH" measured the modifier roll
+        // as much as the variant. Since 1.39.2 one wave can hold both types.
+        val health = HashMap<BossVariant, MutableList<Float>>()
+        val armour = HashMap<BossVariant, MutableList<Float>>()
+        val speed = HashMap<BossVariant, MutableList<Float>>()
         for (seed in 1..60) {
             val engine = bossOnWave(20, seed)
-            val boss = engine.enemies.items.firstOrNull { it.active && it.isBoss } ?: continue
-            bosses.putIfAbsent(boss.variant, boss.maxHealth)
-            armour.putIfAbsent(boss.variant, boss.armor)
-            speed.putIfAbsent(boss.variant, boss.baseSpeed)
+            for (boss in engine.enemies.items.filter { it.active && it.isBoss }) {
+                health.getOrPut(boss.variant) { mutableListOf() } += boss.maxHealth
+                armour.getOrPut(boss.variant) { mutableListOf() } += boss.armor
+                speed.getOrPut(boss.variant) { mutableListOf() } += boss.baseSpeed
+            }
         }
 
-        val wall = bosses[BossVariant.GOOD_GAME]
-        val plain = bosses[BossVariant.BREACH]
-        assertTrue("never saw a GG or a BREACH in 60 seeds: ${bosses.keys}", wall != null && plain != null)
-        assertTrue("GG ($wall) should outweigh BREACH ($plain)", wall!! > plain!!)
-        assertTrue(armour[BossVariant.GOOD_GAME]!! > armour[BossVariant.BREACH]!!)
-        assertTrue(speed[BossVariant.GOOD_GAME]!! < speed[BossVariant.BREACH]!!)
+        val wall = health[BossVariant.GOOD_GAME]
+        val plain = health[BossVariant.BREACH]
+        assertTrue("never saw a GG or a BREACH in 60 seeds: ${health.keys}", wall != null && plain != null)
+        assertTrue("GG ($wall) should outweigh BREACH ($plain)", wall!!.min() > plain!!.min())
+        assertTrue(armour[BossVariant.GOOD_GAME]!!.min() > armour[BossVariant.BREACH]!!.min())
+        assertTrue(speed[BossVariant.GOOD_GAME]!!.max() < speed[BossVariant.BREACH]!!.max())
     }
 }

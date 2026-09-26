@@ -222,10 +222,14 @@ fun AgentManagementPanel(
                     accent = Palette.Green,
                     modifier = Modifier.weight(1f)
                 )
+                // Greyed out unless all ten levels are affordable (or all
+                // that are left before the cap). It used to light up on one
+                // affordable level and quietly buy fewer, which read as
+                // broken (owner, 2026-09-26).
                 CompactButton(
                     text = "+10",
                     onClick = { onUpgrade(10) },
-                    enabled = canAfford,
+                    enabled = plusTenAffordable(affordableLevels, agent.level),
                     accent = Palette.Green,
                     modifier = Modifier.weight(1f)
                 )
@@ -345,4 +349,10 @@ private fun UpgradeStatRow(label: String, current: String, next: String?) {
             }
         }
     }
+}
+
+/** True when +10 can buy all ten levels, or all those left before the cap. */
+internal fun plusTenAffordable(affordableLevels: Int, level: Int): Boolean {
+    val step = minOf(10, Balance.MAX_AGENT_LEVEL - level)
+    return step > 0 && affordableLevels >= step
 }

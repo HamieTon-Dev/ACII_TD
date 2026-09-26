@@ -1671,7 +1671,7 @@ agents that unlock at wave 30 (only BLUE HAT survived). The old exact-wave
 check then meant no later wave ever retried it. Fixed in 1.39.2, which also
 repairs damaged saves on launch.
 
-### U1 ⬜ Locked agents show a LOCK, and tapping one says how to unlock it
+### U1 ✅ 1.40.0 — Locked agents show a LOCK, and tapping one says how to unlock it
 
 *"If this agent is only available on other maps then they should show a LOCK
 symbol not a wave number. Clicking it will display its unlock requirement —
@@ -1689,7 +1689,7 @@ a brief `AGENT LOCKED — REACH WAVE 30` line. Wanted:
   come from one place, so a future restricted agent (see §R1: new bosses and
   agents per map) gets the right wording automatically.
 
-### U2 ⬜ A guided tour of the main menu, and a first-visit FIRMWARE explainer
+### U2 ✅ 1.40.0 — A guided tour of the main menu, and a first-visit FIRMWARE explainer
 
 *"Need a navigation of main screen — 'this is what Firmware does' and 'scroll
 down to see more: this, this and this' — and then when the user opens Firmware
@@ -1706,7 +1706,7 @@ the first time, a tutorial explaining what each thing does."*
 - Built the same way as the H1 in-game tutorial (a corner card that never
   blocks the screen), and it must pass `ScreenSizeTest` at every viewport.
 
-### U3 ⬜ A boss briefing before boss waves
+### U3 ✅ 1.40.0 — A boss briefing before boss waves
 
 *"Before waves start on boss rounds I am still not seeing 'these are the
 upcoming bosses [button] and these are their weaknesses'."*
@@ -1723,3 +1723,31 @@ the break **before** a boss wave, a clear prompt, *"BOSS WAVE NEXT —
 
 It must not block the board or pause the countdown, unless the player opens
 it.
+
+### U4 ✅ 1.40.0 — RESTART asks first
+
+*"Clicking RESTART needs a follow-up 'Are you sure you want to restart your
+run?' [YES] / [NO]."* The pause menu's RESTART now asks, and says which wave
+is lost. NO returns to the pause menu.
+
+### U5 ✅ 1.40.0 — +10 greys out unless ten levels are affordable
+
+*"If the user does not have enough currency then the +10 level upgrade for
+agents should be grayed out."* It used to light up on one affordable level
+and buy fewer. It now needs all ten (or all that are left before the cap).
+
+### U6 ✅ 1.40.0 — Mixed bosses, and boss waves wait for you
+
+*"Make sure different types of bosses spawn on a wave — don't start boss
+waves automatically and add an AUTO START BOSS WAVE setting."*
+
+- A wave with more than one boss now fields different types wherever the
+  map's pool allows. Early waves have one boss and are unchanged.
+- New setting **AUTO START BOSS WAVES**, off by default. With AUTO START WAVES
+  on, boss waves still wait for you to press start unless it is also on. It is
+  under SETTINGS → GAMEPLAY, reachable from the pause menu.
+
+### U7 ✅ 1.40.0 — Pinch-to-zoom in the first-run tutorial
+
+*"Users don't know about this unless we tell them."* A ZOOM THE BATTLEFIELD
+card now sits in the first-run tutorial, just before the first placement.

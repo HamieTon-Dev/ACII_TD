@@ -97,6 +97,16 @@ class GameEngine(
 
     var autoStartWaves: Boolean = false
 
+    /**
+     * Whether [autoStartWaves] also starts boss waves. Off by default, so a
+     * boss wave waits for the player (owner, 2026-09-26).
+     */
+    var autoStartBossWaves: Boolean = false
+
+    /** True when the next wave should start on its own after the delay. */
+    private fun shouldAutoStartNext(): Boolean =
+        autoStartWaves && (autoStartBossWaves || !nextWaveIsBoss())
+
     /** Seconds remaining on the server damage flash/shake. */
     var serverHitFlash: Float = 0f
         private set
@@ -105,6 +115,10 @@ class GameEngine(
     var activeBossModifiers: List<com.cyopstd.game.model.BossModifier> = emptyList()
 
     /** Which boss the current or approaching boss wave brings. */
+    /** Every boss type in the current wave; bosses in one wave can differ. */
+    var activeBossVariants: List<com.cyopstd.game.model.BossVariant> =
+        listOf(com.cyopstd.game.model.BossVariant.BREACH)
+
     var activeBossVariant: com.cyopstd.game.model.BossVariant =
         com.cyopstd.game.model.BossVariant.BREACH
         private set
@@ -112,6 +126,28 @@ class GameEngine(
     // ------------------------------------------------------------- wave state
 
     private var plan: WavePlan? = null
+
+    /**
+     * The next wave, generated early because a screen asked to see it.
+     *
+     * Only ever filled by [upcomingPlan], and consumed by [startNextWave], so
+     * the boss briefing shows exactly the opponents that then walk in. A wave
+     * nobody previewed is generated at its start, exactly as before.
+     */
+    private var previewedPlan: WavePlan? = null
+
+    /**
+     * The plan for the wave about to start, or null outside the break between
+     * waves. Generating it here rather than at the wave's start is the only
+     * way to tell the player which boss is coming.
+     */
+    fun upcomingPlan(): WavePlan? {
+        if (phase != RunPhase.PREPARING) return null
+        val next = currentWave + 1
+        val cached = previewedPlan
+        if (cached != null && cached.wave == next) return cached
+        return waveGenerator.generate(next).also { previewedPlan = it }
+    }
     private var waveTimer: Float = 0f
     private var nextOrderIndex: Int = 0
 
@@ -221,6 +257,7 @@ class GameEngine(
 
         phase = RunPhase.PREPARING
         currentWave = 0
+        previewedPlan = null
         runDamageDealt = 0.0
         serverMaxHp = mode.serverHp
         serverHp = serverMaxHp
@@ -324,7 +361,9 @@ class GameEngine(
     fun startNextWave() {
         if (phase != RunPhase.PREPARING) return
         currentWave += 1
-        val newPlan = waveGenerator.generate(currentWave)
+        val newPlan = previewedPlan?.takeIf { it.wave == currentWave }
+            ?: waveGenerator.generate(currentWave)
+        previewedPlan = null
         plan = newPlan
         waveTimer = 0f
         nextOrderIndex = 0
@@ -332,6 +371,7 @@ class GameEngine(
         autoStartRemaining = 0f
         activeBossModifiers = newPlan.bossModifiers
         activeBossVariant = newPlan.bossVariant
+        activeBossVariants = newPlan.bossVariants.ifEmpty { listOf(newPlan.bossVariant) }
 
         if (newPlan.isBossWave) {
             phase = RunPhase.BOSS_WARNING
@@ -400,7 +440,7 @@ class GameEngine(
             }
 
             RunPhase.PREPARING -> {
-                if (autoStartWaves && autoStartRemaining > 0f) {
+                if (shouldAutoStartNext() && autoStartRemaining > 0f) {
                     autoStartRemaining -= dt
                     if (autoStartRemaining <= 0f) {
                         autoStartRemaining = 0f
@@ -481,7 +521,7 @@ class GameEngine(
 
         soundListener?.invoke(GameSound.WAVE_CLEARED)
         onWaveCleared?.invoke(currentWave)
-        if (autoStartWaves) autoStartRemaining = Balance.AUTO_START_DELAY
+        if (shouldAutoStartNext()) autoStartRemaining = Balance.AUTO_START_DELAY
     }
 
     // ------------------------------------------------------------ the revive

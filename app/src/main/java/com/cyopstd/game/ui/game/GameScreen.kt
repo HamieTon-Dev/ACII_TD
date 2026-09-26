@@ -210,6 +210,19 @@ fun GameScreen(
                 }
             }
 
+            if (viewModel.showBossBriefing) {
+                viewModel.bossBriefing()?.let { briefing ->
+                    BossBriefingPanel(
+                        briefing = briefing,
+                        unlockedAgents = viewModel.unlockedAgents,
+                        onClose = viewModel::toggleBossBriefing,
+                        modifier = Modifier
+                            .align(Alignment.TopEnd)
+                            .padding(8.dp)
+                    )
+                }
+            }
+
             if (viewModel.showDeployPanel) {
                 DeployPanel(
                     crypto = hud.crypto,
@@ -217,6 +230,7 @@ fun GameScreen(
                     selected = selection.pendingAgent,
                     onSelect = viewModel::choosePendingAgent,
                     onClose = viewModel::toggleDeployPanel,
+                    bestWave = viewModel.stats.highestWave,
                     modifier = Modifier
                         .align(Alignment.BottomCenter)
                         .padding(8.dp)
@@ -520,6 +534,15 @@ private fun ControlBar(viewModel: GameViewModel) {
                 text = "BOSS",
                 onClick = viewModel::toggleBossPanel,
                 selected = viewModel.showBossPanel,
+                accent = Palette.Red,
+                dense = true
+            )
+        } else if (hud.phase == RunPhase.PREPARING && hud.nextWaveIsBoss) {
+            // One break earlier: who is coming and what beats them.
+            CompactButton(
+                text = "NEXT BOSS",
+                onClick = viewModel::toggleBossBriefing,
+                selected = viewModel.showBossBriefing,
                 accent = Palette.Red,
                 dense = true
             )

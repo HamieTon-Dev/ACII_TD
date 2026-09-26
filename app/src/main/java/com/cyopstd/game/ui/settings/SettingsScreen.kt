@@ -59,7 +59,9 @@ fun SettingsScreen(
      * must not be offered.
      */
     privacyOptionsRequired: Boolean = false,
-    onPrivacyOptions: () -> Unit = {}
+    onPrivacyOptions: () -> Unit = {},
+    /** Show the main-menu tour and the FIRMWARE explainer again. */
+    onReplayGuides: () -> Unit = {}
 ) {
     var confirmingReset by remember { mutableStateOf(false) }
 
@@ -122,6 +124,18 @@ fun SettingsScreen(
                         checked = settings.autoStartWaves,
                         onCheckedChange = { v -> onUpdate { it.copy(autoStartWaves = v) } }
                     )
+                    // Boss waves wait for you unless this is on too, so you
+                    // can build up before one.
+                    ToggleRow(
+                        label = "AUTO START BOSS WAVES",
+                        description = if (settings.autoStartWaves) {
+                            "Also start boss waves automatically. Off: boss waves wait for you"
+                        } else {
+                            "Only applies when AUTO START WAVES is on"
+                        },
+                        checked = settings.autoStartBossWaves,
+                        onCheckedChange = { v -> onUpdate { it.copy(autoStartBossWaves = v) } }
+                    )
                     ToggleRow(
                         label = "SHOW AGENT RANGE",
                         description = "Draw the scan radius of the selected agent",
@@ -149,6 +163,22 @@ fun SettingsScreen(
                         description = "Show floating damage values on hits",
                         checked = settings.damageNumbers,
                         onCheckedChange = { v -> onUpdate { it.copy(damageNumbers = v) } }
+                    )
+                }
+
+                Spacer(Modifier.height(12.dp))
+
+                TerminalPanel(title = "HELP", accent = Palette.Green) {
+                    Caption(
+                        "Show the main-menu tour and the FIRMWARE explainer again, " +
+                            "next time you open those screens."
+                    )
+                    Spacer(Modifier.height(8.dp))
+                    BastionButton(
+                        text = "REPLAY GUIDES",
+                        accent = Palette.Green,
+                        leadingGlyph = "[?]",
+                        onClick = onReplayGuides
                     )
                 }
 

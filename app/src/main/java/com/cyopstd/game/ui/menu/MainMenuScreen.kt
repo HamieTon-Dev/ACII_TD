@@ -70,7 +70,10 @@ fun MainMenuScreen(
     onStatistics: () -> Unit,
     onSettings: () -> Unit,
     onAbout: () -> Unit,
-    onExit: () -> Unit
+    onExit: () -> Unit,
+    /** Show the one-time menu tour (owner, 2026-09-26). */
+    showGuide: Boolean = false,
+    onGuideDone: () -> Unit = {}
 ) {
     Box(
         modifier = Modifier
@@ -350,6 +353,16 @@ fun MainMenuScreen(
                 )
                 Spacer(Modifier.height(8.dp))
             }
+        }
+
+        if (showGuide) {
+            com.cyopstd.game.ui.common.GuideCard(
+                steps = com.cyopstd.game.ui.common.MenuGuide.steps,
+                onFinished = onGuideDone,
+                modifier = Modifier
+                    .align(Alignment.BottomStart)
+                    .padding(16.dp)
+            )
         }
     }
 }

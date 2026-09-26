@@ -27,6 +27,9 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.foundation.Canvas
@@ -93,19 +96,64 @@ fun PauseOverlay(
             AsciiRule(color = Palette.CyanDim)
             Spacer(Modifier.height(14.dp))
 
-            BastionButton("RESUME", onResume, accent = Palette.Green, leadingGlyph = "[>]")
-            Spacer(Modifier.height(8.dp))
-            BastionButton("RESTART", onRestart, accent = Palette.Orange, leadingGlyph = "[o]")
-            Spacer(Modifier.height(8.dp))
-            BastionButton("SETTINGS", onSettings, leadingGlyph = "[*]")
-            Spacer(Modifier.height(8.dp))
-            BastionButton(
-                text = "MAIN MENU",
-                subtitle = "Progress is saved automatically",
-                onClick = onMainMenu,
-                accent = Palette.Red,
-                leadingGlyph = "[X]"
-            )
+            // RESTART throws the run away, and it sits one button below
+            // RESUME, so it asks first (owner, 2026-09-26). NO returns to
+            // this menu with nothing changed.
+            var confirmingRestart by remember { mutableStateOf(false) }
+            if (confirmingRestart) {
+                Text(
+                    text = "Are you sure you want to restart your run?",
+                    style = MaterialTheme.typography.titleMedium,
+                    color = Palette.Orange
+                )
+                Spacer(Modifier.height(4.dp))
+                Text(
+                    text = "Wave $wave and everything deployed will be lost.",
+                    style = MaterialTheme.typography.bodySmall,
+                    color = Palette.TextMuted
+                )
+                Spacer(Modifier.height(12.dp))
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.spacedBy(10.dp)
+                ) {
+                    Box(Modifier.weight(1f)) {
+                        BastionButton(
+                            "YES",
+                            onRestart,
+                            accent = Palette.Orange,
+                            leadingGlyph = "[o]"
+                        )
+                    }
+                    Box(Modifier.weight(1f)) {
+                        BastionButton(
+                            "NO",
+                            { confirmingRestart = false },
+                            accent = Palette.Green,
+                            leadingGlyph = "[<]"
+                        )
+                    }
+                }
+            } else {
+                BastionButton("RESUME", onResume, accent = Palette.Green, leadingGlyph = "[>]")
+                Spacer(Modifier.height(8.dp))
+                BastionButton(
+                    "RESTART",
+                    { confirmingRestart = true },
+                    accent = Palette.Orange,
+                    leadingGlyph = "[o]"
+                )
+                Spacer(Modifier.height(8.dp))
+                BastionButton("SETTINGS", onSettings, leadingGlyph = "[*]")
+                Spacer(Modifier.height(8.dp))
+                BastionButton(
+                    text = "MAIN MENU",
+                    subtitle = "Progress is saved automatically",
+                    onClick = onMainMenu,
+                    accent = Palette.Red,
+                    leadingGlyph = "[X]"
+                )
+            }
         }
     }
 }
@@ -546,7 +594,11 @@ fun PreparationBanner(
             color = Palette.TextMuted
         )
         Text(
-            text = if (nextIsBoss) "NEXT: WAVE ${wave + 1} \u2014 MAJOR BREACH" else "NEXT: WAVE ${wave + 1}",
+            text = if (nextIsBoss) {
+                "NEXT: WAVE ${wave + 1} \u2014 BOSS \u00B7 TAP NEXT BOSS FOR THE BRIEFING"
+            } else {
+                "NEXT: WAVE ${wave + 1}"
+            },
             style = MaterialTheme.typography.labelMedium,
             color = if (nextIsBoss) Palette.Red else Palette.TextSecondary,
             maxLines = 1

@@ -7,6 +7,38 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [1.40.0]
+
+versionCode 48. Everything below the owner asked for on 2026-09-26 (§U of the
+backlog), on top of the 1.39.2 fixes further down, which ship in this same
+build.
+
+### Added
+
+- **Boss briefing before boss waves.** In the break before a boss wave, a
+  **NEXT BOSS** button sits where BOSS appears mid-fight. It opens who is coming
+  (every boss, with its health, armour and speed), any modifiers, what each is
+  **weak to** and what to **watch out for**. Every weakness is read from the
+  damage code's own tables, and the boss shown is the boss that arrives. The
+  countdown keeps running while it is open.
+- **Lock on locked agents.** The deploy bar shows 🔒 LOCKED instead of a bare
+  wave number; tapping a locked agent explains exactly how to unlock it and
+  how close you are.
+- **Main-menu tour** on first launch, including "scroll for more", and a
+  **FIRMWARE explainer** the first time that screen opens. Both can be replayed
+  from SETTINGS → HELP → REPLAY GUIDES.
+- **Pinch-to-zoom** is now taught in the first-run tutorial.
+- **AUTO START BOSS WAVES** setting, off by default: boss waves wait for you.
+
+### Changed
+
+- **RESTART asks first.** "Are you sure you want to restart your run?" YES / NO.
+- **Mixed bosses.** A wave with several bosses fields different types where
+  the map allows it.
+- **+10 upgrade** is greyed out unless all ten levels are affordable.
+
+---
+
 ## [1.39.2]
 
 ### Fixed — QUANTUM and RED HAT did not unlock at wave 30

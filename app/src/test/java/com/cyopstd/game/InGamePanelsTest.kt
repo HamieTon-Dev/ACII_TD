@@ -70,7 +70,9 @@ class InGamePanelsTest {
                     AgentManagementPanel(
                         agent = agent(level),
                         crypto = crypto,
-                        affordableLevels = 8,
+                        // Ten or more, so +10 is live: since 1.39.2 it greys out
+                        // unless all ten levels are affordable.
+                        affordableLevels = 12,
                         onUpgrade = onUpgrade,
                         onSell = onSell,
                         onCycleTargeting = {},
@@ -90,7 +92,7 @@ class InGamePanelsTest {
         panel()
         compose.onNodeWithText("+1").assertIsDisplayed()
         compose.onNodeWithText("+10").assertIsDisplayed()
-        compose.onNodeWithText("MAX +8").assertIsDisplayed()
+        compose.onNodeWithText("MAX +12").assertIsDisplayed()
         compose.onNodeWithText("CLOSE").assertIsDisplayed()
         compose.onNodeWithText("UPGRADE COST").assertIsDisplayed()
     }

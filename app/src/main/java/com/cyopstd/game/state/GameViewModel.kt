@@ -188,6 +188,27 @@ class GameViewModel @JvmOverloads constructor(
     }
 
     /**
+     * The briefing on the next wave's boss, open or not (owner, 2026-09-26).
+     * Reachable only in the break before a boss wave, and it closes itself
+     * when that wave starts. It never pauses the countdown.
+     */
+    var showBossBriefing by mutableStateOf(false)
+        private set
+
+    fun toggleBossBriefing() {
+        playClick()
+        showBossBriefing = !showBossBriefing
+    }
+
+    /** What the next wave's boss is and what beats it, or null if none is next. */
+    fun bossBriefing(): com.cyopstd.game.ui.game.BossBriefing? {
+        if (engine.phase != RunPhase.PREPARING || !engine.nextWaveIsBoss()) return null
+        val plan = engine.upcomingPlan() ?: return null
+        if (!plan.isBossWave) return null
+        return com.cyopstd.game.ui.game.BossBriefing.from(plan)
+    }
+
+    /**
      * What the game knows about the boss on the field, or null if there is
      * none.
      *
@@ -281,6 +302,36 @@ class GameViewModel @JvmOverloads constructor(
         private set
 
     /** -1 means no tutorial running. */
+    /**
+     * Whether the menu tour and the FIRMWARE explainer still need showing.
+     * Start as seen so nothing flashes up before the save has loaded.
+     */
+    var menuGuideSeen by mutableStateOf(true)
+        private set
+    var firmwareGuideSeen by mutableStateOf(true)
+        private set
+
+    fun markMenuGuideSeen() {
+        menuGuideSeen = true
+        viewModelScope.launch { repository.setMenuGuideSeen(true) }
+    }
+
+    fun markFirmwareGuideSeen() {
+        firmwareGuideSeen = true
+        viewModelScope.launch { repository.setFirmwareGuideSeen(true) }
+    }
+
+    /** From SETTINGS: show both guides again next time their screens open. */
+    fun replayGuides() {
+        playClick()
+        menuGuideSeen = false
+        firmwareGuideSeen = false
+        viewModelScope.launch {
+            repository.setMenuGuideSeen(false)
+            repository.setFirmwareGuideSeen(false)
+        }
+    }
+
     var tutorialStep by mutableIntStateOf(-1)
         private set
 
@@ -880,6 +931,8 @@ class GameViewModel @JvmOverloads constructor(
                 // until the write lands. `resetAllProgress` clears both
                 // deliberately, after the store is emptied.
                 tutorialCompleted = loaded.tutorialCompleted || tutorialCompleted
+                menuGuideSeen = loaded.menuGuideSeen
+                firmwareGuideSeen = loaded.firmwareGuideSeen
                 budget = loaded.budget
                 firmwareLevel = loaded.firmwareLevel
                 lifetimeBudgetEarned = loaded.lifetimeBudgetEarned
@@ -900,6 +953,7 @@ class GameViewModel @JvmOverloads constructor(
         engine.batterySaver = loaded.batterySaver
         engine.showDamageNumbers = loaded.damageNumbers
         engine.autoStartWaves = loaded.autoStartWaves
+        engine.autoStartBossWaves = loaded.autoStartBossWaves
     }
 
     // ----------------------------------------------------------- run control
@@ -919,6 +973,7 @@ class GameViewModel @JvmOverloads constructor(
         engine.selectMode(selectedMode)
         engine.startNewRun()
         engine.autoStartWaves = settings.autoStartWaves
+        engine.autoStartBossWaves = settings.autoStartBossWaves
         engine.batterySaver = settings.batterySaver
         engine.showDamageNumbers = settings.damageNumbers
         engine.firmwareDamageMultiplier = Balance.firmwareDamageMultiplier(firmwareLevel)
@@ -987,6 +1042,7 @@ class GameViewModel @JvmOverloads constructor(
                 agentUpgrades = run.agentUpgrades
             )
             engine.autoStartWaves = settings.autoStartWaves
+            engine.autoStartBossWaves = settings.autoStartBossWaves
             engine.batterySaver = settings.batterySaver
             engine.showDamageNumbers = settings.damageNumbers
             engine.firmwareDamageMultiplier = Balance.firmwareDamageMultiplier(firmwareLevel)
@@ -1075,6 +1131,9 @@ class GameViewModel @JvmOverloads constructor(
         // gone the panel has nothing to say, and leaving the flag set would
         // have the *next* boss throw it open over the board unasked.
         if (showBossPanel && !snapshot.bossOnField) showBossPanel = false
+        if (showBossBriefing && !(snapshot.phase == RunPhase.PREPARING && snapshot.nextWaveIsBoss)) {
+            showBossBriefing = false
+        }
         trackPhaseForBanner(engine.phase)
     }
 
