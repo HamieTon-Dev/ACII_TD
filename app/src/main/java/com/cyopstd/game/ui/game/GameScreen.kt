@@ -245,6 +245,7 @@ private fun GameScreenBody(
                     onSelect = viewModel::choosePendingAgent,
                     onClose = viewModel::toggleDeployPanel,
                     bestWave = viewModel.stats.highestWave,
+                    bestWaveBeginner = viewModel.stats.highestWaveBeginner,
                     modifier = Modifier
                         .align(Alignment.BottomCenter)
                         .padding(8.dp)
