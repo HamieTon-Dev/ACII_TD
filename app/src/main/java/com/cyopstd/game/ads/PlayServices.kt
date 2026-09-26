@@ -17,6 +17,7 @@ object PlayServices {
     /** AdMob ids as supplied at build time. */
     val adMobAppId: String get() = BuildConfig.ADMOB_APP_ID
     val adMobRewardedId: String get() = BuildConfig.ADMOB_REWARDED_ID
+    val adMobInterstitialId: String get() = BuildConfig.ADMOB_INTERSTITIAL_ID
 
     /**
      * True when this build deliberately uses Google's test ad units.
@@ -50,10 +51,9 @@ object PlayServices {
     /**
      * True when this build can offer a revive on a rewarded ad.
      *
-     * Identical to [adsConfigured] now that the rewarded unit is the only ad
-     * in the game. Both names are kept because they answer different
-     * questions -- "does this build show advertising at all" and "can it offer
-     * the revive" -- and a future format would make them diverge again.
+     * Identical to [adsConfigured]: the rewarded unit is the one every
+     * configured build has. The interstitial is optional on top of it -- see
+     * [interstitialConfigured].
      */
     val rewardedConfigured: Boolean get() = adsConfigured
 
@@ -79,6 +79,29 @@ object PlayServices {
             rewardedId.startsWith(ADMOB_PREFIX) &&
             appId != SAMPLE_APP_ID &&
             rewardedId != SAMPLE_REWARDED_ID
+    }
+
+    /**
+     * True when this build can show the lost-run interstitial.
+     *
+     * Separate from [adsConfigured] on purpose: the rewarded unit and the
+     * interstitial unit are different ids, and a release that has the first
+     * and not yet the second must do the half it can -- offer the revive --
+     * rather than neither.
+     */
+    val interstitialConfigured: Boolean
+        get() = interstitialConfigured(usingTestAds, adMobAppId, adMobRewardedId, adMobInterstitialId)
+
+    /** As [adsConfigured], for the interstitial unit. */
+    fun interstitialConfigured(
+        usingTestAds: Boolean,
+        appId: String,
+        rewardedId: String,
+        interstitialId: String
+    ): Boolean = adsConfigured(usingTestAds, appId, rewardedId) && if (usingTestAds) {
+        interstitialId == SAMPLE_INTERSTITIAL_ID
+    } else {
+        interstitialId.startsWith(ADMOB_PREFIX) && interstitialId != SAMPLE_INTERSTITIAL_ID
     }
 
     /** Kept as the name the revive path reads. */

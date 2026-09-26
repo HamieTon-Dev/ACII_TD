@@ -51,6 +51,7 @@ fun PlayAccountScreen(
     identity: PlayerIdentity,
     budget: Long,
     status: BillingStatus,
+    /** True when this build shows the lost-run interstitial. */
     adsConfigured: Boolean,
     /** True when this build can offer a revive on a rewarded ad. */
     reviveAdsConfigured: Boolean = false,
@@ -189,6 +190,7 @@ fun PlayAccountScreen(
                             adsConfigured && reviveAdsConfigured ->
                                 "ONE AD AFTER A LOST RUN · REVIVE OPT-IN"
                             adsConfigured -> "ONE AD AFTER A LOST RUN"
+                            reviveAdsConfigured -> "REVIVE ADS ONLY · OPT-IN"
                             else -> "NOT IN THIS BUILD"
                         },
                         valueColor = if (entitlements.adsRemoved) Palette.Green else Palette.TextPrimary

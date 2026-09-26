@@ -17,6 +17,7 @@ import com.cyopstd.game.core.Balance
 import android.util.Log
 import com.cyopstd.game.ads.AdGateway
 import com.cyopstd.game.ads.AdMobGateway
+import com.cyopstd.game.ads.AdPolicy
 import com.cyopstd.game.ads.PlayServices
 import com.cyopstd.game.ads.ConsentGateway
 import com.cyopstd.game.ads.NoConsentGateway
@@ -244,14 +245,16 @@ class GameViewModel @JvmOverloads constructor(
     val reviveIsFree: Boolean get() = entitlements.reviveAdsRemoved
 
     /**
-     * True while the rewarded ad is on screen.
+     * True while a rewarded ad is on screen for a revive.
      *
-     * The only ad state left in the game. It used to have a sibling for the
-     * lost-run interstitial, and the overlay had to know which of the two it
-     * was waiting on; the interstitial is gone, so there is one answer now.
+     * Separate from [showingAd], which is the interstitial: the two cover the
+     * screen for different reasons.
      */
     var showingReviveAd by mutableStateOf(false)
         private set
+
+    /** Set once a rewarded ad has paid for a revive, so the run's loss ad is suppressed. */
+    private var reviveSpentThisRun = false
 
     /**
      * Whether the game-over screen may offer a revive right now.
@@ -426,6 +429,7 @@ class GameViewModel @JvmOverloads constructor(
             privacyOptionsRequired = consent.privacyOptionsRequired
             if (!consent.canRequestAds) return@refresh
             (ads as? AdMobGateway)?.start()
+            ads.preload()
             // Loaded up front, because the moment it is wanted -- the instant
             // the core falls -- is the worst possible moment to start
             // fetching one.
@@ -568,7 +572,8 @@ class GameViewModel @JvmOverloads constructor(
     private val ads: AdGateway = adsOverride ?: if (PlayServices.adsConfigured) {
         AdMobGateway(
             application,
-            if (PlayServices.rewardedConfigured) PlayServices.adMobRewardedId else ""
+            rewardedUnitId = if (PlayServices.rewardedConfigured) PlayServices.adMobRewardedId else "",
+            interstitialUnitId = if (PlayServices.interstitialConfigured) PlayServices.adMobInterstitialId else ""
         )
     } else {
         NoAdGateway()
@@ -599,6 +604,32 @@ class GameViewModel @JvmOverloads constructor(
     var privacyOptionsRequired by mutableStateOf(false)
         private set
 
+    private val adPolicy = AdPolicy()
+
+    /** True while an interstitial is on screen and the game is waiting on it. */
+    var showingAd by mutableStateOf(false)
+        private set
+
+    /**
+     * Shows an interstitial after a lost run, if the rules allow one.
+     *
+     * [then] runs either way. The game must not depend on an ad completing —
+     * a gateway that never calls back would otherwise strand the player on a
+     * dead screen, so the continuation is the caller's and is always invoked.
+     */
+    private fun maybeShowLossAd(then: () -> Unit) {
+        if (!adPolicy.shouldShowOnRunLost(entitlements.adsRemoved, ads.isReady)) {
+            then()
+            return
+        }
+        adPolicy.recordShown()
+        showingAd = true
+        ads.showInterstitial {
+            showingAd = false
+            ads.preload()
+            then()
+        }
+    }
 
     /**
      * How far the player has zoomed the board, and where.
@@ -831,6 +862,7 @@ class GameViewModel @JvmOverloads constructor(
         gameOverSummary = null
         runRecorded = false
         revivesUsed = 0
+        reviveSpentThisRun = false
         // A new run starts looking at the whole board. Carrying a zoom over
         // from the last one would drop the player into a corner of a map they
         // have not seen yet.
@@ -900,6 +932,7 @@ class GameViewModel @JvmOverloads constructor(
             // spent. Resetting here is what would turn "one per run" into "one
             // per session", and backgrounding the game is free.
             revivesUsed = run.revivesUsed
+            reviveSpentThisRun = run.revivesUsed > 0
             matchActive = true
             tutorialStep = -1
             pushHud()
@@ -1289,6 +1322,7 @@ class GameViewModel @JvmOverloads constructor(
         // to leave, and charging them for that is the fastest way to make
         // leaving permanent. A player who already watched a rewarded ad for a
         // revive has paid this run's ad budget and is not charged twice.
+        if (engine.phase == RunPhase.GAME_OVER && !reviveSpentThisRun) maybeShowLossAd { }
 
         val isRecord = engine.currentWave > stats.highestWave
         gameOverSummary = GameOverSummary(
@@ -1383,6 +1417,7 @@ class GameViewModel @JvmOverloads constructor(
             return
         }
         revivesUsed += 1
+        if (spentAnAd) reviveSpentThisRun = true
         gameOverSummary = null
         matchActive = true
         paused = false

@@ -132,7 +132,13 @@ class ReviveTest {
     /** A gateway that always has a rewarded ad, and grants what it is told to. */
     private class FakeAds(private val grants: Boolean) : AdGateway {
         var rewardedShown = 0
+        var interstitialsShown = 0
+        override val isReady = true
         override val isRewardedReady = true
+        override fun showInterstitial(onFinished: () -> Unit) {
+            interstitialsShown++
+            onFinished()
+        }
         override fun showRewarded(onResult: (Boolean) -> Unit) {
             rewardedShown++
             onResult(grants)
@@ -264,15 +270,7 @@ class ReviveTest {
     }
 
     @Test
-    fun `a run shows no advertising the player did not ask for`() {
-        // This replaces a test that checked a revived run was not *also*
-        // charged the lost-run interstitial. The interstitial is gone --
-        // removed in 1.35.0 because a game played by children should not show
-        // an advert nobody pressed a button for -- so the budget it was
-        // rationing no longer exists. What is worth keeping is the stronger
-        // claim underneath it: across a whole run, including losing, reviving,
-        // losing again and walking away, the only ad shown is the one the
-        // player explicitly asked for.
+    fun `a revived run is not also charged the loss interstitial`() {
         val ads = FakeAds(grants = true)
         val viewModel = freshViewModel(ads)
         viewModel.loseARun()
@@ -284,11 +282,37 @@ class ReviveTest {
         viewModel.abandonMatch()
         shadowOf(Looper.getMainLooper()).idle()
 
-        assertEquals(
-            "exactly one ad, and it was the one the player pressed a button for",
-            1,
-            ads.rewardedShown
-        )
+        assertEquals("a rewarded ad already spent this run's ad budget", 0, ads.interstitialsShown)
+        assertEquals(1, ads.rewardedShown)
+    }
+
+    @Test
+    fun `a lost run with no revive taken shows the loss interstitial`() {
+        val ads = FakeAds(grants = true)
+        val viewModel = freshViewModel(ads)
+        viewModel.loseARun()
+
+        // Declining the offer is walking away from a *lost* run, not quitting
+        // a live one, so the run carries its one loss ad.
+        viewModel.finishRun()
+        shadowOf(Looper.getMainLooper()).idle()
+
+        assertEquals(1, ads.interstitialsShown)
+    }
+
+    @Test
+    fun `owning REMOVE ADS removes the loss interstitial`() {
+        val ads = FakeAds(grants = true)
+        val application = ApplicationProvider.getApplicationContext<Application>()
+        repository = TestStores.isolatedRepository()
+        runBlocking { repository.applyPurchase(Sku.NO_ADS, "order-no-ads-loss") }
+        val viewModel = GameViewModel(application, repository, adsOverride = ads)
+        shadowOf(Looper.getMainLooper()).idle()
+        viewModel.loseARun()
+        viewModel.finishRun()
+        shadowOf(Looper.getMainLooper()).idle()
+
+        assertEquals(0, ads.interstitialsShown)
     }
 
     @Test
