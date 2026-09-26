@@ -100,14 +100,8 @@ class LevelMusicTest {
     }
 
     @Test
-    fun `the third level's music is composed and waiting, not misfiled`() {
-        // Supplied before the map it belongs to exists. It must not be quietly
-        // pointed at one of the two levels that do.
-        val used = Maps.all.mapNotNull { musicForMap(it) }.toSet()
-        assertTrue(
-            "LEVEL_THREE should not be playing on an existing level",
-            LevelMusic.LEVEL_THREE !in used
-        )
+    fun `the third level plays the third level's music`() {
+        assertEquals(LevelMusic.LEVEL_THREE, musicForMap(Maps.NEURAL_MESH))
     }
 
     @Test

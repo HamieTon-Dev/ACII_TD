@@ -64,6 +64,44 @@ class Enemy : Poolable {
     var revived: Boolean = false
 
     /**
+     * LICENSE: how many hits each agent type has landed on it, by
+     * `AgentType.ordinal`. Sized generously so a new agent never overflows it.
+     */
+    val licenseHits = IntArray(32)
+
+    /**
+     * MODEL COLLAPSE: the last few agents to hit it, by node id, and when (in
+     * engine seconds). A small ring rather than a set, so recording a hit
+     * never allocates.
+     */
+    val recentAttackerNodes = IntArray(16) { -1 }
+    val recentAttackerTimes = FloatArray(16)
+    var recentAttackerCursor: Int = 0
+
+    /** Record that the agent on [nodeId] hit this at [time]. */
+    fun recordAttacker(nodeId: Int, time: Float) {
+        if (nodeId < 0) return
+        for (i in recentAttackerNodes.indices) {
+            if (recentAttackerNodes[i] == nodeId) {
+                recentAttackerTimes[i] = time
+                return
+            }
+        }
+        recentAttackerNodes[recentAttackerCursor] = nodeId
+        recentAttackerTimes[recentAttackerCursor] = time
+        recentAttackerCursor = (recentAttackerCursor + 1) % recentAttackerNodes.size
+    }
+
+    /** How many different agents have hit this within [window] seconds of [now]. */
+    fun distinctAttackersWithin(now: Float, window: Float): Int {
+        var count = 0
+        for (i in recentAttackerNodes.indices) {
+            if (recentAttackerNodes[i] >= 0 && now - recentAttackerTimes[i] <= window) count++
+        }
+        return count
+    }
+
+    /**
      * Brings a ZOMBIE back, once, instead of dying.
      *
      * Returns true if the death was cancelled. Kept on the enemy rather than
@@ -165,6 +203,10 @@ class Enemy : Poolable {
         isBoss = false
         variant = BossVariant.BREACH
         revived = false
+        licenseHits.fill(0)
+        recentAttackerNodes.fill(-1)
+        recentAttackerTimes.fill(0f)
+        recentAttackerCursor = 0
     }
 }
 

@@ -104,6 +104,8 @@ data class PlayerStats(
      * DEFENCE mode. Unlocks the SERVER SYSTEMS ENGINEER at 100.
      */
     val highestWaveBeginner: Int = 0,
+    /** Best wave on each level in any mode, keyed by `GameMap.id`. Unlocks NEURAL-MESH. */
+    val highestWaveByMap: Map<String, Int> = emptyMap(),
     val totalAttacksBlocked: Long = 0,
     val totalBossesDefeated: Long = 0,
     val totalCryptoEarned: Long = 0,

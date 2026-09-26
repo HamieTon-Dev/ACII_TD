@@ -203,11 +203,15 @@ fun MainMenuScreen(
                             map = map,
                             selected = map == selectedMap,
                             unlocked = map in availableMaps,
-                            bestOnUnlockMode = when (map.unlockMode) {
-                                GameMode.HACK_AI -> stats.highestWaveHackAi
-                                GameMode.STANDARD -> stats.highestWave
-                                null -> 0
-                            },
+                            bestOnUnlockMode = map.bestTowardUnlock(
+                                bestWaveOnMode = { mode ->
+                                    when (mode) {
+                                        GameMode.HACK_AI -> stats.highestWaveHackAi
+                                        GameMode.STANDARD -> stats.highestWave
+                                    }
+                                },
+                                bestWaveOnMap = { id -> stats.highestWaveByMap[id] ?: 0 }
+                            ).let { if (it == Int.MAX_VALUE) 0 else it },
                             onClick = { onSelectMap(map) }
                         )
                     }

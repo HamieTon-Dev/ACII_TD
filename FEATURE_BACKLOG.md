@@ -1507,7 +1507,13 @@ Queue, in the order recommended (the owner may reorder):
 Needs, when map 3 is built: the per-map boss pool to be the union of the
 current map's variants and every earlier map's.
 
-### R2 ❓ More maps — new names needed, and the owner picks each layout
+### R2 ◐ More maps — new names needed, and the owner picks each layout
+
+**Map 3 ✅ 1.43.0 — NEURAL-MESH.** The owner picked BACKPROP from four
+rendered candidates (`NeuralMeshPreview`) and set the unlock: *"unlock at wave
+100 on hugging face"*. Its bosses, `[∆∆∆]` MODEL COLLAPSE and `[©©©]` LICENSE,
+are built, and the boss pool now stacks every earlier map's bosses
+(`BossVariant.MAP_PROGRESSION`). Maps 4 and 5 wait on the owner as before.
 
 *"More maps sounds great. I am not keen on the names … as you create new ones
 let me choose a layout for you."*

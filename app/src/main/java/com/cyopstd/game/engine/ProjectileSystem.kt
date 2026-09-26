@@ -4,6 +4,7 @@ import com.cyopstd.game.core.Balance
 import com.cyopstd.game.model.Agent
 import com.cyopstd.game.model.AgentType
 import com.cyopstd.game.model.BossModifier
+import com.cyopstd.game.model.BossVariant
 import com.cyopstd.game.model.Enemy
 import com.cyopstd.game.model.Projectile
 import com.cyopstd.game.model.ThreatTrait
@@ -201,6 +202,25 @@ class ProjectileSystem(private val engine: GameEngine, private val random: Rando
         if (!enemy.active || enemy.health <= 0f) return
 
         var damage = rawDamage * damageMultiplier(enemy, sourceType)
+
+        if (enemy.isBoss) {
+            when (enemy.variant) {
+                BossVariant.LICENSE -> {
+                    val slot = sourceType.ordinal
+                    if (slot < enemy.licenseHits.size) {
+                        damage *= BossVariant.licenseMultiplier(enemy.licenseHits[slot])
+                        enemy.licenseHits[slot]++
+                    }
+                }
+                BossVariant.MODEL_COLLAPSE -> {
+                    enemy.recordAttacker(sourceNodeId, engine.elapsedTime)
+                    val swarm = enemy.distinctAttackersWithin(engine.elapsedTime, BossVariant.COLLAPSE_WINDOW)
+                    // Heals back its share of the hit, which nets out as less damage.
+                    damage *= 1f - BossVariant.collapseHealShare(swarm)
+                }
+                else -> Unit
+            }
+        }
 
         if (!ignoresArmor && enemy.armor > 0f) {
             // Armour never fully negates a hit — a minimum fraction always lands,

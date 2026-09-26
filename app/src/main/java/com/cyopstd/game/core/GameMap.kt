@@ -148,19 +148,41 @@ class GameMap(
      * because the two are genuinely different achievements.
      */
     val unlockMode: GameMode? = null,
-    /** The wave that must be reached on [unlockMode]. */
-    val unlockAtWave: Int = 0
+    /** The wave that must be reached on [unlockMode] or [unlockMapId]. */
+    val unlockAtWave: Int = 0,
+    /**
+     * The level whose record unlocks this one, by id, in any mode. Takes
+     * precedence over [unlockMode]. NEURAL-MESH: *"unlock at wave 100 on
+     * hugging face"*.
+     */
+    val unlockMapId: String? = null,
+    /** [unlockMapId]'s display name, for the lock line. */
+    val unlockMapName: String = ""
 ) {
 
-    /** Whether a player with these per-mode records may play this level. */
-    fun unlockedBy(bestWaveOnMode: (GameMode) -> Int): Boolean {
-        val mode = unlockMode ?: return true
-        return bestWaveOnMode(mode) >= unlockAtWave
+    /** Whether a player with these records may play this level. */
+    fun unlockedBy(
+        bestWaveOnMap: (String) -> Int = { 0 },
+        bestWaveOnMode: (GameMode) -> Int
+    ): Boolean = bestTowardUnlock(bestWaveOnMap, bestWaveOnMode) >= unlockAtWave
+
+    /** The record that counts toward unlocking this level. */
+    fun bestTowardUnlock(
+        bestWaveOnMap: (String) -> Int = { 0 },
+        bestWaveOnMode: (GameMode) -> Int
+    ): Int {
+        unlockMapId?.let { return bestWaveOnMap(it) }
+        val mode = unlockMode ?: return Int.MAX_VALUE
+        return bestWaveOnMode(mode)
     }
 
     /** One line for a locked row in the menu. */
     val unlockRequirement: String
-        get() = unlockMode?.let { "clear wave $unlockAtWave on ${it.runName}" } ?: ""
+        get() = when {
+            unlockMapId != null -> "clear wave $unlockAtWave on $unlockMapName"
+            unlockMode != null -> "clear wave $unlockAtWave on ${unlockMode.runName}"
+            else -> ""
+        }
 
 
     val laneCount: Int get() = laneWaypoints.size

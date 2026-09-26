@@ -81,6 +81,7 @@ class GameRepository(private val store: DataStore<Preferences>) {
                 highestWave = prefs[Keys.HIGHEST_WAVE] ?: 0,
                 highestWaveHackAi = prefs[Keys.HIGHEST_WAVE_HACK_AI] ?: 0,
                 highestWaveBeginner = beginnerBest(prefs),
+                highestWaveByMap = decodeDeployments(prefs[Keys.MAP_BESTS_JSON]),
                 totalAttacksBlocked = (prefs[Keys.TOTAL_PACKETS] ?: 0).toLong(),
                 totalBossesDefeated = (prefs[Keys.TOTAL_BOSSES] ?: 0).toLong(),
                 totalCryptoEarned = (prefs[Keys.TOTAL_CRYPTO] ?: 0).toLong(),
@@ -331,6 +332,12 @@ class GameRepository(private val store: DataStore<Preferences>) {
         ) {
             prefs[Keys.HIGHEST_WAVE_HACK_AI] = wave
         }
+        if (mapId != null) {
+            val bests = decodeDeployments(prefs[Keys.MAP_BESTS_JSON])
+            if (wave > (bests[mapId] ?: 0)) {
+                prefs[Keys.MAP_BESTS_JSON] = encodeDeployments(bests + (mapId to wave))
+            }
+        }
         if (mapId != null && AgentType.isBeginnerLevel(mapId, modeId) &&
             wave > beginnerBest(prefs)
         ) {
@@ -426,6 +433,8 @@ class GameRepository(private val store: DataStore<Preferences>) {
         val HIGHEST_WAVE = intPreferencesKey("highest_wave")
         val HIGHEST_WAVE_HACK_AI = intPreferencesKey("highest_wave_hack_ai")
         val HIGHEST_WAVE_BEGINNER = intPreferencesKey("highest_wave_beginner")
+        /** Best wave per level (any mode), keyed by `GameMap.id`. */
+        val MAP_BESTS_JSON = stringPreferencesKey("map_bests_json")
         val TOTAL_PACKETS = intPreferencesKey("total_attacks")
         val TOTAL_BOSSES = intPreferencesKey("total_bosses")
         val TOTAL_CRYPTO = intPreferencesKey("total_crypto")
