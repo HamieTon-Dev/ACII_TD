@@ -37,7 +37,8 @@ object CodexContent {
                 subtitle = if (type.unlockWave <= 0) {
                     "◇ ${type.cost} · available from the start"
                 } else {
-                    "◇ ${type.cost} · unlocks at wave ${type.unlockWave}"
+                    "◇ ${type.cost} · unlocks at wave ${type.unlockWave}" +
+                        if (type.beginnerLevelOnly) " on ${AgentType.BEGINNER_LEVEL_NAME}" else ""
                 },
                 body = type.realWorld,
                 footnote = "${type.abilityName}: ${type.abilitySummary}"

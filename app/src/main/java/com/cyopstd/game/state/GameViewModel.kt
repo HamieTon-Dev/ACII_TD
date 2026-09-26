@@ -391,8 +391,8 @@ class GameViewModel @JvmOverloads constructor(
         observePersistence()
     }
 
-    private fun earnedAgentNames(highestWave: Int): Set<String> =
-        AgentType.earnedBy(highestWave).map { it.name }.toSet()
+    private fun earnedAgentNames(stats: PlayerStats): Set<String> =
+        AgentType.earnedBy(stats.highestWave, stats.highestWaveBeginner).map { it.name }.toSet()
 
     private fun wireEngine() {
         engine.soundListener = { sound -> audio.play(sound) }
@@ -411,7 +411,7 @@ class GameViewModel @JvmOverloads constructor(
 
         engine.onWaveCleared = { wave ->
             viewModelScope.launch {
-                repository.updateHighestWave(wave, engine.mode.id)
+                repository.updateHighestWave(wave, engine.mode.id, engine.map.id)
                 persistRun()
             }
         }
@@ -916,14 +916,14 @@ class GameViewModel @JvmOverloads constructor(
                 stats = loaded
                 refreshAvailableMaps(loaded)
                 // Unlocks follow the best wave reached; see AgentType.earnedBy.
-                unlockedAgents = unlockedAgents + earnedAgentNames(loaded.highestWave)
+                unlockedAgents = unlockedAgents + earnedAgentNames(loaded)
             }
         }
         collectJobs += viewModelScope.launch {
             repository.progress.collectLatest { loaded ->
                 unlockedAgents = loaded.unlockedAgents +
                     AgentType.starters.map { it.name } +
-                    earnedAgentNames(stats.highestWave)
+                    earnedAgentNames(stats)
                 // Never un-complete it. The flag is written asynchronously,
                 // so an emission from before that write still says false --
                 // and a player who skips the tutorial and immediately hits
@@ -1204,7 +1204,7 @@ class GameViewModel @JvmOverloads constructor(
 
     fun choosePendingAgent(type: AgentType) {
         if (type.name !in unlockedAgents) {
-            showTransient("AGENT LOCKED — REACH WAVE ${type.unlockWave}")
+            showTransient("AGENT LOCKED — ${type.lockedLabel}")
             return
         }
         selection = selection.copy(pendingAgent = type, selectedNodeId = null)
@@ -1512,7 +1512,8 @@ class GameViewModel @JvmOverloads constructor(
                 agentUpgrades = engine.runAgentUpgrades,
                 deploymentsByType = engine.runDeploymentsByType.mapKeys { it.key.name },
                 countAsGamePlayed = false,
-                modeId = engine.mode.id
+                modeId = engine.mode.id,
+                mapId = engine.map.id
             )
             repository.clearSavedRun()
             // A finished run is the other moment worth carrying up: it is the
@@ -1635,7 +1636,8 @@ class GameViewModel @JvmOverloads constructor(
                     agentUpgrades = engine.runAgentUpgrades,
                     deploymentsByType = engine.runDeploymentsByType.mapKeys { it.key.name },
                     countAsGamePlayed = false,
-                    modeId = engine.mode.id
+                    modeId = engine.mode.id,
+                    mapId = engine.map.id
                 )
             }
         }

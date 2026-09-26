@@ -30,7 +30,8 @@ enum class AttackStyle(val trail: String) {
     SENTINEL(":::>"),
     QUANTUM("<#>"),
     ROOT("###>"),
-    ARCHITECT("+-+")
+    ARCHITECT("+-+"),
+    REPAIR("+ +")
 }
 
 /**
@@ -115,7 +116,17 @@ enum class AgentType(
      * only thing anybody builds: at four, it answers a four-boss wave and
      * cannot answer everything else as well.
      */
-    val maxDeployed: Int = 0
+    val maxDeployed: Int = 0,
+    /**
+     * Earned only on the beginner level: [BEGINNER_MAP_ID] in
+     * [BEGINNER_MODE_ID]. A wave reached anywhere else does not count.
+     */
+    val beginnerLevelOnly: Boolean = false,
+    /**
+     * Repairs CORE-SERVER instead of shooting. It never targets anything, so
+     * it needs no range; its timer is [Balance.engineerHealInterval].
+     */
+    val healsServer: Boolean = false
 ) {
     TARPIT(
         displayName = "TARPIT",
@@ -422,6 +433,38 @@ enum class AgentType(
         inGame = "Deals no damage of its own. Buffs every agent in range by +30% " +
             "damage and +20% fire rate, so its value is entirely in where you " +
             "put it."
+    ),
+    /**
+     * The healer (owner, 2026-09-26). The first agent that defends by
+     * repairing rather than by shooting, and deliberately slow at it: one
+     * point of integrity per unit every 30 seconds of a wave in progress, at
+     * level 1. Its glyph is a plain [S], not a symbol that could be mistaken
+     * for a level tier (`[F++]`).
+     */
+    SERVER_SYSTEMS_ENGINEER(
+        displayName = "SERVER SYSTEMS ENGINEER",
+        shortName = "ENGINEER",
+        glyph = "S",
+        cost = 500,
+        baseDamage = 0f,
+        baseFireRate = 0f,
+        baseRange = 0f,
+        attackStyle = AttackStyle.REPAIR,
+        unlockWave = 100,
+        abilityName = "HOT REPAIR",
+        abilitySummary = "Repairs 1 CORE-SERVER integrity every 30 seconds of a " +
+            "running wave, from anywhere on the map. Faster with levels. Four maximum.",
+        realWorld = "Systems engineers keep servers running: patching, " +
+            "replacing failed parts, restoring from backup and watching the " +
+            "health of the machines. \"Server systems engineer\" describes " +
+            "that kind of work; titles for it vary between organisations.",
+        inGame = "Deals no damage and targets nothing. Repairs 1 point of " +
+            "CORE-SERVER integrity every 30 seconds while a wave is running " +
+            "(never during the break or while paused), from any node on the " +
+            "map. Levels shorten the timer. No more than four may be deployed.",
+        maxDeployed = MAX_HATS,
+        beginnerLevelOnly = true,
+        healsServer = true
     );
 
     /** Agents available from the very first run. */
@@ -436,8 +479,17 @@ enum class AgentType(
      * follows.
      */
     val unlockRequirement: String
-        get() = if (unlockedByDefault) "Available from the start."
-        else "Unlock this agent by reaching wave $unlockWave on any level."
+        get() = when {
+            unlockedByDefault -> "Available from the start."
+            beginnerLevelOnly -> "Unlock this agent by reaching wave $unlockWave on " +
+                "$BEGINNER_LEVEL_NAME in $BEGINNER_MODE_NAME mode."
+            else -> "Unlock this agent by reaching wave $unlockWave on any level."
+        }
+
+    /** Short form for a locked card or toast: "REACH WAVE 30". */
+    val lockedLabel: String
+        get() = if (beginnerLevelOnly) "REACH WAVE $unlockWave ON $BEGINNER_LEVEL_NAME"
+        else "REACH WAVE $unlockWave"
 
     fun statsAtLevel(level: Int): AgentStats {
         val steps = (level - 1).coerceIn(0, Balance.MAX_AGENT_LEVEL - 1)
@@ -485,8 +537,19 @@ enum class AgentType(
          * lost an unlock (the wave-30 race), or that predates an agent being
          * added, is repaired by this rather than needing the wave played again.
          */
-        fun earnedBy(highestWave: Int): List<AgentType> =
-            entries.filter { it.unlockWave in 1..highestWave }
+        fun earnedBy(highestWave: Int, highestWaveBeginner: Int = 0): List<AgentType> =
+            entries.filter {
+                it.unlockWave in 1..(if (it.beginnerLevelOnly) highestWaveBeginner else highestWave)
+            }
+
+        /** The level and mode that count for [beginnerLevelOnly] agents. */
+        const val BEGINNER_MAP_ID = "perimeter"
+        const val BEGINNER_MODE_ID = "standard"
+        const val BEGINNER_LEVEL_NAME = "NETWORK PERIMETER"
+        const val BEGINNER_MODE_NAME = "NETWORK DEFENCE"
+
+        fun isBeginnerLevel(mapId: String, modeId: String): Boolean =
+            mapId == BEGINNER_MAP_ID && modeId == BEGINNER_MODE_ID
 
         /** Catalog order used by the deployment panel and the AGENTS screen. */
         val catalog: List<AgentType> = entries.sortedBy { it.unlockWave }

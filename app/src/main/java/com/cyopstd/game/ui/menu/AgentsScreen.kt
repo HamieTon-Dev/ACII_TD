@@ -36,6 +36,8 @@ fun AgentsScreen(
     unlockedAgents: Set<String>,
     highestWave: Int,
     backgroundAnimation: Boolean,
+    /** Best wave on the beginner level, for agents only it unlocks. */
+    highestWaveBeginner: Int = 0,
     onBack: () -> Unit
 ) {
     ScreenScaffold(
@@ -55,7 +57,7 @@ fun AgentsScreen(
                 AgentRosterCard(
                     type = type,
                     unlocked = type.name in unlockedAgents,
-                    highestWave = highestWave
+                    highestWave = if (type.beginnerLevelOnly) highestWaveBeginner else highestWave
                 )
             }
         }
@@ -86,7 +88,7 @@ private fun AgentRosterCard(type: AgentType, unlocked: Boolean, highestWave: Int
                     text = if (unlocked) {
                         "AVAILABLE · ◇ ${type.cost}"
                     } else {
-                        "LOCKED · REACH WAVE ${type.unlockWave}"
+                        "LOCKED · ${type.lockedLabel}"
                     },
                     style = MaterialTheme.typography.labelSmall,
                     color = if (unlocked) Palette.Green else Palette.Orange
@@ -97,9 +99,15 @@ private fun AgentRosterCard(type: AgentType, unlocked: Boolean, highestWave: Int
         Spacer(Modifier.height(8.dp))
 
         Row(horizontalArrangement = Arrangement.spacedBy(14.dp)) {
-            MiniStat("DMG", type.baseDamage.toInt().toString())
-            MiniStat("RATE", "${trim(type.baseFireRate)}/s")
-            MiniStat("RANGE", type.baseRange.toInt().toString())
+            if (type.healsServer) {
+                MiniStat("REPAIR", "+${com.cyopstd.game.core.Balance.ENGINEER_HEAL_AMOUNT} HP")
+                MiniStat("EVERY", "${com.cyopstd.game.core.Balance.ENGINEER_HEAL_INTERVAL.toInt()}s")
+                MiniStat("RANGE", "MAP")
+            } else {
+                MiniStat("DMG", type.baseDamage.toInt().toString())
+                MiniStat("RATE", "${trim(type.baseFireRate)}/s")
+                MiniStat("RANGE", type.baseRange.toInt().toString())
+            }
         }
 
         Spacer(Modifier.height(8.dp))

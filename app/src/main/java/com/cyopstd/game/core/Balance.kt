@@ -417,4 +417,21 @@ object Balance {
 
     /** Hard cap on simulation step to keep physics stable after a stall. */
     const val MAX_FRAME_DELTA = 0.05f
+
+    // ------------------------------------------------ SERVER SYSTEMS ENGINEER
+
+    /** Seconds between repairs at level 1 (owner: "1 hp per 30 seconds"). */
+    const val ENGINEER_HEAL_INTERVAL = 30f
+
+    /** Integrity each repair restores. */
+    const val ENGINEER_HEAL_AMOUNT = 1
+
+    /** Each level past 1 speeds the timer by this much; level 100 is about 10 s. */
+    const val ENGINEER_HEAL_GROWTH = 0.02f
+
+    /** Seconds between one engineer's repairs at [level]. */
+    fun engineerHealInterval(level: Int): Float {
+        val steps = (level - 1).coerceIn(0, MAX_AGENT_LEVEL - 1)
+        return ENGINEER_HEAL_INTERVAL / (1f + ENGINEER_HEAL_GROWTH * steps)
+    }
 }

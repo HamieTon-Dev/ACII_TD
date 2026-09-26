@@ -408,7 +408,10 @@ class GameEngine(
      */
     private fun unlockAgentsForWave(wave: Int) {
         if (wave <= 0) return
-        for (type in AgentType.earnedBy(wave)) {
+        // A wave on the beginner level also counts toward the agents only it
+        // can unlock (SERVER SYSTEMS ENGINEER).
+        val beginnerWave = if (AgentType.isBeginnerLevel(map.id, mode.id)) wave else 0
+        for (type in AgentType.earnedBy(wave, beginnerWave)) {
             if (isAgentUnlocked(type)) continue
             onAgentUnlocked?.invoke(type)
         }
@@ -614,6 +617,26 @@ class GameEngine(
             hapticListener?.invoke(HapticCue.GAME_OVER)
             onGameOver?.invoke()
         }
+    }
+
+    /**
+     * Restore [amount] integrity, never past the maximum. Used by the SERVER
+     * SYSTEMS ENGINEER; floats a green "+ +" above the core on each repair.
+     * Returns false, and does nothing, when the core is already full or lost.
+     */
+    internal fun repairServer(amount: Int): Boolean {
+        if (phase == RunPhase.GAME_OVER || amount <= 0) return false
+        if (serverHp >= serverMaxHp) return false
+        serverHp = (serverHp + amount).coerceAtMost(serverMaxHp)
+        effectSystem.spawnText(
+            WorldGeometry.SERVER_X + WorldGeometry.SERVER_WIDTH / 2f,
+            WorldGeometry.SERVER_TOP - 18f,
+            "+ +",
+            COLOR_SUCCESS,
+            1.4f,
+            1.3f
+        )
+        return true
     }
 
     /**

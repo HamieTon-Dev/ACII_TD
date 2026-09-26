@@ -187,13 +187,18 @@ private fun AgentCard(
 
         if (unlocked) {
             Text(
-                text = "DMG ${type.baseDamage.toInt()}  RATE ${format(type.baseFireRate)}/s",
+                text = if (type.healsServer) {
+                    "+${com.cyopstd.game.core.Balance.ENGINEER_HEAL_AMOUNT} HP / " +
+                        "${com.cyopstd.game.core.Balance.ENGINEER_HEAL_INTERVAL.toInt()}s"
+                } else {
+                    "DMG ${type.baseDamage.toInt()}  RATE ${format(type.baseFireRate)}/s"
+                },
                 style = MaterialTheme.typography.labelSmall,
                 color = Palette.TextSecondary,
                 maxLines = 1
             )
             Text(
-                text = "RNG ${type.baseRange.toInt()}",
+                text = if (type.healsServer) "RNG MAP" else "RNG ${type.baseRange.toInt()}",
                 style = MaterialTheme.typography.labelSmall,
                 color = Palette.TextSecondary,
                 maxLines = 1

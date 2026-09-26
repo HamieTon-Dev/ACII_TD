@@ -165,6 +165,7 @@ fun CyOpsApp(
                     unlockedAgents = viewModel.unlockedAgents,
                     highestWave = viewModel.stats.highestWave,
                     backgroundAnimation = viewModel.settings.backgroundAnimation,
+                    highestWaveBeginner = viewModel.stats.highestWaveBeginner,
                     onBack = { viewModel.playClick(); screen = Screen.MainMenu }
                 )
             }

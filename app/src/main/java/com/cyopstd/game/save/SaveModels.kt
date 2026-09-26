@@ -99,6 +99,11 @@ data class PlayerStats(
      * existed re-earns it rather than being handed it on a technicality.
      */
     val highestWaveHackAi: Int = 0,
+    /**
+     * The best wave on the beginner level: NETWORK PERIMETER in NETWORK
+     * DEFENCE mode. Unlocks the SERVER SYSTEMS ENGINEER at 100.
+     */
+    val highestWaveBeginner: Int = 0,
     val totalAttacksBlocked: Long = 0,
     val totalBossesDefeated: Long = 0,
     val totalCryptoEarned: Long = 0,

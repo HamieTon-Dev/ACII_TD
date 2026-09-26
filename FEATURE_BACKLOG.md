@@ -1799,13 +1799,22 @@ not boosted, or buying and selling would print money. The "+◇" popups show
 the boosted amount. Tunable: `Balance.FIRMWARE_CRYPTO_PER_LEVEL` and
 `FIRMWARE_CRYPTO_MAX_BONUS`.
 
-### W1 ⬜ New agent [++] — heals CORE-SERVER integrity
+### W1 ✅ 1.41.0 — SERVER SYSTEMS ENGINEER [S], heals CORE-SERVER integrity
 
-Owner's spec (2026-09-26), to build as given:
+Built in 1.41.0. The owner renamed it before the build: *"lets not do [++]
+confusing with added levels, lets just call it "Server Systems Engineer" and
+its unit will look like [S]"*. The recommendations below were taken as
+written: ◇ 500, the timer shortens with level (30s → about 10s at level 100),
+four stack independently, never above maximum integrity. A new "best wave on
+NETWORK PERIMETER in NETWORK DEFENCE" record drives the unlock; older saves
+are seeded from it (see `GameRepository.beginnerBest`). `ServerEngineerTest`
+covers it.
+
+Owner's original spec (2026-09-26):
 
 | | |
 | --- | --- |
-| Glyph | `[++]` |
+| Glyph | `[++]` → renamed `[S]` |
 | Target | **CORE-SERVER only**, never threats |
 | Range | none: works from **any node on the map** |
 | Cap | **4** deployed |
