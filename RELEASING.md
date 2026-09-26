@@ -91,9 +91,15 @@ these ids. A typo is a product that can never be bought, so copy them:
 | `bg_pack` | Permanent | $4.99 | All seven backgrounds + €2,000 |
 | `starter_pack` | Permanent | $4.99 | No-ads + SPECTRUM + DRIFT + €2,000 |
 
-The three **consumables must be created as consumable** in the console. The app
-consumes them so they can be bought again; a € pack created as a
-non-consumable could only ever be bought once.
+The three **consumables** need no special setting: Play Console has no
+consumable switch for one-time products. The app consumes them after each
+purchase, which is what lets them be bought again.
+
+**Before any product can be created:** a payments profile (merchant account)
+must be set up in Play Console, and a build containing the billing library
+must have been uploaded to any track. Each product must be **activated** after
+it is saved; an inactive product cannot be bought. Product ids can never be
+changed or reused, so copy them from this table.
 
 **`no_ads` and `revive_pack` both say "no ads" and cover different ads.**
 `no_ads` removes the interstitial between runs; `revive_pack` removes the
