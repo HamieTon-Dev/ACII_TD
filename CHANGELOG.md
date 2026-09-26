@@ -7,6 +7,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [1.41.1]
+
+### Fixed — the build identifier always ended "unknown"
+
+The build stamp in `build.gradle.kts` used the same escaped dollar that kept
+the Play Games ids out of the app until 1.39.1, so every build since 1.19.0
+carried the text `${System.currentTimeMillis() / 1000}` instead of a time.
+`BuildStamp` could not read it, and the identifier shown on every screen
+ended in "unknown", so two builds of the same version looked identical.
+Confirmed in the 1.41.0 test APK's dex.
+
+`ReleaseConfigTest` now fails if the stamp is not a number.
+
+---
+
 ## [1.41.0]
 
 ### Added
