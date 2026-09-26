@@ -1195,11 +1195,17 @@ class BattlefieldRenderer {
 
         val selected = selection.selectedNodeId?.let { engine.agentAt(it) }
         if (selected != null) {
-            drawScanRing(canvas, selected.x, selected.y, selected.range(), colCyan)
+            if (selected.type.healsServer) {
+                drawRepairLink(canvas, selected.x, selected.y)
+            } else {
+                drawScanRing(canvas, selected.x, selected.y, selected.range(), colCyan)
+            }
             return
         }
 
         val pending = selection.pendingAgent ?: return
+        // No range to preview: it works from any node.
+        if (pending.healsServer) return
 
         // While placing, a ring on every free node would be unreadable noise. We
         // draw one representative preview instead, on the free node nearest the
@@ -1221,6 +1227,25 @@ class BattlefieldRenderer {
         }
         val node = preview ?: return
         drawScanRing(canvas, node.x, node.y, pending.baseRange, colGreen, preview = true)
+    }
+
+    /**
+     * SERVER SYSTEMS ENGINEER has no range; what it reaches is the core, from
+     * anywhere. A range ring would be a dot, so it shows that link instead.
+     */
+    private fun drawRepairLink(canvas: android.graphics.Canvas, x: Float, y: Float) {
+        val tx = WorldGeometry.SERVER_X
+        val ty = WorldGeometry.CORE_Y
+        strokePaint.color = colGreen
+        strokePaint.strokeWidth = 2f
+        val segments = 24
+        for (i in 0 until segments step 2) {
+            val a = i / segments.toFloat()
+            val b = (i + 1) / segments.toFloat()
+            strokePaint.alpha = 150
+            canvas.drawLine(x + (tx - x) * a, y + (ty - y) * a, x + (tx - x) * b, y + (ty - y) * b, strokePaint)
+        }
+        strokePaint.alpha = 255
     }
 
     private fun drawScanRing(
