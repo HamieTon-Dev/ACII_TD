@@ -323,6 +323,9 @@ class Effect : Poolable {
      */
     var toEdge: Boolean = false
 
+    /** True for the boss blast and its starburst: aged in real time, not game time. */
+    val onRealTime: Boolean get() = toEdge || kind == EffectKind.BOSS_DEATH
+
     val progress: Float get() = if (lifetime <= 0f) 1f else (age / lifetime).coerceIn(0f, 1f)
 
     override fun reset() {

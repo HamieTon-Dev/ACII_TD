@@ -7,6 +7,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [1.40.1]
+
+### Fixed
+
+- **Callsign entry** is now a box pinned to the top of the screen, above the
+  keyboard. The old field sat where the keyboard covered it in landscape.
+- **Main-menu core-server art**: the lanes feed the middle of the box, the text
+  is centred, and it shrinks to fit instead of wrapping on small phones.
+
+### Changed
+
+- **The boss explosion runs on real time**, so it looks the same at 1x and 4x.
+- **In-game pop-ups are see-through**: SETTINGS → VISUALS → IN-GAME PANEL
+  OPACITY, default 65%.
+
+---
+
 ## [1.40.0]
 
 versionCode 48. Everything below the owner asked for on 2026-09-26 (§U of the

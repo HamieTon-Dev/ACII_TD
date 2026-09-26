@@ -72,7 +72,7 @@ fun AgentManagementPanel(
         modifier = modifier
             .width(430.dp)
             .heightIn(max = 300.dp)
-            .background(Palette.Surface.copy(alpha = 0.97f), RoundedCornerShape(6.dp))
+            .background(Palette.Surface.copy(alpha = LocalPanelOpacity.current), RoundedCornerShape(6.dp))
             .border(1.dp, Palette.Cyan.copy(alpha = 0.55f), RoundedCornerShape(6.dp))
             .padding(10.dp),
         horizontalArrangement = Arrangement.spacedBy(10.dp)

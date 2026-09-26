@@ -66,6 +66,20 @@ fun GameScreen(
     onExitToMenu: () -> Unit,
     onOpenSettings: () -> Unit
 ) {
+    // The pop-ups over the board read their background opacity from here.
+    androidx.compose.runtime.CompositionLocalProvider(
+        LocalPanelOpacity provides viewModel.settings.panelOpacity
+    ) {
+        GameScreenBody(viewModel, onExitToMenu, onOpenSettings)
+    }
+}
+
+@Composable
+private fun GameScreenBody(
+    viewModel: GameViewModel,
+    onExitToMenu: () -> Unit,
+    onOpenSettings: () -> Unit
+) {
     val hud = viewModel.hud
     val settings = viewModel.settings
     val selection = viewModel.selection

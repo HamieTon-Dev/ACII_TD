@@ -98,6 +98,13 @@ class GameEngine(
     var autoStartWaves: Boolean = false
 
     /**
+     * The game speed of the current frame. Effects that must look the same at
+     * any speed divide by it to run on real time; see EffectSystem.update.
+     */
+    var simulationSpeed: Float = 1f
+        private set
+
+    /**
      * Whether [autoStartWaves] also starts boss waves. Off by default, so a
      * boss wave waits for the player (owner, 2026-09-26).
      */
@@ -412,6 +419,7 @@ class GameEngine(
      */
     fun update(realDelta: Float, speed: Float) {
         if (phase == RunPhase.GAME_OVER) return
+        simulationSpeed = speed.coerceAtLeast(0.01f)
 
         val clamped = realDelta.coerceIn(0f, Balance.MAX_FRAME_DELTA)
         var remaining = clamped * speed

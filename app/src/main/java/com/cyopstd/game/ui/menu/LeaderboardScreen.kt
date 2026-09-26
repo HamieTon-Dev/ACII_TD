@@ -1,6 +1,11 @@
 package com.cyopstd.game.ui.menu
 
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.ui.focus.focusRequester
+import androidx.compose.foundation.layout.widthIn
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.border
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -214,30 +219,21 @@ private fun GlobalPanel(
 
 @Composable
 private fun RegistrationPanel(identity: PlayerIdentity, onRegister: (String) -> Unit) {
-    var typed by remember(identity.username) { mutableStateOf(identity.username) }
-    val cleaned = PlayerIdentity.sanitize(typed)
-    val valid = PlayerIdentity.isValid(typed)
+    var editing by remember { mutableStateOf(false) }
 
     TerminalPanel(
         title = if (identity.registered) "CHANGE CALLSIGN" else "REGISTER CALLSIGN",
         accent = Palette.Green
     ) {
-        // Sanitised as it is typed rather than on submit, so what is on screen
-        // is exactly what will be stored -- no silent rewrite after the fact.
-        BasicTextField(
-            value = typed,
-            onValueChange = { typed = PlayerIdentity.sanitize(it) },
-            singleLine = true,
-            textStyle = TextStyle(
-                color = Palette.TextPrimary,
+        Text(
+            text = if (identity.registered) identity.username else "NOT SET",
+            style = TextStyle(
+                color = if (identity.registered) Palette.TextPrimary else Palette.TextMuted,
                 fontFamily = FontFamily.Monospace,
                 fontWeight = FontWeight.Bold,
                 fontSize = 20.sp
             ),
-            cursorBrush = SolidColor(Palette.Cyan),
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(vertical = 8.dp)
+            modifier = Modifier.padding(vertical = 8.dp)
         )
         AsciiRule(color = Palette.Divider)
         Caption(
@@ -246,12 +242,116 @@ private fun RegistrationPanel(identity: PlayerIdentity, onRegister: (String) -> 
         )
         Spacer(Modifier.height(8.dp))
         CompactButton(
-            text = if (identity.registered) "UPDATE" else "REGISTER",
-            onClick = { onRegister(cleaned) },
-            enabled = valid && cleaned != identity.username,
+            text = if (identity.registered) "EDIT CALLSIGN" else "ENTER CALLSIGN",
+            onClick = { editing = true },
             accent = Palette.Green,
             modifier = Modifier.fillMaxWidth()
         )
+    }
+
+    if (editing) {
+        CallsignEntry(
+            identity = identity,
+            onSave = { name ->
+                onRegister(name)
+                editing = false
+            },
+            onCancel = { editing = false }
+        )
+    }
+}
+
+/**
+ * Typing a callsign, in a box pinned to the top of the screen.
+ *
+ * The field used to sit in the right-hand panel, and in landscape the keyboard
+ * covers most of the screen, so players typed into a field they could not see
+ * (owner, 2026-09-26). This floats above everything at the top, where the
+ * keyboard never reaches, and opens the keyboard itself.
+ */
+@Composable
+internal fun CallsignEntry(
+    identity: PlayerIdentity,
+    onSave: (String) -> Unit,
+    onCancel: () -> Unit
+) {
+    var typed by remember(identity.username) { mutableStateOf(identity.username) }
+    val cleaned = PlayerIdentity.sanitize(typed)
+    val valid = PlayerIdentity.isValid(typed) && cleaned != identity.username
+    val focus = remember { androidx.compose.ui.focus.FocusRequester() }
+
+    androidx.compose.ui.window.Dialog(
+        onDismissRequest = onCancel,
+        properties = androidx.compose.ui.window.DialogProperties(usePlatformDefaultWidth = false)
+    ) {
+        androidx.compose.foundation.layout.Box(
+            modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp),
+            contentAlignment = Alignment.TopCenter
+        ) {
+            Column(
+                modifier = Modifier
+                    .widthIn(max = 520.dp)
+                    .background(Palette.Surface, RoundedCornerShape(6.dp))
+                    .border(1.dp, Palette.Green.copy(alpha = 0.8f), RoundedCornerShape(6.dp))
+                    .padding(12.dp)
+            ) {
+                Text(
+                    text = if (identity.registered) "CHANGE CALLSIGN" else "REGISTER CALLSIGN",
+                    style = MaterialTheme.typography.titleSmall,
+                    color = Palette.Green
+                )
+                // Sanitised as it is typed rather than on submit, so what is on
+                // screen is exactly what will be stored.
+                BasicTextField(
+                    value = typed,
+                    onValueChange = { typed = PlayerIdentity.sanitize(it) },
+                    singleLine = true,
+                    textStyle = TextStyle(
+                        color = Palette.TextPrimary,
+                        fontFamily = FontFamily.Monospace,
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 20.sp
+                    ),
+                    cursorBrush = SolidColor(Palette.Cyan),
+                    keyboardOptions = androidx.compose.foundation.text.KeyboardOptions(
+                        capitalization = androidx.compose.ui.text.input.KeyboardCapitalization.Characters,
+                        autoCorrectEnabled = false,
+                        imeAction = androidx.compose.ui.text.input.ImeAction.Done
+                    ),
+                    keyboardActions = androidx.compose.foundation.text.KeyboardActions(
+                        onDone = { if (valid) onSave(cleaned) }
+                    ),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(vertical = 8.dp)
+                        .focusRequester(focus)
+                )
+                // Open the keyboard once the box is on screen. Asking any
+                // earlier -- before the dialog's own window is attached --
+                // throws, so it waits a frame and never fails the screen.
+                androidx.compose.runtime.LaunchedEffect(Unit) {
+                    androidx.compose.runtime.withFrameNanos { }
+                    runCatching { focus.requestFocus() }
+                }
+                AsciiRule(color = Palette.Divider)
+                Spacer(Modifier.height(6.dp))
+                Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                    CompactButton(
+                        text = "CANCEL",
+                        onClick = onCancel,
+                        accent = Palette.TextSecondary,
+                        modifier = Modifier.weight(1f)
+                    )
+                    CompactButton(
+                        text = "SAVE",
+                        onClick = { onSave(cleaned) },
+                        enabled = valid,
+                        accent = Palette.Green,
+                        modifier = Modifier.weight(1f)
+                    )
+                }
+            }
+        }
     }
 }
 

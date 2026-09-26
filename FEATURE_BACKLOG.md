@@ -1751,3 +1751,40 @@ waves automatically and add an AUTO START BOSS WAVE setting."*
 
 *"Users don't know about this unless we tell them."* A ZOOM THE BATTLEFIELD
 card now sits in the first-run tutorial, just before the first placement.
+
+---
+
+## V. Owner's requests, 2026-09-26 (fourth round)
+
+### V1 ✅ 1.40.1 — Callsign entry floats above the keyboard
+
+*"When registering a call sign we need a floating text box because users'
+keyboards cover the text-entering area."* The callsign is now typed in a box
+pinned to the top of the screen, which opens the keyboard itself. CANCEL / SAVE,
+and DONE on the keyboard saves.
+
+### V2 ✅ 1.40.1 — Main-menu core-server art aligned
+
+The lane arrows pointed at the box's top border and the text inside was off
+centre. The lanes now feed the middle rows, every row is the same width, the
+text is centred, and it shrinks to fit rather than wrapping on a narrow phone.
+
+### V3 ✅ 1.40.1 — Boss explosion runs on real time
+
+*"The animations are multiplied by the speed of the wave."* The boss blast,
+its shake and its starburst now take the same real time at 1x and 4x. Purely
+visual, so nothing else changes. Other effects still follow game speed.
+
+### V4 ✅ 1.40.1 — See-through in-game pop-ups, with a slider
+
+*"The pop-up window needs a slightly see-through effect, 30-50%, or an opacity
+slider."* SETTINGS → VISUALS → IN-GAME PANEL OPACITY, default 65% opaque (35%
+see-through), minimum 40%. It covers the boss briefing, boss dossier, agent
+panel and deploy bar. Backgrounds only; text stays solid.
+
+### V5 ✅ ANSWERED — Why [ZZ] ZOMBIE's health jumps
+
+Intended. ZOMBIE comes back once: the first time it is killed it is
+REANIMATED at 40% health instead of dying. A boss with the REGENERATION
+modifier also heals 1.2% of its health per second while it moves. The boss
+dossier and the NEXT BOSS briefing both say which applies.

@@ -53,7 +53,7 @@ fun DeployPanel(
     Column(
         modifier = modifier
             .fillMaxWidth()
-            .background(Palette.Surface.copy(alpha = 0.97f), RoundedCornerShape(6.dp))
+            .background(Palette.Surface.copy(alpha = LocalPanelOpacity.current), RoundedCornerShape(6.dp))
             .border(1.dp, Palette.Cyan.copy(alpha = 0.5f), RoundedCornerShape(6.dp))
             .padding(10.dp)
     ) {

@@ -152,6 +152,20 @@ fun SettingsScreen(
                     .verticalScroll(rememberScrollState())
             ) {
                 TerminalPanel(title = "VISUALS", accent = Palette.Cyan) {
+                    // How much of the board shows through the in-game pop-ups.
+                    SliderRow(
+                        label = "IN-GAME PANEL OPACITY",
+                        value = settings.panelOpacity,
+                        onValueChange = { v ->
+                            onUpdate {
+                                it.copy(
+                                    panelOpacity = v.coerceIn(
+                                        com.cyopstd.game.save.MIN_PANEL_OPACITY, 1f
+                                    )
+                                )
+                            }
+                        }
+                    )
                     ToggleRow(
                         label = "BACKGROUND ANIMATION",
                         description = "Drifting ASCII data behind the battlefield and menus",
