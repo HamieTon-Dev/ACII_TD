@@ -15,12 +15,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
   keyboard. The old field sat where the keyboard covered it in landscape.
 - **Main-menu core-server art**: the lanes feed the middle of the box, the text
   is centred, and it shrinks to fit instead of wrapping on small phones.
+- **Wave-30 agents unlock in the break before wave 30**, not once it has
+  started, so there is time to deploy QUANTUM, RED HAT and BLUE HAT for it.
+  Same for every agent's unlock wave.
 
 ### Changed
 
 - **The boss explosion runs on real time**, so it looks the same at 1x and 4x.
 - **In-game pop-ups are see-through**: SETTINGS → VISUALS → IN-GAME PANEL
   OPACITY, default 65%.
+- **Firmware now also raises crypto earned in runs**: +0.25% per level on kill
+  rewards and wave-clear bonuses, capped at double. Sell refunds are not
+  boosted. Shown on the FIRMWARE screen as CRYPTO EARNED.
 
 ---
 

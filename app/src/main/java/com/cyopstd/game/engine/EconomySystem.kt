@@ -13,9 +13,23 @@ import kotlin.random.Random
  */
 class EconomySystem(private val engine: GameEngine) {
 
-    fun award(amount: Int, countAsEarned: Boolean = true) {
-        if (amount <= 0) return
-        engine.addCrypto(amount, countAsEarned)
+    /**
+     * Pays out crypto and returns what was actually credited.
+     *
+     * Earnings -- kills and wave bonuses -- are raised by firmware's crypto
+     * multiplier. Refunds ([countAsEarned] false) are not: selling an agent
+     * gives back part of what it cost, and a multiplier there would turn
+     * buying and selling into a money machine.
+     */
+    fun award(amount: Int, countAsEarned: Boolean = true): Int {
+        if (amount <= 0) return 0
+        val credited = if (countAsEarned) {
+            (amount * engine.firmwareCryptoMultiplier).roundToInt().coerceAtLeast(amount)
+        } else {
+            amount
+        }
+        engine.addCrypto(credited, countAsEarned)
+        return credited
     }
 
     fun spend(amount: Int) {

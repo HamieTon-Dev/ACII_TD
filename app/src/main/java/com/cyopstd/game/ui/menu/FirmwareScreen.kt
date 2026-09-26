@@ -105,6 +105,11 @@ fun FirmwareScreen(
                         valueColor = Palette.Crypto
                     )
                     StatRow(
+                        "CRYPTO EARNED",
+                        "\u00D7%.2f".format(Balance.firmwareCryptoMultiplier(firmwareLevel)),
+                        valueColor = Palette.Crypto
+                    )
+                    StatRow(
                         "PER LEVEL",
                         FirmwareFormat.perLevel(),
                         valueColor = Palette.TextSecondary
@@ -210,8 +215,10 @@ fun FirmwareScreen(
                     )
                     Spacer(Modifier.height(8.dp))
                     Caption(
-                        "It does not affect enemy health, rewards or wave " +
-                            "composition — only your side of the fight."
+                        "It also raises the \u25C7 crypto every run pays out, " +
+                            "+${"%.2f".format(Balance.FIRMWARE_CRYPTO_PER_LEVEL * 100)}% per " +
+                            "level up to double. It does not affect enemy health " +
+                            "or wave composition."
                     )
                 }
 

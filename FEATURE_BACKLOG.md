@@ -1788,3 +1788,52 @@ Intended. ZOMBIE comes back once: the first time it is killed it is
 REANIMATED at 40% health instead of dying. A boss with the REGENERATION
 modifier also heals 1.2% of its health per second while it moves. The boss
 dossier and the NEXT BOSS briefing both say which applies.
+
+### V6 ✅ 1.40.1 — Firmware also multiplies crypto earned in runs
+
+*"Make firmware add a passive multiplier to money earned in rounds that scales
+with levels."* Each firmware level now also adds **+0.25%** to ◇ crypto earned
+in a run (kill rewards and wave-clear bonuses), **capped at double** (reached
+at level 400). Half the damage rate, because money compounds. Sell refunds are
+not boosted, or buying and selling would print money. The "+◇" popups show
+the boosted amount. Tunable: `Balance.FIRMWARE_CRYPTO_PER_LEVEL` and
+`FIRMWARE_CRYPTO_MAX_BONUS`.
+
+### W1 ⬜ New agent [++] — heals CORE-SERVER integrity
+
+Owner's spec (2026-09-26), to build as given:
+
+| | |
+| --- | --- |
+| Glyph | `[++]` |
+| Target | **CORE-SERVER only**, never threats |
+| Range | none: works from **any node on the map** |
+| Cap | **4** deployed |
+| Unlock | **wave 100 on the beginner level** (STANDARD mode, first map). Shows the 🔒 lock and the unlock note (§U1) until then |
+| Heal at level 1 | **1 integrity per 30 seconds**, counted **only while a wave is running** — not in the break between waves, not while paused |
+| Feedback | green **+ +** symbols float up above CORE-SERVER on each heal |
+
+To decide when building (recommendations, not the owner's words):
+
+- How it scales with upgrade level. Suggest the interval shortens with level
+  (for example 30s at level 1 down to about 10s at level 100) rather than the
+  heal amount growing, so it stays a trickle.
+- Whether four of them stack. Suggest yes, independently, which is what "max
+  4" implies.
+- It can never raise integrity above the mode's maximum.
+- Cost: it earns nothing and fights nothing, so price it for what it is worth
+  late: suggest ◇ 500.
+- The unlock needs a "reached wave N on this level and mode" record, which
+  exists for HACK:AI but not per level; AgentType.unlockRequirement (§U1) is
+  where the wording goes.
+
+### W2 ✅ 1.40.1 — QUANTUM still locked "at wave 30"
+
+*"Quantum is still locked at wave 30 — is this a bug or is it unlocked on
+later waves?"* A bug, and a different one from the save race fixed in 1.39.2.
+Wave-N agents unlocked only when wave N **started**, so through the whole break
+before wave 30 (the banner already reads NEXT: WAVE 30, and that is when you
+build for it) QUANTUM, RED HAT and BLUE HAT were still locked. They now unlock
+the moment wave 29 is cleared, and a run resumed in that break gets them too.
+`Wave30UnlockFlowTest` drives the real game into the break before wave 30 and
+checks all three unlock and survive a restart. It failed before the fix.

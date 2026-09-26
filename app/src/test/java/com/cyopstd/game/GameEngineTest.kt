@@ -705,7 +705,12 @@ class GameEngineTest {
             engine.runWaveToCompletion()
         }
 
-        assertEquals("IPS offered at wave 3 and again at wave 4", 2, offered.count { it == AgentType.IPS })
+        // Offered in the break before wave 3, at its start, and again at every
+        // later chance while it has still not stuck.
+        assertTrue(
+            "IPS must keep being offered while it is still locked",
+            offered.count { it == AgentType.IPS } >= 3
+        )
     }
 
     @Test
