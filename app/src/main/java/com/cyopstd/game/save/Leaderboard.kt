@@ -32,12 +32,9 @@ data class LeaderboardEntry(
 /**
  * The local record of finished runs.
  *
- * Deliberately an interface with a local implementation rather than a direct
- * call into Play Games. A global board needs either a server to enforce unique
- * names or the player's Play profile name, and that decision is still open —
- * but none of it changes what the screen shows or how a run is recorded, so
- * the game does not have to wait for it. Swapping in a synced implementation
- * later touches this file and nothing else.
+ * Every run on this device, offline. The worldwide board is a separate thing
+ * beside it — Play Games, each player's best, see [GlobalLeaderboardGateway] —
+ * and a finished run is posted to both.
  */
 interface LeaderboardGateway {
     suspend fun top(limit: Int = MAX_ENTRIES): List<LeaderboardEntry>

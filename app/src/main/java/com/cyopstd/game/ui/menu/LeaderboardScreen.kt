@@ -44,6 +44,11 @@ import com.cyopstd.game.ui.theme.Palette
  * the entries themselves define — the screen sorts nothing, it displays what
  * the gateway returns, so the local board and a synced one can never disagree
  * about who is first.
+ *
+ * Two views. THIS DEVICE is every run played here and works offline. GLOBAL is
+ * Google Play Games: each player's best, worldwide, one board per mode, listed
+ * under the callsign they registered here. GLOBAL is offered only when the
+ * build has a board for that mode — a control that cannot act is not shown.
  */
 @Composable
 fun LeaderboardScreen(
@@ -51,8 +56,19 @@ fun LeaderboardScreen(
     entries: List<LeaderboardEntry>,
     backgroundAnimation: Boolean,
     onRegister: (String) -> Unit,
-    onBack: () -> Unit
+    onBack: () -> Unit,
+    /** Modes with a global board. Empty hides the GLOBAL view entirely. */
+    globalModes: List<GameMode> = emptyList(),
+    /** Null until read, or when it could not be. */
+    globalEntries: List<LeaderboardEntry>? = null,
+    globalLoading: Boolean = false,
+    /** True when the player is signed into Play Games. */
+    signedIn: Boolean = false,
+    onShowGlobal: (GameMode) -> Unit = {},
+    onOpenNative: (GameMode) -> Unit = {}
 ) {
+    // Null is THIS DEVICE; a mode is that mode's global board.
+    var view by remember { mutableStateOf<GameMode?>(null) }
     ScreenScaffold(
         title = "LEADERBOARD",
         subtitle = if (identity.registered) "AGENT ${identity.username}" else "UNREGISTERED",
@@ -64,7 +80,42 @@ fun LeaderboardScreen(
             horizontalArrangement = Arrangement.spacedBy(12.dp)
         ) {
             Column(Modifier.weight(1.4f)) {
-                TerminalPanel(title = "RANKINGS", accent = Palette.Crypto) {
+                if (globalModes.isNotEmpty()) {
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.spacedBy(8.dp)
+                    ) {
+                        CompactButton(
+                            text = "THIS DEVICE",
+                            onClick = { view = null },
+                            accent = if (view == null) Palette.Crypto else Palette.TextMuted,
+                            modifier = Modifier.weight(1f)
+                        )
+                        for (mode in globalModes) {
+                            CompactButton(
+                                text = "GLOBAL · ${mode.runName}",
+                                onClick = {
+                                    view = mode
+                                    onShowGlobal(mode)
+                                },
+                                accent = if (view == mode) Palette.Green else Palette.TextMuted,
+                                modifier = Modifier.weight(1f)
+                            )
+                        }
+                    }
+                    Spacer(Modifier.height(8.dp))
+                }
+                val global = view
+                if (global != null) {
+                    GlobalPanel(
+                        mode = global,
+                        identity = identity,
+                        entries = globalEntries,
+                        loading = globalLoading,
+                        signedIn = signedIn,
+                        onOpenNative = { onOpenNative(global) }
+                    )
+                } else TerminalPanel(title = "RANKINGS", accent = Palette.Crypto) {
                     if (entries.isEmpty()) {
                         Caption(
                             "No runs recorded yet. Finish a run and it will be " +
@@ -104,6 +155,60 @@ fun LeaderboardScreen(
                 }
             }
         }
+    }
+}
+
+@Composable
+private fun GlobalPanel(
+    mode: GameMode,
+    identity: PlayerIdentity,
+    entries: List<LeaderboardEntry>?,
+    loading: Boolean,
+    signedIn: Boolean,
+    onOpenNative: () -> Unit
+) {
+    TerminalPanel(title = "GLOBAL · ${mode.runName}", accent = Palette.Green) {
+        when {
+            !signedIn -> Caption(
+                "Link your Google account on the GOOGLE PLAY screen to see the " +
+                    "global board and post to it. Your runs are still recorded " +
+                    "on this device."
+            )
+            loading -> Caption("Asking Google Play Games…")
+            entries == null -> Caption(
+                "Google Play Games could not be reached. Your runs are recorded " +
+                    "on this device and your best is posted next time a run ends " +
+                    "while you are online."
+            )
+            entries.isEmpty() -> Caption("No scores posted yet. Finish a run to be first.")
+            else -> {
+                HeaderRow()
+                AsciiRule(color = Palette.Divider)
+                Column(Modifier.verticalScroll(rememberScrollState())) {
+                    entries.forEachIndexed { index, entry ->
+                        EntryRow(
+                            rank = index + 1,
+                            entry = entry,
+                            isYou = identity.registered && entry.username == identity.username
+                        )
+                    }
+                }
+            }
+        }
+        Spacer(Modifier.height(8.dp))
+        AsciiRule(color = Palette.Divider)
+        Caption(
+            "Each player's best wave, worldwide, listed by callsign. Register one " +
+                "on the right, or Google shows your Play Games name instead."
+        )
+        Spacer(Modifier.height(8.dp))
+        CompactButton(
+            text = "OPEN IN GOOGLE PLAY GAMES",
+            onClick = onOpenNative,
+            enabled = signedIn,
+            accent = Palette.Green,
+            modifier = Modifier.fillMaxWidth()
+        )
     }
 }
 

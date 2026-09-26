@@ -15,6 +15,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import com.cyopstd.game.save.CloudSaveStatus
 import com.cyopstd.game.state.GameViewModel
 import com.cyopstd.game.ui.codex.CodexScreen
 import com.cyopstd.game.ui.game.GameScreen
@@ -255,7 +256,16 @@ fun CyOpsApp(
                     entries = viewModel.leaderboardEntries,
                     backgroundAnimation = viewModel.settings.backgroundAnimation,
                     onRegister = { viewModel.registerUsername(it) },
-                    onBack = { viewModel.playClick(); screen = Screen.MainMenu }
+                    onBack = { viewModel.playClick(); screen = Screen.MainMenu },
+                    globalModes = viewModel.globalLeaderboardModes,
+                    globalEntries = viewModel.globalEntries,
+                    globalLoading = viewModel.globalLoading,
+                    signedIn = viewModel.cloudStatus == CloudSaveStatus.LINKED,
+                    onShowGlobal = { mode ->
+                        viewModel.playClick()
+                        viewModel.refreshGlobalLeaderboard(mode)
+                    },
+                    onOpenNative = { mode -> viewModel.openGlobalLeaderboard(mode) }
                 )
             }
 

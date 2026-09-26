@@ -127,6 +127,30 @@ object PlayServices {
             gamesAppId.all { it.isDigit() } &&
             gamesAppId != PLACEHOLDER_GAMES_APP_ID
 
+    /**
+     * The global leaderboard id for each mode that has one.
+     *
+     * Empty unless this build also has a Play Games project: a leaderboard
+     * needs the player signed in, and only the games project signs them in.
+     * A mode with no id simply keeps its local board.
+     */
+    val leaderboardIds: Map<com.cyopstd.game.core.GameMode, String>
+        get() = leaderboardIds(
+            cloudSaveConfigured,
+            mapOf(
+                com.cyopstd.game.core.GameMode.STANDARD to BuildConfig.LEADERBOARD_STANDARD_ID,
+                com.cyopstd.game.core.GameMode.HACK_AI to BuildConfig.LEADERBOARD_HACK_AI_ID
+            )
+        )
+
+    /** The rule behind [leaderboardIds], testable without a build. */
+    fun leaderboardIds(
+        gamesConfigured: Boolean,
+        raw: Map<com.cyopstd.game.core.GameMode, String>
+    ): Map<com.cyopstd.game.core.GameMode, String> =
+        if (!gamesConfigured) emptyMap()
+        else raw.mapValues { it.value.trim() }.filterValues { it.isNotEmpty() }
+
     /** What `resValue` writes when no id is configured. Never a real project. */
     const val PLACEHOLDER_GAMES_APP_ID = "0"
 

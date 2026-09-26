@@ -116,8 +116,25 @@ android {
         // The numeric project id from the Play Console's Play Games Services
         // setup. Empty selects the no-op cloud-save gateway, and the game then
         // keeps every save on the device exactly as it always has.
-        val gamesAppId = (project.findProperty("cyops.games.appId") as String?).orEmpty()
+        //
+        // Read through secret() like every other id, so it can live in the
+        // untracked secrets.properties that secrets.properties.example points
+        // at. It used to be read from Gradle properties only, which silently
+        // ignored that file.
+        val gamesAppId = project.secret("cyops.games.appId").orEmpty()
         buildConfigField("String", "GAMES_APP_ID", "\"${'$'}gamesAppId\"")
+
+        // The global leaderboards, one per game mode. Each is the id Play
+        // Console shows for a leaderboard ("CgkI..."). Either may be left
+        // empty: that mode then keeps a local board only. They do nothing
+        // without cyops.games.appId, which signs the player in.
+        //
+        //     cyops.games.leaderboard.standard=CgkIxxxxxxxxxxxxEAIQAQ
+        //     cyops.games.leaderboard.hack_ai=CgkIxxxxxxxxxxxxEAIQAg
+        val boardStandard = project.secret("cyops.games.leaderboard.standard").orEmpty()
+        val boardHackAi = project.secret("cyops.games.leaderboard.hack_ai").orEmpty()
+        buildConfigField("String", "LEADERBOARD_STANDARD_ID", "\"${'$'}boardStandard\"")
+        buildConfigField("String", "LEADERBOARD_HACK_AI_ID", "\"${'$'}boardHackAi\"")
         // The Games SDK insists this be a string *resource*, and refuses to
         // initialise without one. "0" is a syntactically valid placeholder that
         // is never used: CloudSaveGateways.create() returns the no-op gateway

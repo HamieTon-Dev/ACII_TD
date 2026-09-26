@@ -33,6 +33,9 @@ import com.cyopstd.game.ui.game.TutorialScript
 import com.cyopstd.game.save.LeaderboardEntry
 import com.cyopstd.game.save.LeaderboardGateway
 import com.cyopstd.game.save.LocalLeaderboard
+import com.cyopstd.game.save.GlobalLeaderboardGateway
+import com.cyopstd.game.save.NoGlobalLeaderboard
+import com.cyopstd.game.save.PlayGamesLeaderboard
 import com.cyopstd.game.save.PlayerIdentity
 import com.cyopstd.game.store.BillingGateway
 import com.cyopstd.game.store.BillingStatus
@@ -403,6 +406,7 @@ class GameViewModel @JvmOverloads constructor(
         startConsentThenAds(activity)
         (cloud as? PlayGamesCloudSave)?.let { games ->
             games.attach(activity)
+            (globalBoard as? PlayGamesLeaderboard)?.attach(activity)
             // Refresh rather than sign in: a player who has linked before is
             // signed in again silently by Play Games, and one who has not must
             // not be met by a dialog they did not ask for.
@@ -664,6 +668,57 @@ class GameViewModel @JvmOverloads constructor(
 
     fun refreshLeaderboard() {
         viewModelScope.launch { leaderboardEntries = leaderboard.top() }
+    }
+
+    /**
+     * The worldwide board, on Play Games.
+     *
+     * Only a real gateway when this build has both a games project and at
+     * least one leaderboard id; otherwise nothing is global and the screen
+     * does not offer a GLOBAL view at all.
+     */
+    private val globalBoard: GlobalLeaderboardGateway =
+        if (PlayServices.leaderboardIds.isNotEmpty()) {
+            PlayGamesLeaderboard(PlayServices.leaderboardIds)
+        } else {
+            NoGlobalLeaderboard()
+        }
+
+    /** True when this build has a global board for at least one mode. */
+    val globalLeaderboardAvailable: Boolean get() = globalBoard.configured
+
+    /** Modes with a global board, in menu order. */
+    val globalLeaderboardModes: List<GameMode>
+        get() = GameMode.entries.filter { globalBoard.hasBoard(it) }
+
+    /**
+     * The last global list read, or null when it has not been read or could
+     * not be — not signed in, or offline. Null and empty are different: empty
+     * means Play answered and nobody has posted a score yet.
+     */
+    var globalEntries by mutableStateOf<List<LeaderboardEntry>?>(null)
+        private set
+
+    var globalLoading by mutableStateOf(false)
+        private set
+
+    fun refreshGlobalLeaderboard(mode: GameMode) {
+        if (!globalBoard.hasBoard(mode)) {
+            globalEntries = null
+            return
+        }
+        globalLoading = true
+        viewModelScope.launch {
+            globalEntries = globalBoard.top(mode)
+            globalLoading = false
+        }
+    }
+
+    fun openGlobalLeaderboard(mode: GameMode) {
+        playClick()
+        // A failure here is almost always "not signed in", which the screen
+        // already says beside the button; there is nothing to add.
+        viewModelScope.launch { globalBoard.openNative(mode) }
     }
 
     /** Modes this player has earned the right to play. */
@@ -1348,6 +1403,19 @@ class GameViewModel @JvmOverloads constructor(
                 )
             )
             refreshLeaderboard()
+            // The global post goes after the local one and its result is not
+            // waited on for anything: a board that is down, or a player who is
+            // not signed in, must not hold up recording the run.
+            launch {
+                globalBoard.submit(
+                    LeaderboardEntry(
+                        username = identity.username,
+                        wave = engine.currentWave,
+                        damage = engine.runDamageDealt.toLong(),
+                        modeId = engine.mode.id
+                    )
+                )
+            }
             repository.recordRunResult(
                 waveReached = engine.currentWave,
                 attacksBlocked = engine.runAttacksBlocked,
