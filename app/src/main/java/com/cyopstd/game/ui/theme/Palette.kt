@@ -20,23 +20,23 @@ object Palette {
 
     // Friendly / defence ---------------------------------------------------
     val Cyan = Color(0xFF00E5FF)
-    val CyanDim = Color(0xFF0E7C8C)
+    val CyanDim = Color(0xFF0A8FA3)
     val Green = Color(0xFF00FF9C)
-    val GreenDim = Color(0xFF12855A)
-    val Blue = Color(0xFF4D8DFF)
-    val Purple = Color(0xFFB07BFF)
+    val GreenDim = Color(0xFF0C9A60)
+    val Blue = Color(0xFF2E7BFF)
+    val Purple = Color(0xFFA259FF)
 
     // Hostile --------------------------------------------------------------
-    val Red = Color(0xFFFF4D6A)
-    val RedDeep = Color(0xFFB4122F)
-    val Orange = Color(0xFFFF8A3D)
-    val Magenta = Color(0xFFFF5BD1)
+    val Red = Color(0xFFFF2D55)
+    val RedDeep = Color(0xFFC8102E)
+    val Orange = Color(0xFFFF7A1A)
+    val Magenta = Color(0xFFFF2EC4)
 
     // Information ----------------------------------------------------------
     val TextPrimary = Color(0xFFE6EEFA)
     val TextSecondary = Color(0xFF93A6C4)
     val TextMuted = Color(0xFF5C6E8C)
-    val Crypto = Color(0xFFFFC94D)
+    val Crypto = Color(0xFFFFD426)
 
     // Semantic helpers -----------------------------------------------------
     val Danger = Red
@@ -87,8 +87,8 @@ object Palette {
      * or gold to match a skin made them read as decoration instead of as
      * hardware.
      */
-    val ServerLedGreen = Color(0xFF3BE06B)
-    val ServerLedAmber = Color(0xFFFFA23D)
+    val ServerLedGreen = Color(0xFF22F060)
+    val ServerLedAmber = Color(0xFFFF9A1A)
 
     /** Server integrity bar colour, by remaining fraction. */
     fun healthColor(fraction: Float): Color = when {

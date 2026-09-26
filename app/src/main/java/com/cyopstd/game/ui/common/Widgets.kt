@@ -63,7 +63,7 @@ fun TerminalPanel(
     Column(
         modifier = modifier
             .background(Palette.Surface, RoundedCornerShape(6.dp))
-            .border(BorderStroke(1.dp, accent.copy(alpha = 0.45f)), RoundedCornerShape(6.dp))
+            .border(BorderStroke(1.dp, accent.copy(alpha = 0.7f)), RoundedCornerShape(6.dp))
             .padding(contentPadding)
     ) {
         if (title != null) {
@@ -72,7 +72,7 @@ fun TerminalPanel(
                 style = MaterialTheme.typography.titleMedium,
                 color = accent
             )
-            AsciiRule(color = accent.copy(alpha = 0.4f))
+            AsciiRule(color = accent.copy(alpha = 0.55f))
             Spacer(Modifier.height(8.dp))
         }
         content()
@@ -133,7 +133,7 @@ fun BastionButton(
             .border(
                 BorderStroke(
                     if (pressed && enabled) 2.dp else 1.dp,
-                    effectiveAccent.copy(alpha = if (enabled) 0.55f + glow * 0.45f else 0.3f)
+                    effectiveAccent.copy(alpha = if (enabled) 0.75f + glow * 0.25f else 0.3f)
                 ),
                 RoundedCornerShape(4.dp)
             )

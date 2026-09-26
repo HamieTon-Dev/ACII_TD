@@ -7,6 +7,53 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [1.42.0]
+
+### Changed
+
+- **Colours pop more (♧1).** Blue, purple, red, orange and magenta are more
+  saturated; agent rings and fills are stronger; the boss blast is a deeper
+  red; menu panel and button borders are sharper. Core skins and living
+  backgrounds are about 30% more saturated at the same brightness. Cyan and
+  green were already at full saturation, so their extra pop comes from the
+  stronger rings.
+- **Crypto gold moved towards yellow**, away from the orange threat colour it
+  was drifting into.
+- Lanes and backgrounds still clear every enemy colour by the same margin
+  `PaletteTest` has always enforced.
+
+### Added
+
+- **NEURAL-MESH, the third level** (the owner's pick: BACKPROP). Two routes
+  run the full width, double back, and meet at the far left for one long
+  shared return to the core: 3,662 units per route, 68 build spots. Plays the
+  level-three music. **Unlocks by reaching wave 100 on HUGGING-FACE**, in any
+  mode. A new per-level best-wave record tracks it; it counts from this
+  version on.
+- **MODEL COLLAPSE `[∆∆∆]`**: heals back part of every hit while three or
+  more agents hit it at once, 8% for each agent beyond two, up to 60%. A
+  crowd of agents feeds it; a few heavy hitters starve it. A "+ FEEDING"
+  tell shows while it is being fed.
+- **LICENSE `[©©©]`**: every hit from an agent type makes that type's next
+  hits weaker, halving after 25 hits and bottoming out at 35%. A board of one
+  agent type wears itself out; a mixed board keeps hurting it.
+- Both are NEURAL-MESH bosses, and NEURAL-MESH also fields every boss from the
+  two levels before it, as the owner asked ("stacking"). The NEXT BOSS
+  briefing explains each and what beats it.
+
+### Measured
+
+One boss at wave 100 walking NEURAL-MESH into a fixed level-12 board:
+
+| Fight | BREACH | New boss |
+| --- | --- | --- |
+| MODEL COLLAPSE vs 12 ANALYST | 24.3 s | 34.0 s |
+| MODEL COLLAPSE vs 4 heavy hitters | 32.7 s | 36.1 s |
+| LICENSE vs 12 ANALYST (one type) | 24.3 s | 54.7 s |
+| LICENSE vs 12 mixed types | 10.2 s | 14.3 s |
+
+---
+
 ## [1.41.1]
 
 ### Fixed — the build identifier always ended "unknown"
