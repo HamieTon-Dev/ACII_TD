@@ -112,10 +112,10 @@ actually supports.
 | Language | None |
 | Controlled substances | None |
 | Gambling / simulated gambling | **None.** Every purchase is a named, deterministic item. No loot boxes and no randomised paid rewards. |
-| Ads shown to children | **Yes, and they are child-directed, non-personalized and rated G.** The only ad is a rewarded ad the player opts into on the game-over screen to continue a run. |
-| User-generated content | **None**, with one caveat: the player types a "callsign" for the local leaderboard. It is stored on the device and shown only to that player. If you enable Play Games leaderboards later, this becomes shared content and the answer changes. |
+| Ads shown to children | **Yes, and they are child-directed, non-personalized and rated G.** A rewarded ad the player opts into on the game-over screen to continue a run, and one interstitial after a lost run (not after a revive paid with an ad, and at most once every three minutes). |
+| User-generated content | **None**, with one caveat: the player types a "callsign" (3–16 of A–Z, 0–9, dash, underscore). Since 1.37.0 it is posted with their score to the Google Play Games global leaderboard, where other players see it. |
 | Digital purchases | **Yes** |
-| Advertising | **Yes** — one voluntary rewarded ad, and nothing else. No interstitials, banners, app-open or native ads |
+| Advertising | **Yes** — a voluntary rewarded ad, and an interstitial after a lost run. No banners, app-open or native ads |
 | Shares location | No |
 | Personal info shared | No, by the game itself |
 

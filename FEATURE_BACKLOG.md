@@ -103,9 +103,8 @@ huge, armoured, slow) and **`[ZZ]` ZOMBIE** (gets back up once at 40%). The
 banner now names the boss and what it does while there is still time to build
 for it.
 
-❓ **The rest of §J's list is still yours to pick from** — `[SS]`, `[RM]`,
-`[∑∑∑]`, `[©©©]`, `[∆∆∆]`, `[XX]`. Each is now one table row plus, where it has
-a signature behaviour, a hook like ZOMBIE's.
+✅ **The rest of §J's list is decided** — `[SS]`, `[RM]`, `[∑∑∑]`, `[©©©]`,
+`[∆∆∆]`, `[XX]` are all wanted, two per future map, stacking. See §R1.
 
 ### C2 ✅ DECIDED — Agent-versus-variant damage bonuses
 
@@ -1478,3 +1477,96 @@ and the backgrounding behaviour are written once and cannot drift apart.
 - LEVEL_THREE is supplied and deliberately unmapped until the third map lands.
 
 About +25 MB to the download.
+
+---
+
+## R. Owner's decisions, 2026-09-26
+
+Answers to the review list. Each is either done in 1.37.0 or is now a standing
+rule for future work.
+
+### R1 ✅ RULE — boss variants are assigned to maps, two per map, and stack
+
+*"I like all of those bosses, but save the ideas for the next implemented
+maps, two per map, all previous bosses will be included in subsequent maps
+stacking variants of bosses."*
+
+The six unbuilt variants from §J are **not** added to existing maps. Each new
+map introduces **two** of them, and every later map also fields every variant
+from the maps before it. So map 3 has the base three plus Hugging-Face's four
+plus its own two; map 4 has all of that plus two more.
+
+Queue, in the order recommended (the owner may reorder):
+
+| Map | New variants |
+| --- | --- |
+| 3 | `[∆∆∆]` MODEL COLLAPSE · `[©©©]` LICENSE |
+| 4 | `[SS]` SYN-STORM · `[∑∑∑]` GRADIENT |
+| 5 | `[RM]` RANSOM · `[XX]` EXFIL |
+
+Needs, when map 3 is built: the per-map boss pool to be the union of the
+current map's variants and every earlier map's.
+
+### R2 ❓ More maps — new names needed, and the owner picks each layout
+
+*"More maps sounds great. I am not keen on the names … as you create new ones
+let me choose a layout for you."*
+
+Air-Gap, Model-Zoo and Edge-Node are dropped as names. For each new map, offer
+the owner a set of name options and render layout options (the E1 previewer
+approach) **before** building it. Nothing is built until a layout is picked.
+
+### R3 ✅ 1.37.0 — two new living backgrounds, and the pack rule
+
+ORBIT (elliptical traces around the core) and HEATMAP (a grid of cells that
+warm and cool with the traffic) are new. The other five already had distinct
+shapes. Each sells alone at $1.99.
+
+**Standing rule:** `bg_pack` contains every living background and stays at
+**$4.99** however many are added. Singles cost the same as the other singles.
+`StoreTest` fails if a background is left out of the pack or the pack price
+changes.
+
+### R4 ✅ RULE — the same for core skins
+
+`core_skin_pack` stays at **$2.50** and gains every future non-premium skin;
+a single skin is **$1.00** like the others. NEONGRID remains premium and
+outside the pack. Asserted by the same `StoreTest` case.
+
+### R5 ✅ 1.37.0 — the lost-run advert is back
+
+*"Still need an advert on lost runs — fix this and the store item will remain
+the same."* The interstitial is restored with the rules it had before 1.35.0:
+REMOVE ADS removes it, one per lost run, not after a revive paid with an ad,
+at most one every three minutes. It keeps 1.35.0's child-directed,
+non-personalized, G-rated settings. REMOVE ADS is on sale again, unchanged.
+
+### R6 ✅ CLOSED — game-over wording stays
+
+### R7 ✅ CLOSED — both start-up screens stay, unless the owner asks later
+
+### R8 ✅ 1.37.0 — global leaderboard on Google Play Games
+
+One Play Console leaderboard per mode (STANDARD, HACK:AI), ranked by wave
+reached. The callsign and the run's damage ride in the score tag, so the
+in-game GLOBAL view lists callsigns. The local board is unchanged beside it.
+
+**Owner to do in Play Console** (Play Games Services → Leaderboards), when the
+Console is available: create two leaderboards —
+
+| Name | Score format | Ordering | Property |
+| --- | --- | --- | --- |
+| Deepest wave — Standard | Numeric, 0 decimals | Larger is better | `cyops.games.leaderboard.standard` |
+| Deepest wave — HACK:AI | Numeric, 0 decimals | Larger is better | `cyops.games.leaderboard.hack_ai` |
+
+Put each leaderboard's id (starts `CgkI`) in `secrets.properties`. Without them
+the GLOBAL view is simply not shown.
+
+### R9 — release items, answered
+
+- **AdMob ids, consent message:** not until a full release. Nothing to do now.
+- **Upload keystore:** the owner builds and signs; raise it only right before
+  the production release.
+- **Privacy policy:** the owner has one, linked through the community Discord.
+- **Closed test, screen sizes (N1), cloud save (F3):** all wait on Play
+  Console review.

@@ -171,6 +171,8 @@ enum class Sku(
         fallbackPrice = "$1.00"
     ),
 
+    // Owner's rule (2026-09-26), as for backgrounds: every new non-premium
+    // core skin joins this pack at the same $2.50, and sells alone at $1.00.
     CORE_SKIN_PACK(
         id = "core_skin_pack",
         kind = SkuKind.PERMANENT,
@@ -227,6 +229,25 @@ enum class Sku(
         fallbackPrice = "$2.99"
     ),
 
+    BG_ORBIT(
+        id = "bg_orbit",
+        kind = SkuKind.PERMANENT,
+        title = "LIVING: ORBIT",
+        summary = "Slow elliptical traces circling the core.",
+        fallbackPrice = "$1.99"
+    ),
+
+    BG_HEATMAP(
+        id = "bg_heatmap",
+        kind = SkuKind.PERMANENT,
+        title = "LIVING: HEATMAP",
+        summary = "A grid whose cells warm and cool with the traffic.",
+        fallbackPrice = "$1.99"
+    ),
+
+    // Owner's rule (2026-09-26): the pack always contains every living
+    // background and never changes price. A new background joins this list
+    // at $4.99 still, and sells alone at a single background's price.
     BG_PACK(
         id = "bg_pack",
         kind = SkuKind.PERMANENT,
@@ -235,11 +256,12 @@ enum class Sku(
         // after this pack was written and were not added to it, so a player
         // buying something called ALL LIVING BACKGROUNDS would have received
         // three of five.
-        summary = "All five living backgrounds, plus \u20AC2,000.",
+        summary = "All seven living backgrounds, plus \u20AC2,000.",
         fallbackPrice = "$4.99",
         grantsBudget = 2_000,
         alsoUnlocks = listOf(
-            "bg_drift", "bg_lattice", "bg_aurora", "bg_rainfall", "bg_pulse"
+            "bg_drift", "bg_lattice", "bg_aurora", "bg_rainfall", "bg_pulse",
+            "bg_orbit", "bg_heatmap"
         )
     ),
 
@@ -272,7 +294,7 @@ enum class Sku(
         )
 
         val backgrounds: List<Sku> =
-            listOf(BG_DRIFT, BG_LATTICE, BG_AURORA, BG_RAINFALL, BG_PULSE)
+            listOf(BG_DRIFT, BG_LATTICE, BG_AURORA, BG_RAINFALL, BG_PULSE, BG_ORBIT, BG_HEATMAP)
 
         /**
          * Revives per run for a player owning [owned], or null for the default.

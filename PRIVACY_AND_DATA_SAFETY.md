@@ -37,10 +37,10 @@ Everything below is therefore about the SDKs, not about the game.
 
 | SDK | Version | Why it is here | Optional? |
 | --- | --- | --- | --- |
-| Google Mobile Ads (AdMob) | 25.3.0 | the rewarded ad that grants a revive — the only advertising in the game | yes — absent ids, no ads |
+| Google Mobile Ads (AdMob) | 25.3.0 | the rewarded ad that grants a revive, and the interstitial after a lost run | yes — absent ids, no ads |
 | Google User Messaging Platform (UMP) | 4.0.0 | the GDPR / US-states consent form in front of advertising | ships with Ads |
 | Google Play Billing | 7.1.1 | in-app purchases | yes |
-| Play Games Services v2 | 20.1.2 | optional cloud save | yes — off by default |
+| Play Games Services v2 | 20.1.2 | optional cloud save and global leaderboards | yes — off by default |
 | AndroidX / Jetpack Compose | BOM 2024.12.01 | UI toolkit | no — collects nothing |
 | Kotlin / kotlinx.serialization | 2.0.21 / 1.7.3 | language and save format | no — collects nothing |
 
@@ -119,6 +119,7 @@ Off unless `cyops.games.appId` is set at build time.
 | --- | --- | --- | --- |
 | **Personal info** — Play Games player id and display name | yes | yes | app functionality |
 | **App activity** — saved game data | yes | yes | app functionality |
+| **App activity** — leaderboard score (wave), with the run's damage and the player's callsign in the score tag *(only if a leaderboard id is set)* | yes | yes | app functionality |
 
 If you ship without a Play Games project id, none of this applies and it should
 not be declared.

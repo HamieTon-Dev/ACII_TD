@@ -61,8 +61,10 @@ your Play Console, your AdMob account or your keystore.
 Uses Google's test ad units, so the whole path can be exercised with no real
 impressions.
 
-- [ ] No advert appears that you did not press a button for. There should be
-      no interstitial after a lost run — that was removed in 1.35.0.
+- [ ] Lose a run and decline the revive → **one** test interstitial, then the
+      summary. Lose again inside three minutes → no interstitial.
+- [ ] Revive with an ad, then lose again → **no** interstitial (the run's ad
+      budget was already spent).
 - [ ] Lose a run. **WATCH AD TO CONTINUE** appears.
 - [ ] Complete the ad → the run resumes, **same wave**, core at **50%**,
       agents still deployed, crypto unchanged.

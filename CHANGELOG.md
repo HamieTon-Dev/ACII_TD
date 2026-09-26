@@ -7,6 +7,54 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [1.37.0]
+
+### Added — a global leaderboard on Google Play Games
+
+The LEADERBOARD screen now has a GLOBAL view beside THIS DEVICE: each
+player's best wave worldwide, one board for STANDARD and one for HACK:AI,
+listed by the callsign they registered in the game. A finished run is posted
+to both boards; the global post never holds up recording the run, and a player
+who is not signed in is told to link on the GOOGLE PLAY screen.
+
+It needs two leaderboards created in Play Console and their ids set as
+`cyops.games.leaderboard.standard` and `cyops.games.leaderboard.hack_ai`.
+Without them the GLOBAL view is not shown. `FEATURE_BACKLOG.md` §R8 has the
+exact settings.
+
+### Added — two living backgrounds, ORBIT and HEATMAP
+
+**ORBIT** traces slow ellipses around the core. **HEATMAP** is a coarse grid
+whose cells warm and cool, running hotter when the board is busy. $1.99 each.
+ALL LIVING BACKGROUNDS now holds all seven at the same $4.99.
+
+### Changed — the lost-run advert is back, and REMOVE ADS is on sale again
+
+The interstitial after a lost run, removed in 1.35.0, is restored at the
+owner's instruction with its old rules: REMOVE ADS removes it, at most one per
+lost run, none after a revive paid for with an ad, and no more than one every
+three minutes. It uses the same child-directed, non-personalized, G-rated
+settings as the rewarded ad. It needs its own unit id,
+`cyops.admob.interstitialId`; a build without one shows no lost-run ad and
+does not sell REMOVE ADS.
+
+### Fixed
+
+- `cyops.games.appId` is now read from `secrets.properties` like every other
+  id. It was read from Gradle properties only, so the place
+  `secrets.properties.example` tells you to put it was ignored.
+
+### Pricing rule, now enforced
+
+Both packs keep their price as items are added — ALL LIVING BACKGROUNDS at
+$4.99, CORE SKIN PACK at $2.50 — and must contain every item of their kind
+(NEONGRID excepted). `StoreTest` fails otherwise.
+
+**Play Console:** create `bg_orbit` and `bg_heatmap`, and update the
+description of `bg_pack` to say seven.
+
+---
+
 ## [1.36.2]
 
 ### Added — the GOOGLE PLAY screen lists revives owned (§F3)

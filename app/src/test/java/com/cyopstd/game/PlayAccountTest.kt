@@ -116,8 +116,11 @@ class PlayAccountTest {
     @Test
     fun `owning nothing is reported as owning nothing`() {
         show(entitlements = Entitlements())
-        compose.onNodeWithText("0 / ${Sku.coreSkins.size}").assertExists()
-        compose.onNodeWithText("0 / ${Sku.backgrounds.size}").assertExists()
+        // The two counts can be equal (seven skins, seven backgrounds), so
+        // they are counted together rather than found one at a time.
+        val expected = setOf("0 / ${Sku.coreSkins.size}", "0 / ${Sku.backgrounds.size}")
+        val found = expected.sumOf { compose.onAllNodesWithText(it).fetchSemanticsNodes().size }
+        assertEquals(2, found)
     }
 
     @Test

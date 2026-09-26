@@ -511,6 +511,65 @@ class BattlefieldRenderer {
                     canvas.drawCircle(cx, cy, 90f + phase * 1250f, strokePaint)
                 }
             }
+
+            LivingBackground.ORBIT -> {
+                // Nested ellipses around the core, each with one body on it
+                // and a short fading trail behind it. Centred on the core for
+                // the same reason PULSE is: the eye goes to what is defended.
+                val cx = WorldGeometry.SERVER_X
+                val cy = WorldGeometry.CORE_Y
+                strokePaint.color = tint
+                fillPaint.color = tint
+                for (i in 0 until 5) {
+                    val rx = 220f + i * 250f
+                    val ry = 120f + i * 120f
+                    scratchRect.set(cx - rx, cy - ry, cx + rx, cy + ry)
+                    strokePaint.strokeWidth = 1f
+                    strokePaint.alpha = (peak * 0.35f).toInt()
+                    canvas.drawOval(scratchRect, strokePaint)
+
+                    // Alternate directions, and slower on the outer tracks.
+                    val direction = if (i % 2 == 0) 1f else -1f
+                    val angle = direction * time * skin.speed * 6.28f * (1.6f - i * 0.2f) + i * 1.9f
+                    for (t in 0 until 6) {
+                        val a = angle - direction * t * 0.05f
+                        fillPaint.alpha = (peak * (1f - t / 6f)).toInt().coerceAtLeast(0)
+                        canvas.drawCircle(
+                            cx + cos(a) * rx,
+                            cy + sin(a) * ry,
+                            4f - t * 0.5f,
+                            fillPaint
+                        )
+                    }
+                }
+            }
+
+            LivingBackground.HEATMAP -> {
+                // Coarse cells whose warmth drifts on two slow waves, with the
+                // whole field running a little hotter when the board is busy.
+                // Filled at a fraction of the peak so the lanes over it never
+                // lose contrast.
+                val load = (engine.activeEnemyCount() / 16f).coerceIn(0f, 1f)
+                val cell = 80f
+                fillPaint.color = tint
+                var row = 0
+                var y = 0f
+                while (y < h) {
+                    var col = 0
+                    var x = 0f
+                    while (x < w) {
+                        val wave = sin(time * skin.speed * 6.28f + col * 0.55f) *
+                            sin(time * skin.speed * 3.9f + row * 0.8f + col * 0.2f)
+                        val warmth = (0.5f + 0.5f * wave) * (0.7f + 0.3f * load)
+                        fillPaint.alpha = (peak * 0.8f * warmth).toInt()
+                        canvas.drawRect(x + 2f, y + 2f, x + cell - 2f, y + cell - 2f, fillPaint)
+                        x += cell
+                        col++
+                    }
+                    y += cell
+                    row++
+                }
+            }
         }
         strokePaint.alpha = 255
         fillPaint.alpha = 255

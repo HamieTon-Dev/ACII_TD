@@ -4,7 +4,7 @@
 reads first. It records where the project actually stands, what is proven and
 what is not, and what comes next.
 
-_Last updated: v1.36.2 — F3's UI half (revives listed on the GOOGLE PLAY screen); the §K table below brought up to date with 1.35.0–1.36.1. See `CHANGELOG.md` for the full per-version history._
+_Last updated: v1.37.0 — the owner's review answers (§R of the backlog): lost-run interstitial restored, Play Games global leaderboard, ORBIT and HEATMAP backgrounds, pack pricing rule. See `CHANGELOG.md` for the full per-version history._
 
 ---
 
@@ -39,9 +39,12 @@ this section is the position marker. Update it when an item ships.
 | 16 | Q1 — cloud-save encryption audit | ✅ 1.34.1 |
 | 17 | ♡1–♡2 — the owner's music | ✅ 1.36.0 |
 
-**Nothing left is buildable without the owner.** O1 needs the AdMob ids, an
-upload key and Console setup; F3 and N1 need real devices; §J has options
-waiting for a pick.
+| 18 | R — owner's review answers (ads, leaderboard, backgrounds, pricing) | ✅ 1.37.0 |
+
+**Next buildable item: map 3**, and it waits on the owner. §R2: offer new map
+names and rendered layout options first; §R1: it introduces `[∆∆∆]` and
+`[©©©]` and fields every earlier map's bosses too. Everything else waits on
+Play Console review (closed test, N1, F3) or a full release (AdMob ids).
 
 **On the music:** the owner has set the generated mode tracks aside and will
 source music another way. The work stays in place and passing — HACK:AI has

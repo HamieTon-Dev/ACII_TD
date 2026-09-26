@@ -86,7 +86,9 @@ these ids. A typo is a product that can never be bought, so copy them:
 | `bg_aurora` | Permanent | $4.99 | LIVING: AURORA |
 | `bg_rainfall` | Permanent | $1.99 | LIVING: RAINFALL |
 | `bg_pulse` | Permanent | $2.99 | LIVING: PULSE |
-| `bg_pack` | Permanent | $4.99 | All five backgrounds + €2,000 |
+| `bg_orbit` | Permanent | $1.99 | LIVING: ORBIT *(new in 1.37.0)* |
+| `bg_heatmap` | Permanent | $1.99 | LIVING: HEATMAP *(new in 1.37.0)* |
+| `bg_pack` | Permanent | $4.99 | All seven backgrounds + €2,000 |
 | `starter_pack` | Permanent | $4.99 | No-ads + SPECTRUM + DRIFT + €2,000 |
 
 The three **consumables must be created as consumable** in the console. The app
@@ -108,9 +110,14 @@ numbers are larger. `Balance.BUDGET_SCALE` is the factor and
 Do not raise the pack figures alone.
 
 `core_skin_pack` deliberately **excludes** `core_skin_neongrid` — NEONGRID is
-the premium skin and is sold on its own. Note also that the pack is still at
-the originally specified $2.50 while now covering six skins rather than three;
-that price is worth revisiting.
+the premium skin and is sold on its own.
+
+**Pack pricing rule (owner, 2026-09-26).** `bg_pack` and `core_skin_pack` always
+contain every item of their kind and **never change price** as items are added
+($4.99 and $2.50). A new background or skin sells alone at the same price as
+the other singles. `StoreTest` fails if a new item is left out of its pack or a
+pack price drifts. When a pack gains items, **edit its description in Play
+Console** too — the price stays, the text changes.
 
 **Licence testing.** Add your own account under *Setup → License testing* so
 purchases can be exercised end to end without being charged.
@@ -179,8 +186,8 @@ the version that works across two devices at once.
 ## 4. AdMob
 
 1. Create the app in AdMob and link it to the Play listing.
-2. Create one **Interstitial** ad unit.
-3. Put the application id and the interstitial unit id into the build (§1).
+2. Create one **Rewarded** ad unit and one **Interstitial** ad unit.
+3. Put the application id and both unit ids into the build (§1).
 
 The app shows at most one interstitial, only after a **lost** run, never after
 quitting to the menu, and never within 180 seconds of the last one. Those rules

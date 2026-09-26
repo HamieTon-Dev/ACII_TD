@@ -64,6 +64,30 @@ class StoreTest {
     }
 
     @Test
+    fun `the packs follow the owner's pricing rule`() {
+        // Owner's rule (2026-09-26): a pack holds every item of its kind and
+        // keeps its price as items are added; a single is priced like the
+        // other singles. So a new background or skin that lands outside its
+        // pack, or a pack whose price drifts, fails here.
+        assertEquals("$4.99", Sku.BG_PACK.fallbackPrice)
+        assertEquals(Sku.backgrounds.map { it.id }.toSet(), Sku.BG_PACK.alsoUnlocks.toSet())
+
+        assertEquals("$2.50", Sku.CORE_SKIN_PACK.fallbackPrice)
+        assertEquals(
+            "every core skin but the premium NEONGRID belongs in the pack",
+            (Sku.coreSkins - Sku.CORE_SKIN_NEONGRID).map { it.id }.toSet(),
+            Sku.CORE_SKIN_PACK.alsoUnlocks.toSet()
+        )
+
+        val singleBackgroundPrices = setOf("$1.99", "$2.99", "$4.99")
+        for (bg in Sku.backgrounds) {
+            assertTrue("${bg.id} is not priced like a single background",
+                bg.fallbackPrice in singleBackgroundPrices)
+        }
+        for (skin in Sku.coreSkins) assertEquals("$1.00", skin.fallbackPrice)
+    }
+
+    @Test
     fun `every bundle costs less than its parts`() {
         // If a pack is not cheaper than buying its contents separately, it is
         // not a pack, it is a trap.
