@@ -137,6 +137,47 @@ class GameUiTest {
     }
 
     @Test
+    fun `with a saved run, CONTINUE leads and PLAY becomes NEW RUN`() {
+        var played = 0
+        var continued = 0
+        compose.setContent {
+            CyOpsTheme {
+                MainMenuScreen(
+                    hasSavedRun = true,
+                    stats = PlayerStats(),
+                    budget = 0L,
+                    firmwareLevel = 0,
+                    adsRemoved = false,
+                    availableModes = listOf(GameMode.STANDARD),
+                    selectedMode = GameMode.STANDARD,
+                    availableMaps = listOf(Maps.PERIMETER),
+                    selectedMap = Maps.PERIMETER,
+                    backgroundAnimation = false,
+                    onSelectMode = {},
+                    onSelectMap = {},
+                    onPlay = { played++ }, onContinue = { continued++ }, onAgents = {},
+                    onFirmware = {}, onCodex = {}, onStore = {}, onLoadout = {}, onPlayAccount = {}, onLeaderboard = {}, onStatistics = {}, onSettings = {},
+                    onAbout = {}, onExit = {}
+                )
+            }
+        }
+
+        compose.onNodeWithText("PLAY").assertDoesNotExist()
+        compose.onNodeWithText("NEW RUN").assertIsDisplayed()
+        // Starting over deletes the save, so the button says so.
+        compose.onNodeWithText("replaces your save", substring = true).assertIsDisplayed()
+
+        val continueTop = compose.onNodeWithText("CONTINUE").fetchSemanticsNode().boundsInRoot.top
+        val newRunTop = compose.onNodeWithText("NEW RUN").fetchSemanticsNode().boundsInRoot.top
+        assertTrue("CONTINUE must sit above NEW RUN", continueTop < newRunTop)
+
+        compose.onNodeWithText("CONTINUE").performClick()
+        compose.onNodeWithText("NEW RUN").performClick()
+        assertEquals(1, continued)
+        assertEquals(1, played)
+    }
+
+    @Test
     fun `main menu surfaces the lifetime record`() {
         compose.setContent {
             CyOpsTheme {

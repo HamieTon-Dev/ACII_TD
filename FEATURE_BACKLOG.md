@@ -1657,3 +1657,69 @@ little bit"* — the blast went from 1.1s to 1.5s. Shards travel from the boss
 until every one has left the view; the centre clears first; a slight shake
 over the first 40% of the blast, gated on the screen-shake setting.
 `ShardBurstRenderTest` covers all four.
+
+---
+
+## U. Owner's requests, 2026-09-26 (third round)
+
+### U0 ✅ 1.39.2 — QUANTUM and RED HAT never unlocked
+
+Reported twice, the second time at wave 85 on the first level. Not a map or
+mode restriction: nothing restricts any agent by map or mode, and wave 30 is
+their only requirement everywhere. It was a save race between the three
+agents that unlock at wave 30 (only BLUE HAT survived). The old exact-wave
+check then meant no later wave ever retried it. Fixed in 1.39.2, which also
+repairs damaged saves on launch.
+
+### U1 ⬜ Locked agents show a LOCK, and tapping one says how to unlock it
+
+*"If this agent is only available on other maps then they should show a LOCK
+symbol not a wave number. Clicking it will display its unlock requirement —
+pop up 'Unlock this unit by completing wave 30 of Hack.AI map' or similar."*
+
+Today the deploy bar prints `WAVE 30` on a locked agent, and tapping it shows
+a brief `AGENT LOCKED — REACH WAVE 30` line. Wanted:
+
+- A **lock glyph** on any agent the player cannot deploy right now, instead of
+  a wave number.
+- Tapping it opens a **small pop-up** that states the full requirement in
+  words, for example *"Unlock by reaching wave 30"*, or for a map- or
+  mode-restricted agent *"Unlock by completing wave 30 on HACK:AI"*.
+- No agent is map- or mode-restricted today, but the requirement text should
+  come from one place, so a future restricted agent (see §R1: new bosses and
+  agents per map) gets the right wording automatically.
+
+### U2 ⬜ A guided tour of the main menu, and a first-visit FIRMWARE explainer
+
+*"Need a navigation of main screen — 'this is what Firmware does' and 'scroll
+down to see more: this, this and this' — and then when the user opens Firmware
+the first time, a tutorial explaining what each thing does."*
+
+- **Main menu tour**, shown once on first launch and replayable from Settings:
+  step through the menu with a highlight and one line per button (CONTINUE /
+  NEW RUN, AGENTS, FIRMWARE, STORE, LOADOUT, LEADERBOARD…), including a "scroll
+  down for more" prompt, because the right-hand column scrolls on smaller
+  phones.
+- **FIRMWARE first-visit explainer**: the first time the screen opens, walk
+  through what € BUDGET is, what each firmware upgrade does, and that it
+  carries into every run. Once only, with a "?" to see it again.
+- Built the same way as the H1 in-game tutorial (a corner card that never
+  blocks the screen), and it must pass `ScreenSizeTest` at every viewport.
+
+### U3 ⬜ A boss briefing before boss waves
+
+*"Before waves start on boss rounds I am still not seeing 'these are the
+upcoming bosses [button] and these are their weaknesses'."*
+
+B1's BOSS button only appears once a boss is **on the field**. Wanted: during
+the break **before** a boss wave, a clear prompt, *"BOSS WAVE NEXT —
+[VIEW BOSSES]"*, that opens a briefing listing:
+
+- each boss variant coming in that wave (the wave plan already knows them),
+  with its glyph, name and signature behaviour;
+- its **weaknesses**: which agents counter it (the ×2 counters from §C2),
+  armour and speed, and anything that jams agents (the eyes from §E2);
+- which of the player's unlocked agents are good against it.
+
+It must not block the board or pause the countdown, unless the player opens
+it.

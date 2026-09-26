@@ -30,6 +30,19 @@ in-memory copy, so the other two vanished mid-run.
 Reproduced first: the new `GameRepositoryTest` case fails on the old code
 with "QUANTUM was lost".
 
+### Backlog
+
+Three new requests logged in `FEATURE_BACKLOG.md` §U: lock glyph and unlock
+pop-up for locked agents, a main-menu tour and FIRMWARE explainer, and a boss
+briefing before boss waves.
+
+### Changed — CONTINUE leads the main menu when there is a saved run
+
+With a saved run, **CONTINUE** is now the first and green button, and the
+start button below it reads **NEW RUN** — "Start over on … · replaces your
+save", because starting a run does delete the saved one. With no saved run
+the menu is unchanged: PLAY first, CONTINUE greyed out beneath it.
+
 ---
 
 ## [1.39.1]
