@@ -96,9 +96,11 @@ class FamiliesAdPolicyTest {
     // ------------------------------------------- 5, 10: what is NOT in here
 
     @Test
-    fun `no interstitial, banner, app-open or native ad code remains`() {
+    fun `no banner, app-open or native ad code is present`() {
+        // The lost-run interstitial came back in 1.37.0 at the owner's
+        // instruction and is allowed; it goes through the same child-directed
+        // request configuration as the rewarded ad. These formats are not.
         val forbidden = mapOf(
-            "InterstitialAd" to "an interstitial",
             "AdView" to "a banner",
             "AppOpenAd" to "an app-open ad",
             "NativeAd" to "a native ad",
@@ -117,7 +119,7 @@ class FamiliesAdPolicyTest {
             }
         }
         assertTrue(
-            "the rewarded revive is the only advertising this game may contain:\n" +
+            "the game's advertising is the rewarded revive and the lost-run interstitial only:\n" +
                 offences.joinToString("\n"),
             offences.isEmpty()
         )
@@ -178,10 +180,32 @@ class FamiliesAdPolicyTest {
     }
 
     @Test
-    fun `the build no longer asks for an interstitial unit`() {
-        val gradle = File("build.gradle.kts").readText()
+    fun `the interstitial is optional on top of the rewarded unit`() {
+        val realApp = "ca-app-pub-1234567890123456~1234567890"
+        val rewarded = "ca-app-pub-1234567890123456/3333333333"
+        val interstitial = "ca-app-pub-1234567890123456/4444444444"
+
+        assertTrue(PlayServices.interstitialConfigured(false, realApp, rewarded, interstitial))
+        // No interstitial id: no loss ad, and REMOVE ADS is not sold -- but the
+        // revive still works, because it hangs off a different unit.
+        assertFalse(PlayServices.interstitialConfigured(false, realApp, rewarded, ""))
+        assertTrue(PlayServices.rewardedConfigured(false, realApp, rewarded))
+        // Google's sample never counts in a release.
         assertFalse(
-            "the build still reads an interstitial ad unit id",
+            PlayServices.interstitialConfigured(
+                false, realApp, rewarded, PlayServices.SAMPLE_INTERSTITIAL_ID
+            )
+        )
+        // Debug always has Google's test interstitial.
+        assertTrue(PlayServices.interstitialConfigured)
+        assertEquals(PlayServices.SAMPLE_INTERSTITIAL_ID, PlayServices.adMobInterstitialId)
+    }
+
+    @Test
+    fun `the build reads each ad unit from its own property`() {
+        val gradle = File("build.gradle.kts").readText()
+        assertTrue(
+            "the lost-run interstitial unit is read",
             gradle.contains("cyops.admob.interstitialId")
         )
         assertTrue("the rewarded unit is still read", gradle.contains("cyops.admob.rewardedId"))

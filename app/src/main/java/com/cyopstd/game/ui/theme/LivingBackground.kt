@@ -92,6 +92,26 @@ enum class LivingBackground(
         intensity = 32,
         speed = 0.22f,
         laneTint = Color(0xFF26325F)
+    ),
+
+    ORBIT(
+        productId = "bg_orbit",
+        displayName = "ORBIT",
+        description = "Slow elliptical traces around the core, like a scheduler at work.",
+        tint = Color(0xFF5566A6),
+        intensity = 34,
+        speed = 0.035f,
+        laneTint = Color(0xFF16305E)
+    ),
+
+    HEATMAP(
+        productId = "bg_heatmap",
+        displayName = "HEATMAP",
+        description = "A coarse grid whose cells warm and cool with the traffic.",
+        tint = Color(0xFF3A7F8C),
+        intensity = 30,
+        speed = 0.12f,
+        laneTint = Color(0xFF153D45)
     );
 
     companion object {

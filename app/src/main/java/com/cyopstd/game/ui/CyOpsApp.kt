@@ -15,6 +15,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import com.cyopstd.game.save.CloudSaveStatus
 import com.cyopstd.game.state.GameViewModel
 import com.cyopstd.game.ui.codex.CodexScreen
 import com.cyopstd.game.ui.game.GameScreen
@@ -189,9 +190,9 @@ fun CyOpsApp(
                     onBuy = { sku -> viewModel.buy(sku) },
                     onRestore = { viewModel.restorePurchases() },
                     onBack = { viewModel.playClick(); screen = Screen.MainMenu },
-                    // A build with no AdMob ids has no interstitials, so it
-                    // must not offer to sell their removal.
-                    adsConfigured = PlayServices.adsConfigured
+                    // A build with no interstitial unit has no lost-run ad,
+                    // so it must not offer to sell its removal.
+                    adsConfigured = PlayServices.interstitialConfigured
                 )
             }
 
@@ -216,7 +217,7 @@ fun CyOpsApp(
                     identity = viewModel.identity,
                     budget = viewModel.budget,
                     status = viewModel.billingStatus,
-                    adsConfigured = PlayServices.adsConfigured,
+                    adsConfigured = PlayServices.interstitialConfigured,
                     reviveAdsConfigured = PlayServices.rewardedConfigured,
                     cloudStatus = viewModel.cloudStatus,
                     cloudAccount = viewModel.cloudAccount,
@@ -255,7 +256,16 @@ fun CyOpsApp(
                     entries = viewModel.leaderboardEntries,
                     backgroundAnimation = viewModel.settings.backgroundAnimation,
                     onRegister = { viewModel.registerUsername(it) },
-                    onBack = { viewModel.playClick(); screen = Screen.MainMenu }
+                    onBack = { viewModel.playClick(); screen = Screen.MainMenu },
+                    globalModes = viewModel.globalLeaderboardModes,
+                    globalEntries = viewModel.globalEntries,
+                    globalLoading = viewModel.globalLoading,
+                    signedIn = viewModel.cloudStatus == CloudSaveStatus.LINKED,
+                    onShowGlobal = { mode ->
+                        viewModel.playClick()
+                        viewModel.refreshGlobalLeaderboard(mode)
+                    },
+                    onOpenNative = { mode -> viewModel.openGlobalLeaderboard(mode) }
                 )
             }
 

@@ -329,7 +329,8 @@ fun GameScreen(
                 },
             revivesLeft = viewModel.revivesAllowed - viewModel.revivesUsed,
             reviveAdShowing = viewModel.showingReviveAd,
-            reviveIsFree = viewModel.reviveIsFree
+            reviveIsFree = viewModel.reviveIsFree,
+            onDeclineRevive = { viewModel.declineRevive() }
         )
     }
 }

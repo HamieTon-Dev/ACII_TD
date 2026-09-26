@@ -61,7 +61,15 @@ class EffectSystem(private val engine: GameEngine, private val random: Random) {
      * radius rather than the effect, so the feedback survives even when the
      * spectacle does not.
      */
-    fun spawnShards(x: Float, y: Float, colorArgb: Int, radius: Float, lifetime: Float) {
+    fun spawnShards(
+        x: Float,
+        y: Float,
+        colorArgb: Int,
+        radius: Float,
+        lifetime: Float,
+        /** A boss blast: shards fly clean off the screen. See [Effect.toEdge]. */
+        toEdge: Boolean = false
+    ) {
         val effect = engine.effects.obtain() ?: return
         effect.reset()
         effect.active = true
@@ -72,6 +80,7 @@ class EffectSystem(private val engine: GameEngine, private val random: Random) {
         effect.scale = if (engine.batterySaver) radius * 0.5f else radius
         effect.lifetime = lifetime
         effect.seed = random.nextInt(1, Int.MAX_VALUE)
+        effect.toEdge = toEdge
     }
 
     fun spawnDamageNumber(x: Float, y: Float, amount: Float, heavy: Boolean) {

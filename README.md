@@ -90,9 +90,10 @@ README. The release build declares:
 
 A checkout with no AdMob ids configured — which is how this repository ships —
 selects no-op gateways, shows no ads and sells nothing. **The game is fully
-playable with no network at all**, and one interstitial after a *lost* run is
-the only ad it will ever show, never more often than once every three minutes,
-and never at all once REMOVE ADS is bought.
+playable with no network at all**, and with ads configured there are exactly two:
+a rewarded ad the player chooses in order to revive, and an interstitial after
+a lost run that lasted at least three minutes, never at all once REMOVE ADS is
+bought.
 
 ---
 

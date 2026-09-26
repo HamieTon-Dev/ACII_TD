@@ -64,6 +64,30 @@ class StoreTest {
     }
 
     @Test
+    fun `the packs follow the owner's pricing rule`() {
+        // Owner's rule (2026-09-26): a pack holds every item of its kind and
+        // keeps its price as items are added; a single is priced like the
+        // other singles. So a new background or skin that lands outside its
+        // pack, or a pack whose price drifts, fails here.
+        assertEquals("$4.99", Sku.BG_PACK.fallbackPrice)
+        assertEquals(Sku.backgrounds.map { it.id }.toSet(), Sku.BG_PACK.alsoUnlocks.toSet())
+
+        assertEquals("$2.50", Sku.CORE_SKIN_PACK.fallbackPrice)
+        assertEquals(
+            "every core skin but the premium NEONGRID belongs in the pack",
+            (Sku.coreSkins - Sku.CORE_SKIN_NEONGRID).map { it.id }.toSet(),
+            Sku.CORE_SKIN_PACK.alsoUnlocks.toSet()
+        )
+
+        val singleBackgroundPrices = setOf("$1.99", "$2.99", "$4.99")
+        for (bg in Sku.backgrounds) {
+            assertTrue("${bg.id} is not priced like a single background",
+                bg.fallbackPrice in singleBackgroundPrices)
+        }
+        for (skin in Sku.coreSkins) assertEquals("$1.00", skin.fallbackPrice)
+    }
+
+    @Test
     fun `every bundle costs less than its parts`() {
         // If a pack is not cheaper than buying its contents separately, it is
         // not a pack, it is a trap.
@@ -232,24 +256,17 @@ class StoreTest {
     // ------------------------------------------------ nothing unsellable
 
     @Test
-    fun `REMOVE ADS is not sold, because there are no ads to remove`() {
-        // Its entire function was suppressing the lost-run interstitial, and
-        // that interstitial was removed in 1.35.0. Its own store text still
-        // promises "No interstitial after a failed run, ever" -- a promise
-        // about something the game no longer has.
-        //
-        // Hidden rather than deleted, pending an owner decision: the product
-        // still grants EUR 5,000 and nobody has ever been able to buy it, so
-        // both keeping and removing it are live options. What is not an option
-        // is selling it as described.
-        for (ads in listOf(true, false)) {
-            val onSale = com.cyopstd.game.ui.menu.storeSections(adsConfigured = ads)
-                .flatMap { it.items }
-            assertFalse(
-                "REMOVE ADS was offered with adsConfigured=$ads, but the game " +
-                    "has no interstitials to remove",
-                com.cyopstd.game.store.Sku.NO_ADS in onSale
-            )
+    fun `REMOVE ADS is sold only by a build that shows the loss interstitial`() {
+        // Its entire function is suppressing the lost-run interstitial. A
+        // build without that unit has nothing to remove, and selling it there
+        // is charging for a change the player cannot perceive.
+        val withAds = com.cyopstd.game.ui.menu.storeSections(adsConfigured = true)
+            .flatMap { it.items }
+        val without = com.cyopstd.game.ui.menu.storeSections(adsConfigured = false)
+            .flatMap { it.items }
+        assertTrue(com.cyopstd.game.store.Sku.NO_ADS in withAds)
+        assertFalse(com.cyopstd.game.store.Sku.NO_ADS in without)
+        for (onSale in listOf(withAds, without)) {
             assertTrue(
                 "the revive pack must survive -- three revives per run is worth " +
                     "buying whether or not an ad ever stood in front of them",
@@ -264,8 +281,7 @@ class StoreTest {
             .flatMap { it.items }
         val expected = com.cyopstd.game.ui.menu.STORE_SECTIONS
             .flatMap { it.items }
-            .filter { it != com.cyopstd.game.store.Sku.NO_ADS }
-        assertEquals("the filter dropped something other than REMOVE ADS", expected, onSale)
+        assertEquals("a build with the interstitial sells the whole catalogue", expected, onSale)
     }
 
     @Test

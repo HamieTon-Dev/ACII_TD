@@ -15,6 +15,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import com.cyopstd.game.core.Balance
 import com.cyopstd.game.save.CloudSaveStatus
 import com.cyopstd.game.save.PlayerIdentity
 import com.cyopstd.game.store.BillingStatus
@@ -50,6 +51,7 @@ fun PlayAccountScreen(
     identity: PlayerIdentity,
     budget: Long,
     status: BillingStatus,
+    /** True when this build shows the lost-run interstitial. */
     adsConfigured: Boolean,
     /** True when this build can offer a revive on a rewarded ad. */
     reviveAdsConfigured: Boolean = false,
@@ -188,6 +190,7 @@ fun PlayAccountScreen(
                             adsConfigured && reviveAdsConfigured ->
                                 "ONE AD AFTER A LOST RUN · REVIVE OPT-IN"
                             adsConfigured -> "ONE AD AFTER A LOST RUN"
+                            reviveAdsConfigured -> "REVIVE ADS ONLY · OPT-IN"
                             else -> "NOT IN THIS BUILD"
                         },
                         valueColor = if (entitlements.adsRemoved) Palette.Green else Palette.TextPrimary
@@ -227,6 +230,14 @@ fun PlayAccountScreen(
                         owningLabel(entitlements.adsRemoved),
                         valueColor = ownedColor(entitlements.adsRemoved)
                     )
+                    // Revives are the next thing someone worries about losing on
+                    // a new phone, so the pack gets its own row and says what it
+                    // is worth rather than just OWNED.
+                    StatRow(
+                        "REVIVE PACK",
+                        reviveLabel(entitlements),
+                        valueColor = ownedColor(entitlements.owns(Sku.REVIVE_PACK))
+                    )
                     StatRow(
                         "5× SPEED",
                         owningLabel(entitlements.fifthSpeedUnlocked),
@@ -258,6 +269,13 @@ fun PlayAccountScreen(
                             "€ packs are spent, not owned: they are credited " +
                                 "once and RESTORE does not hand them out again."
                         }
+                    )
+                    Spacer(Modifier.height(4.dp))
+                    Caption(
+                        "Everything owned, revives included, comes back from " +
+                            "Google Play with RESTORE on any device. It is never " +
+                            "part of the cloud save, so no save file can grant " +
+                            "or take away a purchase."
                     )
                 }
 
@@ -459,6 +477,14 @@ private fun statusExplanation(status: BillingStatus): String = when (status) {
 }
 
 private fun owningLabel(owned: Boolean): String = if (owned) "OWNED" else "NOT OWNED"
+
+/** The revive allowance this account actually has, owned pack or not. */
+internal fun reviveLabel(entitlements: Entitlements): String {
+    val perRun = entitlements.revivesPerRun ?: Balance.REVIVES_PER_RUN
+    val how = if (entitlements.reviveAdsRemoved) "NO AD" else "ON AN AD"
+    val owned = if (entitlements.owns(Sku.REVIVE_PACK)) "OWNED" else "NOT OWNED"
+    return "$owned · $perRun PER RUN $how"
+}
 
 private fun ownedColor(owned: Boolean): Color =
     if (owned) Palette.Green else Palette.TextMuted

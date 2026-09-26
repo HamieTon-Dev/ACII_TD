@@ -3,6 +3,7 @@ package com.cyopstd.game
 import android.app.Application
 import android.os.Looper
 import com.cyopstd.game.ads.AdGateway
+import com.cyopstd.game.ads.AdPolicy
 import com.cyopstd.game.core.Balance
 import com.cyopstd.game.engine.GameEngine
 import com.cyopstd.game.engine.RunPhase
@@ -132,7 +133,13 @@ class ReviveTest {
     /** A gateway that always has a rewarded ad, and grants what it is told to. */
     private class FakeAds(private val grants: Boolean) : AdGateway {
         var rewardedShown = 0
+        var interstitialsShown = 0
+        override val isReady = true
         override val isRewardedReady = true
+        override fun showInterstitial(onFinished: () -> Unit) {
+            interstitialsShown++
+            onFinished()
+        }
         override fun showRewarded(onResult: (Boolean) -> Unit) {
             rewardedShown++
             onResult(grants)
@@ -143,10 +150,13 @@ class ReviveTest {
     /** The store the view model under test is writing into. */
     private lateinit var repository: GameRepository
 
-    private fun freshViewModel(ads: AdGateway? = null): GameViewModel {
+    private fun freshViewModel(
+        ads: AdGateway? = null,
+        adPolicy: AdPolicy = AdPolicy()
+    ): GameViewModel {
         val application = ApplicationProvider.getApplicationContext<Application>()
         repository = TestStores.isolatedRepository()
-        val viewModel = GameViewModel(application, repository, adsOverride = ads)
+        val viewModel = GameViewModel(application, repository, adsOverride = ads, adPolicy = adPolicy)
         shadowOf(Looper.getMainLooper()).idle()
         return viewModel
     }
@@ -264,17 +274,11 @@ class ReviveTest {
     }
 
     @Test
-    fun `a run shows no advertising the player did not ask for`() {
-        // This replaces a test that checked a revived run was not *also*
-        // charged the lost-run interstitial. The interstitial is gone --
-        // removed in 1.35.0 because a game played by children should not show
-        // an advert nobody pressed a button for -- so the budget it was
-        // rationing no longer exists. What is worth keeping is the stronger
-        // claim underneath it: across a whole run, including losing, reviving,
-        // losing again and walking away, the only ad shown is the one the
-        // player explicitly asked for.
+    fun `a revived run is not also charged the loss interstitial`() {
         val ads = FakeAds(grants = true)
-        val viewModel = freshViewModel(ads)
+        // Any length, so it is the rewarded ad and not the three-minute rule
+        // that keeps the interstitial away.
+        val viewModel = freshViewModel(ads, AdPolicy(minRunSeconds = 0f))
         viewModel.loseARun()
 
         viewModel.watchAdToRevive()
@@ -284,11 +288,96 @@ class ReviveTest {
         viewModel.abandonMatch()
         shadowOf(Looper.getMainLooper()).idle()
 
-        assertEquals(
-            "exactly one ad, and it was the one the player pressed a button for",
-            1,
-            ads.rewardedShown
+        assertEquals("a rewarded ad already spent this run's ad budget", 0, ads.interstitialsShown)
+        assertEquals(1, ads.rewardedShown)
+    }
+
+    /** A policy with no survival threshold, so a quick test loss qualifies. */
+    private val anyLength = AdPolicy(minRunSeconds = 0f)
+
+    @Test
+    fun `answering NO to the revive shows the loss interstitial`() {
+        val ads = FakeAds(grants = true)
+        val viewModel = freshViewModel(ads, anyLength)
+        viewModel.loseARun()
+        assertEquals("nothing plays while the question is up", 0, ads.interstitialsShown)
+
+        viewModel.declineRevive()
+        shadowOf(Looper.getMainLooper()).idle()
+
+        assertEquals(1, ads.interstitialsShown)
+    }
+
+    @Test
+    fun `a run shorter than three minutes gets no loss ad`() {
+        val ads = FakeAds(grants = true)
+        // A threshold the test loss cannot reach stands in for "lost inside
+        // three minutes"; the clock itself is covered below.
+        val viewModel = freshViewModel(ads, AdPolicy(minRunSeconds = Float.MAX_VALUE))
+        viewModel.loseARun()
+
+        viewModel.declineRevive()
+        shadowOf(Looper.getMainLooper()).idle()
+
+        assertEquals(0, ads.interstitialsShown)
+    }
+
+    @Test
+    fun `the play clock counts real unpaused time only`() {
+        val viewModel = freshViewModel(FakeAds(grants = true))
+        viewModel.startNewGame()
+        shadowOf(Looper.getMainLooper()).idle()
+
+        viewModel.applyPaused(true)
+        repeat(10) { viewModel.onFrame(1f) }
+        assertEquals("paused time does not count", 0f, viewModel.runPlaySeconds, 0.001f)
+
+        viewModel.applyPaused(false)
+        repeat(10) { viewModel.onFrame(0.1f) }
+        assertEquals(1f, viewModel.runPlaySeconds, 0.01f)
+
+        // Coming back from the background delivers one huge frame.
+        viewModel.onFrame(30f)
+        assertEquals("a long frame is clamped", 1.25f, viewModel.runPlaySeconds, 0.01f)
+
+        // Leave nothing running: a live match keeps its music and timers on
+        // the shared main looper, which starves every Compose test after it.
+        viewModel.abandonMatch()
+        viewModel.onAppPaused()
+        shadowOf(Looper.getMainLooper()).idle()
+    }
+
+    @Test
+    fun `leaving without answering shows no ad`() {
+        // Backgrounding the app, quitting or pressing back on the question
+        // records the run and nothing else.
+        val ads = FakeAds(grants = true)
+        val viewModel = freshViewModel(ads, anyLength)
+        viewModel.loseARun()
+
+        viewModel.onAppPaused()
+        viewModel.abandonMatch()
+        shadowOf(Looper.getMainLooper()).idle()
+
+        assertEquals(0, ads.interstitialsShown)
+        assertEquals(0, ads.rewardedShown)
+    }
+
+    @Test
+    fun `owning REMOVE ADS removes the loss interstitial`() {
+        val ads = FakeAds(grants = true)
+        val application = ApplicationProvider.getApplicationContext<Application>()
+        repository = TestStores.isolatedRepository()
+        runBlocking { repository.applyPurchase(Sku.NO_ADS, "order-no-ads-loss") }
+        val viewModel = GameViewModel(
+            application, repository, adsOverride = ads, adPolicy = AdPolicy(minRunSeconds = 0f)
         )
+        shadowOf(Looper.getMainLooper()).idle()
+        viewModel.loseARun()
+        viewModel.declineRevive()
+        shadowOf(Looper.getMainLooper()).idle()
+
+        assertEquals(0, ads.interstitialsShown)
     }
 
     @Test

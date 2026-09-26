@@ -17,6 +17,7 @@ import com.cyopstd.game.core.Balance
 import android.util.Log
 import com.cyopstd.game.ads.AdGateway
 import com.cyopstd.game.ads.AdMobGateway
+import com.cyopstd.game.ads.AdPolicy
 import com.cyopstd.game.ads.PlayServices
 import com.cyopstd.game.ads.ConsentGateway
 import com.cyopstd.game.ads.NoConsentGateway
@@ -32,6 +33,9 @@ import com.cyopstd.game.ui.game.TutorialScript
 import com.cyopstd.game.save.LeaderboardEntry
 import com.cyopstd.game.save.LeaderboardGateway
 import com.cyopstd.game.save.LocalLeaderboard
+import com.cyopstd.game.save.GlobalLeaderboardGateway
+import com.cyopstd.game.save.NoGlobalLeaderboard
+import com.cyopstd.game.save.PlayGamesLeaderboard
 import com.cyopstd.game.save.PlayerIdentity
 import com.cyopstd.game.store.BillingGateway
 import com.cyopstd.game.store.BillingStatus
@@ -92,7 +96,9 @@ class GameViewModel @JvmOverloads constructor(
      * Same rule as [adsOverride]: production passes nothing and gets whatever
      * the build is configured for.
      */
-    consentOverride: ConsentGateway? = null
+    consentOverride: ConsentGateway? = null,
+    /** Injectable so tests can set the survival threshold for the loss ad. */
+    private val adPolicy: AdPolicy = AdPolicy()
 ) : AndroidViewModel(application) {
 
     private val audio = AudioEngine(application)
@@ -244,14 +250,16 @@ class GameViewModel @JvmOverloads constructor(
     val reviveIsFree: Boolean get() = entitlements.reviveAdsRemoved
 
     /**
-     * True while the rewarded ad is on screen.
+     * True while a rewarded ad is on screen for a revive.
      *
-     * The only ad state left in the game. It used to have a sibling for the
-     * lost-run interstitial, and the overlay had to know which of the two it
-     * was waiting on; the interstitial is gone, so there is one answer now.
+     * Separate from [showingAd], which is the interstitial: the two cover the
+     * screen for different reasons.
      */
     var showingReviveAd by mutableStateOf(false)
         private set
+
+    /** Set once a rewarded ad has paid for a revive, so the run's loss ad is suppressed. */
+    private var reviveSpentThisRun = false
 
     /**
      * Whether the game-over screen may offer a revive right now.
@@ -400,6 +408,7 @@ class GameViewModel @JvmOverloads constructor(
         startConsentThenAds(activity)
         (cloud as? PlayGamesCloudSave)?.let { games ->
             games.attach(activity)
+            (globalBoard as? PlayGamesLeaderboard)?.attach(activity)
             // Refresh rather than sign in: a player who has linked before is
             // signed in again silently by Play Games, and one who has not must
             // not be met by a dialog they did not ask for.
@@ -426,6 +435,7 @@ class GameViewModel @JvmOverloads constructor(
             privacyOptionsRequired = consent.privacyOptionsRequired
             if (!consent.canRequestAds) return@refresh
             (ads as? AdMobGateway)?.start()
+            ads.preload()
             // Loaded up front, because the moment it is wanted -- the instant
             // the core falls -- is the worst possible moment to start
             // fetching one.
@@ -568,7 +578,8 @@ class GameViewModel @JvmOverloads constructor(
     private val ads: AdGateway = adsOverride ?: if (PlayServices.adsConfigured) {
         AdMobGateway(
             application,
-            if (PlayServices.rewardedConfigured) PlayServices.adMobRewardedId else ""
+            rewardedUnitId = if (PlayServices.rewardedConfigured) PlayServices.adMobRewardedId else "",
+            interstitialUnitId = if (PlayServices.interstitialConfigured) PlayServices.adMobInterstitialId else ""
         )
     } else {
         NoAdGateway()
@@ -599,6 +610,36 @@ class GameViewModel @JvmOverloads constructor(
     var privacyOptionsRequired by mutableStateOf(false)
         private set
 
+    /** True while an interstitial is on screen and the game is waiting on it. */
+    var showingAd by mutableStateOf(false)
+        private set
+
+    /**
+     * Real seconds of unpaused play in the current run. Game speed does not
+     * count: a run played at 4× for one minute has lasted one minute.
+     */
+    var runPlaySeconds = 0f
+        private set
+
+    /**
+     * Shows an interstitial after a lost run, if the rules allow one.
+     *
+     * [then] runs either way. The game must not depend on an ad completing —
+     * a gateway that never calls back would otherwise strand the player on a
+     * dead screen, so the continuation is the caller's and is always invoked.
+     */
+    private fun maybeShowLossAd(then: () -> Unit) {
+        if (!adPolicy.shouldShowOnRunLost(entitlements.adsRemoved, ads.isReady, runPlaySeconds)) {
+            then()
+            return
+        }
+        showingAd = true
+        ads.showInterstitial {
+            showingAd = false
+            ads.preload()
+            then()
+        }
+    }
 
     /**
      * How far the player has zoomed the board, and where.
@@ -633,6 +674,57 @@ class GameViewModel @JvmOverloads constructor(
 
     fun refreshLeaderboard() {
         viewModelScope.launch { leaderboardEntries = leaderboard.top() }
+    }
+
+    /**
+     * The worldwide board, on Play Games.
+     *
+     * Only a real gateway when this build has both a games project and at
+     * least one leaderboard id; otherwise nothing is global and the screen
+     * does not offer a GLOBAL view at all.
+     */
+    private val globalBoard: GlobalLeaderboardGateway =
+        if (PlayServices.leaderboardIds.isNotEmpty()) {
+            PlayGamesLeaderboard(PlayServices.leaderboardIds)
+        } else {
+            NoGlobalLeaderboard()
+        }
+
+    /** True when this build has a global board for at least one mode. */
+    val globalLeaderboardAvailable: Boolean get() = globalBoard.configured
+
+    /** Modes with a global board, in menu order. */
+    val globalLeaderboardModes: List<GameMode>
+        get() = GameMode.entries.filter { globalBoard.hasBoard(it) }
+
+    /**
+     * The last global list read, or null when it has not been read or could
+     * not be — not signed in, or offline. Null and empty are different: empty
+     * means Play answered and nobody has posted a score yet.
+     */
+    var globalEntries by mutableStateOf<List<LeaderboardEntry>?>(null)
+        private set
+
+    var globalLoading by mutableStateOf(false)
+        private set
+
+    fun refreshGlobalLeaderboard(mode: GameMode) {
+        if (!globalBoard.hasBoard(mode)) {
+            globalEntries = null
+            return
+        }
+        globalLoading = true
+        viewModelScope.launch {
+            globalEntries = globalBoard.top(mode)
+            globalLoading = false
+        }
+    }
+
+    fun openGlobalLeaderboard(mode: GameMode) {
+        playClick()
+        // A failure here is almost always "not signed in", which the screen
+        // already says beside the button; there is nothing to add.
+        viewModelScope.launch { globalBoard.openNative(mode) }
     }
 
     /** Modes this player has earned the right to play. */
@@ -831,6 +923,8 @@ class GameViewModel @JvmOverloads constructor(
         gameOverSummary = null
         runRecorded = false
         revivesUsed = 0
+        reviveSpentThisRun = false
+        runPlaySeconds = 0f
         // A new run starts looking at the whole board. Carrying a zoom over
         // from the last one would drop the player into a corner of a map they
         // have not seen yet.
@@ -900,6 +994,8 @@ class GameViewModel @JvmOverloads constructor(
             // spent. Resetting here is what would turn "one per run" into "one
             // per session", and backgrounding the game is free.
             revivesUsed = run.revivesUsed
+            reviveSpentThisRun = run.revivesUsed > 0
+            runPlaySeconds = run.playSeconds
             matchActive = true
             tutorialStep = -1
             pushHud()
@@ -918,6 +1014,9 @@ class GameViewModel @JvmOverloads constructor(
         renderTime += deltaSeconds
 
         if (!paused && matchActive && engine.phase != RunPhase.GAME_OVER) {
+            // Clamped: the first frame after the app comes back from the
+            // background can carry the whole time it was away.
+            runPlaySeconds += deltaSeconds.coerceIn(0f, MAX_FRAME_SECONDS)
             engine.update(deltaSeconds, currentSpeed)
         }
 
@@ -1256,7 +1355,9 @@ class GameViewModel @JvmOverloads constructor(
         // player either takes it or walks away from it.
         if (canReviveNow) return
 
-        finalizeRun()
+        // No revive to ask about, so this is the loss itself: the one moment
+        // the lost-run ad may play.
+        finalizeRun(offerLossAd = true)
     }
 
     /** The summary the game-over screen reads, from wherever the run got to. */
@@ -1280,7 +1381,7 @@ class GameViewModel @JvmOverloads constructor(
      * The guard is the whole contract: a revived run reaches here exactly once,
      * at the wave it finally reached.
      */
-    private fun finalizeRun() {
+    private fun finalizeRun(offerLossAd: Boolean = false) {
         if (runRecorded) return
         runRecorded = true
         matchActive = false
@@ -1289,6 +1390,9 @@ class GameViewModel @JvmOverloads constructor(
         // to leave, and charging them for that is the fastest way to make
         // leaving permanent. A player who already watched a rewarded ad for a
         // revive has paid this run's ad budget and is not charged twice.
+        if (offerLossAd && engine.phase == RunPhase.GAME_OVER && !reviveSpentThisRun) {
+            maybeShowLossAd { }
+        }
 
         val isRecord = engine.currentWave > stats.highestWave
         gameOverSummary = GameOverSummary(
@@ -1314,6 +1418,19 @@ class GameViewModel @JvmOverloads constructor(
                 )
             )
             refreshLeaderboard()
+            // The global post goes after the local one and its result is not
+            // waited on for anything: a board that is down, or a player who is
+            // not signed in, must not hold up recording the run.
+            launch {
+                globalBoard.submit(
+                    LeaderboardEntry(
+                        username = identity.username,
+                        wave = engine.currentWave,
+                        damage = engine.runDamageDealt.toLong(),
+                        modeId = engine.mode.id
+                    )
+                )
+            }
             repository.recordRunResult(
                 waveReached = engine.currentWave,
                 attacksBlocked = engine.runAttacksBlocked,
@@ -1383,6 +1500,7 @@ class GameViewModel @JvmOverloads constructor(
             return
         }
         revivesUsed += 1
+        if (spentAnAd) reviveSpentThisRun = true
         gameOverSummary = null
         matchActive = true
         paused = false
@@ -1411,6 +1529,19 @@ class GameViewModel @JvmOverloads constructor(
     fun finishRun() {
         if (engine.phase != RunPhase.GAME_OVER) return
         finalizeRun()
+    }
+
+    /**
+     * The player answered NO to "revive?".
+     *
+     * The only path besides a loss with no offer on which the lost-run ad may
+     * play. Leaving the app, quitting or pressing back on the offer records the
+     * run through [finishRun] and shows nothing.
+     */
+    fun declineRevive() {
+        if (engine.phase != RunPhase.GAME_OVER) return
+        playClick()
+        finalizeRun(offerLossAd = true)
     }
 
     /**
@@ -1475,7 +1606,8 @@ class GameViewModel @JvmOverloads constructor(
                 savedAtMillis = System.currentTimeMillis(),
                 mapId = engine.map.id,
                 modeId = engine.mode.id,
-                revivesUsed = revivesUsed
+                revivesUsed = revivesUsed,
+                playSeconds = runPlaySeconds
             )
         )
         hasSavedRun = true
@@ -1578,6 +1710,8 @@ class GameViewModel @JvmOverloads constructor(
 
     companion object {
         private const val TRANSIENT_MS = 1600L
+        /** Longest single frame counted towards [runPlaySeconds]. */
+        private const val MAX_FRAME_SECONDS = 0.25f
         private const val UNLOCK_BANNER_MS = 3200L
         private const val TAP_RADIUS_MULTIPLIER = 2.0f
     }

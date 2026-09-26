@@ -23,13 +23,19 @@ The separator is the tell: **`~` is an app, `/` is a unit.** Paste an
 application id where a unit belongs and the SDK fails at runtime with a message
 that does not say that is what happened.
 
-This game uses **exactly one ad unit**: a **rewarded** unit, which is the only
-thing that can grant a revive and the only advertising in the game.
+This game uses **two ad units**:
 
-There is no interstitial, banner, app-open or native ad, and none should be
-added. The audience includes children, and a game played by children should not
-show an advert nobody pressed a button for. The lost-run interstitial that used
-to exist was removed in 1.35.0 for exactly that reason.
+- a **rewarded** unit (`cyops.admob.rewardedId`), the only thing that can grant
+  a revive;
+- an **interstitial** unit (`cyops.admob.interstitialId`), shown on a lost run
+  only after the player answers NO to "revive?" (or loses with no revive on offer), only if the run lasted at least three minutes of real play, never after a revive paid for with an ad, and never to someone who owns REMOVE ADS. No cooldown; no ad at any other time.
+
+The interstitial was removed in 1.35.0 and restored in 1.37.0 at the owner's
+instruction. It is optional: a release with only the rewarded id offers revives,
+shows no lost-run ad, and does not sell REMOVE ADS. Both units go through the
+same child-directed, non-personalized, G-rated request configuration.
+
+There is no banner, app-open or native ad.
 
 **Create the unit as a Rewarded unit.** A rewarded ad has a reward callback
 that fires only on completion; an interstitial calls back on *dismissal*, so a

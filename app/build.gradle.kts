@@ -16,10 +16,11 @@ plugins {
 //     AD UNIT id       ca-app-pub-XXXXXXXXXXXXXXXX/ZZZZZZZZZZ   (slash)
 //
 // The application id identifies the whole app to the SDK and goes in the
-// manifest. An ad unit id identifies one placement of one format. There is
-// exactly one unit in this game: the rewarded ad behind the voluntary revive.
-// The lost-run interstitial was removed in 1.35.0 -- an audience that includes
-// children should not be shown an advert it did not ask for.
+// manifest. An ad unit id identifies one placement of one format. There are
+// two units: the rewarded ad behind the voluntary revive, and the interstitial
+// after a lost run (removed in 1.35.0, restored in 1.37.0). The interstitial
+// is optional -- a release with only the rewarded id offers revives and shows
+// no lost-run ad.
 //
 // Empty by default, on purpose: an unset id selects the no-op gateway, so a
 // checkout with no AdMob account behind it builds and plays exactly as the
@@ -29,12 +30,14 @@ plugins {
 //
 //     cyops.admob.appId=ca-app-pub-XXXXXXXXXXXXXXXX~YYYYYYYYYY
 //     cyops.admob.rewardedId=ca-app-pub-XXXXXXXXXXXXXXXX/WWWWWWWWWW
+//     cyops.admob.interstitialId=ca-app-pub-XXXXXXXXXXXXXXXX/ZZZZZZZZZZ
 //
 // These reach RELEASE builds only. Debug builds ignore them and use Google's
 // published test units instead — see the buildTypes block. ADMOB_SETUP.md has
 // the walkthrough.
 val admobAppId = secret("cyops.admob.appId").orEmpty()
 val admobRewardedId = secret("cyops.admob.rewardedId").orEmpty()
+val admobInterstitialId = secret("cyops.admob.interstitialId").orEmpty()
 
 // Google's published test units. Safe to commit — they are documented sample
 // ids that serve test creatives to anyone, which is exactly why a release
@@ -43,6 +46,7 @@ val admobRewardedId = secret("cyops.admob.rewardedId").orEmpty()
 // https://developers.google.com/admob/android/test-ads
 val testAdmobAppId = "ca-app-pub-3940256099942544~3347511713"
 val testRewardedId = "ca-app-pub-3940256099942544/5224354917"
+val testInterstitialId = "ca-app-pub-3940256099942544/1033173712"
 
 // What an unconfigured RELEASE puts in the manifest. Not a real id, not one of
 // Google's test ids, and shaped so that anyone reading it in a built artifact
@@ -91,8 +95,8 @@ android {
         applicationId = "com.cyopstd.game"
         minSdk = 24
         targetSdk = 36
-        versionCode = 42
-        versionName = "1.36.1"
+        versionCode = 46
+        versionName = "1.39.0"
 
         // Stamped into the APK so the build identifier on screen is the real
         // one, not a string someone remembered to update. Reported by
@@ -112,8 +116,25 @@ android {
         // The numeric project id from the Play Console's Play Games Services
         // setup. Empty selects the no-op cloud-save gateway, and the game then
         // keeps every save on the device exactly as it always has.
-        val gamesAppId = (project.findProperty("cyops.games.appId") as String?).orEmpty()
+        //
+        // Read through secret() like every other id, so it can live in the
+        // untracked secrets.properties that secrets.properties.example points
+        // at. It used to be read from Gradle properties only, which silently
+        // ignored that file.
+        val gamesAppId = project.secret("cyops.games.appId").orEmpty()
         buildConfigField("String", "GAMES_APP_ID", "\"${'$'}gamesAppId\"")
+
+        // The global leaderboards, one per game mode. Each is the id Play
+        // Console shows for a leaderboard ("CgkI..."). Either may be left
+        // empty: that mode then keeps a local board only. They do nothing
+        // without cyops.games.appId, which signs the player in.
+        //
+        //     cyops.games.leaderboard.standard=CgkIxxxxxxxxxxxxEAIQAQ
+        //     cyops.games.leaderboard.hack_ai=CgkIxxxxxxxxxxxxEAIQAg
+        val boardStandard = project.secret("cyops.games.leaderboard.standard").orEmpty()
+        val boardHackAi = project.secret("cyops.games.leaderboard.hack_ai").orEmpty()
+        buildConfigField("String", "LEADERBOARD_STANDARD_ID", "\"${'$'}boardStandard\"")
+        buildConfigField("String", "LEADERBOARD_HACK_AI_ID", "\"${'$'}boardHackAi\"")
         // The Games SDK insists this be a string *resource*, and refuses to
         // initialise without one. "0" is a syntactically valid placeholder that
         // is never used: CloudSaveGateways.create() returns the no-op gateway
@@ -159,6 +180,7 @@ android {
             // way that rule gets broken is by making it a setting.
             buildConfigField("String", "ADMOB_APP_ID", quoted(testAdmobAppId))
             buildConfigField("String", "ADMOB_REWARDED_ID", quoted(testRewardedId))
+            buildConfigField("String", "ADMOB_INTERSTITIAL_ID", quoted(testInterstitialId))
             buildConfigField("boolean", "USING_TEST_ADS", "true")
             manifestPlaceholders["admobAppId"] = testAdmobAppId
         }
@@ -179,6 +201,7 @@ android {
             // test creatives to real players.
             buildConfigField("String", "ADMOB_APP_ID", quoted(admobAppId))
             buildConfigField("String", "ADMOB_REWARDED_ID", quoted(admobRewardedId))
+            buildConfigField("String", "ADMOB_INTERSTITIAL_ID", quoted(admobInterstitialId))
             buildConfigField("boolean", "USING_TEST_ADS", "false")
 
             // The manifest needs *something* syntactically id-shaped here, but

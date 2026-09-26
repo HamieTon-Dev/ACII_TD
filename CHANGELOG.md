@@ -7,6 +7,130 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [1.39.0]
+
+### Changed — a boss goes out edge to edge
+
+When a boss dies, its shards now start at the boss and fly outward until
+every one of them has left the screen. The centre clears first, the old
+ASCII starburst there fades in half a second, and the whole view gives a
+slight shake on the detonation (only with screen shake on in Settings).
+The blast lasts 1.5 seconds, up from 0.85, so the shards are readable as they
+travel. Elites keep the smaller, contained burst.
+
+Reviewed by the owner on a rendered video before it was committed.
+
+### Changed — a boss kill sounds like one
+
+The boss-kill sound was a short thump from the same family as every other
+kill. It is now a 2.4-second sequence: a sharp crack over a deep sub-bass boom,
+a system "power-down" wail falling two octaves, a second detonation a beat
+later, and a low rumble that outlasts the shards. It goes lower than anything
+else in the game. The synthesiser gained a per-layer start delay to make the
+second stage possible; every other sound renders exactly as before.
+
+---
+
+## [1.38.0]
+
+### Changed — "Would you like to revive?" comes first, and the loss ad has one rule
+
+A lost run with a revive available now asks **WOULD YOU LIKE TO REVIVE? —
+YES / NO** before anything else; RETRY and MAIN MENU appear once it is
+answered.
+
+- **YES** plays the rewarded ad and resumes the same wave at half integrity,
+  as before.
+- **NO** plays the lost-run ad, but **only if the run lasted at least three
+  minutes of real play**. Paused time and game speed do not count.
+- The three-minute cooldown between ads is gone. Every qualifying loss gets one
+  ad and nothing else ever does: not quitting, not pressing back, not leaving
+  the app on the question.
+- After a revive paid for with an ad, the next loss still shows no
+  interstitial.
+
+The run's play time is saved with it, so a run resumed from CONTINUE keeps the
+minutes already played.
+
+### Backlog
+
+- Map 3 is named **Neural-Mesh** (§S2).
+- New request ♧1, more saturated colours everywhere, logged with the six
+  palette conflicts it has to get past (§S3).
+
+---
+
+## [1.37.0]
+
+### Added — a global leaderboard on Google Play Games
+
+The LEADERBOARD screen now has a GLOBAL view beside THIS DEVICE: each
+player's best wave worldwide, one board for STANDARD and one for HACK:AI,
+listed by the callsign they registered in the game. A finished run is posted
+to both boards; the global post never holds up recording the run, and a player
+who is not signed in is told to link on the GOOGLE PLAY screen.
+
+It needs two leaderboards created in Play Console and their ids set as
+`cyops.games.leaderboard.standard` and `cyops.games.leaderboard.hack_ai`.
+Without them the GLOBAL view is not shown. `FEATURE_BACKLOG.md` §R8 has the
+exact settings.
+
+### Added — two living backgrounds, ORBIT and HEATMAP
+
+**ORBIT** traces slow ellipses around the core. **HEATMAP** is a coarse grid
+whose cells warm and cool, running hotter when the board is busy. $1.99 each.
+ALL LIVING BACKGROUNDS now holds all seven at the same $4.99.
+
+### Changed — the lost-run advert is back, and REMOVE ADS is on sale again
+
+The interstitial after a lost run, removed in 1.35.0, is restored at the
+owner's instruction with its old rules: REMOVE ADS removes it, at most one per
+lost run, none after a revive paid for with an ad, and no more than one every
+three minutes. It uses the same child-directed, non-personalized, G-rated
+settings as the rewarded ad. It needs its own unit id,
+`cyops.admob.interstitialId`; a build without one shows no lost-run ad and
+does not sell REMOVE ADS.
+
+### Fixed
+
+- `cyops.games.appId` is now read from `secrets.properties` like every other
+  id. It was read from Gradle properties only, so the place
+  `secrets.properties.example` tells you to put it was ignored.
+
+### Pricing rule, now enforced
+
+Both packs keep their price as items are added — ALL LIVING BACKGROUNDS at
+$4.99, CORE SKIN PACK at $2.50 — and must contain every item of their kind
+(NEONGRID excepted). `StoreTest` fails otherwise.
+
+**Play Console:** create `bg_orbit` and `bg_heatmap`, and update the
+description of `bg_pack` to say seven.
+
+---
+
+## [1.36.2]
+
+### Added — the GOOGLE PLAY screen lists revives owned (§F3)
+
+The backlog's F3 asked for two things: verify on two real devices that
+progress *and* purchases arrive, and make the GOOGLE PLAY screen say plainly
+which comes from where. The second half is code and has landed; the first
+needs a Play Console and two phones and is still open.
+
+- **THIS ACCOUNT OWNS** gains a **REVIVE PACK** row that states the allowance
+  it actually gives — `NOT OWNED · 1 PER RUN ON AN AD` or
+  `OWNED · 3 PER RUN NO AD` — read from the same `Entitlements` and
+  `Balance.REVIVES_PER_RUN` the game uses, so the screen cannot drift from
+  the rule. Revives were the next thing a player would worry about losing on
+  a new phone.
+- A caption under it says outright that everything owned, revives included,
+  comes back from Google Play with RESTORE and is never part of the cloud
+  save, so no save file can grant or take away a purchase.
+
+`PlayAccountTest` covers both labels and the rendered row.
+
+---
+
 ## [1.36.1]
 
 ### Changed — Play Billing Library 7.1.1 → 9.1.0

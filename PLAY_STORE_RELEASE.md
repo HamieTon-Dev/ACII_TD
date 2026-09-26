@@ -223,8 +223,9 @@ The fastest track: no review wait, up to 100 testers, available in minutes.
 **This is where you verify the ads actually work**, because the release build
 is the first one that uses your real ad units. Check:
 
-- an interstitial after a lost run, at most one, on a cooldown;
-- WATCH AD TO CONTINUE appearing only when an ad is loaded;
+- an interstitial only after answering NO to the revive, and only on a run
+  of three minutes or more;
+- WOULD YOU LIKE TO REVIVE? appearing only when a rewarded ad is loaded;
 - a completed rewarded ad reviving the run at half integrity, same wave;
 - closing the ad early granting nothing;
 - a second revive not being offered in the same run;

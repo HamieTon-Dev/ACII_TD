@@ -293,7 +293,8 @@ class EnemySystem(private val engine: GameEngine, private val random: Random) {
                     Balance.BOSS_SHARD_LIFETIME
                 } else {
                     Balance.ELITE_SHARD_LIFETIME
-                }
+                },
+                toEdge = enemy.isBoss
             )
         }
         engine.effectSystem().spawnCryptoGain(enemy.x, enemy.y - 24f, reward)

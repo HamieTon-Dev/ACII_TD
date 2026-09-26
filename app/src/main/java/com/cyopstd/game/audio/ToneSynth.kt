@@ -26,13 +26,17 @@ object ToneSynth {
      * @param endFreq   frequency at the end (a sweep when it differs)
      * @param amplitude peak amplitude, 0..1
      * @param decay     exponential decay rate; higher is snappier
+     * @param delay     seconds of silence before this voice starts; its sweep
+     *                  and envelope run from that moment. Lets one effect be a
+     *                  sequence (a blast, then a second blast, then a tail).
      */
     data class Voice(
         val wave: Wave,
         val startFreq: Float,
         val endFreq: Float = startFreq,
         val amplitude: Float = 0.6f,
-        val decay: Float = 6f
+        val decay: Float = 6f,
+        val delay: Float = 0f
     )
 
     /**
@@ -52,16 +56,24 @@ object ToneSynth {
             var sample = 0f
 
             for (voice in voices) {
-                val freq = voice.startFreq + (voice.endFreq - voice.startFreq) * progress
-                val envelope = exp(-voice.decay * t) * voice.amplitude
+                // Time and sweep are the voice's own, counted from its delay.
+                // A voice with no delay computes exactly what it always did, so
+                // every existing sound renders byte-for-byte as before.
+                val vt = t - voice.delay
+                if (vt < 0f) continue
+                val vProgress = if (voice.delay == 0f) progress
+                else (vt / (durationSeconds - voice.delay)).coerceIn(0f, 1f)
+                val vi = if (voice.delay == 0f) i else (vt * SAMPLE_RATE).toInt()
+                val freq = voice.startFreq + (voice.endFreq - voice.startFreq) * vProgress
+                val envelope = exp(-voice.decay * vt) * voice.amplitude
                 // Short fade-in removes the click an instant attack would make.
-                val attack = (i / (SAMPLE_RATE * 0.004f)).coerceAtMost(1f)
+                val attack = (vi / (SAMPLE_RATE * 0.004f)).coerceAtMost(1f)
 
                 val raw = when (voice.wave) {
-                    Wave.SINE -> sin(TWO_PI * freq * t)
-                    Wave.SQUARE -> if (sin(TWO_PI * freq * t) >= 0f) 0.55f else -0.55f
+                    Wave.SINE -> sin(TWO_PI * freq * vt)
+                    Wave.SQUARE -> if (sin(TWO_PI * freq * vt) >= 0f) 0.55f else -0.55f
                     Wave.TRIANGLE -> {
-                        val phase = (freq * t) % 1f
+                        val phase = (freq * vt) % 1f
                         (if (phase < 0.5f) 4f * phase - 1f else 3f - 4f * phase)
                     }
                     Wave.NOISE -> {

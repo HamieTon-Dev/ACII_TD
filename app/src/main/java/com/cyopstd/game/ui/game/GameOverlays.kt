@@ -122,7 +122,9 @@ fun GameOverOverlay(
     revivesLeft: Int = 0,
     reviveAdShowing: Boolean = false,
     /** True when the REVIVE PACK has already paid for this; no ad is shown. */
-    reviveIsFree: Boolean = false
+    reviveIsFree: Boolean = false,
+    /** The player answered NO to the revive. */
+    onDeclineRevive: () -> Unit = {}
 ) {
     val transition = rememberInfiniteTransition(label = "gameOver")
     val flash by transition.animateFloat(
@@ -204,19 +206,44 @@ fun GameOverOverlay(
                 AsciiRule(color = Palette.RedDeep)
                 Spacer(Modifier.height(12.dp))
 
-                BastionButton(
-                    text = when {
-                        reviveAdShowing -> "LOADING AD…"
-                        // A player who bought the pack must not be told they
-                        // are about to watch an ad. They are not.
-                        reviveIsFree -> "CONTINUE"
-                        else -> "WATCH AD TO CONTINUE"
-                    },
-                    onClick = { if (!reviveAdShowing) onWatchAdToRevive() },
-                    accent = Palette.Crypto,
-                    leadingGlyph = "[+]",
-                    modifier = Modifier.fillMaxWidth()
+                // The owner's flow: the question comes first, and RETRY / MAIN
+                // MENU only appear once it has been answered. YES is the
+                // rewarded ad (or nothing, with the pack); NO is where the
+                // lost-run ad may play.
+                Text(
+                    text = "WOULD YOU LIKE TO REVIVE?",
+                    style = MaterialTheme.typography.titleMedium,
+                    color = Palette.Crypto,
+                    textAlign = TextAlign.Center
                 )
+                Spacer(Modifier.height(10.dp))
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.spacedBy(10.dp)
+                ) {
+                    Box(Modifier.weight(1f)) {
+                        BastionButton(
+                            text = when {
+                                reviveAdShowing -> "LOADING AD…"
+                                // A player who bought the pack must not be told
+                                // they are about to watch an ad. They are not.
+                                reviveIsFree -> "YES"
+                                else -> "YES — WATCH AD"
+                            },
+                            onClick = { if (!reviveAdShowing) onWatchAdToRevive() },
+                            accent = Palette.Crypto,
+                            leadingGlyph = "[+]"
+                        )
+                    }
+                    Box(Modifier.weight(1f)) {
+                        BastionButton(
+                            text = "NO",
+                            onClick = { if (!reviveAdShowing) onDeclineRevive() },
+                            accent = Palette.Red,
+                            leadingGlyph = "[X]"
+                        )
+                    }
+                }
                 Spacer(Modifier.height(6.dp))
                 Text(
                     // Each clause is something a player would otherwise find
@@ -234,17 +261,19 @@ fun GameOverOverlay(
                 )
             }
 
-            Spacer(Modifier.height(16.dp))
+            if (onWatchAdToRevive == null) {
+                Spacer(Modifier.height(16.dp))
 
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.spacedBy(10.dp)
-            ) {
-                Box(Modifier.weight(1f)) {
-                    BastionButton("RETRY", onRetry, accent = Palette.Green, leadingGlyph = "[>]")
-                }
-                Box(Modifier.weight(1f)) {
-                    BastionButton("MAIN MENU", onMainMenu, leadingGlyph = "[X]")
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.spacedBy(10.dp)
+                ) {
+                    Box(Modifier.weight(1f)) {
+                        BastionButton("RETRY", onRetry, accent = Palette.Green, leadingGlyph = "[>]")
+                    }
+                    Box(Modifier.weight(1f)) {
+                        BastionButton("MAIN MENU", onMainMenu, leadingGlyph = "[X]")
+                    }
                 }
             }
         }

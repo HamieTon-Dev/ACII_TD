@@ -103,9 +103,8 @@ huge, armoured, slow) and **`[ZZ]` ZOMBIE** (gets back up once at 40%). The
 banner now names the boss and what it does while there is still time to build
 for it.
 
-❓ **The rest of §J's list is still yours to pick from** — `[SS]`, `[RM]`,
-`[∑∑∑]`, `[©©©]`, `[∆∆∆]`, `[XX]`. Each is now one table row plus, where it has
-a signature behaviour, a hook like ZOMBIE's.
+✅ **The rest of §J's list is decided** — `[SS]`, `[RM]`, `[∑∑∑]`, `[©©©]`,
+`[∆∆∆]`, `[XX]` are all wanted, two per future map, stacking. See §R1.
 
 ### C2 ✅ DECIDED — Agent-versus-variant damage bonuses
 
@@ -448,7 +447,12 @@ it fails with the offending id named.
 `revive_pack` is a new Play Console product id and must be created before
 release. `RELEASING.md` §2 carries the row and the revised € column.
 
-### F3 ⬜ Confirm what reaches the Google account, and say so in the UI
+### F3 ◐ Confirm what reaches the Google account, and say so in the UI *(UI half landed 1.36.2)*
+
+**1.36.2:** the wording half is done. THIS ACCOUNT OWNS lists the REVIVE PACK
+with the allowance it gives, and a caption says purchases, revives included,
+come back from Play with RESTORE and are never in the cloud save.
+**Still open:** the two-device check — needs a Play Console and two phones.
 
 **Asked:** *"make sure purchases and player progress and money, damage, highest
 wave save to google account/google drive (requires permission) [only saves
@@ -838,8 +842,9 @@ save being misread could not stop anything.
   the tap radius: nearest-node already wins every tap inside it, so a bigger
   radius only eats the empty-space tap that clears a selection
   (`WorldFitTest` pins that ceiling). Fixing it properly means a sparser grid
-  on small screens, or pinch-to-zoom on the board. **Owner's call** — it is a
-  design change, not a bug fix.
+  on small screens, or pinch-to-zoom on the board. **Answered by §P1:**
+  pinch-to-zoom shipped in 1.34.0, so a player on a small phone zooms in to
+  separate the nodes.
 
 ---
 
@@ -910,16 +915,19 @@ either depends on another or needs a decision noted in its section.**
 3. ~~C1~~ — ✅ 1.21.0. B1, C2 and E2 are unblocked.
 4. ~~B1~~ — ✅ 1.22.0.
 5. ~~F1~~ — ✅ 1.23.0.
-6. **D2** — RH/BH. **Blocked on the owner:** the four guard rails in §D2 need
-   a pick before this can be built. Skipped rather than stalled on.
+6. ~~D2~~ — ✅ RED HAT / BLUE HAT, with C2's ×2 counters; shipped by 1.36.0.
 7. ~~F2~~ — ✅ 1.24.0.
 8. ~~H1~~ — ✅ 1.25.0.
 9. ~~M1~~ — ✅ 1.27.0.
-10. **E1** — the map layer. Largest, and worth its own version.
-10b. **N1** — the screen-size audit. A release blocker rather than a feature,
-    so it comes before anything else ships to the store.
-11. **E2** — the AI bosses, last, because they need C1, D2 and E1.
-12. **F3** — the two-device verification, once there is a Play Console.
+10. ~~E1~~ — ✅ 1.36.0.
+10b. **N1** — ◐ audit landed 1.32.0; the small-screen node-density question
+    was answered by pinch-to-zoom (§P1, 1.34.0). Only a real-phone pass remains.
+11. ~~E2~~ — ✅ 1.36.0.
+12. **F3** — ◐ UI wording 1.36.2; the two-device verification waits on a Play
+    Console.
+
+**Everything left needs the owner or real hardware:** O1's ids, upload key and
+Console setup; F3's and N1's on-device checks; and any further picks from §J.
 
 Backgrounds (§F) can slot in anywhere; they touch nothing else.
 
@@ -1469,3 +1477,183 @@ and the backgrounding behaviour are written once and cannot drift apart.
 - LEVEL_THREE is supplied and deliberately unmapped until the third map lands.
 
 About +25 MB to the download.
+
+---
+
+## R. Owner's decisions, 2026-09-26
+
+Answers to the review list. Each is either done in 1.37.0 or is now a standing
+rule for future work.
+
+### R1 ✅ RULE — boss variants are assigned to maps, two per map, and stack
+
+*"I like all of those bosses, but save the ideas for the next implemented
+maps, two per map, all previous bosses will be included in subsequent maps
+stacking variants of bosses."*
+
+The six unbuilt variants from §J are **not** added to existing maps. Each new
+map introduces **two** of them, and every later map also fields every variant
+from the maps before it. So map 3 has the base three plus Hugging-Face's four
+plus its own two; map 4 has all of that plus two more.
+
+Queue, in the order recommended (the owner may reorder):
+
+| Map | New variants |
+| --- | --- |
+| 3 | `[∆∆∆]` MODEL COLLAPSE · `[©©©]` LICENSE |
+| 4 | `[SS]` SYN-STORM · `[∑∑∑]` GRADIENT |
+| 5 | `[RM]` RANSOM · `[XX]` EXFIL |
+
+Needs, when map 3 is built: the per-map boss pool to be the union of the
+current map's variants and every earlier map's.
+
+### R2 ❓ More maps — new names needed, and the owner picks each layout
+
+*"More maps sounds great. I am not keen on the names … as you create new ones
+let me choose a layout for you."*
+
+Air-Gap, Model-Zoo and Edge-Node are dropped as names. For each new map, offer
+the owner a set of name options and render layout options (the E1 previewer
+approach) **before** building it. Nothing is built until a layout is picked.
+
+### R3 ✅ 1.37.0 — two new living backgrounds, and the pack rule
+
+ORBIT (elliptical traces around the core) and HEATMAP (a grid of cells that
+warm and cool with the traffic) are new. The other five already had distinct
+shapes. Each sells alone at $1.99.
+
+**Standing rule:** `bg_pack` contains every living background and stays at
+**$4.99** however many are added. Singles cost the same as the other singles.
+`StoreTest` fails if a background is left out of the pack or the pack price
+changes.
+
+### R4 ✅ RULE — the same for core skins
+
+`core_skin_pack` stays at **$2.50** and gains every future non-premium skin;
+a single skin is **$1.00** like the others. NEONGRID remains premium and
+outside the pack. Asserted by the same `StoreTest` case.
+
+### R5 ✅ 1.37.0 — the lost-run advert is back
+
+*"Still need an advert on lost runs — fix this and the store item will remain
+the same."* The interstitial is restored with the rules it had before 1.35.0:
+REMOVE ADS removes it, one per lost run, not after a revive paid with an ad,
+at most one every three minutes. It keeps 1.35.0's child-directed,
+non-personalized, G-rated settings. REMOVE ADS is on sale again, unchanged.
+
+### R6 ✅ CLOSED — game-over wording stays
+
+### R7 ✅ CLOSED — both start-up screens stay, unless the owner asks later
+
+### R8 ✅ 1.37.0 — global leaderboard on Google Play Games
+
+One Play Console leaderboard per mode (STANDARD, HACK:AI), ranked by wave
+reached. The callsign and the run's damage ride in the score tag, so the
+in-game GLOBAL view lists callsigns. The local board is unchanged beside it.
+
+**Owner to do in Play Console** (Play Games Services → Leaderboards), when the
+Console is available: create two leaderboards —
+
+| Name | Score format | Ordering | Property |
+| --- | --- | --- | --- |
+| Deepest wave — Standard | Numeric, 0 decimals | Larger is better | `cyops.games.leaderboard.standard` |
+| Deepest wave — HACK:AI | Numeric, 0 decimals | Larger is better | `cyops.games.leaderboard.hack_ai` |
+
+Put each leaderboard's id (starts `CgkI`) in `secrets.properties`. Without them
+the GLOBAL view is simply not shown.
+
+### R9 — release items, answered
+
+- **AdMob ids, consent message:** not until a full release. Nothing to do now.
+- **Upload keystore:** the owner builds and signs; raise it only right before
+  the production release.
+- **Privacy policy:** the owner has one, linked through the community Discord.
+- **Closed test, screen sizes (N1), cloud save (F3):** all wait on Play
+  Console review.
+
+---
+
+## S. Owner's follow-ups, 2026-09-26 (second round)
+
+### S1 ✅ 1.38.0 — the revive question, and the loss ad's real rule
+
+*"I only want it on loss not every three minutes. If player didn't survive for
+3 minutes fine, don't run advert on loss. More than 3 minutes before loss then
+advert. No other time should ad play. 'Would you like to revive — Yes/No' and
+then if they choose No then short ad — if they choose Yes then 30 sec … then
+revive with half health."*
+
+Built as:
+
+- A loss with a revive available shows **WOULD YOU LIKE TO REVIVE? — YES / NO**.
+  RETRY and MAIN MENU are hidden until it is answered.
+- **YES** plays one rewarded ad (AdMob rewarded ads run up to about 30 seconds
+  and cannot be skipped before the reward) and resumes the same wave at
+  **half** integrity. Chaining three short ads is not offered: AdMob decides
+  each ad's length, so "three under 15 seconds" cannot be guaranteed.
+- **NO** plays the lost-run interstitial — only if the run lasted **three
+  minutes or more of real, unpaused play**. The cooldown is gone.
+- A loss with no revive on offer counts as the same moment and follows the same
+  three-minute rule. After a revive paid for with an ad, the next loss shows no
+  interstitial.
+- Nothing plays on quitting, pressing back, or backgrounding the app.
+- The play clock is saved with the run, so CONTINUE keeps the time already
+  played.
+
+### S2 ✅ NAMED — map 3 is **Neural-Mesh**
+
+Owner's pick from §R2. Before it is built: render layout options for the owner
+to choose from (§R2), then assign `[∆∆∆]` and `[©©©]` plus every earlier map's
+bosses (§R1). LEVEL_THREE music is already supplied (§♡2).
+
+### S3 ⬜ ♧1 — make every colour pop more
+
+*"Need all of the colors to pop more — turn up the saturation — this is true
+for all agents, boss explosions, menu colors, and all themes. Check for any
+conflicts this could cause during gameplay."*
+
+Scope: agent colours, boss explosion particles, menu accents, core skins and
+living backgrounds.
+
+**Conflicts found in the current palette, to resolve while doing it:**
+
+1. **Threat colours versus friendly colours.** Enemies own red, orange and
+   magenta (`Palette.Red`, `Orange`, `Magenta`). RED HAT already sits in the
+   red family. Raising saturation pushes everything towards pure hues, which
+   shrinks the gap between "my agent" and "their threat". Must stay above the
+   distance `PaletteTest` enforces, and RED HAT may need its hue moved rather
+   than its saturation raised.
+2. **Cyan and green have almost no headroom.** `Cyan #00E5FF` and
+   `Green #00FF9C` are already near full saturation. "More pop" for them has to
+   come from contrast (darker surroundings, a glow) rather than more
+   saturation.
+3. **Living backgrounds are deliberately quiet.** `PaletteTest` caps their
+   alpha and darkness so ASCII stays readable over them. They can take more
+   saturation at the same brightness and alpha, not more brightness.
+4. **Lane tints must stay away from enemy colours**, which was the cause of
+   ORBIT's first lane tint failing in 1.37.0. More saturated lanes make that
+   harder.
+5. **Crypto gold and orange.** `Crypto #FFC94D` (money) and `Orange #FF8A3D`
+   (a threat colour) converge as both saturate.
+6. **Red/green colour blindness.** Health, integrity and "good/bad" signals
+   already lean on red versus green; saturating both does not help a
+   colour-blind player. Keep a glyph or shape difference wherever colour
+   carries meaning.
+
+Approach when built: one saturation transform applied to the palette tables in
+one place (not colour by colour), `PaletteTest` extended with pairwise
+distance checks between friendly and threat colours, and before/after
+screenshots for the owner to approve.
+
+### S4 ✅ 1.39.0 — boss explosions — particles to the edge of the screen, with a slight shake
+
+*"Make sure the particles from explosion make a slight screen shake animation
+if possible — give me a video to review this before committing — make the
+particles go out, disappearing at center and travel all the way out of the
+view area."*
+
+Approved on video by the owner, with one change: *"slow the particles down a
+little bit"* — the blast went from 1.1s to 1.5s. Shards travel from the boss
+until every one has left the view; the centre clears first; a slight shake
+over the first 40% of the blast, gated on the screen-shake setting.
+`ShardBurstRenderTest` covers all four.
