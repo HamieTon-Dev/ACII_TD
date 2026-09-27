@@ -73,6 +73,11 @@ data class BossBriefing(
                     weakTo += agent to "Ignores its armour."
                 }
             }
+            if (variants.any { it.first == BossVariant.MODEL_COLLAPSE }) {
+                for (agent in listOf(AgentType.ROOT_ADMIN, AgentType.ZERO_DAY_HUNTER)) {
+                    weakTo += agent to "One heavy hitter does not feed MODEL COLLAPSE."
+                }
+            }
             if (BossModifier.ENCRYPTION_SHIELD in modifiers) {
                 weakTo += AgentType.CRYPTOGRAPHER to
                     "Breaks its encryption: \u00D7${formatMultiplier(ProjectileSystem.CRYPTOGRAPHER_VS_ENCRYPTED)} damage."
@@ -83,6 +88,15 @@ data class BossBriefing(
                 val agent = variant.jamsAgentType?.let { AgentType.fromNameSafe(it) } ?: continue
                 warnings += "${variant.displayName} jams ${agent.displayName} agents close to it. " +
                     "Place them back, at the edge of their range."
+            }
+            if (variants.any { it.first == BossVariant.MODEL_COLLAPSE }) {
+                warnings += "MODEL COLLAPSE heals back part of every hit while " +
+                    "${BossVariant.COLLAPSE_SWARM} or more agents hit it at once, more " +
+                    "the bigger the crowd. Fewer, heavier hitters starve it."
+            }
+            if (variants.any { it.first == BossVariant.LICENSE }) {
+                warnings += "LICENSE shrugs off any agent type that keeps hitting it. " +
+                    "Mix your agent types."
             }
             if (BossModifier.FIREWALL_RESISTANCE in modifiers) {
                 warnings += "Resists FIREWALL agents."

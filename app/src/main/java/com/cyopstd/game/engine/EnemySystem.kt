@@ -177,6 +177,7 @@ class EnemySystem(private val engine: GameEngine, private val random: Random) {
         }
 
         updateVariantJam(enemy, dt)
+        updateModelCollapse(enemy, dt)
 
         if (enemy.hasModifier(BossModifier.AGENT_DISRUPTION)) {
             enemy.disruptTimer -= dt
@@ -201,6 +202,20 @@ class EnemySystem(private val engine: GameEngine, private val random: Random) {
                     )
                 }
             }
+        }
+    }
+
+    /** MODEL COLLAPSE's tell, about once a second while it is feeding. */
+    private fun updateModelCollapse(enemy: Enemy, dt: Float) {
+        if (enemy.variant != BossVariant.MODEL_COLLAPSE) return
+        val attackers = enemy.distinctAttackersWithin(engine.elapsedTime, BossVariant.COLLAPSE_WINDOW)
+        if (attackers < BossVariant.COLLAPSE_SWARM) return
+        if ((engine.elapsedTime % 1f) < dt) {
+            engine.effectSystem().spawnText(
+                enemy.x, enemy.y - 50f,
+                "+ FEEDING ${(BossVariant.collapseHealShare(attackers) * 100).toInt()}%",
+                GameEngine.COLOR_ELITE, 0.8f
+            )
         }
     }
 

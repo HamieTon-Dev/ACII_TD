@@ -154,6 +154,13 @@ object Maps {
     /** Where both lanes meet and the shared tail begins. */
     private const val G_TAIL_IN = 1035f
 
+    private const val NM_TOP = 96f
+    private const val NM_UPPER = 250f
+    private const val NM_LOWER = 510f
+    private const val NM_BOTTOM = 664f
+    private const val NM_TURN_X = 1160f
+    private const val NM_MERGE_X = 160f
+
     /**
      * The circuit before the rack: up, across, down, back, and in.
      *
@@ -242,7 +249,47 @@ object Maps {
         unlockAtWave = 100
     )
 
-    val all: List<GameMap> = listOf(PERIMETER, HUGGING_FACE)
+    /**
+     * NEURAL-MESH — map 3, the owner's pick of four candidates (BACKPROP).
+     *
+     * Each route runs the full width, doubles back along the next band, and
+     * the two meet at the far left to make one long shared return to the
+     * rack. 3,662 units per route: longer than the perimeter, shorter than the
+     * gauntlet, and the shared return is ground every threat walks.
+     *
+     * Bands are 154 units apart, so every pocket clears 2 × NODE_CLEARANCE and
+     * the rows sit down the middle of each.
+     */
+    val NEURAL_MESH = GameMap(
+        id = "neural_mesh",
+        displayName = "NEURAL-MESH",
+        tagline = "Out, back, and a long shared return to the rack.",
+        laneWaypoints = arrayOf(
+            arrayOf(
+                Waypoint(WorldGeometry.SPAWN_X, NM_TOP),
+                Waypoint(NM_TURN_X, NM_TOP),
+                Waypoint(NM_TURN_X, NM_UPPER),
+                Waypoint(NM_MERGE_X, NM_UPPER),
+                Waypoint(NM_MERGE_X, WorldGeometry.CORE_Y),
+                Waypoint(WorldGeometry.SERVER_X, WorldGeometry.CORE_Y)
+            ),
+            arrayOf(
+                Waypoint(WorldGeometry.SPAWN_X, NM_BOTTOM),
+                Waypoint(NM_TURN_X, NM_BOTTOM),
+                Waypoint(NM_TURN_X, NM_LOWER),
+                Waypoint(NM_MERGE_X, NM_LOWER),
+                Waypoint(NM_MERGE_X, WorldGeometry.CORE_Y),
+                Waypoint(WorldGeometry.SERVER_X, WorldGeometry.CORE_Y)
+            )
+        ),
+        candidateRows = floatArrayOf(34f, 173f, 315f, 445f, 587f, 726f),
+        // *"unlock at wave 100 on hugging face"*
+        unlockMapId = HUGGING_FACE.id,
+        unlockMapName = HUGGING_FACE.displayName,
+        unlockAtWave = 100
+    )
+
+    val all: List<GameMap> = listOf(PERIMETER, HUGGING_FACE, NEURAL_MESH)
 
     /**
      * Never throws, and never returns the wrong level silently.

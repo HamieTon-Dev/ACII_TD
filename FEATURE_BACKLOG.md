@@ -1507,7 +1507,13 @@ Queue, in the order recommended (the owner may reorder):
 Needs, when map 3 is built: the per-map boss pool to be the union of the
 current map's variants and every earlier map's.
 
-### R2 ❓ More maps — new names needed, and the owner picks each layout
+### R2 ◐ More maps — new names needed, and the owner picks each layout
+
+**Map 3 ✅ 1.43.0 — NEURAL-MESH.** The owner picked BACKPROP from four
+rendered candidates (`NeuralMeshPreview`) and set the unlock: *"unlock at wave
+100 on hugging face"*. Its bosses, `[∆∆∆]` MODEL COLLAPSE and `[©©©]` LICENSE,
+are built, and the boss pool now stacks every earlier map's bosses
+(`BossVariant.MAP_PROGRESSION`). Maps 4 and 5 wait on the owner as before.
 
 *"More maps sounds great. I am not keen on the names … as you create new ones
 let me choose a layout for you."*
@@ -1606,7 +1612,16 @@ Owner's pick from §R2. Before it is built: render layout options for the owner
 to choose from (§R2), then assign `[∆∆∆]` and `[©©©]` plus every earlier map's
 bosses (§R1). LEVEL_THREE music is already supplied (§♡2).
 
-### S3 ⬜ ♧1 — make every colour pop more
+### S3 ✅ 1.42.0 — ♧1, make every colour pop more
+
+Approved by the owner from before/after frames (`SaturationPreview`). Done as
+planned below: pure hues pushed where there was headroom, cyan and green given
+contrast instead (stronger agent rings and fills), crypto gold moved towards
+yellow to separate it from orange, skins and backgrounds +30% saturation at
+the same brightness. Open: RED HAT still shares the enemy red; it reads as a
+friendly unit in its ring, and can move towards crimson if the owner asks.
+
+Original request and conflict analysis:
 
 *"Need all of the colors to pop more — turn up the saturation — this is true
 for all agents, boss explosions, menu colors, and all themes. Check for any

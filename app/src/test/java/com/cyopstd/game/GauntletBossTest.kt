@@ -82,8 +82,11 @@ class GauntletBossTest {
     }
 
     @Test
-    fun `no other map can roll them`() {
-        for (map in Maps.all.filter { it.id != Maps.HUGGING_FACE.id }) {
+    fun `no earlier map can roll them`() {
+        // Later maps field them too: "all previous bosses will be included in
+        // subsequent maps" (owner, R1). Only the maps before it must not.
+        val gauntletIndex = Maps.all.indexOf(Maps.HUGGING_FACE)
+        for (map in Maps.all.take(gauntletIndex)) {
             for (cycle in 1..40) {
                 val pool = BossVariant.poolFor(cycle, map.id)
                 val trespassers = pool.filter { it in gauntletBosses }
@@ -99,8 +102,8 @@ class GauntletBossTest {
     fun `the gauntlet fields its own and the common roster both`() {
         val late = BossVariant.poolFor(cycle = 12, mapId = Maps.HUGGING_FACE.id)
         assertEquals(
-            "every boss in the game should be available on the gauntlet late on",
-            BossVariant.entries.toSet(),
+            "every boss up to the gauntlet should be available on it late on",
+            BossVariant.entries.filter { it.mapId == null || it.mapId == Maps.HUGGING_FACE.id }.toSet(),
             late.toSet()
         )
         // Cycle 1 is a plain fight everywhere, including here.

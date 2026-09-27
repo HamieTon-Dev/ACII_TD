@@ -35,6 +35,19 @@ const val COUNTER_MULTIPLIER = 2f
  */
 private const val HUGGING_FACE_MAP_ID = "hugging_face"
 
+/** Map 3. `BossVariantTest` asserts it matches `Maps.NEURAL_MESH.id`. */
+private const val NEURAL_MESH_MAP_ID = "neural_mesh"
+
+/**
+ * The levels in the order they are unlocked, by `GameMap.id`.
+ *
+ * The owner's rule for new bosses: *"two per map, all previous bosses will be
+ * included in subsequent maps stacking variants of bosses."* So a map fields
+ * its own bosses and every earlier map's. `BossVariantTest` asserts this
+ * matches `Maps.all`.
+ */
+val MAP_PROGRESSION: List<String> = listOf("perimeter", HUGGING_FACE_MAP_ID, NEURAL_MESH_MAP_ID)
+
 /** The owner's number for the two heavies: *"maybe 1.2x more"* health. */
 private const val HEAVY_HEALTH_SCALE = 1.2f
 
@@ -260,6 +273,54 @@ enum class BossVariant(
         firstCycle = 2,
         mapId = HUGGING_FACE_MAP_ID,
         palette = BossPalette.VIOLET
+    ),
+
+    /**
+     * NEURAL-MESH, the pair that punishes a lazy board (backlog §J).
+     *
+     * MODEL COLLAPSE: *"heals while three or more agents hit it at once —
+     * punishes blobbing."* A model trained on too much of the same signal
+     * degrades; this one feeds on it. While [COLLAPSE_SWARM] or more different
+     * agents have hit it inside [COLLAPSE_WINDOW] seconds, it heals back part
+     * of every hit: [COLLAPSE_HEAL_PER_AGENT] for each agent beyond two, up to
+     * [COLLAPSE_MAX_HEAL]. Scaled rather than flat because a flat heal
+     * punished four ROOT ADMINs exactly as hard as twelve IPS, and the whole
+     * point is the blob. AI SENTINEL's three bolts are one agent.
+     */
+    MODEL_COLLAPSE(
+        id = "model_collapse",
+        displayName = "MODEL COLLAPSE",
+        glyph = "[\u2206\u2206\u2206]",
+        healthScale = 1.1f,
+        armorBonus = 0f,
+        speedScale = 0.95f,
+        signature = "Heals back part of every hit while three or more agents " +
+            "hit it at once, more the bigger the crowd. Fewer, heavier hitters " +
+            "starve it.",
+        firstCycle = 3,
+        mapId = NEURAL_MESH_MAP_ID,
+        palette = BossPalette.SPECTRUM
+    ),
+
+    /**
+     * LICENSE: *"takes less damage from any agent type that already hit it —
+     * forces a varied board."* Every hit from an agent type makes the next
+     * hit from that type weaker, down to [LICENSE_FLOOR]. The count is per
+     * type, not per agent, so ten FIREWALLs wear out their welcome ten times
+     * as fast as one FIREWALL, one IDS and one ANALYST do.
+     */
+    LICENSE(
+        id = "license",
+        displayName = "LICENSE",
+        glyph = "[\u00A9\u00A9\u00A9]",
+        healthScale = 1f,
+        armorBonus = 2f,
+        speedScale = 1f,
+        signature = "Shrugs off any agent type that keeps hitting it. A varied " +
+            "board keeps hurting it.",
+        firstCycle = 4,
+        mapId = NEURAL_MESH_MAP_ID,
+        palette = BossPalette.ICE
     );
 
     companion object {
@@ -284,6 +345,33 @@ enum class BossVariant(
          */
         const val VARIANT_JAM_RADIUS = 100f
 
+        /** MODEL COLLAPSE feeds while this many different agents hit it... */
+        const val COLLAPSE_SWARM = 3
+
+        /** ...within this many seconds of each other... */
+        const val COLLAPSE_WINDOW = 1f
+
+        /** ...healing back this much of each hit per agent beyond two... */
+        const val COLLAPSE_HEAL_PER_AGENT = 0.08f
+
+        /** ...up to this much. */
+        const val COLLAPSE_MAX_HEAL = 0.6f
+
+        /** The share of a hit MODEL COLLAPSE heals back with [attackers] on it. */
+        fun collapseHealShare(attackers: Int): Float =
+            if (attackers < COLLAPSE_SWARM) 0f
+            else (COLLAPSE_HEAL_PER_AGENT * (attackers - 2)).coerceAtMost(COLLAPSE_MAX_HEAL)
+
+        /** LICENSE: hits from one type before that type's damage is halved. */
+        const val LICENSE_HALF_HITS = 25f
+
+        /** LICENSE never takes less than this fraction of a hit. */
+        const val LICENSE_FLOOR = 0.35f
+
+        /** LICENSE's multiplier for a type that has already landed [hits]. */
+        fun licenseMultiplier(hits: Int): Float =
+            (1f / (1f + hits / LICENSE_HALF_HITS)).coerceAtLeast(LICENSE_FLOOR)
+
         fun fromIdSafe(id: String?): BossVariant =
             entries.firstOrNull { it.id == id } ?: BREACH
 
@@ -304,9 +392,12 @@ enum class BossVariant(
          * [ZOMBIE] and the map-specific four are *extra* identities rather
          * than a separate game.
          */
-        fun poolFor(cycle: Int, mapId: String?): List<BossVariant> =
-            entries.filter {
-                cycle >= it.firstCycle && (it.mapId == null || it.mapId == mapId)
+        fun poolFor(cycle: Int, mapId: String?): List<BossVariant> {
+            val here = MAP_PROGRESSION.indexOf(mapId).coerceAtLeast(0)
+            return entries.filter {
+                cycle >= it.firstCycle &&
+                    (it.mapId == null || MAP_PROGRESSION.indexOf(it.mapId) in 0..here)
             }
+        }
     }
 }

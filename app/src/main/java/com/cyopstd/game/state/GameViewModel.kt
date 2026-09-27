@@ -373,12 +373,15 @@ class GameViewModel @JvmOverloads constructor(
      */
     private fun refreshAvailableMaps(stats: PlayerStats) {
         availableMaps = Maps.all.filter { map ->
-            map.unlockedBy { mode ->
-                when (mode) {
-                    GameMode.HACK_AI -> stats.highestWaveHackAi
-                    GameMode.STANDARD -> stats.highestWave
-                }
-            }
+            map.unlockedBy(
+                bestWaveOnMode = { mode ->
+                    when (mode) {
+                        GameMode.HACK_AI -> stats.highestWaveHackAi
+                        GameMode.STANDARD -> stats.highestWave
+                    }
+                },
+                bestWaveOnMap = { id -> stats.highestWaveByMap[id] ?: 0 }
+            )
         }
         // A level can only be lost to a progress reset, but if it is, the
         // selection must not survive it.

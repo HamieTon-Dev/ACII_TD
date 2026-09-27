@@ -26,14 +26,7 @@ enum class LevelMusic(
     LEVEL_ONE(listOf(R.raw.level1, R.raw.level1_2)),
     LEVEL_TWO(listOf(R.raw.level2, R.raw.level2_2)),
 
-    /**
-     * Composed, supplied, and waiting for the level it belongs to.
-     *
-     * The third map is on the backlog and not built. Deliberately left
-     * unmapped rather than pointed at an existing level: two levels sharing a
-     * track would be a worse answer than one track being silent for a while,
-     * and this way the map that lands next simply claims it.
-     */
+    /** NEURAL-MESH, the third level. */
     LEVEL_THREE(listOf(R.raw.level3, R.raw.level3_2));
 
     /** The variant that follows [index], wrapping. */
@@ -54,5 +47,6 @@ enum class LevelMusic(
 fun musicForMap(map: GameMap): LevelMusic? = when (map.id) {
     Maps.PERIMETER.id -> LevelMusic.LEVEL_ONE
     Maps.HUGGING_FACE.id -> LevelMusic.LEVEL_TWO
+    Maps.NEURAL_MESH.id -> LevelMusic.LEVEL_THREE
     else -> null
 }
