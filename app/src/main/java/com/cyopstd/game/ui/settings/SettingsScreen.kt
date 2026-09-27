@@ -142,6 +142,12 @@ fun SettingsScreen(
                         checked = settings.showAgentRange,
                         onCheckedChange = { v -> onUpdate { it.copy(showAgentRange = v) } }
                     )
+                    ToggleRow(
+                        label = "COMPACT AGENTS MENU",
+                        description = "Deploy bar shows only each agent's icon and cost",
+                        checked = settings.compactAgentBar,
+                        onCheckedChange = { v -> onUpdate { it.copy(compactAgentBar = v) } }
+                    )
                 }
             }
 

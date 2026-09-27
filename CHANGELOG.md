@@ -9,6 +9,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [1.48.0] — 2026-09-27
+
+### Compact agents menu
+
+- New switch: SETTINGS › GAMEPLAY › **COMPACT AGENTS MENU** (off by default).
+  On, the AGENTS bar becomes a small strip in the bottom-left corner with
+  only each agent's icon, in its board colour, and its cost in yellow below.
+  Tapping works as before: pick an agent, tap a spot. Locked agents show a
+  padlock and still say how to unlock them; unaffordable ones are faded.
+
 ## [1.47.0] — 2026-09-27
 
 ### Soft, calming combat sounds

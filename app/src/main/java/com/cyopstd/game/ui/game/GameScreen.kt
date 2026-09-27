@@ -246,8 +246,11 @@ private fun GameScreenBody(
                     onClose = viewModel::toggleDeployPanel,
                     bestWave = viewModel.stats.highestWave,
                     bestWaveBeginner = viewModel.stats.highestWaveBeginner,
+                    compact = settings.compactAgentBar,
+                    // The compact strip hugs the bottom-left corner instead of
+                    // spanning the screen, so it covers as little board as it can.
                     modifier = Modifier
-                        .align(Alignment.BottomCenter)
+                        .align(if (settings.compactAgentBar) Alignment.BottomStart else Alignment.BottomCenter)
                         .padding(8.dp)
                 )
             }
