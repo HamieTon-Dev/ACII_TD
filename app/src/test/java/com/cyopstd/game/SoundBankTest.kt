@@ -28,7 +28,7 @@ class SoundBankTest {
         val boss = recipe(GameSound.BOSS_DESTROYED)
         val kill = recipe(GameSound.PACKET_DESTROYED)
         assertTrue("boss kill is ${boss.duration}s", boss.duration >= 2f)
-        assertTrue(boss.duration > kill.duration * 10)
+        assertTrue(boss.duration > kill.duration * 5)
         assertTrue("a boss kill needs more than one stage", boss.voices.any { it.delay > 0f })
         // The lowest thing in the game: a sub-bass boom nothing else reaches.
         val lowest = boss.voices.filter { it.wave != ToneSynth.Wave.NOISE }.minOf { minOf(it.startFreq, it.endFreq) }
@@ -53,23 +53,46 @@ class SoundBankTest {
     }
 
     @Test
-    fun `the constant combat sounds are soft, not harsh`() {
-        // Owner: harsh even at 11% volume. Noise and square waves are what
-        // made it harsh, so the sounds heard dozens of times a minute use
-        // neither, and stay low in pitch.
-        for (sound in listOf(GameSound.PACKET_HIT, GameSound.PACKET_DESTROYED)) {
-            for (voice in recipe(sound).voices) {
-                assertTrue("$sound uses ${voice.wave}",
-                    voice.wave == ToneSynth.Wave.SINE || voice.wave == ToneSynth.Wave.TRIANGLE)
-                assertTrue("$sound reaches ${voice.startFreq} Hz", maxOf(voice.startFreq, voice.endFreq) <= 700f)
-            }
+    fun `the constant combat sounds are soft and calming`() {
+        // Owner, 2026-09-27: harsh even at 11%, and "I seriously dont want
+        // constant loud sounds ticking non stop. They need to be soft and
+        // calming." So the hit is silent, and the kill is a quiet, round note.
+        assertEquals("the hit must be silent", 0f, recipe(GameSound.PACKET_HIT).gain, 0f)
+
+        val kill = recipe(GameSound.PACKET_DESTROYED)
+        assertTrue("kill gain ${kill.gain}", kill.gain <= 0.25f)
+        for (voice in kill.voices) {
+            assertEquals("kill uses ${voice.wave}", ToneSynth.Wave.SINE, voice.wave)
+            assertTrue("kill reaches ${voice.startFreq} Hz", maxOf(voice.startFreq, voice.endFreq) <= 700f)
+            assertEquals("a note, not a sweep", voice.startFreq, voice.endFreq, 0f)
+            assertTrue("kill strikes in ${voice.attack}s; it should swell in", voice.attack >= 0.01f)
         }
+        // The main note, even at the top of the scale, stays below 600 Hz.
+        val fundamental = kill.voices.maxBy { it.amplitude }.startFreq
+        assertTrue(fundamental * SoundBank.pitchVariants(GameSound.PACKET_DESTROYED).max() < 600f)
+    }
+
+    @Test
+    fun `kill notes vary within one scale`() {
+        val rates = SoundBank.pitchVariants(GameSound.PACKET_DESTROYED)
+        assertTrue(rates.size >= 4)
+        assertTrue("SoundPool takes 0.5 to 2.0", rates.all { it in 0.5f..2f })
+        assertEquals("everything else plays as rendered", listOf(1f), SoundBank.pitchVariants(GameSound.BOSS_DESTROYED))
+    }
+
+    @Test
+    fun `the default attack renders exactly as before`() {
+        // Every other effect, the boss kill included, must be untouched.
+        val voice = ToneSynth.Voice(ToneSynth.Wave.SQUARE, 440f, decay = 5f)
+        val explicit = voice.copy(attack = 0.004f)
+        assertTrue(ToneSynth.renderWav(0.2f, listOf(voice)).contentEquals(ToneSynth.renderWav(0.2f, listOf(explicit))))
     }
 
     @Test
     fun `hit and kill sounds cannot stack into a buzz`() {
         assertTrue(SoundBank.minIntervalSeconds(GameSound.PACKET_HIT) >= 0.05f)
-        assertTrue(SoundBank.minIntervalSeconds(GameSound.PACKET_DESTROYED) >= 0.04f)
+        assertTrue("at most about six kill notes a second",
+            SoundBank.minIntervalSeconds(GameSound.PACKET_DESTROYED) >= 0.15f)
         // Nothing the player must never miss is rate limited.
         for (sound in listOf(GameSound.BOSS_DESTROYED, GameSound.BOSS_WARNING, GameSound.SERVER_DAMAGE,
             GameSound.GAME_OVER, GameSound.UI_CLICK)) {

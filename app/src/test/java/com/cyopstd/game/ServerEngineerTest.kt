@@ -44,6 +44,7 @@ class ServerEngineerTest {
     }
 
     private val nodes get() = Maps.PERIMETER.nodesByCoverage.map { it.id }
+    private val slots get() = Maps.PERIMETER.serverSlots.map { it.id }
 
     /** Tick only the agents, so no packet walks in and muddies the integrity. */
     private fun GameEngine.tickAgents(seconds: Float) {
@@ -90,7 +91,7 @@ class ServerEngineerTest {
     @Test
     fun `repairs 1 HP every 30 seconds of a running wave, with a green plus over the core`() {
         val engine = newEngine()
-        assertEquals(PlacementResult.SUCCESS, engine.placeAgent(engineer, nodes[0]))
+        assertEquals(PlacementResult.SUCCESS, engine.placeAgent(engineer, slots[0]))
         engine.startNextWave()
         assertEquals(RunPhase.IN_WAVE, engine.phase)
         engine.damageServer(10)
@@ -106,7 +107,7 @@ class ServerEngineerTest {
     @Test
     fun `the timer does not run in the break between waves or the boss warning`() {
         val engine = newEngine()
-        engine.placeAgent(engineer, nodes[0])
+        engine.placeAgent(engineer, slots[0])
         engine.damageServer(10)
         val hurt = engine.serverHp
         assertEquals(RunPhase.PREPARING, engine.phase)
@@ -122,7 +123,7 @@ class ServerEngineerTest {
     @Test
     fun `each engineer repairs on its own timer`() {
         val engine = newEngine()
-        repeat(2) { assertEquals(PlacementResult.SUCCESS, engine.placeAgent(engineer, nodes[it])) }
+        repeat(2) { assertEquals(PlacementResult.SUCCESS, engine.placeAgent(engineer, slots[it])) }
         engine.startNextWave()
         engine.damageServer(20)
         val hurt = engine.serverHp
@@ -133,7 +134,7 @@ class ServerEngineerTest {
     @Test
     fun `never heals past full integrity and never fires`() {
         val engine = newEngine()
-        engine.placeAgent(engineer, nodes[0])
+        engine.placeAgent(engineer, slots[0])
         engine.startNextWave()
         engine.tickAgents(65f)
         assertEquals(engine.serverMaxHp, engine.serverHp)
@@ -144,8 +145,68 @@ class ServerEngineerTest {
     @Test
     fun `no more than two may be deployed`() {
         val engine = newEngine()
-        repeat(2) { assertEquals(PlacementResult.SUCCESS, engine.placeAgent(engineer, nodes[it])) }
-        assertEquals(PlacementResult.TYPE_LIMIT_REACHED, engine.placeAgent(engineer, nodes[2]))
+        repeat(2) { assertEquals(PlacementResult.SUCCESS, engine.placeAgent(engineer, slots[it])) }
+        // Both slots are taken, and it cannot go anywhere else.
+        for (slot in slots) assertEquals(PlacementResult.NODE_OCCUPIED, engine.placeAgent(engineer, slot))
+        assertEquals(PlacementResult.WRONG_SLOT, engine.placeAgent(engineer, nodes[0]))
+        assertEquals(2, engine.activeCountOf(engineer))
+    }
+
+    // ------------------------------------------------------ the rack slots
+
+    @Test
+    fun `every level has two slots inside the rack, numbered after every board spot`() {
+        for (map in Maps.all) {
+            val slots = map.serverSlots
+            assertEquals(map.id, 2, slots.size)
+            assertEquals("slots must come last so old saves keep their ids",
+                listOf(map.nodes.size - 2, map.nodes.size - 1), slots.map { it.id })
+            for (slot in slots) {
+                val r = com.cyopstd.game.core.WorldGeometry.NODE_RADIUS
+                assertTrue(slot.x - r > com.cyopstd.game.core.WorldGeometry.SERVER_X)
+                assertTrue(slot.x + r < com.cyopstd.game.core.WorldGeometry.SERVER_X +
+                    com.cyopstd.game.core.WorldGeometry.SERVER_WIDTH)
+                assertTrue(slot.y - r > com.cyopstd.game.core.WorldGeometry.SERVER_TOP + 250f)
+            }
+            assertTrue("[S] boxes must not touch", slots[1].x - slots[0].x >= 100f)
+            assertTrue(map.nodesByCoverage.none { it.serverSlot })
+            assertEquals(map.nodes.size - 2, map.fieldNodes.size)
+        }
+        assertEquals("slots match the cap", 2, engineer.maxDeployed)
+    }
+
+    @Test
+    fun `only the engineer goes on the rack, and the engineer goes only there`() {
+        val engine = newEngine()
+        val crypto = engine.crypto
+        assertEquals(PlacementResult.WRONG_SLOT, engine.placeAgent(engineer, nodes[0]))
+        assertEquals(PlacementResult.WRONG_SLOT, engine.placeAgent(AgentType.FIREWALL, slots[0]))
+        assertEquals("a refused placement costs nothing", crypto, engine.crypto)
+        assertEquals(PlacementResult.SUCCESS, engine.placeAgent(engineer, slots[0]))
+        assertEquals(PlacementResult.SUCCESS, engine.placeAgent(AgentType.FIREWALL, nodes[0]))
+    }
+
+    @Test
+    fun `an engineer saved on a board spot moves onto the rack`() {
+        val random = Random(4)
+        val engine = GameEngine(random, WaveGenerator(random))
+        engine.isAgentUnlocked = { true }
+        engine.restore(
+            wave = 120, serverHp = 50, crypto = 0,
+            placements = listOf(
+                GameEngine.SavedPlacement(nodes[0], engineer.name, 7, 0),
+                GameEngine.SavedPlacement(nodes[1], engineer.name, 3, 0),
+                GameEngine.SavedPlacement(slots[0], AgentType.FIREWALL.name, 2, 0),
+                GameEngine.SavedPlacement(nodes[2], AgentType.FIREWALL.name, 5, 0)
+            ),
+            attacksBlocked = 0, cryptoEarned = 0, bossesDefeated = 0,
+            serverDamageTaken = 0, agentsDeployed = 0, agentUpgrades = 0
+        )
+        assertEquals(7, engine.agentAt(slots[0])?.level)
+        assertEquals(engineer, engine.agentAt(slots[0])?.type)
+        assertEquals(3, engine.agentAt(slots[1])?.level)
+        assertEquals(null, engine.agentAt(nodes[0]))
+        assertEquals(AgentType.FIREWALL, engine.agentAt(nodes[2])?.type)
     }
 
     @Test
@@ -160,7 +221,7 @@ class ServerEngineerTest {
     @Test
     fun `heals from the full game loop too`() {
         val engine = newEngine()
-        assertEquals(PlacementResult.SUCCESS, engine.placeAgent(engineer, nodes[0]))
+        assertEquals(PlacementResult.SUCCESS, engine.placeAgent(engineer, slots[0]))
         // Hold the lanes so no packet reaches the core during the check.
         for (node in nodes.drop(1).take(12)) {
             engine.placeAgent(AgentType.ANALYST, node)

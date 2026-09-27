@@ -40,6 +40,12 @@ enum class PlacementResult {
     NO_CAPACITY,
 
     /**
+     * SERVER SYSTEMS ENGINEER goes only on the rack's slots, and nothing else
+     * goes there.
+     */
+    WRONG_SLOT,
+
+    /**
      * This agent has a per-type cap and it is already reached.
      *
      * Distinct from NO_CAPACITY, which means the board is full. Telling a

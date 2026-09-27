@@ -164,7 +164,7 @@ class MapGeometryTest {
 
     @Test
     fun `nodes are clear of the server rack and inside the world`() {
-        for (node in Maps.PERIMETER.nodes) {
+        for (node in Maps.PERIMETER.fieldNodes) {  // the rack's own [S] slots are meant to be on it
             assertTrue(
                 "node ${node.id} overlaps the server rack",
                 node.x + WorldGeometry.NODE_RADIUS < WorldGeometry.SERVER_X

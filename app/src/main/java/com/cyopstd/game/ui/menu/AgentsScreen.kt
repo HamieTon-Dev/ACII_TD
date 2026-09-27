@@ -102,7 +102,7 @@ private fun AgentRosterCard(type: AgentType, unlocked: Boolean, highestWave: Int
             if (type.healsServer) {
                 MiniStat("REPAIR", "+${com.cyopstd.game.core.Balance.ENGINEER_HEAL_AMOUNT} HP")
                 MiniStat("EVERY", "${com.cyopstd.game.core.Balance.ENGINEER_HEAL_INTERVAL.toInt()}s")
-                MiniStat("RANGE", "MAP")
+                MiniStat("SLOT", "CORE")
             } else {
                 MiniStat("DMG", type.baseDamage.toInt().toString())
                 MiniStat("RATE", "${trim(type.baseFireRate)}/s")

@@ -57,10 +57,12 @@ class ServerEngineerAppFlowTest {
         waitFor { engineer in viewModel.unlockedAgents }
         assertTrue("[S] should unlock in the break before wave 100", engineer in viewModel.unlockedAgents)
 
-        // Deployable through the same unlock check the deploy panel uses.
+        // Deployed the way a player does it: pick [S], tap a slot on the rack.
         val engine = viewModel.engine
-        val node = Maps.PERIMETER.nodesByCoverage.first { engine.agentAt(it.id) == null }.id
-        assertEquals(PlacementResult.SUCCESS, engine.placeAgent(AgentType.SERVER_SYSTEMS_ENGINEER, node))
+        val slot = Maps.PERIMETER.serverSlots.first()
+        viewModel.choosePendingAgent(AgentType.SERVER_SYSTEMS_ENGINEER)
+        viewModel.onBattlefieldTap(androidx.compose.ui.geometry.Offset(slot.x + 4f, slot.y - 3f))
+        assertEquals(AgentType.SERVER_SYSTEMS_ENGINEER, engine.agentAt(slot.id)?.type)
 
         // Repairs once a wave is running.
         engine.startNextWave()

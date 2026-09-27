@@ -27,10 +27,23 @@ object SoundBank {
 
     private val minIntervals: Map<GameSound, Float> = mapOf(
         // Every projectile landing used to play its own sound, so a few fast
-        // agents stacked dozens a second into one continuous buzz. The hits
-        // still all count; only the sound is thinned out.
+        // agents stacked dozens a second into one continuous buzz. The hit is
+        // now silent; the kill note is capped at about six a second, so even
+        // a wave melting at 5x is a gentle patter, never a drone.
         GameSound.PACKET_HIT to 0.07f,
-        GameSound.PACKET_DESTROYED to 0.05f
+        GameSound.PACKET_DESTROYED to 0.16f
+    )
+
+    /**
+     * Playback rates to pick from at random, so a run of kills is a loose
+     * melody rather than the same note over and over. They are the steps of a
+     * major pentatonic scale, and any two of those sound fine together, so
+     * however kills overlap they never clash.
+     */
+    fun pitchVariants(sound: GameSound): List<Float> = pitchVariants[sound] ?: listOf(1f)
+
+    private val pitchVariants: Map<GameSound, List<Float>> = mapOf(
+        GameSound.PACKET_DESTROYED to listOf(1f, 9f / 8f, 5f / 4f, 3f / 2f, 5f / 3f)
     )
 
     val recipes: Map<GameSound, Recipe> = mapOf(
@@ -65,27 +78,31 @@ object SoundBank {
             )
         ),
 
-        // Fired constantly, so it is a soft, low "tock": rounded waveforms
-        // only. It was white noise over a 1.5 kHz square wave, and the owner
-        // found it harsh even at 11% volume — the harshness was in the
-        // spectrum, not the level, so turning it down could never fix it.
+        // Silent (gain 0, so it is never played). Owner, 2026-09-27: "I
+        // seriously dont want constant loud sounds ticking non stop. They need
+        // to be soft and calming." Every hit already flashes on the board;
+        // a sound for each one was only ever ticking. It keeps a recipe so the
+        // table stays complete and it can be brought back by raising the gain.
         GameSound.PACKET_HIT to Recipe(
             duration = 0.06f,
             voices = listOf(
-                ToneSynth.Voice(ToneSynth.Wave.TRIANGLE, 620f, 420f, 0.34f, decay = 55f),
-                ToneSynth.Voice(ToneSynth.Wave.SINE, 310f, 240f, 0.26f, decay = 45f)
+                ToneSynth.Voice(ToneSynth.Wave.SINE, 330f, amplitude = 0.3f, decay = 40f, attack = 0.01f)
             ),
-            gain = 0.28f
+            gain = 0f
         ),
 
-        // A soft falling pop, same family as the hit, a little lower and longer.
+        // A soft, low, round note, like a felt mallet on a marimba: pure sine,
+        // swelling in over 15 ms instead of striking, and fading out slowly.
+        // Played quietly and at a random step of a pentatonic scale (see
+        // [pitchVariants]), a wave of kills sounds like wind chimes.
         GameSound.PACKET_DESTROYED to Recipe(
-            duration = 0.14f,
+            duration = 0.42f,
             voices = listOf(
-                ToneSynth.Voice(ToneSynth.Wave.TRIANGLE, 480f, 200f, 0.40f, decay = 22f),
-                ToneSynth.Voice(ToneSynth.Wave.SINE, 240f, 110f, 0.34f, decay = 18f)
+                ToneSynth.Voice(ToneSynth.Wave.SINE, 330f, amplitude = 0.55f, decay = 8f, attack = 0.015f),
+                // A faint octave on top gives it a little warmth; it fades first.
+                ToneSynth.Voice(ToneSynth.Wave.SINE, 660f, amplitude = 0.07f, decay = 16f, attack = 0.015f)
             ),
-            gain = 0.45f
+            gain = 0.2f
         ),
 
         // A boss is the payoff for the whole wave, so it gets a sequence

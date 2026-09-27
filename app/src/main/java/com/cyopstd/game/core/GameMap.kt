@@ -45,6 +45,16 @@ object WorldGeometry {
     const val NODE_RADIUS = 26f
 
     /**
+     * The two SERVER SYSTEMS ENGINEER slots, inside the rack between its load
+     * lights and the integrity bar (owner, 2026-09-27: "placement on the
+     * server. 2 slots"). The same on every level, since the rack is.
+     */
+    val SERVER_SLOTS: List<Waypoint> = listOf(
+        Waypoint(SERVER_X + SERVER_WIDTH / 2f - 55f, SERVER_TOP + 290f),
+        Waypoint(SERVER_X + SERVER_WIDTH / 2f + 55f, SERVER_TOP + 290f)
+    )
+
+    /**
      * How close two deployment nodes may be, centre to centre.
      *
      * The perimeter map generated pairs exactly [NODE_RADIUS] apart — two
@@ -371,15 +381,30 @@ class GameMap(
                     laneDistance = distanceToNearestLane(spot.x, spot.y)
                 )
             }
+            // The rack's own slots come last, so adding them renumbered no
+            // spot an existing save points at.
+            for (slot in WorldGeometry.SERVER_SLOTS) {
+                all += NodePosition(
+                    id = all.size, column = -1, row = -1, x = slot.x, y = slot.y,
+                    laneDistance = distanceToNearestLane(slot.x, slot.y),
+                    serverSlot = true
+                )
+            }
             all
         }
         .toTypedArray()
 
     fun node(id: Int): NodePosition? = nodes.getOrNull(id)
 
-    /** Nodes ordered so consecutive picks are spread across the board. */
+    /** The slots on the rack, where only SERVER SYSTEMS ENGINEER goes. */
+    val serverSlots: List<NodePosition> = nodes.filter { it.serverSlot }
+
+    /** The spots on the board, for every other agent. */
+    val fieldNodes: List<NodePosition> = nodes.filterNot { it.serverSlot }
+
+    /** Board spots ordered so consecutive picks are spread across the board. */
     val nodesByCoverage: List<NodePosition> =
-        nodes.sortedByDescending { laneCoverage(it.x, it.y, WorldGeometry.REFERENCE_RANGE) }
+        fieldNodes.sortedByDescending { laneCoverage(it.x, it.y, WorldGeometry.REFERENCE_RANGE) }
 
     override fun toString(): String = "GameMap($id, ${nodes.size} nodes)"
 }
@@ -403,7 +428,9 @@ data class NodePosition(
      * player can see which spots actually work for it, rather than finding out
      * after paying.
      */
-    val laneDistance: Float
+    val laneDistance: Float,
+    /** On the CORE-SERVER rack: for SERVER SYSTEMS ENGINEER, and only it. */
+    val serverSlot: Boolean = false
 )
 
 /**
