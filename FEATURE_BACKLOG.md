@@ -191,6 +191,21 @@ with the numbers tuned against the existing dps-per-crypto curve in
 
 ---
 
+### D3 ✅ shipped in 1.48.0 — the compact agents menu
+
+**Asked (2026-09-27):** a "collapse function" for the agent picker, switched on
+in SETTINGS: *"a compressed icon list of the agents to place without all the
+info … Many veteran players will prefer this once learning what all the units
+do."* Small, with only the unit icon and its cost below it in yellow; each
+icon in the unit's own colour.
+
+**Built:** SETTINGS › GAMEPLAY › COMPACT AGENTS MENU (off by default). On, the
+deploy bar is one strip of 54×32dp icons, 12dp apart, in the bottom-left
+corner: `[glyph]` in the agent's board colour, the cost in yellow under it.
+Locked agents show a padlock and still explain their unlock when tapped;
+agents you cannot afford are faded. The colour table is now shared by the
+board and the menu (`AgentColors.kt`) so they cannot drift apart.
+
 ## E. A second map
 
 ### E1 ✅ SHIPPED in 1.36.0 — "Hugging-Face", selectable and earned

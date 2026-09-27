@@ -2101,24 +2101,7 @@ class BattlefieldRenderer {
         return (0xFF shl 24) or (r shl 16) or (g shl 8) or b
     }
 
-    private fun classColor(type: AgentType): Int = when (type) {
-        AgentType.TARPIT -> colBlue
-        AgentType.FIREWALL -> colGreen
-        AgentType.IDS -> colCyan
-        AgentType.IPS -> colBlue
-        AgentType.ANALYST -> colCrypto
-        AgentType.CRYPTOGRAPHER -> colPurple
-        AgentType.ZERO_DAY_HUNTER -> colOrange
-        AgentType.AI_SENTINEL -> colCyan
-        AgentType.QUANTUM_DEFENDER -> colPurple
-        AgentType.ROOT_ADMIN -> colGreen
-        AgentType.NETWORK_ARCHITECT -> colPurple
-        // The hats are named for their colour, so they are drawn in it.
-        AgentType.REDHAT -> colRed
-        AgentType.BLUEHAT -> colBlue
-        // Green, like the "+ +" it floats over the core.
-        AgentType.SERVER_SYSTEMS_ENGINEER -> colGreen
-    }
+    private fun classColor(type: AgentType): Int = agentClassColor(type).toArgb()
 
     /**
      * What colour a boss is lit in, from its variant's theme.

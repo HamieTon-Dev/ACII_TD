@@ -11,6 +11,12 @@ data class GameSettings(
     val backgroundAnimation: Boolean = true,
     val damageNumbers: Boolean = true,
     val showAgentRange: Boolean = true,
+    /**
+     * The deploy bar as a strip of small agent icons with their cost, and
+     * nothing else (owner, 2026-09-27: for veterans who know what every unit
+     * does). Off by default, since new players need the full cards.
+     */
+    val compactAgentBar: Boolean = false,
     val autoStartWaves: Boolean = false,
     /**
      * Whether auto-start also starts boss waves. Off by default: a boss wave

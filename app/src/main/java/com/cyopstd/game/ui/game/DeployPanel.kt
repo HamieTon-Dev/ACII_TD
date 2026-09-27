@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
@@ -24,6 +25,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.unit.dp
 import com.cyopstd.game.model.AgentType
 import com.cyopstd.game.ui.common.AsciiRule
@@ -49,9 +51,25 @@ fun DeployPanel(
     /** The player's best wave, for the "your best" line in the lock note. */
     bestWave: Int = 0,
     /** Best wave on the beginner level, for agents only it unlocks. */
-    bestWaveBeginner: Int = 0
+    bestWaveBeginner: Int = 0,
+    /** Icons and costs only; see [GameSettings.compactAgentBar]. */
+    compact: Boolean = false
 ) {
     var lockedInfo by remember { mutableStateOf<AgentType?>(null) }
+    if (compact) {
+        CompactDeployBar(
+            crypto = crypto,
+            unlockedAgents = unlockedAgents,
+            selected = selected,
+            lockedInfo = lockedInfo,
+            onLockedInfo = { lockedInfo = it },
+            onSelect = onSelect,
+            bestWave = bestWave,
+            bestWaveBeginner = bestWaveBeginner,
+            modifier = modifier
+        )
+        return
+    }
     Column(
         modifier = modifier
             .fillMaxWidth()
@@ -230,6 +248,111 @@ private fun AgentCard(
         }
     }
 }
+
+/**
+ * The compact deploy bar (owner, 2026-09-27): each agent as a small icon in
+ * its board colour with its cost under it in yellow, and nothing else.
+ * Selecting, locking and affordability work exactly as on the full cards.
+ */
+@Composable
+private fun CompactDeployBar(
+    crypto: Int,
+    unlockedAgents: Set<String>,
+    selected: AgentType?,
+    lockedInfo: AgentType?,
+    onLockedInfo: (AgentType?) -> Unit,
+    onSelect: (AgentType) -> Unit,
+    bestWave: Int,
+    bestWaveBeginner: Int,
+    modifier: Modifier
+) {
+    Column(
+        modifier = modifier
+            .background(Palette.Surface.copy(alpha = LocalPanelOpacity.current), RoundedCornerShape(6.dp))
+            .border(1.dp, Palette.Cyan.copy(alpha = 0.35f), RoundedCornerShape(6.dp))
+            .padding(horizontal = 8.dp, vertical = 6.dp)
+    ) {
+        lockedInfo?.let { type ->
+            LockNote(
+                type = type,
+                bestWave = if (type.beginnerLevelOnly) bestWaveBeginner else bestWave,
+                onDismiss = { onLockedInfo(null) }
+            )
+            Spacer(Modifier.height(6.dp))
+        }
+        LazyRow(horizontalArrangement = Arrangement.spacedBy(COMPACT_GAP)) {
+            items(AgentType.catalog, key = { it.name }) { type ->
+                val unlocked = type.name in unlockedAgents
+                CompactAgentIcon(
+                    type = type,
+                    unlocked = unlocked,
+                    affordable = crypto >= type.cost,
+                    selected = selected == type,
+                    onClick = {
+                        if (unlocked) {
+                            onLockedInfo(null)
+                            onSelect(type)
+                        } else {
+                            onLockedInfo(type)
+                        }
+                    }
+                )
+            }
+        }
+    }
+}
+
+@Composable
+private fun CompactAgentIcon(
+    type: AgentType,
+    unlocked: Boolean,
+    affordable: Boolean,
+    selected: Boolean,
+    onClick: () -> Unit
+) {
+    val color = if (unlocked) agentClassColor(type) else Palette.TextMuted
+    // Too dear right now: still there, but faded, like the full cards.
+    val strength = if (!unlocked || affordable) 1f else 0.45f
+    Column(
+        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = Modifier
+            .testTag("compact-agent-${type.name}")
+            .clickable(onClick = onClick)
+    ) {
+        Box(
+            contentAlignment = Alignment.Center,
+            modifier = Modifier
+                .size(width = COMPACT_ICON_WIDTH, height = COMPACT_ICON_HEIGHT)
+                .background(
+                    color.copy(alpha = (if (selected) 0.34f else 0.16f) * strength),
+                    RoundedCornerShape(7.dp)
+                )
+                .border(
+                    if (selected) 2.dp else 1.dp,
+                    if (selected) Palette.TextPrimary else color.copy(alpha = 0.7f * strength),
+                    RoundedCornerShape(7.dp)
+                )
+        ) {
+            Text(
+                text = "[${type.glyph}]",
+                style = MaterialTheme.typography.titleMedium,
+                color = color.copy(alpha = strength),
+                maxLines = 1
+            )
+        }
+        Spacer(Modifier.height(2.dp))
+        Text(
+            text = if (unlocked) "${type.cost}" else "\uD83D\uDD12",
+            style = MaterialTheme.typography.labelSmall,
+            color = if (unlocked) Palette.Crypto.copy(alpha = strength) else Palette.TextMuted,
+            maxLines = 1
+        )
+    }
+}
+
+private val COMPACT_ICON_WIDTH = 54.dp
+private val COMPACT_ICON_HEIGHT = 32.dp
+private val COMPACT_GAP = 12.dp
 
 /** What a locked agent needs, shown when its card is tapped. */
 @Composable
