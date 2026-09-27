@@ -103,6 +103,7 @@ class EnemySystem(private val engine: GameEngine, private val random: Random) {
             // The first variant jam lands a full interval after it walks out
             // of the spawn, not the moment it does.
             enemy.variantJamTimer = BossVariant.VARIANT_JAM_INTERVAL
+            enemy.ransomTimer = BossVariant.RANSOM_INTERVAL
         }
 
         enemy.maxHealth = health
@@ -179,6 +180,7 @@ class EnemySystem(private val engine: GameEngine, private val random: Random) {
 
         updateVariantJam(enemy, dt)
         updateModelCollapse(enemy, dt)
+        updateRansom(enemy, dt)
         if (enemy.variant == BossVariant.GRADIENT && enemy.gradientHeat > 0f) {
             enemy.gradientHeat = (enemy.gradientHeat - BossVariant.GRADIENT_COOL_PER_SECOND * dt)
                 .coerceAtLeast(0f)
@@ -246,6 +248,21 @@ class EnemySystem(private val engine: GameEngine, private val random: Random) {
         engine.addToWave()
         engine.effectSystem().spawnText(
             enemy.x, enemy.y - 56f, "SYN-STORM SPLIT", GameEngine.COLOR_HOSTILE, 1.1f
+        )
+    }
+
+    /** RANSOM holds one agent's upgrades at a time. See [BossVariant.RANSOM]. */
+    private fun updateRansom(enemy: Enemy, dt: Float) {
+        if (enemy.variant != BossVariant.RANSOM) return
+        enemy.ransomTimer -= dt
+        if (enemy.ransomTimer > 0f) return
+        enemy.ransomTimer = BossVariant.RANSOM_INTERVAL
+        val free = engine.agents.items.filter { it.active && it.ransomedFor <= 0f }
+        if (free.isEmpty()) return
+        val victim = free[random.nextInt(free.size)]
+        victim.ransomedFor = BossVariant.RANSOM_SECONDS
+        engine.effectSystem().spawnText(
+            victim.x, victim.y - 44f, "RANSOMED", GameEngine.COLOR_HOSTILE, 1.2f
         )
     }
 
@@ -320,11 +337,21 @@ class EnemySystem(private val engine: GameEngine, private val random: Random) {
     }
 
     private fun onReachedServer(enemy: Enemy) {
-        engine.damageServer(enemy.serverDamage)
-        engine.effectSystem().spawnText(
-            WorldGeometry.SERVER_X - 24f, enemy.y,
-            "-${enemy.serverDamage}", GameEngine.COLOR_HOSTILE, 0.8f
-        )
+        if (enemy.isBoss && enemy.variant == BossVariant.EXFIL) {
+            // Takes crypto, not integrity. See BossVariant.EXFIL.
+            val stolen = (engine.crypto * BossVariant.EXFIL_STEAL).toInt()
+            if (stolen > 0) engine.removeCrypto(stolen)
+            engine.effectSystem().spawnText(
+                WorldGeometry.SERVER_X - 24f, enemy.y,
+                "-\u25C7$stolen EXFILTRATED", GameEngine.COLOR_HOSTILE, 1.4f
+            )
+        } else {
+            engine.damageServer(enemy.serverDamage)
+            engine.effectSystem().spawnText(
+                WorldGeometry.SERVER_X - 24f, enemy.y,
+                "-${enemy.serverDamage}", GameEngine.COLOR_HOSTILE, 0.8f
+            )
+        }
         val wasEscort = escortIds.remove(enemy)
         if (!wasEscort) engine.notifyEnemyRemoved(wasKilled = false, enemy = enemy)
         enemy.reset()

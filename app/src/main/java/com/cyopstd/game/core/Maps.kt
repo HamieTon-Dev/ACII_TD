@@ -169,6 +169,17 @@ object Maps {
     const val DU_H = 1.1f
     const val DU_R = 1.25f
 
+    const val DD_H = 2.4f
+    const val DD_R = 1.3f
+    private const val DD_EDGE = 60f
+    private const val DD_INNER = 300f
+    private const val DD_GAP_Y = 380f
+    private const val DD_TURN_X = 1200f
+    private val DD_TEETH_X = floatArrayOf(160f, 340f, 520f, 700f, 880f, 1060f)
+    /** The centre of every comb pocket, plus the strips at either end. */
+    private val DD_POCKET_X = listOf(80f, 250f, 430f, 610f, 790f, 970f, 1130f)
+    private val DD_POCKET_Y = listOf(34f, 102f, 170f, 238f)
+
     private const val DU_TOP = 110f
     private const val DU_BOTTOM = 650f
     private const val DU_X1 = 250f
@@ -349,7 +360,50 @@ object Maps {
         unlockAtWave = 100
     )
 
-    val all: List<GameMap> = listOf(PERIMETER, HUGGING_FACE, NEURAL_MESH, DUCK_USB)
+    /**
+     * DDoS — map 5, the owner's pick of four candidates (TWIN COMB), with
+     * *"almost double the agent spaces"*.
+     *
+     * Each route combs its own half of the board: down and up six times in
+     * the top half, the mirror in the bottom, meeting only in front of the
+     * rack. The gap between the two combs is ground that reaches both routes.
+     * The derived grid offers only one spot per comb pocket, so every pocket
+     * is filled by hand down its centre line — each is still checked for
+     * route clearance and spacing like any other node.
+     */
+    val DDOS = GameMap(
+        id = "ddos",
+        displayName = "DDoS",
+        tagline = "Two routes comb their own halves. Towers in the middle gap reach both.",
+        laneWaypoints = arrayOf(ddosComb(top = true), ddosComb(top = false)),
+        candidateRows = floatArrayOf(DD_GAP_Y),
+        extraNodes = DD_POCKET_X.flatMap { x -> DD_POCKET_Y.map { y -> Waypoint(x, y) } } +
+            DD_POCKET_X.flatMap { x -> DD_POCKET_Y.map { y -> Waypoint(x, WorldGeometry.HEIGHT - y) } },
+        unlockMapId = DUCK_USB.id,
+        unlockMapName = DUCK_USB.displayName,
+        unlockAtWave = 100,
+        threatHealthScale = DD_H,
+        rewardScale = DD_R
+    )
+
+    /** One comb of DDoS: the top half's, or its mirror in the bottom. */
+    private fun ddosComb(top: Boolean): Array<Waypoint> {
+        fun y(v: Float) = if (top) v else WorldGeometry.HEIGHT - v
+        val points = ArrayList<Waypoint>()
+        points += Waypoint(WorldGeometry.SPAWN_X, y(DD_EDGE))
+        var outer = true
+        for (x in DD_TEETH_X) {
+            points += Waypoint(x, y(if (outer) DD_EDGE else DD_INNER))
+            points += Waypoint(x, y(if (outer) DD_INNER else DD_EDGE))
+            outer = !outer
+        }
+        points += Waypoint(DD_TURN_X, y(DD_EDGE))
+        points += Waypoint(DD_TURN_X, WorldGeometry.CORE_Y)
+        points += Waypoint(WorldGeometry.SERVER_X, WorldGeometry.CORE_Y)
+        return points.toTypedArray()
+    }
+
+    val all: List<GameMap> = listOf(PERIMETER, HUGGING_FACE, NEURAL_MESH, DUCK_USB, DDOS)
 
     /**
      * Never throws, and never returns the wrong level silently.

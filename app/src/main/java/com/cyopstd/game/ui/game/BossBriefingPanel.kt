@@ -102,6 +102,15 @@ data class BossBriefing(
                 warnings += "LICENSE shrugs off any agent type that keeps hitting it. " +
                     "Mix your agent types."
             }
+            if (variants.any { it.first == BossVariant.RANSOM }) {
+                warnings += "RANSOM locks one agent's upgrades for " +
+                    "${BossVariant.RANSOM_SECONDS.toInt()} seconds, every few seconds. " +
+                    "Upgrade before it arrives."
+            }
+            if (variants.any { it.first == BossVariant.EXFIL }) {
+                warnings += "EXFIL is fast. If it reaches the core it steals half " +
+                    "your crypto instead of integrity. Spend first, or stop it."
+            }
             if (variants.any { it.first == BossVariant.SYN_STORM }) {
                 warnings += "SYN-STORM splits in two at half health, and the second " +
                     "half takes another route. Cover every route."

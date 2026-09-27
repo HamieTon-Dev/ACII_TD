@@ -48,7 +48,7 @@ class DuckUsbTest {
     @Test
     fun `fields its own two bosses and every earlier level's`() {
         val pool = BossVariant.poolFor(40, map.id).toSet()
-        assertEquals(BossVariant.entries.toSet(), pool)
+        assertEquals(BossVariant.entries.filter { it.mapId != Maps.DDOS.id }.toSet(), pool)
         val mesh = BossVariant.poolFor(40, Maps.NEURAL_MESH.id).toSet()
         assertFalse(BossVariant.SYN_STORM in mesh || BossVariant.GRADIENT in mesh)
     }

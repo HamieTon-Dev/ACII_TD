@@ -7,6 +7,32 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [1.45.0]
+
+### Added
+
+- **DDoS, the fifth level** (the owner's pick: TWIN COMB, with "almost
+  double the agent spaces"). Each route combs its own half of the board; the
+  gap between the two combs reaches both. 51 build spots, against 25 on the
+  layout as first drawn. **Unlocks by reaching wave 100 on 🦆 DUCK-USB.**
+  Threat health ×2.4, crypto ×1.3: the same fixed board reaches wave ~72,
+  below DUCK-USB's ~79, so every level is still harder than the last.
+- **RANSOM `[RM]`**: every 6 seconds it locks one agent's upgrades for 8
+  seconds. The agent still fires. Its panel shows "RANSOMED · UPGRADES
+  LOCKED", and trying to upgrade it says "UPGRADES HELD FOR RANSOM".
+- **EXFIL `[XX]`**: fast (×1.25). If it reaches the core it steals half the
+  crypto in hand and no integrity.
+- DDoS fields every boss in the game. The NEXT BOSS briefing covers both.
+
+### Verified
+
+- `ServerEngineerAppFlowTest` drives the SERVER SYSTEMS ENGINEER through the
+  real app: unlocked in the break before wave 100 on the beginner level,
+  placed, repairing 1 integrity after 30 seconds of a running wave, and still
+  unlocked in a fresh session. Wave 99 on another level does not earn it.
+
+---
+
 ## [1.44.0]
 
 ### Changed — each level is now harder than the one before it

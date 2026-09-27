@@ -69,6 +69,9 @@ class Enemy : Poolable {
     /** GRADIENT's momentum, 0 (untouched) to 1 (being hammered). */
     var gradientHeat: Float = 0f
 
+    /** Countdown to RANSOM's next upgrade lock. */
+    var ransomTimer: Float = 0f
+
     /**
      * LICENSE: how many hits each agent type has landed on it, by
      * `AgentType.ordinal`. Sized generously so a new agent never overflows it.
@@ -212,6 +215,7 @@ class Enemy : Poolable {
         revived = false
         split = false
         gradientHeat = 0f
+        ransomTimer = 0f
         licenseHits.fill(0)
         recentAttackerNodes.fill(-1)
         recentAttackerTimes.fill(0f)
@@ -258,7 +262,11 @@ class Agent : Poolable {
     /** Runs the jam timer down. */
     fun tickJam(dt: Float) {
         if (disruptedFor > 0f) disruptedFor -= dt
+        if (ransomedFor > 0f) ransomedFor -= dt
     }
+
+    /** Seconds left on a RANSOM boss's upgrade lock; zero when free. */
+    var ransomedFor: Float = 0f
 
     /** Buff contributed by nearby NETWORK_ARCHITECT agents; recomputed each tick. */
     var damageBuff: Float = 1f
@@ -285,6 +293,7 @@ class Agent : Poolable {
         fireFlash = 0f
         upgradeFlash = 0f
         disruptedFor = 0f
+        ransomedFor = 0f
         damageBuff = 1f
         rateBuff = 1f
         targetingMode = TargetingMode.FIRST

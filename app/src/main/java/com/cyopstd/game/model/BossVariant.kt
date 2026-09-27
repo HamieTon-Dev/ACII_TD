@@ -41,6 +41,9 @@ private const val NEURAL_MESH_MAP_ID = "neural_mesh"
 /** Map 4. `BossVariantTest`-style checks assert it matches `Maps.DUCK_USB.id`. */
 private const val DUCK_USB_MAP_ID = "duck_usb"
 
+/** Map 5. `DdosTest` asserts it matches `Maps.DDOS.id`. */
+private const val DDOS_MAP_ID = "ddos"
+
 /**
  * The levels in the order they are unlocked, by `GameMap.id`.
  *
@@ -49,7 +52,7 @@ private const val DUCK_USB_MAP_ID = "duck_usb"
  * its own bosses and every earlier map's. `BossVariantTest` asserts this
  * matches `Maps.all`.
  */
-val MAP_PROGRESSION: List<String> = listOf("perimeter", HUGGING_FACE_MAP_ID, NEURAL_MESH_MAP_ID, DUCK_USB_MAP_ID)
+val MAP_PROGRESSION: List<String> = listOf("perimeter", HUGGING_FACE_MAP_ID, NEURAL_MESH_MAP_ID, DUCK_USB_MAP_ID, DDOS_MAP_ID)
 
 /** The owner's number for the two heavies: *"maybe 1.2x more"* health. */
 private const val HEAVY_HEALTH_SCALE = 1.2f
@@ -370,6 +373,49 @@ enum class BossVariant(
         firstCycle = 4,
         mapId = DUCK_USB_MAP_ID,
         palette = BossPalette.VIOLET
+    ),
+
+    /**
+     * DDoS, the pair that attacks something other than the wall (backlog §J).
+     *
+     * RANSOM: *"locks a random agent's upgrades for 8s — attacks the
+     * economy, not the wall."* Every [RANSOM_INTERVAL] seconds while it is on
+     * the board, one agent that is not already locked has its upgrades held
+     * for [RANSOM_SECONDS]. It still fires; it just cannot be levelled or
+     * rescued by money in the middle of the fight.
+     */
+    RANSOM(
+        id = "ransom",
+        displayName = "RANSOM",
+        glyph = "[RM]",
+        healthScale = 1.1f,
+        armorBonus = 1f,
+        speedScale = 1f,
+        signature = "Every few seconds, locks one agent's upgrades for 8 " +
+            "seconds. Upgrade before it arrives.",
+        firstCycle = 3,
+        mapId = DDOS_MAP_ID,
+        palette = BossPalette.HOSTILE
+    ),
+
+    /**
+     * EXFIL: *"steals in-run crypto on hit instead of integrity — a
+     * different kind of loss."* If it reaches CORE-SERVER it takes
+     * [EXFIL_STEAL] of the crypto in hand and no integrity at all. Quick on
+     * its feet, so letting it through is a real choice with a real price.
+     */
+    EXFIL(
+        id = "exfil",
+        displayName = "EXFIL",
+        glyph = "[XX]",
+        healthScale = 0.9f,
+        armorBonus = 0f,
+        speedScale = 1.25f,
+        signature = "Fast. If it reaches the core it steals half your crypto " +
+            "instead of integrity.",
+        firstCycle = 4,
+        mapId = DDOS_MAP_ID,
+        palette = BossPalette.SPECTRUM
     );
 
     companion object {
@@ -416,6 +462,13 @@ enum class BossVariant(
 
         /** LICENSE never takes less than this fraction of a hit. */
         const val LICENSE_FLOOR = 0.35f
+
+        /** RANSOM: seconds between locks, and how long each lasts. */
+        const val RANSOM_INTERVAL = 6f
+        const val RANSOM_SECONDS = 8f
+
+        /** EXFIL: the share of crypto in hand it takes on reaching the core. */
+        const val EXFIL_STEAL = 0.5f
 
         /** SYN-STORM splits when its health falls to this fraction. */
         const val SYN_STORM_SPLIT_AT = 0.5f

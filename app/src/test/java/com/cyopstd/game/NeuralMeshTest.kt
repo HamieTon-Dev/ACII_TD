@@ -80,7 +80,7 @@ class NeuralMeshTest {
         assertTrue(gauntlet.containsAll(perimeter))
         assertFalse(BossVariant.MODEL_COLLAPSE in gauntlet || BossVariant.LICENSE in gauntlet)
         assertEquals("NEURAL-MESH fields every boss up to its own",
-            BossVariant.entries.filter { it.mapId != Maps.DUCK_USB.id }.toSet(), mesh)
+            BossVariant.entries.filter { it.mapId != Maps.DUCK_USB.id && it.mapId != Maps.DDOS.id }.toSet(), mesh)
     }
 
     // ------------------------------------------------------------- bosses

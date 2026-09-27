@@ -728,9 +728,16 @@ class GameEngine(
      * Bulk upgrading exists because agents go to level 100: tapping UPGRADE
      * ninety-nine times is not a design, it is an ordeal.
      */
+    /** True while a RANSOM boss holds this agent's upgrades. */
+    fun isUpgradeLocked(nodeId: Int): Boolean = (agentAt(nodeId)?.ransomedFor ?: 0f) > 0f
+
     fun upgradeAgent(nodeId: Int, times: Int): Int {
         val agent = agentAt(nodeId) ?: return 0
         if (times <= 0) return 0
+        if (agent.ransomedFor > 0f) {
+            soundListener?.invoke(GameSound.INSUFFICIENT)
+            return 0
+        }
 
         var bought = 0
         while (bought < times && agent.level < Balance.MAX_AGENT_LEVEL) {
@@ -760,6 +767,7 @@ class GameEngine(
     /** How many levels the current crypto balance could buy on [nodeId]. */
     fun affordableUpgrades(nodeId: Int): Int {
         val agent = agentAt(nodeId) ?: return 0
+        if (agent.ransomedFor > 0f) return 0
         var budget = crypto
         var level = agent.level
         var count = 0

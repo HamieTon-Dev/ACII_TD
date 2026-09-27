@@ -94,6 +94,10 @@ class Map5Preview {
         extraNodes = listOf(250f, 430f, 610f, 790f, 970f).flatMap { x -> listOf(w(x, 150f), w(x, 610f)) }
     ))
 
+    /** The shipped level. */
+    @Test
+    fun `shipped`() = render("shipped-ddos", com.cyopstd.game.core.Maps.DDOS)
+
     private fun render(name: String, map: GameMap, setup: (GameEngine) -> Unit = {}) {
         val engine = GameEngine()
         engine.selectMap(map)
