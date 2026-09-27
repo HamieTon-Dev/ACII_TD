@@ -23,7 +23,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ### SERVER SYSTEMS ENGINEER sits on the CORE-SERVER
 
 - The rack has two [S] slots between its load lights and the integrity bar.
-  They are as faint as any spot until [S] is picked, then light green while
+  They are faint outlined boxes until [S] is picked; then the whole server
+  glows green, both slots are outlined green with a ghost [S] in them, and
   every board spot fades back. [S] goes only there, and nothing else does.
 - A selected [S] outlines the rack in green instead of drawing a line to it.
 - Saved runs with engineers on board spots move them onto the rack, level

@@ -199,6 +199,22 @@ class ServerEngineerScenarioTest {
             assertTrue("slot not green while placing [S]", greenIn(placing, slot) > 100)
         }
 
+        // The whole rack glows green while [S] is in hand, and only then.
+        fun rackEdgeGreen(bitmap: Bitmap): Int {
+            var green = 0
+            val x = (WorldGeometry.SERVER_X - 5f).toInt()
+            for (y in (WorldGeometry.SERVER_TOP + 20f).toInt()..(WorldGeometry.SERVER_TOP + 150f).toInt()) {
+                val p = bitmap.getPixel(x, y)
+                val red = (p shr 16) and 0xFF; val g = (p shr 8) and 0xFF; val b = p and 0xFF
+                if (g > 80 && g > red + 40 && g > b + 10) green++
+            }
+            return green
+        }
+        println("rack edge green: idle ${rackEdgeGreen(idle)}, firewall ${rackEdgeGreen(placingOther)}, [S] ${rackEdgeGreen(placing)}")
+        assertEquals("rack glows while idle", 0, rackEdgeGreen(idle))
+        assertEquals("rack glows for another agent", 0, rackEdgeGreen(placingOther))
+        assertTrue("rack not green while placing [S]", rackEdgeGreen(placing) > 100)
+
         engine.placeAgent(engineer, rack[0].id)
         engine.placeAgent(engineer, rack[1].id)
         render(engine, BattlefieldSelection(selectedNodeId = rack[0].id), "slots_filled_selected.png")

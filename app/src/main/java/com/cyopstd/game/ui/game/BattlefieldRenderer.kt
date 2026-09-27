@@ -1140,6 +1140,7 @@ class BattlefieldRenderer {
         val affordable = pending?.let { engine.crypto >= it.cost } ?: false
 
         val placingEngineer = pending?.healsServer == true
+        if (placingEngineer) drawServerHighlight(canvas, time)
 
         for (node in map.nodes) {
             if (engine.agentAt(node.id) != null) continue
@@ -1162,12 +1163,9 @@ class BattlefieldRenderer {
             val otherKind = placing && node.serverSlot != placingEngineer
             val pulse = 0.6f + 0.4f * sin(time * 4.4f + node.id * 0.6f)
 
-            if (node.serverSlot && placingEngineer) {
-                val r = WorldGeometry.NODE_RADIUS
-                fillPaint.color = if (affordable) colGreen else colOrange
-                fillPaint.alpha = (30 + 40 * pulse).toInt()
-                canvas.drawRect(node.x - r, node.y - r, node.x + r, node.y + r, fillPaint)
-                fillPaint.alpha = 255
+            if (node.serverSlot) {
+                drawServerSlot(canvas, node.x, node.y, placingEngineer, affordable, pulse)
+                continue
             }
 
             strokePaint.strokeWidth = if (placing && inReach) 2.4f else 1.4f
@@ -1204,6 +1202,61 @@ class BattlefieldRenderer {
                 thinTextPaint.alpha = 255
             }
         }
+    }
+
+    /**
+     * One of the rack's two [S] slots: a rounded box the size of a deployed
+     * [S]. Faint like any spot until [S] is picked; then outlined green, with
+     * a ghost [S] in it showing what goes there.
+     */
+    private fun drawServerSlot(
+        canvas: android.graphics.Canvas,
+        x: Float,
+        y: Float,
+        active: Boolean,
+        affordable: Boolean,
+        pulse: Float
+    ) {
+        val halfW = 42f
+        val halfH = 32f
+        scratchRect.set(x - halfW, y - halfH, x + halfW, y + halfH)
+        val color = if (affordable) colGreen else colOrange
+        if (active) {
+            fillPaint.color = color
+            fillPaint.alpha = (22 + 26 * pulse).toInt()
+            canvas.drawRoundRect(scratchRect, 9f, 9f, fillPaint)
+            fillPaint.alpha = 255
+        }
+        strokePaint.color = if (active) color else colCyanDim
+        strokePaint.strokeWidth = if (active) 3f else 1.4f
+        strokePaint.alpha = if (active) (170 + 85 * pulse).toInt().coerceIn(0, 255) else 55
+        canvas.drawRoundRect(scratchRect, 9f, 9f, strokePaint)
+        strokePaint.alpha = 255
+        if (active) {
+            thinTextPaint.textSize = 24f
+            thinTextPaint.color = color
+            thinTextPaint.alpha = (90 + 60 * pulse).toInt()
+            canvas.drawText("[S]", x, y + 8f, thinTextPaint)
+            thinTextPaint.alpha = 255
+        }
+    }
+
+    /** While [S] is being placed, the whole rack glows green: that is where it goes. */
+    private fun drawServerHighlight(canvas: android.graphics.Canvas, time: Float) {
+        val left = WorldGeometry.SERVER_X
+        val top = WorldGeometry.SERVER_TOP
+        val right = left + WorldGeometry.SERVER_WIDTH
+        val bottom = top + WorldGeometry.SERVER_HEIGHT
+        val pulse = 0.6f + 0.4f * sin(time * 4.4f)
+        glowPaint.color = colGreen
+        glowPaint.strokeWidth = 12f
+        glowPaint.alpha = (70 + 70 * pulse).toInt()
+        canvas.drawRect(left - 7f, top - 7f, right + 7f, bottom + 7f, glowPaint)
+        strokePaint.color = colGreen
+        strokePaint.strokeWidth = 3f
+        strokePaint.alpha = 235
+        canvas.drawRect(left, top, right, bottom, strokePaint)
+        strokePaint.alpha = 255
     }
 
     /**
