@@ -1,3 +1,4 @@
+import java.io.File
 import java.util.Properties
 
 plugins {
@@ -73,18 +74,62 @@ fun quoted(value: String) = "\"" + value + "\""
  * it. `secrets.properties` exists so there is an obvious place that is not
  * that file, and it is git-ignored.
  */
-fun Project.secret(name: String): String? {
+fun Project.secret(name: String): String? = secretSources(name).firstOrNull()?.second
+
+/**
+ * Every value configured for [name], with where it came from, in lookup order.
+ *
+ * Placeholders are skipped rather than returned. The owner's release build
+ * failed more than once because a `secrets.properties` still held an example
+ * path (`C:\Users\YOU\keys\...`) and, being first in line, beat the real
+ * value in `~/.gradle/gradle.properties` every time. A value that is plainly
+ * not real now falls through to the next source instead of winning.
+ */
+fun Project.secretSources(name: String): List<Pair<String, String>> {
+    val found = ArrayList<Pair<String, String>>()
     val local = rootProject.file("secrets.properties")
     if (local.exists()) {
         val properties = Properties()
         local.inputStream().use(properties::load)
-        val fromFile = properties.getProperty(name)?.trim()
-        if (!fromFile.isNullOrEmpty()) return fromFile
+        properties.getProperty(name)?.trim()?.let { found += "secrets.properties" to it }
     }
-    val fromProperty = (findProperty(name) as String?)?.trim()
-    if (!fromProperty.isNullOrEmpty()) return fromProperty
-    val fromEnvironment = System.getenv(name.uppercase().replace('.', '_'))?.trim()
-    return if (fromEnvironment.isNullOrEmpty()) null else fromEnvironment
+    (findProperty(name) as String?)?.trim()?.let { found += "Gradle property" to it }
+    val envName = name.uppercase().replace('.', '_')
+    System.getenv(envName)?.trim()?.let { found += "environment $envName" to it }
+    return found.filter { (_, value) -> value.isNotEmpty() && !isPlaceholder(value) }
+}
+
+/** Example text copied from a template, never a real id, path or password. */
+fun isPlaceholder(value: String): Boolean {
+    val v = value.trim()
+    return v.contains("XXXX") ||
+        v.contains("/absolute/path/") ||
+        Regex("""(?i)[\\/](you|your[-_ ]?name|username)[\\/]""").containsMatchIn(v) ||
+        v.startsWith("<") || v == "…" || v == "..."
+}
+
+/**
+ * The upload keystore file, or null when none can be found.
+ *
+ * Takes the first configured path that exists (from any source, so a stale
+ * path in one file does not hide a good one in another), then looks in the
+ * usual places: `keys/cyopstd-upload.jks` at the root of the drive the
+ * project is on (the owner's `D:\keys\`), and in the home folder. Found
+ * there, a release build needs no path configured at all, only the passwords.
+ */
+fun Project.uploadKeystore(): Pair<File, String>? {
+    for ((source, path) in secretSources("cyops.keystore.path")) {
+        val candidate = file(path)
+        if (candidate.isFile) return candidate to source
+        logger.warn("CyOps: ignoring keystore path from $source: $path does not exist")
+    }
+    val fileName = "cyopstd-upload.jks"
+    val driveRoot = rootDir.toPath().root?.toFile()
+    val defaults = listOfNotNull(
+        driveRoot?.let { File(it, "keys/$fileName") },
+        File(System.getProperty("user.home"), "keys/$fileName")
+    )
+    return defaults.firstOrNull { it.isFile }?.let { it to "default location" }
 }
 
 android {
@@ -158,12 +203,13 @@ android {
         //
         // PLAY_STORE_RELEASE.md has the keytool command and the full setup.
         create("upload") {
-            val path = secret("cyops.keystore.path")
-            if (path != null) {
-                storeFile = file(path)
+            val keystore = uploadKeystore()
+            if (keystore != null) {
+                storeFile = keystore.first
                 storePassword = secret("cyops.keystore.password")
-                keyAlias = secret("cyops.key.alias")
-                keyPassword = secret("cyops.key.password")
+                keyAlias = secret("cyops.key.alias") ?: "cyopstd-upload"
+                keyPassword = secret("cyops.key.password") ?: storePassword
+                logger.lifecycle("CyOps: release signing with ${keystore.first} (${keystore.second})")
             }
         }
     }
@@ -218,7 +264,7 @@ android {
             // consent has settled on a build that has real ids.
             manifestPlaceholders["admobAppId"] = admobAppId.ifEmpty { unconfiguredAdmobAppId }
 
-            signingConfig = if (secret("cyops.keystore.path") != null) {
+            signingConfig = if (uploadKeystore() != null) {
                 signingConfigs.getByName("upload")
             } else {
                 // Unsigned. Play App Signing can take an unsigned bundle only

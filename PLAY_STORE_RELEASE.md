@@ -267,3 +267,60 @@ tools/verify-release.sh
 ```
 
 Then internal test → production. Work `RELEASE_CHECKLIST.md` each time.
+
+## Signed bundles from GitHub (no local signing setup)
+
+`.github/workflows/release-aab.yml` builds the signed `.aab` on GitHub after
+every merge, so a release no longer depends on one PC's signing setup. It is
+off until the upload key is added as **encrypted Actions secrets**; the key
+never goes into the code, and nobody can read a secret back once saved.
+
+**One-time setup (about 5 minutes):**
+
+1. Copy the keystore as text, in PowerShell:
+
+   ```powershell
+   [Convert]::ToBase64String([IO.File]::ReadAllBytes("D:\keys\cyopstd-upload.jks")) | Set-Clipboard
+   ```
+
+2. On GitHub: the repository → **Settings** → **Secrets and variables** →
+   **Actions** → **New repository secret**. Add:
+
+   | Name | Value |
+   | --- | --- |
+   | `CYOPS_KEYSTORE_BASE64` | paste the clipboard from step 1 |
+   | `CYOPS_KEYSTORE_PASSWORD` | the keystore password |
+   | `CYOPS_KEY_ALIAS` | the key alias (`cyopstd-upload` unless you chose another) |
+   | `CYOPS_KEY_PASSWORD` | the key password (often the same as the keystore's) |
+   | `CYOPS_GAMES_APPID` | optional: Play Games project id, for cloud save |
+   | `CYOPS_GAMES_LEADERBOARD_STANDARD` | optional: the "CgkI..." id |
+   | `CYOPS_GAMES_LEADERBOARD_HACK_AI` | optional: the "CgkI..." id |
+   | `CYOPS_ADMOB_APPID`, `CYOPS_ADMOB_REWARDEDID`, `CYOPS_ADMOB_INTERSTITIALID` | optional: see ADMOB_SETUP.md |
+
+   Use the same values your local build uses, or the GitHub build will lack
+   what yours has (cloud save, leaderboards, ads).
+
+**Every release after that:** merge the PR → **Actions** tab → the newest
+"Signed release bundle" run → **Artifacts** → download
+`CyOpsTD-release-aab` → unzip → upload the `.aab` to Play Console. The run
+can also be started by hand with **Run workflow**. The R8 mapping is
+attached too (`CyOpsTD-release-mapping`); uploading it to Play makes crash
+reports readable.
+
+## Local builds find the key on their own
+
+The build no longer insists on one configured path:
+
+- A placeholder value (`C:\Users\YOU\...`, `/absolute/path/...`, `XXXX...`)
+  in any settings file is ignored, so it can no longer shadow a real value
+  further down the list.
+- A configured path that does not exist is skipped, with a warning, and the
+  next source is tried.
+- With no working path at all, it looks for `keys\cyopstd-upload.jks` at the
+  root of the drive the project is on (`D:\keys\` for `D:\CyOpsTD`), then
+  in your home folder.
+
+The build prints `CyOps: release signing with <file> (<where it came from>)`,
+so you can always see which key it used. Only the passwords still need to be
+set, in any one of: `secrets.properties`, `~/.gradle/gradle.properties`, or
+the environment.

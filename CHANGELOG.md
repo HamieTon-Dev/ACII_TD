@@ -7,6 +7,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [Unreleased]
+
+### Build — no more keystore-path failures
+
+- The release build ignores placeholder settings (`C:\Users\YOU\...` and the
+  like) and paths that do not exist, instead of failing on them, and finds
+  the upload key on its own at `keys\cyopstd-upload.jks` on the project's
+  drive or in the home folder. It prints which key it signed with. Verified
+  by building a signed bundle with a placeholder `secrets.properties` in
+  place — the exact failure the owner hit.
+- New GitHub workflow, **Signed release bundle**: builds the signed `.aab`
+  after every merge once the upload key is added as encrypted Actions
+  secrets. See PLAY_STORE_RELEASE.md.
+
+---
+
 ## [1.46.0]
 
 ### Added — a colour theme per level

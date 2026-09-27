@@ -6,8 +6,8 @@ name: Test APK
 #
 # Deliberately not a release: the artifact is a debug build with the
 # `.debug` application id and Google's test ad units, and it is not the thing
-# that goes to Play. The Play artifact is a signed release bundle, and signing
-# happens on the owner's machine because the upload key never leaves it.
+# that goes to Play. The Play artifact is the signed release bundle built by
+# release-aab.yml, once the owner has added the upload key as Actions secrets.
 on:
   workflow_dispatch:
 
