@@ -1522,7 +1522,7 @@ Its bosses, `[SS]` SYN-STORM and `[∑∑∑]` GRADIENT, are built. No level-fou
 music has been supplied; it plays the synthesized mode music meanwhile.
 
 **Map 5 ✅ 1.45.0 — DDoS.** The owner picked TWIN COMB with "almost double
-the agent spaces" (51, from 25) and named it. Unlocks at wave 100 on
+the agent spaces" (55, from 25; 1.45.1 respaced them so agents no longer overlap) and named it. Unlocks at wave 100 on
 DUCK-USB. Its bosses, `[RM]` RANSOM and `[XX]` EXFIL, are built. With it,
 every boss in §J's list is in the game. Level music: DUCK-USB plays "Neon Static" and
 DDoS plays "Cassette Noir" (1.45.1), both supplied by the owner.

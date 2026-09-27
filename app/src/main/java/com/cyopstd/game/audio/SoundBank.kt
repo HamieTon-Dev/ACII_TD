@@ -19,6 +19,20 @@ object SoundBank {
         val gain: Float = 1f
     )
 
+    /**
+     * The shortest gap allowed between two plays of the same effect, in
+     * seconds; zero means no limit.
+     */
+    fun minIntervalSeconds(sound: GameSound): Float = minIntervals[sound] ?: 0f
+
+    private val minIntervals: Map<GameSound, Float> = mapOf(
+        // Every projectile landing used to play its own sound, so a few fast
+        // agents stacked dozens a second into one continuous buzz. The hits
+        // still all count; only the sound is thinned out.
+        GameSound.PACKET_HIT to 0.07f,
+        GameSound.PACKET_DESTROYED to 0.05f
+    )
+
     val recipes: Map<GameSound, Recipe> = mapOf(
         GameSound.UI_CLICK to Recipe(
             duration = 0.07f,
@@ -51,23 +65,27 @@ object SoundBank {
             )
         ),
 
-        // Fired constantly, so it is short, quiet and low-contrast on purpose.
+        // Fired constantly, so it is a soft, low "tock": rounded waveforms
+        // only. It was white noise over a 1.5 kHz square wave, and the owner
+        // found it harsh even at 11% volume — the harshness was in the
+        // spectrum, not the level, so turning it down could never fix it.
         GameSound.PACKET_HIT to Recipe(
-            duration = 0.05f,
+            duration = 0.06f,
             voices = listOf(
-                ToneSynth.Voice(ToneSynth.Wave.NOISE, 1f, 1f, 0.28f, decay = 60f),
-                ToneSynth.Voice(ToneSynth.Wave.SQUARE, 1500f, 900f, 0.14f, decay = 55f)
+                ToneSynth.Voice(ToneSynth.Wave.TRIANGLE, 620f, 420f, 0.34f, decay = 55f),
+                ToneSynth.Voice(ToneSynth.Wave.SINE, 310f, 240f, 0.26f, decay = 45f)
             ),
-            gain = 0.32f
+            gain = 0.28f
         ),
 
+        // A soft falling pop, same family as the hit, a little lower and longer.
         GameSound.PACKET_DESTROYED to Recipe(
-            duration = 0.12f,
+            duration = 0.14f,
             voices = listOf(
-                ToneSynth.Voice(ToneSynth.Wave.NOISE, 1f, 1f, 0.34f, decay = 26f),
-                ToneSynth.Voice(ToneSynth.Wave.SQUARE, 620f, 180f, 0.24f, decay = 22f)
+                ToneSynth.Voice(ToneSynth.Wave.TRIANGLE, 480f, 200f, 0.40f, decay = 22f),
+                ToneSynth.Voice(ToneSynth.Wave.SINE, 240f, 110f, 0.34f, decay = 18f)
             ),
-            gain = 0.55f
+            gain = 0.45f
         ),
 
         // A boss is the payoff for the whole wave, so it gets a sequence

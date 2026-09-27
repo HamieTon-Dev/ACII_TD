@@ -53,6 +53,31 @@ class SoundBankTest {
     }
 
     @Test
+    fun `the constant combat sounds are soft, not harsh`() {
+        // Owner: harsh even at 11% volume. Noise and square waves are what
+        // made it harsh, so the sounds heard dozens of times a minute use
+        // neither, and stay low in pitch.
+        for (sound in listOf(GameSound.PACKET_HIT, GameSound.PACKET_DESTROYED)) {
+            for (voice in recipe(sound).voices) {
+                assertTrue("$sound uses ${voice.wave}",
+                    voice.wave == ToneSynth.Wave.SINE || voice.wave == ToneSynth.Wave.TRIANGLE)
+                assertTrue("$sound reaches ${voice.startFreq} Hz", maxOf(voice.startFreq, voice.endFreq) <= 700f)
+            }
+        }
+    }
+
+    @Test
+    fun `hit and kill sounds cannot stack into a buzz`() {
+        assertTrue(SoundBank.minIntervalSeconds(GameSound.PACKET_HIT) >= 0.05f)
+        assertTrue(SoundBank.minIntervalSeconds(GameSound.PACKET_DESTROYED) >= 0.04f)
+        // Nothing the player must never miss is rate limited.
+        for (sound in listOf(GameSound.BOSS_DESTROYED, GameSound.BOSS_WARNING, GameSound.SERVER_DAMAGE,
+            GameSound.GAME_OVER, GameSound.UI_CLICK)) {
+            assertEquals(0f, SoundBank.minIntervalSeconds(sound), 0f)
+        }
+    }
+
+    @Test
     fun `preview`() {
         // Not an assertion: the file a human listens to.
         File("build/previews").mkdirs()
