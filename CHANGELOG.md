@@ -16,6 +16,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - **DDoS has its own music**: "Cassette Noir", two renders supplied by the
   owner. Every level now plays its own music.
 
+### Changed — SERVER SYSTEMS ENGINEER: ◇ 800, two maximum
+
+- Owner's call after measuring it: the price is ◇ 800 (was 500) and no more
+  than **two** may be deployed (was four). With one fixed board run to
+  failure, four level-1 engineers added about 30 waves where four level-10
+  ANALYSTs in the same spots added 10. The repair itself is unchanged: 1
+  integrity every 30 seconds of a running wave at level 1. Upgrade costs
+  scale with the price, so they rise by the same 60%.
+- Its ability text, codex, AGENTS screen and deploy card all say "two"; a
+  test fails if the text ever disagrees with the numbers again.
+
 ### Changed — softer hit and kill sounds
 
 - The sound of a shot landing and of a small threat dying was harsh even at
