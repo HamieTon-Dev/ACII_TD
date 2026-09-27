@@ -69,7 +69,7 @@ class EnemySystem(private val engine: GameEngine, private val random: Random) {
 
         val healthScale =
             (if (boss) Balance.bossHealthMultiplier(wave) else Balance.healthMultiplier(wave)) *
-                engine.mode.healthScale
+                engine.mode.healthScale * engine.map.threatHealthScale
         var health = type.baseHealth * healthScale.toFloat()
         var armor = type.baseArmor + Balance.waveArmorBonus(wave).toFloat()
         var speed = type.baseSpeed * Balance.speedMultiplier(wave).toFloat()
@@ -110,7 +110,8 @@ class EnemySystem(private val engine: GameEngine, private val random: Random) {
         enemy.armor = armor
         enemy.baseSpeed = speed
         enemy.serverDamage = damage
-        enemy.reward = (EconomySystem.rewardFor(enemy, wave, random) * engine.mode.rewardScale)
+        enemy.reward = (EconomySystem.rewardFor(enemy, wave, random) * engine.mode.rewardScale *
+            engine.map.rewardScale)
             .toInt().coerceAtLeast(1)
 
         placeOnPath(enemy)

@@ -7,6 +7,29 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [1.44.0]
+
+### Changed — each level is now harder than the one before it
+
+The owner's rule: *"scaling difficulty as maps progress"*. Measured with one
+fixed board played until it fell, the levels were out of order: the long
+routes of HUGGING-FACE and NEURAL-MESH made them *easier* than the first
+level. Each level now scales threat health and crypto rewards on top of the
+mode:
+
+| Level | Threat health | Crypto | Same board reached (avg) |
+| --- | --- | --- | --- |
+| NETWORK PERIMETER | ×1.0 | ×1.0 | wave 107 |
+| HUGGING-FACE | ×2.25 | ×1.15 | wave 93 |
+| NEURAL-MESH | ×1.8 | ×1.2 | wave 89 |
+| 🦆 DUCK-USB | ×1.1 | ×1.25 | wave 79 |
+
+Health multipliers differ because the layouts differ: a long route needs a
+big boost to be harder, a short three-route braid barely any. `MapDifficultyTest`
+fails if any level stops being harder than the one before it.
+
+---
+
 ## [1.43.0]
 
 ### Added

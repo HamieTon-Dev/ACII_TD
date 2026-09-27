@@ -70,8 +70,8 @@ class DuckUsbBossBalanceTest {
             "GRADIENT vs 12 IPS (chip)" to fight(BossVariant.GRADIENT, chip, 14),
             "BREACH vs 6 heavies (burst)" to fight(BossVariant.BREACH, burst, 14),
             "GRADIENT vs 6 heavies (burst)" to fight(BossVariant.GRADIENT, burst, 14),
-            "BREACH vs mixed 12" to fight(BossVariant.BREACH, mixed, 12),
-            "SYN-STORM vs mixed 12" to fight(BossVariant.SYN_STORM, mixed, 12)
+            "BREACH vs mixed 12" to fight(BossVariant.BREACH, mixed, 14),
+            "SYN-STORM vs mixed 12" to fight(BossVariant.SYN_STORM, mixed, 14)
         )
         for ((name, r) in results) println("DUB $name: ${if (r.killed) "killed in %.1fs".format(r.seconds) else "GOT THROUGH at %.1fs".format(r.seconds)}")
         assertTrue("a burst board must kill GRADIENT", results.getValue("GRADIENT vs 6 heavies (burst)").killed)

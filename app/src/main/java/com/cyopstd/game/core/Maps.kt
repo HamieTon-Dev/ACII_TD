@@ -161,6 +161,14 @@ object Maps {
     private const val NM_TURN_X = 1160f
     private const val NM_MERGE_X = 160f
 
+    // Per-level difficulty (see GameMap.threatHealthScale), tuned with MapDifficultyTest.
+    const val HF_H = 2.25f
+    const val HF_R = 1.15f
+    const val NM_H = 1.8f
+    const val NM_R = 1.2f
+    const val DU_H = 1.1f
+    const val DU_R = 1.25f
+
     private const val DU_TOP = 110f
     private const val DU_BOTTOM = 650f
     private const val DU_X1 = 250f
@@ -254,7 +262,9 @@ object Maps {
         ),
         // *"This level unlocks by reaching wave 100 of Hack AI level."*
         unlockMode = GameMode.HACK_AI,
-        unlockAtWave = 100
+        unlockAtWave = 100,
+        threatHealthScale = HF_H,
+        rewardScale = HF_R
     )
 
     /**
@@ -292,6 +302,8 @@ object Maps {
         ),
         candidateRows = floatArrayOf(34f, 173f, 315f, 445f, 587f, 726f),
         // *"unlock at wave 100 on hugging face"*
+        threatHealthScale = NM_H,
+        rewardScale = NM_R,
         unlockMapId = HUGGING_FACE.id,
         unlockMapName = HUGGING_FACE.displayName,
         unlockAtWave = 100
@@ -330,6 +342,8 @@ object Maps {
             )
         ),
         candidateRows = floatArrayOf(36f, 200f, 290f, 470f, 560f, 724f),
+        threatHealthScale = DU_H,
+        rewardScale = DU_R,
         unlockMapId = NEURAL_MESH.id,
         unlockMapName = NEURAL_MESH.displayName,
         unlockAtWave = 100

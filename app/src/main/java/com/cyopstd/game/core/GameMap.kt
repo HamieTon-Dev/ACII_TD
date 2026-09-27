@@ -157,7 +157,19 @@ class GameMap(
      */
     val unlockMapId: String? = null,
     /** [unlockMapId]'s display name, for the lock line. */
-    val unlockMapName: String = ""
+    val unlockMapName: String = "",
+    /**
+     * Multiplies every threat's health on this level, on top of the mode's.
+     *
+     * The owner's rule: *"scaling difficulty as maps progress"*. A layout
+     * alone does not do it — a long route is *easier*, and measured with one
+     * fixed board HUGGING-FACE and NEURAL-MESH were easier than the first
+     * level. This is tuned so each level is harder than the one before;
+     * `MapDifficultyTest` holds that order.
+     */
+    val threatHealthScale: Float = 1f,
+    /** Multiplies crypto rewards, so a harder level is not also a poorer one. */
+    val rewardScale: Float = 1f
 ) {
 
     /** Whether a player with these records may play this level. */

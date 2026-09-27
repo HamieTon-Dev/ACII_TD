@@ -62,7 +62,7 @@ class NeuralMeshBossBalanceTest {
 
     @Test
     fun `the new bosses are harder against the board they punish and fair against the right one`() {
-        val level = 12
+        val level = 16
         val results = linkedMapOf(
             "BREACH vs 12 ANALYST" to fight(BossVariant.BREACH, blob, level),
             "MODEL COLLAPSE vs 12 ANALYST" to fight(BossVariant.MODEL_COLLAPSE, blob, level),

@@ -1521,8 +1521,15 @@ candidates (`Map4Preview`) and named it. Unlocks at wave 100 on NEURAL-MESH.
 Its bosses, `[SS]` SYN-STORM and `[∑∑∑]` GRADIENT, are built. No level-four
 music has been supplied; it plays the synthesized mode music meanwhile.
 
-**Map 5** waits on the owner: a layout, a name and the unlock. Its bosses are
-`[RM]` RANSOM and `[XX]` EXFIL.
+**Map 5** waits on the owner: a layout (four candidates rendered by
+`Map5Preview`: HELIX, HOURGLASS, CROSSFIRE, TWIN COMB) and a name. It unlocks
+at wave 100 on DUCK-USB (owner: *"you cannot unlock the next maps without
+completing wave 100 of the previous map"*) and must be harder than DUCK-USB
+(`MapDifficultyTest`). Its bosses are `[RM]` RANSOM and `[XX]` EXFIL.
+
+**Rule (owner, 1.44.0):** difficulty scales as levels progress. Each level is
+tuned with `GameMap.threatHealthScale` so one fixed board gets less far on it
+than on the level before.
 
 *"More maps sounds great. I am not keen on the names … as you create new ones
 let me choose a layout for you."*
