@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [1.45.1]
+
+### Added
+
+- **🦆 DUCK-USB has its own music**: "Neon Static", two renders
+  supplied by the owner, alternating like the other levels. DDoS still plays
+  the synthesized music until its tracks are supplied.
+
+---
+
 ## [1.45.0]
 
 ### Added
