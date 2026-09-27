@@ -98,6 +98,25 @@ class Map4Preview {
         candidateRows = floatArrayOf(60f, 270f, 470f, 660f, 730f)
     ))
 
+    /** The shipped level with its two bosses walking it. */
+    @Test
+    fun `shipped with its bosses`() = render("shipped-bosses", com.cyopstd.game.core.Maps.DUCK_USB) { engine ->
+        for ((i, variant) in listOf(
+            com.cyopstd.game.model.BossVariant.SYN_STORM,
+            com.cyopstd.game.model.BossVariant.GRADIENT
+        ).withIndex()) {
+            engine.enemySystem().spawn(
+                com.cyopstd.game.engine.SpawnOrder(
+                    0f, com.cyopstd.game.model.EnemyType.BOSS, i * 2,
+                    elite = false, boss = true, bossVariant = variant
+                ), 40
+            )
+            val boss = engine.enemies.items.last { it.active }
+            boss.progress = 520f + i * 200f
+            boss.baseSpeed = 0f
+        }
+    }
+
     private fun render(name: String, map: GameMap, setup: (GameEngine) -> Unit = {}) {
         val engine = GameEngine()
         engine.selectMap(map)

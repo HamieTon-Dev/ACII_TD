@@ -1514,7 +1514,15 @@ current map's variants and every earlier map's.
 rendered candidates (`NeuralMeshPreview`) and set the unlock: *"unlock at wave
 100 on hugging face"*. Its bosses, `[∆∆∆]` MODEL COLLAPSE and `[©©©]` LICENSE,
 are built, and the boss pool now stacks every earlier map's bosses
-(`BossVariant.MAP_PROGRESSION`). Maps 4 and 5 wait on the owner as before.
+(`BossVariant.MAP_PROGRESSION`).
+
+**Map 4 ✅ 1.43.0 — 🦆 DUCK-USB.** The owner picked BRAID from four rendered
+candidates (`Map4Preview`) and named it. Unlocks at wave 100 on NEURAL-MESH.
+Its bosses, `[SS]` SYN-STORM and `[∑∑∑]` GRADIENT, are built. No level-four
+music has been supplied; it plays the synthesized mode music meanwhile.
+
+**Map 5** waits on the owner: a layout, a name and the unlock. Its bosses are
+`[RM]` RANSOM and `[XX]` EXFIL.
 
 *"More maps sounds great. I am not keen on the names … as you create new ones
 let me choose a layout for you."*

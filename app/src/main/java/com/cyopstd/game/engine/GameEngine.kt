@@ -653,6 +653,11 @@ class GameEngine(
         }
     }
 
+    /** A threat that joins the wave mid-fight (SYN-STORM's split) must be finished too. */
+    internal fun addToWave() {
+        enemiesRemaining++
+    }
+
     /**
      * A boss-replicated escort died. It was never part of the wave plan, so the
      * wave counter must not move — but the player still blocked a packet.

@@ -178,6 +178,10 @@ class EnemySystem(private val engine: GameEngine, private val random: Random) {
 
         updateVariantJam(enemy, dt)
         updateModelCollapse(enemy, dt)
+        if (enemy.variant == BossVariant.GRADIENT && enemy.gradientHeat > 0f) {
+            enemy.gradientHeat = (enemy.gradientHeat - BossVariant.GRADIENT_COOL_PER_SECOND * dt)
+                .coerceAtLeast(0f)
+        }
 
         if (enemy.hasModifier(BossModifier.AGENT_DISRUPTION)) {
             enemy.disruptTimer -= dt
@@ -203,6 +207,45 @@ class EnemySystem(private val engine: GameEngine, private val random: Random) {
                 }
             }
         }
+    }
+
+    /**
+     * SYN-STORM at half health: the original carries on and a copy with the
+     * same health appears on another route, the same distance along it. The
+     * copy joins the wave, so the wave does not end until both are gone.
+     */
+    fun splitSynStorm(enemy: Enemy) {
+        enemy.split = true
+        enemy.reward = (enemy.reward / 2).coerceAtLeast(1)
+        val copy = engine.enemies.obtain() ?: return
+        copy.reset()
+        copy.active = true
+        copy.type = enemy.type
+        copy.isBoss = true
+        copy.isElite = true
+        copy.variant = enemy.variant
+        copy.modifiers = enemy.modifiers
+        copy.split = true
+        copy.maxHealth = enemy.maxHealth
+        copy.health = enemy.health
+        copy.armor = enemy.armor
+        copy.baseSpeed = enemy.baseSpeed
+        copy.serverDamage = enemy.serverDamage
+        copy.reward = enemy.reward
+        copy.phase = enemy.phase + 1.7f
+        copy.laneOffset = 0f
+        copy.burstTimer = enemy.burstTimer
+        copy.replicateTimer = enemy.replicateTimer
+        copy.disruptTimer = enemy.disruptTimer
+        val lanes = engine.map.laneCount
+        copy.lane = if (lanes > 1) (enemy.lane + 1) % lanes else enemy.lane
+        val fraction = enemy.pathFraction(engine.map.laneLength[enemy.lane])
+        copy.progress = fraction * engine.map.laneLength[copy.lane]
+        placeOnPath(copy)
+        engine.addToWave()
+        engine.effectSystem().spawnText(
+            enemy.x, enemy.y - 56f, "SYN-STORM SPLIT", GameEngine.COLOR_HOSTILE, 1.1f
+        )
     }
 
     /** MODEL COLLAPSE's tell, about once a second while it is feeding. */

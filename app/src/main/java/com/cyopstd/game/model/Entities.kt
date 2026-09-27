@@ -63,6 +63,12 @@ class Enemy : Poolable {
     /** A ZOMBIE only comes back once. */
     var revived: Boolean = false
 
+    /** SYN-STORM splits once; both halves carry this so neither splits again. */
+    var split: Boolean = false
+
+    /** GRADIENT's momentum, 0 (untouched) to 1 (being hammered). */
+    var gradientHeat: Float = 0f
+
     /**
      * LICENSE: how many hits each agent type has landed on it, by
      * `AgentType.ordinal`. Sized generously so a new agent never overflows it.
@@ -169,6 +175,7 @@ class Enemy : Poolable {
         var speed = baseSpeed
         if (slowRemaining > 0f) speed *= slowFactor
         if (burstActive > 0f) speed *= 2.1f
+        if (isBoss && variant == BossVariant.GRADIENT) speed *= BossVariant.gradientSpeed(gradientHeat)
         return speed
     }
 
@@ -203,6 +210,8 @@ class Enemy : Poolable {
         isBoss = false
         variant = BossVariant.BREACH
         revived = false
+        split = false
+        gradientHeat = 0f
         licenseHits.fill(0)
         recentAttackerNodes.fill(-1)
         recentAttackerTimes.fill(0f)

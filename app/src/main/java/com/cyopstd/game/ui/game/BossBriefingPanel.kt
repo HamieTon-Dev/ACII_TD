@@ -73,6 +73,10 @@ data class BossBriefing(
                     weakTo += agent to "Ignores its armour."
                 }
             }
+            if (variants.any { it.first == BossVariant.GRADIENT }) {
+                weakTo += AgentType.ROOT_ADMIN to "Few, huge hits barely speed GRADIENT up."
+                weakTo += AgentType.TARPIT to "Its field drags GRADIENT back down while it speeds up."
+            }
             if (variants.any { it.first == BossVariant.MODEL_COLLAPSE }) {
                 for (agent in listOf(AgentType.ROOT_ADMIN, AgentType.ZERO_DAY_HUNTER)) {
                     weakTo += agent to "One heavy hitter does not feed MODEL COLLAPSE."
@@ -97,6 +101,14 @@ data class BossBriefing(
             if (variants.any { it.first == BossVariant.LICENSE }) {
                 warnings += "LICENSE shrugs off any agent type that keeps hitting it. " +
                     "Mix your agent types."
+            }
+            if (variants.any { it.first == BossVariant.SYN_STORM }) {
+                warnings += "SYN-STORM splits in two at half health, and the second " +
+                    "half takes another route. Cover every route."
+            }
+            if (variants.any { it.first == BossVariant.GRADIENT }) {
+                warnings += "GRADIENT speeds up with every hit, however small, and " +
+                    "slows when left alone. Few big hits beat many small ones."
             }
             if (BossModifier.FIREWALL_RESISTANCE in modifiers) {
                 warnings += "Resists FIREWALL agents."

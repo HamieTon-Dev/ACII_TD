@@ -38,6 +38,9 @@ private const val HUGGING_FACE_MAP_ID = "hugging_face"
 /** Map 3. `BossVariantTest` asserts it matches `Maps.NEURAL_MESH.id`. */
 private const val NEURAL_MESH_MAP_ID = "neural_mesh"
 
+/** Map 4. `BossVariantTest`-style checks assert it matches `Maps.DUCK_USB.id`. */
+private const val DUCK_USB_MAP_ID = "duck_usb"
+
 /**
  * The levels in the order they are unlocked, by `GameMap.id`.
  *
@@ -46,7 +49,7 @@ private const val NEURAL_MESH_MAP_ID = "neural_mesh"
  * its own bosses and every earlier map's. `BossVariantTest` asserts this
  * matches `Maps.all`.
  */
-val MAP_PROGRESSION: List<String> = listOf("perimeter", HUGGING_FACE_MAP_ID, NEURAL_MESH_MAP_ID)
+val MAP_PROGRESSION: List<String> = listOf("perimeter", HUGGING_FACE_MAP_ID, NEURAL_MESH_MAP_ID, DUCK_USB_MAP_ID)
 
 /** The owner's number for the two heavies: *"maybe 1.2x more"* health. */
 private const val HEAVY_HEALTH_SCALE = 1.2f
@@ -321,6 +324,52 @@ enum class BossVariant(
         firstCycle = 4,
         mapId = NEURAL_MESH_MAP_ID,
         palette = BossPalette.ICE
+    ),
+
+    /**
+     * 🦆 DUCK-USB, the pair that changes shape mid-fight (backlog §J).
+     *
+     * SYN-STORM: *"splits into two half-health bosses at 50% — turns one lane
+     * problem into two."* At half health it splits: the original carries on
+     * and a copy with the same health appears on another route, at the same
+     * distance along it. Neither half splits again, and each is worth half the
+     * reward, so a split is never a farm.
+     */
+    SYN_STORM(
+        id = "syn_storm",
+        displayName = "SYN-STORM",
+        glyph = "[SS]",
+        healthScale = 1f,
+        armorBonus = 0f,
+        speedScale = 1.05f,
+        signature = "Splits in two at half health, and the second half takes " +
+            "another route.",
+        firstCycle = 3,
+        mapId = DUCK_USB_MAP_ID,
+        palette = BossPalette.SPECTRUM
+    ),
+
+    /**
+     * GRADIENT: *"speeds up as it takes damage, slows when untouched —
+     * rewards burst over chip damage."* Every hit adds the same momentum,
+     * however hard it lands, and momentum bleeds away when nothing is hitting
+     * it. So a board of many small, fast hits drives it up to [GRADIENT_FAST],
+     * and a few heavy hitters leave it near [GRADIENT_SLOW]. Measured on hits
+     * rather than damage on purpose: measured on damage, every board that
+     * was winning made it faster, which rewarded nothing.
+     */
+    GRADIENT(
+        id = "gradient",
+        displayName = "GRADIENT",
+        glyph = "[\u2211\u2211\u2211]",
+        healthScale = 1.1f,
+        armorBonus = 0f,
+        speedScale = 1f,
+        signature = "Every hit speeds it up, however small; it slows when left " +
+            "alone. Few big hits beat many small ones.",
+        firstCycle = 4,
+        mapId = DUCK_USB_MAP_ID,
+        palette = BossPalette.VIOLET
     );
 
     companion object {
@@ -367,6 +416,22 @@ enum class BossVariant(
 
         /** LICENSE never takes less than this fraction of a hit. */
         const val LICENSE_FLOOR = 0.35f
+
+        /** SYN-STORM splits when its health falls to this fraction. */
+        const val SYN_STORM_SPLIT_AT = 0.5f
+
+        /** GRADIENT's speed with no momentum, and flat out. */
+        const val GRADIENT_SLOW = 0.7f
+        const val GRADIENT_FAST = 1.7f
+
+        /** Momentum gained per hit, whatever its size. Ten hits a second holds it flat out. */
+        const val GRADIENT_HEAT_PER_HIT = 0.04f
+
+        /** Momentum lost a second. */
+        const val GRADIENT_COOL_PER_SECOND = 0.4f
+
+        fun gradientSpeed(heat: Float): Float =
+            GRADIENT_SLOW + (GRADIENT_FAST - GRADIENT_SLOW) * heat.coerceIn(0f, 1f)
 
         /** LICENSE's multiplier for a type that has already landed [hits]. */
         fun licenseMultiplier(hits: Int): Float =

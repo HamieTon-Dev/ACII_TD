@@ -161,6 +161,14 @@ object Maps {
     private const val NM_TURN_X = 1160f
     private const val NM_MERGE_X = 160f
 
+    private const val DU_TOP = 110f
+    private const val DU_BOTTOM = 650f
+    private const val DU_X1 = 250f
+    private const val DU_X2 = 450f
+    private const val DU_X3 = 650f
+    private const val DU_X4 = 850f
+    private const val DU_TURN_X = 1190f
+
     /**
      * The circuit before the rack: up, across, down, back, and in.
      *
@@ -289,7 +297,45 @@ object Maps {
         unlockAtWave = 100
     )
 
-    val all: List<GameMap> = listOf(PERIMETER, HUGGING_FACE, NEURAL_MESH)
+    /**
+     * 🦆 DUCK-USB — map 4, the owner's pick of four candidates (BRAID), and
+     * the owner's name: a nod to the keystroke-injection "rubber duck" USB.
+     *
+     * Three routes that swap places twice on diagonals before the rack. A node
+     * beside a crossing covers two routes at once, which is the decision the
+     * map is built around; the middle route is the shortest.
+     */
+    val DUCK_USB = GameMap(
+        id = "duck_usb",
+        displayName = "\uD83E\uDD86 DUCK-USB",
+        tagline = "Three routes swap places twice. Every crossing is a spot that hits two.",
+        laneWaypoints = arrayOf(
+            arrayOf(
+                Waypoint(WorldGeometry.SPAWN_X, DU_TOP), Waypoint(DU_X1, DU_TOP),
+                Waypoint(DU_X2, WorldGeometry.CORE_Y), Waypoint(DU_X3, WorldGeometry.CORE_Y),
+                Waypoint(DU_X4, DU_BOTTOM), Waypoint(DU_TURN_X, DU_BOTTOM),
+                Waypoint(DU_TURN_X, WorldGeometry.CORE_Y),
+                Waypoint(WorldGeometry.SERVER_X, WorldGeometry.CORE_Y)
+            ),
+            arrayOf(
+                Waypoint(WorldGeometry.SPAWN_X, WorldGeometry.CORE_Y),
+                Waypoint(DU_X1, WorldGeometry.CORE_Y), Waypoint(DU_X2, DU_TOP),
+                Waypoint(DU_TURN_X, DU_TOP), Waypoint(DU_TURN_X, WorldGeometry.CORE_Y),
+                Waypoint(WorldGeometry.SERVER_X, WorldGeometry.CORE_Y)
+            ),
+            arrayOf(
+                Waypoint(WorldGeometry.SPAWN_X, DU_BOTTOM), Waypoint(DU_X3, DU_BOTTOM),
+                Waypoint(DU_X4, WorldGeometry.CORE_Y),
+                Waypoint(WorldGeometry.SERVER_X, WorldGeometry.CORE_Y)
+            )
+        ),
+        candidateRows = floatArrayOf(36f, 200f, 290f, 470f, 560f, 724f),
+        unlockMapId = NEURAL_MESH.id,
+        unlockMapName = NEURAL_MESH.displayName,
+        unlockAtWave = 100
+    )
+
+    val all: List<GameMap> = listOf(PERIMETER, HUGGING_FACE, NEURAL_MESH, DUCK_USB)
 
     /**
      * Never throws, and never returns the wrong level silently.

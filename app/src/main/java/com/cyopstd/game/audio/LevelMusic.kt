@@ -48,5 +48,6 @@ fun musicForMap(map: GameMap): LevelMusic? = when (map.id) {
     Maps.PERIMETER.id -> LevelMusic.LEVEL_ONE
     Maps.HUGGING_FACE.id -> LevelMusic.LEVEL_TWO
     Maps.NEURAL_MESH.id -> LevelMusic.LEVEL_THREE
+    // No supplied track yet: the synthesized mode music plays instead.
     else -> null
 }

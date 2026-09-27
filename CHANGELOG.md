@@ -7,6 +7,37 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [1.43.0]
+
+### Added
+
+- **🦆 DUCK-USB, the fourth level** (the owner's pick: BRAID, and the owner's
+  name). Three routes swap places twice on diagonals before the core; a
+  tower beside a crossing covers two routes. 56 build spots. **Unlocks by
+  reaching wave 100 on NEURAL-MESH.** Plays the synthesized music until a
+  level-four track is supplied.
+- **SYN-STORM `[SS]`**: at half health it splits in two, and the second half
+  appears on another route at the same distance along it. Neither half
+  splits again, each is worth half the reward, and the wave is not over
+  until both are gone.
+- **GRADIENT `[∑∑∑]`**: every hit speeds it up, however small, and it cools
+  back down when left alone (0.7× to 1.7× speed). Many small hits drive it
+  into the core; a few heavy hitters barely move it.
+- DUCK-USB fields every boss from the three levels before it too. The NEXT
+  BOSS briefing explains both new bosses and what beats them.
+
+### Measured
+
+One boss at wave 100 on DUCK-USB into a fixed board:
+
+| Fight | BREACH | New boss |
+| --- | --- | --- |
+| GRADIENT vs 12 IPS (many small hits) | reached the core at 29.1 s | reached the core at 21.2 s |
+| GRADIENT vs 6 heavy hitters | 13.8 s | 15.8 s |
+| SYN-STORM vs 12 mixed agents | 12.2 s | 24.4 s (both halves) |
+
+---
+
 ## [1.42.1]
 
 ### Fixed — cloud save re-locked levels and the engineer on a new phone
