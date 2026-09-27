@@ -30,7 +30,10 @@ enum class LevelMusic(
     LEVEL_THREE(listOf(R.raw.level3, R.raw.level3_2)),
 
     /** 🦆 DUCK-USB, the fourth level: "Neon Static", supplied by the owner. */
-    LEVEL_FOUR(listOf(R.raw.level4, R.raw.level4_2));
+    LEVEL_FOUR(listOf(R.raw.level4, R.raw.level4_2)),
+
+    /** DDoS, the fifth level: "Cassette Noir", supplied by the owner. */
+    LEVEL_FIVE(listOf(R.raw.level5, R.raw.level5_2));
 
     /** The variant that follows [index], wrapping. */
     fun variantAfter(index: Int): Int = (index + 1) % variants.size
@@ -52,6 +55,7 @@ fun musicForMap(map: GameMap): LevelMusic? = when (map.id) {
     Maps.HUGGING_FACE.id -> LevelMusic.LEVEL_TWO
     Maps.NEURAL_MESH.id -> LevelMusic.LEVEL_THREE
     Maps.DUCK_USB.id -> LevelMusic.LEVEL_FOUR
-    // No supplied track yet: the synthesized mode music plays instead.
+    Maps.DDOS.id -> LevelMusic.LEVEL_FIVE
+    // A level with no supplied track plays the synthesized mode music.
     else -> null
 }

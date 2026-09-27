@@ -60,7 +60,7 @@ class LevelMusicTest {
             .sorted()
         assertEquals(
             "the supplied tracks should be the mp3s in res/raw",
-            listOf("level1", "level1_2", "level2", "level2_2", "level3", "level3_2", "level4", "level4_2"),
+            listOf("level1", "level1_2", "level2", "level2_2", "level3", "level3_2", "level4", "level4_2", "level5", "level5_2"),
             shipped
         )
         // A file in res/raw that no level names is dead weight in the download,
@@ -88,9 +88,8 @@ class LevelMusicTest {
 
     @Test
     fun `every level with supplied music has its own track`() {
-        // DDoS has no supplied track yet and plays the synthesized mode music
-        // until the owner supplies one; the first four each have their own.
-        val scored = listOf(Maps.PERIMETER, Maps.HUGGING_FACE, Maps.NEURAL_MESH, Maps.DUCK_USB)
+        // Every level has music the owner supplied, and no two share it.
+        val scored = Maps.all
         val chosen = scored.associateWith { musicForMap(it) }
         for ((map, music) in chosen) {
             assertNotNull("${map.displayName} has no music", music)
@@ -101,7 +100,7 @@ class LevelMusicTest {
             chosen.values.distinct().size
         )
         assertEquals(LevelMusic.LEVEL_FOUR, musicForMap(Maps.DUCK_USB))
-        assertEquals(null, musicForMap(Maps.DDOS))
+        assertEquals(LevelMusic.LEVEL_FIVE, musicForMap(Maps.DDOS))
     }
 
     @Test
