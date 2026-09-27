@@ -9,7 +9,7 @@ import com.cyopstd.game.core.Maps
  *
  * Every other piece of audio in this game is synthesized at runtime by
  * [ChiptuneComposer] — a deliberate property, since nothing generated has a
- * licensing surface. These six files are the exception: the owner composed
+ * licensing surface. These files are the exception: the owner composed
  * them, holds the licences for them, and asked for them specifically, so they
  * are the one thing in `res/raw` that is music.
  *
@@ -27,7 +27,13 @@ enum class LevelMusic(
     LEVEL_TWO(listOf(R.raw.level2, R.raw.level2_2)),
 
     /** NEURAL-MESH, the third level. */
-    LEVEL_THREE(listOf(R.raw.level3, R.raw.level3_2));
+    LEVEL_THREE(listOf(R.raw.level3, R.raw.level3_2)),
+
+    /** 🦆 DUCK-USB, the fourth level: "Neon Static", supplied by the owner. */
+    LEVEL_FOUR(listOf(R.raw.level4, R.raw.level4_2)),
+
+    /** DDoS, the fifth level: "Cassette Noir", supplied by the owner. */
+    LEVEL_FIVE(listOf(R.raw.level5, R.raw.level5_2));
 
     /** The variant that follows [index], wrapping. */
     fun variantAfter(index: Int): Int = (index + 1) % variants.size
@@ -48,6 +54,8 @@ fun musicForMap(map: GameMap): LevelMusic? = when (map.id) {
     Maps.PERIMETER.id -> LevelMusic.LEVEL_ONE
     Maps.HUGGING_FACE.id -> LevelMusic.LEVEL_TWO
     Maps.NEURAL_MESH.id -> LevelMusic.LEVEL_THREE
-    // No supplied track yet: the synthesized mode music plays instead.
+    Maps.DUCK_USB.id -> LevelMusic.LEVEL_FOUR
+    Maps.DDOS.id -> LevelMusic.LEVEL_FIVE
+    // A level with no supplied track plays the synthesized mode music.
     else -> null
 }

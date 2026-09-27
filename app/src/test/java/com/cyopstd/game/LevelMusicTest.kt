@@ -59,14 +59,14 @@ class LevelMusicTest {
             .map { it.nameWithoutExtension }
             .sorted()
         assertEquals(
-            "the six supplied tracks should be the mp3s in res/raw",
-            listOf("level1", "level1_2", "level2", "level2_2", "level3", "level3_2"),
+            "the supplied tracks should be the mp3s in res/raw",
+            listOf("level1", "level1_2", "level2", "level2_2", "level3", "level3_2", "level4", "level4_2", "level5", "level5_2"),
             shipped
         )
         // A file in res/raw that no level names is dead weight in the download,
         // and every megabyte is a megabyte of install size.
         assertEquals(
-            "six files shipped, ${LevelMusic.entries.sumOf { it.variants.size }} referenced",
+            "${shipped.size} files shipped, ${LevelMusic.entries.sumOf { it.variants.size }} referenced",
             shipped.size,
             LevelMusic.entries.sumOf { it.variants.size }
         )
@@ -88,9 +88,8 @@ class LevelMusicTest {
 
     @Test
     fun `every level with supplied music has its own track`() {
-        // DUCK-USB has no supplied track yet and plays the synthesized mode
-        // music until the owner supplies one; the first three each have their own.
-        val scored = listOf(Maps.PERIMETER, Maps.HUGGING_FACE, Maps.NEURAL_MESH)
+        // Every level has music the owner supplied, and no two share it.
+        val scored = Maps.all
         val chosen = scored.associateWith { musicForMap(it) }
         for ((map, music) in chosen) {
             assertNotNull("${map.displayName} has no music", music)
@@ -100,7 +99,8 @@ class LevelMusicTest {
             scored.size,
             chosen.values.distinct().size
         )
-        assertEquals(null, musicForMap(Maps.DUCK_USB))
+        assertEquals(LevelMusic.LEVEL_FOUR, musicForMap(Maps.DUCK_USB))
+        assertEquals(LevelMusic.LEVEL_FIVE, musicForMap(Maps.DDOS))
     }
 
     @Test

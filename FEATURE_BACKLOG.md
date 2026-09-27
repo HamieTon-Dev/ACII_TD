@@ -1524,8 +1524,8 @@ music has been supplied; it plays the synthesized mode music meanwhile.
 **Map 5 ✅ 1.45.0 — DDoS.** The owner picked TWIN COMB with "almost double
 the agent spaces" (51, from 25) and named it. Unlocks at wave 100 on
 DUCK-USB. Its bosses, `[RM]` RANSOM and `[XX]` EXFIL, are built. With it,
-every boss in §J's list is in the game. No level music has been supplied for
-DUCK-USB or DDoS; both play the synthesized mode music.
+every boss in §J's list is in the game. Level music: DUCK-USB plays "Neon Static" and
+DDoS plays "Cassette Noir" (1.45.1), both supplied by the owner.
 
 **Rule (owner, 1.44.0):** difficulty scales as levels progress. Each level is
 tuned with `GameMap.threatHealthScale` so one fixed board gets less far on it
