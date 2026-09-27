@@ -39,6 +39,41 @@ class LevelThemeTest {
             assertTrue("#%06X is not green".format(c and 0xFFFFFF), g > r && g > b)
         }
         assertTrue("lanes should be brighter than the board", luminance(theme.laneFill) > luminance(theme.backdrop))
+        // Owner, later: "a little darker green" for the board, lanes unchanged.
+        assertTrue("board should be very dark: ${luminance(theme.backdrop)}", luminance(theme.backdrop) < 0.04f)
+    }
+
+    @Test
+    fun `NEURAL-MESH is very dark red with slightly lighter red lanes`() {
+        val theme = Maps.NEURAL_MESH.theme!!
+        for (c in listOf(theme.backdrop, theme.laneFill)) {
+            val (r, g, b) = rgb(c).toList()
+            assertTrue("#%06X is not red".format(c and 0xFFFFFF), r > g && r > b)
+        }
+        assertTrue(luminance(theme.backdrop) < 0.04f)
+        assertTrue(luminance(theme.laneFill) > luminance(theme.backdrop))
+    }
+
+    @Test
+    fun `DUCK-USB is very very dark yellow with slightly lighter yellow lanes`() {
+        val theme = Maps.DUCK_USB.theme!!
+        for (c in listOf(theme.backdrop, theme.laneFill)) {
+            val (r, g, b) = rgb(c).toList()
+            assertTrue("#%06X is not yellow".format(c and 0xFFFFFF), r > b * 2 && g > b * 2 && kotlin.math.abs(r - g) < 0.03f)
+        }
+        assertTrue("backdrop too bright: ${luminance(theme.backdrop)}", luminance(theme.backdrop) < 0.05f)
+        assertTrue(luminance(theme.laneFill) > luminance(theme.backdrop))
+    }
+
+    @Test
+    fun `DDoS is very very dark orange with slightly lighter orange lanes`() {
+        val theme = Maps.DDOS.theme!!
+        for (c in listOf(theme.backdrop, theme.laneFill)) {
+            val (r, g, b) = rgb(c).toList()
+            assertTrue("#%06X is not orange".format(c and 0xFFFFFF), r > g && g > b && g > r * 0.35f)
+        }
+        assertTrue("backdrop too bright: ${luminance(theme.backdrop)}", luminance(theme.backdrop) < 0.05f)
+        assertTrue(luminance(theme.laneFill) > luminance(theme.backdrop))
     }
 
     @Test

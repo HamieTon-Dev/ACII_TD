@@ -286,8 +286,9 @@ object Maps {
         // Owner: "dark green theme applied, lanes can be a slightly brighter
         // shade of green".
         theme = LevelTheme(
-            backdrop = 0xFF061209.toInt(),
-            grid = 0xFF16402A.toInt(),
+            // Darkened on request (was 0xFF061209); the lanes are unchanged.
+            backdrop = 0xFF030A05.toInt(),
+            grid = 0xFF113520.toInt(),
             laneFill = 0xFF133A26.toInt(),
             laneBorder = 0xFF2A8A52.toInt(),
             laneMarks = 0xFF3FBF73.toInt()
@@ -333,7 +334,16 @@ object Maps {
         rewardScale = NM_R,
         unlockMapId = HUGGING_FACE.id,
         unlockMapName = HUGGING_FACE.displayName,
-        unlockAtWave = 100
+        unlockAtWave = 100,
+        // Owner: "very dark red background and slightly lighter red lanes".
+        // Kept dark enough that the red threats still stand out on it.
+        theme = LevelTheme(
+            backdrop = 0xFF140507.toInt(),
+            grid = 0xFF3A1016.toInt(),
+            laneFill = 0xFF36101A.toInt(),
+            laneBorder = 0xFF6A1E28.toInt(),
+            laneMarks = 0xFFB0485A.toInt()
+        )
     )
 
     /**
@@ -373,7 +383,16 @@ object Maps {
         rewardScale = DU_R,
         unlockMapId = NEURAL_MESH.id,
         unlockMapName = NEURAL_MESH.displayName,
-        unlockAtWave = 100
+        unlockAtWave = 100,
+        // Owner: "very very dark yellow background and slightly lighter
+        // yellow lanes". Kept well below crypto gold so money still pops.
+        theme = LevelTheme(
+            backdrop = 0xFF0E0C03.toInt(),
+            grid = 0xFF2E2A0E.toInt(),
+            laneFill = 0xFF2C280C.toInt(),
+            laneBorder = 0xFF5A4F16.toInt(),
+            laneMarks = 0xFFB8A040.toInt()
+        )
     )
 
     /**
@@ -399,7 +418,16 @@ object Maps {
         unlockMapName = DUCK_USB.displayName,
         unlockAtWave = 100,
         threatHealthScale = DD_H,
-        rewardScale = DD_R
+        rewardScale = DD_R,
+        // Owner: "very very dark orange background and slightly lighter
+        // orange lanes". Edges kept dark, clear of the orange warning colour.
+        theme = LevelTheme(
+            backdrop = 0xFF110703.toInt(),
+            grid = 0xFF351A0C.toInt(),
+            laneFill = 0xFF33190A.toInt(),
+            laneBorder = 0xFF6A3A16.toInt(),
+            laneMarks = 0xFFC06A30.toInt()
+        )
     )
 
     /** One comb of DDoS: the top half's, or its mirror in the bottom. */

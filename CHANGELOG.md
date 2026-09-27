@@ -15,8 +15,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
   the lanes' fill, edges and flow marks. Agents, threats and text keep their
   colours everywhere, so they mean the same thing on every level.
 - **NETWORK PERIMETER** keeps its original look (owner).
-- **HUGGING-FACE** is dark green, with lanes a slightly brighter green
-  (owner). A purchased living background still animates over it.
+- **HUGGING-FACE**: a very dark green board with slightly brighter green
+  lanes.
+- **NEURAL-MESH**: a very dark red board with slightly lighter red lanes. It
+  is kept dark enough that the red threats still stand out on it.
+- **🦆 DUCK-USB**: a very, very dark yellow board with slightly lighter yellow
+  lanes, kept well below crypto gold.
+- **DDoS**: a very, very dark orange board with slightly lighter orange
+  lanes, with edges kept clear of the orange warning colour.
+- All colours are the owner's choices. A purchased living background still
+  animates over any of them.
 - `LevelThemeTest` keeps every theme dark enough to read ASCII on and well
   away from the threat colours.
 
