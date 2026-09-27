@@ -169,7 +169,13 @@ class GameMap(
      */
     val threatHealthScale: Float = 1f,
     /** Multiplies crypto rewards, so a harder level is not also a poorer one. */
-    val rewardScale: Float = 1f
+    val rewardScale: Float = 1f,
+    /**
+     * The level's colour theme, or null for the original look (the wave-band
+     * backdrop and navy lanes). The owner's rule: the first level keeps its
+     * current look; later levels each get their own.
+     */
+    val theme: LevelTheme? = null
 ) {
 
     /** Whether a player with these records may play this level. */
@@ -398,4 +404,26 @@ data class NodePosition(
      * after paying.
      */
     val laneDistance: Float
+)
+
+/**
+ * A level's colours, as opaque ARGB. The core layer does not depend on the UI
+ * toolkit, so these are plain ints; the renderer reads them directly.
+ *
+ * A theme replaces the backdrop, the grid over it and the lane colours. It
+ * does not touch agents, threats or text, which keep their meaning on every
+ * level. `LevelThemeTest` holds each theme dark enough to read ASCII on and
+ * far enough from every threat colour.
+ */
+data class LevelTheme(
+    /** The board behind everything; replaces the wave-band backdrop. */
+    val backdrop: Int,
+    /** The faint 80-unit grid over the backdrop. */
+    val grid: Int,
+    /** Inside of every lane. */
+    val laneFill: Int,
+    /** Edge of every lane. */
+    val laneBorder: Int,
+    /** The ">>" flow marks and route labels inside the lanes. */
+    val laneMarks: Int
 )

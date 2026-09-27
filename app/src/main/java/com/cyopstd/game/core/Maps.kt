@@ -275,7 +275,16 @@ object Maps {
         unlockMode = GameMode.HACK_AI,
         unlockAtWave = 100,
         threatHealthScale = HF_H,
-        rewardScale = HF_R
+        rewardScale = HF_R,
+        // Owner: "dark green theme applied, lanes can be a slightly brighter
+        // shade of green".
+        theme = LevelTheme(
+            backdrop = 0xFF061209.toInt(),
+            grid = 0xFF16402A.toInt(),
+            laneFill = 0xFF133A26.toInt(),
+            laneBorder = 0xFF2A8A52.toInt(),
+            laneMarks = 0xFF3FBF73.toInt()
+        )
     )
 
     /**

@@ -7,6 +7,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [1.46.0]
+
+### Added — a colour theme per level
+
+- Each level can now carry its own colours: the board, the grid over it, and
+  the lanes' fill, edges and flow marks. Agents, threats and text keep their
+  colours everywhere, so they mean the same thing on every level.
+- **NETWORK PERIMETER** keeps its original look (owner).
+- **HUGGING-FACE** is dark green, with lanes a slightly brighter green
+  (owner). A purchased living background still animates over it.
+- `LevelThemeTest` keeps every theme dark enough to read ASCII on and well
+  away from the threat colours.
+
+---
+
 ## [1.45.1]
 
 ### Added
