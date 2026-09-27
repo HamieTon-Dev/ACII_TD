@@ -27,7 +27,7 @@ class DdosTest {
         assertEquals("DDoS", map.displayName)
         assertEquals(2, map.laneCount)
         // The candidate as first drawn offered 25.
-        assertTrue("only ${map.nodes.size} build spots", map.nodes.size >= 48)
+        assertTrue("only ${map.nodes.size} build spots", map.nodes.size >= 65)
     }
 
     @Test

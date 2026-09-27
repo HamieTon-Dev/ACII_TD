@@ -1508,7 +1508,7 @@ Queue, in the order recommended (the owner may reorder):
 Needs, when map 3 is built: the per-map boss pool to be the union of the
 current map's variants and every earlier map's.
 
-### R2 ◐ More maps — new names needed, and the owner picks each layout
+### R2 ✅ 1.45.1 — More maps: maps 3–5 built, each picked and named by the owner
 
 **Map 3 ✅ 1.43.0 — NEURAL-MESH.** The owner picked BACKPROP from four
 rendered candidates (`NeuralMeshPreview`) and set the unlock: *"unlock at wave
@@ -1522,7 +1522,7 @@ Its bosses, `[SS]` SYN-STORM and `[∑∑∑]` GRADIENT, are built. No level-fou
 music has been supplied; it plays the synthesized mode music meanwhile.
 
 **Map 5 ✅ 1.45.0 — DDoS.** The owner picked TWIN COMB with "almost double
-the agent spaces" (51, from 25) and named it. Unlocks at wave 100 on
+the agent spaces" (55, from 25; 1.45.1 respaced them so agents no longer overlap) and named it. Unlocks at wave 100 on
 DUCK-USB. Its bosses, `[RM]` RANSOM and `[XX]` EXFIL, are built. With it,
 every boss in §J's list is in the game. Level music: DUCK-USB plays "Neon Static" and
 DDoS plays "Cassette Noir" (1.45.1), both supplied by the owner.
@@ -1836,7 +1836,9 @@ Built in 1.41.0. The owner renamed it before the build: *"lets not do [++]
 confusing with added levels, lets just call it "Server Systems Engineer" and
 its unit will look like [S]"*. The recommendations below were taken as
 written: ◇ 500, the timer shortens with level (30s → about 10s at level 100),
-four stack independently, never above maximum integrity. A new "best wave on
+four stack independently, never above maximum integrity. **1.45.1:** measured
+too strong (four level-1 engineers added ~30 waves to a fixed board, four
+ANALYSTs 10), so the owner set ◇ 800 and two maximum. A new "best wave on
 NETWORK PERIMETER in NETWORK DEFENCE" record drives the unlock; older saves
 are seeded from it (see `GameRepository.beginnerBest`). `ServerEngineerTest`
 covers it.

@@ -164,7 +164,7 @@ object Maps {
     // Per-level difficulty (see GameMap.threatHealthScale), tuned with MapDifficultyTest.
     const val HF_H = 2.25f
     const val HF_R = 1.15f
-    const val NM_H = 1.8f
+    const val NM_H = 2.2f
     const val NM_R = 1.2f
     const val DU_H = 1.1f
     const val DU_R = 1.25f
@@ -175,10 +175,20 @@ object Maps {
     private const val DD_INNER = 300f
     private const val DD_GAP_Y = 380f
     private const val DD_TURN_X = 1200f
-    private val DD_TEETH_X = floatArrayOf(160f, 340f, 520f, 700f, 880f, 1060f)
-    /** The centre of every comb pocket, plus the strips at either end. */
-    private val DD_POCKET_X = listOf(80f, 250f, 430f, 610f, 790f, 970f, 1130f)
-    private val DD_POCKET_Y = listOf(34f, 102f, 170f, 238f)
+    /**
+     * Four wide teeth rather than six narrow ones. The first build packed six
+     * teeth 180 apart and stacked spots 68 apart down each pocket: legal by
+     * `MIN_NODE_SPACING`, but a deployed agent's ring and level label need
+     * about 90, and the agents drew on top of each other. Pockets 250 wide
+     * hold two columns 90 apart, each 80 clear of the route.
+     */
+    private val DD_TEETH_X = floatArrayOf(160f, 410f, 660f, 910f)
+    /** Two columns down every pocket, plus the strip before the first tooth. */
+    private val DD_POCKET_X = listOf(80f, 240f, 330f, 490f, 580f, 740f, 830f, 1010f, 1100f)
+    private val DD_POCKET_Y = listOf(50f, 140f, 230f)
+    /** The strip before the first tooth, and the pockets open to the middle gap. */
+    private val DD_GAP_POCKET_X = listOf(80f, 490f, 580f, 1010f, 1100f)
+    private const val DD_GAP_EDGE_Y = 300f
 
     private const val DU_TOP = 110f
     private const val DU_BOTTOM = 650f
@@ -269,13 +279,31 @@ object Maps {
             Waypoint(176f, 427f),
             Waypoint(1181f, 463f),
             Waypoint(1190f, 560f),
-            Waypoint(1180f, 726f)
+            Waypoint(1180f, 726f),
+            // Owner: "at least 4-5 more agent spots". Found by searching the
+            // board for every position 90 clear of the other spots and 58 of
+            // the route: these five are all there were.
+            Waypoint(1254f, 34f),
+            Waypoint(1204f, 244f),
+            Waypoint(299f, 309f),
+            Waypoint(299f, 439f),
+            Waypoint(939f, 534f)
         ),
         // *"This level unlocks by reaching wave 100 of Hack AI level."*
         unlockMode = GameMode.HACK_AI,
         unlockAtWave = 100,
         threatHealthScale = HF_H,
-        rewardScale = HF_R
+        rewardScale = HF_R,
+        // Owner: "dark green theme applied, lanes can be a slightly brighter
+        // shade of green".
+        theme = LevelTheme(
+            // Darkened on request (was 0xFF061209); the lanes are unchanged.
+            backdrop = 0xFF030A05.toInt(),
+            grid = 0xFF113520.toInt(),
+            laneFill = 0xFF133A26.toInt(),
+            laneBorder = 0xFF2A8A52.toInt(),
+            laneMarks = 0xFF3FBF73.toInt()
+        )
     )
 
     /**
@@ -317,7 +345,16 @@ object Maps {
         rewardScale = NM_R,
         unlockMapId = HUGGING_FACE.id,
         unlockMapName = HUGGING_FACE.displayName,
-        unlockAtWave = 100
+        unlockAtWave = 100,
+        // Owner: "very dark red background and slightly lighter red lanes".
+        // Kept dark enough that the red threats still stand out on it.
+        theme = LevelTheme(
+            backdrop = 0xFF140507.toInt(),
+            grid = 0xFF3A1016.toInt(),
+            laneFill = 0xFF36101A.toInt(),
+            laneBorder = 0xFF6A1E28.toInt(),
+            laneMarks = 0xFFB0485A.toInt()
+        )
     )
 
     /**
@@ -353,11 +390,25 @@ object Maps {
             )
         ),
         candidateRows = floatArrayOf(36f, 200f, 290f, 470f, 560f, 724f),
+        // Owner: "5-8 more agent spots". The ground either side of the last
+        // vertical before the core, which no grid column reaches.
+        extraNodes = listOf(1130f, 1255f).flatMap { x ->
+            listOf(200f, 290f, 470f, 560f).map { y -> Waypoint(x, y) }
+        },
         threatHealthScale = DU_H,
         rewardScale = DU_R,
         unlockMapId = NEURAL_MESH.id,
         unlockMapName = NEURAL_MESH.displayName,
-        unlockAtWave = 100
+        unlockAtWave = 100,
+        // Owner: "very very dark yellow background and slightly lighter
+        // yellow lanes". Kept well below crypto gold so money still pops.
+        theme = LevelTheme(
+            backdrop = 0xFF0E0C03.toInt(),
+            grid = 0xFF2E2A0E.toInt(),
+            laneFill = 0xFF2C280C.toInt(),
+            laneBorder = 0xFF5A4F16.toInt(),
+            laneMarks = 0xFFB8A040.toInt()
+        )
     )
 
     /**
@@ -378,12 +429,27 @@ object Maps {
         laneWaypoints = arrayOf(ddosComb(top = true), ddosComb(top = false)),
         candidateRows = floatArrayOf(DD_GAP_Y),
         extraNodes = DD_POCKET_X.flatMap { x -> DD_POCKET_Y.map { y -> Waypoint(x, y) } } +
-            DD_POCKET_X.flatMap { x -> DD_POCKET_Y.map { y -> Waypoint(x, WorldGeometry.HEIGHT - y) } },
+            DD_POCKET_X.flatMap { x -> DD_POCKET_Y.map { y -> Waypoint(x, WorldGeometry.HEIGHT - y) } } +
+            // Owner: "at least 10 more spots". A third row in the pockets
+            // that open onto the middle gap, and the strip before the first
+            // tooth, each 80 clear of the route.
+            DD_GAP_POCKET_X.flatMap { x ->
+                listOf(Waypoint(x, DD_GAP_EDGE_Y), Waypoint(x, WorldGeometry.HEIGHT - DD_GAP_EDGE_Y))
+            },
         unlockMapId = DUCK_USB.id,
         unlockMapName = DUCK_USB.displayName,
         unlockAtWave = 100,
         threatHealthScale = DD_H,
-        rewardScale = DD_R
+        rewardScale = DD_R,
+        // Owner: "very very dark orange background and slightly lighter
+        // orange lanes". Edges kept dark, clear of the orange warning colour.
+        theme = LevelTheme(
+            backdrop = 0xFF110703.toInt(),
+            grid = 0xFF351A0C.toInt(),
+            laneFill = 0xFF33190A.toInt(),
+            laneBorder = 0xFF6A3A16.toInt(),
+            laneMarks = 0xFFC06A30.toInt()
+        )
     )
 
     /** One comb of DDoS: the top half's, or its mirror in the bottom. */

@@ -56,6 +56,9 @@ class AudioEngine(private val context: Context) {
 
     private var soundPool: SoundPool? = null
     private val soundIds = HashMap<GameSound, Int>()
+
+    /** When each rate-limited effect last played; see [SoundBank.minIntervalSeconds]. */
+    private val lastPlayedNanos = HashMap<GameSound, Long>()
     private val loaded = HashSet<Int>()
 
     @Volatile
@@ -204,6 +207,13 @@ class AudioEngine(private val context: Context) {
         val pool = soundPool ?: return
         val id = soundIds[sound] ?: return
         if (id !in loaded) return
+        val gap = SoundBank.minIntervalSeconds(sound)
+        if (gap > 0f) {
+            val now = System.nanoTime()
+            val last = lastPlayedNanos[sound]
+            if (last != null && now - last < (gap * 1e9f).toLong()) return
+            lastPlayedNanos[sound] = now
+        }
         val volume = (sfxVolume * SoundBank.recipes[sound]?.gain.orDefault()).coerceIn(0f, 1f)
         try {
             pool.play(id, volume, volume, 1, 0, 1f)

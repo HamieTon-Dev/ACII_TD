@@ -16,6 +16,30 @@ import kotlin.random.Random
  * level), which is what `GameMap.threatHealthScale` corrects.
  */
 class MapDifficultyTest {
+    /**
+     * The spots a sensible player would build on first: most *distinct* route
+     * within reach. `nodesByCoverage` counts a stretch once per route that uses
+     * it, so where three routes share the last stretch before the core, a spot
+     * there looked three times as good as it is and the test board crowded in
+     * front of the core. Shared ground is counted once here.
+     */
+    private fun bestSpots(map: GameMap): List<Int> {
+        val points = HashSet<Pair<Int, Int>>()
+        val out = FloatArray(3)
+        for (lane in 0 until map.laneCount) {
+            var d = 0f
+            while (d < map.laneLength[lane]) {
+                map.positionAt(lane, d, out)
+                points += (out[0] / 10f).toInt() to (out[1] / 10f).toInt()
+                d += 10f
+            }
+        }
+        val reach = 290f
+        return map.nodes.sortedByDescending { node ->
+            points.count { (px, py) -> kotlin.math.hypot(px * 10f - node.x, py * 10f - node.y) <= reach }
+        }.map { it.id }
+    }
+
     private fun reach(map: GameMap, seed: Int): Int {
         val random = Random(seed)
         val engine = GameEngine(random, WaveGenerator(random))
@@ -26,7 +50,7 @@ class MapDifficultyTest {
         val board = listOf(AgentType.ROOT_ADMIN, AgentType.ANALYST, AgentType.QUANTUM_DEFENDER,
             AgentType.REDHAT, AgentType.BLUEHAT, AgentType.AI_SENTINEL, AgentType.ZERO_DAY_HUNTER,
             AgentType.IPS, AgentType.TARPIT, AgentType.NETWORK_ARCHITECT, AgentType.CRYPTOGRAPHER, AgentType.IDS)
-        val nodes = map.nodesByCoverage.map { it.id }
+        val nodes = bestSpots(map)
         board.forEachIndexed { i, t -> engine.placeAgent(t, nodes[i]); engine.upgradeAgent(nodes[i], 9) }
         var guard = 0
         while (engine.phase != RunPhase.GAME_OVER && engine.currentWave < 200 && guard++ < 5_000_000) {

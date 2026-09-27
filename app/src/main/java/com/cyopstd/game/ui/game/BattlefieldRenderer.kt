@@ -246,7 +246,7 @@ class BattlefieldRenderer {
         // Static grid: always drawn, it costs almost nothing and gives the
         // battlefield a sense of scale. It leans towards the current tint so
         // it never fights the backdrop it sits on.
-        strokePaint.color = blend(colGrid, tint, 0.45f)
+        strokePaint.color = map.theme?.grid ?: blend(colGrid, tint, 0.45f)
         strokePaint.alpha = 70
         strokePaint.strokeWidth = 1f
         var x = 0f
@@ -289,6 +289,7 @@ class BattlefieldRenderer {
      * the common case costs a divide and an array lookup.
      */
     private fun backdropTint(wave: Int, time: Float): Int {
+        map.theme?.let { return it.backdrop }
         val band = (wave - 1).coerceAtLeast(0) / Palette.BACKDROP_BAND_WAVES
         if (band != tintBand) {
             tintFrom = if (tintBand < 0) Palette.backdropBand(wave).toArgb() else tintTo
@@ -615,7 +616,7 @@ class BattlefieldRenderer {
             for (i in 1 until points.size) lanePath.lineTo(points[i].x, points[i].y)
 
             // Corridor border.
-            strokePaint.color = colCyanDim
+            strokePaint.color = map.theme?.laneBorder ?: colCyanDim
             strokePaint.alpha = 150
             strokePaint.strokeWidth = WorldGeometry.LANE_HEIGHT
             strokePaint.strokeCap = android.graphics.Paint.Cap.ROUND
@@ -625,7 +626,8 @@ class BattlefieldRenderer {
             // Corridor interior. The living background pulls it towards its
             // own palette rather than replacing it, so the corridor keeps its
             // value and stays readable against the backdrop.
-            val base = Palette.laneTints[lane % Palette.laneTints.size].toArgb()
+            val base = map.theme?.laneFill
+                ?: Palette.laneTints[lane % Palette.laneTints.size].toArgb()
             strokePaint.color = livingBackground.laneTint
                 ?.let { blend(base, it.toArgb(), LANE_TINT_STRENGTH) }
                 ?: base
@@ -669,7 +671,7 @@ class BattlefieldRenderer {
         val baseAlpha = if (options.batterySaver) 70 else 125
 
         thinTextPaint.textSize = 16f
-        thinTextPaint.color = colCyanDim
+        thinTextPaint.color = map.theme?.laneMarks ?: colCyanDim
 
         var distance = shift
         while (distance < length - 30f) {
@@ -702,7 +704,7 @@ class BattlefieldRenderer {
     private fun drawLaneLabel(canvas: android.graphics.Canvas, lane: Int) {
         val entry = map.entryPoint(lane)
         leftTextPaint.textSize = 14f
-        leftTextPaint.color = colCyanDim
+        leftTextPaint.color = map.theme?.laneMarks ?: colCyanDim
         leftTextPaint.alpha = 165
         canvas.drawText(
             "ROUTE ${'A' + lane}",

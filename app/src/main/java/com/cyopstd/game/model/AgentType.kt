@@ -44,6 +44,15 @@ private const val HIGHEST_FIRE_RATE = 3.3f
 /** How many of each hat agent may stand on the board at once. */
 private const val MAX_HATS = 4
 
+/**
+ * How many SERVER SYSTEMS ENGINEERs may stand on the board at once.
+ *
+ * Two, not four (owner, 2026-09-27, with the price raised to 800). Measured
+ * with one fixed board run to failure: four level-1 engineers added about 30
+ * waves where four level-10 ANALYSTs in the same spots added 10.
+ */
+private const val MAX_ENGINEERS = 2
+
 enum class AgentType(
     val displayName: String,
     val shortName: String,
@@ -445,7 +454,7 @@ enum class AgentType(
         displayName = "SERVER SYSTEMS ENGINEER",
         shortName = "ENGINEER",
         glyph = "S",
-        cost = 500,
+        cost = 800,
         baseDamage = 0f,
         baseFireRate = 0f,
         baseRange = 0f,
@@ -453,7 +462,7 @@ enum class AgentType(
         unlockWave = 100,
         abilityName = "HOT REPAIR",
         abilitySummary = "Repairs 1 CORE-SERVER integrity every 30 seconds of a " +
-            "running wave, from anywhere on the map. Faster with levels. Four maximum.",
+            "running wave, from anywhere on the map. Faster with levels. Two maximum.",
         realWorld = "Systems engineers keep servers running: patching, " +
             "replacing failed parts, restoring from backup and watching the " +
             "health of the machines. \"Server systems engineer\" describes " +
@@ -461,8 +470,8 @@ enum class AgentType(
         inGame = "Deals no damage and targets nothing. Repairs 1 point of " +
             "CORE-SERVER integrity every 30 seconds while a wave is running " +
             "(never during the break or while paused), from any node on the " +
-            "map. Levels shorten the timer. No more than four may be deployed.",
-        maxDeployed = MAX_HATS,
+            "map. Levels shorten the timer. No more than two may be deployed.",
+        maxDeployed = MAX_ENGINEERS,
         beginnerLevelOnly = true,
         healsServer = true
     );

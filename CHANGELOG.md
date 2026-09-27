@@ -7,6 +7,57 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [1.46.0]
+
+### Added — a colour theme per level
+
+- Each level can now carry its own colours: the board, the grid over it, and
+  the lanes' fill, edges and flow marks. Agents, threats and text keep their
+  colours everywhere, so they mean the same thing on every level.
+- **NETWORK PERIMETER** keeps its original look (owner).
+- **HUGGING-FACE**: a very dark green board with slightly brighter green
+  lanes.
+- **NEURAL-MESH**: a very dark red board with slightly lighter red lanes. It
+  is kept dark enough that the red threats still stand out on it.
+- **🦆 DUCK-USB**: a very, very dark yellow board with slightly lighter yellow
+  lanes, kept well below crypto gold.
+- **DDoS**: a very, very dark orange board with slightly lighter orange
+  lanes, with edges kept clear of the orange warning colour.
+- All colours are the owner's choices. A purchased living background still
+  animates over any of them.
+
+### Added — more unit spots on the later levels
+
+| Level | Spots before | Spots now |
+| --- | --- | --- |
+| HUGGING-FACE | 61 | 66 |
+| 🦆 DUCK-USB | 56 | 64 |
+| DDoS | 55 | 65 |
+
+Every new spot keeps the 90-unit spacing (no overlapping agents) and clears
+the route. HUGGING-FACE's five came from searching the whole board for every
+position that meets both rules; there were exactly five.
+
+### Changed — difficulty re-measured with a fairer test board
+
+The difficulty test built its board on the spots that "cover the most route",
+counting a stretch once per route that uses it, so where routes share the
+last stretch before the core it crowded the board there. It now counts shared
+route once. Re-measured, and retuned so each level is still harder than the
+one before (more spots made DDoS easier):
+
+| Level | Threat health | Same board reached (avg) |
+| --- | --- | --- |
+| NETWORK PERIMETER | ×1.0 | wave 101 |
+| HUGGING-FACE | ×2.25 | wave 94 |
+| NEURAL-MESH | ×2.2 (was ×1.8) | wave 91 |
+| 🦆 DUCK-USB | ×1.1 | wave 79 |
+| DDoS | ×2.4 (was ×1.7) | wave 75 |
+- `LevelThemeTest` keeps every theme dark enough to read ASCII on and well
+  away from the threat colours.
+
+---
+
 ## [1.45.1]
 
 ### Added
@@ -15,6 +66,40 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
   supplied by the owner, alternating like the other levels.
 - **DDoS has its own music**: "Cassette Noir", two renders supplied by the
   owner. Every level now plays its own music.
+
+### Changed — SERVER SYSTEMS ENGINEER: ◇ 800, two maximum
+
+- Owner's call after measuring it: the price is ◇ 800 (was 500) and no more
+  than **two** may be deployed (was four). With one fixed board run to
+  failure, four level-1 engineers added about 30 waves where four level-10
+  ANALYSTs in the same spots added 10. The repair itself is unchanged: 1
+  integrity every 30 seconds of a running wave at level 1. Upgrade costs
+  scale with the price, so they rise by the same 60%.
+- Its ability text, codex, AGENTS screen and deploy card all say "two"; a
+  test fails if the text ever disagrees with the numbers again.
+
+### Changed — softer hit and kill sounds
+
+- The sound of a shot landing and of a small threat dying was harsh even at
+  11% effect volume (owner). It was white noise over a 1.5 kHz square wave:
+  the harshness was in the pitch, not the level, so no volume setting could
+  fix it. Both are now soft, rounded tones (triangle and sine, under 700 Hz),
+  and their average pitch fell from about 4,500 Hz to about 340 Hz at the
+  same loudness.
+- Each can also repeat at most every 70 ms (hit) and 50 ms (kill). Before, a
+  few fast agents stacked dozens of hit sounds a second into one buzz. Every
+  hit still counts; only the sound is thinned out. Boss, warning, core-damage
+  and menu sounds are never limited.
+
+### Fixed — DDoS build spots overlapped
+
+- The spots added down each comb pocket were 68 units apart: allowed by the
+  spacing rule, but a deployed agent's ring and level label need about 90, so
+  agents drew on top of each other. DDoS now has four wider comb teeth with
+  two columns of spots 90 apart in every pocket: **55 build spots**, none
+  overlapping. The shorter route made it much harder (wave ~60 with the test
+  board), so its threat health is ×1.7 (was ×2.4): wave ~70, still below
+  DUCK-USB's ~79.
 
 ---
 
