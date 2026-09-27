@@ -325,8 +325,13 @@ class GameEngine(
 
         for (placement in placements) {
             val type = AgentType.fromNameSafe(placement.agentTypeName) ?: continue
-            val node = map.node(placement.nodeId) ?: continue
-            if (agentAt(placement.nodeId) != null) continue
+            val saved = map.node(placement.nodeId) ?: continue
+            // Engineers from before the rack had slots were on board spots;
+            // they move onto a free slot rather than being lost.
+            val node = if (saved.serverSlot == type.healsServer) saved
+            else if (type.healsServer) map.serverSlots.firstOrNull { agentAt(it.id) == null } ?: continue
+            else continue
+            if (agentAt(node.id) != null) continue
             val agent = agents.obtain() ?: continue
             agent.reset()
             agent.active = true
@@ -685,6 +690,7 @@ class GameEngine(
     fun placeAgent(type: AgentType, nodeId: Int): PlacementResult {
         val node = map.node(nodeId) ?: return PlacementResult.NODE_INVALID
         if (!isAgentUnlocked(type)) return PlacementResult.AGENT_LOCKED
+        if (node.serverSlot != type.healsServer) return PlacementResult.WRONG_SLOT
         if (agentAt(nodeId) != null) return PlacementResult.NODE_OCCUPIED
         if (crypto < type.cost) {
             soundListener?.invoke(GameSound.INSUFFICIENT)

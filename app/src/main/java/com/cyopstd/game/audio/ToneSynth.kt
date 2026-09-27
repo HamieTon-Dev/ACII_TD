@@ -29,6 +29,9 @@ object ToneSynth {
      * @param delay     seconds of silence before this voice starts; its sweep
      *                  and envelope run from that moment. Lets one effect be a
      *                  sequence (a blast, then a second blast, then a tail).
+     * @param attack    seconds to fade in. The default is just long enough to
+     *                  stop a click; a longer one swells in softly instead of
+     *                  striking, which is what makes a note sound gentle.
      */
     data class Voice(
         val wave: Wave,
@@ -36,7 +39,8 @@ object ToneSynth {
         val endFreq: Float = startFreq,
         val amplitude: Float = 0.6f,
         val decay: Float = 6f,
-        val delay: Float = 0f
+        val delay: Float = 0f,
+        val attack: Float = 0.004f
     )
 
     /**
@@ -67,7 +71,7 @@ object ToneSynth {
                 val freq = voice.startFreq + (voice.endFreq - voice.startFreq) * vProgress
                 val envelope = exp(-voice.decay * vt) * voice.amplitude
                 // Short fade-in removes the click an instant attack would make.
-                val attack = (vi / (SAMPLE_RATE * 0.004f)).coerceAtMost(1f)
+                val attack = (vi / (SAMPLE_RATE * voice.attack)).coerceAtMost(1f)
 
                 val raw = when (voice.wave) {
                     Wave.SINE -> sin(TWO_PI * freq * vt)

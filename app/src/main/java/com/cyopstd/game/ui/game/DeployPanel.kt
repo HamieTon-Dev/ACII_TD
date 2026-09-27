@@ -204,7 +204,7 @@ private fun AgentCard(
                 maxLines = 1
             )
             Text(
-                text = if (type.healsServer) "RNG MAP" else "RNG ${type.baseRange.toInt()}",
+                text = if (type.healsServer) "ON CORE" else "RNG ${type.baseRange.toInt()}",
                 style = MaterialTheme.typography.labelSmall,
                 color = Palette.TextSecondary,
                 maxLines = 1

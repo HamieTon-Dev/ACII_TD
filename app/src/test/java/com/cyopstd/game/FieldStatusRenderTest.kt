@@ -132,7 +132,7 @@ class FieldStatusRenderTest {
         // This corner was chosen because nothing else uses it: no deployment
         // node is placed past x=1240 and the core rack starts at y=168. If
         // either readout grows out of that block it lands on something.
-        val nodeRight = Maps.PERIMETER.nodes.maxOf { it.x } + WorldGeometry.NODE_RADIUS
+        val nodeRight = Maps.PERIMETER.fieldNodes.maxOf { it.x } + WorldGeometry.NODE_RADIUS
         for ((name, ink) in listOf("wave" to waveInk, "crypto" to cryptoInk)) {
             assertTrue(
                 "$name ink starts at x=${ink.minX}, and nodes reach $nodeRight",

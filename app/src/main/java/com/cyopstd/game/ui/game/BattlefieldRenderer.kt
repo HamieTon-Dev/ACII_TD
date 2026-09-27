@@ -1139,14 +1139,36 @@ class BattlefieldRenderer {
         val placing = pending != null
         val affordable = pending?.let { engine.crypto >= it.cost } ?: false
 
+        val placingEngineer = pending?.healsServer == true
+
         for (node in map.nodes) {
             if (engine.agentAt(node.id) != null) continue
 
             // A spot the agent being placed could not actually shoot from is
             // shown, but shown as unusable, so the deploy overlay reads as
             // advice rather than as a field of identical brackets.
-            val inReach = pending == null || node.laneDistance <= pending.baseRange
+            //
+            // The rack's two slots take SERVER SYSTEMS ENGINEER and nothing
+            // else: they sit as faint as any spot until [S] is picked, then
+            // light green, and every board spot fades back (owner, 2026-09-27).
+            val inReach = when {
+                pending == null -> true
+                node.serverSlot -> placingEngineer
+                placingEngineer -> false
+                else -> node.laneDistance <= pending.baseRange
+            }
+            // Spots that can never take the agent in hand, as opposed to
+            // spots it would merely be wasted on, get no mark at all.
+            val otherKind = placing && node.serverSlot != placingEngineer
             val pulse = 0.6f + 0.4f * sin(time * 4.4f + node.id * 0.6f)
+
+            if (node.serverSlot && placingEngineer) {
+                val r = WorldGeometry.NODE_RADIUS
+                fillPaint.color = if (affordable) colGreen else colOrange
+                fillPaint.alpha = (30 + 40 * pulse).toInt()
+                canvas.drawRect(node.x - r, node.y - r, node.x + r, node.y + r, fillPaint)
+                fillPaint.alpha = 255
+            }
 
             strokePaint.strokeWidth = if (placing && inReach) 2.4f else 1.4f
             strokePaint.color = when {
@@ -1157,6 +1179,7 @@ class BattlefieldRenderer {
             }
             strokePaint.alpha = when {
                 !placing -> 55
+                otherKind -> 22
                 !inReach -> 45
                 else -> (140 + 115 * pulse).toInt().coerceIn(0, 255)
             }
@@ -1172,7 +1195,7 @@ class BattlefieldRenderer {
             canvas.drawLine(node.x + r, node.y + r, node.x + r - 10f, node.y + r, strokePaint)
             canvas.drawLine(node.x + r, node.y + r, node.x + r, node.y + r - 10f, strokePaint)
 
-            if (placing) {
+            if (placing && !otherKind) {
                 thinTextPaint.textSize = 18f
                 thinTextPaint.color = strokePaint.color
                 thinTextPaint.alpha = strokePaint.alpha
@@ -1198,7 +1221,7 @@ class BattlefieldRenderer {
         val selected = selection.selectedNodeId?.let { engine.agentAt(it) }
         if (selected != null) {
             if (selected.type.healsServer) {
-                drawRepairLink(canvas, selected.x, selected.y)
+                drawRepairLink(canvas)
             } else {
                 drawScanRing(canvas, selected.x, selected.y, selected.range(), colCyan)
             }
@@ -1217,7 +1240,7 @@ class BattlefieldRenderer {
         var bestDistanceSq = Float.MAX_VALUE
         val centreX = WorldGeometry.SERVER_X * 0.5f
         val centreY = WorldGeometry.HEIGHT * 0.5f
-        for (node in map.nodes) {
+        for (node in map.fieldNodes) {
             if (engine.agentAt(node.id) != null) continue
             val dx = node.x - centreX
             val dy = node.y - centreY
@@ -1232,20 +1255,31 @@ class BattlefieldRenderer {
     }
 
     /**
-     * SERVER SYSTEMS ENGINEER has no range; what it reaches is the core, from
-     * anywhere. A range ring would be a dot, so it shows that link instead.
+     * SERVER SYSTEMS ENGINEER has no range; what it looks after is the rack it
+     * sits in, so a selected one outlines that in green instead of a ring.
      */
-    private fun drawRepairLink(canvas: android.graphics.Canvas, x: Float, y: Float) {
-        val tx = WorldGeometry.SERVER_X
-        val ty = WorldGeometry.CORE_Y
+    private fun drawRepairLink(canvas: android.graphics.Canvas) {
+        val left = WorldGeometry.SERVER_X - 7f
+        val top = WorldGeometry.SERVER_TOP - 7f
+        val right = WorldGeometry.SERVER_X + WorldGeometry.SERVER_WIDTH + 7f
+        val bottom = WorldGeometry.SERVER_TOP + WorldGeometry.SERVER_HEIGHT + 7f
         strokePaint.color = colGreen
         strokePaint.strokeWidth = 2f
-        val segments = 24
-        for (i in 0 until segments step 2) {
-            val a = i / segments.toFloat()
-            val b = (i + 1) / segments.toFloat()
-            strokePaint.alpha = 150
-            canvas.drawLine(x + (tx - x) * a, y + (ty - y) * a, x + (tx - x) * b, y + (ty - y) * b, strokePaint)
+        strokePaint.alpha = 170
+        val dash = 14f
+        var x = left
+        while (x < right) {
+            val end = minOf(x + dash, right)
+            canvas.drawLine(x, top, end, top, strokePaint)
+            canvas.drawLine(x, bottom, end, bottom, strokePaint)
+            x += dash * 2f
+        }
+        var y = top
+        while (y < bottom) {
+            val end = minOf(y + dash, bottom)
+            canvas.drawLine(left, y, left, end, strokePaint)
+            canvas.drawLine(right, y, right, end, strokePaint)
+            y += dash * 2f
         }
         strokePaint.alpha = 255
     }

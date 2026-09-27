@@ -462,15 +462,17 @@ enum class AgentType(
         unlockWave = 100,
         abilityName = "HOT REPAIR",
         abilitySummary = "Repairs 1 CORE-SERVER integrity every 30 seconds of a " +
-            "running wave, from anywhere on the map. Faster with levels. Two maximum.",
+            "running wave, from one of the two slots on the CORE-SERVER. Faster " +
+            "with levels. Two maximum.",
         realWorld = "Systems engineers keep servers running: patching, " +
             "replacing failed parts, restoring from backup and watching the " +
             "health of the machines. \"Server systems engineer\" describes " +
             "that kind of work; titles for it vary between organisations.",
         inGame = "Deals no damage and targets nothing. Repairs 1 point of " +
             "CORE-SERVER integrity every 30 seconds while a wave is running " +
-            "(never during the break or while paused), from any node on the " +
-            "map. Levels shorten the timer. No more than two may be deployed.",
+            "(never during the break or while paused). It deploys on the " +
+            "CORE-SERVER itself, which has two slots for it, and nowhere else. " +
+            "Levels shorten the timer. No more than two may be deployed.",
         maxDeployed = MAX_ENGINEERS,
         beginnerLevelOnly = true,
         healsServer = true

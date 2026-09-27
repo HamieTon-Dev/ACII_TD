@@ -9,6 +9,26 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [1.47.0] — 2026-09-27
+
+### Soft, calming combat sounds
+
+- The hit sound is gone. It played on every projectile that landed, which
+  was the non-stop ticking; hits already flash on the board.
+- The kill sound is a new, quiet, round note (pure sine, swelling in over
+  15 ms instead of striking), played at a random step of a pentatonic scale
+  so a wave of kills sounds like wind chimes, at most about six a second.
+- The boss explosion and every other sound are unchanged, byte for byte.
+
+### SERVER SYSTEMS ENGINEER sits on the CORE-SERVER
+
+- The rack has two [S] slots between its load lights and the integrity bar.
+  They are as faint as any spot until [S] is picked, then light green while
+  every board spot fades back. [S] goes only there, and nothing else does.
+- A selected [S] outlines the rack in green instead of drawing a line to it.
+- Saved runs with engineers on board spots move them onto the rack, level
+  kept.
+
 ### Build — no more keystore-path failures
 
 - The release build ignores placeholder settings (`C:\Users\YOU\...` and the

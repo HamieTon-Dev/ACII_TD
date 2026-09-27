@@ -115,14 +115,14 @@ fun AgentManagementPanel(
         Spacer(Modifier.height(6.dp))
 
         if (type.healsServer) {
-            // Repairs on a timer from anywhere: damage, rate and range mean
+            // Repairs on a timer from the rack: damage, rate and range mean
             // nothing for it, so show what levels actually change.
             val interval = com.cyopstd.game.core.Balance.engineerHealInterval(agent.level)
             val nextInterval = if (maxed) null
             else com.cyopstd.game.core.Balance.engineerHealInterval(agent.level + 1)
             UpgradeStatRow("REPAIR", "+${com.cyopstd.game.core.Balance.ENGINEER_HEAL_AMOUNT} HP", null)
             UpgradeStatRow("EVERY", "${format(interval)}s", nextInterval?.let { "${format(it)}s" })
-            UpgradeStatRow("RANGE", "WHOLE MAP", null)
+            UpgradeStatRow("SLOT", "CORE-SERVER", null)
         } else {
             UpgradeStatRow("DAMAGE", format(current.damage), next?.let { format(it.damage) })
             UpgradeStatRow("RATE", "${format(current.fireRate)}/sec", next?.let { "${format(it.fireRate)}/sec" })

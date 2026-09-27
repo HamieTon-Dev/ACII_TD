@@ -36,6 +36,7 @@ class ServerEngineerScenarioTest {
 
     private val engineer = AgentType.SERVER_SYSTEMS_ENGINEER
     private val nodes = Maps.PERIMETER.nodesByCoverage.map { it.id }
+    private val slots = Maps.PERIMETER.serverSlots.map { it.id }
 
     private fun defendedEngine(engineers: Int, engineerLevel: Int = 1): GameEngine {
         val random = Random(11)
@@ -44,10 +45,10 @@ class ServerEngineerScenarioTest {
         engine.startNewRun()
         engine.addCrypto(50_000_000, countAsEarned = false)
         repeat(engineers) {
-            assertEquals(PlacementResult.SUCCESS, engine.placeAgent(engineer, nodes[it]))
-            engine.upgradeAgent(nodes[it], engineerLevel - 1)
+            assertEquals(PlacementResult.SUCCESS, engine.placeAgent(engineer, slots[it]))
+            engine.upgradeAgent(slots[it], engineerLevel - 1)
         }
-        for (node in nodes.drop(engineers).take(12)) {
+        for (node in nodes.take(12)) {
             engine.placeAgent(AgentType.ANALYST, node)
             engine.upgradeAgent(node, Balance.MAX_AGENT_LEVEL - 1)
         }
@@ -114,7 +115,7 @@ class ServerEngineerScenarioTest {
     @Test
     fun `a level 100 engineer repairs about three times as often`() {
         val engine = defendedEngine(engineers = 1, engineerLevel = 100)
-        assertEquals(100, engine.agentAt(nodes[0])!!.level)
+        assertEquals(100, engine.agentAt(slots[0])!!.level)
         engine.damageServer(80)
         val tally = engine.play(waves = 6)
         val interval = Balance.engineerHealInterval(100)
@@ -145,9 +146,62 @@ class ServerEngineerScenarioTest {
     @Test
     fun `selling one refunds and frees a slot under the cap`() {
         val engine = defendedEngine(engineers = 2)
-        assertEquals(PlacementResult.TYPE_LIMIT_REACHED, engine.placeAgent(engineer, nodes[20]))
-        assertTrue(engine.sellAgent(nodes[0]))
-        assertEquals(PlacementResult.SUCCESS, engine.placeAgent(engineer, nodes[20]))
+        assertEquals(PlacementResult.NODE_OCCUPIED, engine.placeAgent(engineer, slots[1]))
+        assertTrue(engine.sellAgent(slots[0]))
+        assertEquals(PlacementResult.SUCCESS, engine.placeAgent(engineer, slots[0]))
+    }
+
+    private fun render(engine: GameEngine, selection: BattlefieldSelection, name: String): Bitmap {
+        val bitmap = Bitmap.createBitmap(
+            WorldGeometry.WIDTH.toInt(), WorldGeometry.HEIGHT.toInt(), Bitmap.Config.ARGB_8888
+        )
+        BattlefieldRenderer().draw(
+            canvas = Canvas(bitmap),
+            engine = engine,
+            transform = WorldTransform(WorldGeometry.WIDTH, WorldGeometry.HEIGHT),
+            options = BattlefieldRenderOptions(backgroundAnimation = false),
+            selection = selection,
+            time = 1f
+        )
+        val out = File("build/engineer").apply { mkdirs() }
+        File(out, name).outputStream().use { bitmap.compress(Bitmap.CompressFormat.PNG, 100, it) }
+        return bitmap
+    }
+
+    /** Bright green pixels inside one slot's box. */
+    private fun greenIn(bitmap: Bitmap, slot: com.cyopstd.game.core.NodePosition): Int {
+        var green = 0
+        val r = WorldGeometry.NODE_RADIUS.toInt()
+        for (x in slot.x.toInt() - r..slot.x.toInt() + r) for (y in slot.y.toInt() - r..slot.y.toInt() + r) {
+            val p = bitmap.getPixel(x, y)
+            val red = (p shr 16) and 0xFF; val g = (p shr 8) and 0xFF; val b = p and 0xFF
+            if (g > 150 && g > red + 60 && g > b + 20) green++
+        }
+        return green
+    }
+
+    @Test
+    fun `the rack slots are faint until the engineer is picked, then green`() {
+        val random = Random(11)
+        val engine = GameEngine(random, WaveGenerator(random))
+        engine.isAgentUnlocked = { true }
+        engine.startNewRun()
+        engine.addCrypto(5_000, countAsEarned = false)
+        val rack = Maps.PERIMETER.serverSlots
+
+        val idle = render(engine, BattlefieldSelection(), "slots_idle.png")
+        val placingOther = render(engine, BattlefieldSelection(pendingAgent = AgentType.FIREWALL), "slots_placing_firewall.png")
+        val placing = render(engine, BattlefieldSelection(pendingAgent = engineer), "slots_placing_engineer.png")
+        for (slot in rack) {
+            println("slot ${slot.id}: idle ${greenIn(idle, slot)}, firewall ${greenIn(placingOther, slot)}, [S] ${greenIn(placing, slot)}")
+            assertTrue("slot lit while idle", greenIn(idle, slot) < 5)
+            assertTrue("slot lit for another agent", greenIn(placingOther, slot) < 5)
+            assertTrue("slot not green while placing [S]", greenIn(placing, slot) > 100)
+        }
+
+        engine.placeAgent(engineer, rack[0].id)
+        engine.placeAgent(engineer, rack[1].id)
+        render(engine, BattlefieldSelection(selectedNodeId = rack[0].id), "slots_filled_selected.png")
     }
 
     @Test
@@ -168,7 +222,7 @@ class ServerEngineerScenarioTest {
             engine = engine,
             transform = WorldTransform(WorldGeometry.WIDTH, WorldGeometry.HEIGHT),
             options = BattlefieldRenderOptions(backgroundAnimation = false),
-            selection = BattlefieldSelection(selectedNodeId = nodes[0]),
+            selection = BattlefieldSelection(selectedNodeId = slots[0]),
             time = 1f
         )
         val out = File("build/engineer").apply { mkdirs() }

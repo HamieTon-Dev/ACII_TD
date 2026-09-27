@@ -1269,6 +1269,10 @@ class GameViewModel @JvmOverloads constructor(
                 PlacementResult.NO_CAPACITY -> showTransient("DEPLOYMENT LIMIT REACHED")
                 PlacementResult.TYPE_LIMIT_REACHED ->
                     showTransient("${pending.displayName} LIMIT — ${pending.maxDeployed} MAX")
+                PlacementResult.WRONG_SLOT -> showTransient(
+                    if (pending.healsServer) "PLACE ON A CORE-SERVER SLOT"
+                    else "CORE-SERVER SLOTS ARE FOR [S] ONLY"
+                )
             }
             pushHud()
             return

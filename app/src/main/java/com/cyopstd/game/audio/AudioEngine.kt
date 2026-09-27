@@ -204,6 +204,8 @@ class AudioEngine(private val context: Context) {
 
     fun play(sound: GameSound) {
         if (!ready || sfxVolume <= 0.01f) return
+        val gain = SoundBank.recipes[sound]?.gain.orDefault()
+        if (gain <= 0f) return
         val pool = soundPool ?: return
         val id = soundIds[sound] ?: return
         if (id !in loaded) return
@@ -214,9 +216,10 @@ class AudioEngine(private val context: Context) {
             if (last != null && now - last < (gap * 1e9f).toLong()) return
             lastPlayedNanos[sound] = now
         }
-        val volume = (sfxVolume * SoundBank.recipes[sound]?.gain.orDefault()).coerceIn(0f, 1f)
+        val volume = (sfxVolume * gain).coerceIn(0f, 1f)
+        val rate = SoundBank.pitchVariants(sound).random()
         try {
-            pool.play(id, volume, volume, 1, 0, 1f)
+            pool.play(id, volume, volume, 1, 0, rate)
         } catch (error: Exception) {
             Log.w(TAG, "Playback failed for ${sound.name}", error)
         }
