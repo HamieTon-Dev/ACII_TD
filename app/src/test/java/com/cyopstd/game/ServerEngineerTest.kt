@@ -24,7 +24,7 @@ import kotlin.random.Random
 
 /**
  * SERVER SYSTEMS ENGINEER [S] (backlog W1), as the owner specified it:
- * heals CORE-SERVER from anywhere, four maximum, 1 HP per 30 seconds at level
+ * heals CORE-SERVER from anywhere, two maximum (was four), 1 HP per 30 seconds at level
  * 1 counting only a running wave, a green "+ +" over the core on each repair,
  * and unlocked only by wave 100 on the beginner level.
  */
@@ -64,7 +64,8 @@ class ServerEngineerTest {
         assertEquals("SERVER SYSTEMS ENGINEER", engineer.displayName)
         assertEquals("S", engineer.glyph)
         assertEquals("[S]", engineer.renderedGlyph(1))
-        assertEquals(4, engineer.maxDeployed)
+        assertEquals(2, engineer.maxDeployed)
+        assertEquals(800, engineer.cost)
         assertEquals(100, engineer.unlockWave)
         assertTrue(engineer.healsServer)
         assertTrue(engineer.beginnerLevelOnly)
@@ -121,12 +122,12 @@ class ServerEngineerTest {
     @Test
     fun `each engineer repairs on its own timer`() {
         val engine = newEngine()
-        repeat(4) { assertEquals(PlacementResult.SUCCESS, engine.placeAgent(engineer, nodes[it])) }
+        repeat(2) { assertEquals(PlacementResult.SUCCESS, engine.placeAgent(engineer, nodes[it])) }
         engine.startNextWave()
         engine.damageServer(20)
         val hurt = engine.serverHp
         engine.tickAgents(30.1f)
-        assertEquals(hurt + 4, engine.serverHp)
+        assertEquals(hurt + 2, engine.serverHp)
     }
 
     @Test
@@ -141,10 +142,19 @@ class ServerEngineerTest {
     }
 
     @Test
-    fun `no more than four may be deployed`() {
+    fun `no more than two may be deployed`() {
         val engine = newEngine()
-        repeat(4) { assertEquals(PlacementResult.SUCCESS, engine.placeAgent(engineer, nodes[it])) }
-        assertEquals(PlacementResult.TYPE_LIMIT_REACHED, engine.placeAgent(engineer, nodes[4]))
+        repeat(2) { assertEquals(PlacementResult.SUCCESS, engine.placeAgent(engineer, nodes[it])) }
+        assertEquals(PlacementResult.TYPE_LIMIT_REACHED, engine.placeAgent(engineer, nodes[2]))
+    }
+
+    @Test
+    fun `every piece of game text states the current price and limit`() {
+        // Owner, 2026-09-27: price 800, two maximum. The text is written by
+        // hand, so this is what stops it drifting from the numbers again.
+        val text = listOf(engineer.abilitySummary, engineer.inGame).joinToString(" ").lowercase()
+        assertTrue(text, "two maximum" in text && "no more than two" in text)
+        assertFalse(text, "four" in text)
     }
 
     @Test

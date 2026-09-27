@@ -31,6 +31,40 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - **DDoS has its own music**: "Cassette Noir", two renders supplied by the
   owner. Every level now plays its own music.
 
+### Changed — SERVER SYSTEMS ENGINEER: ◇ 800, two maximum
+
+- Owner's call after measuring it: the price is ◇ 800 (was 500) and no more
+  than **two** may be deployed (was four). With one fixed board run to
+  failure, four level-1 engineers added about 30 waves where four level-10
+  ANALYSTs in the same spots added 10. The repair itself is unchanged: 1
+  integrity every 30 seconds of a running wave at level 1. Upgrade costs
+  scale with the price, so they rise by the same 60%.
+- Its ability text, codex, AGENTS screen and deploy card all say "two"; a
+  test fails if the text ever disagrees with the numbers again.
+
+### Changed — softer hit and kill sounds
+
+- The sound of a shot landing and of a small threat dying was harsh even at
+  11% effect volume (owner). It was white noise over a 1.5 kHz square wave:
+  the harshness was in the pitch, not the level, so no volume setting could
+  fix it. Both are now soft, rounded tones (triangle and sine, under 700 Hz),
+  and their average pitch fell from about 4,500 Hz to about 340 Hz at the
+  same loudness.
+- Each can also repeat at most every 70 ms (hit) and 50 ms (kill). Before, a
+  few fast agents stacked dozens of hit sounds a second into one buzz. Every
+  hit still counts; only the sound is thinned out. Boss, warning, core-damage
+  and menu sounds are never limited.
+
+### Fixed — DDoS build spots overlapped
+
+- The spots added down each comb pocket were 68 units apart: allowed by the
+  spacing rule, but a deployed agent's ring and level label need about 90, so
+  agents drew on top of each other. DDoS now has four wider comb teeth with
+  two columns of spots 90 apart in every pocket: **55 build spots**, none
+  overlapping. The shorter route made it much harder (wave ~60 with the test
+  board), so its threat health is ×1.7 (was ×2.4): wave ~70, still below
+  DUCK-USB's ~79.
+
 ---
 
 ## [1.45.0]

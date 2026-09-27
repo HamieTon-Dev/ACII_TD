@@ -169,16 +169,23 @@ object Maps {
     const val DU_H = 1.1f
     const val DU_R = 1.25f
 
-    const val DD_H = 2.4f
+    const val DD_H = 1.7f
     const val DD_R = 1.3f
     private const val DD_EDGE = 60f
     private const val DD_INNER = 300f
     private const val DD_GAP_Y = 380f
     private const val DD_TURN_X = 1200f
-    private val DD_TEETH_X = floatArrayOf(160f, 340f, 520f, 700f, 880f, 1060f)
-    /** The centre of every comb pocket, plus the strips at either end. */
-    private val DD_POCKET_X = listOf(80f, 250f, 430f, 610f, 790f, 970f, 1130f)
-    private val DD_POCKET_Y = listOf(34f, 102f, 170f, 238f)
+    /**
+     * Four wide teeth rather than six narrow ones. The first build packed six
+     * teeth 180 apart and stacked spots 68 apart down each pocket: legal by
+     * `MIN_NODE_SPACING`, but a deployed agent's ring and level label need
+     * about 90, and the agents drew on top of each other. Pockets 250 wide
+     * hold two columns 90 apart, each 80 clear of the route.
+     */
+    private val DD_TEETH_X = floatArrayOf(160f, 410f, 660f, 910f)
+    /** Two columns down every pocket, plus the strip before the first tooth. */
+    private val DD_POCKET_X = listOf(80f, 240f, 330f, 490f, 580f, 740f, 830f, 1010f, 1100f)
+    private val DD_POCKET_Y = listOf(50f, 140f, 230f)
 
     private const val DU_TOP = 110f
     private const val DU_BOTTOM = 650f

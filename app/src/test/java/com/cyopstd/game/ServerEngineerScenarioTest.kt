@@ -86,19 +86,19 @@ class ServerEngineerScenarioTest {
     }
 
     @Test
-    fun `four engineers heal at the promised rate across real waves, bosses included`() {
-        val engine = defendedEngine(engineers = 4)
+    fun `two engineers heal at the promised rate across real waves, bosses included`() {
+        val engine = defendedEngine(engineers = 2)
         engine.damageServer(80)
         val tally = engine.play(waves = 15)
-        println("4 x [S] L1 over 15 waves: ${tally.inWaveSeconds}s in-wave, ${tally.heals} HP repaired, " +
+        println("2 x [S] L1 over 15 waves: ${tally.inWaveSeconds}s in-wave, ${tally.heals} HP repaired, " +
             "${tally.bossWarnings} boss warnings, hp ${engine.serverHp}/${engine.serverMaxHp}")
         assertTrue("expected boss waves in the sample", tally.bossWarnings >= 2)
         assertEquals("repaired outside a running wave", 0, tally.healsOutsideWave)
-        val expected = 4 * (tally.inWaveSeconds / 30f).toInt()
+        val expected = 2 * (tally.inWaveSeconds / 30f).toInt()
         // Each unit's timer is continuous across waves, so the count is exact
         // to within one tick per unit at the very end.
         assertTrue("repaired ${tally.heals}, expected about $expected",
-            tally.heals in (expected - 4)..(expected + 4))
+            tally.heals in (expected - 2)..(expected + 2))
     }
 
     @Test
@@ -125,7 +125,7 @@ class ServerEngineerScenarioTest {
 
     @Test
     fun `engineers survive a save and restore, level and all`() {
-        val engine = defendedEngine(engineers = 4, engineerLevel = 20)
+        val engine = defendedEngine(engineers = 2, engineerLevel = 20)
         val saved = engine.snapshotPlacements()
         val random = Random(2)
         val restored = GameEngine(random, WaveGenerator(random))
@@ -136,7 +136,7 @@ class ServerEngineerScenarioTest {
             serverDamageTaken = 0, agentsDeployed = 0, agentUpgrades = 0
         )
         val back = restored.agents.items.filter { it.active && it.type == engineer }
-        assertEquals(4, back.size)
+        assertEquals(2, back.size)
         assertTrue(back.all { it.level == 20 })
         val tally = restored.play(waves = 2)
         assertTrue("restored engineers did not repair", tally.heals > 0)
@@ -144,7 +144,7 @@ class ServerEngineerScenarioTest {
 
     @Test
     fun `selling one refunds and frees a slot under the cap`() {
-        val engine = defendedEngine(engineers = 4)
+        val engine = defendedEngine(engineers = 2)
         assertEquals(PlacementResult.TYPE_LIMIT_REACHED, engine.placeAgent(engineer, nodes[20]))
         assertTrue(engine.sellAgent(nodes[0]))
         assertEquals(PlacementResult.SUCCESS, engine.placeAgent(engineer, nodes[20]))
@@ -152,7 +152,7 @@ class ServerEngineerScenarioTest {
 
     @Test
     fun `renders on the board with the link to the core and the green plus`() {
-        val engine = defendedEngine(engineers = 4)
+        val engine = defendedEngine(engineers = 2)
         engine.startNextWave()
         engine.damageServer(10)
         // Run the agents to the first repair so the "+ +" is in the frame.
