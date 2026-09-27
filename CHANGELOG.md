@@ -7,6 +7,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [1.42.1]
+
+### Fixed — cloud save re-locked levels and the engineer on a new phone
+
+Merging two saves rebuilt the statistics without the HACK:AI best, the
+beginner-level best and the per-level bests, and restoring never wrote them.
+A player who restored onto a new or reinstalled phone found HUGGING-FACE,
+NEURAL-MESH and the SERVER SYSTEMS ENGINEER locked again. All three records
+now merge (best of both) and restore, and only ever rise. `CloudSaveTest`
+covers it and failed before the fix.
+
+---
+
 ## [1.42.0]
 
 ### Changed

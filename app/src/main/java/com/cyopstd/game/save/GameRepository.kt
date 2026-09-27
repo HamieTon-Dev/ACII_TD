@@ -653,6 +653,17 @@ class GameRepository(private val store: DataStore<Preferences>) {
 
         writeSafely { prefs ->
             prefs[Keys.HIGHEST_WAVE] = save.stats.highestWave
+            // Unlock records only ever rise, whatever the restored copy says.
+            prefs[Keys.HIGHEST_WAVE_HACK_AI] =
+                maxOf(prefs[Keys.HIGHEST_WAVE_HACK_AI] ?: 0, save.stats.highestWaveHackAi)
+            prefs[Keys.HIGHEST_WAVE_BEGINNER] =
+                maxOf(beginnerBest(prefs), save.stats.highestWaveBeginner)
+            val localMaps = decodeDeployments(prefs[Keys.MAP_BESTS_JSON])
+            prefs[Keys.MAP_BESTS_JSON] = encodeDeployments(
+                (localMaps.keys + save.stats.highestWaveByMap.keys).associateWith { key ->
+                    maxOf(localMaps[key] ?: 0, save.stats.highestWaveByMap[key] ?: 0)
+                }
+            )
             prefs[Keys.TOTAL_PACKETS] = save.stats.totalAttacksBlocked.toInt()
             prefs[Keys.TOTAL_BOSSES] = save.stats.totalBossesDefeated.toInt()
             prefs[Keys.TOTAL_CRYPTO] = save.stats.totalCryptoEarned.toInt()

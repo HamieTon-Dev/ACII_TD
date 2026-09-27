@@ -210,15 +210,16 @@ third level is a constructor argument.
 
 **Original note follows.**
 
-### E1 ◐ architecture and the save guard (done earlier)
+### E1 ✅ HUGGING-FACE, the second level (architecture 1.28.0, save guard 1.30.0, level and unlock after)
 
 **Asked:** *"Create another base level named Hugging-face with a different lane
 layout. this level unlocks by reaching wave 100 of Hack AI level. this one will
 include new AI bosses and elites with new debuffs and modifiers."*
 
-**Status: the architecture and the save guard landed in 1.28.0 and 1.30.0.**
-What remains is the unlock condition (wave 100 on Hack:AI specifically, which
-needs a per-mode best wave) and the menu wiring to choose a level.
+**Status: done.** The architecture and the save guard landed in 1.28.0 and
+1.30.0; the level, its per-mode unlock (wave 100 on HACK:AI) and the LEVEL
+picker on the main menu followed. 1.42.1 fixed cloud save dropping the
+HACK:AI record, which re-locked the level on a restored phone.
 
 **This is the largest item in the list, and it is architecture before content.**
 `WorldGeometry` is a Kotlin `object` — a singleton of hard-coded constants from
