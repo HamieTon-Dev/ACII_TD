@@ -26,7 +26,7 @@ class DuckUsbTest {
         assertEquals(map, Maps.all[3])
         assertEquals("🦆 DUCK-USB", map.displayName)
         assertEquals(3, map.laneCount)
-        assertTrue("only ${map.nodes.size} build spots", map.nodes.size >= 50)
+        assertTrue("only ${map.nodes.size} build spots", map.nodes.size >= 61)
     }
 
     @Test

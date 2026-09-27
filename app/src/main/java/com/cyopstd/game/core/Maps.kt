@@ -164,12 +164,12 @@ object Maps {
     // Per-level difficulty (see GameMap.threatHealthScale), tuned with MapDifficultyTest.
     const val HF_H = 2.25f
     const val HF_R = 1.15f
-    const val NM_H = 1.8f
+    const val NM_H = 2.2f
     const val NM_R = 1.2f
     const val DU_H = 1.1f
     const val DU_R = 1.25f
 
-    const val DD_H = 1.7f
+    const val DD_H = 2.4f
     const val DD_R = 1.3f
     private const val DD_EDGE = 60f
     private const val DD_INNER = 300f
@@ -186,6 +186,9 @@ object Maps {
     /** Two columns down every pocket, plus the strip before the first tooth. */
     private val DD_POCKET_X = listOf(80f, 240f, 330f, 490f, 580f, 740f, 830f, 1010f, 1100f)
     private val DD_POCKET_Y = listOf(50f, 140f, 230f)
+    /** The strip before the first tooth, and the pockets open to the middle gap. */
+    private val DD_GAP_POCKET_X = listOf(80f, 490f, 580f, 1010f, 1100f)
+    private const val DD_GAP_EDGE_Y = 300f
 
     private const val DU_TOP = 110f
     private const val DU_BOTTOM = 650f
@@ -276,7 +279,15 @@ object Maps {
             Waypoint(176f, 427f),
             Waypoint(1181f, 463f),
             Waypoint(1190f, 560f),
-            Waypoint(1180f, 726f)
+            Waypoint(1180f, 726f),
+            // Owner: "at least 4-5 more agent spots". Found by searching the
+            // board for every position 90 clear of the other spots and 58 of
+            // the route: these five are all there were.
+            Waypoint(1254f, 34f),
+            Waypoint(1204f, 244f),
+            Waypoint(299f, 309f),
+            Waypoint(299f, 439f),
+            Waypoint(939f, 534f)
         ),
         // *"This level unlocks by reaching wave 100 of Hack AI level."*
         unlockMode = GameMode.HACK_AI,
@@ -379,6 +390,11 @@ object Maps {
             )
         ),
         candidateRows = floatArrayOf(36f, 200f, 290f, 470f, 560f, 724f),
+        // Owner: "5-8 more agent spots". The ground either side of the last
+        // vertical before the core, which no grid column reaches.
+        extraNodes = listOf(1130f, 1255f).flatMap { x ->
+            listOf(200f, 290f, 470f, 560f).map { y -> Waypoint(x, y) }
+        },
         threatHealthScale = DU_H,
         rewardScale = DU_R,
         unlockMapId = NEURAL_MESH.id,
@@ -413,7 +429,13 @@ object Maps {
         laneWaypoints = arrayOf(ddosComb(top = true), ddosComb(top = false)),
         candidateRows = floatArrayOf(DD_GAP_Y),
         extraNodes = DD_POCKET_X.flatMap { x -> DD_POCKET_Y.map { y -> Waypoint(x, y) } } +
-            DD_POCKET_X.flatMap { x -> DD_POCKET_Y.map { y -> Waypoint(x, WorldGeometry.HEIGHT - y) } },
+            DD_POCKET_X.flatMap { x -> DD_POCKET_Y.map { y -> Waypoint(x, WorldGeometry.HEIGHT - y) } } +
+            // Owner: "at least 10 more spots". A third row in the pockets
+            // that open onto the middle gap, and the strip before the first
+            // tooth, each 80 clear of the route.
+            DD_GAP_POCKET_X.flatMap { x ->
+                listOf(Waypoint(x, DD_GAP_EDGE_Y), Waypoint(x, WorldGeometry.HEIGHT - DD_GAP_EDGE_Y))
+            },
         unlockMapId = DUCK_USB.id,
         unlockMapName = DUCK_USB.displayName,
         unlockAtWave = 100,

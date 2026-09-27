@@ -25,6 +25,34 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
   lanes, with edges kept clear of the orange warning colour.
 - All colours are the owner's choices. A purchased living background still
   animates over any of them.
+
+### Added — more unit spots on the later levels
+
+| Level | Spots before | Spots now |
+| --- | --- | --- |
+| HUGGING-FACE | 61 | 66 |
+| 🦆 DUCK-USB | 56 | 64 |
+| DDoS | 55 | 65 |
+
+Every new spot keeps the 90-unit spacing (no overlapping agents) and clears
+the route. HUGGING-FACE's five came from searching the whole board for every
+position that meets both rules; there were exactly five.
+
+### Changed — difficulty re-measured with a fairer test board
+
+The difficulty test built its board on the spots that "cover the most route",
+counting a stretch once per route that uses it, so where routes share the
+last stretch before the core it crowded the board there. It now counts shared
+route once. Re-measured, and retuned so each level is still harder than the
+one before (more spots made DDoS easier):
+
+| Level | Threat health | Same board reached (avg) |
+| --- | --- | --- |
+| NETWORK PERIMETER | ×1.0 | wave 101 |
+| HUGGING-FACE | ×2.25 | wave 94 |
+| NEURAL-MESH | ×2.2 (was ×1.8) | wave 91 |
+| 🦆 DUCK-USB | ×1.1 | wave 79 |
+| DDoS | ×2.4 (was ×1.7) | wave 75 |
 - `LevelThemeTest` keeps every theme dark enough to read ASCII on and well
   away from the threat colours.
 
