@@ -64,7 +64,8 @@ fun AgentManagementPanel(
     val maxed = agent.level >= Balance.MAX_AGENT_LEVEL
     val next = if (maxed) null else type.statsAtLevel(agent.level + 1)
     val upgradeCost = if (maxed) 0 else type.upgradeCost(agent.level)
-    val canAfford = !maxed && crypto >= upgradeCost
+    val ransomed = agent.ransomedFor > 0f
+    val canAfford = !maxed && !ransomed && crypto >= upgradeCost
 
     val scroll = rememberScrollState()
 
@@ -98,6 +99,13 @@ fun AgentManagementPanel(
                     style = MaterialTheme.typography.labelMedium,
                     color = if (maxed) Palette.Crypto else Palette.Green
                 )
+                if (ransomed) {
+                    Text(
+                        text = "RANSOMED \u00B7 UPGRADES LOCKED ${kotlin.math.ceil(agent.ransomedFor).toInt()}s",
+                        style = MaterialTheme.typography.labelSmall,
+                        color = Palette.Red
+                    )
+                }
             }
         }
 

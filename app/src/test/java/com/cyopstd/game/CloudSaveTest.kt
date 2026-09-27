@@ -1,5 +1,9 @@
 package com.cyopstd.game
 
+import com.cyopstd.game.core.Maps
+
+import com.cyopstd.game.core.GameMode
+
 import com.cyopstd.game.save.CloudSave
 import com.cyopstd.game.save.CloudSaveGateway
 import com.cyopstd.game.save.CloudSaveMerge
@@ -417,5 +421,26 @@ class CloudSaveTest {
         val cloudSave = cloud.stored
         assertNotNull(cloudSave)
         assertEquals(63, cloudSave!!.stats.highestWave)
+    }
+
+    @Test
+    fun `a new device keeps the records that unlock levels and agents`() = runTest {
+        // The bug: the merge rebuilt the stats without these, so a restored
+        // phone had HUGGING-FACE, NEURAL-MESH and the engineer locked again.
+        val cloud = FakeCloud(initial = CloudSaveStatus.LINKED)
+        val old = repository()
+        old.updateHighestWave(104, GameMode.STANDARD.id, Maps.PERIMETER.id)
+        old.updateHighestWave(100, GameMode.HACK_AI.id, Maps.PERIMETER.id)
+        old.updateHighestWave(100, GameMode.STANDARD.id, Maps.HUGGING_FACE.id)
+        assertEquals(CloudSyncResult.UPLOADED, CloudSaveSync(old, cloud, "old phone").sync())
+
+        val fresh = repository()
+        assertEquals(CloudSyncResult.MERGED, CloudSaveSync(fresh, cloud, "new phone").link())
+
+        val stats = fresh.stats.first()
+        assertEquals(100, stats.highestWaveHackAi)
+        assertEquals(104, stats.highestWaveBeginner)
+        assertEquals(100, stats.highestWaveByMap[Maps.HUGGING_FACE.id])
+        assertTrue(Maps.NEURAL_MESH.unlockedBy(bestWaveOnMap = { stats.highestWaveByMap[it] ?: 0 }) { 0 })
     }
 }

@@ -210,15 +210,16 @@ third level is a constructor argument.
 
 **Original note follows.**
 
-### E1 ◐ architecture and the save guard (done earlier)
+### E1 ✅ HUGGING-FACE, the second level (architecture 1.28.0, save guard 1.30.0, level and unlock after)
 
 **Asked:** *"Create another base level named Hugging-face with a different lane
 layout. this level unlocks by reaching wave 100 of Hack AI level. this one will
 include new AI bosses and elites with new debuffs and modifiers."*
 
-**Status: the architecture and the save guard landed in 1.28.0 and 1.30.0.**
-What remains is the unlock condition (wave 100 on Hack:AI specifically, which
-needs a per-mode best wave) and the menu wiring to choose a level.
+**Status: done.** The architecture and the save guard landed in 1.28.0 and
+1.30.0; the level, its per-mode unlock (wave 100 on HACK:AI) and the LEVEL
+picker on the main menu followed. 1.42.1 fixed cloud save dropping the
+HACK:AI record, which re-locked the level on a restored phone.
 
 **This is the largest item in the list, and it is architecture before content.**
 `WorldGeometry` is a Kotlin `object` — a singleton of hard-coded constants from
@@ -1513,7 +1514,22 @@ current map's variants and every earlier map's.
 rendered candidates (`NeuralMeshPreview`) and set the unlock: *"unlock at wave
 100 on hugging face"*. Its bosses, `[∆∆∆]` MODEL COLLAPSE and `[©©©]` LICENSE,
 are built, and the boss pool now stacks every earlier map's bosses
-(`BossVariant.MAP_PROGRESSION`). Maps 4 and 5 wait on the owner as before.
+(`BossVariant.MAP_PROGRESSION`).
+
+**Map 4 ✅ 1.43.0 — 🦆 DUCK-USB.** The owner picked BRAID from four rendered
+candidates (`Map4Preview`) and named it. Unlocks at wave 100 on NEURAL-MESH.
+Its bosses, `[SS]` SYN-STORM and `[∑∑∑]` GRADIENT, are built. No level-four
+music has been supplied; it plays the synthesized mode music meanwhile.
+
+**Map 5 ✅ 1.45.0 — DDoS.** The owner picked TWIN COMB with "almost double
+the agent spaces" (51, from 25) and named it. Unlocks at wave 100 on
+DUCK-USB. Its bosses, `[RM]` RANSOM and `[XX]` EXFIL, are built. With it,
+every boss in §J's list is in the game. No level music has been supplied for
+DUCK-USB or DDoS; both play the synthesized mode music.
+
+**Rule (owner, 1.44.0):** difficulty scales as levels progress. Each level is
+tuned with `GameMap.threatHealthScale` so one fixed board gets less far on it
+than on the level before.
 
 *"More maps sounds great. I am not keen on the names … as you create new ones
 let me choose a layout for you."*

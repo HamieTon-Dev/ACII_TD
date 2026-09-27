@@ -233,6 +233,19 @@ class ProjectileSystem(private val engine: GameEngine, private val random: Rando
         enemy.health -= damage
         enemy.hitFlash = HIT_FLASH_SECONDS
 
+        if (enemy.isBoss) {
+            when (enemy.variant) {
+                BossVariant.GRADIENT -> enemy.gradientHeat =
+                    (enemy.gradientHeat + BossVariant.GRADIENT_HEAT_PER_HIT).coerceAtMost(1f)
+                BossVariant.SYN_STORM -> if (!enemy.split && enemy.health > 0f &&
+                    enemy.health <= enemy.maxHealth * BossVariant.SYN_STORM_SPLIT_AT
+                ) {
+                    engine.enemySystem().splitSynStorm(enemy)
+                }
+                else -> Unit
+            }
+        }
+
         engine.effectSystem().spawnDamageNumber(enemy.x, enemy.y, damage, heavy)
 
         if (enemy.health <= 0f) {

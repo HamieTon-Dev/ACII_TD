@@ -142,6 +142,15 @@ object CloudSaveMerge {
 
     private fun mergeStats(base: PlayerStats, other: PlayerStats) = PlayerStats(
         highestWave = maxOf(base.highestWave, other.highestWave),
+        // The records that unlock levels and agents. Dropping these in a merge
+        // re-locked HUGGING-FACE, NEURAL-MESH and the SERVER SYSTEMS ENGINEER
+        // on a restored device.
+        highestWaveHackAi = maxOf(base.highestWaveHackAi, other.highestWaveHackAi),
+        highestWaveBeginner = maxOf(base.highestWaveBeginner, other.highestWaveBeginner),
+        highestWaveByMap = (base.highestWaveByMap.keys + other.highestWaveByMap.keys)
+            .associateWith { key ->
+                maxOf(base.highestWaveByMap[key] ?: 0, other.highestWaveByMap[key] ?: 0)
+            },
         totalAttacksBlocked = maxOf(base.totalAttacksBlocked, other.totalAttacksBlocked),
         totalBossesDefeated = maxOf(base.totalBossesDefeated, other.totalBossesDefeated),
         totalCryptoEarned = maxOf(base.totalCryptoEarned, other.totalCryptoEarned),

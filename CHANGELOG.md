@@ -7,6 +7,99 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [1.45.0]
+
+### Added
+
+- **DDoS, the fifth level** (the owner's pick: TWIN COMB, with "almost
+  double the agent spaces"). Each route combs its own half of the board; the
+  gap between the two combs reaches both. 51 build spots, against 25 on the
+  layout as first drawn. **Unlocks by reaching wave 100 on 🦆 DUCK-USB.**
+  Threat health ×2.4, crypto ×1.3: the same fixed board reaches wave ~72,
+  below DUCK-USB's ~79, so every level is still harder than the last.
+- **RANSOM `[RM]`**: every 6 seconds it locks one agent's upgrades for 8
+  seconds. The agent still fires. Its panel shows "RANSOMED · UPGRADES
+  LOCKED", and trying to upgrade it says "UPGRADES HELD FOR RANSOM".
+- **EXFIL `[XX]`**: fast (×1.25). If it reaches the core it steals half the
+  crypto in hand and no integrity.
+- DDoS fields every boss in the game. The NEXT BOSS briefing covers both.
+
+### Verified
+
+- `ServerEngineerAppFlowTest` drives the SERVER SYSTEMS ENGINEER through the
+  real app: unlocked in the break before wave 100 on the beginner level,
+  placed, repairing 1 integrity after 30 seconds of a running wave, and still
+  unlocked in a fresh session. Wave 99 on another level does not earn it.
+
+---
+
+## [1.44.0]
+
+### Changed — each level is now harder than the one before it
+
+The owner's rule: *"scaling difficulty as maps progress"*. Measured with one
+fixed board played until it fell, the levels were out of order: the long
+routes of HUGGING-FACE and NEURAL-MESH made them *easier* than the first
+level. Each level now scales threat health and crypto rewards on top of the
+mode:
+
+| Level | Threat health | Crypto | Same board reached (avg) |
+| --- | --- | --- | --- |
+| NETWORK PERIMETER | ×1.0 | ×1.0 | wave 107 |
+| HUGGING-FACE | ×2.25 | ×1.15 | wave 93 |
+| NEURAL-MESH | ×1.8 | ×1.2 | wave 89 |
+| 🦆 DUCK-USB | ×1.1 | ×1.25 | wave 79 |
+
+Health multipliers differ because the layouts differ: a long route needs a
+big boost to be harder, a short three-route braid barely any. `MapDifficultyTest`
+fails if any level stops being harder than the one before it.
+
+---
+
+## [1.43.0]
+
+### Added
+
+- **🦆 DUCK-USB, the fourth level** (the owner's pick: BRAID, and the owner's
+  name). Three routes swap places twice on diagonals before the core; a
+  tower beside a crossing covers two routes. 56 build spots. **Unlocks by
+  reaching wave 100 on NEURAL-MESH.** Plays the synthesized music until a
+  level-four track is supplied.
+- **SYN-STORM `[SS]`**: at half health it splits in two, and the second half
+  appears on another route at the same distance along it. Neither half
+  splits again, each is worth half the reward, and the wave is not over
+  until both are gone.
+- **GRADIENT `[∑∑∑]`**: every hit speeds it up, however small, and it cools
+  back down when left alone (0.7× to 1.7× speed). Many small hits drive it
+  into the core; a few heavy hitters barely move it.
+- DUCK-USB fields every boss from the three levels before it too. The NEXT
+  BOSS briefing explains both new bosses and what beats them.
+
+### Measured
+
+One boss at wave 100 on DUCK-USB into a fixed board:
+
+| Fight | BREACH | New boss |
+| --- | --- | --- |
+| GRADIENT vs 12 IPS (many small hits) | reached the core at 29.1 s | reached the core at 21.2 s |
+| GRADIENT vs 6 heavy hitters | 13.8 s | 15.8 s |
+| SYN-STORM vs 12 mixed agents | 12.2 s | 24.4 s (both halves) |
+
+---
+
+## [1.42.1]
+
+### Fixed — cloud save re-locked levels and the engineer on a new phone
+
+Merging two saves rebuilt the statistics without the HACK:AI best, the
+beginner-level best and the per-level bests, and restoring never wrote them.
+A player who restored onto a new or reinstalled phone found HUGGING-FACE,
+NEURAL-MESH and the SERVER SYSTEMS ENGINEER locked again. All three records
+now merge (best of both) and restore, and only ever rise. `CloudSaveTest`
+covers it and failed before the fix.
+
+---
+
 ## [1.42.0]
 
 ### Changed

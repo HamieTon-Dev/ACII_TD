@@ -1306,7 +1306,10 @@ class GameViewModel @JvmOverloads constructor(
     fun upgradeSelectedAgent(times: Int = 1) {
         val nodeId = selection.selectedNodeId ?: return
         if (engine.upgradeAgent(nodeId, times) == 0) {
-            showTransient("INSUFFICIENT CRYPTO")
+            showTransient(
+                if (engine.isUpgradeLocked(nodeId)) "UPGRADES HELD FOR RANSOM"
+                else "INSUFFICIENT CRYPTO"
+            )
         }
         pushHud()
     }

@@ -161,6 +161,33 @@ object Maps {
     private const val NM_TURN_X = 1160f
     private const val NM_MERGE_X = 160f
 
+    // Per-level difficulty (see GameMap.threatHealthScale), tuned with MapDifficultyTest.
+    const val HF_H = 2.25f
+    const val HF_R = 1.15f
+    const val NM_H = 1.8f
+    const val NM_R = 1.2f
+    const val DU_H = 1.1f
+    const val DU_R = 1.25f
+
+    const val DD_H = 2.4f
+    const val DD_R = 1.3f
+    private const val DD_EDGE = 60f
+    private const val DD_INNER = 300f
+    private const val DD_GAP_Y = 380f
+    private const val DD_TURN_X = 1200f
+    private val DD_TEETH_X = floatArrayOf(160f, 340f, 520f, 700f, 880f, 1060f)
+    /** The centre of every comb pocket, plus the strips at either end. */
+    private val DD_POCKET_X = listOf(80f, 250f, 430f, 610f, 790f, 970f, 1130f)
+    private val DD_POCKET_Y = listOf(34f, 102f, 170f, 238f)
+
+    private const val DU_TOP = 110f
+    private const val DU_BOTTOM = 650f
+    private const val DU_X1 = 250f
+    private const val DU_X2 = 450f
+    private const val DU_X3 = 650f
+    private const val DU_X4 = 850f
+    private const val DU_TURN_X = 1190f
+
     /**
      * The circuit before the rack: up, across, down, back, and in.
      *
@@ -246,7 +273,9 @@ object Maps {
         ),
         // *"This level unlocks by reaching wave 100 of Hack AI level."*
         unlockMode = GameMode.HACK_AI,
-        unlockAtWave = 100
+        unlockAtWave = 100,
+        threatHealthScale = HF_H,
+        rewardScale = HF_R
     )
 
     /**
@@ -284,12 +313,97 @@ object Maps {
         ),
         candidateRows = floatArrayOf(34f, 173f, 315f, 445f, 587f, 726f),
         // *"unlock at wave 100 on hugging face"*
+        threatHealthScale = NM_H,
+        rewardScale = NM_R,
         unlockMapId = HUGGING_FACE.id,
         unlockMapName = HUGGING_FACE.displayName,
         unlockAtWave = 100
     )
 
-    val all: List<GameMap> = listOf(PERIMETER, HUGGING_FACE, NEURAL_MESH)
+    /**
+     * 🦆 DUCK-USB — map 4, the owner's pick of four candidates (BRAID), and
+     * the owner's name: a nod to the keystroke-injection "rubber duck" USB.
+     *
+     * Three routes that swap places twice on diagonals before the rack. A node
+     * beside a crossing covers two routes at once, which is the decision the
+     * map is built around; the middle route is the shortest.
+     */
+    val DUCK_USB = GameMap(
+        id = "duck_usb",
+        displayName = "\uD83E\uDD86 DUCK-USB",
+        tagline = "Three routes swap places twice. Every crossing is a spot that hits two.",
+        laneWaypoints = arrayOf(
+            arrayOf(
+                Waypoint(WorldGeometry.SPAWN_X, DU_TOP), Waypoint(DU_X1, DU_TOP),
+                Waypoint(DU_X2, WorldGeometry.CORE_Y), Waypoint(DU_X3, WorldGeometry.CORE_Y),
+                Waypoint(DU_X4, DU_BOTTOM), Waypoint(DU_TURN_X, DU_BOTTOM),
+                Waypoint(DU_TURN_X, WorldGeometry.CORE_Y),
+                Waypoint(WorldGeometry.SERVER_X, WorldGeometry.CORE_Y)
+            ),
+            arrayOf(
+                Waypoint(WorldGeometry.SPAWN_X, WorldGeometry.CORE_Y),
+                Waypoint(DU_X1, WorldGeometry.CORE_Y), Waypoint(DU_X2, DU_TOP),
+                Waypoint(DU_TURN_X, DU_TOP), Waypoint(DU_TURN_X, WorldGeometry.CORE_Y),
+                Waypoint(WorldGeometry.SERVER_X, WorldGeometry.CORE_Y)
+            ),
+            arrayOf(
+                Waypoint(WorldGeometry.SPAWN_X, DU_BOTTOM), Waypoint(DU_X3, DU_BOTTOM),
+                Waypoint(DU_X4, WorldGeometry.CORE_Y),
+                Waypoint(WorldGeometry.SERVER_X, WorldGeometry.CORE_Y)
+            )
+        ),
+        candidateRows = floatArrayOf(36f, 200f, 290f, 470f, 560f, 724f),
+        threatHealthScale = DU_H,
+        rewardScale = DU_R,
+        unlockMapId = NEURAL_MESH.id,
+        unlockMapName = NEURAL_MESH.displayName,
+        unlockAtWave = 100
+    )
+
+    /**
+     * DDoS — map 5, the owner's pick of four candidates (TWIN COMB), with
+     * *"almost double the agent spaces"*.
+     *
+     * Each route combs its own half of the board: down and up six times in
+     * the top half, the mirror in the bottom, meeting only in front of the
+     * rack. The gap between the two combs is ground that reaches both routes.
+     * The derived grid offers only one spot per comb pocket, so every pocket
+     * is filled by hand down its centre line — each is still checked for
+     * route clearance and spacing like any other node.
+     */
+    val DDOS = GameMap(
+        id = "ddos",
+        displayName = "DDoS",
+        tagline = "Two routes comb their own halves. Towers in the middle gap reach both.",
+        laneWaypoints = arrayOf(ddosComb(top = true), ddosComb(top = false)),
+        candidateRows = floatArrayOf(DD_GAP_Y),
+        extraNodes = DD_POCKET_X.flatMap { x -> DD_POCKET_Y.map { y -> Waypoint(x, y) } } +
+            DD_POCKET_X.flatMap { x -> DD_POCKET_Y.map { y -> Waypoint(x, WorldGeometry.HEIGHT - y) } },
+        unlockMapId = DUCK_USB.id,
+        unlockMapName = DUCK_USB.displayName,
+        unlockAtWave = 100,
+        threatHealthScale = DD_H,
+        rewardScale = DD_R
+    )
+
+    /** One comb of DDoS: the top half's, or its mirror in the bottom. */
+    private fun ddosComb(top: Boolean): Array<Waypoint> {
+        fun y(v: Float) = if (top) v else WorldGeometry.HEIGHT - v
+        val points = ArrayList<Waypoint>()
+        points += Waypoint(WorldGeometry.SPAWN_X, y(DD_EDGE))
+        var outer = true
+        for (x in DD_TEETH_X) {
+            points += Waypoint(x, y(if (outer) DD_EDGE else DD_INNER))
+            points += Waypoint(x, y(if (outer) DD_INNER else DD_EDGE))
+            outer = !outer
+        }
+        points += Waypoint(DD_TURN_X, y(DD_EDGE))
+        points += Waypoint(DD_TURN_X, WorldGeometry.CORE_Y)
+        points += Waypoint(WorldGeometry.SERVER_X, WorldGeometry.CORE_Y)
+        return points.toTypedArray()
+    }
+
+    val all: List<GameMap> = listOf(PERIMETER, HUGGING_FACE, NEURAL_MESH, DUCK_USB, DDOS)
 
     /**
      * Never throws, and never returns the wrong level silently.

@@ -617,4 +617,30 @@ class GameUiTest {
             waveWhilePaused, viewModel.hud.wave
         )
     }
+
+    @Test
+    fun `the level list shows DUCK-USB with its duck`() {
+        compose.setContent {
+            CyOpsTheme {
+                MainMenuScreen(
+                    hasSavedRun = false,
+                    stats = PlayerStats(),
+                    budget = 0L,
+                    firmwareLevel = 0,
+                    adsRemoved = false,
+                    availableModes = listOf(GameMode.STANDARD),
+                    selectedMode = GameMode.STANDARD,
+                    availableMaps = Maps.all,
+                    selectedMap = Maps.PERIMETER,
+                    backgroundAnimation = false,
+                    onSelectMode = {},
+                    onSelectMap = {},
+                    onPlay = {},
+                    onContinue = {}, onAgents = {}, onFirmware = {}, onCodex = {}, onStore = {}, onLoadout = {}, onPlayAccount = {}, onLeaderboard = {},
+                    onStatistics = {}, onSettings = {}, onAbout = {}, onExit = {}
+                )
+            }
+        }
+        compose.onNodeWithText("\uD83E\uDD86 DUCK-USB").assertExists()
+    }
 }

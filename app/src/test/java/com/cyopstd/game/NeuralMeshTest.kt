@@ -34,7 +34,7 @@ class NeuralMeshTest {
 
     @Test
     fun `is the third level, two routes, the backprop layout`() {
-        assertEquals(listOf(Maps.PERIMETER, Maps.HUGGING_FACE, Maps.NEURAL_MESH), Maps.all)
+        assertEquals(listOf(Maps.PERIMETER, Maps.HUGGING_FACE, Maps.NEURAL_MESH), Maps.all.take(3))
         assertEquals(2, map.laneCount)
         for (length in map.laneLength) assertEquals(3662f, length, 1f)
         assertTrue("only ${map.nodes.size} build spots", map.nodes.size >= 60)
@@ -79,7 +79,8 @@ class NeuralMeshTest {
         assertEquals(setOf(BossVariant.BREACH, BossVariant.GOOD_GAME, BossVariant.ZOMBIE), perimeter)
         assertTrue(gauntlet.containsAll(perimeter))
         assertFalse(BossVariant.MODEL_COLLAPSE in gauntlet || BossVariant.LICENSE in gauntlet)
-        assertEquals("NEURAL-MESH fields every boss in the game", BossVariant.entries.toSet(), mesh)
+        assertEquals("NEURAL-MESH fields every boss up to its own",
+            BossVariant.entries.filter { it.mapId != Maps.DUCK_USB.id && it.mapId != Maps.DDOS.id }.toSet(), mesh)
     }
 
     // ------------------------------------------------------------- bosses
