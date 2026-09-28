@@ -1057,7 +1057,8 @@ class GameViewModel @JvmOverloads constructor(
                 bossesDefeated = run.bossesDefeated,
                 serverDamageTaken = run.serverDamageTaken,
                 agentsDeployed = run.agentsDeployed,
-                agentUpgrades = run.agentUpgrades
+                agentUpgrades = run.agentUpgrades,
+                budgetEarned = run.budgetEarned
             )
             engine.autoStartWaves = settings.autoStartWaves
             engine.autoStartBossWaves = settings.autoStartBossWaves
@@ -1146,7 +1147,8 @@ class GameViewModel @JvmOverloads constructor(
             enemiesOnField = engine.activeEnemyCount(),
             nextWaveIsBoss = engine.nextWaveIsBoss(),
             bossOnField = engine.bossOnField(),
-            autoStartRemaining = kotlin.math.ceil(engine.autoStartRemaining).toInt()
+            autoStartRemaining = kotlin.math.ceil(engine.autoStartRemaining).toInt(),
+            budgetEarned = engine.runBudgetEarned
         )
         if (snapshot != hud) hud = snapshot
         // A rare event announces itself the moment its wave starts.

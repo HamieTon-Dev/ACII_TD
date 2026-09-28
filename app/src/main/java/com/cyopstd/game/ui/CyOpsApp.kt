@@ -341,11 +341,15 @@ fun CyOpsApp(
         }
 
         // Drawn last, over whatever screen is showing, so there is no screen
-        // the build identifier can be missing from.
-        IdentityStrip(
-            playerTag = viewModel.playerTag,
-            modifier = Modifier.align(Alignment.BottomCenter)
-        )
+        // the build identifier can be missing from -- except a match, where it
+        // sat on top of the control bar's buttons. There the control bar
+        // carries it, under the status line.
+        if (screen != Screen.Game) {
+            IdentityStrip(
+                playerTag = viewModel.playerTag,
+                modifier = Modifier.align(Alignment.BottomCenter)
+            )
+        }
     }
     }
 }

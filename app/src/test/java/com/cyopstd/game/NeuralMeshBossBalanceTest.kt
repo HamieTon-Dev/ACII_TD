@@ -69,8 +69,9 @@ class NeuralMeshBossBalanceTest {
 
     @Test
     fun `the new bosses are harder against the board they punish and fair against the right one`() {
-        // 18 since 1.50.0, when NEURAL-MESH's threat health went from ×2.2 to ×2.5.
-        val level = 18
+        // 20 since 1.50.0, when NEURAL-MESH's threat health went from ×2.2 to
+        // ×2.5 and bosses gained 0.55 health a cycle instead of 0.45.
+        val level = 20
         val results = linkedMapOf(
             "BREACH vs 12 ANALYST" to fight(BossVariant.BREACH, blob, level),
             "MODEL COLLAPSE vs 12 ANALYST" to fight(BossVariant.MODEL_COLLAPSE, blob, level),

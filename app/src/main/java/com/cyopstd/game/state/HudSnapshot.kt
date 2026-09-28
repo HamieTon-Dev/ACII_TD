@@ -21,7 +21,9 @@ data class HudSnapshot(
     val enemiesOnField: Int = 0,
     val nextWaveIsBoss: Boolean = false,
     val bossOnField: Boolean = false,
-    val autoStartRemaining: Int = 0
+    val autoStartRemaining: Int = 0,
+    /** € BUDGET banked so far this run. */
+    val budgetEarned: Int = 0
 ) {
     val serverFraction: Float
         get() = if (serverMaxHp <= 0) 0f else serverHp.toFloat() / serverMaxHp

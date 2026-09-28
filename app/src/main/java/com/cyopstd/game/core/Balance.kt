@@ -109,7 +109,7 @@ object Balance {
      * made wave 5 read as impossible. The steep per-cycle term is what keeps
      * wave 30, 50 and 100 bosses genuinely dangerous.
      */
-    const val BOSS_CYCLE_SCALING = 0.45
+    const val BOSS_CYCLE_SCALING = 0.55
 
     /**
      * The first boss is deliberately under-scaled ([BOSS_FIRST_CYCLE_SOFTENING]
@@ -168,7 +168,7 @@ object Balance {
      * track, CORE FIRMWARE and AGENT FIRMWARE are what carry a run deeper.
      */
     const val PRESSURE_START_WAVE = 40
-    const val PRESSURE_GROWTH = 1.025
+    const val PRESSURE_GROWTH = 1.035
 
     fun pressureMultiplier(wave: Int): Double =
         if (wave <= PRESSURE_START_WAVE) 1.0 else PRESSURE_GROWTH.pow(wave - PRESSURE_START_WAVE)
@@ -381,13 +381,32 @@ object Balance {
 
     const val BUDGET_BASE = 5 * BUDGET_SCALE
 
+    /**
+     * ☆1 (owner, 2026-09-28): past wave [BUDGET_EXPONENTIAL_FROM], every boss
+     * wave pays € (not only every tenth wave), and the award grows by
+     * [BUDGET_EXPONENTIAL_GROWTH] per boss wave: wave 105 pays 5,600 €, 150
+     * about 15,500 €, 200 about 48,000 €, 300 about 465,000 €.
+     */
+    const val BUDGET_EXPONENTIAL_FROM = 100
+    const val BUDGET_EXPONENTIAL_GROWTH = 1.12
+
+    /** Keeps an absurdly deep run from overflowing the wallet arithmetic. */
+    const val BUDGET_AWARD_CAP = 1_000_000_000
+
     fun isBudgetMilestone(wave: Int): Boolean =
-        wave > 0 && wave % BUDGET_MILESTONE_INTERVAL == 0
+        wave > 0 && (wave % BUDGET_MILESTONE_INTERVAL == 0 ||
+            (wave > BUDGET_EXPONENTIAL_FROM && isBossWave(wave)))
 
     fun budgetAward(wave: Int): Int {
         if (!isBudgetMilestone(wave)) return 0
-        val milestone = wave / BUDGET_MILESTONE_INTERVAL
-        return BUDGET_BASE * milestone * milestone
+        if (wave <= BUDGET_EXPONENTIAL_FROM) {
+            val milestone = wave / BUDGET_MILESTONE_INTERVAL
+            return BUDGET_BASE * milestone * milestone
+        }
+        val atStart = budgetAward(BUDGET_EXPONENTIAL_FROM).toDouble()
+        val steps = (wave - BUDGET_EXPONENTIAL_FROM) / BOSS_WAVE_INTERVAL
+        return (atStart * BUDGET_EXPONENTIAL_GROWTH.pow(steps))
+            .coerceAtMost(BUDGET_AWARD_CAP.toDouble()).toInt()
     }
 
     /**

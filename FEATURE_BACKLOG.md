@@ -286,8 +286,9 @@ before wave 180.
 **Asked (2026-09-28, with a recording of wave 61 on DDoS):** mostly level-1
 agents were killing everything the moment it spawned; *"round 50+ is no
 challenge at all."* Q1–Q4 only bite past 50 and 100, so on top of them every
-threat's health now compounds ×1.025 a wave from wave 40 (×1.64 at wave 60,
-×4.4 at 100, ×12 at 140). One constant, `Balance.PRESSURE_GROWTH`, to tune.
+threat's health now compounds ×1.035 a wave from wave 40 (×2.0 at wave 60,
+×7.9 at 100, ×31 at 140) — the owner picked the stronger of the two measured
+settings. One constant, `Balance.PRESSURE_GROWTH`, to tune.
 
 ### Q9 ✅ ANONYMOUS HACK — a random event
 
@@ -309,6 +310,48 @@ damages them), so the third track is fire rate — ❓ say if you want something
 else there. Cost per level = (2 + level/2) × 1.0004^level × 10 €: 20 € for the
 first, about 28 thousand € for the first 100, 3.3 million for the first
 1,000, and 2.7 million € for the 10,000th level alone.
+
+### ☆1 ✅ € after every boss wave past 100; € this run on screen; identity under the status line
+
+**Asked (2026-09-28):** *"amount of € earned after every boss wave needs to
+scale exponentially after wave 100. Show amount of € earned this run at top.
+Update version text and 'Agent unregistered/ agent registered name' needs to
+be below the 'wave XX cleared - XX threats remaining' … update number and
+agent number was on top of buttons. This is bad."*
+
+**Built (1.50.0):** up to wave 100 € is banked every tenth wave as before;
+after it, every boss wave pays, ×1.12 more each time (wave 105: 5,600 €,
+150: ≈15,500 €, 200: ≈48,000 €, 300: ≈465,000 €, capped far out). A
+"€ THIS RUN" cell in the top strip shows what this run has banked, and it
+survives Continue. In a match the build id and the player's tag are now a
+small line under the status line in the control bar (version first, so a
+narrow phone shortens the tag, not the version); the global strip that sat
+over the buttons is not drawn in a match. `MatchChromeTest` renders a tiny
+and a normal phone and fails if that line touches a button.
+
+### ☆2 ✅ Smaller top strip, nothing overlapping
+
+**Asked (2026-09-28):** *"let's make all the top text smaller and make sure
+none of it overlaps or bug out."*
+
+**Built (1.50.0):** labels 8.5 sp, values 13 sp, a slimmer bar and dividers;
+every value is one line with an ellipsis rather than a wrap; the integrity
+cell is now label over "100/100" and its bar, which fits whole even on a
+568×320 phone. `MatchChromeTest` fails if any two texts in the strip overlap.
+
+### Q10 ✅ Harder bosses and the strong pressure
+
+**Asked (2026-09-28):** *"even on the final level I was able to kill the
+bosses on wave 50 in about 5 seconds … I prefer the strong pressure
+(1.035/wave) … level 5 should be the hardest level."* (That was played on
+1.49.0, before any of section Q.) PRESSURE is back to ×1.035 a wave, and boss
+health per boss cycle rises from 0.45 to 0.55 (+9% at wave 10, +19% at wave
+50, growing). Measured with a board like the owner's wave-61 DDoS board
+(38 agents, nearly all level 1): the wave-50 bosses there were on the field
+for 22–28 s on 1.49.0 and took no integrity; now the same board falls at
+wave 60 on DDoS unless it upgrades. DDoS stays the hardest level
+(`MapDifficultyTest`). The random event never replaces a boss wave
+(`AnonymousHackTest`).
 
 ## E. A second map
 

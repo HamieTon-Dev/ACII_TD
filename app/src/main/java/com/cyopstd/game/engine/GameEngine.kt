@@ -340,7 +340,9 @@ class GameEngine(
         bossesDefeated: Int,
         serverDamageTaken: Int,
         agentsDeployed: Int,
-        agentUpgrades: Int
+        agentUpgrades: Int,
+        /** € banked earlier in this run, so the HUD's run total survives a resume. */
+        budgetEarned: Int = 0
     ) {
         startNewRun()
         currentWave = wave.coerceAtLeast(0)
@@ -352,6 +354,7 @@ class GameEngine(
         runServerDamageTaken = serverDamageTaken
         runAgentsDeployed = agentsDeployed
         runAgentUpgrades = agentUpgrades
+        runBudgetEarned = budgetEarned.coerceAtLeast(0)
 
         for (placement in placements) {
             val type = AgentType.fromNameSafe(placement.agentTypeName) ?: continue
