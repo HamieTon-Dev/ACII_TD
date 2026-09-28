@@ -3,8 +3,6 @@ package com.cyopstd.game.ui.game
 import androidx.compose.foundation.background
 import androidx.compose.ui.platform.testTag
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -172,12 +170,17 @@ fun BossBriefingPanel(
         Column(Modifier.verticalScroll(rememberScrollState())) {
             for ((variant, count) in briefing.variants) {
                 Spacer(Modifier.height(6.dp))
-                Text(
-                    text = "${variant.glyph} ${variant.displayName}" +
-                        if (count > 1) "  \u00D7$count" else "",
-                    style = MaterialTheme.typography.titleMedium,
-                    color = Palette.TextPrimary
-                )
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    BossIcon(variant)
+                    Spacer(Modifier.width(10.dp))
+                    Text(
+                        text = variant.displayName + if (count > 1) "  \u00D7$count" else "",
+                        style = MaterialTheme.typography.titleMedium,
+                        color = bossUiColor(variant),
+                        modifier = Modifier.weight(1f)
+                    )
+                }
+                Spacer(Modifier.height(2.dp))
                 Text(
                     text = variant.signature,
                     style = MaterialTheme.typography.bodySmall,
@@ -231,69 +234,29 @@ fun bossUiColor(variant: BossVariant): androidx.compose.ui.graphics.Color = when
 }
 
 /**
- * The bosses coming in the next wave, in the bottom-left corner of the board
- * during the break before it (owner, 2026-09-28). Each boss is a small tile
- * in its board colour with its name under it; the "i", or any tile, opens
- * the full briefing on them.
+ * A boss's icon: its glyph in a small box in its board colour. Shown beside
+ * each boss in the briefing (owner, 2026-09-28: the icon goes "in the menu
+ * that pulls up when you tap boss", not in a box of its own on the board).
  */
 @Composable
-fun BossWaveStrip(
-    briefing: BossBriefing,
-    open: Boolean,
-    onToggle: () -> Unit,
-    modifier: Modifier = Modifier
-) {
-    Column(
+fun BossIcon(variant: BossVariant, modifier: Modifier = Modifier) {
+    val color = bossUiColor(variant)
+    Box(
+        contentAlignment = Alignment.Center,
         modifier = modifier
-            .testTag("boss-wave-strip")
-            .background(Palette.Surface.copy(alpha = LocalPanelOpacity.current), RoundedCornerShape(6.dp))
-            .border(1.dp, Palette.Red.copy(alpha = 0.55f), RoundedCornerShape(6.dp))
-            .padding(horizontal = 8.dp, vertical = 6.dp)
+            .testTag("boss-icon-${variant.name}")
+            .heightIn(min = 32.dp)
+            .widthIn(min = 54.dp)
+            .background(color.copy(alpha = 0.16f), RoundedCornerShape(7.dp))
+            .border(1.dp, color.copy(alpha = 0.7f), RoundedCornerShape(7.dp))
+            .padding(horizontal = 6.dp)
     ) {
-        Row(verticalAlignment = Alignment.CenterVertically) {
-            Text(
-                text = "BOSS WAVE ${briefing.wave}" +
-                    if (briefing.bossCount > 1) " \u00B7 ${briefing.bossCount} BOSSES" else "",
-                style = MaterialTheme.typography.labelMedium,
-                color = Palette.Red
-            )
-            Spacer(Modifier.width(10.dp))
-            InfoButton(open = open, onClick = onToggle, tag = "boss-wave-info", accent = Palette.Red)
-        }
-        Spacer(Modifier.height(4.dp))
-        Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
-            for ((variant, count) in briefing.variants) {
-                val color = bossUiColor(variant)
-                Column(
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                    modifier = Modifier.clickable(onClick = onToggle)
-                ) {
-                    Box(
-                        contentAlignment = Alignment.Center,
-                        modifier = Modifier
-                            .heightIn(min = 32.dp)
-                            .widthIn(min = 54.dp)
-                            .background(color.copy(alpha = 0.16f), RoundedCornerShape(7.dp))
-                            .border(1.dp, color.copy(alpha = 0.7f), RoundedCornerShape(7.dp))
-                            .padding(horizontal = 6.dp)
-                    ) {
-                        Text(
-                            text = variant.glyph,
-                            style = MaterialTheme.typography.titleMedium,
-                            color = color,
-                            maxLines = 1
-                        )
-                    }
-                    Spacer(Modifier.height(2.dp))
-                    Text(
-                        text = variant.displayName + if (count > 1) " \u00D7$count" else "",
-                        style = MaterialTheme.typography.labelSmall,
-                        color = Palette.Crypto,
-                        maxLines = 1
-                    )
-                }
-            }
-        }
+        Text(
+            text = variant.glyph,
+            style = MaterialTheme.typography.titleMedium,
+            color = color,
+            maxLines = 1
+        )
     }
 }
 

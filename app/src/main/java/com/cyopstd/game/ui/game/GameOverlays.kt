@@ -32,6 +32,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.foundation.Canvas
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.geometry.Offset
@@ -543,6 +544,12 @@ fun TutorialPointer(
 fun TransientMessage(message: String, modifier: Modifier = Modifier) {
     Box(
         modifier = modifier
+            // 70% opaque, box and text together (owner, 2026-09-28): it pops
+            // up over the middle of the board, often right where an agent is
+            // being placed, and that spot has to show through. It takes no
+            // touches, so a tap on it still reaches the node underneath.
+            .alpha(TRANSIENT_OPACITY)
+            .testTag("transient-message")
             .background(Palette.Surface.copy(alpha = 0.95f), RoundedCornerShape(4.dp))
             .border(1.dp, Palette.Red.copy(alpha = 0.8f), RoundedCornerShape(4.dp))
             .padding(horizontal = 18.dp, vertical = 10.dp)
@@ -554,6 +561,9 @@ fun TransientMessage(message: String, modifier: Modifier = Modifier) {
         )
     }
 }
+
+/** How opaque the transient message is, as a whole. */
+const val TRANSIENT_OPACITY = 0.7f
 
 /**
  * Between-waves prompt.
