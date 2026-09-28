@@ -164,12 +164,12 @@ object Maps {
     // Per-level difficulty (see GameMap.threatHealthScale), tuned with MapDifficultyTest.
     const val HF_H = 2.25f
     const val HF_R = 1.15f
-    const val NM_H = 2.2f
+    const val NM_H = 2.5f
     const val NM_R = 1.2f
     const val DU_H = 1.1f
     const val DU_R = 1.25f
 
-    const val DD_H = 2.4f
+    const val DD_H = 2.6f
     const val DD_R = 1.3f
     private const val DD_EDGE = 60f
     private const val DD_INNER = 300f

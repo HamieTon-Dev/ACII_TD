@@ -18,15 +18,26 @@ data class SpawnOrder(
     val elite: Boolean,
     val boss: Boolean,
     val bossModifiers: List<BossModifier> = emptyList(),
-    val bossVariant: BossVariant = BossVariant.BREACH
+    val bossVariant: BossVariant = BossVariant.BREACH,
+    /** Part of an ANONYMOUS HACK: double speed, double health. */
+    val anonymous: Boolean = false
 )
+
+/** A rare wave that replaces an ordinary one. */
+enum class WaveEvent(val title: String, val announcement: String) {
+    ANONYMOUS_HACK(
+        "ANONYMOUS HACK",
+        "ANONYMOUS HACK \u2014 ${Balance.ANON_HACK_COUNT} BOTS INCOMING AT DOUBLE SPEED"
+    )
+}
 
 data class WavePlan(
     val wave: Int,
     val isBossWave: Boolean,
     val orders: List<SpawnOrder>,
     val bossModifiers: List<BossModifier>,
-    val bossVariant: BossVariant = BossVariant.BREACH
+    val bossVariant: BossVariant = BossVariant.BREACH,
+    val event: WaveEvent? = null
 ) {
     val enemyCount: Int get() = orders.size
 
@@ -71,7 +82,33 @@ class WaveGenerator(private val random: Random = Random.Default) {
 
     fun generate(wave: Int): WavePlan {
         if (Balance.isBossWave(wave)) return generateBossWave(wave)
+        if (wave >= Balance.ANON_HACK_START_WAVE && random.nextFloat() < Balance.ANON_HACK_CHANCE) {
+            return generateAnonymousHack(wave)
+        }
         return generateStandardWave(wave)
+    }
+
+    /**
+     * ANONYMOUS HACK: a thousand BOTs, double speed and health, in a stream
+     * down every route. The on-screen cap is what keeps it on a phone's
+     * budget; the rest wait at the gate.
+     */
+    fun generateAnonymousHack(wave: Int): WavePlan {
+        val orders = ArrayList<SpawnOrder>(Balance.ANON_HACK_COUNT)
+        for (i in 0 until Balance.ANON_HACK_COUNT) {
+            orders += SpawnOrder(
+                time = 0.8f + i * Balance.ANON_HACK_INTERVAL,
+                type = EnemyType.BOT,
+                lane = random.nextInt(laneCount),
+                elite = false,
+                boss = false,
+                anonymous = true
+            )
+        }
+        return WavePlan(
+            wave, isBossWave = false, orders = orders, bossModifiers = emptyList(),
+            event = WaveEvent.ANONYMOUS_HACK
+        )
     }
 
     // ------------------------------------------------------------- standard
@@ -112,7 +149,30 @@ class WaveGenerator(private val random: Random = Random.Default) {
             time += if (burst > 1) interval * 1.35f else interval
         }
 
+        addEscalationElites(wave, orders, time)
+        orders.sortBy { it.time }
         return WavePlan(wave, isBossWave = false, orders = orders, bossModifiers = emptyList())
+    }
+
+    /**
+     * ESCALATION: the extra elites a deep wave carries, spread evenly over
+     * [span] seconds of the wave so they arrive among its traffic rather than
+     * as one block at the end.
+     */
+    private fun addEscalationElites(wave: Int, orders: MutableList<SpawnOrder>, span: Float) {
+        val extra = Balance.escalationExtraElites(wave)
+        if (extra <= 0) return
+        val pool = archetypePool(wave).filter { !it.first.isSwarm() }.ifEmpty { archetypePool(wave) }
+        val length = span.coerceAtLeast(2f)
+        for (i in 0 until extra) {
+            orders += SpawnOrder(
+                time = 0.9f + length * (i + 0.5f) / extra,
+                type = pickWeighted(pool),
+                lane = random.nextInt(laneCount),
+                elite = true,
+                boss = false
+            )
+        }
     }
 
     private fun EnemyType.isSwarm(): Boolean = this == EnemyType.BOT || this == EnemyType.DDOS
@@ -138,7 +198,7 @@ class WaveGenerator(private val random: Random = Random.Default) {
             cycle < 4 -> 1
             cycle < 9 -> 2
             else -> 3
-        }
+        } + Balance.escalationExtraBosses(wave)
 
         // Escort wave first: the boss walks in behind its own traffic.
         val escortCount = (4 + cycle * 2).coerceAtMost(22)
@@ -179,6 +239,7 @@ class WaveGenerator(private val random: Random = Random.Default) {
             )
         }
 
+        addEscalationElites(wave, orders, time)
         orders.sortBy { it.time }
         return WavePlan(
             wave,

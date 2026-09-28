@@ -37,6 +37,13 @@ class DuckUsbBossBalanceTest {
         engine.enemySystem().spawn(
             SpawnOrder(0f, EnemyType.BOSS, 0, elite = false, boss = true, bossVariant = variant), wave
         )
+        // These fights compare each boss's mechanism against the boards it was
+        // tuned on. PRESSURE (the late-game health climb) is taken back out so
+        // they keep measuring the mechanism rather than the difficulty curve.
+        engine.enemies.items.first { it.active }.let { boss ->
+            boss.maxHealth /= com.cyopstd.game.core.Balance.pressureMultiplier(wave).toFloat()
+            boss.health = boss.maxHealth
+        }
         val startHp = engine.serverHp
         var t = 0f
         while (t < 240f) {

@@ -1,6 +1,7 @@
 package com.cyopstd.game
 
 import com.cyopstd.game.core.Balance
+import com.cyopstd.game.engine.GameEngine
 import com.cyopstd.game.core.Maps
 import com.cyopstd.game.core.WorldGeometry
 import com.cyopstd.game.engine.WaveGenerator
@@ -125,15 +126,24 @@ class WaveGeneratorTest {
     }
 
     @Test
+    fun `the on-screen caps fit in the enemy pool`() {
+        assertTrue(Balance.MAX_ON_SCREEN_THREATS + Balance.MAX_ON_SCREEN_BOSSES + 20 <= GameEngine.MAX_ENEMIES)
+    }
+
+    @Test
     fun `wave size never exceeds what the enemy pool can hold`() {
         val gen = generator()
         for (wave in 1..200) {
             val plan = gen.generate(wave)
-            // The plan may schedule more than the pool holds over time, but no
-            // single wave should be absurd.
+            // ANONYMOUS HACK is a thousand by design; AnonymousHackTest covers it.
+            if (plan.event != null) continue
+            // The plan may schedule more than the pool holds over time: the
+            // on-screen caps hold the rest at the gate. What must fit is the
+            // most that can be on the board at once, with room for escorts.
             assertTrue(
                 "wave $wave scheduled ${plan.orders.size}",
-                plan.orders.size <= Balance.MAX_WAVE_ENEMIES + 30
+                plan.orders.size <= Balance.MAX_WAVE_ENEMIES + 30 +
+                    Balance.escalationExtraElites(wave) + Balance.escalationExtraBosses(wave)
             )
         }
     }

@@ -180,7 +180,10 @@ fun CyOpsApp(
                     onBuy = { levels -> viewModel.buyFirmware(levels) },
                     onBack = { viewModel.playClick(); screen = Screen.MainMenu },
                     showGuide = !viewModel.firmwareGuideSeen,
-                    onGuideDone = viewModel::markFirmwareGuideSeen
+                    onGuideDone = viewModel::markFirmwareGuideSeen,
+                    agentFirmware = viewModel.agentFirmware,
+                    unlockedAgents = viewModel.unlockedAgents,
+                    onBuyAgent = viewModel::buyAgentFirmware
                 )
             }
 

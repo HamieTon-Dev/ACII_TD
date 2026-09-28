@@ -129,6 +129,102 @@ object Balance {
         return healthMultiplier(wave) * cycleTerm
     }
 
+    // ------------------------------------------------- late-game escalation
+
+    /**
+     * ESCALATION (owner, 2026-09-28: past wave 100 every level was "pretty
+     * easy to beat with a decent strategy"). From wave [ESCALATION_START_WAVE]
+     * on, every boss wave cleared adds [ESCALATION_ELITES_PER_STEP] elites to
+     * every later wave and one more boss to every later boss wave.
+     */
+    const val ESCALATION_START_WAVE = 50
+    const val ESCALATION_ELITES_PER_STEP = 2
+    const val ESCALATION_BOSSES_PER_STEP = 1
+
+    /**
+     * Boss waves cleared from [start] on, before [wave]: 0 up to and including
+     * wave [start], 1 for the waves after its boss wave up to the next one, and
+     * so on. Wave 50 counts as cleared from wave 51.
+     */
+    fun bossWavesClearedSince(start: Int, wave: Int): Int =
+        if (wave <= start) 0 else ((wave - 1) / BOSS_WAVE_INTERVAL - (start - 1) / BOSS_WAVE_INTERVAL)
+            .coerceAtLeast(0)
+
+    /** How many escalation steps apply on [wave]. */
+    fun escalationSteps(wave: Int): Int = bossWavesClearedSince(ESCALATION_START_WAVE, wave)
+
+    /** Extra elites on [wave], on top of what its composition rolls. */
+    fun escalationExtraElites(wave: Int): Int = escalationSteps(wave) * ESCALATION_ELITES_PER_STEP
+
+    /** Extra bosses on a boss [wave]. */
+    fun escalationExtraBosses(wave: Int): Int = escalationSteps(wave) * ESCALATION_BOSSES_PER_STEP
+
+    /**
+     * PRESSURE (owner, 2026-09-28, with a recording of wave 61 on DDoS where
+     * mostly level-1 agents killed everything the moment it spawned): from
+     * wave [PRESSURE_START_WAVE] on, every threat's health compounds by
+     * [PRESSURE_GROWTH] a wave on top of the ordinary curve, so an
+     * un-upgraded board stops keeping up in the 50s and 60s and the upgrade
+     * track, CORE FIRMWARE and AGENT FIRMWARE are what carry a run deeper.
+     */
+    const val PRESSURE_START_WAVE = 40
+    const val PRESSURE_GROWTH = 1.025
+
+    fun pressureMultiplier(wave: Int): Double =
+        if (wave <= PRESSURE_START_WAVE) 1.0 else PRESSURE_GROWTH.pow(wave - PRESSURE_START_WAVE)
+
+    /**
+     * HARDENING: from wave [HARDENING_START_WAVE] on, elites and bosses gain
+     * health after every boss wave, by a step that itself grows each time
+     * (+10%, then +12%, +14% ...), so it compounds on top of the ordinary
+     * wave curve rather than replacing it.
+     */
+    const val HARDENING_START_WAVE = 100
+    const val HARDENING_FIRST_STEP = 0.10
+    const val HARDENING_STEP_GROWTH = 0.02
+
+    fun hardeningSteps(wave: Int): Int = bossWavesClearedSince(HARDENING_START_WAVE, wave)
+
+    /**
+     * Health multiplier for elites and bosses on [wave]. With n steps the added
+     * health is the sum of n steps, each [HARDENING_STEP_GROWTH] bigger than the
+     * last: 1 at wave 100, 1.10 after one boss wave, 1.22 after two ...
+     */
+    fun hardeningMultiplier(wave: Int): Double {
+        val n = hardeningSteps(wave)
+        return 1.0 + n * HARDENING_FIRST_STEP + HARDENING_STEP_GROWTH * n * (n - 1) / 2.0
+    }
+
+    /**
+     * On-screen caps (owner, 2026-09-28). A spawn whose kind is at its cap waits
+     * at the gate until one leaves the board, so a deep wave cannot flood the
+     * phone. Bosses are counted on their own; the ordinary cap counts every
+     * non-boss threat, elites included, and elites have a cap of their own
+     * inside it.
+     */
+    const val MAX_ON_SCREEN_THREATS = 30
+    const val MAX_ON_SCREEN_ELITES = 5
+    const val MAX_ON_SCREEN_BOSSES = 4
+
+    /** Minimum seconds between two releases of held spawns, so they do not stack. */
+    const val HELD_SPAWN_GAP = 0.35f
+
+    /**
+     * ANONYMOUS HACK (owner, 2026-09-28): a rare random event in place of an
+     * ordinary wave: a thousand BOTs at double speed and double health. From
+     * wave [ANON_HACK_START_WAVE], each non-boss wave has an
+     * [ANON_HACK_CHANCE] chance of being one (about one wave in 25).
+     */
+    const val ANON_HACK_START_WAVE = 30
+    const val ANON_HACK_CHANCE = 0.04f
+    const val ANON_HACK_COUNT = 1_000
+    const val ANON_HACK_SPEED = 2f
+    const val ANON_HACK_HEALTH = 2f
+    /** Seconds between two BOTs in the plan: the thousand arrive over two minutes. */
+    const val ANON_HACK_INTERVAL = 0.12f
+    /** Held BOTs walk out this fast when room frees, instead of [HELD_SPAWN_GAP]. */
+    const val ANON_HACK_RELEASE_GAP = 0.06f
+
     /** Seconds the "INTRUSION ALERT" banner is shown before a boss wave starts. */
     const val BOSS_WARNING_SECONDS = 2.6f
 
@@ -349,6 +445,76 @@ object Balance {
             level++
         }
         return levels
+    }
+
+    // --------------------------------------------------------- agent firmware
+
+    /**
+     * AGENT FIRMWARE: permanent per-agent upgrades bought with € (owner,
+     * 2026-09-28). Every agent but SERVER SYSTEMS ENGINEER has three tracks —
+     * damage, fire rate, range — each 0 to [MAX_AGENT_FIRMWARE_LEVEL].
+     *
+     * Each level costs a linear term times a slow exponential, so the first
+     * levels are cheap and the top is far out of reach:
+     *
+     *   level 1: 20 €   ·  first 100 levels ≈ 28 thousand €
+     *   first 1,000 ≈ 3.3 million €  ·  the 5,000th alone ≈ 185 thousand €
+     *   the 10,000th alone ≈ 2.7 million €  ·  all 10,000 ≈ 5 billion €
+     *
+     * For scale, a run to wave 100 pays about 19 thousand €, one to wave 200
+     * about 144 thousand. `AgentFirmwareTest` pins these.
+     */
+    const val MAX_AGENT_FIRMWARE_LEVEL = 10_000
+    const val AGENT_FIRMWARE_BASE = 2.0
+    const val AGENT_FIRMWARE_LINEAR = 0.5
+    const val AGENT_FIRMWARE_GROWTH = 1.0004
+
+    /** € to go from agent-firmware [level] to [level] + 1, on any one stat. */
+    fun agentFirmwareCost(level: Int): Long {
+        val l = level.coerceIn(0, MAX_AGENT_FIRMWARE_LEVEL)
+        return (kotlin.math.ceil((AGENT_FIRMWARE_BASE + l * AGENT_FIRMWARE_LINEAR) *
+            AGENT_FIRMWARE_GROWTH.pow(l)) * BUDGET_SCALE).toLong()
+    }
+
+    /** Total € to climb [steps] levels from [fromLevel]. */
+    fun agentFirmwareCostFor(fromLevel: Int, steps: Int): Long {
+        var total = 0L
+        for (l in fromLevel until (fromLevel + steps).coerceAtMost(MAX_AGENT_FIRMWARE_LEVEL)) {
+            total += agentFirmwareCost(l)
+        }
+        return total
+    }
+
+    /** How many levels [budget] buys from [fromLevel]. */
+    fun agentFirmwareLevelsAffordable(fromLevel: Int, budget: Long): Int {
+        var spent = 0L
+        var level = fromLevel
+        while (level < MAX_AGENT_FIRMWARE_LEVEL) {
+            val cost = agentFirmwareCost(level)
+            if (spent + cost > budget) break
+            spent += cost
+            level++
+        }
+        return level - fromLevel
+    }
+
+    /**
+     * What each level is worth. Damage matches CORE FIRMWARE per level (for one
+     * agent type instead of all of them); fire rate and range move much less,
+     * because both compound with everything else and a range that covers the
+     * whole board is not an upgrade, it is the end of positioning.
+     */
+    const val AGENT_FIRMWARE_DAMAGE_PER_LEVEL = 0.005f
+    const val AGENT_FIRMWARE_RATE_PER_LEVEL = 0.0005f
+    const val AGENT_FIRMWARE_RANGE_PER_LEVEL = 0.0002f
+
+    fun agentFirmwareMultiplier(stat: com.cyopstd.game.model.FirmwareStat, level: Int): Float {
+        val l = level.coerceIn(0, MAX_AGENT_FIRMWARE_LEVEL)
+        return 1f + l * when (stat) {
+            com.cyopstd.game.model.FirmwareStat.DAMAGE -> AGENT_FIRMWARE_DAMAGE_PER_LEVEL
+            com.cyopstd.game.model.FirmwareStat.RATE -> AGENT_FIRMWARE_RATE_PER_LEVEL
+            com.cyopstd.game.model.FirmwareStat.RANGE -> AGENT_FIRMWARE_RANGE_PER_LEVEL
+        }
     }
 
     // ------------------------------------------------------------- combat fx

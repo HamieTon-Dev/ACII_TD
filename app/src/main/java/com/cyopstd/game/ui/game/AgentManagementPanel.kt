@@ -60,9 +60,15 @@ fun AgentManagementPanel(
     modifier: Modifier = Modifier
 ) {
     val type = agent.type
-    val current = type.statsAtLevel(agent.level)
+    // Shown with this agent's AGENT FIRMWARE applied: what it actually does.
+    fun withFirmware(stats: com.cyopstd.game.model.AgentStats) = stats.copy(
+        damage = stats.damage * agent.firmwareDamage,
+        fireRate = stats.fireRate * agent.firmwareRate,
+        range = stats.range * agent.firmwareRange
+    )
+    val current = withFirmware(type.statsAtLevel(agent.level))
     val maxed = agent.level >= Balance.MAX_AGENT_LEVEL
-    val next = if (maxed) null else type.statsAtLevel(agent.level + 1)
+    val next = if (maxed) null else withFirmware(type.statsAtLevel(agent.level + 1))
     val upgradeCost = if (maxed) 0 else type.upgradeCost(agent.level)
     val ransomed = agent.ransomedFor > 0f
     val canAfford = !maxed && !ransomed && crypto >= upgradeCost

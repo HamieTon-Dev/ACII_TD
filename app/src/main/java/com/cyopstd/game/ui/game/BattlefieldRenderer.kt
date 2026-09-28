@@ -1156,7 +1156,7 @@ class BattlefieldRenderer {
                 pending == null -> true
                 node.serverSlot -> placingEngineer
                 placingEngineer -> false
-                else -> node.laneDistance <= pending.baseRange
+                else -> node.laneDistance <= pending.baseRange * engine.firmwareFor(pending).rangeMultiplier
             }
             // Spots that can never take the agent in hand, as opposed to
             // spots it would merely be wasted on, get no mark at all.
@@ -1279,7 +1279,8 @@ class BattlefieldRenderer {
             if (previewing.healsServer) {
                 drawRepairLink(canvas)
             } else {
-                drawScanRing(canvas, previewAt.x, previewAt.y, previewing.baseRange, colGreen)
+                drawScanRing(canvas, previewAt.x, previewAt.y,
+                    previewing.baseRange * engine.firmwareFor(previewing).rangeMultiplier, colGreen)
             }
             textPaint.textSize = 24f
             textPaint.color = color
@@ -1324,7 +1325,8 @@ class BattlefieldRenderer {
             }
         }
         val node = preview ?: return
-        drawScanRing(canvas, node.x, node.y, pending.baseRange, colGreen, preview = true)
+        drawScanRing(canvas, node.x, node.y,
+            pending.baseRange * engine.firmwareFor(pending).rangeMultiplier, colGreen, preview = true)
     }
 
     /**
