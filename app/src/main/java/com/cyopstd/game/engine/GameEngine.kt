@@ -158,6 +158,17 @@ class GameEngine(
     private var waveTimer: Float = 0f
     private var nextOrderIndex: Int = 0
 
+    /** The rare event this wave is, if it is one (ANONYMOUS HACK). */
+    var activeEvent: WaveEvent? = null
+        private set
+
+    /**
+     * Spawns that were due but found their kind at its on-screen cap. They
+     * wait here, in order, and walk out as room frees up.
+     */
+    private val heldSpawns = ArrayDeque<SpawnOrder>()
+    private var heldReleaseCooldown = 0f
+
     /** How many packets of this wave have not yet been spawned or killed. */
     var enemiesRemaining: Int = 0
         private set
@@ -227,6 +238,24 @@ class GameEngine(
      */
     var firmwareDamageMultiplier: Float = 1f
 
+    /**
+     * AGENT FIRMWARE per agent type, supplied by the app. Setting it re-applies
+     * it to every agent on the board, so an upgrade bought between runs is in
+     * force from the next shot.
+     */
+    var agentFirmware: Map<AgentType, com.cyopstd.game.model.AgentFirmware> = emptyMap()
+        set(value) {
+            field = value
+            for (agent in agents.items) if (agent.active) agent.applyFirmware(firmwareFor(agent.type))
+        }
+
+    fun firmwareFor(type: AgentType): com.cyopstd.game.model.AgentFirmware =
+        if (com.cyopstd.game.model.AgentFirmware.isEligible(type)) {
+            agentFirmware[type] ?: com.cyopstd.game.model.AgentFirmware.NONE
+        } else {
+            com.cyopstd.game.model.AgentFirmware.NONE
+        }
+
     /** From firmware: raises crypto earned in a run. See Balance.firmwareCryptoMultiplier. */
     var firmwareCryptoMultiplier: Float = 1f
 
@@ -282,6 +311,7 @@ class GameEngine(
         plan = null
         waveTimer = 0f
         nextOrderIndex = 0
+        heldSpawns.clear()
         enemiesRemaining = 0
 
         runAttacksBlocked = 0
@@ -310,7 +340,9 @@ class GameEngine(
         bossesDefeated: Int,
         serverDamageTaken: Int,
         agentsDeployed: Int,
-        agentUpgrades: Int
+        agentUpgrades: Int,
+        /** € banked earlier in this run, so the HUD's run total survives a resume. */
+        budgetEarned: Int = 0
     ) {
         startNewRun()
         currentWave = wave.coerceAtLeast(0)
@@ -322,6 +354,7 @@ class GameEngine(
         runServerDamageTaken = serverDamageTaken
         runAgentsDeployed = agentsDeployed
         runAgentUpgrades = agentUpgrades
+        runBudgetEarned = budgetEarned.coerceAtLeast(0)
 
         for (placement in placements) {
             val type = AgentType.fromNameSafe(placement.agentTypeName) ?: continue
@@ -341,6 +374,7 @@ class GameEngine(
             agent.y = node.y
             agent.level = placement.level.coerceIn(1, Balance.MAX_AGENT_LEVEL)
             agent.targetingMode = TargetingMode.fromOrdinalSafe(placement.targetingOrdinal)
+            agent.applyFirmware(firmwareFor(type))
         }
 
         // The wave the player was on has not been completed, so it is replayed.
@@ -385,11 +419,18 @@ class GameEngine(
         plan = newPlan
         waveTimer = 0f
         nextOrderIndex = 0
+        heldSpawns.clear()
+        heldReleaseCooldown = 0f
         enemiesRemaining = newPlan.enemyCount
         autoStartRemaining = 0f
         activeBossModifiers = newPlan.bossModifiers
         activeBossVariant = newPlan.bossVariant
         activeBossVariants = newPlan.bossVariants.ifEmpty { listOf(newPlan.bossVariant) }
+        activeEvent = newPlan.event
+        if (newPlan.event != null) {
+            soundListener?.invoke(GameSound.BOSS_WARNING)
+            hapticListener?.invoke(HapticCue.BOSS_ALERT)
+        }
 
         if (newPlan.isBossWave) {
             phase = RunPhase.BOSS_WARNING
@@ -476,7 +517,7 @@ class GameEngine(
 
         if (phase == RunPhase.IN_WAVE) {
             waveTimer += dt
-            processSpawns()
+            processSpawns(dt)
         }
 
         combatSystem.refreshBuffs()
@@ -490,19 +531,103 @@ class GameEngine(
         }
     }
 
-    private fun processSpawns() {
+
+    /** Spawns waiting at the gate for room on the board. */
+    val heldSpawnCount: Int get() = heldSpawns.size
+
+    private fun processSpawns(dt: Float) {
         val activePlan = plan ?: return
+        if (heldReleaseCooldown > 0f) heldReleaseCooldown -= dt
+
+        countOnScreen()
+
+        // Held spawns first, oldest first of each kind, and one at a time so
+        // they walk out as a column rather than a stack.
+        if (heldReleaseCooldown <= 0f && heldSpawns.isNotEmpty()) {
+            val tried = BooleanArray(SpawnKind.entries.size)
+            val iterator = heldSpawns.iterator()
+            while (iterator.hasNext()) {
+                val order = iterator.next()
+                val kind = order.kind()
+                if (tried[kind.ordinal]) continue
+                tried[kind.ordinal] = true
+                if (!hasRoomFor(kind)) {
+                    if (tried.all { it }) break
+                    continue
+                }
+                iterator.remove()
+                spawnCounted(order, kind)
+                heldReleaseCooldown =
+                    if (order.anonymous) Balance.ANON_HACK_RELEASE_GAP else Balance.HELD_SPAWN_GAP
+                break
+            }
+        }
+
         while (nextOrderIndex < activePlan.orders.size) {
             val order = activePlan.orders[nextOrderIndex]
             if (order.time > waveTimer) break
-            enemySystem.spawn(order, currentWave)
+            // Nothing jumps the queue: while anything of this kind waits, a
+            // newcomer of the same kind waits behind it.
+            val kind = order.kind()
+            if (heldOfKind[kind.ordinal] == 0 && hasRoomFor(kind)) {
+                spawnCounted(order, kind)
+            } else {
+                heldSpawns.addLast(order)
+            }
             nextOrderIndex++
         }
+        heldOfKind.fill(0)
+        for (order in heldSpawns) heldOfKind[order.kind().ordinal]++
+    }
+
+    /** On-screen counts for the caps, taken once per step and kept up to date as spawns land. */
+    private var screenThreats = 0
+    private var screenElites = 0
+    private var screenBosses = 0
+    private val heldOfKind = IntArray(3)
+
+    private fun countOnScreen() {
+        screenThreats = 0; screenElites = 0; screenBosses = 0
+        for (enemy in enemies.items) {
+            if (!enemy.active) continue
+            if (enemy.isBoss) {
+                screenBosses++
+            } else {
+                screenThreats++
+                if (enemy.isElite) screenElites++
+            }
+        }
+    }
+
+    private fun spawnCounted(order: SpawnOrder, kind: SpawnKind) {
+        enemySystem.spawn(order, currentWave)
+        when (kind) {
+            SpawnKind.BOSS -> screenBosses++
+            SpawnKind.ELITE -> { screenThreats++; screenElites++ }
+            SpawnKind.NORMAL -> screenThreats++
+        }
+    }
+
+    private enum class SpawnKind { NORMAL, ELITE, BOSS }
+
+    private fun SpawnOrder.kind(): SpawnKind = when {
+        boss -> SpawnKind.BOSS
+        elite || type.isElite -> SpawnKind.ELITE
+        else -> SpawnKind.NORMAL
+    }
+
+    /** Whether the board has room for one more of [kind] under the on-screen caps. */
+    private fun hasRoomFor(kind: SpawnKind): Boolean = when (kind) {
+        SpawnKind.BOSS -> screenBosses < Balance.MAX_ON_SCREEN_BOSSES
+        SpawnKind.ELITE -> screenThreats < Balance.MAX_ON_SCREEN_THREATS &&
+            screenElites < Balance.MAX_ON_SCREEN_ELITES
+        SpawnKind.NORMAL -> screenThreats < Balance.MAX_ON_SCREEN_THREATS
     }
 
     private fun isWaveFinished(): Boolean {
         val activePlan = plan ?: return false
         if (nextOrderIndex < activePlan.orders.size) return false
+        if (heldSpawns.isNotEmpty()) return false
         return enemies.activeCount() == 0
     }
 
@@ -592,6 +717,7 @@ class GameEngine(
         plan = null
         waveTimer = 0f
         nextOrderIndex = 0
+        heldSpawns.clear()
         enemiesRemaining = 0
         bossWarningRemaining = 0f
         autoStartRemaining = 0f
@@ -714,6 +840,7 @@ class GameEngine(
         agent.y = node.y
         agent.level = 1
         agent.upgradeFlash = 0.5f
+        agent.applyFirmware(firmwareFor(type))
 
         runAgentsDeployed++
         runDeploymentsByType[type] = (runDeploymentsByType[type] ?: 0) + 1

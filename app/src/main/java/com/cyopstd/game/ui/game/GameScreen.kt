@@ -40,6 +40,7 @@ import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.cyopstd.game.core.Balance
 import com.cyopstd.game.engine.RunPhase
 import com.cyopstd.game.state.GameViewModel
@@ -617,14 +618,34 @@ private fun ControlBar(viewModel: GameViewModel) {
                 text = statusLineFor(viewModel),
                 style = MaterialTheme.typography.labelSmall,
                 color = Palette.TextSecondary,
-                maxLines = 1
+                maxLines = 1,
+                overflow = androidx.compose.ui.text.style.TextOverflow.Ellipsis
             )
             if (viewModel.selection.pendingAgent != null) {
                 Text(
                     text = "PLACING ${viewModel.selection.pendingAgent?.displayName} — tap a node",
                     style = MaterialTheme.typography.labelSmall,
                     color = Palette.Green,
-                    maxLines = 1
+                    maxLines = 1,
+                    overflow = androidx.compose.ui.text.style.TextOverflow.Ellipsis
+                )
+            } else {
+                // ☆1 (owner, 2026-09-28): the player's tag and the build id
+                // live here, under the status line, in a match. Drawn over the
+                // screen's bottom edge they sat on top of AGENTS and NEXT WAVE.
+                Text(
+                    // Version first: it is the part a bug report needs, so on
+                    // a narrow phone it is the tag that gets shortened.
+                    text = listOf(com.cyopstd.game.ui.common.BuildStamp.id, viewModel.playerTag)
+                        .filter { it.isNotBlank() }
+                        .joinToString("  \u00B7  "),
+                    style = MaterialTheme.typography.labelSmall.copy(
+                        fontSize = 8.5.sp, lineHeight = 10.sp, letterSpacing = 0.4.sp
+                    ),
+                    color = Palette.TextMuted,
+                    maxLines = 1,
+                    overflow = androidx.compose.ui.text.style.TextOverflow.Ellipsis,
+                    modifier = Modifier.testTag("match-identity")
                 )
             }
         }

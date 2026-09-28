@@ -29,6 +29,13 @@ class EnemySystem(private val engine: GameEngine, private val random: Random) {
             enemy, order.type, order.lane, wave, order.elite, order.boss,
             order.bossModifiers, order.bossVariant
         )
+        if (order.anonymous) {
+            enemy.maxHealth *= Balance.ANON_HACK_HEALTH
+            enemy.health = enemy.maxHealth
+            enemy.baseSpeed *= Balance.ANON_HACK_SPEED
+            // A thousand kills at the usual rate would flood the economy.
+            enemy.reward = 1
+        }
     }
 
     /** Boss PACKET_REPLICATION escorts route through here too. */
@@ -44,6 +51,9 @@ class EnemySystem(private val engine: GameEngine, private val random: Random) {
     }
 
     private val escortIds = HashSet<Enemy>()
+
+    /** Whether [enemy] was replicated by a boss rather than spawned from the plan. */
+    internal fun isEscort(enemy: Enemy): Boolean = enemy in escortIds
 
     /** Rotates through the corridor so consecutive spawns never coincide. */
     private var laneSlotCursor = 0
@@ -70,7 +80,7 @@ class EnemySystem(private val engine: GameEngine, private val random: Random) {
         val healthScale =
             (if (boss) Balance.bossHealthMultiplier(wave) else Balance.healthMultiplier(wave)) *
                 engine.mode.healthScale * engine.map.threatHealthScale
-        var health = type.baseHealth * healthScale.toFloat()
+        var health = type.baseHealth * (healthScale * Balance.pressureMultiplier(wave)).toFloat()
         var armor = type.baseArmor + Balance.waveArmorBonus(wave).toFloat()
         var speed = type.baseSpeed * Balance.speedMultiplier(wave).toFloat()
         var damage = type.serverDamage
@@ -105,6 +115,10 @@ class EnemySystem(private val engine: GameEngine, private val random: Random) {
             enemy.variantJamTimer = BossVariant.VARIANT_JAM_INTERVAL
             enemy.ransomTimer = BossVariant.RANSOM_INTERVAL
         }
+
+        // HARDENING: past wave 100, elites and bosses grow tougher after
+        // every boss wave.
+        if (enemy.isElite) health *= Balance.hardeningMultiplier(wave).toFloat()
 
         enemy.maxHealth = health
         enemy.health = health

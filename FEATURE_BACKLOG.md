@@ -235,6 +235,124 @@ agent there, with "TAP AGAIN TO DEPLOY"; a second tap on the same spot
 deploys, and a tap on another spot moves the preview. The preview ring shows
 even with SHOW AGENT RANGE off.
 
+## Q. Late-game difficulty (owner, 2026-09-28)
+
+**Asked:** *"Difficulty not that bad after wave 100 on all levels."* Seven
+items, each named on its own. All shipped in 1.50.0.
+
+### Q1 ✅ ESCALATION — more enemies after every boss wave from 50
+
+From wave 50 on, every boss wave cleared adds **+2 elites to every wave** and
+**+1 boss to every boss wave** (`Balance.ESCALATION_*`). Wave 51 carries 2
+extra elites, wave 56 carries 4; wave 55 fields 4 bosses, wave 60 fields 5,
+wave 100 fields 13. The extra elites are spread through the wave, not added
+as a block at the end.
+
+### Q2 ✅ HARDENING — elites and bosses get tougher after every boss wave from 100
+
+From wave 100, elites and bosses take a health multiplier that grows after
+every boss wave by a step that itself grows: +10%, then +12%, +14% … (×1.10
+at wave 101, ×1.22 at 106, ×1.36 at 111, ×3.0 at 151, ×7.0 at 201), on top
+of the ordinary wave curve. Ordinary traffic is not affected.
+
+### Q3 ✅ SCREEN CAP — 30 threats and 5 elites on screen
+
+At most 30 non-boss threats on the board (first asked as 10, raised to 30 by
+the owner to keep rounds short), and at most 5 of them elites. A
+spawn that would break a cap waits at the gate and walks out as room frees
+up, one every 0.35 s; the wave only ends once nothing is waiting. This is
+also what keeps a deep wave from overloading a phone.
+
+### Q4 ✅ BOSS CAP — 4 bosses on screen
+
+At most 4 bosses on the board; the rest wait the same way. (SYN-STORM's
+split half is a boss by design and is not held back.)
+
+### Q5 ✅ Every level
+
+Q1–Q4 are built into the wave generator and the engine, not into any map,
+so all five levels escalate the same way (tested on each).
+
+### Q6 ✅ Balance check
+
+`EscalationTest` checks the counts, the multipliers and the caps on every
+level at waves 64, 120 and 150 (and that those waves still finish). A probe
+played three boards on every level on the old and the new rules; the
+results are in CHANGELOG 1.50.0. On the old rules none of them ever leaked
+before wave 180.
+
+### Q8 ✅ PRESSURE — health climbs faster from wave 40
+
+**Asked (2026-09-28, with a recording of wave 61 on DDoS):** mostly level-1
+agents were killing everything the moment it spawned; *"round 50+ is no
+challenge at all."* Q1–Q4 only bite past 50 and 100, so on top of them every
+threat's health now compounds ×1.035 a wave from wave 40 (×2.0 at wave 60,
+×7.9 at 100, ×31 at 140) — the owner picked the stronger of the two measured
+settings. One constant, `Balance.PRESSURE_GROWTH`, to tune.
+
+### Q9 ✅ ANONYMOUS HACK — a random event
+
+**Asked (2026-09-28):** *"Random event called anonymous hack where 1k small
+enemies attack with double speed and health of small enemies."* From wave
+30, any non-boss wave has a 4% chance (about one in 25) of being replaced by
+a thousand BOTs at double speed and double health, announced with the boss
+alarm and "ANONYMOUS HACK — 1000 BOTS INCOMING". They stream in over about
+two minutes, capped at 30 on screen like everything else, and pay 1 crypto
+each so the event cannot flood the economy.
+
+### Q7 ✅ AGENT FIRMWARE — permanent upgrades per agent
+
+A second tab on the FIRMWARE screen. Every agent except SERVER SYSTEMS
+ENGINEER has three tracks bought separately with €: **DAMAGE** (+0.5% a
+level), **FIRE RATE** (+0.05%) and **RANGE** (+0.02%), each to level 10,000.
+Asked for as HP, damage and range: agents have no HP in this game (nothing
+damages them), so the third track is fire rate — ❓ say if you want something
+else there. Cost per level = (2 + level/2) × 1.0004^level × 10 €: 20 € for the
+first, about 28 thousand € for the first 100, 3.3 million for the first
+1,000, and 2.7 million € for the 10,000th level alone.
+
+### ☆1 ✅ € after every boss wave past 100; € this run on screen; identity under the status line
+
+**Asked (2026-09-28):** *"amount of € earned after every boss wave needs to
+scale exponentially after wave 100. Show amount of € earned this run at top.
+Update version text and 'Agent unregistered/ agent registered name' needs to
+be below the 'wave XX cleared - XX threats remaining' … update number and
+agent number was on top of buttons. This is bad."*
+
+**Built (1.50.0):** up to wave 100 € is banked every tenth wave as before;
+after it, every boss wave pays, ×1.12 more each time (wave 105: 5,600 €,
+150: ≈15,500 €, 200: ≈48,000 €, 300: ≈465,000 €, capped far out). A
+"€ THIS RUN" cell in the top strip shows what this run has banked, and it
+survives Continue. In a match the build id and the player's tag are now a
+small line under the status line in the control bar (version first, so a
+narrow phone shortens the tag, not the version); the global strip that sat
+over the buttons is not drawn in a match. `MatchChromeTest` renders a tiny
+and a normal phone and fails if that line touches a button.
+
+### ☆2 ✅ Smaller top strip, nothing overlapping
+
+**Asked (2026-09-28):** *"let's make all the top text smaller and make sure
+none of it overlaps or bug out."*
+
+**Built (1.50.0):** labels 8.5 sp, values 13 sp, a slimmer bar and dividers;
+every value is one line with an ellipsis rather than a wrap; the integrity
+cell is now label over "100/100" and its bar, which fits whole even on a
+568×320 phone. `MatchChromeTest` fails if any two texts in the strip overlap.
+
+### Q10 ✅ Harder bosses and the strong pressure
+
+**Asked (2026-09-28):** *"even on the final level I was able to kill the
+bosses on wave 50 in about 5 seconds … I prefer the strong pressure
+(1.035/wave) … level 5 should be the hardest level."* (That was played on
+1.49.0, before any of section Q.) PRESSURE is back to ×1.035 a wave, and boss
+health per boss cycle rises from 0.45 to 0.55 (+9% at wave 10, +19% at wave
+50, growing). Measured with a board like the owner's wave-61 DDoS board
+(38 agents, nearly all level 1): the wave-50 bosses there were on the field
+for 22–28 s on 1.49.0 and took no integrity; now the same board falls at
+wave 60 on DDoS unless it upgrades. DDoS stays the hardest level
+(`MapDifficultyTest`). The random event never replaces a boss wave
+(`AnonymousHackTest`).
+
 ## E. A second map
 
 ### E1 ✅ SHIPPED in 1.36.0 — "Hugging-Face", selectable and earned

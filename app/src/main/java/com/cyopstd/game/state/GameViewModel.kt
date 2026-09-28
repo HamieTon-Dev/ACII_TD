@@ -142,6 +142,13 @@ class GameViewModel @JvmOverloads constructor(
     var firmwareLevel by mutableIntStateOf(0)
         private set
 
+    /**
+     * AGENT FIRMWARE owned, by agent type. Declared up here, before `init`,
+     * because the progress collector started there writes to it at once.
+     */
+    var agentFirmware by mutableStateOf<Map<AgentType, com.cyopstd.game.model.AgentFirmware>>(emptyMap())
+        private set
+
     var lifetimeBudgetEarned by mutableStateOf(0L)
         private set
 
@@ -946,6 +953,10 @@ class GameViewModel @JvmOverloads constructor(
                 engine.firmwareCryptoMultiplier = Balance.firmwareCryptoMultiplier(
                     loaded.firmwareLevel
                 )
+                agentFirmware = loaded.agentFirmware.mapNotNull { (name, levels) ->
+                    AgentType.fromNameSafe(name)?.let { it to levels }
+                }.toMap()
+                engine.agentFirmware = agentFirmware
             }
         }
         collectJobs += viewModelScope.launch {
@@ -1046,7 +1057,8 @@ class GameViewModel @JvmOverloads constructor(
                 bossesDefeated = run.bossesDefeated,
                 serverDamageTaken = run.serverDamageTaken,
                 agentsDeployed = run.agentsDeployed,
-                agentUpgrades = run.agentUpgrades
+                agentUpgrades = run.agentUpgrades,
+                budgetEarned = run.budgetEarned
             )
             engine.autoStartWaves = settings.autoStartWaves
             engine.autoStartBossWaves = settings.autoStartBossWaves
@@ -1120,6 +1132,9 @@ class GameViewModel @JvmOverloads constructor(
         prepBannerVisible = false
     }
 
+    /** The wave whose event (ANONYMOUS HACK) has already been announced. */
+    private var announcedEventWave = -1
+
     private fun pushHud() {
         val snapshot = HudSnapshot(
             phase = engine.phase,
@@ -1132,9 +1147,16 @@ class GameViewModel @JvmOverloads constructor(
             enemiesOnField = engine.activeEnemyCount(),
             nextWaveIsBoss = engine.nextWaveIsBoss(),
             bossOnField = engine.bossOnField(),
-            autoStartRemaining = kotlin.math.ceil(engine.autoStartRemaining).toInt()
+            autoStartRemaining = kotlin.math.ceil(engine.autoStartRemaining).toInt(),
+            budgetEarned = engine.runBudgetEarned
         )
         if (snapshot != hud) hud = snapshot
+        // A rare event announces itself the moment its wave starts.
+        val event = engine.activeEvent.takeIf { engine.phase == RunPhase.IN_WAVE }
+        if (event != null && announcedEventWave != engine.currentWave) {
+            announcedEventWave = engine.currentWave
+            showTransient(event.announcement)
+        }
         // The dossier is about one specific opponent. When that opponent is
         // gone the panel has nothing to say, and leaving the flag set would
         // have the *next* boss throw it open over the board unasked.
@@ -1337,6 +1359,14 @@ class GameViewModel @JvmOverloads constructor(
     fun affordableUpgradesForSelection(): Int {
         val nodeId = selection.selectedNodeId ?: return 0
         return engine.affordableUpgrades(nodeId)
+    }
+
+    /** Spend € on [levels] of AGENT FIRMWARE for one stat of one agent. */
+    fun buyAgentFirmware(type: AgentType, stat: com.cyopstd.game.model.FirmwareStat, levels: Int) {
+        viewModelScope.launch {
+            val bought = repository.buyAgentFirmware(type, stat, levels)
+            if (bought == 0) showTransient("INSUFFICIENT \u20AC BUDGET") else playClick()
+        }
     }
 
     /** Spend € BUDGET on permanent firmware. */
@@ -1742,6 +1772,8 @@ class GameViewModel @JvmOverloads constructor(
             lifetimeBudgetEarned = 0L
             engine.firmwareDamageMultiplier = 1f
             engine.firmwareCryptoMultiplier = 1f
+            agentFirmware = emptyMap()
+            engine.agentFirmware = emptyMap()
             hasSavedRun = false
             stats = PlayerStats()
             settings = GameSettings()

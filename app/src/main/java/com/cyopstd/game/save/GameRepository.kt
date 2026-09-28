@@ -110,7 +110,8 @@ class GameRepository(private val store: DataStore<Preferences>) {
                 firmwareGuideSeen = prefs[Keys.FIRMWARE_GUIDE_SEEN] ?: false,
                 budget = prefs[Keys.BUDGET] ?: 0L,
                 firmwareLevel = prefs[Keys.FIRMWARE_LEVEL] ?: 0,
-                lifetimeBudgetEarned = prefs[Keys.LIFETIME_BUDGET] ?: 0L
+                lifetimeBudgetEarned = prefs[Keys.LIFETIME_BUDGET] ?: 0L,
+                agentFirmware = decodeAgentFirmware(prefs[Keys.AGENT_FIRMWARE_JSON])
             )
         }
 
@@ -255,6 +256,55 @@ class GameRepository(private val store: DataStore<Preferences>) {
         }
         return bought
     }
+
+    /**
+     * Buy [levels] of AGENT FIRMWARE on one [stat] of [type], spending €. Like
+     * [buyFirmware], the balance is re-read inside the transaction. Returns how
+     * many levels were bought; always 0 for an agent it is not sold for.
+     */
+    suspend fun buyAgentFirmware(
+        type: AgentType,
+        stat: com.cyopstd.game.model.FirmwareStat,
+        levels: Int
+    ): Int {
+        if (levels <= 0 || !com.cyopstd.game.model.AgentFirmware.isEligible(type)) return 0
+        var bought = 0
+        writeSafely { prefs ->
+            var balance = prefs[Keys.BUDGET] ?: 0L
+            val all = decodeAgentFirmware(prefs[Keys.AGENT_FIRMWARE_JSON])
+            val current = all[type.name] ?: com.cyopstd.game.model.AgentFirmware.NONE
+            var level = current.level(stat)
+            while (bought < levels && level < Balance.MAX_AGENT_FIRMWARE_LEVEL) {
+                val cost = Balance.agentFirmwareCost(level)
+                if (balance < cost) break
+                balance -= cost
+                level++
+                bought++
+            }
+            if (bought > 0) {
+                prefs[Keys.BUDGET] = balance
+                prefs[Keys.AGENT_FIRMWARE_JSON] =
+                    encodeAgentFirmware(all + (type.name to current.with(stat, level)))
+            }
+        }
+        return bought
+    }
+
+    private val agentFirmwareSerializer =
+        MapSerializer(String.serializer(), com.cyopstd.game.model.AgentFirmware.serializer())
+
+    private fun decodeAgentFirmware(raw: String?): Map<String, com.cyopstd.game.model.AgentFirmware> {
+        if (raw.isNullOrBlank()) return emptyMap()
+        return try {
+            json.decodeFromString(agentFirmwareSerializer, raw)
+        } catch (error: Exception) {
+            Log.w(TAG, "Agent firmware is corrupt; ignoring it", error)
+            emptyMap()
+        }
+    }
+
+    private fun encodeAgentFirmware(map: Map<String, com.cyopstd.game.model.AgentFirmware>): String =
+        json.encodeToString(agentFirmwareSerializer, map.filterValues { !it.isEmpty })
 
     /**
      * Fold the totals from a finished (or abandoned) run into the lifetime
@@ -461,6 +511,7 @@ class GameRepository(private val store: DataStore<Preferences>) {
         val BUDGET_SCALE_VERSION = intPreferencesKey("budget_scale_version")
         val LIFETIME_BUDGET = longPreferencesKey("lifetime_budget")
         val FIRMWARE_LEVEL = intPreferencesKey("firmware_level")
+        val AGENT_FIRMWARE_JSON = stringPreferencesKey("agent_firmware_json")
         val UNLOCKED_AGENTS = stringPreferencesKey("unlocked_agents")
         val TUTORIAL_DONE = booleanPreferencesKey("tutorial_done")
         val MENU_GUIDE_SEEN = booleanPreferencesKey("menu_guide_seen")
@@ -682,6 +733,8 @@ class GameRepository(private val store: DataStore<Preferences>) {
             prefs[Keys.BUDGET] = save.progress.budget
             prefs[Keys.LIFETIME_BUDGET] = save.progress.lifetimeBudgetEarned
             prefs[Keys.FIRMWARE_LEVEL] = save.progress.firmwareLevel
+            // Same ledger as the € and CORE FIRMWARE above: taken together.
+            prefs[Keys.AGENT_FIRMWARE_JSON] = encodeAgentFirmware(save.progress.agentFirmware)
             prefs[Keys.UNLOCKED_AGENTS] = save.progress.unlockedAgents.joinToString("|")
             prefs[Keys.TUTORIAL_DONE] = save.progress.tutorialCompleted
 

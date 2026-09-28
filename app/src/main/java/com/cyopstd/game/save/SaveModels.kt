@@ -134,7 +134,12 @@ data class PlayerProgress(
     /** The main-menu tour has been shown (or skipped). */
     val menuGuideSeen: Boolean = false,
     /** The FIRMWARE screen's first-visit explainer has been shown (or skipped). */
-    val firmwareGuideSeen: Boolean = false
+    val firmwareGuideSeen: Boolean = false,
+    /**
+     * AGENT FIRMWARE levels by AgentType.name. Part of the same € ledger as
+     * [budget] and [firmwareLevel], so a cloud merge moves all three together.
+     */
+    val agentFirmware: Map<String, com.cyopstd.game.model.AgentFirmware> = emptyMap()
 )
 
 /**

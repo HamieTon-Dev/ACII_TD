@@ -38,6 +38,13 @@ class NeuralMeshBossBalanceTest {
             SpawnOrder(0f, EnemyType.BOSS, 0, elite = false, boss = true, bossVariant = variant), wave
         )
         val boss = engine.enemies.items.first { it.active }
+        // These fights compare each boss's mechanism against the boards it was
+        // tuned on. PRESSURE (the late-game health climb) is taken back out so
+        // they keep measuring the mechanism rather than the difficulty curve.
+        engine.enemies.items.first { it.active }.let { boss ->
+            boss.maxHealth /= com.cyopstd.game.core.Balance.pressureMultiplier(wave).toFloat()
+            boss.health = boss.maxHealth
+        }
         var t = 0f
         while (t < 240f) {
             // No wave is running, so nothing else spawns: just this boss and the board.
@@ -62,7 +69,9 @@ class NeuralMeshBossBalanceTest {
 
     @Test
     fun `the new bosses are harder against the board they punish and fair against the right one`() {
-        val level = 16
+        // 20 since 1.50.0, when NEURAL-MESH's threat health went from ×2.2 to
+        // ×2.5 and bosses gained 0.55 health a cycle instead of 0.45.
+        val level = 20
         val results = linkedMapOf(
             "BREACH vs 12 ANALYST" to fight(BossVariant.BREACH, blob, level),
             "MODEL COLLAPSE vs 12 ANALYST" to fight(BossVariant.MODEL_COLLAPSE, blob, level),

@@ -275,16 +275,30 @@ class Agent : Poolable {
     var lifetimeKills: Int = 0
     var lifetimeDamage: Float = 0f
 
+    /** AGENT FIRMWARE bought for this agent's type, as multipliers. */
+    var firmwareDamage: Float = 1f
+        private set
+    var firmwareRate: Float = 1f
+        private set
+    var firmwareRange: Float = 1f
+        private set
+
+    fun applyFirmware(firmware: AgentFirmware) {
+        firmwareDamage = firmware.damageMultiplier
+        firmwareRate = firmware.rateMultiplier
+        firmwareRange = firmware.rangeMultiplier
+    }
+
     fun stats(): AgentStats = type.statsAtLevel(level)
 
-    fun effectiveDamage(): Float = stats().damage * damageBuff
+    fun effectiveDamage(): Float = stats().damage * damageBuff * firmwareDamage
 
     fun effectiveCooldown(): Float {
-        val rate = stats().fireRate * rateBuff * (if (disruptedFor > 0f) 0.5f else 1f)
+        val rate = stats().fireRate * rateBuff * firmwareRate * (if (disruptedFor > 0f) 0.5f else 1f)
         return if (rate <= 0f) Float.MAX_VALUE else 1f / rate
     }
 
-    fun range(): Float = stats().range
+    fun range(): Float = stats().range * firmwareRange
 
     override fun reset() {
         active = false
@@ -299,6 +313,9 @@ class Agent : Poolable {
         targetingMode = TargetingMode.FIRST
         lifetimeKills = 0
         lifetimeDamage = 0f
+        firmwareDamage = 1f
+        firmwareRate = 1f
+        firmwareRange = 1f
     }
 }
 

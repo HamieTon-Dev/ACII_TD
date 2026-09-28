@@ -40,7 +40,7 @@ class MapDifficultyTest {
         }.map { it.id }
     }
 
-    private fun reach(map: GameMap, seed: Int): Int {
+    private fun reach(map: GameMap, seed: Int): Double {
         val random = Random(seed)
         val engine = GameEngine(random, WaveGenerator(random))
         engine.isAgentUnlocked = { true }
@@ -53,18 +53,26 @@ class MapDifficultyTest {
         val nodes = bestSpots(map)
         board.forEachIndexed { i, t -> engine.placeAgent(t, nodes[i]); engine.upgradeAgent(nodes[i], 9) }
         var guard = 0
+        var waveSize = 1
         while (engine.phase != RunPhase.GAME_OVER && engine.currentWave < 200 && guard++ < 5_000_000) {
-            if (engine.phase == RunPhase.PREPARING) engine.startNextWave()
+            if (engine.phase == RunPhase.PREPARING) {
+                engine.startNextWave()
+                waveSize = engine.enemiesRemaining.coerceAtLeast(1)
+            }
             engine.update(0.05f, 1f)
         }
-        return engine.currentWave
+        // Waves survived plus how far into the fatal one it got. A board almost
+        // always falls on a boss wave, every fifth, so the wave number alone
+        // can only tell levels apart in steps of five.
+        val cleared = (waveSize - engine.enemiesRemaining).coerceAtLeast(0).toDouble() / waveSize
+        return engine.currentWave - 1 + cleared
     }
 
     @Test
     fun `each level is harder than the one before it`() {
         val averages = Maps.all.map { map ->
-            val waves = (1..4).map { reach(map, it) }
-            println("DIFFICULTY ${map.id}: reached $waves")
+            val waves = (1..8).map { reach(map, it) }
+            println("DIFFICULTY ${map.id}: reached ${waves.map { "%.2f".format(it) }}")
             map to waves.average()
         }
         for ((earlier, later) in averages.zipWithNext()) {

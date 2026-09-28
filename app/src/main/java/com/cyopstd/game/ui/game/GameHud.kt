@@ -19,6 +19,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.unit.sp
 import com.cyopstd.game.engine.RunPhase
 import com.cyopstd.game.state.HudSnapshot
 import com.cyopstd.game.ui.theme.Palette
@@ -40,12 +46,15 @@ fun GameHud(
         else -> Palette.Divider
     }
 
+    // ☆2 (owner, 2026-09-28): smaller throughout, to make room for € earned
+    // this run, and every value on one line so nothing can wrap into its
+    // neighbour on a narrow phone.
     Row(
         modifier = modifier
             .fillMaxWidth()
             .background(Palette.Surface)
             .border(1.dp, borderColor.copy(alpha = 0.7f))
-            .padding(horizontal = 12.dp, vertical = 6.dp),
+            .padding(horizontal = 10.dp, vertical = 3.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
         HudCell(
@@ -65,36 +74,43 @@ fun GameHud(
 
         HudDivider()
 
-        // Server integrity: number, ASCII bar, and colour. Three redundant
-        // signals so the state is never carried by colour alone.
-        Column(Modifier.weight(1.4f)) {
+        // Server integrity: number, bar, and colour. Three redundant signals
+        // so the state is never carried by colour alone.
+        Column(Modifier.weight(1.6f)) {
+            Text(
+                text = "CORE-SERVER",
+                style = HudLabel,
+                color = Palette.TextMuted,
+                maxLines = 1
+            )
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Text(
-                    text = "CORE-SERVER",
-                    style = MaterialTheme.typography.labelSmall,
-                    color = Palette.TextMuted
+                    // Integrity, not "HP": every other surface calls it that.
+                    text = "${hud.serverHp}/${hud.serverMaxHp}",
+                    style = HudValue,
+                    color = Palette.healthColor(hud.serverFraction),
+                    maxLines = 1
                 )
-                Spacer(Modifier.width(8.dp))
-                Text(
-                    // "INTEGRITY", not "HP". Every other surface in the game
-                    // calls this integrity -- the game over screen, the About
-                    // screen, the boss dossier -- and the tutorial now teaches
-                    // it by that name. One readout saying something else is
-                    // the word the player has to translate.
-                    text = "INTEGRITY ${hud.serverHp} / ${hud.serverMaxHp}",
-                    style = MaterialTheme.typography.labelMedium,
-                    color = Palette.healthColor(hud.serverFraction)
-                )
+                Spacer(Modifier.width(6.dp))
+                Box(Modifier.weight(1f)) { IntegrityBar(hud.serverFraction) }
             }
-            IntegrityBar(hud.serverFraction)
         }
 
         HudDivider()
 
         HudCell(
-            label = "◇ CRYPTO",
+            label = "\u25C7 CRYPTO",
             value = hud.crypto.toString(),
             accent = Palette.Crypto
+        )
+
+        HudDivider()
+
+        HudCell(
+            label = "\u20AC THIS RUN",
+            value = "\u20AC${hud.budgetEarned}",
+            accent = Palette.Cyan,
+            tag = "hud-run-budget"
         )
 
         HudDivider()
@@ -108,31 +124,53 @@ fun GameHud(
     }
 }
 
+private val HudLabel = TextStyle(
+    fontFamily = FontFamily.Monospace,
+    fontSize = 8.5.sp,
+    letterSpacing = 0.6.sp,
+    lineHeight = 10.sp
+)
+
+private val HudValue = TextStyle(
+    fontFamily = FontFamily.Monospace,
+    fontWeight = FontWeight.Bold,
+    fontSize = 13.sp,
+    letterSpacing = 0.6.sp,
+    lineHeight = 15.sp
+)
+
 @Composable
 private fun androidx.compose.foundation.layout.RowScope.HudCell(
     label: String,
     value: String,
     accent: Color,
-    trailing: String? = null
+    trailing: String? = null,
+    tag: String? = null
 ) {
-    Column(Modifier.weight(1f)) {
+    Column(Modifier.weight(1f).then(if (tag != null) Modifier.testTag(tag) else Modifier)) {
         Text(
             text = label,
-            style = MaterialTheme.typography.labelSmall,
-            color = Palette.TextMuted
+            style = HudLabel,
+            color = Palette.TextMuted,
+            maxLines = 1,
+            overflow = TextOverflow.Ellipsis
         )
         Row(verticalAlignment = Alignment.CenterVertically) {
             Text(
                 text = value,
-                style = MaterialTheme.typography.titleMedium,
-                color = accent
+                style = HudValue,
+                color = accent,
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis
             )
             if (trailing != null) {
-                Spacer(Modifier.width(6.dp))
+                Spacer(Modifier.width(4.dp))
                 Text(
                     text = trailing,
-                    style = MaterialTheme.typography.labelSmall,
-                    color = Palette.TextSecondary
+                    style = HudLabel,
+                    color = Palette.TextSecondary,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis
                 )
             }
         }
@@ -144,27 +182,27 @@ private fun HudDivider() {
     Box(
         Modifier
             .width(1.dp)
-            .height(34.dp)
+            .height(24.dp)
             .background(Palette.Divider)
     )
-    Spacer(Modifier.width(10.dp))
+    Spacer(Modifier.width(8.dp))
 }
 
-/** `[########--]` integrity meter drawn as a real bar with an ASCII fallback feel. */
+/** Integrity meter drawn as a real bar. */
 @Composable
 private fun IntegrityBar(fraction: Float) {
     val clamped = fraction.coerceIn(0f, 1f)
     Box(
         Modifier
             .fillMaxWidth()
-            .height(8.dp)
+            .height(6.dp)
             .background(Palette.SurfaceSunken, RoundedCornerShape(2.dp))
             .border(1.dp, Palette.Divider, RoundedCornerShape(2.dp))
     ) {
         Box(
             Modifier
                 .fillMaxWidth(clamped)
-                .height(8.dp)
+                .height(6.dp)
                 .background(Palette.healthColor(clamped), RoundedCornerShape(2.dp))
         )
     }

@@ -15,6 +15,8 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -46,8 +48,13 @@ fun FirmwareScreen(
     onBack: () -> Unit,
     /** Show the first-visit explainer (owner, 2026-09-26). */
     showGuide: Boolean = false,
-    onGuideDone: () -> Unit = {}
+    onGuideDone: () -> Unit = {},
+    /** AGENT FIRMWARE owned, and how to buy more (owner, 2026-09-28). */
+    agentFirmware: Map<com.cyopstd.game.model.AgentType, com.cyopstd.game.model.AgentFirmware> = emptyMap(),
+    unlockedAgents: Set<String> = emptySet(),
+    onBuyAgent: (com.cyopstd.game.model.AgentType, com.cyopstd.game.model.FirmwareStat, Int) -> Unit = { _, _, _ -> }
 ) {
+    var agentTab by androidx.compose.runtime.saveable.rememberSaveable { androidx.compose.runtime.mutableStateOf(false) }
     val nextCost = Balance.firmwareCost(firmwareLevel)
     val affordable = Balance.firmwareLevelsAffordable(firmwareLevel, budget)
     val maxed = firmwareLevel >= Balance.MAX_FIRMWARE_LEVEL
@@ -56,10 +63,35 @@ fun FirmwareScreen(
     Box(Modifier.fillMaxSize()) {
     ScreenScaffold(
         title = "CORE FIRMWARE",
-        subtitle = "Permanent damage upgrades · applies to every agent, every match",
+        subtitle = "Permanent upgrades · every match from now on",
         onBack = onBack,
         backgroundAnimation = backgroundAnimation
     ) {
+        Column(Modifier.fillMaxSize()) {
+        Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+            CompactButton(
+                text = "CORE",
+                onClick = { agentTab = false },
+                selected = !agentTab,
+                accent = Palette.Crypto
+            )
+            CompactButton(
+                text = "PER AGENT",
+                onClick = { agentTab = true },
+                selected = agentTab,
+                accent = Palette.Green,
+                modifier = Modifier.then(Modifier)
+            )
+        }
+        Spacer(Modifier.height(8.dp))
+        if (agentTab) {
+            AgentFirmwarePanel(
+                budget = budget,
+                agentFirmware = agentFirmware,
+                unlockedAgents = unlockedAgents,
+                onBuy = onBuyAgent
+            )
+        } else
         Row(
             modifier = Modifier.fillMaxSize(),
             horizontalArrangement = Arrangement.spacedBy(14.dp)
@@ -224,6 +256,7 @@ fun FirmwareScreen(
 
                 Spacer(Modifier.height(12.dp))
             }
+        }
         }
     }
 

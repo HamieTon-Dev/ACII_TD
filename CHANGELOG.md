@@ -9,6 +9,76 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [1.50.0] — 2026-09-28
+
+### Late-game difficulty (backlog Q1–Q6)
+
+- **ESCALATION (Q1):** from wave 50, every boss wave cleared adds 2 elites to
+  every later wave and 1 boss to every later boss wave (wave 55: 4 bosses,
+  wave 100: 13).
+- **HARDENING (Q2):** from wave 100, elites and bosses gain health after
+  every boss wave by a growing step (+10%, +12%, +14% …): ×1.36 at wave 111,
+  ×3 at 151, ×7 at 201.
+- **SCREEN CAP (Q3) and BOSS CAP (Q4):** at most 30 threats (5 of them
+  elites) and 4 bosses on the board. The rest wait at the gate and walk out
+  as room frees up. The wave ends when nothing is left waiting.
+- **PRESSURE (Q8):** from wave 40, every threat's health compounds ×1.035 a
+  wave on top of the usual curve (×2.0 at 60, ×7.9 at 100).
+- **Every level (Q5).**
+- **Balance check (Q6)**, the same boards played on every level, old rules
+  vs new:
+  - 40 level-1 agents, never upgraded: old — never leaked by wave 120; new —
+    falls at waves 50–60.
+  - 14 agents, upgraded with everything earned, CORE FIRMWARE 30: old — never
+    leaked by wave 180; new — falls at waves 115–135.
+  - 30 agents, fully upgraded, CORE FIRMWARE 150: old — never leaked by wave
+    180; new — falls at waves 130–145. AGENT FIRMWARE is what goes further.
+  - Deep waves last longer than before because of the caps and the extra
+    elites and bosses: up to a few minutes at 1×.
+- Level order kept: with PRESSURE the levels bunched up, so NEURAL-MESH's
+  threat health goes from ×2.2 to ×2.5 and DDoS's from ×2.4 to ×2.6. The
+  same fixed board now gets, on average, to wave 67.4 on PERIMETER, 65.4 on
+  HUGGING-FACE, 63.6 on NEURAL-MESH, 61.6 on DUCK-USB and 59.2 on DDoS.
+
+### ANONYMOUS HACK (Q9)
+
+- A rare random event from wave 30: about one non-boss wave in 25 becomes a
+  thousand BOTs at double speed and double health, announced on screen.
+  30 on the board at a time; 1 crypto each.
+
+### Harder bosses, strong pressure (backlog Q10)
+
+- PRESSURE is ×1.035 a wave from wave 40 (the owner's pick of the two
+  measured settings) and boss health gains 0.55 a boss cycle instead of 0.45.
+- A board like the owner's (38 agents, nearly all level 1) had the wave-50
+  DDoS bosses on the field for 22–28 s with no damage on 1.49.0; on 1.50.0 it
+  takes 33–45 s, and the same board falls at wave 60 unless it upgrades.
+- The measured board results under "Balance check" above were taken at
+  ×1.025 a wave; at ×1.035 (measured before the boss increase) the
+  un-upgraded board falls at waves 50–60, an upgrading 14-agent board at
+  105–120, a maxed 30-agent board at 120–135.
+
+### € and the match screen (backlog ☆1, ☆2)
+
+- Past wave 100, every boss wave banks €, ×1.12 more each time (wave 150
+  ≈15,500 €, 200 ≈48,000 €, 300 ≈465,000 €). Up to 100 nothing changes.
+- New "€ THIS RUN" in the top strip; it survives Continue.
+- The build id and player tag are now a small line under the status line in
+  the control bar, instead of on top of AGENTS and NEXT WAVE.
+- The top strip's text is smaller, never wraps, and nothing in it overlaps,
+  checked on a 568×320 and an 800×360 phone.
+
+### AGENT FIRMWARE (backlog Q7)
+
+- New tab on the FIRMWARE screen: permanent upgrades per agent, bought with €.
+  Every agent except SERVER SYSTEMS ENGINEER has three separate tracks —
+  DAMAGE (+0.5% a level), FIRE RATE (+0.05%) and RANGE (+0.02%) — each to
+  level 10,000. The first level costs 20 €, the first 100 about 28 thousand
+  €, the first 1,000 about 3.3 million €, and the 10,000th alone 2.7 million €.
+- Applies to every agent of that type in every match, on top of CORE
+  FIRMWARE; the agent panel shows the boosted numbers. Kept with the € in
+  cloud saves.
+
 ## [1.49.0] — 2026-09-28
 
 ### Full details on an "i"
