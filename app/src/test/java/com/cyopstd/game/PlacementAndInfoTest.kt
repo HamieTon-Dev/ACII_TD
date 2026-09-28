@@ -32,7 +32,7 @@ import com.cyopstd.game.ui.game.BattlefieldRenderOptions
 import com.cyopstd.game.ui.game.BattlefieldRenderer
 import com.cyopstd.game.ui.game.BattlefieldSelection
 import com.cyopstd.game.ui.game.BossBriefing
-import com.cyopstd.game.ui.game.BossWaveStrip
+import com.cyopstd.game.ui.game.BossBriefingPanel
 import com.cyopstd.game.ui.game.DeployPanel
 import com.cyopstd.game.ui.game.WorldTransform
 import com.cyopstd.game.ui.settings.SettingsScreen
@@ -226,7 +226,9 @@ class PlacementAndInfoTest {
     }
 
     @Test
-    fun `the next boss wave's bosses are listed in the corner, and the i opens their briefing`() {
+    fun `the briefing shows each boss's icon, and nothing sits in the corner any more`() {
+        // Owner, 2026-09-28: the corner list blocked deployment spots; the
+        // icon belongs in the menu that opens from NEXT BOSS.
         val briefing = BossBriefing(
             wave = 30,
             variants = listOf(BossVariant.BREACH to 1, BossVariant.ZOMBIE to 2),
@@ -235,28 +237,51 @@ class PlacementAndInfoTest {
             weakTo = emptyList(),
             warnings = emptyList()
         )
-        var toggled = 0
         compose.setContent {
             CyOpsTheme {
                 Box(Modifier.fillMaxSize().background(Palette.Background)) {
-                    BossWaveStrip(
+                    BossBriefingPanel(
                         briefing = briefing,
-                        open = false,
-                        onToggle = { toggled++ },
-                        modifier = Modifier.align(Alignment.BottomStart).padding(8.dp)
+                        unlockedAgents = emptySet(),
+                        onClose = {},
+                        modifier = Modifier.align(Alignment.TopEnd).padding(8.dp)
                     )
                 }
             }
         }
-        snapshot("boss-wave-strip")
-        compose.onNodeWithText("BOSS WAVE 30", substring = true).assertIsDisplayed()
-        compose.onNodeWithText(BossVariant.BREACH.displayName).assertIsDisplayed()
-        compose.onNodeWithText("${BossVariant.ZOMBIE.displayName} ×2").assertIsDisplayed()
-        compose.onNodeWithTag("boss-wave-info").performClick()
-        assertEquals(1, toggled)
-        // Bottom-left.
-        val strip = compose.onNodeWithTag("boss-wave-strip").getBoundsInRoot()
-        val root = compose.onRoot().getBoundsInRoot()
-        assertTrue(strip.left < root.right * 0.2f && strip.bottom > root.bottom * 0.8f)
+        snapshot("boss-briefing-icons")
+        compose.onNodeWithTag("boss-icon-${BossVariant.BREACH.name}").assertIsDisplayed()
+        compose.onNodeWithTag("boss-icon-${BossVariant.ZOMBIE.name}").assertIsDisplayed()
+        compose.onNodeWithText(BossVariant.BREACH.glyph).assertIsDisplayed()
+        compose.onNodeWithText("${BossVariant.ZOMBIE.displayName}  \u00D72").assertIsDisplayed()
+        compose.onNodeWithTag("boss-wave-strip").assertDoesNotExist()
+    }
+
+    @Test
+    fun `TAP AGAIN TO DEPLOY lets the board show through`() {
+        compose.setContent {
+            CyOpsTheme {
+                Box(Modifier.fillMaxSize().background(androidx.compose.ui.graphics.Color(0xFF00FF00))) {
+                    com.cyopstd.game.ui.game.TransientMessage(
+                        message = "TAP AGAIN TO DEPLOY",
+                        modifier = Modifier.align(Alignment.Center)
+                    )
+                }
+            }
+        }
+        compose.waitForIdle()
+        val view = compose.activity.window.decorView
+        val bitmap = Bitmap.createBitmap(view.width, view.height, Bitmap.Config.ARGB_8888)
+        compose.runOnUiThread { view.draw(Canvas(bitmap)) }
+        File("build/previews").mkdirs()
+        File("build/previews/transient-message.png").outputStream().use { bitmap.compress(Bitmap.CompressFormat.PNG, 100, it) }
+        val box = compose.onNodeWithTag("transient-message").getBoundsInRoot()
+        val density = compose.activity.resources.displayMetrics.density
+        // A pixel inside the box but off the text: the green must show through.
+        val x = ((box.left.value + 4f) * density).toInt()
+        val y = ((box.top.value + 4f) * density).toInt()
+        val green = (bitmap.getPixel(x, y) shr 8) and 0xFF
+        assertTrue("green behind the message is $green of 255; it is not see-through", green in 50..200)
+        assertEquals(0.7f, com.cyopstd.game.ui.game.TRANSIENT_OPACITY, 0.1f)
     }
 }

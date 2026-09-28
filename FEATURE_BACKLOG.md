@@ -353,6 +353,23 @@ wave 60 on DDoS unless it upgrades. DDoS stays the hardest level
 (`MapDifficultyTest`). The random event never replaces a boss wave
 (`AnonymousHackTest`).
 
+### ☆3 ✅ The boss icons move into the briefing; the corner box is gone
+
+**Asked (2026-09-28, with screenshots):** *"Boss icon in bottom left is
+blocking the deployment of agents. put the icon in the menu that pulls up
+when you tap boss. this menu that doesnt go away in bottom left needs to be
+gone."* Built (1.50.1): the bottom-left BOSS WAVE box from Z1 is removed.
+The briefing opened by NEXT BOSS now shows each boss's icon — its glyph in a
+box in its board colour — beside its name.
+
+### ☆4 ✅ TAP AGAIN TO DEPLOY is see-through
+
+**Asked (2026-09-28):** *"the tap again to deploy needs to be 60-80% opacity
+- we want to see through it if a unit is being placed where the text is."*
+Built (1.50.1): every short on-board message (TAP AGAIN TO DEPLOY,
+INSUFFICIENT CRYPTO …) is drawn at 70% opacity, box and text together, and
+still takes no touches, so a tap on it reaches the spot beneath.
+
 ## E. A second map
 
 ### E1 ✅ SHIPPED in 1.36.0 — "Hugging-Face", selectable and earned

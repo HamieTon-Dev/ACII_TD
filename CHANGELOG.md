@@ -9,6 +9,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [1.50.1] — 2026-09-28
+
+- The bottom-left BOSS WAVE box is gone: it covered deployment spots. Each
+  boss's icon now appears beside its name in the NEXT BOSS briefing.
+- TAP AGAIN TO DEPLOY and the other short on-board messages are 70% opaque,
+  so the spot underneath shows through.
+
 ## [1.50.0] — 2026-09-28
 
 ### Late-game difficulty (backlog Q1–Q6)
