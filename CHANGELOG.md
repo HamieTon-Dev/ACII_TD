@@ -9,6 +9,27 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [1.49.0] — 2026-09-28
+
+### Full details on an "i"
+
+- Every card in the full AGENTS menu has an **i**. It opens everything about
+  that agent — stats, ability, what it does in the game and what it is in
+  the real world — with SELECT and CLOSE. Reading never selects by itself.
+
+### The next boss wave, in the corner
+
+- In the break before a boss wave, the bottom-left corner lists each boss
+  coming, in its board colour, with its name and how many. Its **i** (or any
+  boss) opens the full briefing: what it does, what beats it, what to watch
+  out for. It moves aside while you choose or place an agent.
+
+### Tap twice to deploy
+
+- New switch: SETTINGS › GAMEPLAY › **TAP TWICE TO DEPLOY** (off by
+  default). The first tap on a spot shows the agent's range there; tap the
+  same spot again to deploy, or another spot to look there instead.
+
 ## [1.48.0] — 2026-09-27
 
 ### Compact agents menu

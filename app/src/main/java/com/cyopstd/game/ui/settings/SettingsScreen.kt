@@ -148,6 +148,12 @@ fun SettingsScreen(
                         checked = settings.compactAgentBar,
                         onCheckedChange = { v -> onUpdate { it.copy(compactAgentBar = v) } }
                     )
+                    ToggleRow(
+                        label = "TAP TWICE TO DEPLOY",
+                        description = "First tap shows the agent's range on that spot; tap it again to deploy",
+                        checked = settings.confirmPlacement,
+                        onCheckedChange = { v -> onUpdate { it.copy(confirmPlacement = v) } }
+                    )
                 }
             }
 

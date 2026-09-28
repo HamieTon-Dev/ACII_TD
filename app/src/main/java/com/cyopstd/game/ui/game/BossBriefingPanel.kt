@@ -1,6 +1,10 @@
 package com.cyopstd.game.ui.game
 
 import androidx.compose.foundation.background
+import androidx.compose.ui.platform.testTag
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -213,6 +217,82 @@ fun BossBriefingPanel(
 
             Spacer(Modifier.height(6.dp))
             Caption("The countdown keeps running while this is open.")
+        }
+    }
+}
+
+/** A boss's colour on the board, for UI that names it. */
+fun bossUiColor(variant: BossVariant): androidx.compose.ui.graphics.Color = when (variant.palette) {
+    com.cyopstd.game.model.BossPalette.HOSTILE -> Palette.Red
+    com.cyopstd.game.model.BossPalette.ICE -> Palette.Cyan
+    com.cyopstd.game.model.BossPalette.VIOLET -> Palette.Purple
+    // Cycles through the cool colours on the board; blue stands in for it.
+    com.cyopstd.game.model.BossPalette.SPECTRUM -> Palette.Blue
+}
+
+/**
+ * The bosses coming in the next wave, in the bottom-left corner of the board
+ * during the break before it (owner, 2026-09-28). Each boss is a small tile
+ * in its board colour with its name under it; the "i", or any tile, opens
+ * the full briefing on them.
+ */
+@Composable
+fun BossWaveStrip(
+    briefing: BossBriefing,
+    open: Boolean,
+    onToggle: () -> Unit,
+    modifier: Modifier = Modifier
+) {
+    Column(
+        modifier = modifier
+            .testTag("boss-wave-strip")
+            .background(Palette.Surface.copy(alpha = LocalPanelOpacity.current), RoundedCornerShape(6.dp))
+            .border(1.dp, Palette.Red.copy(alpha = 0.55f), RoundedCornerShape(6.dp))
+            .padding(horizontal = 8.dp, vertical = 6.dp)
+    ) {
+        Row(verticalAlignment = Alignment.CenterVertically) {
+            Text(
+                text = "BOSS WAVE ${briefing.wave}" +
+                    if (briefing.bossCount > 1) " \u00B7 ${briefing.bossCount} BOSSES" else "",
+                style = MaterialTheme.typography.labelMedium,
+                color = Palette.Red
+            )
+            Spacer(Modifier.width(10.dp))
+            InfoButton(open = open, onClick = onToggle, tag = "boss-wave-info", accent = Palette.Red)
+        }
+        Spacer(Modifier.height(4.dp))
+        Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
+            for ((variant, count) in briefing.variants) {
+                val color = bossUiColor(variant)
+                Column(
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    modifier = Modifier.clickable(onClick = onToggle)
+                ) {
+                    Box(
+                        contentAlignment = Alignment.Center,
+                        modifier = Modifier
+                            .heightIn(min = 32.dp)
+                            .widthIn(min = 54.dp)
+                            .background(color.copy(alpha = 0.16f), RoundedCornerShape(7.dp))
+                            .border(1.dp, color.copy(alpha = 0.7f), RoundedCornerShape(7.dp))
+                            .padding(horizontal = 6.dp)
+                    ) {
+                        Text(
+                            text = variant.glyph,
+                            style = MaterialTheme.typography.titleMedium,
+                            color = color,
+                            maxLines = 1
+                        )
+                    }
+                    Spacer(Modifier.height(2.dp))
+                    Text(
+                        text = variant.displayName + if (count > 1) " \u00D7$count" else "",
+                        style = MaterialTheme.typography.labelSmall,
+                        color = Palette.Crypto,
+                        maxLines = 1
+                    )
+                }
+            }
         }
     }
 }

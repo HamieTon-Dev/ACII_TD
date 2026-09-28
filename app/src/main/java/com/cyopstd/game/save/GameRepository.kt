@@ -68,6 +68,7 @@ class GameRepository(private val store: DataStore<Preferences>) {
                 damageNumbers = prefs[Keys.DAMAGE_NUMBERS] ?: true,
                 showAgentRange = prefs[Keys.SHOW_RANGE] ?: true,
                 compactAgentBar = prefs[Keys.COMPACT_AGENTS] ?: false,
+                confirmPlacement = prefs[Keys.CONFIRM_PLACEMENT] ?: false,
                 autoStartWaves = prefs[Keys.AUTO_START] ?: false,
                 autoStartBossWaves = prefs[Keys.AUTO_START_BOSS] ?: false,
                 screenShake = prefs[Keys.SCREEN_SHAKE] ?: true,
@@ -131,6 +132,7 @@ class GameRepository(private val store: DataStore<Preferences>) {
             prefs[Keys.DAMAGE_NUMBERS] = updated.damageNumbers
             prefs[Keys.SHOW_RANGE] = updated.showAgentRange
             prefs[Keys.COMPACT_AGENTS] = updated.compactAgentBar
+            prefs[Keys.CONFIRM_PLACEMENT] = updated.confirmPlacement
             prefs[Keys.AUTO_START] = updated.autoStartWaves
             prefs[Keys.AUTO_START_BOSS] = updated.autoStartBossWaves
             prefs[Keys.SCREEN_SHAKE] = updated.screenShake
@@ -428,6 +430,7 @@ class GameRepository(private val store: DataStore<Preferences>) {
         val DAMAGE_NUMBERS = booleanPreferencesKey("damage_numbers")
         val SHOW_RANGE = booleanPreferencesKey("show_range")
         val COMPACT_AGENTS = booleanPreferencesKey("compact_agent_bar")
+        val CONFIRM_PLACEMENT = booleanPreferencesKey("confirm_placement")
         val AUTO_START = booleanPreferencesKey("auto_start")
         val AUTO_START_BOSS = booleanPreferencesKey("auto_start_boss")
         val SCREEN_SHAKE = booleanPreferencesKey("screen_shake")

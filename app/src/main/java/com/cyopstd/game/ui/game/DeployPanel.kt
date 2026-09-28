@@ -11,6 +11,10 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyRow
@@ -56,6 +60,8 @@ fun DeployPanel(
     compact: Boolean = false
 ) {
     var lockedInfo by remember { mutableStateOf<AgentType?>(null) }
+    /** The agent whose full details the "i" on its card has opened. */
+    var infoFor by remember { mutableStateOf<AgentType?>(null) }
     if (compact) {
         CompactDeployBar(
             crypto = crypto,
@@ -110,6 +116,19 @@ fun DeployPanel(
             Spacer(Modifier.height(8.dp))
         }
 
+        infoFor?.let { type ->
+            AgentInfoNote(
+                type = type,
+                unlocked = type.name in unlockedAgents,
+                onSelect = {
+                    infoFor = null
+                    onSelect(type)
+                },
+                onDismiss = { infoFor = null }
+            )
+            Spacer(Modifier.height(8.dp))
+        }
+
         LazyRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
             items(AgentType.catalog, key = { it.name }) { type ->
                 val unlocked = type.name in unlockedAgents
@@ -126,7 +145,12 @@ fun DeployPanel(
                         } else {
                             lockedInfo = type
                         }
-                    }
+                    },
+                    onInfo = {
+                        lockedInfo = null
+                        infoFor = if (infoFor == type) null else type
+                    },
+                    infoOpen = infoFor == type
                 )
             }
         }
@@ -150,7 +174,9 @@ private fun AgentCard(
     unlocked: Boolean,
     affordable: Boolean,
     selected: Boolean,
-    onClick: () -> Unit
+    onClick: () -> Unit,
+    onInfo: () -> Unit,
+    infoOpen: Boolean
 ) {
     val accent = when {
         !unlocked -> Palette.TextMuted
@@ -161,7 +187,7 @@ private fun AgentCard(
 
     Column(
         modifier = Modifier
-            .width(148.dp)
+            .width(166.dp)
             .background(
                 if (selected) accent.copy(alpha = 0.16f) else Palette.SurfaceRaised.copy(alpha = 0.6f),
                 RoundedCornerShape(4.dp)
@@ -174,7 +200,7 @@ private fun AgentCard(
             .clickable(enabled = true, onClick = onClick)
             .padding(8.dp)
     ) {
-        Row(verticalAlignment = Alignment.CenterVertically) {
+        Row(modifier = Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
             Box(
                 Modifier
                     .background(accent.copy(alpha = 0.14f), RoundedCornerShape(3.dp))
@@ -188,7 +214,7 @@ private fun AgentCard(
                 )
             }
             Spacer(Modifier.width(7.dp))
-            Column {
+            Column(Modifier.weight(1f)) {
                 Text(
                     text = type.shortName,
                     style = MaterialTheme.typography.labelMedium,
@@ -205,6 +231,7 @@ private fun AgentCard(
                     }
                 )
             }
+            InfoButton(open = infoOpen, onClick = onInfo, tag = "agent-info-${type.name}")
         }
 
         Spacer(Modifier.height(5.dp))
@@ -245,6 +272,89 @@ private fun AgentCard(
                 style = MaterialTheme.typography.labelSmall,
                 color = Palette.TextMuted
             )
+        }
+    }
+}
+
+/**
+ * The small round "i" that opens an entry's full details (owner,
+ * 2026-09-28). A separate target from the card itself, so reading about an
+ * agent never selects it by accident.
+ */
+@Composable
+internal fun InfoButton(open: Boolean, onClick: () -> Unit, tag: String, accent: androidx.compose.ui.graphics.Color = Palette.Cyan) {
+    Box(
+        contentAlignment = Alignment.Center,
+        modifier = Modifier
+            .testTag(tag)
+            .size(24.dp)
+            .background(accent.copy(alpha = if (open) 0.35f else 0.10f), CircleShape)
+            .border(1.dp, accent.copy(alpha = 0.8f), CircleShape)
+            .clickable(onClick = onClick)
+    ) {
+        Text(text = "i", style = MaterialTheme.typography.labelMedium, color = accent)
+    }
+}
+
+/** Everything about one agent, opened from the "i" on its card. */
+@Composable
+private fun AgentInfoNote(
+    type: AgentType,
+    unlocked: Boolean,
+    onSelect: () -> Unit,
+    onDismiss: () -> Unit
+) {
+    val color = agentClassColor(type)
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .background(Palette.SurfaceRaised.copy(alpha = 0.9f), RoundedCornerShape(4.dp))
+            .border(1.dp, color.copy(alpha = 0.6f), RoundedCornerShape(4.dp))
+            .padding(8.dp)
+    ) {
+        Row(verticalAlignment = Alignment.CenterVertically) {
+            Text(
+                text = "[${type.glyph}] ${type.displayName}  \u00B7  \u25C7 ${type.cost}",
+                style = MaterialTheme.typography.titleSmall,
+                color = color,
+                modifier = Modifier.weight(1f)
+            )
+            if (unlocked) {
+                CompactButton(text = "SELECT", onClick = onSelect, accent = Palette.Green)
+                Spacer(Modifier.width(6.dp))
+            }
+            CompactButton(text = "CLOSE", onClick = onDismiss, accent = Palette.TextSecondary)
+        }
+        Column(
+            Modifier
+                .heightIn(max = 130.dp)
+                .verticalScroll(rememberScrollState())
+        ) {
+            Text(
+                text = if (type.healsServer) {
+                    "REPAIR +${com.cyopstd.game.core.Balance.ENGINEER_HEAL_AMOUNT} HP " +
+                        "\u00B7 EVERY ${com.cyopstd.game.core.Balance.ENGINEER_HEAL_INTERVAL.toInt()}s " +
+                        "\u00B7 SLOT CORE-SERVER \u00B7 MAX ${type.maxDeployed}"
+                } else {
+                    "DMG ${type.baseDamage.toInt()} \u00B7 RATE ${format(type.baseFireRate)}/s " +
+                        "\u00B7 RANGE ${type.baseRange.toInt()}" +
+                        if (type.maxDeployed > 0) " \u00B7 MAX ${type.maxDeployed}" else ""
+                },
+                style = MaterialTheme.typography.labelMedium,
+                color = Palette.Cyan
+            )
+            Spacer(Modifier.height(4.dp))
+            Text(
+                text = "${type.abilityName} \u2014 ${type.abilitySummary}",
+                style = MaterialTheme.typography.labelMedium,
+                color = Palette.Crypto
+            )
+            Spacer(Modifier.height(4.dp))
+            Text(text = "IN-GAME", style = MaterialTheme.typography.labelSmall, color = Palette.Green)
+            Text(text = type.inGame, style = MaterialTheme.typography.bodySmall, color = Palette.TextSecondary)
+            Spacer(Modifier.height(4.dp))
+            Text(text = "REAL-WORLD", style = MaterialTheme.typography.labelSmall, color = Palette.Cyan)
+            Text(text = type.realWorld, style = MaterialTheme.typography.bodySmall, color = Palette.TextSecondary)
         }
     }
 }
