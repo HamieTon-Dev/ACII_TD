@@ -1200,7 +1200,7 @@ class GameViewModel @JvmOverloads constructor(
                 tutorialStep = TutorialScript.PICK_FIREWALL
             }
         } else {
-            selection = selection.copy(pendingAgent = null)
+            selection = selection.copy(pendingAgent = null, previewNodeId = null)
         }
         audio.play(GameSound.UI_CLICK)
     }
@@ -1210,7 +1210,7 @@ class GameViewModel @JvmOverloads constructor(
             showTransient("AGENT LOCKED — ${type.lockedLabel}")
             return
         }
-        selection = selection.copy(pendingAgent = type, selectedNodeId = null)
+        selection = selection.copy(pendingAgent = type, selectedNodeId = null, previewNodeId = null)
         showDeployPanel = false
         audio.play(GameSound.UI_CLICK)
         // The guided run does insist, because the owner asked it to: two
@@ -1237,7 +1237,7 @@ class GameViewModel @JvmOverloads constructor(
     }
 
     fun clearPendingAgent() {
-        selection = selection.copy(pendingAgent = null)
+        selection = selection.copy(pendingAgent = null, previewNodeId = null)
     }
 
     /**
@@ -1257,6 +1257,21 @@ class GameViewModel @JvmOverloads constructor(
         val occupant = engine.agentAt(node.id)
 
         if (pending != null && occupant == null) {
+            // TAP TWICE TO DEPLOY: the first tap on a spot only previews the
+            // range there; a second tap on the same spot deploys.
+            if (settings.confirmPlacement && selection.previewNodeId != node.id) {
+                if (node.serverSlot != pending.healsServer) {
+                    showTransient(
+                        if (pending.healsServer) "PLACE ON A CORE-SERVER SLOT"
+                        else "CORE-SERVER SLOTS ARE FOR [S] ONLY"
+                    )
+                    return
+                }
+                selection = selection.copy(previewNodeId = node.id)
+                showTransient("TAP AGAIN TO DEPLOY")
+                audio.play(GameSound.UI_CLICK)
+                return
+            }
             when (engine.placeAgent(pending, node.id)) {
                 PlacementResult.SUCCESS -> {
                     selection = BattlefieldSelection()

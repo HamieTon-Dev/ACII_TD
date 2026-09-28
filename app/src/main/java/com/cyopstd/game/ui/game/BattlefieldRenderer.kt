@@ -1269,6 +1269,26 @@ class BattlefieldRenderer {
         selection: BattlefieldSelection,
         options: BattlefieldRenderOptions
     ) {
+        // A spot being previewed before a second, confirming tap shows the
+        // agent's range there whatever SHOW AGENT RANGE says: seeing it is
+        // the whole point of the preview.
+        val previewAt = selection.previewNodeId?.let { map.node(it) }
+        val previewing = selection.pendingAgent
+        if (previewAt != null && previewing != null && engine.agentAt(previewAt.id) == null) {
+            val color = agentColor(previewing)
+            if (previewing.healsServer) {
+                drawRepairLink(canvas)
+            } else {
+                drawScanRing(canvas, previewAt.x, previewAt.y, previewing.baseRange, colGreen)
+            }
+            textPaint.textSize = 24f
+            textPaint.color = color
+            textPaint.alpha = 190
+            canvas.drawText("[${previewing.glyph}]", previewAt.x, previewAt.y + 8f, textPaint)
+            textPaint.alpha = 255
+            return
+        }
+
         if (!options.showAgentRange) return
 
         val selected = selection.selectedNodeId?.let { engine.agentAt(it) }

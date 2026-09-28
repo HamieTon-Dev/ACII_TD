@@ -18,5 +18,10 @@ data class BattlefieldSelection(
     /** An agent chosen in the deploy panel and waiting for a node tap. */
     val pendingAgent: AgentType? = null,
     /** A deployed agent the player tapped, whose management panel is open. */
-    val selectedNodeId: Int? = null
+    val selectedNodeId: Int? = null,
+    /**
+     * With TAP TWICE TO DEPLOY on: the free spot tapped once, where the
+     * pending agent's range is being previewed. A second tap there deploys.
+     */
+    val previewNodeId: Int? = null
 )

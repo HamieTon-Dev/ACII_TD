@@ -17,6 +17,11 @@ data class GameSettings(
      * does). Off by default, since new players need the full cards.
      */
     val compactAgentBar: Boolean = false,
+    /**
+     * Placing takes two taps on the same spot: the first shows the agent's
+     * range there, the second deploys (owner, 2026-09-28). Off by default.
+     */
+    val confirmPlacement: Boolean = false,
     val autoStartWaves: Boolean = false,
     /**
      * Whether auto-start also starts boss waves. Off by default: a boss wave

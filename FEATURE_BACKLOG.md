@@ -206,6 +206,35 @@ Locked agents show a padlock and still explain their unlock when tapped;
 agents you cannot afford are faded. The colour table is now shared by the
 board and the menu (`AgentColors.kt`) so they cannot drift apart.
 
+### Z1 ✅ shipped in 1.49.0 — "i" for full details; the next boss wave in the corner
+
+**Asked (2026-09-28):** *"On the expanded agents menu add an 'i' button to
+expand and show all the info for the unit they want to place. Also need this
+in the bottom left before a boss wave that would be a list of the bosses
+coming in the boss wave and their info."*
+
+**Built:** every full agent card has a round "i". It opens that agent's full
+entry above the row (stats, ability, IN-GAME, REAL-WORLD) with SELECT and
+CLOSE, and never selects the agent by itself. In the break before a boss
+wave, a strip in the bottom-left corner lists each boss coming (its glyph in
+its board colour, its name, ×count) with its own "i" that opens the full
+briefing (what it does, what it is weak to, what to watch out for). It steps
+aside while the player is choosing or placing an agent, since the compact
+agents menu uses the same corner.
+
+### Z2 ✅ shipped in 1.49.0 — tap twice to deploy
+
+**Asked (2026-09-28):** *"a double tap feature that can be toggled on and off
+in settings, when placing an agent players want to see the range of the unit
+before its placed, click the green spot, see the range of the unit, then
+click again to confirm the placement."*
+
+**Built:** SETTINGS › GAMEPLAY › TAP TWICE TO DEPLOY (off by default). On,
+the first tap on a free spot shows the agent's range ring and a ghost of the
+agent there, with "TAP AGAIN TO DEPLOY"; a second tap on the same spot
+deploys, and a tap on another spot moves the preview. The preview ring shows
+even with SHOW AGENT RANGE off.
+
 ## E. A second map
 
 ### E1 ✅ SHIPPED in 1.36.0 — "Hugging-Face", selectable and earned

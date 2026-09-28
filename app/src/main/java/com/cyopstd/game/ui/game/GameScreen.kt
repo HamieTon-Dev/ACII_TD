@@ -237,6 +237,24 @@ private fun GameScreenBody(
                 }
             }
 
+            // Who the next boss wave brings, in the corner, all break long. Out
+            // of the way while the player is choosing or placing an agent,
+            // which uses the same corner.
+            if (hud.phase == RunPhase.PREPARING && hud.nextWaveIsBoss &&
+                !viewModel.showDeployPanel && selection.pendingAgent == null
+            ) {
+                viewModel.bossBriefing()?.let { briefing ->
+                    BossWaveStrip(
+                        briefing = briefing,
+                        open = viewModel.showBossBriefing,
+                        onToggle = viewModel::toggleBossBriefing,
+                        modifier = Modifier
+                            .align(Alignment.BottomStart)
+                            .padding(8.dp)
+                    )
+                }
+            }
+
             if (viewModel.showDeployPanel) {
                 DeployPanel(
                     crypto = hud.crypto,
