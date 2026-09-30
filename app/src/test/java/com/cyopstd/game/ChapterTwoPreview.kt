@@ -174,6 +174,97 @@ class ChapterTwoPreview {
         })
     }
 
+    // ------------------------------------------ round 2 (levels 9 and 10)
+
+    private fun l9d() = map("l9d", "9D · CIRCUIT BOARD",
+        "Two routes trace square teeth like PCB tracks, top and bottom; the middle is open ground.",
+        arrayOf(w(s, 90f), w(260f, 90f), w(260f, 250f), w(540f, 250f), w(540f, 90f), w(820f, 90f),
+            w(820f, 250f), w(1080f, 250f), w(1080f, 90f), w(1190f, 90f), w(1190f, c), w(r, c)),
+        arrayOf(w(s, 670f), w(260f, 670f), w(260f, 510f), w(540f, 510f), w(540f, 670f), w(820f, 670f),
+            w(820f, 510f), w(1080f, 510f), w(1080f, 670f), w(1190f, 670f), w(1190f, c), w(r, c)))
+
+    private fun l9e() = map("l9e", "9E · HOURGLASS",
+        "Two routes squeeze through one choke mid-board, part, and meet again at the rack.",
+        arrayOf(w(s, 100f), w(350f, 100f), w(620f, c), w(780f, c), w(1050f, 100f), w(1190f, 100f), w(1190f, c), w(r, c)),
+        arrayOf(w(s, 660f), w(350f, 660f), w(620f, c), w(780f, c), w(1050f, 660f), w(1190f, 660f), w(1190f, c), w(r, c)))
+
+    private fun l9f() = map("l9f", "9F · SPLIT RIVER",
+        "One road in; it splits into three streams across the board and rejoins at the rack.",
+        arrayOf(w(s, c), w(260f, c), w(420f, 100f), w(950f, 100f), w(1120f, c), w(r, c)),
+        arrayOf(w(s, c), w(r, c)),
+        arrayOf(w(s, c), w(260f, c), w(420f, 660f), w(950f, 660f), w(1120f, c), w(r, c)))
+
+    private fun l9g() = map("l9g", "9G · CROSSFIRE",
+        "Four short routes from three edges. Little time, many fronts.",
+        arrayOf(w(s, 220f), w(620f, 220f), w(620f, c), w(r, c)),
+        arrayOf(w(s, 540f), w(620f, 540f), w(620f, c), w(r, c)),
+        arrayOf(w(900f, -60f), w(900f, 200f), w(1110f, 200f), w(1110f, c), w(r, c)),
+        arrayOf(w(900f, 820f), w(900f, 560f), w(1110f, 560f), w(1110f, c), w(r, c)))
+
+    private fun l10d(theme: LevelTheme? = null) = map("l10d", "10D · HELIX",
+        "Two routes weave through each other three times before the rack, like a strand of DNA.",
+        arrayOf(w(s, 150f), w(150f, 150f), w(330f, 610f), w(510f, 610f), w(690f, 150f),
+            w(870f, 150f), w(1050f, 610f), w(1190f, 610f), w(1190f, c), w(r, c)),
+        arrayOf(w(s, 610f), w(150f, 610f), w(330f, 150f), w(510f, 150f), w(690f, 610f),
+            w(870f, 610f), w(1050f, 150f), w(1190f, 150f), w(1190f, c), w(r, c)), theme = theme)
+
+    private fun l10e() = map("l10e", "10E · TENTACLES",
+        "A highway down the middle, fed by four routes that drop in from the top and bottom.",
+        arrayOf(w(s, c), w(r, c)),
+        arrayOf(w(280f, -60f), w(280f, c), w(r, c)),
+        arrayOf(w(680f, -60f), w(680f, c), w(r, c)),
+        arrayOf(w(480f, 820f), w(480f, c), w(r, c)),
+        arrayOf(w(880f, 820f), w(880f, c), w(r, c)))
+
+    private fun l10f() = map("l10f", "10F · FORTRESS",
+        "One long winding road from the left, and two sprints straight down onto the rack.",
+        arrayOf(w(s, c), w(260f, c), w(260f, 90f), w(880f, 90f), w(880f, 670f), w(1090f, 670f), w(1090f, c), w(r, c)),
+        arrayOf(w(1230f, -60f), w(1230f, c), w(r, c)),
+        arrayOf(w(1230f, 820f), w(1230f, c), w(r, c)))
+
+    private fun l10g() = map("l10g", "10G · PINBALL",
+        "One route ricochets across the board at wild angles, crossing itself.",
+        arrayOf(w(s, c), w(160f, c), w(320f, 70f), w(520f, 690f), w(680f, 180f), w(900f, 690f),
+            w(1010f, 70f), w(1190f, 560f), w(1190f, c), w(r, c)))
+
+    @Test
+    fun round2Layouts() {
+        for ((name, m) in listOf(
+            "9D" to l9d(), "9E" to l9e(), "9F" to l9f(), "9G" to l9g(),
+            "10D" to l10d(), "10E" to l10e(), "10F" to l10f(), "10G" to l10g()
+        )) render(name, m)
+    }
+
+    /** Colours from parts of the spectrum not used by levels 1–8, on layout 10D. */
+    @Test
+    fun round2Colours() {
+        fun t(b: Long, g: Long, f: Long, e: Long, m: Long) =
+            LevelTheme(b.toInt(), g.toInt(), f.toInt(), e.toInt(), m.toInt())
+        val options = listOf(
+            "D1 ARCTIC ICE" to t(0xFF050A0D, 0xFF16262E, 0xFF182C35, 0xFF4A7A8C, 0xFFBFE8F5),
+            "D2 ELECTRIC BLUE" to t(0xFF020818, 0xFF0A2250, 0xFF0A2A60, 0xFF1E5FD0, 0xFF4FA0FF),
+            "D3 SEAFOAM" to t(0xFF03100C, 0xFF0D3328, 0xFF0E3A2E, 0xFF1F8A6A, 0xFF5FE0B8),
+            "D4 INDIGO" to t(0xFF06051A, 0xFF16124A, 0xFF1A1552, 0xFF3A30A0, 0xFF7F74F0),
+            "D5 CHARTREUSE" to t(0xFF0A0C02, 0xFF2A330A, 0xFF2E380A, 0xFF4E6410, 0xFFD8F040),
+            "D6 GHOST WHITE" to t(0xFF0A0A0A, 0xFF262626, 0xFF2C2C2C, 0xFF707070, 0xFFE0E0E0),
+            "D7 SAPPHIRE & GOLD" to t(0xFF030818, 0xFF0E1C44, 0xFF0E2050, 0xFF2A4CA0, 0xFFFFD35C),
+            "D8 ROSE GOLD" to t(0xFF120807, 0xFF3A2020, 0xFF3A1E1C, 0xFF5A3634, 0xFFF0A898)
+        )
+        fun rgb(v: Int) = floatArrayOf((v shr 16 and 0xFF) / 255f, (v shr 8 and 0xFF) / 255f, (v and 0xFF) / 255f)
+        fun lum(v: Int) = rgb(v).let { 0.2126f * it[0] + 0.7152f * it[1] + 0.0722f * it[2] }
+        fun dist(a: Int, b: Int) = rgb(a).zip(rgb(b)).sumOf { (x, y) -> ((x - y) * (x - y)).toDouble() }.let { kotlin.math.sqrt(it) }
+        val threats = listOf(GameEngine.COLOR_HOSTILE, GameEngine.COLOR_WARNING, GameEngine.COLOR_ELITE)
+        for ((name, theme) in options) {
+            val ok = lum(theme.backdrop) < 0.09f && lum(theme.laneFill) < 0.2f &&
+                listOf(theme.backdrop, theme.laneFill, theme.laneBorder).all { c -> threats.all { dist(c, it) > 0.6 } }
+            println("CH2 colour $name passes the level-theme rules: $ok")
+            render(name.substringBefore(' '), l10d(theme).let {
+                GameMap(id = it.id, displayName = name, tagline = "Colour option, shown on layout 10D.",
+                    laneWaypoints = it.laneWaypoints, candidateRows = rows, theme = theme)
+            })
+        }
+    }
+
     private fun render(name: String, map: GameMap) {
         val engine = GameEngine()
         engine.selectMap(map)
