@@ -403,6 +403,18 @@ in the same file). Names offered per level are in the chat and below.
 chosen. Levels 9 and 10: the owner asked for more route options and colours
 "from other parts of the spectrum" before choosing — second round in
 `ChapterTwoPreview` (9D–9G, 10D–10G, colours D1–D8).
+**Owner's picks, round 2 (2026-09-30):** level 9 = 10D HELIX in D8 ROSE GOLD;
+level 10 = 9B TRIPLE BRAID in D4 INDIGO. **All five layouts and colours are
+now chosen.** Still to choose: the five names. Then build (with the boss
+list from ♡5 and two music tracks per level from the owner).
+
+| Level | Layout | Colour | Name |
+|---|---|---|---|
+| 6 | 6B TRIDENT | C6 SYNTHWAVE | ❓ |
+| 7 | 6A SPIRAL | C3 MAGENTA | ❓ |
+| 8 | 8C ZIGZAG | C8 COPPER | ❓ |
+| 9 | 10D HELIX | D8 ROSE GOLD | ❓ |
+| 10 | 9B TRIPLE BRAID | D4 INDIGO | ❓ |
 
 **Known constraints:** each level unlocks at wave 100 on the one before it
 (`GameMap.unlockMapId/unlockAtWave`) and must be harder than it
