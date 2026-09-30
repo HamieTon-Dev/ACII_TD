@@ -370,6 +370,130 @@ Built (1.50.1): every short on-board message (TAP AGAIN TO DEPLOY,
 INSUFFICIENT CRYPTO …) is drawn at 70% opacity, box and text together, and
 still takes no touches, so a tap on it reaches the spot beneath.
 
+## W. Chapter two — the owner's list of 2026-09-30 (♡1–♡6)
+
+**Asked (2026-09-30):** *"before doing any work add all of these to backlog so
+that if usage stops you, you can continue work later."* Six items, labelled
+♡1–♡6 by the owner (not to be confused with the older "♡. Music" section).
+None is started. Each notes what is already known from the code and what the
+owner still has to choose, so a later session can pick it up cold.
+
+### ♡1 ⬜❓ Five more levels — owner chooses layouts, colours and names
+
+**Asked:** *"Time to make 5 more levels. Give me lane layouts, different color
+options, and online relevant 'Cyber related' names for the levels. Ask me for
+the options and let me choose."*
+
+**Process (as for levels 3–5):** draw 3–4 candidate layouts per level as
+rendered previews (see how NEURAL-MESH, DUCK-USB and DDoS were chosen), give
+2–3 dark theme colour options per level (`LevelTheme`: backdrop, grid, lane
+fill, lane border, lane marks; `LevelThemeTest` keeps them readable and
+clear of threat colours), and a short list of cyber-related names per level.
+**Nothing is built until the owner picks.**
+
+**Known constraints:** each level unlocks at wave 100 on the one before it
+(`GameMap.unlockMapId/unlockAtWave`) and must be harder than it
+(`MapDifficultyTest`, `threatHealthScale`); ~60–70 build spots with ~90 world
+units between agents (`NODE_CLEARANCE` 58, `MIN_NODE_SPACING` 56); themes are
+dark; each level gets two music tracks from the owner (`LevelMusic`); bosses
+stack by `MAP_PROGRESSION` (see ♡5). Levels 6–10 extend `Maps.all` and
+`MAP_PROGRESSION`.
+
+### ♡2 ⬜❓ ANTI DUCK USB [🦆] — unlocked by wave 100 on DUCK-USB
+
+**Asked:** *"For completion of duck usb level wave 100 - unlocks a unit called
+'Anti Duck Usb'. This will be more powerful than Red hat and blue hat, will
+cost 500◇, and symbol will be [🦆]. Maybe go hologram Green/Yellow color
+change for this guy, bypasses any skin and this unit will always look this
+way. If possible make the duck logo out of ASCII and if not possible let me
+know, give me options for how this character will look, let me choose."*
+
+**Spec so far:** cost 500 ◇; stronger than REDHAT (400 ◇) and BLUEHAT;
+unlocked by wave 100 on DUCK-USB (a per-map unlock, like SERVER SYSTEMS
+ENGINEER's beginner-level rule — `AgentType.earnedBy` needs a per-map
+record, `highestWaveByMap` has it); colour is a green↔yellow hologram cycle
+that ignores the SPECTRUM skin (see `BattlefieldRenderer.agentColor` and
+`holographic()`).
+
+**Owner to choose:** the look. Show options before building: the [🦆] emoji
+glyph as asked (check it renders on Android's monospace fallback and fits
+the agent circle); a small ASCII duck drawn in the circle; and a hybrid.
+ASCII *is* possible at small sizes (a 2–3 line duck), but legibility inside a
+~52 px circle has to be shown, not promised. Also still to settle: its damage
+profile / ability (more powerful than the hats — e.g. bonus vs the DUCK-USB
+bosses SYN-STORM and GRADIENT?), range, and a deploy limit.
+
+### ♡3 ⬜❓ CYBER OPERATIVE [>_<] — unlocked by wave 100 on HUGGING-FACE
+
+**Asked:** *"For completion of hugging face level wave 100 - unlock [>_<]
+unit. This will be a unit that resembles the logo of the game, and can be
+called 'Cyber Operative' - this unit protects units within its range from
+jamming, has high fast damage to the [●_●] & [○_○] bosses, limit of two, same
+range parameters as tar pit, and hopefully can look almost identical to the
+games logo."*
+
+**Spec:** glyph [>_<], name CYBER OPERATIVE; `maxDeployed` 2; range = TARPIT's
+`baseRange`; agents in its range cannot be jammed (extend `Agent.jam()` —
+the immunity check lives there on purpose — with an "is covered by an
+Operative" test, refreshed like `damageBuff` in `CombatSystem.refreshBuffs`);
+high, fast damage to BLACK EYE [●_●] and WHITE EYE [○_○] (both HUGGING-FACE
+bosses; use `BossVariant.bonusDamageFrom`); unlock by wave 100 on
+HUGGING-FACE (per-map, as ♡2).
+
+**Owner to choose:** the look, shown as renders against the game logo
+(the app icon / wordmark in `res/`).
+
+### ♡4 ⬜❓ Personal stats per level and mode; a new difficulty
+
+**Asked:** *"Need to have personal stats (separate from leaderboard) that tell
+you highest wave reached on each level, and difficulty mode - Add new
+difficulty level that only unlocks after completing DDoS level at wave 100
+on Hack.ai difficulty (should be grayed out and state the conditions if they
+click the difficulty level just like other similar features)."*
+
+**Stats:** a table on the STATISTICS screen: best wave per level × mode.
+`highestWaveByMap` is per level in any mode today, so this needs a per
+(level, mode) record (a new JSON pref like `MAP_BESTS_JSON`), kept in cloud
+saves with a max-merge like the others (`CloudSaveMerge.mergeStats`).
+
+**New difficulty:** a third `GameMode` after STANDARD and HACK:AI, unlocked
+by wave 100 on DDoS *in HACK:AI* (needs the per-(level, mode) record above).
+Locked: greyed on the menu, and tapping it says the condition, as locked
+levels and agents already do. **Owner to choose:** its name and what makes
+it harder (spawn interval, health scale, reward scale — `GameMode` fields).
+
+### ♡5 ⬜❓ Boss ideas for the five new levels
+
+**Asked:** *"Need new boss suggestions to add to the new 5 levels - give me
+examples so I can work on adding them in."*
+
+Deliver a list (two per level, like levels 2–5) with name, glyph, mechanic
+and counter, in the style of `BossVariant` and the boss briefing. Nothing is
+built until the owner picks. Mechanics must be readable in the briefing and
+tested like `NeuralMeshBossBalanceTest` / `DuckUsbBossBalanceTest`.
+
+### ♡6 ⬜ ACE [♤] — unlocked by completing DDoS; builds walls on the lanes
+
+**Asked:** *"completing DDoS level unlocks new agent [♤] called 'Ace' - he is
+a high level Cyber security operative with a Bachelor degree in Cyber
+security and helps prevent attacks by developing software - something along
+those lines as his description - this unit places walls on the lanes that
+have a set number of health and requires the hack enemies to 'destroy' them
+- play around with this one and make sure to do balance checks - this is to
+help player on the next wave of 5 levels so it needs to work at slowing
+attacks - this unit also deals massive damage to all bosses from all 5
+levels - balance the damage as well."*
+
+**Spec:** glyph [♤], name ACE; unlocked by wave 100 on DDoS; description along
+the lines asked (a senior security engineer who builds defensive software).
+Mechanic: places a WALL on the nearest lane within range; threats stop at it
+and must deal damage to break it (wall health scales with wave and ACE
+level; respawns after a cooldown); ACE also deals heavy bonus damage to
+every boss of levels 1–5 (all current `BossVariant`s). Needs: a wall entity
+(pooled, like `Enemy`/`Projectile`), enemies halting and attacking it
+(`EnemySystem`), drawing, a deploy cap, and **balance checks** (probe
+like the 1.50.0 ones: time a wall holds per wave depth, and boss kill times
+with and without ACE; it must slow attacks, not stop them outright).
 ## E. A second map
 
 ### E1 ✅ SHIPPED in 1.36.0 — "Hugging-Face", selectable and earned
