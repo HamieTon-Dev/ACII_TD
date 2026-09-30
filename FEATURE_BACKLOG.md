@@ -398,7 +398,11 @@ clear of threat colours), and a short list of cyber-related names per level.
 re-render into `app/build/chapter2`). Colours C1 VIOLET, C2 MIDNIGHT BLUE, C3
 MAGENTA, C4 TEAL, C5 STEEL, C6 SYNTHWAVE, C7 TOXIC LIME, C8 COPPER (hex values
 in the same file). Names offered per level are in the chat and below.
-Waiting on the owner's picks.
+**Owner's picks (2026-09-30):** level 6 = 6B TRIDENT in C6 SYNTHWAVE; level 7 =
+6A SPIRAL in C3 MAGENTA; level 8 = 8C ZIGZAG in C8 COPPER. Names not yet
+chosen. Levels 9 and 10: the owner asked for more route options and colours
+"from other parts of the spectrum" before choosing — second round in
+`ChapterTwoPreview` (9D–9G, 10D–10G, colours D1–D8).
 
 **Known constraints:** each level unlocks at wave 100 on the one before it
 (`GameMap.unlockMapId/unlockAtWave`) and must be harder than it
