@@ -391,6 +391,15 @@ fill, lane border, lane marks; `LevelThemeTest` keeps them readable and
 clear of threat colours), and a short list of cyber-related names per level.
 **Nothing is built until the owner picks.**
 
+**Options shown to the owner (2026-09-30):** layouts 6A SPIRAL, 6B TRIDENT,
+6C LADDER · 7A MAZE, 7B PINCER, 7C STAIRCASE · 8A RING ROAD, 8B FOUR GATES,
+8C ZIGZAG · 9A STARBURST, 9B TRIPLE BRAID, 9C CHECKPOINT · 10A FIVE FRONTS,
+10B LABYRINTH, 10C GRIDLOCK — all defined in `ChapterTwoPreview` (run it to
+re-render into `app/build/chapter2`). Colours C1 VIOLET, C2 MIDNIGHT BLUE, C3
+MAGENTA, C4 TEAL, C5 STEEL, C6 SYNTHWAVE, C7 TOXIC LIME, C8 COPPER (hex values
+in the same file). Names offered per level are in the chat and below.
+Waiting on the owner's picks.
+
 **Known constraints:** each level unlocks at wave 100 on the one before it
 (`GameMap.unlockMapId/unlockAtWave`) and must be harder than it
 (`MapDifficultyTest`, `threatHealthScale`); ~60–70 build spots with ~90 world
