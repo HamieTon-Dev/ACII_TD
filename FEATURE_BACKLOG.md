@@ -481,6 +481,47 @@ and counter, in the style of `BossVariant` and the boss briefing. Nothing is
 built until the owner picks. Mechanics must be readable in the briefing and
 tested like `NeuralMeshBossBalanceTest` / `DuckUsbBossBalanceTest`.
 
+### ♡7 ⬜ Main menu redesign — less crowded, level and difficulty chosen after PLAY
+
+**Asked (2026-09-30):** *"Main menu is crowded. We need a difficulty drop down
+menu, need to make all of the buttons smaller - scalable - legible on all
+phone sizes - and less crowded, descriptions of every single button is
+really messing things up. Maybe check here: coreui/coreui-icons at 1.0.0
+https://share.google/hQ73nca0CKbphcgCt for icons to use? … we could use a
+play button 'continue' at the bottom of the button in small text; a new run
+button 'New run' at the bottom of button in small text, and when they click
+New run when there is a save do a pop up window 'Are you sure you would like
+to start a fresh run.' Outside of play and continue we need to change the
+format here: Level selection is cluttering main menu. Let's only let user
+select level and difficulty when pressing Play or confirms New run, then
+level and difficulty selection menu."*
+
+**Spec:**
+- Main menu: smaller buttons, icon + a short label, **no description text
+  under each button**; scales and stays legible from a 568×320 phone up
+  (`ScreenSizeTest` / `MatchChromeTest`-style render checks at several
+  sizes, failing on overlap or overflow).
+- Two play buttons: **CONTINUE** (icon, small "Continue" caption underneath;
+  only when there is a saved run) and **NEW RUN** (icon, small "New run"
+  caption). NEW RUN with a save present → confirm pop-up: *"Are you sure you
+  would like to start a fresh run?"* (the save is lost only on yes).
+- Level and difficulty come **off the main menu**. After PLAY / a confirmed
+  NEW RUN, a separate selection screen: pick the level (locked ones greyed,
+  tapping says the condition, as now) and the difficulty from a **drop-down**
+  (STANDARD, HACK:AI, and the ♡4 mode when it exists; locked entries greyed
+  with their condition), then START.
+- CONTINUE goes straight into the saved run (its level and mode are in the
+  save).
+
+**Icons:** the owner suggested the CoreUI Icons set (coreui/coreui-icons
+1.0.0). The link given is a share.google short link — resolve it and confirm
+the set. Before using any of it, check its licence (the free CoreUI icons
+are believed to be CC BY 4.0, which needs visible attribution — add it to the
+About screen's credits, next to the music credits) and import only the
+icons used, as Android vector drawables. Alternative if the licence does not
+suit: Material Symbols (Apache 2.0) or drawing the few icons in-house.
+**Owner to confirm:** the icon set, after seeing a mock-up of the new menu.
+
 ### ♡6 ⬜ ACE [♤] — unlocked by completing DDoS; builds walls on the lanes
 
 **Asked:** *"completing DDoS level unlocks new agent [♤] called 'Ace' - he is
