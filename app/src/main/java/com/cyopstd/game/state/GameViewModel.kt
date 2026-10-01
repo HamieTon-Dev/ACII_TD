@@ -144,8 +144,28 @@ class GameViewModel @JvmOverloads constructor(
 
     fun selectMusicTrack(index: Int?) {
         if (!musicPlayerUnlocked) return
-        if (index == null) audio.followLevelMusic() else audio.playLibraryTrack(index)
+        val tracks = com.cyopstd.game.audio.MusicLibrary.tracks
+        val wrapped = index?.let { ((it % tracks.size) + tracks.size) % tracks.size }
+        if (wrapped == null) audio.followLevelMusic() else audio.playLibraryTrack(wrapped)
         musicPausedByPlayer = false
+        // Saved between sessions (owner, 2026-10-01).
+        val key = wrapped?.let { tracks[it].key }
+        musicTrackRestored = true
+        viewModelScope.launch { repository.updateSettings { it.copy(musicTrackKey = key) } }
+    }
+
+    /** The saved pick has been applied (or overridden) this session. */
+    private var musicTrackRestored = false
+
+    /**
+     * Put back the track saved last session, once both the settings and the
+     * unlock are known. Called from both collectors, whichever lands second.
+     */
+    private fun restoreMusicTrack() {
+        if (musicTrackRestored || !musicPlayerUnlocked) return
+        val index = com.cyopstd.game.audio.MusicLibrary.indexOfKey(settings.musicTrackKey) ?: return
+        musicTrackRestored = true
+        audio.playLibraryTrack(index)
     }
 
     fun toggleMusicPlayback() {
@@ -440,6 +460,7 @@ class GameViewModel @JvmOverloads constructor(
         // selection must not survive it.
         if (selectedMap !in availableMaps) selectedMap = Maps.PERIMETER
         refreshAvailableModes(stats)
+        restoreMusicTrack()
     }
 
     /** Which difficulties are open. KERNEL MODE reads a level-and-mode record. */
@@ -967,6 +988,7 @@ class GameViewModel @JvmOverloads constructor(
             repository.settings.collectLatest { loaded ->
                 settings = loaded
                 applySettingsToSystems(loaded)
+                restoreMusicTrack()
             }
         }
         collectJobs += viewModelScope.launch {

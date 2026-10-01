@@ -5,6 +5,7 @@ import android.graphics.Canvas
 import androidx.activity.ComponentActivity
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onNodeWithTag
+import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import com.cyopstd.game.audio.MusicLibrary
 import com.cyopstd.game.ui.game.MusicPlayerPanel
@@ -61,6 +62,13 @@ class PauseMusicPreview {
         show(unlocked = false, selected = null)
         compose.onNodeWithTag("music-play-pause").performClick()
         snap("locked")
+    }
+
+    @Test
+    fun `restart asks first`() {
+        show(unlocked = true, selected = null)
+        compose.onNodeWithText("RESTART").performClick()
+        snap("restart-confirm")
     }
 
     @Test

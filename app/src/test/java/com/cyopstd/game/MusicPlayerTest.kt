@@ -52,6 +52,15 @@ class MusicPlayerTest {
         assertNull("levels 6-10 have no tracks yet", MusicLibrary.firstTrackOf(Maps.TRIDENT))
     }
 
+    @Test
+    fun `a saved pick is found again by a key that survives new builds`() {
+        val track = MusicLibrary.tracks[7]
+        assertEquals("duck_usb|2", track.key)
+        assertEquals(7, MusicLibrary.indexOfKey("duck_usb|2"))
+        assertNull(MusicLibrary.indexOfKey(null))
+        assertNull("a track that no longer exists is ignored", MusicLibrary.indexOfKey("gone|9"))
+    }
+
     private var selected: Int? = -1
     private var playPauses = 0
     private var nexts = 0

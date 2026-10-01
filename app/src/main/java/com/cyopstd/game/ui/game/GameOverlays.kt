@@ -17,6 +17,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.widthIn
@@ -41,6 +42,7 @@ import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import com.cyopstd.game.R
 import com.cyopstd.game.model.AgentType
 import com.cyopstd.game.state.GameOverSummary
 import com.cyopstd.game.ui.common.AsciiRule
@@ -86,11 +88,20 @@ fun PauseOverlay(
                 .padding(20.dp)
                 .verticalScroll(rememberScrollState())
         ) {
-            Text(
-                text = "|| PAUSED",
-                style = MaterialTheme.typography.headlineMedium,
-                color = Palette.Cyan
-            )
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                androidx.compose.material3.Icon(
+                    painter = androidx.compose.ui.res.painterResource(R.drawable.ic_media_pause),
+                    contentDescription = null,
+                    tint = Palette.Cyan,
+                    modifier = Modifier.size(28.dp)
+                )
+                Spacer(Modifier.width(10.dp))
+                Text(
+                    text = "PAUSED",
+                    style = MaterialTheme.typography.headlineMedium,
+                    color = Palette.Cyan
+                )
+            }
             Text(
                 text = "WAVE $wave · SIMULATION HALTED",
                 style = MaterialTheme.typography.bodyMedium,
@@ -127,7 +138,7 @@ fun PauseOverlay(
                             "YES",
                             onRestart,
                             accent = Palette.Orange,
-                            leadingGlyph = "[o]"
+                            leadingIcon = R.drawable.ic_action_yes
                         )
                     }
                     Box(Modifier.weight(1f)) {
@@ -135,28 +146,28 @@ fun PauseOverlay(
                             "NO",
                             { confirmingRestart = false },
                             accent = Palette.Green,
-                            leadingGlyph = "[<]"
+                            leadingIcon = R.drawable.ic_action_no
                         )
                     }
                 }
             } else {
-                BastionButton("RESUME", onResume, accent = Palette.Green, leadingGlyph = "[>]")
+                BastionButton("RESUME", onResume, accent = Palette.Green, leadingIcon = R.drawable.ic_media_play)
                 Spacer(Modifier.height(8.dp))
                 BastionButton(
                     "RESTART",
                     { confirmingRestart = true },
                     accent = Palette.Orange,
-                    leadingGlyph = "[o]"
+                    leadingIcon = R.drawable.ic_action_restart
                 )
                 Spacer(Modifier.height(8.dp))
-                BastionButton("SETTINGS", onSettings, leadingGlyph = "[*]")
+                BastionButton("SETTINGS", onSettings, leadingIcon = R.drawable.ic_menu_settings)
                 Spacer(Modifier.height(8.dp))
                 BastionButton(
                     text = "MAIN MENU",
                     subtitle = "Progress is saved automatically",
                     onClick = onMainMenu,
                     accent = Palette.Red,
-                    leadingGlyph = "[X]"
+                    leadingIcon = R.drawable.ic_action_main_menu
                 )
             }
             }

@@ -68,6 +68,8 @@ fun musicForMap(map: GameMap): LevelMusic? = when (map.id) {
  */
 data class MusicTrack(
     val resId: Int,
+    /** The level's `GameMap.id`. */
+    val mapId: String,
     /** 1-based level number. */
     val level: Int,
     val levelName: String,
@@ -75,6 +77,9 @@ data class MusicTrack(
     val part: Int,
     val title: String?
 ) {
+    /** Stable across builds, unlike [resId]: what the saved pick is stored as. */
+    val key: String get() = "$mapId|$part"
+
     /** "L4 · 🦆 DUCK-USB · Neon Static 1", or without a title "L1 · NETWORK PERIMETER · 1". */
     val label: String
         get() = "L$level \u00B7 $levelName \u00B7 " + (title?.let { "$it " } ?: "") + part
@@ -90,10 +95,14 @@ object MusicLibrary {
         Maps.all.withIndex().flatMap { (i, map) ->
             val music = musicForMap(map) ?: return@flatMap emptyList()
             music.variants.mapIndexed { part, res ->
-                MusicTrack(res, i + 1, map.displayName, part + 1, music.title)
+                MusicTrack(res, map.id, i + 1, map.displayName, part + 1, music.title)
             }
         }
     }
+
+    /** The track saved as [key], or null if there is none (or it no longer exists). */
+    fun indexOfKey(key: String?): Int? =
+        key?.let { k -> tracks.indexOfFirst { it.key == k }.takeIf { it >= 0 } }
 
     /** Where [map]'s first track sits in [tracks], or null if it has none. */
     fun firstTrackOf(map: GameMap): Int? {

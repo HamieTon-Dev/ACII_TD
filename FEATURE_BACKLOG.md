@@ -633,7 +633,15 @@ suit: Material Symbols (Apache 2.0) or drawing the few icons in-house.
   opens level 6), in any mode.
   **Done (1.53.0):** `MusicPlayerPanel` beside the pause buttons; `MusicLibrary`
   builds the list from `musicForMap`, so levels 6–10 join it when their files
-  land; the pick is session-only (not saved). `MusicPlayerTest`.
+  land; the pick is saved between sessions (see the follow-up below). `MusicPlayerTest`.
+- **Music player follow-up (owner, 2026-10-01):** *"save the selected track
+  between sessions - and lets replace all the icons on the pause menu (resume,
+  restart level, settings... etc) let's give them all icons from CoreUI icons"*.
+  **Done (1.53.0):** the pick is saved as `GameSettings.musicTrackKey`
+  ("mapId|part", stable across builds) and restored once the player is
+  unlocked; AUTO clears it. Pause menu: play, reload, settings cog, home,
+  check and x from CoreUI (`ic_action_*.xml`); `BastionButton` takes a
+  `leadingIcon`.
 - **Music for levels 6–10 (owner, 2026-10-01):** *"I will generate all new
   music for the new 5 levels. I'll send you two files for each level."*
   Waiting on the files. When they arrive: `res/raw/level6.mp3` +

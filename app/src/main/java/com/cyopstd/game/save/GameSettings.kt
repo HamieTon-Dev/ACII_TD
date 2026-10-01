@@ -45,7 +45,14 @@ data class GameSettings(
      * all. Battery saver also suppresses it, for the same reason it drops the
      * living backgrounds -- it is a decorative animation.
      */
-    val menuBootSequence: Boolean = true
+    val menuBootSequence: Boolean = true,
+    /**
+     * The pause-menu music player's pick, as `MusicTrack.key` ("mapId|part"),
+     * or null for the level's own music. Saved between sessions (owner,
+     * 2026-10-01). A key rather than a resource id: resource ids change
+     * between builds.
+     */
+    val musicTrackKey: String? = null
 )
 
 /** Below this a panel's text fights the board behind it. */

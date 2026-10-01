@@ -72,7 +72,8 @@ class GameRepository(private val store: DataStore<Preferences>) {
                 autoStartWaves = prefs[Keys.AUTO_START] ?: false,
                 autoStartBossWaves = prefs[Keys.AUTO_START_BOSS] ?: false,
                 screenShake = prefs[Keys.SCREEN_SHAKE] ?: true,
-                batterySaver = prefs[Keys.BATTERY_SAVER] ?: false
+                batterySaver = prefs[Keys.BATTERY_SAVER] ?: false,
+                musicTrackKey = prefs[Keys.MUSIC_TRACK]?.takeIf { it.isNotBlank() }
             )
         }
 
@@ -139,6 +140,8 @@ class GameRepository(private val store: DataStore<Preferences>) {
             prefs[Keys.AUTO_START_BOSS] = updated.autoStartBossWaves
             prefs[Keys.SCREEN_SHAKE] = updated.screenShake
             prefs[Keys.BATTERY_SAVER] = updated.batterySaver
+            val track = updated.musicTrackKey
+            if (track.isNullOrBlank()) prefs.remove(Keys.MUSIC_TRACK) else prefs[Keys.MUSIC_TRACK] = track
         }
     }
 
@@ -497,6 +500,7 @@ class GameRepository(private val store: DataStore<Preferences>) {
         val MUSIC_VOLUME = floatPreferencesKey("music_volume")
         val SFX_VOLUME = floatPreferencesKey("sfx_volume")
         val PANEL_OPACITY = floatPreferencesKey("panel_opacity")
+        val MUSIC_TRACK = stringPreferencesKey("music_track")
         val VIBRATION = booleanPreferencesKey("vibration")
         val BACKGROUND_ANIMATION = booleanPreferencesKey("background_animation")
         val DAMAGE_NUMBERS = booleanPreferencesKey("damage_numbers")

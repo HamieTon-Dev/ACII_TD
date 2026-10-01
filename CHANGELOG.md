@@ -23,10 +23,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - A music player beside the pause buttons: previous, play/pause and next
   (CoreUI icons), and a drop-down of every level's music tracks plus LEVEL
   MUSIC (AUTO) to go back to the level's own. A picked track plays on through
-  the list and stays picked for the rest of the session. Pause stops the
-  music only.
+  the list, and the pick is saved between sessions. Pause stops the music
+  only.
 - Unlocks by completing level 5 (wave 100 on DDoS, any mode). Before that it
   is greyed with a lock, and touching it says how to unlock it.
+
+### Pause menu icons
+
+- RESUME, RESTART, SETTINGS, MAIN MENU, the restart YES / NO and the PAUSED
+  title use CoreUI icons in place of the old ASCII glyphs.
 
 ### NEW RUN level list
 
