@@ -613,7 +613,8 @@ suit: Material Symbols (Apache 2.0) or drawing the few icons in-house.
 - **Level names 6–10 (owner, 2026-10-01):** *"give me a list of options for
   each one appropriate cyber security breach nicknames and let me choose
   before doing more work"*. Options shown in chat (five per level, themed on
-  each level's boss). Waiting on the owner's picks; then change only
+  each level's boss). **Owner's picks (6C, 7C, 8D, 9D, 10E):** 6 MIRAI,
+  7 RING-ZERO, 8 WANNACRY, 9 HONEYPOT, 10 HEARTBLEED. Change only
   `displayName` (and taglines) in `Maps.kt` — the ids stay, saves use them.
 - **Music for levels 6–10 (owner, 2026-10-01):** *"I will generate all new
   music for the new 5 levels. I'll send you two files for each level."*
