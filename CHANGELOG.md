@@ -9,6 +9,35 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [1.53.0] — 2026-10-01
+
+### Level names (♡1)
+
+- Levels 6–10 have their real names, the owner's picks: **MIRAI** (was
+  TRIDENT), **RING-ZERO** (SPIRAL), **WANNACRY** (ZIGZAG), **HONEYPOT**
+  (HELIX) and **HEARTBLEED** (TRIPLE BRAID). Saves, records and unlocks are
+  unaffected; only the shown names changed.
+
+### Music player on the pause menu
+
+- A music player beside the pause buttons: previous, play/pause and next
+  (CoreUI icons), and a drop-down of every level's music tracks plus LEVEL
+  MUSIC (AUTO) to go back to the level's own. A picked track plays on through
+  the list, and the pick is saved between sessions. Pause stops the music
+  only.
+- Unlocks by completing level 5 (wave 100 on DDoS, any mode). Before that it
+  is greyed with a lock, and touching it says how to unlock it.
+
+### Pause menu icons
+
+- RESUME, RESTART, SETTINGS, MAIN MENU, the restart YES / NO and the PAUSED
+  title use CoreUI icons in place of the old ASCII glyphs.
+
+### NEW RUN level list
+
+- Each open level shows its number; a locked level shows a lock in its place
+  and the whole row is greyed out.
+
 ## [1.52.0] — 2026-10-01
 
 ### Chapter-two bosses (♡5)

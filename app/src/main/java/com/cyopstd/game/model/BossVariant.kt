@@ -440,7 +440,7 @@ enum class BossVariant(
     /**
      * Chapter two (♡5): one boss per level, the owner's picks.
      *
-     * TRIDENT — BOTMASTER keeps dropping BOTs behind itself while it walks.
+     * MIRAI (TRIDENT layout) — BOTMASTER keeps dropping BOTs behind itself while it walks.
      * The BOTs are escorts: not part of the wave, half reward.
      */
     BOTMASTER(
@@ -458,7 +458,7 @@ enum class BossVariant(
     ),
 
     /**
-     * SPIRAL — ROOTKIT hides for [ROOTKIT_HIDDEN] seconds of every
+     * RING-ZERO (SPIRAL layout) — ROOTKIT hides for [ROOTKIT_HIDDEN] seconds of every
      * [ROOTKIT_CYCLE]. Hidden, no agent will pick it as a target, but a shot
      * already in flight still lands and splash and chains still reach it.
      */
@@ -479,7 +479,7 @@ enum class BossVariant(
     ),
 
     /**
-     * ZIGZAG — WORM breaks into [WORM_PIECES] smaller worms when it dies, and
+     * WANNACRY (ZIGZAG layout) — WORM breaks into [WORM_PIECES] smaller worms when it dies, and
      * each of those breaks once more. Every piece joins the wave.
      */
     WORM(
@@ -499,7 +499,7 @@ enum class BossVariant(
     ),
 
     /**
-     * HELIX — SPOOFER casts decoy copies of itself just ahead on its route.
+     * HONEYPOT (HELIX layout) — SPOOFER casts decoy copies of itself just ahead on its route.
      * A decoy draws fire like a boss, does no damage, is not part of the wave,
      * and vanishes when the SPOOFER dies. ANALYST and ROOT ADMIN see through
      * it. The owner: *"test balance on this, it sounds impossible"* —
@@ -520,7 +520,7 @@ enum class BossVariant(
     ),
 
     /**
-     * TRIPLE BRAID — KERNEL PANIC takes the board down with it: when it dies,
+     * HEARTBLEED (TRIPLE BRAID layout) — KERNEL PANIC takes the board down with it: when it dies,
      * every agent within [KERNEL_PANIC_RADIUS] is jammed for
      * [KERNEL_PANIC_SECONDS]. FIREWALL stands in it, as it does every jam.
      */

@@ -340,6 +340,21 @@ private fun GameScreenBody(
                 viewModel.applyPaused(false)
                 viewModel.leaveMatch()
                 onExitToMenu()
+            },
+            musicPlayer = { modifier ->
+                MusicPlayerPanel(
+                    state = MusicPlayerState(
+                        unlocked = viewModel.musicPlayerUnlocked,
+                        tracks = com.cyopstd.game.audio.MusicLibrary.tracks.map { it.label },
+                        selected = viewModel.musicTrack,
+                        paused = viewModel.musicPausedByPlayer
+                    ),
+                    onSelect = viewModel::selectMusicTrack,
+                    onPlayPause = viewModel::toggleMusicPlayback,
+                    onPrevious = { viewModel.stepMusicTrack(-1) },
+                    onNext = { viewModel.stepMusicTrack(1) },
+                    modifier = modifier
+                )
             }
         )
     }

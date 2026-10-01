@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -29,10 +30,12 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.unit.dp
+import com.cyopstd.game.R
 import com.cyopstd.game.core.GameMap
 import com.cyopstd.game.core.GameMode
 import com.cyopstd.game.core.Maps
@@ -77,10 +80,11 @@ fun RunSetupScreen(
                     .verticalScroll(rememberScrollState())
             ) {
                 TerminalPanel(title = "LEVEL", accent = Palette.Cyan) {
-                    for (map in Maps.all) {
+                    for ((index, map) in Maps.all.withIndex()) {
                         val unlocked = map in availableMaps
                         MapRow(
                             map = map,
+                            number = index + 1,
                             selected = map == selectedMap,
                             unlocked = unlocked,
                             best = map.bestTowardUnlock(
@@ -205,11 +209,13 @@ private fun modeSummary(mode: GameMode): String = when (mode) {
 
 /**
  * One level in the list. Shown locked rather than hidden: a player aims at
- * what they can see.
+ * what they can see. An open level leads with its number; a locked one has a
+ * lock in that place and the whole row is greyed (owner, 2026-10-01).
  */
 @Composable
 private fun MapRow(
     map: GameMap,
+    number: Int,
     selected: Boolean,
     unlocked: Boolean,
     best: Int,
@@ -225,18 +231,41 @@ private fun MapRow(
             .fillMaxWidth()
             .padding(vertical = 3.dp)
             .testTag("level-${map.id}")
+            .alpha(if (unlocked) 1f else LOCKED_ROW_ALPHA)
             .background(if (selected) Palette.SurfaceRaised else Color.Transparent, RoundedCornerShape(4.dp))
             .border(BorderStroke(1.dp, accent.copy(alpha = if (selected) 0.8f else 0.3f)), RoundedCornerShape(4.dp))
             .clickable(role = Role.RadioButton, onClick = onClick)
             .padding(horizontal = 10.dp, vertical = 7.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
-        Text(
-            text = if (selected) "[*]" else if (unlocked) "[ ]" else "[X]",
-            style = MaterialTheme.typography.labelMedium,
-            color = accent
-        )
-        Spacer(Modifier.width(8.dp))
+        // The badge: the level's number, or a lock where the number would be.
+        Box(
+            contentAlignment = Alignment.Center,
+            modifier = Modifier
+                .size(30.dp)
+                .border(1.dp, (if (unlocked) accent else Palette.TextSecondary).copy(alpha = 0.8f), RoundedCornerShape(4.dp))
+                .background(if (selected) Palette.Green.copy(alpha = 0.15f) else Color.Transparent, RoundedCornerShape(4.dp))
+        ) {
+            if (unlocked) {
+                Text(
+                    text = "$number",
+                    style = MaterialTheme.typography.titleSmall,
+                    color = if (selected) Palette.Green else Palette.TextPrimary,
+                    modifier = Modifier.testTag("level-number-${map.id}")
+                )
+            } else {
+                androidx.compose.material3.Icon(
+                    painter = androidx.compose.ui.res.painterResource(R.drawable.ic_lock),
+                    contentDescription = "Locked",
+                    // Brighter than the greyed row, so the lock still reads.
+                    tint = Palette.TextPrimary,
+                    modifier = Modifier
+                        .size(16.dp)
+                        .testTag("level-lock-${map.id}")
+                )
+            }
+        }
+        Spacer(Modifier.width(10.dp))
         Column(Modifier.weight(1f)) {
             Text(
                 text = map.displayName,
@@ -247,3 +276,6 @@ private fun MapRow(
         }
     }
 }
+
+/** How strongly a locked level row is greyed out. */
+private const val LOCKED_ROW_ALPHA = 0.55f

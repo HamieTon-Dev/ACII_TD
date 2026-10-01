@@ -125,6 +125,62 @@ class GameViewModel @JvmOverloads constructor(
     var settings by mutableStateOf(GameSettings())
         private set
 
+    // ---- Pause-menu music player (owner, 2026-10-01) ------------------------
+
+    /** The [com.cyopstd.game.audio.MusicLibrary] track playing, or null for the level's own music. */
+    var musicTrack by mutableStateOf<Int?>(null)
+        private set
+
+    /** The music player's own pause: the music only. */
+    var musicPausedByPlayer by mutableStateOf(false)
+        private set
+
+    /**
+     * The music player opens with level 6: completing level 5 (wave 100 on
+     * DDoS, any mode) is the owner's rule, and it is the same record that
+     * opens the next level.
+     */
+    val musicPlayerUnlocked: Boolean get() = Maps.TRIDENT in availableMaps
+
+    fun selectMusicTrack(index: Int?) {
+        if (!musicPlayerUnlocked) return
+        val tracks = com.cyopstd.game.audio.MusicLibrary.tracks
+        val wrapped = index?.let { ((it % tracks.size) + tracks.size) % tracks.size }
+        if (wrapped == null) audio.followLevelMusic() else audio.playLibraryTrack(wrapped)
+        musicPausedByPlayer = false
+        // Saved between sessions (owner, 2026-10-01).
+        val key = wrapped?.let { tracks[it].key }
+        musicTrackRestored = true
+        viewModelScope.launch { repository.updateSettings { it.copy(musicTrackKey = key) } }
+    }
+
+    /** The saved pick has been applied (or overridden) this session. */
+    private var musicTrackRestored = false
+
+    /**
+     * Put back the track saved last session, once both the settings and the
+     * unlock are known. Called from both collectors, whichever lands second.
+     */
+    private fun restoreMusicTrack() {
+        if (musicTrackRestored || !musicPlayerUnlocked) return
+        val index = com.cyopstd.game.audio.MusicLibrary.indexOfKey(settings.musicTrackKey) ?: return
+        musicTrackRestored = true
+        audio.playLibraryTrack(index)
+    }
+
+    fun toggleMusicPlayback() {
+        if (!musicPlayerUnlocked) return
+        musicPausedByPlayer = !musicPausedByPlayer
+        audio.setMusicPausedByPlayer(musicPausedByPlayer)
+    }
+
+    /** Next or previous track; from the level's own music, starts beside its first track. */
+    fun stepMusicTrack(delta: Int) {
+        if (!musicPlayerUnlocked) return
+        val from = musicTrack ?: com.cyopstd.game.audio.MusicLibrary.firstTrackOf(engine.map) ?: 0
+        selectMusicTrack(from + delta)
+    }
+
     // Declared above every init block: the stats collector writes these.
     /** Modes this player has earned the right to play. */
     var availableModes by mutableStateOf(listOf(GameMode.STANDARD))
@@ -136,6 +192,12 @@ class GameViewModel @JvmOverloads constructor(
 
     var stats by mutableStateOf(PlayerStats())
         private set
+
+    init {
+        audio.onJukeboxTrack = { index ->
+            viewModelScope.launch(kotlinx.coroutines.Dispatchers.Main) { musicTrack = index }
+        }
+    }
 
     var unlockedAgents by mutableStateOf(AgentType.starters.map { it.name }.toSet())
         private set
@@ -398,6 +460,7 @@ class GameViewModel @JvmOverloads constructor(
         // selection must not survive it.
         if (selectedMap !in availableMaps) selectedMap = Maps.PERIMETER
         refreshAvailableModes(stats)
+        restoreMusicTrack()
     }
 
     /** Which difficulties are open. KERNEL MODE reads a level-and-mode record. */
@@ -925,6 +988,7 @@ class GameViewModel @JvmOverloads constructor(
             repository.settings.collectLatest { loaded ->
                 settings = loaded
                 applySettingsToSystems(loaded)
+                restoreMusicTrack()
             }
         }
         collectJobs += viewModelScope.launch {

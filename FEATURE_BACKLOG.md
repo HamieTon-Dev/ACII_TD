@@ -378,7 +378,7 @@ that if usage stops you, you can continue work later."* Six items, labelled
 None is started. Each notes what is already known from the code and what the
 owner still has to choose, so a later session can pick it up cold.
 
-### ♡1 🟨❓ Five more levels — built (1.51.0) under working names; names, bosses and music wait on the owner
+### ♡1 🟨 Five more levels — built (1.51.0), bosses (1.52.0), named (1.53.0); music waits on the owner
 
 **Asked:** *"Time to make 5 more levels. Give me lane layouts, different color
 options, and online relevant 'Cyber related' names for the levels. Ask me for
@@ -410,15 +410,15 @@ list from ♡5 and two music tracks per level from the owner).
 
 | Level | Layout | Colour | Name |
 |---|---|---|---|
-| 6 | 6B TRIDENT | C6 SYNTHWAVE | ❓ |
-| 7 | 6A SPIRAL | C3 MAGENTA | ❓ |
-| 8 | 8C ZIGZAG | C8 COPPER | ❓ |
-| 9 | 10D HELIX | D8 ROSE GOLD | ❓ |
-| 10 | 9B TRIPLE BRAID | D4 INDIGO | ❓ |
+| 6 | 6B TRIDENT | C6 SYNTHWAVE | MIRAI |
+| 7 | 6A SPIRAL | C3 MAGENTA | RING-ZERO |
+| 8 | 8C ZIGZAG | C8 COPPER | WANNACRY |
+| 9 | 10D HELIX | D8 ROSE GOLD | HONEYPOT |
+| 10 | 9B TRIPLE BRAID | D4 INDIGO | HEARTBLEED |
 
 **Built (1.51.0):** all five are in the game (`Maps.TRIDENT … BRAID`, ids
 trident/spiral/zigzag/helix/braid — fixed, since saves use them) under the
-layout names as **working titles**. Each unlocks at wave 100 on the one
+layout names as working titles; renamed to the owner's picks in 1.53.0. Each unlocks at wave 100 on the one
 before; enemy health tuned so each is harder than the last
 (`MapDifficultyTest`: fixed board averages 53.8, 52.8, 52.6, 50.3, 49.0 —
 SPIRAL and ZIGZAG are close, re-check after their bosses land). Three picked
@@ -610,6 +610,38 @@ suit: Material Symbols (Apache 2.0) or drawing the few icons in-house.
   in HACK:AI).
 - **♡7:** icons from **CoreUI Icons** (https://coreui.io/icons/). Free set is
   CC BY 4.0 → credit on the About screen.
+- **Level names 6–10 (owner, 2026-10-01):** *"give me a list of options for
+  each one appropriate cyber security breach nicknames and let me choose
+  before doing more work"*. Options shown in chat (five per level, themed on
+  each level's boss). **Owner's picks (6C, 7C, 8D, 9D, 10E):** 6 MIRAI,
+  7 RING-ZERO, 8 WANNACRY, 9 HONEYPOT, 10 HEARTBLEED. Change only
+  `displayName` (and taglines) in `Maps.kt` — the ids stay, saves use them.
+- **Locked levels in the NEW RUN list (owner, 2026-10-01):** *"the ones that
+  havent been unlocked, let's place a locked icon over the level instead of a
+  level number, and gray it out. then show me examples of the current UI pics"*.
+  Unlocked rows show their level number; locked rows show a lock icon in its
+  place and the whole row is greyed. Then send the owner screenshots of the
+  current UI.
+  **Done (1.53.0):** CoreUI lock (`ic_lock.xml`), row at 55% opacity; screenshots sent.
+- **Pause-menu media player (owner, 2026-10-01):** *"add in the function on
+  the pause menu and use [CoreUI] icons to add in a media player and drop down
+  list for the different level music tracks so that the player can select any
+  track to play that they would like. And it unlocks after completing level
+  five. If the user interacts with the media player before level five, it
+  explains the conditions to unlock the media player and track selection
+  list."* "Completing level five" = clearing wave 100 on DDoS (the rule that
+  opens level 6), in any mode.
+  **Done (1.53.0):** `MusicPlayerPanel` beside the pause buttons; `MusicLibrary`
+  builds the list from `musicForMap`, so levels 6–10 join it when their files
+  land; the pick is saved between sessions (see the follow-up below). `MusicPlayerTest`.
+- **Music player follow-up (owner, 2026-10-01):** *"save the selected track
+  between sessions - and lets replace all the icons on the pause menu (resume,
+  restart level, settings... etc) let's give them all icons from CoreUI icons"*.
+  **Done (1.53.0):** the pick is saved as `GameSettings.musicTrackKey`
+  ("mapId|part", stable across builds) and restored once the player is
+  unlocked; AUTO clears it. Pause menu: play, reload, settings cog, home,
+  check and x from CoreUI (`ic_action_*.xml`); `BastionButton` takes a
+  `leadingIcon`.
 - **Music for levels 6–10 (owner, 2026-10-01):** *"I will generate all new
   music for the new 5 levels. I'll send you two files for each level."*
   Waiting on the files. When they arrive: `res/raw/level6.mp3` +

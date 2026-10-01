@@ -94,7 +94,9 @@ the APK small; see Known Issues in `DEVELOPMENT_STATUS.md`.
 
 ## Icons
 
-The main-menu icons (`app/src/main/res/drawable/ic_menu_*.xml`) are converted
+The main-menu icons (`app/src/main/res/drawable/ic_menu_*.xml`), the lock
+(`ic_lock.xml`) the pause menu's icons (`ic_media_*.xml`, `ic_music_note.xml`,
+`ic_action_*.xml`) are converted
 from **CoreUI Icons Free** (https://coreui.io/icons/, @coreui/icons 3.0.1) by
 creativeLabs, licensed **CC BY 4.0**
 (https://creativecommons.org/licenses/by/4.0/). Converted from SVG to Android

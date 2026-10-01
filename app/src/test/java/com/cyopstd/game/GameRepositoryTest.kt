@@ -70,6 +70,18 @@ class GameRepositoryTest {
     }
 
     @Test
+    fun `the music player's pick is saved between sessions, and AUTO clears it`() = runTest {
+        assertNull(repository.settings.first().musicTrackKey)
+        repository.updateSettings { it.copy(musicTrackKey = "duck_usb|2") }
+        assertEquals("duck_usb|2", repository.settings.first().musicTrackKey)
+        // Another setting changing must not lose it.
+        repository.updateSettings { it.copy(musicVolume = 0.3f) }
+        assertEquals("duck_usb|2", repository.settings.first().musicTrackKey)
+        repository.updateSettings { it.copy(musicTrackKey = null) }
+        assertNull(repository.settings.first().musicTrackKey)
+    }
+
+    @Test
     fun `settings persist and read back`() = runTest {
         repository.updateSettings {
             it.copy(

@@ -109,7 +109,9 @@ fun BastionButton(
     enabled: Boolean = true,
     accent: Color = Palette.Cyan,
     subtitle: String? = null,
-    leadingGlyph: String? = null
+    leadingGlyph: String? = null,
+    /** A drawable (CoreUI) icon in place of [leadingGlyph]. */
+    @androidx.annotation.DrawableRes leadingIcon: Int? = null
 ) {
     val interactionSource = remember { MutableInteractionSource() }
     val pressed by interactionSource.collectIsPressedAsState()
@@ -153,7 +155,16 @@ fun BastionButton(
             style = MaterialTheme.typography.titleMedium
         )
         Spacer(Modifier.width(8.dp))
-        if (leadingGlyph != null) {
+        if (leadingIcon != null) {
+            Box(Modifier.width(44.dp)) {
+                androidx.compose.material3.Icon(
+                    painter = androidx.compose.ui.res.painterResource(leadingIcon),
+                    contentDescription = null,
+                    tint = effectiveAccent,
+                    modifier = Modifier.size(22.dp)
+                )
+            }
+        } else if (leadingGlyph != null) {
             Text(
                 text = leadingGlyph,
                 color = effectiveAccent,
