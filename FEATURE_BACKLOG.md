@@ -378,7 +378,7 @@ that if usage stops you, you can continue work later."* Six items, labelled
 None is started. Each notes what is already known from the code and what the
 owner still has to choose, so a later session can pick it up cold.
 
-### ♡1 🟨❓ Five more levels — built (1.51.0) under working names; names, bosses and music wait on the owner
+### ♡1 🟨 Five more levels — built (1.51.0), bosses (1.52.0), named (1.53.0); music waits on the owner
 
 **Asked:** *"Time to make 5 more levels. Give me lane layouts, different color
 options, and online relevant 'Cyber related' names for the levels. Ask me for
@@ -410,15 +410,15 @@ list from ♡5 and two music tracks per level from the owner).
 
 | Level | Layout | Colour | Name |
 |---|---|---|---|
-| 6 | 6B TRIDENT | C6 SYNTHWAVE | ❓ |
-| 7 | 6A SPIRAL | C3 MAGENTA | ❓ |
-| 8 | 8C ZIGZAG | C8 COPPER | ❓ |
-| 9 | 10D HELIX | D8 ROSE GOLD | ❓ |
-| 10 | 9B TRIPLE BRAID | D4 INDIGO | ❓ |
+| 6 | 6B TRIDENT | C6 SYNTHWAVE | MIRAI |
+| 7 | 6A SPIRAL | C3 MAGENTA | RING-ZERO |
+| 8 | 8C ZIGZAG | C8 COPPER | WANNACRY |
+| 9 | 10D HELIX | D8 ROSE GOLD | HONEYPOT |
+| 10 | 9B TRIPLE BRAID | D4 INDIGO | HEARTBLEED |
 
 **Built (1.51.0):** all five are in the game (`Maps.TRIDENT … BRAID`, ids
 trident/spiral/zigzag/helix/braid — fixed, since saves use them) under the
-layout names as **working titles**. Each unlocks at wave 100 on the one
+layout names as working titles; renamed to the owner's picks in 1.53.0. Each unlocks at wave 100 on the one
 before; enemy health tuned so each is harder than the last
 (`MapDifficultyTest`: fixed board averages 53.8, 52.8, 52.6, 50.3, 49.0 —
 SPIRAL and ZIGZAG are close, re-check after their bosses land). Three picked

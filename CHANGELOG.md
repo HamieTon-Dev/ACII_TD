@@ -9,6 +9,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [1.53.0] — 2026-10-01
+
+### Level names (♡1)
+
+- Levels 6–10 have their real names, the owner's picks: **MIRAI** (was
+  TRIDENT), **RING-ZERO** (SPIRAL), **WANNACRY** (ZIGZAG), **HONEYPOT**
+  (HELIX) and **HEARTBLEED** (TRIPLE BRAID). Saves, records and unlocks are
+  unaffected; only the shown names changed.
+
 ## [1.52.0] — 2026-10-01
 
 ### Chapter-two bosses (♡5)
