@@ -217,7 +217,9 @@ fun CyOpsApp(
                     onBack = { viewModel.playClick(); screen = Screen.MainMenu },
                     // A build with no interstitial unit has no lost-run ad,
                     // so it must not offer to sell its removal.
-                    adsConfigured = PlayServices.interstitialConfigured
+                    adsConfigured = PlayServices.interstitialConfigured,
+                    onSaveSoundtrack = { viewModel.saveSoundtrack() },
+                    soundtrackStatus = viewModel.soundtrackStatus
                 )
             }
 

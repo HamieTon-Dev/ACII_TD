@@ -265,6 +265,19 @@ enum class Sku(
         )
     ),
 
+    // --------------------------------------------------------------- music
+    // The game's soundtrack (owner, 2026-10-01: "Buy CyOps TD soundtrack",
+    // $4.99). Every level's music, the owner's own compositions, saved to the
+    // phone's Music folder as "CyOps TD - Level X (Y)".
+    SOUNDTRACK(
+        id = "soundtrack",
+        kind = SkuKind.PERMANENT,
+        title = "CyOps TD SOUNDTRACK",
+        summary = "All 20 tracks from the game, saved to your phone's Music " +
+            "folder to play anywhere.",
+        fallbackPrice = "$4.99"
+    ),
+
     // ------------------------------------------------------------ starter pack
     STARTER_PACK(
         id = "starter_pack",

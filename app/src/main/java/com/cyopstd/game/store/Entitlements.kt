@@ -41,6 +41,7 @@ data class Entitlements(
     val reviveAdsRemoved: Boolean get() = Sku.reviveAdsRemoved(ownedIds)
     val fifthSpeedUnlocked: Boolean get() = Sku.SPEED_5X.id in ownedIds
     val spectrumAgents: Boolean get() = Sku.SKIN_AGENTS_SPECTRUM.id in ownedIds
+    val ownsSoundtrack: Boolean get() = Sku.SOUNDTRACK.id in ownedIds
 
     /** Core-server skins owned, in catalog order. */
     val coreSkins: List<Sku> get() = Sku.coreSkins.filter { it.id in ownedIds }

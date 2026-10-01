@@ -9,6 +9,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [1.54.0] — 2026-10-01
+
+### All ten levels have their own music
+
+- New tracks for levels 6–10 (MIRAI, RING-ZERO, WANNACRY, HONEYPOT,
+  HEARTBLEED), and new tracks replacing levels 1–3. All are the owner's own
+  compositions. The old level 1–3 tracks are deleted.
+- Every track is titled "CyOps TD - Level X (Y)", in the files' tags and in
+  the pause-menu music player, which now lists all 20.
+
+### CyOps TD SOUNDTRACK in the store
+
+- A new permanent purchase, "BUY CyOps TD SOUNDTRACK", $4.99 (product id
+  `soundtrack`). Once owned, SAVE SOUNDTRACK TO PHONE copies all 20 tracks to
+  Music/CyOps TD as "CyOps TD - Level X (Y).mp3", with album and track numbers,
+  so any music app plays them. Needs Android 10 or newer; no storage
+  permission is asked for.
+
 ## [1.53.0] — 2026-10-01
 
 ### Level names (♡1)

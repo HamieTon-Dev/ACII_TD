@@ -44,12 +44,15 @@ class MusicPlayerTest {
     @Test
     fun `the library lists both tracks of every level with music, in level order`() {
         val tracks = MusicLibrary.tracks
-        assertEquals(10, tracks.size)
-        assertEquals((1..5).flatMap { listOf(it, it) }, tracks.map { it.level })
-        assertEquals("L1 · NETWORK PERIMETER · 1", tracks[0].label)
-        assertEquals("L5 · DDoS · Cassette Noir 2", tracks[9].label)
+        assertEquals(20, tracks.size)
+        assertEquals((1..10).flatMap { listOf(it, it) }, tracks.map { it.level })
+        // The owner's naming: "CyOps TD - Level X (Y)".
+        assertEquals("CyOps TD - Level 1 (1)", tracks[0].title)
+        assertEquals("CyOps TD - Level 10 (2)", tracks[19].title)
+        assertEquals("CyOps TD - Level 10 (2).mp3", tracks[19].fileName)
+        assertEquals("CyOps TD - Level 1 (1) \u00B7 NETWORK PERIMETER", tracks[0].label)
         assertEquals(2, MusicLibrary.firstTrackOf(Maps.HUGGING_FACE))
-        assertNull("levels 6-10 have no tracks yet", MusicLibrary.firstTrackOf(Maps.TRIDENT))
+        assertEquals(10, MusicLibrary.firstTrackOf(Maps.TRIDENT))
     }
 
     @Test
@@ -143,5 +146,36 @@ class MusicPlayerTest {
         assertEquals(0, engine.matchTracksWanting)
         assertTrue(engine.musicWanted)
         engine.release()
+    }
+
+    private fun store(owned: Boolean, onSave: () -> Unit = {}, onBuy: (com.cyopstd.game.store.Sku) -> Unit = {}) {
+        compose.setContent {
+            CyOpsTheme {
+                com.cyopstd.game.ui.menu.StoreScreen(
+                    entitlements = if (owned) com.cyopstd.game.store.Entitlements().plus(com.cyopstd.game.store.Sku.SOUNDTRACK)
+                    else com.cyopstd.game.store.Entitlements(),
+                    budget = 0, prices = emptyMap(), status = com.cyopstd.game.store.BillingStatus.READY,
+                    backgroundAnimation = false, onBuy = onBuy, onRestore = {}, onBack = {},
+                    onSaveSoundtrack = onSave
+                )
+            }
+        }
+    }
+
+    @Test
+    fun `the store sells the soundtrack, then offers to save it to the phone`() {
+        var bought: com.cyopstd.game.store.Sku? = null
+        store(owned = false, onBuy = { bought = it })
+        compose.onNodeWithText("BUY CyOps TD SOUNDTRACK \u00B7 \$4.99").performScrollTo().performClick()
+        assertEquals(com.cyopstd.game.store.Sku.SOUNDTRACK, bought)
+        compose.onNodeWithText("SAVE SOUNDTRACK TO PHONE").assertDoesNotExist()
+    }
+
+    @Test
+    fun `once owned, the soundtrack can be saved to the phone`() {
+        var saves = 0
+        store(owned = true, onSave = { saves++ })
+        compose.onNodeWithText("SAVE SOUNDTRACK TO PHONE").performScrollTo().performClick()
+        assertEquals(1, saves)
     }
 }
