@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- cil-media-pause from CoreUI Icons Free (https://coreui.io/icons/), CC BY 4.0. Credited on ABOUT. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="512"
+    android:viewportHeight="512">
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:pathData="M200,48H72A24.028,24.028,0,0,0,48,72V440a24.028,24.028,0,0,0,24,24H200a24.028,24.028,0,0,0,24-24V72A24.028,24.028,0,0,0,200,48Zm-8,384H80V80H192Z" />
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:pathData="M440,48H312a24.028,24.028,0,0,0-24,24V440a24.028,24.028,0,0,0,24,24H440a24.028,24.028,0,0,0,24-24V72A24.028,24.028,0,0,0,440,48Zm-8,384H320V80H432Z" />
+</vector>

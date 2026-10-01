@@ -18,6 +18,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
   (HELIX) and **HEARTBLEED** (TRIPLE BRAID). Saves, records and unlocks are
   unaffected; only the shown names changed.
 
+### Music player on the pause menu
+
+- A music player beside the pause buttons: previous, play/pause and next
+  (CoreUI icons), and a drop-down of every level's music tracks plus LEVEL
+  MUSIC (AUTO) to go back to the level's own. A picked track plays on through
+  the list and stays picked for the rest of the session. Pause stops the
+  music only.
+- Unlocks by completing level 5 (wave 100 on DDoS, any mode). Before that it
+  is greyed with a lock, and touching it says how to unlock it.
+
 ### NEW RUN level list
 
 - Each open level shows its number; a locked level shows a lock in its place

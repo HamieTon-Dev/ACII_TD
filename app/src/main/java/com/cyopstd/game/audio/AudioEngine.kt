@@ -116,6 +116,63 @@ class AudioEngine(private val context: Context) {
     @Volatile
     private var levelMusicUnavailable = false
 
+    // ------------------------------------------------- the music player (pause menu)
+
+    /**
+     * The track the player picked on the pause-menu music player, playing
+     * through [MusicLibrary] from there, or null to follow the level's own
+     * music. Kept for the rest of the session, across matches.
+     */
+    private var jukebox: PlaylistEngine? = null
+
+    /** The player pressed pause on the music player: no match music until they press play. */
+    @Volatile
+    var musicPausedByPlayer: Boolean = false
+        private set
+
+    /** Told which [MusicLibrary] track is playing whenever one loads. */
+    var onJukeboxTrack: (Int?) -> Unit = {}
+
+    /** Plays [MusicLibrary.tracks][index], then the ones after it. */
+    fun playLibraryTrack(index: Int) {
+        val tracks = MusicLibrary.tracks
+        if (tracks.isEmpty()) return
+        val start = ((index % tracks.size) + tracks.size) % tracks.size
+        pauseMatchTracks()
+        jukebox?.release()
+        musicPausedByPlayer = false
+        jukebox = PlaylistEngine(
+            context, tracks.map { it.resId }, "music player", start,
+            onUnavailable = ::onLevelMusicUnavailable,
+            onTrackChanged = { onJukeboxTrack(it) }
+        ).also {
+            it.setVolume(musicLevel)
+            audioScope?.let(it::prepare)
+        }
+        onJukeboxTrack(start)
+        if (inMatch && musicVolume > 0.01f) startMatchTrack()
+    }
+
+    /** Back to the level's own music. */
+    fun followLevelMusic() {
+        pauseMatchTracks()
+        jukebox?.release()
+        jukebox = null
+        musicPausedByPlayer = false
+        onJukeboxTrack(null)
+        if (inMatch && musicVolume > 0.01f) startMatchTrack()
+    }
+
+    /** The music player's play/pause. Only the music; the game is untouched. */
+    fun setMusicPausedByPlayer(paused: Boolean) {
+        musicPausedByPlayer = paused
+        if (paused) {
+            pauseMatchTracks()
+        } else if (inMatch && musicVolume > 0.01f) {
+            startMatchTrack()
+        }
+    }
+
     private fun playlistFor(level: LevelMusic): PlaylistEngine =
         synchronized(levelMusic) {
             levelMusic.getOrPut(level) {
@@ -326,6 +383,12 @@ class AudioEngine(private val context: Context) {
      * otherwise the generated track for the mode.
      */
     private fun startMatchTrack() {
+        if (musicPausedByPlayer) return
+        val picked = jukebox
+        if (picked != null && !levelMusicUnavailable) {
+            picked.start()
+            return
+        }
         val level = matchLevel
         if (level != null && !levelMusicUnavailable) {
             playlistFor(level).start()
@@ -340,6 +403,7 @@ class AudioEngine(private val context: Context) {
 
     /** Every background track that belongs to a match, of either kind. */
     private fun matchEngines(): List<BackgroundTrack> =
+        listOfNotNull<BackgroundTrack>(jukebox) +
         synchronized(levelMusic) { levelMusic.values.toList<BackgroundTrack>() } +
             synchronized(matchMusic) { matchMusic.values.toList<BackgroundTrack>() }
 
@@ -445,6 +509,8 @@ class AudioEngine(private val context: Context) {
     private var startupFading = false
 
     fun release() {
+        jukebox?.release()
+        jukebox = null
         synchronized(levelMusic) {
             levelMusic.values.forEach { it.release() }
             levelMusic.clear()

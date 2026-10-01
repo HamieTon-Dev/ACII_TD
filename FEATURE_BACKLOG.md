@@ -623,6 +623,17 @@ suit: Material Symbols (Apache 2.0) or drawing the few icons in-house.
   place and the whole row is greyed. Then send the owner screenshots of the
   current UI.
   **Done (1.53.0):** CoreUI lock (`ic_lock.xml`), row at 55% opacity; screenshots sent.
+- **Pause-menu media player (owner, 2026-10-01):** *"add in the function on
+  the pause menu and use [CoreUI] icons to add in a media player and drop down
+  list for the different level music tracks so that the player can select any
+  track to play that they would like. And it unlocks after completing level
+  five. If the user interacts with the media player before level five, it
+  explains the conditions to unlock the media player and track selection
+  list."* "Completing level five" = clearing wave 100 on DDoS (the rule that
+  opens level 6), in any mode.
+  **Done (1.53.0):** `MusicPlayerPanel` beside the pause buttons; `MusicLibrary`
+  builds the list from `musicForMap`, so levels 6–10 join it when their files
+  land; the pick is session-only (not saved). `MusicPlayerTest`.
 - **Music for levels 6–10 (owner, 2026-10-01):** *"I will generate all new
   music for the new 5 levels. I'll send you two files for each level."*
   Waiting on the files. When they arrive: `res/raw/level6.mp3` +

@@ -21,7 +21,9 @@ import com.cyopstd.game.core.Maps
  */
 enum class LevelMusic(
     /** Raw resources, played in this order and then round again. */
-    val variants: List<Int>
+    val variants: List<Int>,
+    /** The piece's title, where the owner gave one. */
+    val title: String? = null
 ) {
     LEVEL_ONE(listOf(R.raw.level1, R.raw.level1_2)),
     LEVEL_TWO(listOf(R.raw.level2, R.raw.level2_2)),
@@ -30,10 +32,10 @@ enum class LevelMusic(
     LEVEL_THREE(listOf(R.raw.level3, R.raw.level3_2)),
 
     /** 🦆 DUCK-USB, the fourth level: "Neon Static", supplied by the owner. */
-    LEVEL_FOUR(listOf(R.raw.level4, R.raw.level4_2)),
+    LEVEL_FOUR(listOf(R.raw.level4, R.raw.level4_2), "Neon Static"),
 
     /** DDoS, the fifth level: "Cassette Noir", supplied by the owner. */
-    LEVEL_FIVE(listOf(R.raw.level5, R.raw.level5_2));
+    LEVEL_FIVE(listOf(R.raw.level5, R.raw.level5_2), "Cassette Noir");
 
     /** The variant that follows [index], wrapping. */
     fun variantAfter(index: Int): Int = (index + 1) % variants.size
@@ -58,4 +60,44 @@ fun musicForMap(map: GameMap): LevelMusic? = when (map.id) {
     Maps.DDOS.id -> LevelMusic.LEVEL_FIVE
     // A level with no supplied track plays the synthesized mode music.
     else -> null
+}
+
+/**
+ * One supplied music file, as the pause-menu music player lists it (owner,
+ * 2026-10-01): every level's tracks, in level order.
+ */
+data class MusicTrack(
+    val resId: Int,
+    /** 1-based level number. */
+    val level: Int,
+    val levelName: String,
+    /** 1 or 2: which of the level's two renders. */
+    val part: Int,
+    val title: String?
+) {
+    /** "L4 · 🦆 DUCK-USB · Neon Static 1", or without a title "L1 · NETWORK PERIMETER · 1". */
+    val label: String
+        get() = "L$level \u00B7 $levelName \u00B7 " + (title?.let { "$it " } ?: "") + part
+}
+
+/**
+ * Every supplied track, built from the level catalogue, so a level that gets
+ * music (6–10, when the owner's files arrive) appears in the list without
+ * this changing.
+ */
+object MusicLibrary {
+    val tracks: List<MusicTrack> by lazy {
+        Maps.all.withIndex().flatMap { (i, map) ->
+            val music = musicForMap(map) ?: return@flatMap emptyList()
+            music.variants.mapIndexed { part, res ->
+                MusicTrack(res, i + 1, map.displayName, part + 1, music.title)
+            }
+        }
+    }
+
+    /** Where [map]'s first track sits in [tracks], or null if it has none. */
+    fun firstTrackOf(map: GameMap): Int? {
+        val res = musicForMap(map)?.variants?.firstOrNull() ?: return null
+        return tracks.indexOfFirst { it.resId == res }.takeIf { it >= 0 }
+    }
 }

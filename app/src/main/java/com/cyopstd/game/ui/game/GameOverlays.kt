@@ -73,12 +73,14 @@ fun PauseOverlay(
     onResume: () -> Unit,
     onRestart: () -> Unit,
     onSettings: () -> Unit,
-    onMainMenu: () -> Unit
+    onMainMenu: () -> Unit,
+    /** The music player (owner, 2026-10-01), beside the buttons; null for none. */
+    musicPlayer: (@Composable (Modifier) -> Unit)? = null
 ) {
     Scrim {
         Column(
             modifier = Modifier
-                .widthIn(max = 420.dp)
+                .widthIn(max = if (musicPlayer != null) 760.dp else 420.dp)
                 .background(Palette.Surface, RoundedCornerShape(8.dp))
                 .border(1.dp, Palette.Cyan.copy(alpha = 0.6f), RoundedCornerShape(8.dp))
                 .padding(20.dp)
@@ -97,6 +99,8 @@ fun PauseOverlay(
             AsciiRule(color = Palette.CyanDim)
             Spacer(Modifier.height(14.dp))
 
+            Row(horizontalArrangement = Arrangement.spacedBy(14.dp)) {
+            Column(Modifier.weight(1f)) {
             // RESTART throws the run away, and it sits one button below
             // RESUME, so it asks first (owner, 2026-09-26). NO returns to
             // this menu with nothing changed.
@@ -154,6 +158,9 @@ fun PauseOverlay(
                     accent = Palette.Red,
                     leadingGlyph = "[X]"
                 )
+            }
+            }
+            musicPlayer?.invoke(Modifier.weight(1f))
             }
         }
     }

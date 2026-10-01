@@ -29,16 +29,30 @@ import kotlinx.coroutines.launch
  */
 class PlaylistEngine(
     private val context: Context,
-    private val music: LevelMusic,
+    /** Raw resources, played in this order and then round again. */
+    private val variants: List<Int>,
+    /** For the log. */
+    private val name: String,
+    /** Which of [variants] to begin with. */
+    startIndex: Int = 0,
     /** Called once if this device cannot play the supplied files at all. */
-    private val onUnavailable: () -> Unit = {}
+    private val onUnavailable: () -> Unit = {},
+    /** Told the index of each track as it loads (the music player shows it). */
+    private val onTrackChanged: (Int) -> Unit = {}
 ) : BackgroundTrack {
+
+    /** A level's own two renders, alternating. */
+    constructor(context: Context, music: LevelMusic, onUnavailable: () -> Unit = {}) :
+        this(context, music.variants, music.name, 0, onUnavailable)
 
     private val lock = Any()
     private var player: MediaPlayer? = null
 
     /** Which of [LevelMusic.variants] is loaded, or about to be. */
-    private var index = 0
+    private var index = startIndex.coerceIn(0, (variants.size - 1).coerceAtLeast(0))
+
+    /** Which of the variants is loaded, or about to be. */
+    val currentIndex: Int get() = synchronized(lock) { index }
 
     @Volatile
     private var wantPlaying = false
@@ -56,14 +70,14 @@ class PlaylistEngine(
     private var reportedUnavailable = false
 
     /** The variant currently loaded. Exposed for tests; nothing else needs it. */
-    val currentVariant: Int get() = synchronized(lock) { music.variants[index] }
+    val currentVariant: Int get() = synchronized(lock) { variants[index] }
 
     override fun prepare(scope: CoroutineScope) {
         synchronized(lock) {
             if (player != null || preparing) return
             preparing = true
         }
-        scope.launch(Dispatchers.IO) { load(scope, music.variants[index]) }
+        scope.launch(Dispatchers.IO) { load(scope, variants[index]) }
     }
 
     private fun load(scope: CoroutineScope, resId: Int) {
@@ -84,7 +98,7 @@ class PlaylistEngine(
             synchronized(lock) {
                 if (player !== finished) return@setOnCompletionListener
                 player = null
-                index = music.variantAfter(index)
+                index = (index + 1) % variants.size
             }
             safely("release") {
                 finished.setOnCompletionListener(null)
@@ -92,11 +106,12 @@ class PlaylistEngine(
             }
             val next = synchronized(lock) {
                 preparing = true
-                music.variants[index]
+                variants[index]
             }
             scope.launch(Dispatchers.IO) { load(scope, next) }
         }
 
+        onTrackChanged(synchronized(lock) { index })
         synchronized(lock) {
             player = prepared
             preparing = false
@@ -122,7 +137,7 @@ class PlaylistEngine(
             }
         }
     } catch (error: Exception) {
-        Log.w(TAG, "Could not open ${music.name} variant $resId", error)
+        Log.w(TAG, "Could not open $name variant $resId", error)
         null
     }
 
