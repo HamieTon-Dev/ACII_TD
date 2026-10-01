@@ -1736,7 +1736,7 @@ class GameViewModel @JvmOverloads constructor(
         matchActive = true
         paused = false
         audio.setInMatch(true, musicForMap(engine.map), trackForMode(engine.mode))
-        if (settings.musicVolume > 0.01f) audio.startMusic()
+        audio.startMusic()
         selection = BattlefieldSelection()
         showBossPanel = false
         showDeployPanel = false
@@ -1926,7 +1926,7 @@ class GameViewModel @JvmOverloads constructor(
     fun onAppResumed() {
         // Whichever screen they left, not only a match: pausing no longer
         // clears which track that was, so startMusic picks the right one.
-        if (settings.musicVolume > 0.01f) audio.startMusic()
+        audio.startMusic()
     }
 
     /** Whether any music is currently asked to play. */

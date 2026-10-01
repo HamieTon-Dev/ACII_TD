@@ -60,7 +60,7 @@ class LevelMusicTest {
             .sorted()
         assertEquals(
             "the supplied tracks should be the mp3s in res/raw",
-            (1..10).flatMap { listOf("level$it", "level${it}_2") }.sorted(),
+            ((1..10).flatMap { listOf("level$it", "level${it}_2") } + listOf("menu", "menu_2")).sorted(),
             shipped
         )
         // A file in res/raw that no level names is dead weight in the download,
@@ -68,7 +68,7 @@ class LevelMusicTest {
         assertEquals(
             "${shipped.size} files shipped, ${LevelMusic.entries.sumOf { it.variants.size }} referenced",
             shipped.size,
-            LevelMusic.entries.sumOf { it.variants.size }
+            LevelMusic.entries.sumOf { it.variants.size } + com.cyopstd.game.audio.MusicLibrary.menuTracks.size
         )
     }
 
@@ -119,13 +119,13 @@ class LevelMusicTest {
     // ------------------------------------------------------------ the menu
 
     @Test
-    fun `the menu keeps the music it already had`() {
-        // The owner asked for exactly this, and it is worth a test because the
-        // obvious way to wire up level music is to route everything through it
-        // and leave the menu with whatever falls out.
+    fun `the menu plays the owner's menu tracks, with the generated one as a fallback`() {
+        // Owner, 2026-10-01: two "Main menu" tracks replace the generated menu
+        // music; the generated track stays for a device that will not decode them.
         val menuSource = File("src/main/java/com/cyopstd/game/audio/AudioEngine.kt").readText()
+        assertTrue(menuSource.contains("MusicLibrary.menuTracks.map { it.resId }"))
         assertTrue(
-            "the menu should still play the generated MENU track",
+            "the generated MENU track should remain as the fallback",
             menuSource.contains("MusicEngine(context, ChiptuneComposer.Track.MENU)")
         )
         assertTrue(

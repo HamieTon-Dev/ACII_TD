@@ -80,8 +80,12 @@ data class MusicTrack(
     /** 1 or 2: which of the level's two renders. */
     val part: Int
 ) {
-    /** The owner's naming (2026-10-01): "CyOps TD - Level 4 (1)". Also the ID3 title. */
-    val title: String get() = "CyOps TD - Level $level ($part)"
+    /**
+     * The owner's naming (2026-10-01): "CyOps TD - Level 4 (1)", or for the
+     * menu's tracks ([level] 0) "CyOps TD - Main Menu (1)". Also the ID3 title.
+     */
+    val title: String
+        get() = if (level == 0) "CyOps TD - Main Menu ($part)" else "CyOps TD - Level $level ($part)"
 
     /** What the soundtrack is saved to the phone as. */
     val fileName: String get() = "$title.mp3"
@@ -91,7 +95,7 @@ data class MusicTrack(
 
     /** "CyOps TD - Level 4 (1) · 🦆 DUCK-USB": the title, and which level it belongs to. */
     val label: String
-        get() = "$title \u00B7 $levelName"
+        get() = if (level == 0) title else "$title \u00B7 $levelName"
 }
 
 /**
@@ -99,8 +103,15 @@ data class MusicTrack(
  * music appears in the list without this changing.
  */
 object MusicLibrary {
+    /** The main menu's two tracks (owner, 2026-10-01), first in the album. */
+    val menuTracks: List<MusicTrack> = listOf(R.raw.menu, R.raw.menu_2).mapIndexed { part, res ->
+        MusicTrack(res, MENU_ID, 0, "MAIN MENU", part + 1)
+    }
+
+    const val MENU_ID = "menu"
+
     val tracks: List<MusicTrack> by lazy {
-        Maps.all.withIndex().flatMap { (i, map) ->
+        menuTracks + Maps.all.withIndex().flatMap { (i, map) ->
             val music = musicForMap(map) ?: return@flatMap emptyList()
             music.variants.mapIndexed { part, res ->
                 MusicTrack(res, map.id, i + 1, map.displayName, part + 1)

@@ -69,7 +69,7 @@ these ids. A typo is a product that can never be bought, so copy them:
 | `no_ads` | Permanent | $4.99 | No interstitial, ever, + €5,000 |
 | `revive_pack` | Permanent | $4.99 | 3 revives per run, no revive ads, + €5,000 |
 | `speed_5x` | Permanent | $4.99 | Fifth simulation speed |
-| `soundtrack` | Permanent | $4.99 | CyOps TD SOUNDTRACK: all 20 level tracks, saved to the phone's Music folder |
+| `soundtrack` | Permanent | $4.99 | CyOps TD SOUNDTRACK: all 22 tracks (menu and levels), saved to the phone's Music folder |
 | `budget_small` | **Consumable** | $0.99 | €1,500 |
 | `budget_medium` | **Consumable** | $2.99 | €5,000 |
 | `budget_large` | **Consumable** | $4.99 | €9,000 |

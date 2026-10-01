@@ -44,22 +44,25 @@ class MusicPlayerTest {
     @Test
     fun `the library lists both tracks of every level with music, in level order`() {
         val tracks = MusicLibrary.tracks
-        assertEquals(20, tracks.size)
-        assertEquals((1..10).flatMap { listOf(it, it) }, tracks.map { it.level })
-        // The owner's naming: "CyOps TD - Level X (Y)".
-        assertEquals("CyOps TD - Level 1 (1)", tracks[0].title)
-        assertEquals("CyOps TD - Level 10 (2)", tracks[19].title)
-        assertEquals("CyOps TD - Level 10 (2).mp3", tracks[19].fileName)
-        assertEquals("CyOps TD - Level 1 (1) \u00B7 NETWORK PERIMETER", tracks[0].label)
-        assertEquals(2, MusicLibrary.firstTrackOf(Maps.HUGGING_FACE))
-        assertEquals(10, MusicLibrary.firstTrackOf(Maps.TRIDENT))
+        assertEquals(22, tracks.size)
+        assertEquals(listOf(0, 0) + (1..10).flatMap { listOf(it, it) }, tracks.map { it.level })
+        // The owner's naming: "CyOps TD - Level X (Y)", the menu's first.
+        assertEquals("CyOps TD - Main Menu (1)", tracks[0].title)
+        assertEquals("CyOps TD - Main Menu (1)", tracks[0].label)
+        assertEquals("CyOps TD - Level 1 (1)", tracks[2].title)
+        assertEquals("CyOps TD - Level 10 (2)", tracks[21].title)
+        assertEquals("CyOps TD - Level 10 (2).mp3", tracks[21].fileName)
+        assertEquals("CyOps TD - Level 1 (1) \u00B7 NETWORK PERIMETER", tracks[2].label)
+        assertEquals(4, MusicLibrary.firstTrackOf(Maps.HUGGING_FACE))
+        assertEquals(12, MusicLibrary.firstTrackOf(Maps.TRIDENT))
     }
 
     @Test
     fun `a saved pick is found again by a key that survives new builds`() {
-        val track = MusicLibrary.tracks[7]
+        val track = MusicLibrary.tracks[9]
         assertEquals("duck_usb|2", track.key)
-        assertEquals(7, MusicLibrary.indexOfKey("duck_usb|2"))
+        assertEquals(9, MusicLibrary.indexOfKey("duck_usb|2"))
+        assertEquals(0, MusicLibrary.indexOfKey("menu|1"))
         assertNull(MusicLibrary.indexOfKey(null))
         assertNull("a track that no longer exists is ignored", MusicLibrary.indexOfKey("gone|9"))
     }
