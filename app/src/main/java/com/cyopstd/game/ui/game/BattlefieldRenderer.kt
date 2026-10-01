@@ -400,19 +400,15 @@ class BattlefieldRenderer {
             rightTextPaint
         )
 
-        // The run's name, set smaller than either number and away from them:
-        // it identifies the run without competing with the figures that change
-        // during it.
-        textPaint.textSize = RUN_NAME_TEXT
-        textPaint.color = if (engine.mode == GameMode.STANDARD) colMuted else colOrange
-        textPaint.alpha = RUN_NAME_ALPHA
-        canvas.drawText(
-            engine.mode.runName,
-            WorldGeometry.WIDTH * 0.5f,
-            FIELD_STATUS_BASELINE - 4f,
-            textPaint
-        )
-        textPaint.alpha = 255
+        // The level and the difficulty, under the money and above the rack
+        // (owner, 2026-10-01). They used to be one faint line over the middle
+        // of the board, where the top row of agents covered it.
+        rightTextPaint.textSize = FIELD_RUN_TEXT
+        rightTextPaint.color = colText
+        val cryptoBaseline = FIELD_STATUS_BASELINE + FIELD_STATUS_LINE
+        canvas.drawText(map.displayName, right, cryptoBaseline + FIELD_RUN_LINE, rightTextPaint)
+        rightTextPaint.color = if (engine.mode == GameMode.STANDARD) colMuted else colOrange
+        canvas.drawText(engine.mode.runName, right, cryptoBaseline + FIELD_RUN_LINE * 2, rightTextPaint)
     }
 
     /**
@@ -2369,9 +2365,12 @@ class BattlefieldRenderer {
 
 
 
-        /** The run name: smaller and dimmer than the corner readouts. */
-        const val RUN_NAME_TEXT = 15f
-        const val RUN_NAME_ALPHA = 130
+        /** The level and difficulty lines in the corner plate, and their spacing. */
+        const val FIELD_RUN_TEXT = 17f
+        const val FIELD_RUN_LINE = 24f
+
+        /** The widest level name the plate is sized for. */
+        const val RUN_PLATE_TEMPLATE = "NETWORK PERIMETER"
 
         /** Turns of the colour wheel per second for the SPECTRUM agent skin. */
         const val SPECTRUM_SPEED = 0.045f
