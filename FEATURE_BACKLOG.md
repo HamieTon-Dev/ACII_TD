@@ -435,14 +435,14 @@ dark; each level gets two music tracks from the owner (`LevelMusic`); bosses
 stack by `MAP_PROGRESSION` (see ♡5). Levels 6–10 extend `Maps.all` and
 `MAP_PROGRESSION`.
 
-### ♡2 ✅ ANTI DUCK USB [<(o] — shipped in 1.52.0 (ability is a default, ❓ owner may change)
+### ♡2 ✅ ANTI DUCK USB [<(o] — shipped in 1.52.0; ability confirmed by the owner 2026-10-01
 
 **Built (1.52.0):** look C `[<(o]`, drawn as a green↔yellow hologram that no
-agent skin changes. 500 ◇, earned by wave 100 on DUCK-USB. Ability not chosen by
-the owner, so the recommended default: the hats' fire rate (3.3/s) with heavier
+agent skin changes. 500 ◇, earned by wave 100 on DUCK-USB. Ability (owner,
+2026-10-01: *"keep the duck ability"*): the hats' fire rate (3.3/s) with heavier
 shots (48 vs 34) and range 280, ×3 damage to SYN-STORM and GRADIENT, two maximum,
 keeps targeting modes (the hats stay the only always-boss-first agents).
-`AntiDuckTest`. ❓ Owner: keep this, or pick b) chain hits / c) jam immune / another cap.
+`AntiDuckTest`.
 
 **Asked:** *"For completion of duck usb level wave 100 - unlocks a unit called
 'Anti Duck Usb'. This will be more powerful than Red hat and blue hat, will
@@ -466,16 +466,17 @@ ASCII *is* possible at small sizes (a 2–3 line duck), but legibility inside a
 profile / ability (more powerful than the hats — e.g. bonus vs the DUCK-USB
 bosses SYN-STORM and GRADIENT?), range, and a deploy limit.
 
-### ♡3 🟨❓ CYBER OPERATIVE [>_<] — built in 1.52.0; the look ❓ (options A–D)
+### ♡3 ✅ CYBER OPERATIVE [>_<] — shipped in 1.52.0; owner picked look C (2026-10-01)
 
 **Built (1.52.0):** 600 ◇, earned by wave 100 on HUGGING-FACE, two maximum,
 TARPIT's range (300). Every agent in its range (itself included) cannot be
 jammed by any boss. 30 damage at 2.5/s, ×4 to WHITE EYE and BLACK EYE (over
 twice a hat's damage against them). Drawn with the logo's own paths (new
 `ic_cyber_operative.xml`, copied unchanged from the launcher icon) plus a faint
-aura — option C, standing in. Options rendered by `CyberOperativePreview`:
+aura — option C, the owner's pick (*"C for the cyber operative"*). Options
+rendered by `CyberOperativePreview`:
 A whole logo (with traces and packet), B shield and face, C B + anti-jam aura,
-D B in a node badge. `CyberOperativeTest`. ❓ Owner: pick A–D; cost 600 is a default too.
+D B in a node badge. `CyberOperativeTest`. Cost 600 ◇ is a default the owner has not objected to.
 
 **Asked:** *"For completion of hugging face level wave 100 - unlock [>_<]
 unit. This will be a unit that resembles the logo of the game, and can be

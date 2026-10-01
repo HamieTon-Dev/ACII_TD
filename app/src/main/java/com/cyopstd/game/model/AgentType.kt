@@ -526,8 +526,8 @@ enum class AgentType(
      * DUCK-USB, 500◇, stronger than the hats. Drawn as a green-and-yellow
      * hologram that no agent skin changes (owner's look C).
      *
-     * The owner did not pick between the ability options, so this is the
-     * recommended one: the hats' fire rate with heavier shots, and
+     * Ability confirmed by the owner (2026-10-01, *"keep the duck
+     * ability"*): the hats' fire rate with heavier shots, and
      * ×[Balance.ANTI_DUCK_MULTIPLIER] damage to DUCK-USB's own bosses,
      * SYN-STORM and GRADIENT. Two maximum. Unlike the hats it keeps targeting
      * modes, so the hats stay the only agents that always shoot a boss first.
@@ -562,8 +562,8 @@ enum class AgentType(
      * CYBER OPERATIVE `[>_<]` (backlog ♡3, owner): earned by wave 100 on
      * HUGGING-FACE, two maximum, TARPIT's range. Nothing inside its range can
      * be jammed, and it hits the HUGGING-FACE eyes, WHITE EYE and BLACK EYE,
-     * hard and fast. Drawn as the game's logo (look still to be picked by the
-     * owner; see `CyberOperativePreview`).
+     * hard and fast. Drawn as the game's logo with an anti-jam aura: the
+     * owner's pick, option C of `CyberOperativePreview`.
      */
     CYBER_OPERATIVE(
         displayName = "CYBER OPERATIVE",

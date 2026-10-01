@@ -41,6 +41,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - **CYBER OPERATIVE** `[>_<]`, earned by wave 100 on HUGGING-FACE, drawn as
   the game's logo. Agents in its range cannot be jammed; ×4 damage to WHITE
   EYE and BLACK EYE. TARPIT's range, two maximum, 600 ◇.
+  Shown with a pulsing anti-jam aura (the owner's pick of four looks).
 
 ### Main menu icons (♡7)
 

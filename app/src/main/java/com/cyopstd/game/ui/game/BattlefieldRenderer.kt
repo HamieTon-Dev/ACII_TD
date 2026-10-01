@@ -1510,9 +1510,9 @@ class BattlefieldRenderer {
     /**
      * CYBER OPERATIVE as the game's logo (♡3): the shield and `>_<` face from
      * `ic_launcher_foreground.xml`, path for path, with a faint anti-jam aura
-     * (option C, standing in until the owner picks a look). Built from the
-     * same path data rather than the drawable so the renderer needs no
-     * Context, and so the paths port as they are.
+     * (option C, the owner's pick). Built from the same path data rather than
+     * the drawable so the renderer needs no Context, and so the paths port as
+     * they are.
      */
     private val logoGlow = androidx.core.graphics.PathParser.createPathFromPathData(
         "M54,20 L84,31 L84,56 C84,73 70,84 54,90 C38,84 24,73 24,56 L24,31 Z"
