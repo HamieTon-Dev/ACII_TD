@@ -230,6 +230,36 @@ class LoadoutTest {
     }
 
     @Test
+    fun `KERNEL MODE is greyed out and states its condition until DDoS wave 100 in HACK AI`() {
+        var picked: GameMode? = null
+        compose.setContent {
+            CyOpsTheme {
+                com.cyopstd.game.ui.menu.RunSetupScreen(
+                    stats = PlayerStats(
+                        highestWave = 150, highestWaveHackAi = 120,
+                        highestWaveByMapMode = mapOf(PlayerStats.mapModeKey("ddos", "hack_ai") to 64)
+                    ),
+                    availableModes = listOf(GameMode.STANDARD, GameMode.HACK_AI),
+                    selectedMode = GameMode.STANDARD,
+                    availableMaps = listOf(Maps.PERIMETER),
+                    selectedMap = Maps.PERIMETER,
+                    backgroundAnimation = false,
+                    onSelectMode = { picked = it },
+                    onSelectMap = {},
+                    onStart = {},
+                    onBack = {}
+                )
+            }
+        }
+        openDropdown()
+        compose.onNodeWithText("LOCKED \u00B7 clear wave 100 on DDoS in HACK:AI (best: 64)").assertIsDisplayed()
+        compose.onNodeWithText(GameMode.KERNEL_MODE.runName).performClick()
+        assertNull(picked)
+        compose.onNodeWithText("KERNEL MODE is locked: clear wave 100 on DDoS in HACK:AI to unlock it.")
+            .assertIsDisplayed()
+    }
+
+    @Test
     fun `HACK AI can be selected once it is earned`() {
         var picked: GameMode? = null
         setup(highestWave = 100, modes = GameMode.entries.toList(), onSelectMode = { picked = it })

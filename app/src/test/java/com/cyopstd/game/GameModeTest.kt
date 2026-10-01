@@ -137,4 +137,34 @@ class GameModeTest {
         assertEquals(GameMode.STANDARD, GameMode.fromIdSafe("who_knows"))
         assertEquals(GameMode.HACK_AI, GameMode.fromIdSafe("hack_ai"))
     }
+
+    @Test
+    fun `KERNEL MODE is earned on DDoS in HACK AI, not by a lifetime best`() {
+        val mode = GameMode.KERNEL_MODE
+        assertFalse(mode.unlockedBy(500))
+        val stats = com.cyopstd.game.save.PlayerStats(highestWave = 500, highestWaveHackAi = 300)
+        assertFalse(stats.hasUnlocked(mode))
+        val ddosHack = com.cyopstd.game.save.PlayerStats.mapModeKey(Maps.DDOS.id, GameMode.HACK_AI.id)
+        val ddosStandard = com.cyopstd.game.save.PlayerStats.mapModeKey(Maps.DDOS.id, GameMode.STANDARD.id)
+        assertFalse(stats.copy(highestWaveByMapMode = mapOf(ddosStandard to 200, ddosHack to 99)).hasUnlocked(mode))
+        assertTrue(stats.copy(highestWaveByMapMode = mapOf(ddosHack to 100)).hasUnlocked(mode))
+        assertEquals(Maps.DDOS.id, mode.unlockMapId)
+        assertEquals("clear wave 100 on DDoS in HACK:AI", mode.unlockRequirement)
+        // HACK:AI's own rule is unchanged.
+        assertTrue(com.cyopstd.game.save.PlayerStats(highestWave = 100).hasUnlocked(GameMode.HACK_AI))
+    }
+
+    @Test
+    fun `KERNEL MODE is harder than HACK AI on every axis, and pays more`() {
+        val hack = GameMode.HACK_AI
+        val kernel = GameMode.KERNEL_MODE
+        assertTrue(kernel.healthScale > hack.healthScale)
+        assertTrue(kernel.spawnIntervalScale < hack.spawnIntervalScale)
+        assertTrue(kernel.serverHp < hack.serverHp)
+        assertTrue(kernel.rewardScale > hack.rewardScale)
+        val engine = GameEngine(random = Random(1))
+        engine.selectMode(kernel)
+        engine.startNewRun()
+        assertEquals(kernel.serverHp, engine.serverMaxHp)
+    }
 }

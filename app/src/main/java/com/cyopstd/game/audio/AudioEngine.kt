@@ -34,7 +34,7 @@ import java.io.File
  */
 fun trackForMode(mode: GameMode): ChiptuneComposer.Track = when (mode) {
     GameMode.STANDARD -> ChiptuneComposer.Track.GAME
-    GameMode.HACK_AI -> ChiptuneComposer.Track.BOTTLE
+    GameMode.HACK_AI, GameMode.KERNEL_MODE -> ChiptuneComposer.Track.BOTTLE
 }
 
 /**

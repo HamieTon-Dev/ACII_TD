@@ -125,6 +125,20 @@ data class PlayerStats(
     val favoriteAgent: String?
         get() = deploymentsByAgent.maxByOrNull { it.value }?.key
 
+    /**
+     * The best wave in [mode] on any level: what a level unlocked "by wave N
+     * in this mode" reads.
+     */
+    fun bestInMode(mode: com.cyopstd.game.core.GameMode): Int = when (mode) {
+        com.cyopstd.game.core.GameMode.STANDARD -> highestWave
+        com.cyopstd.game.core.GameMode.HACK_AI -> highestWaveHackAi
+        else -> highestWaveByMapMode.filterKeys { it.endsWith("|" + mode.id) }.values.maxOrNull() ?: 0
+    }
+
+    /** Whether [mode] is open to a player with these records. */
+    fun hasUnlocked(mode: com.cyopstd.game.core.GameMode): Boolean =
+        mode.unlockedBy(highestWave) { map, m -> bestWave(map, m) }
+
     /** Best wave on [mapId] in [modeId]; 0 if never played there. */
     fun bestWave(mapId: String, modeId: String): Int = highestWaveByMapMode[mapModeKey(mapId, modeId)] ?: 0
 

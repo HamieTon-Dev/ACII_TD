@@ -125,6 +125,15 @@ class GameViewModel @JvmOverloads constructor(
     var settings by mutableStateOf(GameSettings())
         private set
 
+    // Declared above every init block: the stats collector writes these.
+    /** Modes this player has earned the right to play. */
+    var availableModes by mutableStateOf(listOf(GameMode.STANDARD))
+        private set
+
+    /** The mode the next run will start in. */
+    var selectedMode by mutableStateOf(GameMode.STANDARD)
+        private set
+
     var stats by mutableStateOf(PlayerStats())
         private set
 
@@ -381,18 +390,22 @@ class GameViewModel @JvmOverloads constructor(
     private fun refreshAvailableMaps(stats: PlayerStats) {
         availableMaps = Maps.all.filter { map ->
             map.unlockedBy(
-                bestWaveOnMode = { mode ->
-                    when (mode) {
-                        GameMode.HACK_AI -> stats.highestWaveHackAi
-                        GameMode.STANDARD -> stats.highestWave
-                    }
-                },
+                bestWaveOnMode = { mode -> stats.bestInMode(mode) },
                 bestWaveOnMap = { id -> stats.highestWaveByMap[id] ?: 0 }
             )
         }
         // A level can only be lost to a progress reset, but if it is, the
         // selection must not survive it.
         if (selectedMap !in availableMaps) selectedMap = Maps.PERIMETER
+        refreshAvailableModes(stats)
+    }
+
+    /** Which difficulties are open. KERNEL MODE reads a level-and-mode record. */
+    private fun refreshAvailableModes(stats: PlayerStats) {
+        availableModes = GameMode.entries.filter { stats.hasUnlocked(it) }
+        // A mode can only be lost by a progress reset, but if it is, the
+        // selection must not survive it.
+        if (selectedMode !in availableModes) selectedMode = GameMode.STANDARD
     }
 
     init {
@@ -792,14 +805,6 @@ class GameViewModel @JvmOverloads constructor(
         viewModelScope.launch { globalBoard.openNative(mode) }
     }
 
-    /** Modes this player has earned the right to play. */
-    var availableModes by mutableStateOf(listOf(GameMode.STANDARD))
-        private set
-
-    /** The mode the next run will start in. */
-    var selectedMode by mutableStateOf(GameMode.STANDARD)
-        private set
-
     fun selectMode(mode: GameMode) {
         if (mode !in availableModes) return
         playClick()
@@ -867,10 +872,10 @@ class GameViewModel @JvmOverloads constructor(
                 } else {
                     "AGENT UNREGISTERED"
                 }
-                availableModes = GameMode.entries.filter { it.unlockedBy(identity.highestWave) }
-                // A mode can only be lost by a progress reset, but if it is,
-                // the selection must not survive it.
-                if (selectedMode !in availableModes) selectedMode = GameMode.STANDARD
+                // The stats collector owns the mode list (KERNEL MODE needs
+                // per-level records); this keeps a lifetime best that
+                // arrives here first from being missed.
+                refreshAvailableModes(stats.copy(highestWave = maxOf(stats.highestWave, identity.highestWave)))
             }
         }
         collectJobs += viewModelScope.launch {

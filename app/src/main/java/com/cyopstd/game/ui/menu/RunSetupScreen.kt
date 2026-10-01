@@ -84,12 +84,7 @@ fun RunSetupScreen(
                             selected = map == selectedMap,
                             unlocked = unlocked,
                             best = map.bestTowardUnlock(
-                                bestWaveOnMode = { mode ->
-                                    when (mode) {
-                                        GameMode.HACK_AI -> stats.highestWaveHackAi
-                                        GameMode.STANDARD -> stats.highestWave
-                                    }
-                                },
+                                bestWaveOnMode = { mode -> stats.bestInMode(mode) },
                                 bestWaveOnMap = { id -> stats.highestWaveByMap[id] ?: 0 }
                             ).let { if (it == Int.MAX_VALUE) 0 else it },
                             onClick = {
@@ -114,7 +109,7 @@ fun RunSetupScreen(
                     DifficultyDropdown(
                         selected = selectedMode,
                         available = availableModes,
-                        highestWave = stats.highestWave,
+                        stats = stats,
                         onSelect = { lockedNote = null; onSelectMode(it) },
                         onLocked = { lockedNote = it }
                     )
@@ -145,7 +140,7 @@ fun RunSetupScreen(
 private fun DifficultyDropdown(
     selected: GameMode,
     available: List<GameMode>,
-    highestWave: Int,
+    stats: PlayerStats,
     onSelect: (GameMode) -> Unit,
     onLocked: (String) -> Unit
 ) {
@@ -182,7 +177,7 @@ private fun DifficultyDropdown(
                             )
                             Text(
                                 if (unlocked) modeSummary(mode)
-                                else "LOCKED · clear wave ${mode.unlockAtWave} (best: $highestWave)",
+                                else "LOCKED · ${mode.unlockRequirement} (best: ${bestToward(mode, stats)})",
                                 style = MaterialTheme.typography.labelSmall,
                                 color = if (unlocked) Palette.TextSecondary else Palette.TextMuted
                             )
@@ -191,7 +186,7 @@ private fun DifficultyDropdown(
                     onClick = {
                         open = false
                         if (unlocked) onSelect(mode)
-                        else onLocked("${mode.runName} is locked: clear wave ${mode.unlockAtWave} to unlock it.")
+                        else onLocked("${mode.runName} is locked: ${mode.unlockRequirement} to unlock it.")
                     }
                 )
             }
@@ -199,9 +194,13 @@ private fun DifficultyDropdown(
     }
 }
 
+private fun bestToward(mode: GameMode, stats: PlayerStats): Int =
+    mode.bestTowardUnlock(stats.highestWave) { map, m -> stats.bestWave(map, m) }
+
 private fun modeSummary(mode: GameMode): String = when (mode) {
     GameMode.STANDARD -> "The standard curve."
-    else -> "Tougher threats, closer together, less integrity. Richer rewards."
+    GameMode.HACK_AI -> "Tougher threats, closer together, less integrity. Richer rewards."
+    GameMode.KERNEL_MODE -> "HACK:AI pushed past its limits. Half the integrity, double the rewards."
 }
 
 /**
