@@ -99,4 +99,20 @@ class LeaderboardTest {
         assertEquals(GameMode.HACK_AI, board.top().first().mode)
         assertEquals("HACK:AI", board.top().first().mode.runName)
     }
+
+    @Test
+    fun `every level and difficulty keeps its own best runs`() = runTest {
+        val board = LocalLeaderboard(TestStores.isolatedRepository())
+        // Forty deep runs on the first level would crowd everything else off a
+        // single top 25; the board keeps the best on every level as well.
+        for (wave in 1..40) {
+            board.submit(LeaderboardEntry("A", 200 + wave, 1, mapId = "perimeter", at = wave.toLong()))
+        }
+        board.submit(LeaderboardEntry("B", 12, 1, modeId = GameMode.HACK_AI.id, mapId = "trident", at = 99))
+        val mirai = board.top(25, "trident", GameMode.HACK_AI)
+        assertEquals(1, mirai.size)
+        assertEquals("B", mirai.first().username)
+        assertEquals(25, board.top(100, "perimeter", null).size)
+        assertTrue(board.top(25, "trident", GameMode.STANDARD).isEmpty())
+    }
 }

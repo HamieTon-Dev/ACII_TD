@@ -814,7 +814,8 @@ class GameViewModel @JvmOverloads constructor(
     }
 
     fun refreshLeaderboard() {
-        viewModelScope.launch { leaderboardEntries = leaderboard.top() }
+        // Every stored run: the screen filters by level and difficulty itself.
+        viewModelScope.launch { leaderboardEntries = leaderboard.top(Int.MAX_VALUE) }
     }
 
     /**
@@ -824,9 +825,13 @@ class GameViewModel @JvmOverloads constructor(
      * least one leaderboard id; otherwise nothing is global and the screen
      * does not offer a GLOBAL view at all.
      */
+    /** The per-level worldwide boards configured in this build (owner, 2026-10-01). */
+    private val levelBoardIds =
+        com.cyopstd.game.ads.LevelLeaderboards.boards(PlayServices.cloudSaveConfigured)
+
     private val globalBoard: GlobalLeaderboardGateway =
-        if (PlayServices.leaderboardIds.isNotEmpty()) {
-            PlayGamesLeaderboard(PlayServices.leaderboardIds)
+        if (PlayServices.leaderboardIds.isNotEmpty() || levelBoardIds.isNotEmpty()) {
+            PlayGamesLeaderboard(PlayServices.leaderboardIds, levelBoardIds)
         } else {
             NoGlobalLeaderboard()
         }
@@ -837,6 +842,9 @@ class GameViewModel @JvmOverloads constructor(
     /** Modes with a global board, in menu order. */
     val globalLeaderboardModes: List<GameMode>
         get() = GameMode.entries.filter { globalBoard.hasBoard(it) }
+
+    /** Whether [key] (a difficulty, on one level or all) has a worldwide board. */
+    fun hasGlobalBoard(key: com.cyopstd.game.save.BoardKey): Boolean = globalBoard.hasBoard(key)
 
     /**
      * The last global list read, or null when it has not been read or could
@@ -849,23 +857,23 @@ class GameViewModel @JvmOverloads constructor(
     var globalLoading by mutableStateOf(false)
         private set
 
-    fun refreshGlobalLeaderboard(mode: GameMode) {
-        if (!globalBoard.hasBoard(mode)) {
+    fun refreshGlobalLeaderboard(key: com.cyopstd.game.save.BoardKey) {
+        if (!globalBoard.hasBoard(key)) {
             globalEntries = null
             return
         }
         globalLoading = true
         viewModelScope.launch {
-            globalEntries = globalBoard.top(mode)
+            globalEntries = globalBoard.top(key)
             globalLoading = false
         }
     }
 
-    fun openGlobalLeaderboard(mode: GameMode) {
+    fun openGlobalLeaderboard(key: com.cyopstd.game.save.BoardKey) {
         playClick()
         // A failure here is almost always "not signed in", which the screen
         // already says beside the button; there is nothing to add.
-        viewModelScope.launch { globalBoard.openNative(mode) }
+        viewModelScope.launch { globalBoard.openNative(key) }
     }
 
     fun selectMode(mode: GameMode) {
@@ -1634,7 +1642,8 @@ class GameViewModel @JvmOverloads constructor(
                     wave = engine.currentWave,
                     damage = engine.runDamageDealt.toLong(),
                     modeId = engine.mode.id,
-                    at = System.currentTimeMillis() / 1000
+                    at = System.currentTimeMillis() / 1000,
+                    mapId = engine.map.id
                 )
             )
             refreshLeaderboard()
@@ -1647,7 +1656,8 @@ class GameViewModel @JvmOverloads constructor(
                         username = identity.username,
                         wave = engine.currentWave,
                         damage = engine.runDamageDealt.toLong(),
-                        modeId = engine.mode.id
+                        modeId = engine.mode.id,
+                        mapId = engine.map.id
                     )
                 )
             }

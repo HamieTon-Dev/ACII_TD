@@ -9,6 +9,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+### Leaderboards per level and difficulty
+
+- The leaderboard has LEVEL and DIFFICULTY drop-downs. THIS DEVICE filters
+  your runs by them (runs now remember their level; older runs show under ALL
+  LEVELS), and keeps the best runs of every level and difficulty, not just
+  the top 25 overall. A LVL column shows each run's level.
+- WORLDWIDE shows the Play Games board for the level and difficulty picked:
+  30 boards (10 levels × 3 difficulties) plus the existing all-level ones. A
+  finished run posts to both its level's board and its difficulty's overall
+  board. `LEADERBOARDS.md` lists the boards to create in Play Console.
+
 ## [1.54.0] — 2026-10-01
 
 ### All ten levels have their own music

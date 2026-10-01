@@ -634,7 +634,17 @@ suit: Material Symbols (Apache 2.0) or drawing the few icons in-house.
   **Done (1.53.0):** `MusicPlayerPanel` beside the pause buttons; `MusicLibrary`
   builds the list from `musicForMap`, so levels 6–10 join it when their files
   land; the pick is saved between sessions (see the follow-up below). `MusicPlayerTest`.
-- **❓ Leaderboards per level and difficulty (owner, 2026-10-01):** *"Does the
+- **Owner's requests, 2026-10-01 (evening):** two main-menu tracks supplied
+  (`Main menu (1)`, `Main menu (2)`). 1. *"Check for bug that makes music not
+  play on main menu or when resuming the app or going back to main menu."*
+  2. *"put the level name below currency and above the core server along with
+  the difficulty level"* (the in-match corner box: WAVE, ◇, then level ·
+  difficulty, then CORE-SERVER). 3. *"make this element in main menu as an
+  image or something that can scale better"* (the ASCII lanes → CORE-SERVER
+  art). 4. *"New circles radiating living background (full spectrum color
+  change slowly, slowly rotating) behind main menu elements, pause menu, store
+  menu, and other sub menus."*
+- **Leaderboards per level and difficulty (owner, 2026-10-01):** *"Does the
   leaderboard show per level and difficulty highest achieved? If not, is this
   possible?"* Today: the local board is the top 25 runs of all levels mixed
   (shows difficulty, not level; entries store no level), and the global boards
@@ -642,7 +652,11 @@ suit: Material Symbols (Apache 2.0) or drawing the few icons in-house.
   STATISTICS. Options offered: A local board with level + difficulty
   drop-downs; B also global per level and difficulty (up to 30 Play Console
   leaderboards, each an id to add); C global per level only (10). Waiting on
-  the owner's pick.
+  the owner's pick. **Owner picked B (2026-10-01): "all per level and
+  difficulty"** — local filters plus 30 global boards.
+  **Built:** `BoardKey`, `LevelLeaderboards` (30 empty id slots),
+  `LEADERBOARDS.md` for the owner. **Owner to do:** create the 30 boards and
+  send the ids.
 - **Music player follow-up (owner, 2026-10-01):** *"save the selected track
   between sessions - and lets replace all the icons on the pause menu (resume,
   restart level, settings... etc) let's give them all icons from CoreUI icons"*.
