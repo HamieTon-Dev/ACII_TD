@@ -557,6 +557,39 @@ enum class AgentType(
         allowsTargetingModes = true,
         unlockMapId = "duck_usb",
         unlockMapName = "DUCK-USB"
+    ),
+    /**
+     * CYBER OPERATIVE `[>_<]` (backlog ♡3, owner): earned by wave 100 on
+     * HUGGING-FACE, two maximum, TARPIT's range. Nothing inside its range can
+     * be jammed, and it hits the HUGGING-FACE eyes, WHITE EYE and BLACK EYE,
+     * hard and fast. Drawn as the game's logo (look still to be picked by the
+     * owner; see `CyberOperativePreview`).
+     */
+    CYBER_OPERATIVE(
+        displayName = "CYBER OPERATIVE",
+        shortName = "CYBEROP",
+        glyph = ">_<",
+        cost = 600,
+        baseDamage = 30f,
+        baseFireRate = 2.5f,
+        baseRange = 300f,
+        attackStyle = AttackStyle.SCAN,
+        unlockWave = 100,
+        abilityName = "COUNTERMEASURES",
+        abilitySummary = "Agents in its range cannot be jammed. " +
+            "${Balance.CYBER_OPERATIVE_EYE_MULTIPLIER.toInt()}\u00D7 damage to WHITE EYE and BLACK EYE. Two maximum.",
+        realWorld = "A cyber operations specialist runs defence as a live " +
+            "operation: watching for interference, keeping the team's tools " +
+            "working while someone is actively trying to switch them off, and " +
+            "going straight at the source of it.",
+        inGame = "Every agent inside its range, itself included, is immune to " +
+            "jamming from any boss. Fast, heavy shots, with " +
+            "${Balance.CYBER_OPERATIVE_EYE_MULTIPLIER.toInt()}\u00D7 damage to WHITE EYE " +
+            "and BLACK EYE. TARPIT's range. No more than two may be deployed.",
+        maxDeployed = 2,
+        allowsTargetingModes = true,
+        unlockMapId = "hugging_face",
+        unlockMapName = "HUGGING-FACE"
     );
 
     /** Not fooled by a SPOOFER's decoys (♡5): the ones built to read a threat. */

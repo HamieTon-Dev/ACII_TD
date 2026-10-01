@@ -487,6 +487,9 @@ object Balance {
     /** ACE's shots against any boss of levels 1–5. */
     const val ACE_BOSS_MULTIPLIER = 4f
 
+    /** CYBER OPERATIVE's damage against WHITE EYE and BLACK EYE (♡3). */
+    const val CYBER_OPERATIVE_EYE_MULTIPLIER = 4f
+
     /** ANTI DUCK USB's damage against SYN-STORM and GRADIENT (♡2). */
     const val ANTI_DUCK_MULTIPLIER = 3f
 

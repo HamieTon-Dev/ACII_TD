@@ -9,6 +9,44 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [1.52.0] — 2026-10-01
+
+### Chapter-two bosses (♡5)
+
+- Each new level has its own boss, and it leads that level's boss waves:
+  - **BOTMASTER** `[B∞]` (TRIDENT) keeps dropping BOTs behind itself.
+  - **ROOTKIT** `[r00t]` (SPIRAL) hides for 2 s of every 6: nothing can
+    target it, though splash and chains still reach it.
+  - **WORM** `[~~>]` (ZIGZAG) breaks into three smaller worms when killed,
+    and those break once more.
+  - **SPOOFER** `[¿¿]` (HELIX) casts decoys of itself that soak up fire.
+    ANALYST and ROOT ADMIN see through them. Balance-tested: about 1.6× a
+    BREACH's kill time, and still beatable with no ANALYST or ROOT ADMIN.
+  - **KERNEL PANIC** `[KP]` (TRIPLE BRAID) jams every agent near it for
+    3 s when it dies. FIREWALL stands in it.
+- ZIGZAG and TRIPLE BRAID threats retuned so each level stays harder than the
+  one before it.
+
+### KERNEL MODE (♡4)
+
+- A third difficulty, unlocked by clearing wave 100 on DDoS in HACK:AI.
+  Threats ×4.0 health, spawns closer, 50 integrity, double rewards. Greyed
+  out with its condition until then.
+
+### New agents (♡2, ♡3)
+
+- **ANTI DUCK USB** `[<(o]`, earned by wave 100 on DUCK-USB: a green-and-
+  yellow hologram that skins do not change. The hats' fire rate, heavier
+  shots, ×3 damage to SYN-STORM and GRADIENT. Two maximum, 500 ◇.
+- **CYBER OPERATIVE** `[>_<]`, earned by wave 100 on HUGGING-FACE, drawn as
+  the game's logo. Agents in its range cannot be jammed; ×4 damage to WHITE
+  EYE and BLACK EYE. TARPIT's range, two maximum, 600 ◇.
+
+### Main menu icons (♡7)
+
+- The main menu uses CoreUI Icons Free (CC BY 4.0), credited on ABOUT.
+
+
 ## [1.51.0] — 2026-10-01
 
 ### Five new levels (♡1)

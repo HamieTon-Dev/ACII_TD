@@ -435,7 +435,14 @@ dark; each level gets two music tracks from the owner (`LevelMusic`); bosses
 stack by `MAP_PROGRESSION` (see ♡5). Levels 6–10 extend `Maps.all` and
 `MAP_PROGRESSION`.
 
-### ♡2 ⬜❓ ANTI DUCK USB [🦆] — unlocked by wave 100 on DUCK-USB (look options shown 2026-10-01)
+### ♡2 ✅ ANTI DUCK USB [<(o] — shipped in 1.52.0 (ability is a default, ❓ owner may change)
+
+**Built (1.52.0):** look C `[<(o]`, drawn as a green↔yellow hologram that no
+agent skin changes. 500 ◇, earned by wave 100 on DUCK-USB. Ability not chosen by
+the owner, so the recommended default: the hats' fire rate (3.3/s) with heavier
+shots (48 vs 34) and range 280, ×3 damage to SYN-STORM and GRADIENT, two maximum,
+keeps targeting modes (the hats stay the only always-boss-first agents).
+`AntiDuckTest`. ❓ Owner: keep this, or pick b) chain hits / c) jam immune / another cap.
 
 **Asked:** *"For completion of duck usb level wave 100 - unlocks a unit called
 'Anti Duck Usb'. This will be more powerful than Red hat and blue hat, will
@@ -459,7 +466,16 @@ ASCII *is* possible at small sizes (a 2–3 line duck), but legibility inside a
 profile / ability (more powerful than the hats — e.g. bonus vs the DUCK-USB
 bosses SYN-STORM and GRADIENT?), range, and a deploy limit.
 
-### ♡3 ⬜❓ CYBER OPERATIVE [>_<] — unlocked by wave 100 on HUGGING-FACE (look options shown 2026-10-01)
+### ♡3 🟨❓ CYBER OPERATIVE [>_<] — built in 1.52.0; the look ❓ (options A–D)
+
+**Built (1.52.0):** 600 ◇, earned by wave 100 on HUGGING-FACE, two maximum,
+TARPIT's range (300). Every agent in its range (itself included) cannot be
+jammed by any boss. 30 damage at 2.5/s, ×4 to WHITE EYE and BLACK EYE (over
+twice a hat's damage against them). Drawn with the logo's own paths (new
+`ic_cyber_operative.xml`, copied unchanged from the launcher icon) plus a faint
+aura — option C, standing in. Options rendered by `CyberOperativePreview`:
+A whole logo (with traces and packet), B shield and face, C B + anti-jam aura,
+D B in a node badge. `CyberOperativeTest`. ❓ Owner: pick A–D; cost 600 is a default too.
 
 **Asked:** *"For completion of hugging face level wave 100 - unlock [>_<]
 unit. This will be a unit that resembles the logo of the game, and can be
@@ -479,7 +495,14 @@ HUGGING-FACE (per-map, as ♡2).
 **Owner to choose:** the look, shown as renders against the game logo
 (the app icon / wordmark in `res/`).
 
-### ♡4 🟨❓ Personal stats per level and mode ✅ (1.51.0); a new difficulty ❓
+### ♡4 ✅ Personal stats per level and mode (1.51.0); KERNEL MODE (1.52.0)
+
+**KERNEL MODE (1.52.0):** unlocked by wave 100 on DDoS in HACK:AI (the per-level,
+per-mode record). Threat health ×4.0 (HACK:AI ×2.35), spawns ×0.6 apart (0.72),
+50 integrity (70), rewards ×2.0 (×1.5); music: the HACK:AI piece, driven
+(BOTTLE_DRIVE). Greyed in the difficulty list with its condition and best,
+and says what unlocks it when tapped. No Play Games leaderboard id yet — it
+keeps a local board until one is made (❓ optional).
 
 **Asked:** *"Need to have personal stats (separate from leaderboard) that tell
 you highest wave reached on each level, and difficulty mode - Add new
@@ -498,7 +521,7 @@ Locked: greyed on the menu, and tapping it says the condition, as locked
 levels and agents already do. **Owner to choose:** its name and what makes
 it harder (spawn interval, health scale, reward scale — `GameMode` fields).
 
-### ♡5 ⬜❓ Boss ideas for the five new levels
+### ♡5 ✅ Bosses for the five new levels — shipped in 1.52.0 (see the 2026-10-01 block)
 
 **Asked:** *"Need new boss suggestions to add to the new 5 levels - give me
 examples so I can work on adding them in."*
@@ -508,7 +531,11 @@ and counter, in the style of `BossVariant` and the boss briefing. Nothing is
 built until the owner picks. Mechanics must be readable in the briefing and
 tested like `NeuralMeshBossBalanceTest` / `DuckUsbBossBalanceTest`.
 
-### ♡7 🟨❓ Main menu redesign — built (1.51.0) with stand-in icons; icon set ❓
+### ♡7 ✅ Main menu redesign — built (1.51.0); CoreUI Icons Free in 1.52.0
+
+**Icons (1.52.0):** 13 CoreUI Free icons converted to vector drawables
+(`ic_menu_*.xml`), CC BY 4.0, credited on ABOUT and in LICENSES.md. Plain SVG
+sources, so they port to iPhone and Steam as they are.
 
 **Asked (2026-09-30):** *"Main menu is crowded. We need a difficulty drop down
 menu, need to make all of the buttons smaller - scalable - legible on all
@@ -583,7 +610,15 @@ suit: Material Symbols (Apache 2.0) or drawing the few icons in-house.
 - **♡7:** icons from **CoreUI Icons** (https://coreui.io/icons/). Free set is
   CC BY 4.0 → credit on the About screen.
 - **Item 8 (Agent Firmware third track):** owner asked for a detailed
-  explanation with examples before deciding.
+  explanation with examples before deciding. **Explained 2026-10-01** (in
+  chat): the owner asked for HP, damage and range per agent; agents in this
+  game have no HP (no threat ever damages an agent — threats only walk to the
+  core), so an HP track would buy nothing. FIRE RATE was put in its place.
+  Example: IDS (9 dmg, 1.0/s, range 330) with DAMAGE 100 / RATE 100 / RANGE
+  100 becomes 13.5 dmg, 1.05/s, 336.6 range. Alternatives offered: keep FIRE
+  RATE; or make the third track CRYPTO PER KILL, ARMOUR PIERCE, JAM
+  RESISTANCE, or CORE INTEGRITY (+max HP for the server, the closest thing
+  to "HP"). ❓ owner to choose.
 
 ### ♡6 ✅ ACE [♤] — shipped in 1.51.0
 

@@ -1463,11 +1463,20 @@ class BattlefieldRenderer {
                 canvas.drawCircle(agent.x, agent.y, WorldGeometry.NODE_RADIUS + 6f + t * 26f, glowPaint)
             }
 
-            // Glyph: [F] / [F+] / [F++] / [F#] / [F##]
-            textPaint.textSize = 24f
-            textPaint.color = if (agent.disruptedFor > 0f) colRed else color
-            textPaint.alpha = 255
-            canvas.drawText(agent.type.renderedGlyph(agent.level), agent.x, agent.y + 8f, textPaint)
+            if (agent.type == AgentType.CYBER_OPERATIVE) {
+                drawLogoAgent(canvas, agent.x, agent.y, time)
+            } else {
+                // Glyph: [F] / [F+] / [F++] / [F#] / [F##]
+                val glyph = agent.type.renderedGlyph(agent.level)
+                textPaint.textSize = 24f
+                // A wide glyph ([<(o] and up) is shrunk to stay on its node.
+                val glyphWidth = textPaint.measureText(glyph)
+                val room = WorldGeometry.NODE_RADIUS * 2f + 4f
+                if (glyphWidth > room) textPaint.textSize = 24f * room / glyphWidth
+                textPaint.color = if (agent.disruptedFor > 0f) colRed else color
+                textPaint.alpha = 255
+                canvas.drawText(glyph, agent.x, agent.y + 8f, textPaint)
+            }
 
             // Level under the agent, in plain white at full strength.
             //
@@ -1496,6 +1505,59 @@ class BattlefieldRenderer {
             }
             thinTextPaint.alpha = 255
         }
+    }
+
+    /**
+     * CYBER OPERATIVE as the game's logo (♡3): the shield and `>_<` face from
+     * `ic_launcher_foreground.xml`, path for path, with a faint anti-jam aura
+     * (option C, standing in until the owner picks a look). Built from the
+     * same path data rather than the drawable so the renderer needs no
+     * Context, and so the paths port as they are.
+     */
+    private val logoGlow = androidx.core.graphics.PathParser.createPathFromPathData(
+        "M54,20 L84,31 L84,56 C84,73 70,84 54,90 C38,84 24,73 24,56 L24,31 Z"
+    )
+    private val logoShield = androidx.core.graphics.PathParser.createPathFromPathData(
+        "M54,25 L79,34 L79,56 C79,70 68,79 54,85 C40,79 29,70 29,56 L29,34 Z"
+    )
+    private val logoFace = androidx.core.graphics.PathParser.createPathFromPathData(
+        "M37,50.5 L43.5,57 L37,63.5 M49,63 L59,63 M71,50.5 L64.5,57 L71,63.5"
+    )
+    private val logoMint = Palette.LogoMint.toArgb()
+    private val logoEdge = Palette.LogoEdge.toArgb()
+    private val logoBody = Palette.LogoBody.toArgb()
+
+    private fun drawLogoAgent(canvas: android.graphics.Canvas, x: Float, y: Float, time: Float) {
+        // Anti-jam aura.
+        val pulse = 0.5f + 0.5f * sin(time * 2.4f)
+        glowPaint.color = logoEdge
+        glowPaint.alpha = (70 + 60 * pulse).toInt()
+        glowPaint.strokeWidth = 2.5f
+        canvas.drawCircle(x, y, WorldGeometry.NODE_RADIUS + 9f, glowPaint)
+
+        val save = canvas.save()
+        val scale = LOGO_AGENT_HEIGHT / 70f
+        canvas.translate(x - 54f * scale, y - 55f * scale)
+        canvas.scale(scale, scale)
+        fillPaint.color = logoEdge
+        fillPaint.alpha = 0x26
+        canvas.drawPath(logoGlow, fillPaint)
+        fillPaint.color = logoBody
+        fillPaint.alpha = 255
+        canvas.drawPath(logoShield, fillPaint)
+        val strokeWas = strokePaint.strokeCap
+        strokePaint.color = logoEdge
+        strokePaint.alpha = 255
+        strokePaint.strokeWidth = 3.2f
+        canvas.drawPath(logoShield, strokePaint)
+        strokePaint.color = logoMint
+        strokePaint.strokeWidth = 4.2f
+        strokePaint.strokeCap = android.graphics.Paint.Cap.ROUND
+        strokePaint.strokeJoin = android.graphics.Paint.Join.ROUND
+        canvas.drawPath(logoFace, strokePaint)
+        strokePaint.strokeCap = strokeWas
+        strokePaint.strokeJoin = android.graphics.Paint.Join.MITER
+        canvas.restoreToCount(save)
     }
 
     // --------------------------------------------------------------- enemies
@@ -2345,3 +2407,6 @@ private const val HIDDEN_BOSS_ALPHA = 0.28f
 
 /** How fast ANTI DUCK USB's hologram shimmers, in radians a second. */
 private const val HOLOGRAM_SPEED = 2.6f
+
+/** CYBER OPERATIVE's logo, top of the glow to its point, in world units. */
+private const val LOGO_AGENT_HEIGHT = 46f

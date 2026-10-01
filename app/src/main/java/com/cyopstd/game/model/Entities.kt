@@ -282,7 +282,7 @@ class Agent : Poolable {
      * behaviour for free.
      */
     fun jam(seconds: Float) {
-        if (type.immuneToJam) return
+        if (type.immuneToJam || jamShielded) return
         if (seconds > disruptedFor) disruptedFor = seconds
     }
 
@@ -291,6 +291,9 @@ class Agent : Poolable {
         if (disruptedFor > 0f) disruptedFor -= dt
         if (ransomedFor > 0f) ransomedFor -= dt
     }
+
+    /** Inside a CYBER OPERATIVE's field (♡3): no jam lands. Recomputed each tick. */
+    var jamShielded: Boolean = false
 
     /** Seconds left on a RANSOM boss's upgrade lock; zero when free. */
     var ransomedFor: Float = 0f
@@ -338,6 +341,7 @@ class Agent : Poolable {
         upgradeFlash = 0f
         disruptedFor = 0f
         ransomedFor = 0f
+        jamShielded = false
         damageBuff = 1f
         rateBuff = 1f
         targetingMode = TargetingMode.FIRST

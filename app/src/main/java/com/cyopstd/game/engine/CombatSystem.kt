@@ -31,6 +31,22 @@ class CombatSystem(private val engine: GameEngine, private val random: Random) {
             if (!agent.active) continue
             agent.damageBuff = 1f
             agent.rateBuff = 1f
+            agent.jamShielded = false
+        }
+
+        // CYBER OPERATIVE (♡3): nothing in its range can be jammed, itself included.
+        for (i in agents.indices) {
+            val operative = agents[i]
+            if (!operative.active || operative.type != AgentType.CYBER_OPERATIVE) continue
+            val radius = operative.range()
+            val radiusSq = radius * radius
+            for (j in agents.indices) {
+                val other = agents[j]
+                if (!other.active) continue
+                val dx = other.x - operative.x
+                val dy = other.y - operative.y
+                if (dx * dx + dy * dy <= radiusSq) other.jamShielded = true
+            }
         }
 
         for (i in agents.indices) {

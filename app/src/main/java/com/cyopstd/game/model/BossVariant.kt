@@ -27,6 +27,9 @@ package com.cyopstd.game.model
  */
 const val COUNTER_MULTIPLIER = 2f
 
+/** CYBER OPERATIVE against the eyes (♡3). Mirrors `Balance.CYBER_OPERATIVE_EYE_MULTIPLIER`. */
+private const val CYBER_OPERATIVE_COUNTER = 4f
+
 /** ANTI DUCK USB against DUCK-USB's own bosses (♡2). Mirrors `Balance.ANTI_DUCK_MULTIPLIER`. */
 private const val ANTI_DUCK_COUNTER = 3f
 
@@ -234,6 +237,7 @@ enum class BossVariant(
             "to it, briefly, every few seconds.",
         firstCycle = 6,
         mapId = HUGGING_FACE_MAP_ID,
+        bonusDamageFrom = mapOf("CYBER_OPERATIVE" to CYBER_OPERATIVE_COUNTER),
         jamsAgentType = "REDHAT",
         palette = BossPalette.SPECTRUM
     ),
@@ -250,6 +254,7 @@ enum class BossVariant(
             "to it, briefly, every few seconds.",
         firstCycle = 6,
         mapId = HUGGING_FACE_MAP_ID,
+        bonusDamageFrom = mapOf("CYBER_OPERATIVE" to CYBER_OPERATIVE_COUNTER),
         jamsAgentType = "BLUEHAT",
         palette = BossPalette.SPECTRUM
     ),

@@ -29,4 +29,6 @@ fun agentClassColor(type: AgentType): Color = when (type) {
     AgentType.ACE -> Palette.TextPrimary
     // The hologram's green; on the board it shimmers into yellow (♡2).
     AgentType.ANTI_DUCK -> Palette.HologramGreen
+    // The logo's mint face.
+    AgentType.CYBER_OPERATIVE -> Palette.LogoMint
 }
