@@ -230,6 +230,17 @@ class LoadoutTest {
     }
 
     @Test
+    fun `open levels show their number, locked levels show a lock instead`() {
+        setup(highestWave = 40, modes = listOf(GameMode.STANDARD))
+        compose.onNodeWithTag("level-number-${Maps.PERIMETER.id}", useUnmergedTree = true).assertExists()
+        compose.onNodeWithTag("level-lock-${Maps.PERIMETER.id}", useUnmergedTree = true).assertDoesNotExist()
+        for (map in Maps.all.drop(1)) {
+            compose.onNodeWithTag("level-lock-${map.id}", useUnmergedTree = true).assertExists()
+            compose.onNodeWithTag("level-number-${map.id}", useUnmergedTree = true).assertDoesNotExist()
+        }
+    }
+
+    @Test
     fun `KERNEL MODE is greyed out and states its condition until DDoS wave 100 in HACK AI`() {
         var picked: GameMode? = null
         compose.setContent {

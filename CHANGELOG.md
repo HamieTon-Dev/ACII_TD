@@ -18,6 +18,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
   (HELIX) and **HEARTBLEED** (TRIPLE BRAID). Saves, records and unlocks are
   unaffected; only the shown names changed.
 
+### NEW RUN level list
+
+- Each open level shows its number; a locked level shows a lock in its place
+  and the whole row is greyed out.
+
 ## [1.52.0] — 2026-10-01
 
 ### Chapter-two bosses (♡5)

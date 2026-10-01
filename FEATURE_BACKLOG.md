@@ -616,6 +616,13 @@ suit: Material Symbols (Apache 2.0) or drawing the few icons in-house.
   each level's boss). **Owner's picks (6C, 7C, 8D, 9D, 10E):** 6 MIRAI,
   7 RING-ZERO, 8 WANNACRY, 9 HONEYPOT, 10 HEARTBLEED. Change only
   `displayName` (and taglines) in `Maps.kt` — the ids stay, saves use them.
+- **Locked levels in the NEW RUN list (owner, 2026-10-01):** *"the ones that
+  havent been unlocked, let's place a locked icon over the level instead of a
+  level number, and gray it out. then show me examples of the current UI pics"*.
+  Unlocked rows show their level number; locked rows show a lock icon in its
+  place and the whole row is greyed. Then send the owner screenshots of the
+  current UI.
+  **Done (1.53.0):** CoreUI lock (`ic_lock.xml`), row at 55% opacity; screenshots sent.
 - **Music for levels 6–10 (owner, 2026-10-01):** *"I will generate all new
   music for the new 5 levels. I'll send you two files for each level."*
   Waiting on the files. When they arrive: `res/raw/level6.mp3` +
