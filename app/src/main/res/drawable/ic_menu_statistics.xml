@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- cil-bar-chart from CoreUI Icons Free (https://coreui.io/icons/), CC BY 4.0. Credited on ABOUT. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="512"
+    android:viewportHeight="512">
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:pathData="M136,416h88a24.028,24.028,0,0,0,24-24V184a24.028,24.028,0,0,0-24-24H136a24.028,24.028,0,0,0-24,24V392A24.028,24.028,0,0,0,136,416Zm8-224h72V384H144Z" />
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:pathData="M424,16H336a24.028,24.028,0,0,0-24,24V392a24.028,24.028,0,0,0,24,24h88a24.028,24.028,0,0,0,24-24V40A24.028,24.028,0,0,0,424,16Zm-8,368H344V48h72Z" />
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:pathData="M48,16 L16,16 L16,496 L496,496 L496,464 L48,464 L48,16Z" />
+</vector>

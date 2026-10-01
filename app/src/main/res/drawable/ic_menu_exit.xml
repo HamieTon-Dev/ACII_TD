@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- cil-account-logout from CoreUI Icons Free (https://coreui.io/icons/), CC BY 4.0. Credited on ABOUT. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="512"
+    android:viewportHeight="512">
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:pathData="M77.155,272.034 L351.75,272.034 L351.75,272.033 L351.75,240.034 L351.75,240.033 L77.155,240.033 L152.208,164.98 L152.208,164.98 L152.208,164.979 L129.58,142.353 L15.899,256.033 L15.9,256.034 L15.899,256.034 L129.58,369.715 L152.208,347.088 L152.208,347.087 L152.208,347.087 L77.155,272.034Z" />
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:pathData="M160,16 L160,48 L464,48 L464,464 L160,464 L160,496 L496,496 L496,16 L160,16Z" />
+</vector>

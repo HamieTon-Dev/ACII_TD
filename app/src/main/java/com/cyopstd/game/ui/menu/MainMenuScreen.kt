@@ -1,5 +1,8 @@
 package com.cyopstd.game.ui.menu
 
+import androidx.compose.foundation.layout.size
+import com.cyopstd.game.R
+
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -175,7 +178,7 @@ fun MainMenuScreen(
                 ) {
                     Row(horizontalArrangement = Arrangement.spacedBy(gap)) {
                         MenuTile(
-                            icon = "\u25B6",
+                            icon = R.drawable.ic_menu_continue,
                             label = "CONTINUE",
                             accent = Palette.Green,
                             enabled = hasSavedRun,
@@ -184,7 +187,7 @@ fun MainMenuScreen(
                             modifier = Modifier.weight(1f)
                         )
                         MenuTile(
-                            icon = "+",
+                            icon = R.drawable.ic_menu_new_run,
                             label = "NEW RUN",
                             accent = if (hasSavedRun) Palette.Cyan else Palette.Green,
                             large = true,
@@ -194,17 +197,17 @@ fun MainMenuScreen(
                     }
                     Spacer(Modifier.height(gap))
                     val tiles = listOf(
-                        MenuEntry("[@]", "AGENTS", Palette.Cyan, onAgents),
-                        MenuEntry("\u20AC", "FIRMWARE", Palette.Crypto, onFirmware),
-                        MenuEntry("$", "STORE", Palette.Green, onStore),
-                        MenuEntry("\u25C8", "LOADOUT", Palette.Purple, onLoadout),
-                        MenuEntry("G", "GOOGLE PLAY", Palette.Blue, onPlayAccount),
-                        MenuEntry("\u2261", "LEADERBOARD", Palette.Crypto, onLeaderboard),
-                        MenuEntry("?", "CODEX", Palette.Purple, onCodex),
-                        MenuEntry("#", "STATISTICS", Palette.Cyan, onStatistics),
-                        MenuEntry("*", "SETTINGS", Palette.Cyan, onSettings),
-                        MenuEntry("i", "ABOUT", Palette.Cyan, onAbout),
-                        MenuEntry("X", "EXIT", Palette.Red, onExit)
+                        MenuEntry(R.drawable.ic_menu_agents, "AGENTS", Palette.Cyan, onAgents),
+                        MenuEntry(R.drawable.ic_menu_firmware, "FIRMWARE", Palette.Crypto, onFirmware),
+                        MenuEntry(R.drawable.ic_menu_store, "STORE", Palette.Green, onStore),
+                        MenuEntry(R.drawable.ic_menu_loadout, "LOADOUT", Palette.Purple, onLoadout),
+                        MenuEntry(R.drawable.ic_menu_google_play, "GOOGLE PLAY", Palette.Blue, onPlayAccount),
+                        MenuEntry(R.drawable.ic_menu_leaderboard, "LEADERBOARD", Palette.Crypto, onLeaderboard),
+                        MenuEntry(R.drawable.ic_menu_codex, "CODEX", Palette.Purple, onCodex),
+                        MenuEntry(R.drawable.ic_menu_statistics, "STATISTICS", Palette.Cyan, onStatistics),
+                        MenuEntry(R.drawable.ic_menu_settings, "SETTINGS", Palette.Cyan, onSettings),
+                        MenuEntry(R.drawable.ic_menu_about, "ABOUT", Palette.Cyan, onAbout),
+                        MenuEntry(R.drawable.ic_menu_exit, "EXIT", Palette.Red, onExit)
                     )
                     for (row in tiles.chunked(columns)) {
                         Row(horizontalArrangement = Arrangement.spacedBy(gap)) {
@@ -268,7 +271,7 @@ fun MainMenuScreen(
 }
 
 private class MenuEntry(
-    val icon: String,
+    @androidx.annotation.DrawableRes val icon: Int,
     val label: String,
     val accent: androidx.compose.ui.graphics.Color,
     val onClick: () -> Unit
@@ -277,12 +280,12 @@ private class MenuEntry(
 /**
  * A main-menu button: an icon with a short label under it, and nothing else
  * (owner, 2026-09-30: the descriptions under every button were the clutter).
- * The icons are placeholders in the game's own glyph style until the owner
- * confirms an icon set (♡7).
+ * The icons are CoreUI Icons Free (owner's pick, ♡7), CC BY 4.0, credited
+ * on ABOUT; vector drawables, so they port to iOS and Steam as plain SVG.
  */
 @Composable
 private fun MenuTile(
-    icon: String,
+    @androidx.annotation.DrawableRes icon: Int,
     label: String,
     accent: androidx.compose.ui.graphics.Color,
     onClick: () -> Unit,
@@ -301,11 +304,13 @@ private fun MenuTile(
             .clickable(enabled = enabled, role = androidx.compose.ui.semantics.Role.Button, onClick = onClick)
             .padding(4.dp)
     ) {
-        Text(
-            text = icon,
-            style = if (large) MaterialTheme.typography.headlineSmall else MaterialTheme.typography.titleMedium,
-            color = color,
-            maxLines = 1
+        androidx.compose.material3.Icon(
+            painter = androidx.compose.ui.res.painterResource(icon),
+            contentDescription = null,
+            tint = color,
+            modifier = Modifier
+                .padding(bottom = 3.dp)
+                .size(if (large) 26.dp else 20.dp)
         )
         Text(
             text = label,
