@@ -27,4 +27,6 @@ fun agentClassColor(type: AgentType): Color = when (type) {
     AgentType.SERVER_SYSTEMS_ENGINEER -> Palette.Green
     // The spade of a deck: bright and plain, to stand apart from every class colour.
     AgentType.ACE -> Palette.TextPrimary
+    // The hologram's green; on the board it shimmers into yellow (♡2).
+    AgentType.ANTI_DUCK -> Palette.HologramGreen
 }

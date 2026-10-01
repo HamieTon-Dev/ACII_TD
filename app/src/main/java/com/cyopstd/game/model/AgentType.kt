@@ -520,6 +520,43 @@ enum class AgentType(
         unlockMapId = "ddos",
         unlockMapName = "DDoS",
         buildsWalls = true
+    ),
+    /**
+     * ANTI DUCK USB `[<(o]` (backlog ♡2, owner): earned by wave 100 on
+     * DUCK-USB, 500◇, stronger than the hats. Drawn as a green-and-yellow
+     * hologram that no agent skin changes (owner's look C).
+     *
+     * The owner did not pick between the ability options, so this is the
+     * recommended one: the hats' fire rate with heavier shots, and
+     * ×[Balance.ANTI_DUCK_MULTIPLIER] damage to DUCK-USB's own bosses,
+     * SYN-STORM and GRADIENT. Two maximum. Unlike the hats it keeps targeting
+     * modes, so the hats stay the only agents that always shoot a boss first.
+     */
+    ANTI_DUCK(
+        displayName = "ANTI DUCK USB",
+        shortName = "ANTIDUCK",
+        glyph = "<(o",
+        cost = 500,
+        baseDamage = 48f,
+        baseFireRate = HIGHEST_FIRE_RATE,
+        baseRange = 280f,
+        attackStyle = AttackStyle.PRECISION,
+        unlockWave = 100,
+        abilityName = "PAYLOAD BLOCK",
+        abilitySummary = "Hats' fire rate, heavier shots, and " +
+            "${Balance.ANTI_DUCK_MULTIPLIER.toInt()}\u00D7 damage to SYN-STORM and GRADIENT. Two maximum.",
+        realWorld = "A \"rubber ducky\" is a USB stick that pretends to be a " +
+            "keyboard and types an attack faster than anyone could. The defence " +
+            "is a USB guard that checks every new device before the computer " +
+            "trusts it, and blocks a keyboard that types like a machine.",
+        inGame = "Fires as fast as the hats and hits harder, with " +
+            "${Balance.ANTI_DUCK_MULTIPLIER.toInt()}\u00D7 damage to the DUCK-USB bosses " +
+            "SYN-STORM and GRADIENT. Keeps its targeting modes. No more than two " +
+            "may be deployed. Drawn as a hologram that agent skins do not change.",
+        maxDeployed = 2,
+        allowsTargetingModes = true,
+        unlockMapId = "duck_usb",
+        unlockMapName = "DUCK-USB"
     );
 
     /** Not fooled by a SPOOFER's decoys (♡5): the ones built to read a threat. */

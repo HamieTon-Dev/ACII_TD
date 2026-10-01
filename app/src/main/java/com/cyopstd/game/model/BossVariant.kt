@@ -27,6 +27,9 @@ package com.cyopstd.game.model
  */
 const val COUNTER_MULTIPLIER = 2f
 
+/** ANTI DUCK USB against DUCK-USB's own bosses (♡2). Mirrors `Balance.ANTI_DUCK_MULTIPLIER`. */
+private const val ANTI_DUCK_COUNTER = 3f
+
 /**
  * The map the four extra bosses belong to, by `GameMap.id`.
  *
@@ -358,6 +361,7 @@ enum class BossVariant(
             "another route.",
         firstCycle = 3,
         mapId = DUCK_USB_MAP_ID,
+        bonusDamageFrom = mapOf("ANTI_DUCK" to ANTI_DUCK_COUNTER),
         palette = BossPalette.SPECTRUM
     ),
 
@@ -381,6 +385,7 @@ enum class BossVariant(
             "alone. Few big hits beat many small ones.",
         firstCycle = 4,
         mapId = DUCK_USB_MAP_ID,
+        bonusDamageFrom = mapOf("ANTI_DUCK" to ANTI_DUCK_COUNTER),
         palette = BossPalette.VIOLET
     ),
 

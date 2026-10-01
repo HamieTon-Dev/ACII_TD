@@ -487,6 +487,9 @@ object Balance {
     /** ACE's shots against any boss of levels 1–5. */
     const val ACE_BOSS_MULTIPLIER = 4f
 
+    /** ANTI DUCK USB's damage against SYN-STORM and GRADIENT (♡2). */
+    const val ANTI_DUCK_MULTIPLIER = 3f
+
     fun aceWallHealth(level: Int, wave: Int): Float =
         ACE_WALL_BASE_HEALTH * (1f + ACE_WALL_HEALTH_PER_LEVEL * (level - 1).coerceAtLeast(0)) *
             (1f + wave.coerceAtLeast(0) / ACE_WALL_WAVE_SCALE)

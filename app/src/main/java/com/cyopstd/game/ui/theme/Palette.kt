@@ -38,6 +38,10 @@ object Palette {
     val TextMuted = Color(0xFF5C6E8C)
     val Crypto = Color(0xFFFFD426)
 
+    /** ANTI DUCK USB's hologram (♡2): it shimmers between these two. */
+    val HologramGreen = Color(0xFF5CFF7A)
+    val HologramYellow = Color(0xFFF2F25A)
+
     // Semantic helpers -----------------------------------------------------
     val Danger = Red
     val Warning = Orange

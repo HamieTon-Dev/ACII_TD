@@ -2142,9 +2142,26 @@ class BattlefieldRenderer {
      * the player information they paid nothing to lose.
      */
     private fun agentColor(type: AgentType): Int {
+        // ANTI DUCK USB is a hologram, whatever skin is on (♡2, owner).
+        if (type == AgentType.ANTI_DUCK) return hologramColor()
         if (!spectrumAgents) return classColor(type)
         val offset = type.ordinal / AgentType.entries.size.toFloat()
         return spectrum(frameTime * SPECTRUM_SPEED + offset)
+    }
+
+    private val hologramGreen = Palette.HologramGreen.toArgb()
+    private val hologramYellow = Palette.HologramYellow.toArgb()
+
+    /** Green shimmering into yellow and back, with a faint scan flicker. */
+    private fun hologramColor(): Int {
+        val t = 0.5f + 0.5f * sin(frameTime * HOLOGRAM_SPEED)
+        val flicker = if ((frameTime * 13f).toInt() % 9 == 0) 0.75f else 1f
+        val g = hologramGreen
+        val y = hologramYellow
+        val r = ((android.graphics.Color.red(g) + (android.graphics.Color.red(y) - android.graphics.Color.red(g)) * t) * flicker).toInt()
+        val gg = ((android.graphics.Color.green(g) + (android.graphics.Color.green(y) - android.graphics.Color.green(g)) * t) * flicker).toInt()
+        val b = ((android.graphics.Color.blue(g) + (android.graphics.Color.blue(y) - android.graphics.Color.blue(g)) * t) * flicker).toInt()
+        return android.graphics.Color.argb(255, r, gg, b)
     }
 
     /**
@@ -2325,3 +2342,6 @@ class BattlefieldRenderer {
 
 /** How much of a hidden ROOTKIT is still drawn. */
 private const val HIDDEN_BOSS_ALPHA = 0.28f
+
+/** How fast ANTI DUCK USB's hologram shimmers, in radians a second. */
+private const val HOLOGRAM_SPEED = 2.6f
