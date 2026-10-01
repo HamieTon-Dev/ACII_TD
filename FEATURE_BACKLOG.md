@@ -121,7 +121,7 @@ Needs C1. Sits naturally as a table on the variant (`bonusDamageFrom:
 Map<AgentType, Float>`) rather than a branch in the damage path, so a new
 variant is a table row.
 
-❓ **How large the bonus is.** A counter that matters without making the rest of
+✅ *Resolved: ×2 (owner's "2x damage for both", `COUNTER_MULTIPLIER`).* **How large the bonus is.** A counter that matters without making the rest of
 the roster pointless is roughly ×1.5–×2 on top of the ×2 the new agents already
 get against bosses. Wants a number from the owner, or a recommendation once the
 variants exist.
@@ -185,7 +185,7 @@ order I would reach for them:
 4. **No splash / single target.** They do not solve crowds. TARPIT, IDS and the
    rest keep their jobs.
 
-❓ Wants the owner's call on 1–4 before it is built. Recommendation: all four,
+✅ *Resolved: shipped as RED HAT / BLUE HAT (D2).* Wanted the owner's call on 1–4 before it was built. Recommendation: all four,
 with the numbers tuned against the existing dps-per-crypto curve in
 `BALANCE.md` so they sit at the top of it rather than off it.
 
@@ -306,7 +306,7 @@ A second tab on the FIRMWARE screen. Every agent except SERVER SYSTEMS
 ENGINEER has three tracks bought separately with €: **DAMAGE** (+0.5% a
 level), **FIRE RATE** (+0.05%) and **RANGE** (+0.02%), each to level 10,000.
 Asked for as HP, damage and range: agents have no HP in this game (nothing
-damages them), so the third track is fire rate — ❓ say if you want something
+damages them), so the third track is fire rate — say if you want something
 else there (**owner, 2026-10-01: keep FIRE RATE**). Cost per level = (2 + level/2) × 1.0004^level × 10 €: 20 € for the
 first, about 28 thousand € for the first 100, 3.3 million for the first
 1,000, and 2.7 million € for the 10,000th level alone.
@@ -458,7 +458,7 @@ record, `highestWaveByMap` has it); colour is a green↔yellow hologram cycle
 that ignores the SPECTRUM skin (see `BattlefieldRenderer.agentColor` and
 `holographic()`).
 
-**Owner to choose:** the look. Show options before building: the [🦆] emoji
+*(Resolved 2026-10-01: look C, `[<(o]`.)* **Owner to choose:** the look. Show options before building: the [🦆] emoji
 glyph as asked (check it renders on Android's monospace fallback and fits
 the agent circle); a small ASCII duck drawn in the circle; and a hybrid.
 ASCII *is* possible at small sizes (a 2–3 line duck), but legibility inside a
@@ -493,7 +493,7 @@ high, fast damage to BLACK EYE [●_●] and WHITE EYE [○_○] (both HUGGING-F
 bosses; use `BossVariant.bonusDamageFrom`); unlock by wave 100 on
 HUGGING-FACE (per-map, as ♡2).
 
-**Owner to choose:** the look, shown as renders against the game logo
+*(Resolved 2026-10-01: look C.)* **Owner to choose:** the look, shown as renders against the game logo
 (the app icon / wordmark in `res/`).
 
 ### ♡4 ✅ Personal stats per level and mode (1.51.0); KERNEL MODE (1.52.0)
@@ -519,7 +519,7 @@ saves with a max-merge like the others (`CloudSaveMerge.mergeStats`).
 **New difficulty:** a third `GameMode` after STANDARD and HACK:AI, unlocked
 by wave 100 on DDoS *in HACK:AI* (needs the per-(level, mode) record above).
 Locked: greyed on the menu, and tapping it says the condition, as locked
-levels and agents already do. **Owner to choose:** its name and what makes
+levels and agents already do. *(Resolved: KERNEL MODE, 1.52.0.)* **Owner to choose:** its name and what makes
 it harder (spawn interval, health scale, reward scale — `GameMode` fields).
 
 ### ♡5 ✅ Bosses for the five new levels — shipped in 1.52.0 (see the 2026-10-01 block)
@@ -586,7 +586,7 @@ are believed to be CC BY 4.0, which needs visible attribution — add it to the
 About screen's credits, next to the music credits) and import only the
 icons used, as Android vector drawables. Alternative if the licence does not
 suit: Material Symbols (Apache 2.0) or drawing the few icons in-house.
-**Owner to confirm:** the icon set, after seeing a mock-up of the new menu.
+*(Resolved 2026-10-01: CoreUI Icons Free, shipped 1.52.0.)*
 
 ### ♡ decisions, 2026-10-01 (owner's answers)
 
