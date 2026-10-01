@@ -69,45 +69,8 @@ class GameUiTest {
     // ------------------------------------------------------------- main menu
 
     @Test
-    fun `main menu shows the title and every action`() {
-        var played = false
-        compose.setContent {
-            CyOpsTheme {
-                MainMenuScreen(
-                    hasSavedRun = false,
-                    stats = PlayerStats(),
-                    budget = 0L,
-                    firmwareLevel = 0,
-                    adsRemoved = false,
-                    availableModes = listOf(GameMode.STANDARD),
-                    selectedMode = GameMode.STANDARD,
-                    availableMaps = listOf(Maps.PERIMETER),
-                    selectedMap = Maps.PERIMETER,
-                    backgroundAnimation = false,
-                    onSelectMode = {},
-                    onSelectMap = {},
-                    onPlay = { played = true },
-                    onContinue = {}, onAgents = {}, onFirmware = {}, onCodex = {}, onStore = {}, onLoadout = {}, onPlayAccount = {}, onLeaderboard = {},
-                    onStatistics = {}, onSettings = {}, onAbout = {}, onExit = {}
-                )
-            }
-        }
-
-        compose.onNodeWithText("CyOps TD").assertIsDisplayed()
-        compose.onNodeWithText("ASCII CYBER DEFENSE").assertIsDisplayed()
-        for (action in listOf(
-            "PLAY", "CONTINUE", "AGENTS", "CODEX",
-            "STATISTICS", "SETTINGS", "ABOUT", "EXIT"
-        )) {
-            compose.onNodeWithText(action).assertIsDisplayed()
-        }
-
-        compose.onNodeWithText("PLAY").performClick()
-        assertTrue("PLAY must invoke its callback", played)
-    }
-
-    @Test
-    fun `CONTINUE is inert without a saved run and live with one`() {
+    fun `main menu shows the title and every action, without descriptions`() {
+        var played = 0
         var continued = 0
         compose.setContent {
             CyOpsTheme {
@@ -117,27 +80,36 @@ class GameUiTest {
                     budget = 0L,
                     firmwareLevel = 0,
                     adsRemoved = false,
-                    availableModes = listOf(GameMode.STANDARD),
-                    selectedMode = GameMode.STANDARD,
-                    availableMaps = listOf(Maps.PERIMETER),
-                    selectedMap = Maps.PERIMETER,
                     backgroundAnimation = false,
-                    onSelectMode = {},
-                    onSelectMap = {},
-                    onPlay = {}, onContinue = { continued++ }, onAgents = {},
+                    onPlay = { played++ }, onContinue = { continued++ }, onAgents = {},
                     onFirmware = {}, onCodex = {}, onStore = {}, onLoadout = {}, onPlayAccount = {}, onLeaderboard = {}, onStatistics = {}, onSettings = {},
                     onAbout = {}, onExit = {}
                 )
             }
         }
 
-        compose.onNodeWithText("No saved session").assertIsDisplayed()
+        compose.onNodeWithText("CyOps TD").assertIsDisplayed()
+        compose.onNodeWithText("ASCII CYBER DEFENSE").assertIsDisplayed()
+        for (action in listOf(
+            "CONTINUE", "NEW RUN", "AGENTS", "FIRMWARE", "STORE", "LOADOUT", "GOOGLE PLAY",
+            "LEADERBOARD", "CODEX", "STATISTICS", "SETTINGS", "ABOUT", "EXIT"
+        )) {
+            compose.onNodeWithText(action).assertIsDisplayed()
+        }
+        // ♡7: no description lines under the buttons any more.
+        compose.onNodeWithText("Review your cyber agent roster").assertDoesNotExist()
+        // Level and difficulty are not on the main menu.
+        compose.onNodeWithText("RUN MODE").assertDoesNotExist()
+
+        // Without a save, NEW RUN goes straight on; CONTINUE is inert.
+        compose.onNodeWithText("NEW RUN").performClick()
+        assertEquals(1, played)
         compose.onNodeWithText("CONTINUE").performClick()
-        assertEquals("CONTINUE must be disabled without a save", 0, continued)
+        assertEquals(0, continued)
     }
 
     @Test
-    fun `with a saved run, CONTINUE leads and PLAY becomes NEW RUN`() {
+    fun `with a saved run, CONTINUE works and NEW RUN asks before replacing it`() {
         var played = 0
         var continued = 0
         compose.setContent {
@@ -148,13 +120,7 @@ class GameUiTest {
                     budget = 0L,
                     firmwareLevel = 0,
                     adsRemoved = false,
-                    availableModes = listOf(GameMode.STANDARD),
-                    selectedMode = GameMode.STANDARD,
-                    availableMaps = listOf(Maps.PERIMETER),
-                    selectedMap = Maps.PERIMETER,
                     backgroundAnimation = false,
-                    onSelectMode = {},
-                    onSelectMap = {},
                     onPlay = { played++ }, onContinue = { continued++ }, onAgents = {},
                     onFirmware = {}, onCodex = {}, onStore = {}, onLoadout = {}, onPlayAccount = {}, onLeaderboard = {}, onStatistics = {}, onSettings = {},
                     onAbout = {}, onExit = {}
@@ -162,18 +128,16 @@ class GameUiTest {
             }
         }
 
-        compose.onNodeWithText("PLAY").assertDoesNotExist()
-        compose.onNodeWithText("NEW RUN").assertIsDisplayed()
-        // Starting over deletes the save, so the button says so.
-        compose.onNodeWithText("replaces your save", substring = true).assertIsDisplayed()
-
-        val continueTop = compose.onNodeWithText("CONTINUE").fetchSemanticsNode().boundsInRoot.top
-        val newRunTop = compose.onNodeWithText("NEW RUN").fetchSemanticsNode().boundsInRoot.top
-        assertTrue("CONTINUE must sit above NEW RUN", continueTop < newRunTop)
-
         compose.onNodeWithText("CONTINUE").performClick()
-        compose.onNodeWithText("NEW RUN").performClick()
         assertEquals(1, continued)
+
+        compose.onNodeWithText("NEW RUN").performClick()
+        assertEquals("NEW RUN must ask first when there is a save", 0, played)
+        compose.onNodeWithText("Are you sure you would like to start a fresh run?", substring = true).assertIsDisplayed()
+        compose.onNodeWithText("KEEP MY SAVE").performClick()
+        assertEquals(0, played)
+        compose.onNodeWithText("NEW RUN").performClick()
+        compose.onNodeWithText("START FRESH").performClick()
         assertEquals(1, played)
     }
 
@@ -191,13 +155,7 @@ class GameUiTest {
                     budget = 340L,
                     firmwareLevel = 12,
                     adsRemoved = false,
-                    availableModes = listOf(GameMode.STANDARD),
-                    selectedMode = GameMode.STANDARD,
-                    availableMaps = listOf(Maps.PERIMETER),
-                    selectedMap = Maps.PERIMETER,
                     backgroundAnimation = false,
-                    onSelectMode = {},
-                    onSelectMap = {},
                     onPlay = {}, onContinue = {}, onAgents = {}, onFirmware = {}, onCodex = {}, onStore = {}, onLoadout = {}, onPlayAccount = {}, onLeaderboard = {},
                     onStatistics = {}, onSettings = {}, onAbout = {}, onExit = {}
                 )
@@ -205,9 +163,7 @@ class GameUiTest {
         }
 
         compose.onNodeWithText("27").assertIsDisplayed()
-        compose.onNodeWithText("4210").assertIsDisplayed()
-        compose.onNodeWithText("PRESENT").assertIsDisplayed()
-        compose.onNodeWithText("Resume your saved session").assertIsDisplayed()
+        compose.onNodeWithText("5").assertIsDisplayed()
     }
 
     // ---------------------------------------------------------------- agents
@@ -359,13 +315,7 @@ class GameUiTest {
                     budget = 175L,
                     firmwareLevel = 40,
                     adsRemoved = false,
-                    availableModes = listOf(GameMode.STANDARD),
-                    selectedMode = GameMode.STANDARD,
-                    availableMaps = listOf(Maps.PERIMETER),
-                    selectedMap = Maps.PERIMETER,
                     backgroundAnimation = false,
-                    onSelectMode = {},
-                    onSelectMap = {},
                     onPlay = {}, onContinue = {}, onAgents = {}, onFirmware = {},
                     onCodex = {}, onStore = {}, onLoadout = {}, onPlayAccount = {}, onLeaderboard = {}, onStatistics = {}, onSettings = {},
                     onAbout = {}, onExit = {}
@@ -374,7 +324,7 @@ class GameUiTest {
         }
 
         compose.onNodeWithText("FIRMWARE").assertIsDisplayed()
-        compose.onNodeWithText("\u20AC 175 to spend on permanent damage").assertIsDisplayed()
+        compose.onNodeWithText("175").assertIsDisplayed()
         // Level 40 is +20% damage, shown on the status panel.
         compose.onNodeWithText("LV 40  \u00D71.200 DMG").assertIsDisplayed()
     }
@@ -620,24 +570,17 @@ class GameUiTest {
 
     @Test
     fun `the level list shows DUCK-USB with its duck`() {
+        // The level list lives on the NEW RUN screen now (♡7).
         compose.setContent {
             CyOpsTheme {
-                MainMenuScreen(
-                    hasSavedRun = false,
+                com.cyopstd.game.ui.menu.RunSetupScreen(
                     stats = PlayerStats(),
-                    budget = 0L,
-                    firmwareLevel = 0,
-                    adsRemoved = false,
                     availableModes = listOf(GameMode.STANDARD),
                     selectedMode = GameMode.STANDARD,
-                    availableMaps = Maps.all,
+                    availableMaps = listOf(Maps.PERIMETER),
                     selectedMap = Maps.PERIMETER,
                     backgroundAnimation = false,
-                    onSelectMode = {},
-                    onSelectMap = {},
-                    onPlay = {},
-                    onContinue = {}, onAgents = {}, onFirmware = {}, onCodex = {}, onStore = {}, onLoadout = {}, onPlayAccount = {}, onLeaderboard = {},
-                    onStatistics = {}, onSettings = {}, onAbout = {}, onExit = {}
+                    onSelectMode = {}, onSelectMap = {}, onStart = {}, onBack = {}
                 )
             }
         }

@@ -378,7 +378,7 @@ that if usage stops you, you can continue work later."* Six items, labelled
 None is started. Each notes what is already known from the code and what the
 owner still has to choose, so a later session can pick it up cold.
 
-### ♡1 ⬜❓ Five more levels — owner chooses layouts, colours and names
+### ♡1 🟨❓ Five more levels — built (1.51.0) under working names; names, bosses and music wait on the owner
 
 **Asked:** *"Time to make 5 more levels. Give me lane layouts, different color
 options, and online relevant 'Cyber related' names for the levels. Ask me for
@@ -416,6 +416,17 @@ list from ♡5 and two music tracks per level from the owner).
 | 9 | 10D HELIX | D8 ROSE GOLD | ❓ |
 | 10 | 9B TRIPLE BRAID | D4 INDIGO | ❓ |
 
+**Built (1.51.0):** all five are in the game (`Maps.TRIDENT … BRAID`, ids
+trident/spiral/zigzag/helix/braid — fixed, since saves use them) under the
+layout names as **working titles**. Each unlocks at wave 100 on the one
+before; enemy health tuned so each is harder than the last
+(`MapDifficultyTest`: fixed board averages 53.8, 52.8, 52.6, 50.3, 49.0 —
+SPIRAL and ZIGZAG are close, re-check after their bosses land). Three picked
+lane edges (SYNTHWAVE, MAGENTA, COPPER) were darkened to pass the
+threat-colour rule. **Waiting on the owner:** the five names (rename is a
+one-line change per level), their bosses (♡5), and two music tracks each
+(they play the generated music until then; `LevelMusicTest` lists them).
+
 **Known constraints:** each level unlocks at wave 100 on the one before it
 (`GameMap.unlockMapId/unlockAtWave`) and must be harder than it
 (`MapDifficultyTest`, `threatHealthScale`); ~60–70 build spots with ~90 world
@@ -424,7 +435,7 @@ dark; each level gets two music tracks from the owner (`LevelMusic`); bosses
 stack by `MAP_PROGRESSION` (see ♡5). Levels 6–10 extend `Maps.all` and
 `MAP_PROGRESSION`.
 
-### ♡2 ⬜❓ ANTI DUCK USB [🦆] — unlocked by wave 100 on DUCK-USB
+### ♡2 ⬜❓ ANTI DUCK USB [🦆] — unlocked by wave 100 on DUCK-USB (look options shown 2026-10-01)
 
 **Asked:** *"For completion of duck usb level wave 100 - unlocks a unit called
 'Anti Duck Usb'. This will be more powerful than Red hat and blue hat, will
@@ -448,7 +459,7 @@ ASCII *is* possible at small sizes (a 2–3 line duck), but legibility inside a
 profile / ability (more powerful than the hats — e.g. bonus vs the DUCK-USB
 bosses SYN-STORM and GRADIENT?), range, and a deploy limit.
 
-### ♡3 ⬜❓ CYBER OPERATIVE [>_<] — unlocked by wave 100 on HUGGING-FACE
+### ♡3 ⬜❓ CYBER OPERATIVE [>_<] — unlocked by wave 100 on HUGGING-FACE (look options shown 2026-10-01)
 
 **Asked:** *"For completion of hugging face level wave 100 - unlock [>_<]
 unit. This will be a unit that resembles the logo of the game, and can be
@@ -468,7 +479,7 @@ HUGGING-FACE (per-map, as ♡2).
 **Owner to choose:** the look, shown as renders against the game logo
 (the app icon / wordmark in `res/`).
 
-### ♡4 ⬜❓ Personal stats per level and mode; a new difficulty
+### ♡4 🟨❓ Personal stats per level and mode ✅ (1.51.0); a new difficulty ❓
 
 **Asked:** *"Need to have personal stats (separate from leaderboard) that tell
 you highest wave reached on each level, and difficulty mode - Add new
@@ -497,7 +508,7 @@ and counter, in the style of `BossVariant` and the boss briefing. Nothing is
 built until the owner picks. Mechanics must be readable in the briefing and
 tested like `NeuralMeshBossBalanceTest` / `DuckUsbBossBalanceTest`.
 
-### ♡7 ⬜ Main menu redesign — less crowded, level and difficulty chosen after PLAY
+### ♡7 🟨❓ Main menu redesign — built (1.51.0) with stand-in icons; icon set ❓
 
 **Asked (2026-09-30):** *"Main menu is crowded. We need a difficulty drop down
 menu, need to make all of the buttons smaller - scalable - legible on all
@@ -529,6 +540,17 @@ level and difficulty selection menu."*
 - CONTINUE goes straight into the saved run (its level and mode are in the
   save).
 
+**Built (1.51.0):** CONTINUE and NEW RUN are two large icon tiles with a small
+caption; every other action is a small icon tile with a one-word label and
+no description, in a grid that sizes from the screen width (4 columns, 3 on
+narrow phones). NEW RUN with a save asks "Are you sure you would like to
+start a fresh run?" (START FRESH / KEEP MY SAVE). Level and difficulty moved
+to a new NEW RUN screen (`RunSetupScreen`): level list with locks, a
+difficulty drop-down (locked entries say their condition), START.
+`MenuRedesignTest` renders both at 568×320 and 800×360 and fails on any
+overlapping text. **Icons are stand-ins** (▶ + [@] € $ ◈ G ≡ ? # * i X) until
+the owner confirms a set.
+
 **Icons:** the owner suggested the CoreUI Icons set (coreui/coreui-icons
 1.0.0). The link given is a share.google short link — resolve it and confirm
 the set. Before using any of it, check its licence (the free CoreUI icons
@@ -538,7 +560,7 @@ icons used, as Android vector drawables. Alternative if the licence does not
 suit: Material Symbols (Apache 2.0) or drawing the few icons in-house.
 **Owner to confirm:** the icon set, after seeing a mock-up of the new menu.
 
-### ♡6 ⬜ ACE [♤] — unlocked by completing DDoS; builds walls on the lanes
+### ♡6 ✅ ACE [♤] — shipped in 1.51.0
 
 **Asked:** *"completing DDoS level unlocks new agent [♤] called 'Ace' - he is
 a high level Cyber security operative with a Bachelor degree in Cyber
@@ -549,6 +571,15 @@ have a set number of health and requires the hack enemies to 'destroy' them
 help player on the next wave of 5 levels so it needs to work at slowing
 attacks - this unit also deals massive damage to all bosses from all 5
 levels - balance the damage as well."*
+
+**Built (1.51.0):** cost 650 ◇, 46 damage, 0.9/s, range 260, three maximum,
+unlocked by wave 100 on DDoS (new per-level unlock: `AgentType.unlockMapId`,
+also what ♡2 and ♡3 will use). Wall health 150 × (1 + 5%/level) ×
+(1 + wave/40); a threat deals 10/s to it (elite ×2.5, boss ×12); rebuilt 6 s
+after it falls; one wall blocks every route through its point. Its shots deal
+×4 to every boss of levels 1–5. Balance (`AceTest`): on a pressured DDoS
+board, three ACEs reach wave 110 where three ROOT ADMINs reach 105; walls
+break 36–40 times a run and every wave still ends.
 
 **Spec:** glyph [♤], name ACE; unlocked by wave 100 on DDoS; description along
 the lines asked (a senior security engineer who builds defensive software).

@@ -9,6 +9,35 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [1.51.0] — 2026-10-01
+
+### Five new levels (♡1)
+
+- TRIDENT, SPIRAL, ZIGZAG, HELIX and TRIPLE BRAID — the layouts and colours
+  the owner picked, under working names until the real names are chosen.
+  Each unlocks at wave 100 on the one before and is harder than the last.
+  They field the bosses of levels 1–5 and the generated music until their
+  own bosses and tracks arrive.
+
+### ACE [♤] (♡6)
+
+- New agent, earned by wave 100 on DDoS. Builds a wall across the nearest
+  route in range; threats must break it before they pass (bosses fastest),
+  and it is rebuilt 6 s after it falls. Deals ×4 damage to every boss of
+  levels 1–5. Three maximum, 650 ◇.
+
+### Personal bests per level and difficulty (♡4)
+
+- STATISTICS shows the best wave on every level in every difficulty,
+  separate from the leaderboard; kept in cloud saves.
+
+### Main menu (♡7)
+
+- Smaller, uncluttered: icon tiles with one-word labels, no descriptions,
+  sized for every phone. CONTINUE and NEW RUN lead; NEW RUN asks before
+  replacing a saved run. Level and difficulty (now a drop-down) are chosen
+  on a NEW RUN screen after it, instead of on the menu.
+
 ## [1.50.1] — 2026-09-28
 
 - The bottom-left BOSS WAVE box is gone: it covered deployment spots. Each

@@ -98,13 +98,8 @@ class SaturationPreview {
                         budget = 12_500L,
                         firmwareLevel = 12,
                         adsRemoved = false,
-                        availableModes = listOf(GameMode.STANDARD, GameMode.HACK_AI),
-                        selectedMode = GameMode.STANDARD,
-                        availableMaps = listOf(Maps.PERIMETER),
-                        selectedMap = Maps.PERIMETER,
                         backgroundAnimation = false,
-                        onSelectMode = {}, onSelectMap = {}, onPlay = {},
-                        onContinue = {}, onAgents = {}, onFirmware = {}, onCodex = {}, onStore = {},
+                        onPlay = {}, onContinue = {}, onAgents = {}, onFirmware = {}, onCodex = {}, onStore = {},
                         onLoadout = {}, onPlayAccount = {}, onLeaderboard = {},
                         onStatistics = {}, onSettings = {}, onAbout = {}, onExit = {}
                     )
