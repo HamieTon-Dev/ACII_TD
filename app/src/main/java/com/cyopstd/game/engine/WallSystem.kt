@@ -95,6 +95,8 @@ class WallSystem(private val engine: GameEngine) {
      */
     fun allowedStep(enemy: Enemy, step: Float, dt: Float): Float {
         var allowed = step
+        // A SPOOFER decoy is not really there; a wall does not stop it.
+        if (enemy.decoy) return allowed
         for (wall in engine.walls.items) {
             if (!wall.active) continue
             val at = wall.progressAt(enemy.lane)

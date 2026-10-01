@@ -121,6 +121,26 @@ data class BossBriefing(
                 warnings += "GRADIENT speeds up with every hit, however small, and " +
                     "slows when left alone. Few big hits beat many small ones."
             }
+            if (variants.any { it.first == BossVariant.BOTMASTER }) {
+                warnings += "BOTMASTER drops BOTs behind itself every few seconds. " +
+                    "Kill it fast, and keep something for the swarm."
+            }
+            if (variants.any { it.first == BossVariant.ROOTKIT }) {
+                warnings += "ROOTKIT hides for 2 seconds of every 6 and nothing can " +
+                    "target it. Splash and chains still reach it."
+            }
+            if (variants.any { it.first == BossVariant.WORM }) {
+                warnings += "WORM breaks into three smaller worms when killed, and " +
+                    "those break once more. Kill it early, with splash nearby."
+            }
+            if (variants.any { it.first == BossVariant.SPOOFER }) {
+                warnings += "SPOOFER casts decoys of itself that soak up fire. " +
+                    "ANALYST and ROOT ADMIN see through them."
+            }
+            if (variants.any { it.first == BossVariant.KERNEL_PANIC }) {
+                warnings += "KERNEL PANIC jams every agent within reach for 3 " +
+                    "seconds when it dies. FIREWALL stands in it."
+            }
             if (BossModifier.FIREWALL_RESISTANCE in modifiers) {
                 warnings += "Resists FIREWALL agents."
             }

@@ -225,7 +225,7 @@ class GameViewModel @JvmOverloads constructor(
      * `frameTick` so it recomposes with the simulation.
      */
     fun bossDossier(): BossDossier? {
-        val boss = engine.enemies.items.firstOrNull { it.active && it.isBoss } ?: return null
+        val boss = engine.enemies.items.firstOrNull { it.active && it.isBoss && !it.decoy } ?: return null
         return BossDossier(
             variant = boss.variant,
             health = boss.health,

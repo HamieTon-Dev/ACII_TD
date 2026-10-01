@@ -538,7 +538,7 @@ object Maps {
         unlockMapId = SPIRAL.id,
         unlockMapName = SPIRAL.displayName,
         unlockAtWave = 100,
-        threatHealthScale = 7.6f,
+        threatHealthScale = 8.4f,
         rewardScale = 1.45f,
         theme = theme(0xFF0C0605, 0xFF2E1A14, 0xFF32190F, 0xFF643622, 0xFFD08A5C)
     )
@@ -577,7 +577,7 @@ object Maps {
         unlockMapId = HELIX.id,
         unlockMapName = HELIX.displayName,
         unlockAtWave = 100,
-        threatHealthScale = 5.8f,
+        threatHealthScale = 6.3f,
         rewardScale = 1.55f,
         theme = theme(0xFF06051A, 0xFF16124A, 0xFF1A1552, 0xFF3A30A0, 0xFF7F74F0)
     )

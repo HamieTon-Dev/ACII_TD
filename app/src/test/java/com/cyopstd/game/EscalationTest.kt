@@ -131,7 +131,8 @@ class EscalationTest {
             var threats = 0; var elites = 0; var bosses = 0
             for (e in engine.enemies.items) {
                 if (!e.active) continue
-                if (e.isBoss) bosses++ else if (!engine.enemySystem().isEscort(e)) {
+                // A WORM's pieces and a SPOOFER's decoys are one boss, not more.
+                if (e.isBoss) { if (e.wormGeneration == 0 && !e.decoy) bosses++ } else if (!engine.enemySystem().isEscort(e)) {
                     threats++
                     if (e.isElite) elites++
                 }

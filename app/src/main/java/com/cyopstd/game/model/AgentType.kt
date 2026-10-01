@@ -522,6 +522,9 @@ enum class AgentType(
         buildsWalls = true
     );
 
+    /** Not fooled by a SPOOFER's decoys (♡5): the ones built to read a threat. */
+    val seesThroughDecoys: Boolean get() = this == ANALYST || this == ROOT_ADMIN
+
     /** Agents available from the very first run. */
     val unlockedByDefault: Boolean get() = unlockWave <= 0
 

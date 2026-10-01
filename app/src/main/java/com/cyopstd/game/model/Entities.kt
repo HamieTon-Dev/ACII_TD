@@ -73,6 +73,28 @@ class Enemy : Poolable {
     var ransomTimer: Float = 0f
 
     /**
+     * The chapter-two bosses' own clock (♡5): BOTMASTER's next drop, ROOTKIT's
+     * hide cycle, SPOOFER's next decoy.
+     */
+    var variantTimer: Float = 0f
+
+    /** ROOTKIT while it is hidden: no agent will pick it as a target. */
+    var hidden: Boolean = false
+
+    /** WORM: 0 for the original, 1 and 2 for the pieces it breaks into. */
+    var wormGeneration: Int = 0
+
+    /**
+     * A SPOOFER decoy: draws fire, does no harm, and is not part of the wave.
+     * [decoyOwner] is the SPOOFER that cast it, so its decoys go with it.
+     */
+    var decoy: Boolean = false
+    var decoyOwner: Enemy? = null
+
+    /** Whether an agent may pick this as a target at all. */
+    val targetable: Boolean get() = !hidden
+
+    /**
      * LICENSE: how many hits each agent type has landed on it, by
      * `AgentType.ordinal`. Sized generously so a new agent never overflows it.
      */
@@ -216,6 +238,11 @@ class Enemy : Poolable {
         split = false
         gradientHeat = 0f
         ransomTimer = 0f
+        variantTimer = 0f
+        hidden = false
+        wormGeneration = 0
+        decoy = false
+        decoyOwner = null
         licenseHits.fill(0)
         recentAttackerNodes.fill(-1)
         recentAttackerTimes.fill(0f)

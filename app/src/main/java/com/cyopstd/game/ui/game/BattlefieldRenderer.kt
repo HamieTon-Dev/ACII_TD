@@ -1656,8 +1656,15 @@ class BattlefieldRenderer {
     }
 
     private fun drawBoss(canvas: android.graphics.Canvas, enemy: Enemy, time: Float) {
-        val halfWidth = 74f
-        val halfHeight = 46f
+        // A WORM's pieces are smaller worms; a hidden ROOTKIT is barely there.
+        val size = when (enemy.wormGeneration) {
+            0 -> 1f
+            1 -> 0.72f
+            else -> 0.52f
+        }
+        val fade = if (enemy.hidden) HIDDEN_BOSS_ALPHA else 1f
+        val halfWidth = 74f * size
+        val halfHeight = 46f * size
         scratchRect.set(
             enemy.x - halfWidth, enemy.y - halfHeight,
             enemy.x + halfWidth, enemy.y + halfHeight
@@ -1673,26 +1680,26 @@ class BattlefieldRenderer {
         } else {
             darken(accent, 0.42f)
         }
-        fillPaint.alpha = 150
+        fillPaint.alpha = (150 * fade).toInt()
         canvas.drawRoundRect(scratchRect, 6f, 6f, fillPaint)
 
         strokePaint.color = accent
-        strokePaint.alpha = 235
+        strokePaint.alpha = (235 * fade).toInt()
         strokePaint.strokeWidth = 3f
         canvas.drawRoundRect(scratchRect, 6f, 6f, strokePaint)
 
         val pulse = 0.5f + 0.5f * sin(time * 5.5f + enemy.phase)
         scratchRect.inset(-6f, -6f)
         glowPaint.color = accent
-        glowPaint.alpha = (55 + 105 * pulse).toInt().coerceIn(0, 255)
+        glowPaint.alpha = ((55 + 105 * pulse) * fade).toInt().coerceIn(0, 255)
         glowPaint.strokeWidth = 5f
         canvas.drawRoundRect(scratchRect, 9f, 9f, glowPaint)
         scratchRect.inset(6f, 6f)
 
-        val glyphSize = 26f * enemy.type.glyphScale
+        val glyphSize = 26f * enemy.type.glyphScale * size.coerceAtLeast(0.7f)
         textPaint.textSize = glyphSize
         textPaint.color = if (enemy.hitFlash > 0f) colText else accent
-        textPaint.alpha = 255
+        textPaint.alpha = (255 * fade).toInt()
         canvas.drawText(enemy.renderedGlyph(), enemy.x, enemy.y + glyphSize * 0.34f, textPaint)
 
         if (enemy.encrypted) {
@@ -1709,7 +1716,7 @@ class BattlefieldRenderer {
             halfWidth = halfWidth,
             height = 7f,
             fraction = (enemy.health / enemy.maxHealth).coerceIn(0f, 1f),
-            alpha = 1f,
+            alpha = fade,
             always = true
         )
     }
@@ -2315,3 +2322,6 @@ class BattlefieldRenderer {
         )
     }
 }
+
+/** How much of a hidden ROOTKIT is still drawn. */
+private const val HIDDEN_BOSS_ALPHA = 0.28f

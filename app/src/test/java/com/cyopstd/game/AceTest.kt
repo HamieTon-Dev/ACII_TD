@@ -9,6 +9,7 @@ import com.cyopstd.game.engine.SpawnOrder
 import com.cyopstd.game.engine.WaveGenerator
 import com.cyopstd.game.model.AgentType
 import com.cyopstd.game.model.BossVariant
+import com.cyopstd.game.model.MAP_PROGRESSION
 import com.cyopstd.game.model.EnemyType
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
@@ -74,7 +75,11 @@ class AceTest {
     fun `hits every boss of the first five levels four times as hard`() {
         val engine = engine()
         for (variant in BossVariant.entries) {
-            assertTrue("${variant.name} is a level 1-5 boss", variant.isChapterOne)
+            if (!variant.isChapterOne) {
+                // Chapter two's own bosses (♡5) are not ACE's target.
+                assertTrue(variant.mapId in MAP_PROGRESSION.drop(5))
+                continue
+            }
             engine.enemySystem().spawn(SpawnOrder(0f, EnemyType.BOSS, 0, false, true, bossVariant = variant), 50)
             val boss = engine.enemies.items.last { it.active }
             val withAce = engine.projectileSystem().damageMultiplier(boss, ace)

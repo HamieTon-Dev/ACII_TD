@@ -568,6 +568,10 @@ suit: Material Symbols (Apache 2.0) or drawing the few icons in-house.
   9 HELIX → SPOOFER (agents shoot a decoy copy) — *"test balance on this, it
   sounds impossible"*; 10 TRIPLE BRAID → KERNEL PANIC (on death jams every
   agent nearby for 3 s).
+  **Status: DONE (1.52.0).** Each leads its level's boss waves. Probe (mixed
+  level-24 board, wave 100, kill time vs BREACH): BOTMASTER 10.5 s vs 9.3,
+  ROOTKIT 22.2 vs 16.8, WORM 38.1 vs 27.3, SPOOFER 24.2 vs 14.9 (27.1 s with
+  no ANALYST/ROOT ADMIN — hard, not impossible), KERNEL PANIC 25.6 vs 18.5.
 - **♡2 look:** C, the `[<(o]` duck head. **Owner plans to port to iPhone and
   Steam — keep that in mind for all future development** (prefer plain text
   and vector art over platform emoji; keep game logic out of Android-only

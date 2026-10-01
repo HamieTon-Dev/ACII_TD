@@ -594,7 +594,7 @@ class GameEngine(
     private fun countOnScreen() {
         screenThreats = 0; screenElites = 0; screenBosses = 0
         for (enemy in enemies.items) {
-            if (!enemy.active) continue
+            if (!enemy.active || enemy.decoy) continue
             if (enemy.isBoss) {
                 screenBosses++
             } else {
@@ -786,7 +786,8 @@ class GameEngine(
         enemiesRemaining = (enemiesRemaining - 1).coerceAtLeast(0)
         if (wasKilled && enemy != null) {
             runAttacksBlocked++
-            if (enemy.isBoss) runBossesDefeated++
+            // A WORM's pieces are the same boss, already counted.
+            if (enemy.isBoss && enemy.wormGeneration == 0) runBossesDefeated++
         }
     }
 
