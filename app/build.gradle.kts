@@ -140,8 +140,8 @@ android {
         applicationId = "com.cyopstd.game"
         minSdk = 24
         targetSdk = 36
-        versionCode = 66
-        versionName = "1.53.0"
+        versionCode = 67
+        versionName = "1.54.0"
 
         // Stamped into the APK so the build identifier on screen is the real
         // one, not a string someone remembered to update. Reported by

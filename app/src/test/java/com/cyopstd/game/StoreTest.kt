@@ -291,4 +291,15 @@ class StoreTest {
                 section.items.isNotEmpty())
         }
     }
+
+    @Test
+    fun `the soundtrack is a permanent product, on sale, and owning it is remembered`() {
+        val sku = com.cyopstd.game.store.Sku.SOUNDTRACK
+        assertEquals("soundtrack", sku.id)
+        assertEquals(SkuKind.PERMANENT, sku.kind)
+        assertEquals("\$4.99", sku.fallbackPrice)
+        assertTrue(com.cyopstd.game.ui.menu.storeSections(adsConfigured = false).any { sku in it.items })
+        assertTrue(Entitlements().plus(sku).ownsSoundtrack)
+        assertFalse(Entitlements().ownsSoundtrack)
+    }
 }

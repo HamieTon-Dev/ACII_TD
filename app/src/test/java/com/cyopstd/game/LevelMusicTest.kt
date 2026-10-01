@@ -60,7 +60,7 @@ class LevelMusicTest {
             .sorted()
         assertEquals(
             "the supplied tracks should be the mp3s in res/raw",
-            listOf("level1", "level1_2", "level2", "level2_2", "level3", "level3_2", "level4", "level4_2", "level5", "level5_2"),
+            (1..10).flatMap { listOf("level$it", "level${it}_2") }.sorted(),
             shipped
         )
         // A file in res/raw that no level names is dead weight in the download,
@@ -88,12 +88,9 @@ class LevelMusicTest {
 
     @Test
     fun `every level with supplied music has its own track`() {
-        // Every level has music the owner supplied, and no two share it.
-        // Levels 6–10 (♡1) wait on the owner's tracks and play the generated
-        // mode music until then; they are checked below.
-        val awaitingTracks = listOf(Maps.TRIDENT, Maps.SPIRAL, Maps.ZIGZAG, Maps.HELIX, Maps.BRAID)
-        for (map in awaitingTracks) assertEquals(null, musicForMap(map))
-        val scored = Maps.all - awaitingTracks
+        // Every level has music the owner supplied, and no two share it
+        // (levels 6-10 arrived 2026-10-01).
+        val scored = Maps.all
         val chosen = scored.associateWith { musicForMap(it) }
         for ((map, music) in chosen) {
             assertNotNull("${map.displayName} has no music", music)

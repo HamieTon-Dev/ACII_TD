@@ -79,7 +79,8 @@ val STORE_SECTIONS: List<StoreSection> = listOf(
         // side is a player who does not later ask for a refund because they
         // bought the wrong one.
         listOf(Sku.NO_ADS, Sku.REVIVE_PACK, Sku.SPEED_5X)
-    )
+    ),
+    StoreSection("MUSIC", Palette.Magenta, listOf(Sku.SOUNDTRACK))
 )
 
 /**
@@ -113,7 +114,11 @@ fun StoreScreen(
      * passes the real answer. It only removes REMOVE ADS from a build that has
      * no ads to remove.
      */
-    adsConfigured: Boolean = true
+    adsConfigured: Boolean = true,
+    /** Saves the owned soundtrack to the phone. */
+    onSaveSoundtrack: () -> Unit = {},
+    /** What the last save said; null before one. */
+    soundtrackStatus: String? = null
 ) {
     val available = status == BillingStatus.READY
     val sections = storeSections(adsConfigured)
@@ -158,7 +163,11 @@ fun StoreScreen(
                     if (index > 0) Spacer(Modifier.height(12.dp))
                     Section(section.title, section.accent) {
                         for (sku in section.items) {
-                            ProductRow(sku, entitlements, prices, available, onBuy)
+                            if (sku == Sku.SOUNDTRACK) {
+                                SoundtrackRow(entitlements, prices, available, onBuy, onSaveSoundtrack, soundtrackStatus)
+                            } else {
+                                ProductRow(sku, entitlements, prices, available, onBuy)
+                            }
                         }
                     }
                 }
@@ -247,6 +256,52 @@ private fun ProductRow(
         }
         if (sku.grantsBudget > 0) {
             StatRow("INCLUDES", "€ ${sku.grantsBudget}", valueColor = Palette.Cyan)
+        }
+        AsciiRule(color = Palette.Divider)
+    }
+}
+
+/**
+ * The soundtrack (owner, 2026-10-01): bought with "BUY CyOps TD SOUNDTRACK",
+ * then saved to the phone's Music folder from here, as often as wanted (a new
+ * phone, or files deleted by mistake).
+ */
+@Composable
+private fun SoundtrackRow(
+    entitlements: Entitlements,
+    prices: Map<String, String>,
+    available: Boolean,
+    onBuy: (Sku) -> Unit,
+    onSave: () -> Unit,
+    status: String?
+) {
+    val sku = Sku.SOUNDTRACK
+    val owned = entitlements.owns(sku)
+    val price = prices[sku.id] ?: sku.fallbackPrice
+    Column(modifier = Modifier.padding(vertical = 6.dp)) {
+        Text(
+            text = sku.title,
+            style = MaterialTheme.typography.titleSmall,
+            color = if (owned) Palette.Green else Palette.TextPrimary
+        )
+        Caption(sku.summary)
+        Spacer(Modifier.height(6.dp))
+        if (owned) {
+            CompactButton(
+                text = "SAVE SOUNDTRACK TO PHONE",
+                onClick = onSave,
+                accent = Palette.Green,
+                modifier = Modifier.fillMaxWidth()
+            )
+            Caption(status ?: "Owned. Saves to Music/CyOps TD as \"CyOps TD - Level X (Y)\".")
+        } else {
+            CompactButton(
+                text = "BUY CyOps TD SOUNDTRACK \u00B7 $price",
+                onClick = { onBuy(sku) },
+                enabled = available,
+                accent = Palette.Crypto,
+                modifier = Modifier.fillMaxWidth()
+            )
         }
         AsciiRule(color = Palette.Divider)
     }

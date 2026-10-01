@@ -642,7 +642,29 @@ suit: Material Symbols (Apache 2.0) or drawing the few icons in-house.
   unlocked; AUTO clears it. Pause menu: play, reload, settings cog, home,
   check and x from CoreUI (`ic_action_*.xml`); `BastionButton` takes a
   `leadingIcon`.
-- **Music for levels 6–10 (owner, 2026-10-01):** *"I will generate all new
+- **Music list and replacements (owner, 2026-10-01):** *"give me a list of
+  download able music that is currently in the game. The names as they are.
+  I'm replacing a couple too."* Sent the ten files (levels 1–5, two each) with
+  their in-game names. Waiting on which ones the owner replaces; a replacement
+  keeps the same `res/raw` file name, so nothing else changes.
+- **New music, all levels, and a soundtrack purchase (owner, 2026-10-01):**
+  16 files supplied: levels 6–10 (new) and replacements for levels 1–3. *"these
+  are all my composition and falls on the same licenses. Level 1, 2, & 3
+  tracks are replacing their current respective track pairs. Implement all
+  the music. Store them all as follows "CyOps TD - Level X (Y)". I want to add
+  a store purchase so user's can purchase the music album as well. "Buy CyOps
+  TD soundtrack" $4.99. The current songs for Level 1, 2, and 3 files need to
+  be deleted from repo, source files and everywhere they are stored."* Then
+  list the open backlog items and prompt the owner to merge.
+  **Done (1.54.0):** 20 tracks in `res/raw` (`levelN`, `levelN_2`; Android
+  resource names cannot hold spaces or capitals, so the name lives in the ID3
+  title, the music player and the saved files). Old level 1–3 audio removed from
+  the working tree, build caches, a leftover worktree and old dev APKs; it
+  remains only in git history (removing it there needs a history rewrite and
+  force-push, the owner's call). `Sku.SOUNDTRACK` + `SoundtrackExporter`
+  (MediaStore, Android 10+). Release bundle ~110 MB. **Owner to do:** create
+  the `soundtrack` product in Play Console at $4.99.
+- ✅ *(Done 1.54.0)* **Music for levels 6–10 (owner, 2026-10-01):** *"I will generate all new
   music for the new 5 levels. I'll send you two files for each level."*
   Waiting on the files. When they arrive: `res/raw/level6.mp3` +
   `level6_2.mp3` … `level10.mp3` + `level10_2.mp3`, add LEVEL_SIX–LEVEL_TEN to
@@ -1857,107 +1879,23 @@ manifest via `aapt2 dump xmltree`, not the merged text.
 
 ## ♡. Music — real tracks replace the generated ones
 
-### ♡1 ✅ **RIGHTS CLEARED** — six supplied tracks, owner's own work throughout
+### ♡1 ✅ Level music — the owner's own compositions (replaced 2026-10-01)
 
-**Asked (2026-09-25):** three MP3s supplied, one per level.
+Every level has two tracks, files `res/raw/levelN.mp3` and `levelN_2.mp3`,
+titled and tagged **"CyOps TD - Level N (1)"** and **"(2)"** (album "CyOps TD
+Soundtrack", tracks 1–20). All are the owner's own compositions under the same
+licence terms as before (owner, 2026-10-01: *"these are all my composition and
+falls on the same licenses"*).
 
-| Where | Track | Size |
-| --- | --- | --- |
-| **Main menu** | **unchanged — the existing generated track stays** | — |
-| First level (Perimeter / standard) | `matrix (bl studio loop) (slowed) [Remix]` | 3.4 MB |
-| Hack:AI | `Falling [Remix]` | 4.5 MB |
-| Hugging-Face | `VXLLAIN, iGRES, ENXK — Promise me the Sk… [Remix]` | 4.5 MB |
-
-**Clarified 2026-09-25:**
-
-- *"keep the music we had as main menu music"* — the generated menu track is
-  **not** replaced. Only in-match music changes, so `enterMenu()` keeps using
-  the composer and only `trackForMode()` switches to files.
-- *"level music will loop"* — **all three** level tracks loop, not just the
-  first. Looping is the default for match music rather than a per-track flag.
-- **Two variants per level**, supplied 2026-09-25: *"music names match same
-  levels and can add to the loops so that its not repetitive."* Six distinct
-  files (md5-verified distinct), so each level is a **playlist of two** that
-  alternates rather than a single track on repeat. The loop is over the
-  playlist, not over one file.
-
-**Size.** 24.7 MB of audio against a current release APK of 3.3 MB — roughly
-an eightfold increase, to ~28 MB. Well inside Play's limits and not a blocker.
-Worth knowing: these are MP3 at a fairly generous bitrate, and re-encoding to
-OGG Vorbis at a rate suited to a phone speaker would likely halve it with no
-audible loss in a game mix. Offered, not assumed.
-
-This closes the music thread that has been open since the generated chiptune
-work was set aside: *"skip the track for now I'll find another solution for
-music."* `AudioEngine.trackForMode()` is the single place all three redirect
-through, exactly as the earlier note said it would be.
-
-#### The rights question, asked and answered
-
-Raised because every filename named identifiable commercial recordings and
-artists and was labelled "Remix", and the ID3 tags had been stripped by an
-ffmpeg re-encode, so the files carried no licence of their own.
-
-**Answered 2026-09-25 with seven Mureka ownership certificates**, covering all
-six files:
-
-| Track | Certificates |
-| --- | --- |
-| `matrix (bl studio loop) (slowed)(Remix)` | 2 |
-| `Falling(Remix)` | 3 |
-| `VXLLAIN, iGRES, ENXK - Promise me the Sk...(Remix)` | 2 |
-
-Each certifies the work as **AI music created by the owner** using Mureka
-(SKYWORK AI PTE. LTD.), with *"ownership, title and interest ... including,
-without limitation, all intellectual property rights"* belonging to the user.
-
-#### What the certificate does and does not cover
-
-The owner then clarified: *"the music is remixes of original songs made by me.
-I can acquire licenses if necessary."*
-
-That leaves exactly one question, and it is worth stating precisely because
-the answer changes nothing else about the plan.
-
-A Mureka ownership certificate is **Mureka granting the owner rights in
-Mureka's output**. It is the only thing Mureka is in a position to grant. It
-cannot, and does not claim to, clear rights in anything that went *into* the
-generation, or in an underlying composition the output is derived from.
-
-So:
-
-| If the underlying songs are... | Then |
-| --- | --- |
-| **the owner's own compositions** | Nothing further is needed. The certificate covers the output, the owner already owns the input, and the chain is complete. |
-| **someone else's** | A remix is a derivative work, and it needs permission from the owner of the **composition** (publishing) and, if any audio was used, the **master recording**. Two separate rights, often two separate parties. |
-
-The titles name VXLLAIN, iGRES and ENXK, which is what makes the question
-worth asking rather than assuming. It may well be that those are style
-references for a generator rather than sources — in which case the first row
-applies and this is closed.
-
-**Confirmed 2026-09-25: "my own compositions."** First row applies. The owner
-wrote the underlying songs, Mureka's certificate covers the generated output,
-and the chain is complete end to end. Cleared to ship and cleared to commit.
-
-The one remaining suggestion is cosmetic and stands unactioned until asked:
-the track *titles* name VXLLAIN, iGRES and ENXK. Owning the music does not
-give you their names, and a track credited that way in a shipped game could
-imply an association that does not exist. Renaming in-game is free and the
-audio is untouched.
-
-The certificates themselves are **not** committed — they carry the owner's full
-name and email address, and a public repository is not the place for that. They
-live with the owner.
-
-#### One residual point, worth one line
-
-The *titles* still name real artists — VXLLAIN, iGRES, ENXK. Owning the
-recording does not give you their names, and a track credited that way inside a
-shipped game could imply an association that does not exist. **Renaming them
-in-game is free and removes the question entirely** — the audio is unaffected.
-Recommended, not assumed; the files keep their supplied names until the owner
-says otherwise.
+- **Levels 1–3:** the first supplied tracks (2026-09-25) were **retired and
+  deleted** on 2026-10-01 at the owner's request (*"won't be used in future
+  development"*) and replaced with new pairs.
+- **Levels 4–5:** unchanged audio, retitled to the same naming.
+- **Levels 6–10:** new on 2026-10-01.
+- Ownership certificates for AI-assisted tracks live with the owner, not in the
+  repository (they carry personal details).
+- The main menu keeps its generated track; the generated match tracks remain
+  the fallback for a device that will not decode the files.
 
 ### ♡2 ✅ SHIPPED in 1.36.0 — File-based music architecture
 

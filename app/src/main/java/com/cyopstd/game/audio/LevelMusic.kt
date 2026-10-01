@@ -21,21 +21,20 @@ import com.cyopstd.game.core.Maps
  */
 enum class LevelMusic(
     /** Raw resources, played in this order and then round again. */
-    val variants: List<Int>,
-    /** The piece's title, where the owner gave one. */
-    val title: String? = null
+    val variants: List<Int>
 ) {
+    // Every track is the owner's own composition, titled "CyOps TD - Level X (Y)"
+    // (owner, 2026-10-01). Levels 1-3 were replaced that day; 6-10 are new.
     LEVEL_ONE(listOf(R.raw.level1, R.raw.level1_2)),
     LEVEL_TWO(listOf(R.raw.level2, R.raw.level2_2)),
-
-    /** NEURAL-MESH, the third level. */
     LEVEL_THREE(listOf(R.raw.level3, R.raw.level3_2)),
-
-    /** 🦆 DUCK-USB, the fourth level: "Neon Static", supplied by the owner. */
-    LEVEL_FOUR(listOf(R.raw.level4, R.raw.level4_2), "Neon Static"),
-
-    /** DDoS, the fifth level: "Cassette Noir", supplied by the owner. */
-    LEVEL_FIVE(listOf(R.raw.level5, R.raw.level5_2), "Cassette Noir");
+    LEVEL_FOUR(listOf(R.raw.level4, R.raw.level4_2)),
+    LEVEL_FIVE(listOf(R.raw.level5, R.raw.level5_2)),
+    LEVEL_SIX(listOf(R.raw.level6, R.raw.level6_2)),
+    LEVEL_SEVEN(listOf(R.raw.level7, R.raw.level7_2)),
+    LEVEL_EIGHT(listOf(R.raw.level8, R.raw.level8_2)),
+    LEVEL_NINE(listOf(R.raw.level9, R.raw.level9_2)),
+    LEVEL_TEN(listOf(R.raw.level10, R.raw.level10_2));
 
     /** The variant that follows [index], wrapping. */
     fun variantAfter(index: Int): Int = (index + 1) % variants.size
@@ -58,6 +57,11 @@ fun musicForMap(map: GameMap): LevelMusic? = when (map.id) {
     Maps.NEURAL_MESH.id -> LevelMusic.LEVEL_THREE
     Maps.DUCK_USB.id -> LevelMusic.LEVEL_FOUR
     Maps.DDOS.id -> LevelMusic.LEVEL_FIVE
+    Maps.TRIDENT.id -> LevelMusic.LEVEL_SIX
+    Maps.SPIRAL.id -> LevelMusic.LEVEL_SEVEN
+    Maps.ZIGZAG.id -> LevelMusic.LEVEL_EIGHT
+    Maps.HELIX.id -> LevelMusic.LEVEL_NINE
+    Maps.BRAID.id -> LevelMusic.LEVEL_TEN
     // A level with no supplied track plays the synthesized mode music.
     else -> null
 }
@@ -74,28 +78,32 @@ data class MusicTrack(
     val level: Int,
     val levelName: String,
     /** 1 or 2: which of the level's two renders. */
-    val part: Int,
-    val title: String?
+    val part: Int
 ) {
+    /** The owner's naming (2026-10-01): "CyOps TD - Level 4 (1)". Also the ID3 title. */
+    val title: String get() = "CyOps TD - Level $level ($part)"
+
+    /** What the soundtrack is saved to the phone as. */
+    val fileName: String get() = "$title.mp3"
+
     /** Stable across builds, unlike [resId]: what the saved pick is stored as. */
     val key: String get() = "$mapId|$part"
 
-    /** "L4 · 🦆 DUCK-USB · Neon Static 1", or without a title "L1 · NETWORK PERIMETER · 1". */
+    /** "CyOps TD - Level 4 (1) · 🦆 DUCK-USB": the title, and which level it belongs to. */
     val label: String
-        get() = "L$level \u00B7 $levelName \u00B7 " + (title?.let { "$it " } ?: "") + part
+        get() = "$title \u00B7 $levelName"
 }
 
 /**
  * Every supplied track, built from the level catalogue, so a level that gets
- * music (6–10, when the owner's files arrive) appears in the list without
- * this changing.
+ * music appears in the list without this changing.
  */
 object MusicLibrary {
     val tracks: List<MusicTrack> by lazy {
         Maps.all.withIndex().flatMap { (i, map) ->
             val music = musicForMap(map) ?: return@flatMap emptyList()
             music.variants.mapIndexed { part, res ->
-                MusicTrack(res, map.id, i + 1, map.displayName, part + 1, music.title)
+                MusicTrack(res, map.id, i + 1, map.displayName, part + 1)
             }
         }
     }

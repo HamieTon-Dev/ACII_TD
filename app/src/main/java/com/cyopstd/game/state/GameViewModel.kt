@@ -893,6 +893,30 @@ class GameViewModel @JvmOverloads constructor(
         billing.restore()
     }
 
+    /** What the last soundtrack save said, for the store to show; null before one. */
+    var soundtrackStatus by mutableStateOf<String?>(null)
+        private set
+
+    /** Saves the bought soundtrack to the phone's Music folder (owner, 2026-10-01). */
+    fun saveSoundtrack() {
+        playClick()
+        if (!entitlements.ownsSoundtrack) return
+        soundtrackStatus = "Saving to Music/CyOps TD\u2026"
+        val exporter = com.cyopstd.game.audio.SoundtrackExporter(getApplication())
+        viewModelScope.launch {
+            val result = kotlinx.coroutines.withContext(kotlinx.coroutines.Dispatchers.IO) { exporter.saveAll() }
+            soundtrackStatus = when (result) {
+                is com.cyopstd.game.audio.SoundtrackExporter.Result.Done ->
+                    if (result.saved == 0) "All ${result.alreadyThere} tracks are already in Music/CyOps TD."
+                    else "Saved ${result.saved} tracks to Music/CyOps TD."
+                com.cyopstd.game.audio.SoundtrackExporter.Result.NeedsNewerAndroid ->
+                    "Saving the soundtrack needs Android 10 or newer."
+                is com.cyopstd.game.audio.SoundtrackExporter.Result.Failed ->
+                    "Saved ${result.saved} tracks, then the phone refused the rest. Free some space and try again."
+            }
+        }
+    }
+
     /**
      * Equips a look.
      *
