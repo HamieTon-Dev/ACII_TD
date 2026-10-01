@@ -307,7 +307,7 @@ ENGINEER has three tracks bought separately with €: **DAMAGE** (+0.5% a
 level), **FIRE RATE** (+0.05%) and **RANGE** (+0.02%), each to level 10,000.
 Asked for as HP, damage and range: agents have no HP in this game (nothing
 damages them), so the third track is fire rate — ❓ say if you want something
-else there. Cost per level = (2 + level/2) × 1.0004^level × 10 €: 20 € for the
+else there (**owner, 2026-10-01: keep FIRE RATE**). Cost per level = (2 + level/2) × 1.0004^level × 10 €: 20 € for the
 first, about 28 thousand € for the first 100, 3.3 million for the first
 1,000, and 2.7 million € for the 10,000th level alone.
 
@@ -476,7 +476,7 @@ twice a hat's damage against them). Drawn with the logo's own paths (new
 aura — option C, the owner's pick (*"C for the cyber operative"*). Options
 rendered by `CyberOperativePreview`:
 A whole logo (with traces and packet), B shield and face, C B + anti-jam aura,
-D B in a node badge. `CyberOperativeTest`. Cost 600 ◇ is a default the owner has not objected to.
+D B in a node badge. `CyberOperativeTest`. Cost 600 ◇ confirmed by the owner (2026-10-01).
 
 **Asked:** *"For completion of hugging face level wave 100 - unlock [>_<]
 unit. This will be a unit that resembles the logo of the game, and can be
@@ -626,7 +626,7 @@ suit: Material Symbols (Apache 2.0) or drawing the few icons in-house.
   100 becomes 13.5 dmg, 1.05/s, 336.6 range. Alternatives offered: keep FIRE
   RATE; or make the third track CRYPTO PER KILL, ARMOUR PIERCE, JAM
   RESISTANCE, or CORE INTEGRITY (+max HP for the server, the closest thing
-  to "HP"). ❓ owner to choose.
+  to "HP"). **Decided 2026-10-01: keep FIRE RATE.**
 
 ### ♡6 ✅ ACE [♤] — shipped in 1.51.0
 
