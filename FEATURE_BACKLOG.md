@@ -642,6 +642,11 @@ suit: Material Symbols (Apache 2.0) or drawing the few icons in-house.
   unlocked; AUTO clears it. Pause menu: play, reload, settings cog, home,
   check and x from CoreUI (`ic_action_*.xml`); `BastionButton` takes a
   `leadingIcon`.
+- **Music list and replacements (owner, 2026-10-01):** *"give me a list of
+  download able music that is currently in the game. The names as they are.
+  I'm replacing a couple too."* Sent the ten files (levels 1–5, two each) with
+  their in-game names. Waiting on which ones the owner replaces; a replacement
+  keeps the same `res/raw` file name, so nothing else changes.
 - **Music for levels 6–10 (owner, 2026-10-01):** *"I will generate all new
   music for the new 5 levels. I'll send you two files for each level."*
   Waiting on the files. When they arrive: `res/raw/level6.mp3` +
