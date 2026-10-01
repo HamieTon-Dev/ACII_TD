@@ -634,6 +634,15 @@ suit: Material Symbols (Apache 2.0) or drawing the few icons in-house.
   **Done (1.53.0):** `MusicPlayerPanel` beside the pause buttons; `MusicLibrary`
   builds the list from `musicForMap`, so levels 6–10 join it when their files
   land; the pick is saved between sessions (see the follow-up below). `MusicPlayerTest`.
+- **❓ Leaderboards per level and difficulty (owner, 2026-10-01):** *"Does the
+  leaderboard show per level and difficulty highest achieved? If not, is this
+  possible?"* Today: the local board is the top 25 runs of all levels mixed
+  (shows difficulty, not level; entries store no level), and the global boards
+  are one per difficulty. Per-level-and-difficulty bests exist only on
+  STATISTICS. Options offered: A local board with level + difficulty
+  drop-downs; B also global per level and difficulty (up to 30 Play Console
+  leaderboards, each an id to add); C global per level only (10). Waiting on
+  the owner's pick.
 - **Music player follow-up (owner, 2026-10-01):** *"save the selected track
   between sessions - and lets replace all the icons on the pause menu (resume,
   restart level, settings... etc) let's give them all icons from CoreUI icons"*.
