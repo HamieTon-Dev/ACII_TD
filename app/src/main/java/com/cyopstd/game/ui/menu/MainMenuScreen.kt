@@ -1,5 +1,6 @@
 package com.cyopstd.game.ui.menu
 
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.size
 import com.cyopstd.game.R
 
@@ -26,6 +27,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.draw.alpha
 import androidx.compose.foundation.Canvas
 import androidx.compose.ui.geometry.Offset
@@ -123,25 +125,18 @@ fun MainMenuScreen(
                 AsciiRule(color = Palette.CyanDim)
                 Spacer(Modifier.height(10.dp))
 
-                // Never wraps: a wrapped line breaks the box apart. On a column
-                // too narrow for it at the normal size, the text shrinks to fit.
-                androidx.compose.foundation.layout.BoxWithConstraints(Modifier.fillMaxWidth()) {
-                    val base = MaterialTheme.typography.bodySmall
-                    val widest = TITLE_ART.lines().maxOf { it.length }
-                    val fitting = with(androidx.compose.ui.platform.LocalDensity.current) {
-                        (maxWidth.toPx() / (widest * 0.62f)).toSp()
-                    }
-                    Text(
-                        text = TITLE_ART,
-                        style = base.copy(
-                            fontSize = if (fitting < base.fontSize) fitting else base.fontSize,
-                            lineHeight = if (fitting < base.fontSize) fitting * 1.3f else base.lineHeight
-                        ),
-                        color = Palette.CyanDim,
-                        softWrap = false,
-                        maxLines = TITLE_ART.lines().size
-                    )
-                }
+                // Lanes into the CORE-SERVER rack, as a vector drawing: it was
+                // ASCII text, which misaligned or wrapped on some phones (owner,
+                // 2026-10-01: "make this element ... something that can scale").
+                androidx.compose.foundation.Image(
+                    painter = androidx.compose.ui.res.painterResource(com.cyopstd.game.R.drawable.menu_title_art),
+                    contentDescription = "Three attack lanes feeding the core server",
+                    contentScale = androidx.compose.ui.layout.ContentScale.Fit,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .heightIn(max = 96.dp)
+                        .testTag("menu-title-art")
+                )
 
                 Spacer(Modifier.height(12.dp))
 
@@ -335,18 +330,3 @@ private fun playsOfflineCaption(adsRemoved: Boolean): String = buildString {
     if (adsRemoved) append(" \u00B7 AD-FREE")
 }
 
-/**
- * The lanes feeding the server, drawn in text.
- *
- * Each lane arrow lands on a row *inside* the box, and every row inside is
- * centred and exactly as wide as the border, so the right-hand edge lines up
- * (owner, 2026-09-26: the core-server art was misaligned). `MainMenuArtTest`
- * checks both, so an edit that breaks the box fails a test.
- */
-internal val TITLE_ART = listOf(
-    "                                  +===============+",
-    ">>> ---- LANE 1 ----------------> |  CORE-SERVER  |",
-    ">>> ---- LANE 2 ----------------> |  . . . . . .  |",
-    ">>> ---- LANE 3 ----------------> |  ## ## ## ##  |",
-    "                                  +===============+"
-).joinToString("\n")
