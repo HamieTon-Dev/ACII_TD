@@ -560,6 +560,27 @@ icons used, as Android vector drawables. Alternative if the licence does not
 suit: Material Symbols (Apache 2.0) or drawing the few icons in-house.
 **Owner to confirm:** the icon set, after seeing a mock-up of the new menu.
 
+### ♡ decisions, 2026-10-01 (owner's answers)
+
+- **♡5 bosses, one per new level:** 6 TRIDENT → BOTMASTER `[B∞]` (keeps
+  spawning BOTs); 7 SPIRAL → ROOTKIT (untargetable 2 s of every 6);
+  8 ZIGZAG → WORM (splits into 3 on death, and those split once more);
+  9 HELIX → SPOOFER (agents shoot a decoy copy) — *"test balance on this, it
+  sounds impossible"*; 10 TRIPLE BRAID → KERNEL PANIC (on death jams every
+  agent nearby for 3 s).
+- **♡2 look:** C, the `[<(o]` duck head. **Owner plans to port to iPhone and
+  Steam — keep that in mind for all future development** (prefer plain text
+  and vector art over platform emoji; keep game logic out of Android-only
+  code where it is cheap to do so). Ability and deploy limit not answered.
+- **♡3:** neither option liked — the CYBER OPERATIVE must look *identical to
+  the game's logo*; use an icon/drawing if needed. New options to show.
+- **♡4:** the new difficulty is **KERNEL MODE** (unlocked by wave 100 on DDoS
+  in HACK:AI).
+- **♡7:** icons from **CoreUI Icons** (https://coreui.io/icons/). Free set is
+  CC BY 4.0 → credit on the About screen.
+- **Item 8 (Agent Firmware third track):** owner asked for a detailed
+  explanation with examples before deciding.
+
 ### ♡6 ✅ ACE [♤] — shipped in 1.51.0
 
 **Asked:** *"completing DDoS level unlocks new agent [♤] called 'Ace' - he is
