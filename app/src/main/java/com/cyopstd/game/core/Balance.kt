@@ -466,6 +466,31 @@ object Balance {
         return levels
     }
 
+    // ------------------------------------------------------------------- ACE
+
+    /**
+     * ACE's wall (backlog ♡6). Health grows with ACE's level and with the
+     * wave, so a wall buys roughly the same few seconds per threat deep into a
+     * run as early on; how long it holds is set by how many threats pile onto
+     * it. Tuned with `AceTest`'s balance probe: it must slow a wave, never
+     * stop one.
+     */
+    const val ACE_WALL_BASE_HEALTH = 150f
+    const val ACE_WALL_HEALTH_PER_LEVEL = 0.05f
+    const val ACE_WALL_WAVE_SCALE = 40f
+    /** Seconds before a fallen wall is rebuilt. */
+    const val ACE_WALL_REBUILD_SECONDS = 6f
+    /** Damage per second one threat at the wall deals to it, before its kind. */
+    const val ACE_WALL_DPS = 10f
+    const val ACE_WALL_ELITE_FACTOR = 2.5f
+    const val ACE_WALL_BOSS_FACTOR = 12f
+    /** ACE's shots against any boss of levels 1–5. */
+    const val ACE_BOSS_MULTIPLIER = 4f
+
+    fun aceWallHealth(level: Int, wave: Int): Float =
+        ACE_WALL_BASE_HEALTH * (1f + ACE_WALL_HEALTH_PER_LEVEL * (level - 1).coerceAtLeast(0)) *
+            (1f + wave.coerceAtLeast(0) / ACE_WALL_WAVE_SCALE)
+
     // --------------------------------------------------------- agent firmware
 
     /**

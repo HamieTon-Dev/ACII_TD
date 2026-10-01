@@ -52,7 +52,10 @@ private const val DDOS_MAP_ID = "ddos"
  * its own bosses and every earlier map's. `BossVariantTest` asserts this
  * matches `Maps.all`.
  */
-val MAP_PROGRESSION: List<String> = listOf("perimeter", HUGGING_FACE_MAP_ID, NEURAL_MESH_MAP_ID, DUCK_USB_MAP_ID, DDOS_MAP_ID)
+val MAP_PROGRESSION: List<String> = listOf("perimeter", HUGGING_FACE_MAP_ID, NEURAL_MESH_MAP_ID, DUCK_USB_MAP_ID, DDOS_MAP_ID,
+    // Chapter two (♡1). Their own bosses come with ♡5; until then they field
+    // every boss of the first five levels.
+    "trident", "spiral", "zigzag", "helix", "braid")
 
 /** The owner's number for the two heavies: *"maybe 1.2x more"* health. */
 private const val HEAVY_HEALTH_SCALE = 1.2f
@@ -418,6 +421,9 @@ enum class BossVariant(
         palette = BossPalette.SPECTRUM
     );
 
+    /** One of the bosses of levels 1–5 (ACE hits these hardest). */
+    val isChapterOne: Boolean get() = mapId == null || mapId in CHAPTER_ONE
+
     companion object {
         /** How much health a ZOMBIE comes back with. */
         const val ZOMBIE_REVIVE_FRACTION = 0.4f
@@ -510,6 +516,9 @@ enum class BossVariant(
          * [ZOMBIE] and the map-specific four are *extra* identities rather
          * than a separate game.
          */
+        /** The levels of the first chapter, whose bosses ACE is built against. */
+        val CHAPTER_ONE: List<String> = MAP_PROGRESSION.take(5)
+
         fun poolFor(cycle: Int, mapId: String?): List<BossVariant> {
             val here = MAP_PROGRESSION.indexOf(mapId).coerceAtLeast(0)
             return entries.filter {

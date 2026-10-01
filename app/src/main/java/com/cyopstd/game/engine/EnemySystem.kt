@@ -146,7 +146,8 @@ class EnemySystem(private val engine: GameEngine, private val random: Random) {
 
             if (enemy.isBoss) updateBoss(enemy, dt)
 
-            enemy.progress += enemy.currentSpeed() * dt
+            // ACE's walls stop a threat that reaches them until it breaks through.
+            enemy.progress += engine.wallSystem().allowedStep(enemy, enemy.currentSpeed() * dt, dt)
             placeOnPath(enemy)
 
             if (enemy.progress >= engine.map.laneLength[enemy.lane]) {

@@ -106,6 +106,12 @@ data class PlayerStats(
     val highestWaveBeginner: Int = 0,
     /** Best wave on each level in any mode, keyed by `GameMap.id`. Unlocks NEURAL-MESH. */
     val highestWaveByMap: Map<String, Int> = emptyMap(),
+    /**
+     * Best wave on each level *in each mode* (backlog ♡4), keyed
+     * "`GameMap.id`|`GameMode.id`" — see [mapModeKey]. Shown on STATISTICS,
+     * and what a mode unlocked by a level-and-mode record reads.
+     */
+    val highestWaveByMapMode: Map<String, Int> = emptyMap(),
     val totalAttacksBlocked: Long = 0,
     val totalBossesDefeated: Long = 0,
     val totalCryptoEarned: Long = 0,
@@ -118,6 +124,13 @@ data class PlayerStats(
 ) {
     val favoriteAgent: String?
         get() = deploymentsByAgent.maxByOrNull { it.value }?.key
+
+    /** Best wave on [mapId] in [modeId]; 0 if never played there. */
+    fun bestWave(mapId: String, modeId: String): Int = highestWaveByMapMode[mapModeKey(mapId, modeId)] ?: 0
+
+    companion object {
+        fun mapModeKey(mapId: String, modeId: String): String = "$mapId|$modeId"
+    }
 }
 
 @Serializable

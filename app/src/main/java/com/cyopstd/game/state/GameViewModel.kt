@@ -402,7 +402,8 @@ class GameViewModel @JvmOverloads constructor(
     }
 
     private fun earnedAgentNames(stats: PlayerStats): Set<String> =
-        AgentType.earnedBy(stats.highestWave, stats.highestWaveBeginner).map { it.name }.toSet()
+        AgentType.earnedBy(stats.highestWave, stats.highestWaveBeginner, stats.highestWaveByMap)
+            .map { it.name }.toSet()
 
     private fun wireEngine() {
         engine.soundListener = { sound -> audio.play(sound) }

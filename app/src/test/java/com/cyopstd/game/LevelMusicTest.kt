@@ -89,7 +89,11 @@ class LevelMusicTest {
     @Test
     fun `every level with supplied music has its own track`() {
         // Every level has music the owner supplied, and no two share it.
-        val scored = Maps.all
+        // Levels 6–10 (♡1) wait on the owner's tracks and play the generated
+        // mode music until then; they are checked below.
+        val awaitingTracks = listOf(Maps.TRIDENT, Maps.SPIRAL, Maps.ZIGZAG, Maps.HELIX, Maps.BRAID)
+        for (map in awaitingTracks) assertEquals(null, musicForMap(map))
+        val scored = Maps.all - awaitingTracks
         val chosen = scored.associateWith { musicForMap(it) }
         for ((map, music) in chosen) {
             assertNotNull("${map.displayName} has no music", music)

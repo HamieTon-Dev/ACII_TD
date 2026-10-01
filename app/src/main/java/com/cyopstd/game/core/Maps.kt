@@ -469,7 +469,121 @@ object Maps {
         return points.toTypedArray()
     }
 
-    val all: List<GameMap> = listOf(PERIMETER, HUGGING_FACE, NEURAL_MESH, DUCK_USB, DDOS)
+    // ------------------------------------------------ chapter two (♡1)
+    //
+    // Levels 6–10: layouts and colours picked by the owner on 2026-09-30 from
+    // `ChapterTwoPreview`. **The display names are working titles** (the
+    // layout names) until the owner picks the real ones; ids are fixed now
+    // because saves are keyed by them.
+
+    private val S = WorldGeometry.SPAWN_X
+    private val R = WorldGeometry.SERVER_X
+    private val C = WorldGeometry.CORE_Y
+    private fun w(x: Float, y: Float) = Waypoint(x, y)
+    /** Dense candidate rows; the node filter keeps the ones that fit. */
+    private val DENSE_ROWS = FloatArray(21) { 30f + it * 35f }
+
+    private fun theme(b: Long, g: Long, f: Long, e: Long, m: Long) =
+        LevelTheme(b.toInt(), g.toInt(), f.toInt(), e.toInt(), m.toInt())
+
+    /** Level 6: layout 6B TRIDENT, colour C6 SYNTHWAVE. */
+    val TRIDENT = GameMap(
+        id = "trident",
+        displayName = "TRIDENT",
+        tagline = "Three routes: a straight shot down the middle, two that zigzag above and below it.",
+        laneWaypoints = arrayOf(
+            arrayOf(w(S, 90f), w(480f, 90f), w(480f, 230f), w(880f, 230f), w(880f, 90f), w(1190f, 90f), w(1190f, C), w(R, C)),
+            arrayOf(w(S, C), w(R, C)),
+            arrayOf(w(S, 670f), w(480f, 670f), w(480f, 530f), w(880f, 530f), w(880f, 670f), w(1190f, 670f), w(1190f, C), w(R, C))
+        ),
+        candidateRows = DENSE_ROWS,
+        unlockMapId = DDOS.id,
+        unlockMapName = DDOS.displayName,
+        unlockAtWave = 100,
+        threatHealthScale = 2.8f,
+        rewardScale = 1.35f,
+        // The pink lane edge of the preview sat too close to the threat
+        // colours; violet keeps the look and stays readable.
+        theme = theme(0xFF0A0418, 0xFF2A0F4A, 0xFF1A0F3A, 0xFF6A2A9A, 0xFF26C6DA)
+    )
+
+    /** Level 7: layout 6A SPIRAL, colour C3 MAGENTA. */
+    val SPIRAL = GameMap(
+        id = "spiral",
+        displayName = "SPIRAL",
+        tagline = "One long route drops in from the top and spirals outward to the rack.",
+        laneWaypoints = arrayOf(
+            arrayOf(w(560f, -60f), w(560f, C), w(840f, C), w(840f, 220f), w(290f, 220f), w(290f, 550f),
+                w(1060f, 550f), w(1060f, 80f), w(1190f, 80f), w(1190f, C), w(R, C))
+        ),
+        candidateRows = DENSE_ROWS,
+        unlockMapId = TRIDENT.id,
+        unlockMapName = TRIDENT.displayName,
+        unlockAtWave = 100,
+        threatHealthScale = 7.1f,
+        rewardScale = 1.4f,
+        theme = theme(0xFF12040E, 0xFF3A0F2E, 0xFF3A0F30, 0xFF641A58, 0xFFD04CA8)
+    )
+
+    /** Level 8: layout 8C ZIGZAG, colour C8 COPPER. */
+    val ZIGZAG = GameMap(
+        id = "zigzag",
+        displayName = "ZIGZAG",
+        tagline = "One route slashes corner to corner across the board five times.",
+        laneWaypoints = arrayOf(
+            arrayOf(w(S, 90f), w(100f, 90f), w(320f, 670f), w(540f, 90f), w(760f, 670f), w(980f, 90f),
+                w(1190f, 670f), w(1190f, C), w(R, C))
+        ),
+        candidateRows = DENSE_ROWS,
+        unlockMapId = SPIRAL.id,
+        unlockMapName = SPIRAL.displayName,
+        unlockAtWave = 100,
+        threatHealthScale = 7.6f,
+        rewardScale = 1.45f,
+        theme = theme(0xFF0C0605, 0xFF2E1A14, 0xFF32190F, 0xFF643622, 0xFFD08A5C)
+    )
+
+    /** Level 9: layout 10D HELIX, colour D8 ROSE GOLD. */
+    val HELIX = GameMap(
+        id = "helix",
+        displayName = "HELIX",
+        tagline = "Two routes weave through each other three times before the rack, like a strand of DNA.",
+        laneWaypoints = arrayOf(
+            arrayOf(w(S, 150f), w(150f, 150f), w(330f, 610f), w(510f, 610f), w(690f, 150f),
+                w(870f, 150f), w(1050f, 610f), w(1190f, 610f), w(1190f, C), w(R, C)),
+            arrayOf(w(S, 610f), w(150f, 610f), w(330f, 150f), w(510f, 150f), w(690f, 610f),
+                w(870f, 610f), w(1050f, 150f), w(1190f, 150f), w(1190f, C), w(R, C))
+        ),
+        candidateRows = DENSE_ROWS,
+        unlockMapId = ZIGZAG.id,
+        unlockMapName = ZIGZAG.displayName,
+        unlockAtWave = 100,
+        threatHealthScale = 5.6f,
+        rewardScale = 1.5f,
+        theme = theme(0xFF120807, 0xFF3A2020, 0xFF3A1E1C, 0xFF5A3634, 0xFFF0A898)
+    )
+
+    /** Level 10: layout 9B TRIPLE BRAID, colour D4 INDIGO. The hardest level. */
+    val BRAID = GameMap(
+        id = "braid",
+        displayName = "TRIPLE BRAID",
+        tagline = "Three routes braid through each other twice: every lane changes side.",
+        laneWaypoints = arrayOf(
+            arrayOf(w(S, 120f), w(300f, 120f), w(500f, C), w(700f, C), w(900f, 640f), w(1150f, 640f), w(1190f, C), w(R, C)),
+            arrayOf(w(S, C), w(300f, C), w(500f, 640f), w(700f, 640f), w(900f, 120f), w(1150f, 120f), w(1190f, C), w(R, C)),
+            arrayOf(w(S, 640f), w(300f, 640f), w(500f, 120f), w(700f, 120f), w(900f, C), w(1190f, C), w(R, C))
+        ),
+        candidateRows = DENSE_ROWS,
+        unlockMapId = HELIX.id,
+        unlockMapName = HELIX.displayName,
+        unlockAtWave = 100,
+        threatHealthScale = 5.8f,
+        rewardScale = 1.55f,
+        theme = theme(0xFF06051A, 0xFF16124A, 0xFF1A1552, 0xFF3A30A0, 0xFF7F74F0)
+    )
+
+    val all: List<GameMap> = listOf(PERIMETER, HUGGING_FACE, NEURAL_MESH, DUCK_USB, DDOS,
+        TRIDENT, SPIRAL, ZIGZAG, HELIX, BRAID)
 
     /**
      * Never throws, and never returns the wrong level silently.

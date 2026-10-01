@@ -275,6 +275,9 @@ class Agent : Poolable {
     var lifetimeKills: Int = 0
     var lifetimeDamage: Float = 0f
 
+    /** ACE: seconds until a fallen wall is rebuilt. */
+    var wallCooldown: Float = 0f
+
     /** AGENT FIRMWARE bought for this agent's type, as multipliers. */
     var firmwareDamage: Float = 1f
         private set
@@ -316,6 +319,33 @@ class Agent : Poolable {
         firmwareDamage = 1f
         firmwareRate = 1f
         firmwareRange = 1f
+        wallCooldown = 0f
+    }
+}
+
+/**
+ * ACE's wall across a route (backlog ♡6). Where routes share a stretch of
+ * road, one wall blocks every route through that point, so it is stored as a
+ * stopping distance per route ([Float.NaN] where a route does not pass it).
+ */
+class Wall : Poolable {
+    override var active = false
+    var ownerNodeId: Int = -1
+    var x: Float = 0f
+    var y: Float = 0f
+    var health: Float = 0f
+    var maxHealth: Float = 1f
+    var hitFlash: Float = 0f
+    var progressByLane: FloatArray = FloatArray(0)
+
+    fun progressAt(lane: Int): Float = progressByLane.getOrElse(lane) { Float.NaN }
+
+    override fun reset() {
+        active = false
+        ownerNodeId = -1
+        health = 0f
+        hitFlash = 0f
+        progressByLane = FloatArray(0)
     }
 }
 

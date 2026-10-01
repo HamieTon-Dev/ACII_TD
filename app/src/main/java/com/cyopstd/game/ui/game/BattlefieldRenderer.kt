@@ -213,6 +213,7 @@ class BattlefieldRenderer {
         // hide the wave that is still coming while the player celebrates the
         // one that is not.
         drawShardBursts(canvas, engine)
+        drawWalls(canvas, engine)
         drawEnemies(canvas, engine, time)
         drawProjectiles(canvas, engine)
         drawEffects(canvas, engine)
@@ -1514,6 +1515,47 @@ class BattlefieldRenderer {
      * back to front by progress along the route, so the threat closest to the
      * core is always the one on top.
      */
+    private val wallPoint = FloatArray(3)
+    private val wallAhead = FloatArray(3)
+
+    /**
+     * ACE's walls: a solid bar across the route, as wide as the corridor, with
+     * its remaining health as a shrinking inner bar and ▓ blocks in ASCII.
+     */
+    private fun drawWalls(canvas: android.graphics.Canvas, engine: GameEngine) {
+        for (wall in engine.walls.items) {
+            if (!wall.active) continue
+            // Direction of the route here, from the first route the wall blocks.
+            val lane = (0 until wall.progressByLane.size).firstOrNull { !wall.progressAt(it).isNaN() } ?: continue
+            val at = wall.progressAt(lane)
+            map.positionAt(lane, (at - 6f).coerceAtLeast(0f), wallPoint)
+            map.positionAt(lane, at + 6f, wallAhead)
+            var dx = wallAhead[0] - wallPoint[0]
+            var dy = wallAhead[1] - wallPoint[1]
+            val len = kotlin.math.hypot(dx, dy).coerceAtLeast(0.001f)
+            dx /= len; dy /= len
+            // Across the route: perpendicular to its direction.
+            val half = WorldGeometry.LANE_HEIGHT / 2f + 6f
+            val px = -dy * half
+            val py = dx * half
+            val fraction = (wall.health / wall.maxHealth).coerceIn(0f, 1f)
+            strokePaint.strokeWidth = 12f
+            strokePaint.color = if (wall.hitFlash > 0f) colRed else colText
+            strokePaint.alpha = 200
+            canvas.drawLine(wall.x - px, wall.y - py, wall.x + px, wall.y + py, strokePaint)
+            strokePaint.strokeWidth = 5f
+            strokePaint.color = colCyan
+            strokePaint.alpha = 255
+            canvas.drawLine(wall.x - px, wall.y - py, wall.x - px + 2 * px * fraction, wall.y - py + 2 * py * fraction, strokePaint)
+            thinTextPaint.textSize = 15f
+            thinTextPaint.color = colText
+            thinTextPaint.alpha = 230
+            canvas.drawText("\u2593".repeat((1 + 3 * fraction).toInt().coerceIn(1, 4)), wall.x, wall.y - half - 8f, thinTextPaint)
+            thinTextPaint.alpha = 255
+        }
+        strokePaint.alpha = 255
+    }
+
     private fun drawEnemies(canvas: android.graphics.Canvas, engine: GameEngine, time: Float) {
         val items = engine.enemies.items
         if (enemyOrder.size < items.size) enemyOrder = IntArray(items.size)
