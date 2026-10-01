@@ -609,6 +609,13 @@ suit: Material Symbols (Apache 2.0) or drawing the few icons in-house.
   in HACK:AI).
 - **♡7:** icons from **CoreUI Icons** (https://coreui.io/icons/). Free set is
   CC BY 4.0 → credit on the About screen.
+- **Music for levels 6–10 (owner, 2026-10-01):** *"I will generate all new
+  music for the new 5 levels. I'll send you two files for each level."*
+  Waiting on the files. When they arrive: `res/raw/level6.mp3` +
+  `level6_2.mp3` … `level10.mp3` + `level10_2.mp3`, add LEVEL_SIX–LEVEL_TEN to
+  `LevelMusic`, map them in `musicForMap`, update `LevelMusicTest` (which today
+  expects the five new levels to play generated music), rights note in
+  LICENSES.md like levels 1–5. Watch the bundle size (raw music is ~47 MB now).
 - **Item 8 (Agent Firmware third track):** owner asked for a detailed
   explanation with examples before deciding. **Explained 2026-10-01** (in
   chat): the owner asked for HP, damage and range per agent; agents in this
