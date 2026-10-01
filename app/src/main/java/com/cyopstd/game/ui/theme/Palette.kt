@@ -38,6 +38,15 @@ object Palette {
     val TextMuted = Color(0xFF5C6E8C)
     val Crypto = Color(0xFFFFD426)
 
+    /** The logo's colours (CYBER OPERATIVE, ♡3): the face, the shield edge, the shield body. */
+    val LogoMint = Color(0xFF6EF7A5)
+    val LogoEdge = Color(0xFF23C55E)
+    val LogoBody = Color(0xFF07301E)
+
+    /** ANTI DUCK USB's hologram (♡2): it shimmers between these two. */
+    val HologramGreen = Color(0xFF5CFF7A)
+    val HologramYellow = Color(0xFFF2F25A)
+
     // Semantic helpers -----------------------------------------------------
     val Danger = Red
     val Warning = Orange

@@ -114,6 +114,11 @@ class EnemySystem(private val engine: GameEngine, private val random: Random) {
             // of the spawn, not the moment it does.
             enemy.variantJamTimer = BossVariant.VARIANT_JAM_INTERVAL
             enemy.ransomTimer = BossVariant.RANSOM_INTERVAL
+            enemy.variantTimer = when (variant) {
+                BossVariant.BOTMASTER -> BossVariant.BOTMASTER_INTERVAL
+                BossVariant.SPOOFER -> FIRST_DECOY_AFTER
+                else -> 0f
+            }
         }
 
         // HARDENING: past wave 100, elites and bosses grow tougher after
@@ -144,9 +149,11 @@ class EnemySystem(private val engine: GameEngine, private val random: Random) {
                 if (enemy.slowRemaining <= 0f) enemy.slowFactor = 1f
             }
 
-            if (enemy.isBoss) updateBoss(enemy, dt)
+            // A decoy is a picture of a boss, not a boss: it walks and nothing else.
+            if (enemy.isBoss && !enemy.decoy) updateBoss(enemy, dt)
 
-            enemy.progress += enemy.currentSpeed() * dt
+            // ACE's walls stop a threat that reaches them until it breaks through.
+            enemy.progress += engine.wallSystem().allowedStep(enemy, enemy.currentSpeed() * dt, dt)
             placeOnPath(enemy)
 
             if (enemy.progress >= engine.map.laneLength[enemy.lane]) {
@@ -193,6 +200,12 @@ class EnemySystem(private val engine: GameEngine, private val random: Random) {
         }
 
         updateVariantJam(enemy, dt)
+        when (enemy.variant) {
+            BossVariant.BOTMASTER -> updateBotmaster(enemy, dt)
+            BossVariant.ROOTKIT -> updateRootkit(enemy, dt)
+            BossVariant.SPOOFER -> updateSpoofer(enemy, dt)
+            else -> Unit
+        }
         updateModelCollapse(enemy, dt)
         updateRansom(enemy, dt)
         if (enemy.variant == BossVariant.GRADIENT && enemy.gradientHeat > 0f) {
@@ -262,6 +275,138 @@ class EnemySystem(private val engine: GameEngine, private val random: Random) {
         engine.addToWave()
         engine.effectSystem().spawnText(
             enemy.x, enemy.y - 56f, "SYN-STORM SPLIT", GameEngine.COLOR_HOSTILE, 1.1f
+        )
+    }
+
+    /** BOTMASTER drops BOTs behind itself. See [BossVariant.BOTMASTER]. */
+    private fun updateBotmaster(enemy: Enemy, dt: Float) {
+        enemy.variantTimer -= dt
+        if (enemy.variantTimer > 0f) return
+        enemy.variantTimer = BossVariant.BOTMASTER_INTERVAL
+        for (i in 0 until BossVariant.BOTMASTER_DROP) {
+            spawnEscort(EnemyType.BOT, enemy.lane, enemy.progress - 24f - i * 14f, engine.currentWave)
+        }
+        engine.effectSystem().spawnText(
+            enemy.x, enemy.y - 52f, "BOTNET", GameEngine.COLOR_HOSTILE, 0.8f
+        )
+    }
+
+    /** ROOTKIT's hide cycle. See [BossVariant.ROOTKIT]. */
+    private fun updateRootkit(enemy: Enemy, dt: Float) {
+        enemy.variantTimer = (enemy.variantTimer + dt) % BossVariant.ROOTKIT_CYCLE
+        val hide = enemy.variantTimer >= BossVariant.ROOTKIT_CYCLE - BossVariant.ROOTKIT_HIDDEN
+        if (hide && !enemy.hidden) {
+            engine.effectSystem().spawnText(
+                enemy.x, enemy.y - 52f, "HIDDEN", GameEngine.COLOR_HOSTILE, 0.8f
+            )
+        }
+        enemy.hidden = hide
+    }
+
+    /** SPOOFER casts decoys of itself just ahead. See [BossVariant.SPOOFER]. */
+    private fun updateSpoofer(enemy: Enemy, dt: Float) {
+        enemy.variantTimer -= dt
+        if (enemy.variantTimer > 0f) return
+        enemy.variantTimer = BossVariant.SPOOFER_INTERVAL
+        var alive = 0
+        for (other in engine.enemies.items) {
+            if (other.active && other.decoy && other.decoyOwner === enemy) alive++
+        }
+        if (alive >= BossVariant.SPOOFER_MAX_DECOYS) return
+        val decoy = engine.enemies.obtain() ?: return
+        decoy.reset()
+        decoy.active = true
+        decoy.type = enemy.type
+        decoy.isBoss = true
+        decoy.isElite = true
+        decoy.variant = enemy.variant
+        decoy.decoy = true
+        decoy.decoyOwner = enemy
+        decoy.maxHealth = enemy.maxHealth * BossVariant.SPOOFER_DECOY_HEALTH
+        decoy.health = decoy.maxHealth
+        decoy.armor = enemy.armor
+        decoy.baseSpeed = enemy.baseSpeed
+        decoy.serverDamage = 0
+        decoy.reward = 0
+        decoy.phase = enemy.phase + 2.3f
+        decoy.lane = enemy.lane
+        val length = engine.map.laneLength[enemy.lane]
+        decoy.progress = (enemy.progress + BossVariant.SPOOFER_DECOY_LEAD)
+            .coerceAtMost(length - DECOY_CLEARANCE).coerceAtLeast(enemy.progress)
+        placeOnPath(decoy)
+        escortIds.add(decoy)
+        engine.effectSystem().spawnText(
+            enemy.x, enemy.y - 52f, "SPOOFED", GameEngine.COLOR_HOSTILE, 0.8f
+        )
+    }
+
+    /** A SPOOFER's decoys go with it. */
+    private fun dropDecoysOf(owner: Enemy) {
+        for (other in engine.enemies.items) {
+            if (!other.active || !other.decoy || other.decoyOwner !== owner) continue
+            escortIds.remove(other)
+            engine.effectSystem().spawnText(
+                other.x, other.y - 40f, "SPOOF DROPPED", GameEngine.COLOR_ELITE, 0.8f
+            )
+            other.reset()
+        }
+    }
+
+    /**
+     * WORM breaks into [BossVariant.WORM_PIECES] smaller worms, spread along
+     * its route. Each joins the wave; the smallest do not break again.
+     */
+    private fun breakWorm(enemy: Enemy) {
+        if (enemy.wormGeneration >= BossVariant.WORM_MAX_GENERATION) return
+        val length = engine.map.laneLength[enemy.lane]
+        var made = 0
+        for (i in 0 until BossVariant.WORM_PIECES) {
+            val piece = engine.enemies.obtain() ?: break
+            piece.reset()
+            piece.active = true
+            piece.type = enemy.type
+            piece.isBoss = true
+            piece.isElite = true
+            piece.variant = BossVariant.WORM
+            piece.wormGeneration = enemy.wormGeneration + 1
+            piece.maxHealth = enemy.maxHealth * BossVariant.WORM_PIECE_HEALTH
+            piece.health = piece.maxHealth
+            piece.armor = enemy.armor
+            piece.baseSpeed = enemy.baseSpeed * WORM_PIECE_SPEED
+            piece.serverDamage = (enemy.serverDamage / 2).coerceAtLeast(1)
+            piece.reward = (enemy.reward / BossVariant.WORM_PIECES).coerceAtLeast(1)
+            piece.phase = enemy.phase + i * 2.1f
+            piece.lane = enemy.lane
+            piece.laneOffset = (i - 1) * 9f
+            piece.progress = (enemy.progress + WORM_SPREAD[i % WORM_SPREAD.size])
+                .coerceIn(0f, length - 1f)
+            placeOnPath(piece)
+            engine.addToWave()
+            made++
+        }
+        if (made > 0) {
+            engine.effectSystem().spawnText(
+                enemy.x, enemy.y - 56f, "WORM SPLIT", GameEngine.COLOR_HOSTILE, 1.0f
+            )
+        }
+    }
+
+    /** KERNEL PANIC's last act: jam everything near it. */
+    private fun kernelPanic(enemy: Enemy) {
+        val radiusSq = BossVariant.KERNEL_PANIC_RADIUS * BossVariant.KERNEL_PANIC_RADIUS
+        var jammed = 0
+        for (agent in engine.agents.items) {
+            if (!agent.active) continue
+            val dx = agent.x - enemy.x
+            val dy = agent.y - enemy.y
+            if (dx * dx + dy * dy > radiusSq) continue
+            agent.jam(BossVariant.KERNEL_PANIC_SECONDS)
+            if (agent.disruptedFor > 0f) jammed++
+        }
+        engine.effectSystem().spawnText(
+            enemy.x, enemy.y - 90f,
+            if (jammed > 0) "KERNEL PANIC \u00B7 $jammed JAMMED" else "KERNEL PANIC",
+            GameEngine.COLOR_HOSTILE, 1.4f
         )
     }
 
@@ -351,6 +496,13 @@ class EnemySystem(private val engine: GameEngine, private val random: Random) {
     }
 
     private fun onReachedServer(enemy: Enemy) {
+        if (enemy.decoy) {
+            // A decoy was never a threat; it just stops being drawn.
+            escortIds.remove(enemy)
+            enemy.reset()
+            return
+        }
+        if (enemy.isBoss && enemy.variant == BossVariant.SPOOFER) dropDecoysOf(enemy)
         if (enemy.isBoss && enemy.variant == BossVariant.EXFIL) {
             // Takes crypto, not integrity. See BossVariant.EXFIL.
             val stolen = (engine.crypto * BossVariant.EXFIL_STEAL).toInt()
@@ -373,6 +525,24 @@ class EnemySystem(private val engine: GameEngine, private val random: Random) {
 
     /** Called by [ProjectileSystem] when an enemy's health reaches zero. */
     fun onEnemyDestroyed(enemy: Enemy) {
+        if (enemy.decoy) {
+            // Nothing to pay and nothing to count: it was never there.
+            engine.effectSystem().spawnText(
+                enemy.x, enemy.y - 40f, "DECOY", GameEngine.COLOR_ELITE, 0.8f
+            )
+            engine.effectSystem().spawnDeath(enemy.x, enemy.y, false)
+            escortIds.remove(enemy)
+            enemy.reset()
+            return
+        }
+        if (enemy.isBoss) {
+            when (enemy.variant) {
+                BossVariant.WORM -> breakWorm(enemy)
+                BossVariant.KERNEL_PANIC -> kernelPanic(enemy)
+                BossVariant.SPOOFER -> dropDecoysOf(enemy)
+                else -> Unit
+            }
+        }
         // What was actually credited, firmware bonus included, so the "+◇"
         // popup shows what the player really got.
         val reward = engine.economySystem().award(enemy.reward)
@@ -442,6 +612,21 @@ class EnemySystem(private val engine: GameEngine, private val random: Random) {
          * sides rather than drifting across one at a time.
          */
         private val LANE_SLOTS = floatArrayOf(0f, 10f, -10f, 5f, -5f)
+
+        /** A SPOOFER's first decoy comes this soon after it walks out. */
+        private const val FIRST_DECOY_AFTER = 2f
+
+        /** A decoy never appears closer than this to the core. */
+        private const val DECOY_CLEARANCE = 30f
+
+        /** WORM pieces keep the pace of what they broke from. */
+        private const val WORM_PIECE_SPEED = 1f
+
+        /**
+         * Where along the route each WORM piece lands, relative to the break:
+         * never ahead of it, so a kill near the core is not a free leak.
+         */
+        private val WORM_SPREAD = floatArrayOf(-40f, -20f, 0f)
 
         private const val DISRUPT_RADIUS = 260f
         private const val DISRUPT_RADIUS_SQ = DISRUPT_RADIUS * DISRUPT_RADIUS

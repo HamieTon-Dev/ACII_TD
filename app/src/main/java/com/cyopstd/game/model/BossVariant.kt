@@ -27,6 +27,12 @@ package com.cyopstd.game.model
  */
 const val COUNTER_MULTIPLIER = 2f
 
+/** CYBER OPERATIVE against the eyes (♡3). Mirrors `Balance.CYBER_OPERATIVE_EYE_MULTIPLIER`. */
+private const val CYBER_OPERATIVE_COUNTER = 4f
+
+/** ANTI DUCK USB against DUCK-USB's own bosses (♡2). Mirrors `Balance.ANTI_DUCK_MULTIPLIER`. */
+private const val ANTI_DUCK_COUNTER = 3f
+
 /**
  * The map the four extra bosses belong to, by `GameMap.id`.
  *
@@ -44,6 +50,13 @@ private const val DUCK_USB_MAP_ID = "duck_usb"
 /** Map 5. `DdosTest` asserts it matches `Maps.DDOS.id`. */
 private const val DDOS_MAP_ID = "ddos"
 
+/** Chapter two. `ChapterTwoBossTest` asserts these match `Maps`. */
+private const val TRIDENT_MAP_ID = "trident"
+private const val SPIRAL_MAP_ID = "spiral"
+private const val ZIGZAG_MAP_ID = "zigzag"
+private const val HELIX_MAP_ID = "helix"
+private const val BRAID_MAP_ID = "braid"
+
 /**
  * The levels in the order they are unlocked, by `GameMap.id`.
  *
@@ -52,7 +65,9 @@ private const val DDOS_MAP_ID = "ddos"
  * its own bosses and every earlier map's. `BossVariantTest` asserts this
  * matches `Maps.all`.
  */
-val MAP_PROGRESSION: List<String> = listOf("perimeter", HUGGING_FACE_MAP_ID, NEURAL_MESH_MAP_ID, DUCK_USB_MAP_ID, DDOS_MAP_ID)
+val MAP_PROGRESSION: List<String> = listOf("perimeter", HUGGING_FACE_MAP_ID, NEURAL_MESH_MAP_ID, DUCK_USB_MAP_ID, DDOS_MAP_ID,
+    // Chapter two (♡1), each with its own boss (♡5).
+    TRIDENT_MAP_ID, SPIRAL_MAP_ID, ZIGZAG_MAP_ID, HELIX_MAP_ID, BRAID_MAP_ID)
 
 /** The owner's number for the two heavies: *"maybe 1.2x more"* health. */
 private const val HEAVY_HEALTH_SCALE = 1.2f
@@ -222,6 +237,7 @@ enum class BossVariant(
             "to it, briefly, every few seconds.",
         firstCycle = 6,
         mapId = HUGGING_FACE_MAP_ID,
+        bonusDamageFrom = mapOf("CYBER_OPERATIVE" to CYBER_OPERATIVE_COUNTER),
         jamsAgentType = "REDHAT",
         palette = BossPalette.SPECTRUM
     ),
@@ -238,6 +254,7 @@ enum class BossVariant(
             "to it, briefly, every few seconds.",
         firstCycle = 6,
         mapId = HUGGING_FACE_MAP_ID,
+        bonusDamageFrom = mapOf("CYBER_OPERATIVE" to CYBER_OPERATIVE_COUNTER),
         jamsAgentType = "BLUEHAT",
         palette = BossPalette.SPECTRUM
     ),
@@ -349,6 +366,7 @@ enum class BossVariant(
             "another route.",
         firstCycle = 3,
         mapId = DUCK_USB_MAP_ID,
+        bonusDamageFrom = mapOf("ANTI_DUCK" to ANTI_DUCK_COUNTER),
         palette = BossPalette.SPECTRUM
     ),
 
@@ -372,6 +390,7 @@ enum class BossVariant(
             "alone. Few big hits beat many small ones.",
         firstCycle = 4,
         mapId = DUCK_USB_MAP_ID,
+        bonusDamageFrom = mapOf("ANTI_DUCK" to ANTI_DUCK_COUNTER),
         palette = BossPalette.VIOLET
     ),
 
@@ -416,7 +435,111 @@ enum class BossVariant(
         firstCycle = 4,
         mapId = DDOS_MAP_ID,
         palette = BossPalette.SPECTRUM
+    ),
+
+    /**
+     * Chapter two (♡5): one boss per level, the owner's picks.
+     *
+     * TRIDENT — BOTMASTER keeps dropping BOTs behind itself while it walks.
+     * The BOTs are escorts: not part of the wave, half reward.
+     */
+    BOTMASTER(
+        id = "botmaster",
+        displayName = "BOTMASTER",
+        glyph = "[B\u221E]",
+        healthScale = 1f,
+        armorBonus = 0f,
+        speedScale = 0.85f,
+        signature = "Keeps spawning BOTs behind itself. Kill it fast or " +
+            "drown in its botnet.",
+        firstCycle = 2,
+        mapId = TRIDENT_MAP_ID,
+        palette = BossPalette.VIOLET
+    ),
+
+    /**
+     * SPIRAL — ROOTKIT hides for [ROOTKIT_HIDDEN] seconds of every
+     * [ROOTKIT_CYCLE]. Hidden, no agent will pick it as a target, but a shot
+     * already in flight still lands and splash and chains still reach it.
+     */
+    ROOTKIT(
+        id = "rootkit",
+        displayName = "ROOTKIT",
+        glyph = "[r00t]",
+        // Hidden a third of the time, so lighter and slower than most to keep
+        // the fight about timing rather than a wall of health.
+        healthScale = 0.85f,
+        armorBonus = 0f,
+        speedScale = 0.85f,
+        signature = "Hides for 2 seconds of every 6: nothing can target it. " +
+            "Splash and chains still reach it.",
+        firstCycle = 2,
+        mapId = SPIRAL_MAP_ID,
+        palette = BossPalette.ICE
+    ),
+
+    /**
+     * ZIGZAG — WORM breaks into [WORM_PIECES] smaller worms when it dies, and
+     * each of those breaks once more. Every piece joins the wave.
+     */
+    WORM(
+        id = "worm",
+        displayName = "WORM",
+        glyph = "[~~>]",
+        // Its pieces add up to almost as much again (0.6 + 0.36 of it), so
+        // the original is light.
+        healthScale = 0.6f,
+        armorBonus = 0f,
+        speedScale = 1.05f,
+        signature = "Breaks into three smaller worms when killed, and each of " +
+            "those breaks once more. Splash is your friend.",
+        firstCycle = 2,
+        mapId = ZIGZAG_MAP_ID,
+        palette = BossPalette.SPECTRUM
+    ),
+
+    /**
+     * HELIX — SPOOFER casts decoy copies of itself just ahead on its route.
+     * A decoy draws fire like a boss, does no damage, is not part of the wave,
+     * and vanishes when the SPOOFER dies. ANALYST and ROOT ADMIN see through
+     * it. The owner: *"test balance on this, it sounds impossible"* —
+     * `ChapterTwoBossTest` measures it.
+     */
+    SPOOFER(
+        id = "spoofer",
+        displayName = "SPOOFER",
+        glyph = "[\u00BF\u00BF]",
+        healthScale = 1f,
+        armorBonus = 0f,
+        speedScale = 1f,
+        signature = "Casts decoy copies of itself that soak up fire. ANALYST " +
+            "and ROOT ADMIN see through them.",
+        firstCycle = 2,
+        mapId = HELIX_MAP_ID,
+        palette = BossPalette.SPECTRUM
+    ),
+
+    /**
+     * TRIPLE BRAID — KERNEL PANIC takes the board down with it: when it dies,
+     * every agent within [KERNEL_PANIC_RADIUS] is jammed for
+     * [KERNEL_PANIC_SECONDS]. FIREWALL stands in it, as it does every jam.
+     */
+    KERNEL_PANIC(
+        id = "kernel_panic",
+        displayName = "KERNEL PANIC",
+        glyph = "[KP]",
+        healthScale = 1.2f,
+        armorBonus = 2f,
+        speedScale = 0.95f,
+        signature = "When it dies, every agent near it is jammed for 3 " +
+            "seconds. Kill it far from your board, or with the next wave far off.",
+        firstCycle = 2,
+        mapId = BRAID_MAP_ID,
+        palette = BossPalette.HOSTILE
     );
+
+    /** One of the bosses of levels 1–5 (ACE hits these hardest). */
+    val isChapterOne: Boolean get() = mapId == null || mapId in CHAPTER_ONE
 
     companion object {
         /** How much health a ZOMBIE comes back with. */
@@ -483,6 +606,31 @@ enum class BossVariant(
         /** Momentum lost a second. */
         const val GRADIENT_COOL_PER_SECOND = 0.4f
 
+        /** BOTMASTER: seconds between drops, and BOTs per drop. */
+        const val BOTMASTER_INTERVAL = 3f
+        const val BOTMASTER_DROP = 2
+
+        /** ROOTKIT: the length of its cycle, and the hidden part of it. */
+        const val ROOTKIT_CYCLE = 6f
+        const val ROOTKIT_HIDDEN = 2f
+
+        /** WORM: pieces per break, each piece's share of its parent's health, and how deep it breaks. */
+        const val WORM_PIECES = 3
+        const val WORM_PIECE_HEALTH = 0.2f
+        const val WORM_MAX_GENERATION = 2
+
+        /** SPOOFER: seconds between decoys, how many at once, and their health share. */
+        const val SPOOFER_INTERVAL = 7f
+        const val SPOOFER_MAX_DECOYS = 2
+        const val SPOOFER_DECOY_HEALTH = 0.15f
+
+        /** How far ahead of the SPOOFER a decoy appears, in world units. */
+        const val SPOOFER_DECOY_LEAD = 45f
+
+        /** KERNEL PANIC: the reach and length of its dying jam. */
+        const val KERNEL_PANIC_RADIUS = 260f
+        const val KERNEL_PANIC_SECONDS = 3f
+
         fun gradientSpeed(heat: Float): Float =
             GRADIENT_SLOW + (GRADIENT_FAST - GRADIENT_SLOW) * heat.coerceIn(0f, 1f)
 
@@ -510,6 +658,14 @@ enum class BossVariant(
          * [ZOMBIE] and the map-specific four are *extra* identities rather
          * than a separate game.
          */
+        /** The levels of the first chapter, whose bosses ACE is built against. */
+        val CHAPTER_ONE: List<String> = MAP_PROGRESSION.take(5)
+
+        /** The one boss a chapter-two level calls its own, or null elsewhere. */
+        fun ownBossOf(mapId: String?): BossVariant? =
+            if (mapId == null || mapId in CHAPTER_ONE) null
+            else entries.firstOrNull { it.mapId == mapId }
+
         fun poolFor(cycle: Int, mapId: String?): List<BossVariant> {
             val here = MAP_PROGRESSION.indexOf(mapId).coerceAtLeast(0)
             return entries.filter {

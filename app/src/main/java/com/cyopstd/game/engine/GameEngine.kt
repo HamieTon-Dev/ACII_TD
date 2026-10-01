@@ -40,6 +40,8 @@ class GameEngine(
     // ------------------------------------------------------------ entity pools
 
     val enemies = ObjectPool(MAX_ENEMIES) { Enemy() }
+    /** ACE's walls across the routes. */
+    val walls = ObjectPool(WallSystem.MAX_WALLS) { com.cyopstd.game.model.Wall() }
     // Sized from the largest map rather than the current one: the pool is
     // allocated once at construction and switching level must not have to
     // rebuild it, so it is sized for the worst case.
@@ -228,6 +230,7 @@ class GameEngine(
 
     private val enemySystem = EnemySystem(this, random)
     private val combatSystem = CombatSystem(this, random)
+    private val wallSystem = WallSystem(this)
     private val projectileSystem = ProjectileSystem(this, random)
     private val effectSystem = EffectSystem(this, random)
     private val economySystem = EconomySystem(this)
@@ -289,6 +292,7 @@ class GameEngine(
 
     fun startNewRun() {
         enemies.clear()
+        walls.clear()
         agents.clear()
         projectiles.clear()
         effects.clear()
@@ -457,7 +461,7 @@ class GameEngine(
         // A wave on the beginner level also counts toward the agents only it
         // can unlock (SERVER SYSTEMS ENGINEER).
         val beginnerWave = if (AgentType.isBeginnerLevel(map.id, mode.id)) wave else 0
-        for (type in AgentType.earnedBy(wave, beginnerWave)) {
+        for (type in AgentType.earnedBy(wave, beginnerWave, mapOf(map.id to wave))) {
             if (isAgentUnlocked(type)) continue
             onAgentUnlocked?.invoke(type)
         }
@@ -521,6 +525,7 @@ class GameEngine(
         }
 
         combatSystem.refreshBuffs()
+        wallSystem.update(dt)
         enemySystem.update(dt)
         combatSystem.update(dt)
         projectileSystem.update(dt)
@@ -589,7 +594,7 @@ class GameEngine(
     private fun countOnScreen() {
         screenThreats = 0; screenElites = 0; screenBosses = 0
         for (enemy in enemies.items) {
-            if (!enemy.active) continue
+            if (!enemy.active || enemy.decoy) continue
             if (enemy.isBoss) {
                 screenBosses++
             } else {
@@ -705,6 +710,7 @@ class GameEngine(
         if (phase != RunPhase.GAME_OVER) return false
 
         enemies.clear()
+        walls.clear()
         projectiles.clear()
         effects.clear()
         enemySystem.clearEscorts()
@@ -780,7 +786,8 @@ class GameEngine(
         enemiesRemaining = (enemiesRemaining - 1).coerceAtLeast(0)
         if (wasKilled && enemy != null) {
             runAttacksBlocked++
-            if (enemy.isBoss) runBossesDefeated++
+            // A WORM's pieces are the same boss, already counted.
+            if (enemy.isBoss && enemy.wormGeneration == 0) runBossesDefeated++
         }
     }
 
@@ -917,6 +924,7 @@ class GameEngine(
     fun sellAgent(nodeId: Int): Boolean {
         val agent = agentAt(nodeId) ?: return false
         val refund = agent.type.sellValue(agent.level)
+        wallSystem.demolish(agent)
         economySystem.award(refund, countAsEarned = false)
         effectSystem.spawnText(agent.x, agent.y - 40f, "+$refund", COLOR_CRYPTO, 0.9f)
         agent.reset()
@@ -946,6 +954,7 @@ class GameEngine(
     internal fun economySystem(): EconomySystem = economySystem
     internal fun projectileSystem(): ProjectileSystem = projectileSystem
     internal fun enemySystem(): EnemySystem = enemySystem
+    internal fun wallSystem(): WallSystem = wallSystem
     internal fun combatSystem(): CombatSystem = combatSystem
 
     /** Live count of packets currently on the battlefield. */

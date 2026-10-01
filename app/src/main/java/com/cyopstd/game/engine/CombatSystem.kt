@@ -31,6 +31,22 @@ class CombatSystem(private val engine: GameEngine, private val random: Random) {
             if (!agent.active) continue
             agent.damageBuff = 1f
             agent.rateBuff = 1f
+            agent.jamShielded = false
+        }
+
+        // CYBER OPERATIVE (♡3): nothing in its range can be jammed, itself included.
+        for (i in agents.indices) {
+            val operative = agents[i]
+            if (!operative.active || operative.type != AgentType.CYBER_OPERATIVE) continue
+            val radius = operative.range()
+            val radiusSq = radius * radius
+            for (j in agents.indices) {
+                val other = agents[j]
+                if (!other.active) continue
+                val dx = other.x - operative.x
+                val dy = other.y - operative.y
+                if (dx * dx + dy * dy <= radiusSq) other.jamShielded = true
+            }
         }
 
         for (i in agents.indices) {
@@ -175,7 +191,7 @@ class CombatSystem(private val engine: GameEngine, private val random: Random) {
             var bestScore = -Float.MAX_VALUE
             for (i in enemies.indices) {
                 val enemy = enemies[i]
-                if (!enemy.active || enemy.health <= 0f) continue
+                if (!enemy.active || enemy.health <= 0f || !canTarget(agent, enemy)) continue
                 var alreadyPicked = false
                 for (k in 0 until found) {
                     if (multiTargets[k] === enemy) { alreadyPicked = true; break }
@@ -232,7 +248,7 @@ class CombatSystem(private val engine: GameEngine, private val random: Random) {
 
         for (i in enemies.indices) {
             val enemy = enemies[i]
-            if (!enemy.active || enemy.health <= 0f) continue
+            if (!enemy.active || enemy.health <= 0f || !canTarget(agent, enemy)) continue
             val dx = enemy.x - agent.x
             val dy = enemy.y - agent.y
             if (dx * dx + dy * dy > rangeSq) continue
@@ -258,6 +274,17 @@ class CombatSystem(private val engine: GameEngine, private val random: Random) {
             }
         }
         return best
+    }
+
+    /**
+     * Whether [agent] may pick [enemy] at all: a hidden ROOTKIT is off the
+     * table for everyone, and ANALYST and ROOT ADMIN see through a SPOOFER's
+     * decoys (♡5).
+     */
+    private fun canTarget(agent: Agent, enemy: Enemy): Boolean {
+        if (!enemy.targetable) return false
+        if (enemy.decoy && agent.type.seesThroughDecoys) return false
+        return true
     }
 
     companion object {

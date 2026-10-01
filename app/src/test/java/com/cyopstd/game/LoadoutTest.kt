@@ -5,6 +5,7 @@ import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onAllNodesWithText
 import androidx.compose.ui.test.onNodeWithText
+import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.performClick
 import android.app.Application
 import androidx.test.core.app.ApplicationProvider
@@ -184,8 +185,11 @@ class LoadoutTest {
     }
 
     // ------------------------------------------------------------ run mode
+    //
+    // Level and difficulty moved off the main menu to the NEW RUN screen,
+    // with the difficulty in a drop-down (♡7, owner, 2026-09-30).
 
-    private fun menu(
+    private fun setup(
         highestWave: Int,
         modes: List<GameMode>,
         selected: GameMode = GameMode.STANDARD,
@@ -193,12 +197,8 @@ class LoadoutTest {
     ) {
         compose.setContent {
             CyOpsTheme {
-                MainMenuScreen(
-                    hasSavedRun = false,
+                com.cyopstd.game.ui.menu.RunSetupScreen(
                     stats = PlayerStats(highestWave = highestWave),
-                    budget = 0L,
-                    firmwareLevel = 0,
-                    adsRemoved = false,
                     availableModes = modes,
                     selectedMode = selected,
                     availableMaps = listOf(Maps.PERIMETER),
@@ -206,66 +206,93 @@ class LoadoutTest {
                     backgroundAnimation = false,
                     onSelectMode = onSelectMode,
                     onSelectMap = {},
-                    onPlay = {}, onContinue = {}, onAgents = {}, onFirmware = {},
-                    onCodex = {}, onStore = {}, onLoadout = {}, onPlayAccount = {},
-                    onLeaderboard = {}, onStatistics = {}, onSettings = {},
-                    onAbout = {}, onExit = {}
+                    onStart = {},
+                    onBack = {}
                 )
             }
         }
     }
 
+    private fun openDropdown() {
+        compose.onNodeWithTag("difficulty-dropdown").performClick()
+        compose.waitForIdle()
+    }
+
     @Test
     fun `HACK AI is visible but locked before wave 100`() {
         var picked: GameMode? = null
-        menu(highestWave = 40, modes = listOf(GameMode.STANDARD), onSelectMode = { picked = it })
-
-        compose.onNodeWithText(GameMode.HACK_AI.runName).assertIsDisplayed()
-        // Shown so there is something to aim at; inert until it is earned.
+        setup(highestWave = 40, modes = listOf(GameMode.STANDARD), onSelectMode = { picked = it })
+        openDropdown()
+        compose.onNodeWithText("LOCKED \u00B7 clear wave 100 (best: 40)").assertIsDisplayed()
         compose.onNodeWithText(GameMode.HACK_AI.runName).performClick()
         assertNull(picked)
-        compose.onNodeWithText("LOCKED · clear wave 100 (best: 40)").assertIsDisplayed()
+        compose.onNodeWithTag("locked-note").assertIsDisplayed()
+    }
+
+    @Test
+    fun `KERNEL MODE is greyed out and states its condition until DDoS wave 100 in HACK AI`() {
+        var picked: GameMode? = null
+        compose.setContent {
+            CyOpsTheme {
+                com.cyopstd.game.ui.menu.RunSetupScreen(
+                    stats = PlayerStats(
+                        highestWave = 150, highestWaveHackAi = 120,
+                        highestWaveByMapMode = mapOf(PlayerStats.mapModeKey("ddos", "hack_ai") to 64)
+                    ),
+                    availableModes = listOf(GameMode.STANDARD, GameMode.HACK_AI),
+                    selectedMode = GameMode.STANDARD,
+                    availableMaps = listOf(Maps.PERIMETER),
+                    selectedMap = Maps.PERIMETER,
+                    backgroundAnimation = false,
+                    onSelectMode = { picked = it },
+                    onSelectMap = {},
+                    onStart = {},
+                    onBack = {}
+                )
+            }
+        }
+        openDropdown()
+        compose.onNodeWithText("LOCKED \u00B7 clear wave 100 on DDoS in HACK:AI (best: 64)").assertIsDisplayed()
+        compose.onNodeWithText(GameMode.KERNEL_MODE.runName).performClick()
+        assertNull(picked)
+        compose.onNodeWithText("KERNEL MODE is locked: clear wave 100 on DDoS in HACK:AI to unlock it.")
+            .assertIsDisplayed()
     }
 
     @Test
     fun `HACK AI can be selected once it is earned`() {
         var picked: GameMode? = null
-        menu(
-            highestWave = 100,
-            modes = GameMode.entries.toList(),
-            onSelectMode = { picked = it }
-        )
-
+        setup(highestWave = 100, modes = GameMode.entries.toList(), onSelectMode = { picked = it })
+        openDropdown()
         compose.onNodeWithText(GameMode.HACK_AI.runName).performClick()
         assertEquals(GameMode.HACK_AI, picked)
     }
 
     @Test
-    fun `the PLAY button names the mode and the level it will start`() {
-        menu(highestWave = 100, modes = GameMode.entries.toList(), selected = GameMode.HACK_AI)
-        // Choosing a hard mode or a hard level and forgetting is a wasted run,
-        // so the button names both.
+    fun `the run setup names the level and the mode it will start`() {
+        setup(highestWave = 100, modes = GameMode.entries.toList(), selected = GameMode.HACK_AI)
         compose.onNodeWithText(
-            "${GameMode.HACK_AI.runName} on ${Maps.PERIMETER.displayName}"
+            "${Maps.PERIMETER.displayName} \u00B7 ${GameMode.HACK_AI.runName}", substring = true
         ).assertIsDisplayed()
     }
 
     @Test
-    fun `the PLAY button names the level on the standard mode too`() {
-        menu(highestWave = 0, modes = listOf(GameMode.STANDARD), selected = GameMode.STANDARD)
-        compose.onNodeWithText("Start a run on ${Maps.PERIMETER.displayName}").assertIsDisplayed()
+    fun `every mode the engine has is offered in the drop-down`() {
+        setup(highestWave = 100, modes = GameMode.entries.toList())
+        openDropdown()
+        for (mode in GameMode.entries) {
+            assertTrue(
+                "${mode.runName} is not offered",
+                compose.onAllNodesWithText(mode.runName).fetchSemanticsNodes().isNotEmpty()
+            )
+        }
     }
 
     @Test
-    fun `every mode the engine has is offered by the menu`() {
-        // A mode added to GameMode but left out of the menu would be
-        // unreachable, which is how HACK:AI shipped in the first place.
-        menu(highestWave = 100, modes = GameMode.entries.toList())
-        for (mode in GameMode.entries) {
-            assertTrue(
-                "${mode.runName} is not on the menu",
-                compose.onAllNodesWithText(mode.runName).fetchSemanticsNodes().isNotEmpty()
-            )
+    fun `every level is listed on the run setup, locked ones included`() {
+        setup(highestWave = 0, modes = listOf(GameMode.STANDARD))
+        for (map in Maps.all) {
+            compose.onNodeWithTag("level-${map.id}").assertExists()
         }
     }
 }

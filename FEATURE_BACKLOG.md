@@ -121,7 +121,7 @@ Needs C1. Sits naturally as a table on the variant (`bonusDamageFrom:
 Map<AgentType, Float>`) rather than a branch in the damage path, so a new
 variant is a table row.
 
-❓ **How large the bonus is.** A counter that matters without making the rest of
+✅ *Resolved: ×2 (owner's "2x damage for both", `COUNTER_MULTIPLIER`).* **How large the bonus is.** A counter that matters without making the rest of
 the roster pointless is roughly ×1.5–×2 on top of the ×2 the new agents already
 get against bosses. Wants a number from the owner, or a recommendation once the
 variants exist.
@@ -185,7 +185,7 @@ order I would reach for them:
 4. **No splash / single target.** They do not solve crowds. TARPIT, IDS and the
    rest keep their jobs.
 
-❓ Wants the owner's call on 1–4 before it is built. Recommendation: all four,
+✅ *Resolved: shipped as RED HAT / BLUE HAT (D2).* Wanted the owner's call on 1–4 before it was built. Recommendation: all four,
 with the numbers tuned against the existing dps-per-crypto curve in
 `BALANCE.md` so they sit at the top of it rather than off it.
 
@@ -306,8 +306,8 @@ A second tab on the FIRMWARE screen. Every agent except SERVER SYSTEMS
 ENGINEER has three tracks bought separately with €: **DAMAGE** (+0.5% a
 level), **FIRE RATE** (+0.05%) and **RANGE** (+0.02%), each to level 10,000.
 Asked for as HP, damage and range: agents have no HP in this game (nothing
-damages them), so the third track is fire rate — ❓ say if you want something
-else there. Cost per level = (2 + level/2) × 1.0004^level × 10 €: 20 € for the
+damages them), so the third track is fire rate — say if you want something
+else there (**owner, 2026-10-01: keep FIRE RATE**). Cost per level = (2 + level/2) × 1.0004^level × 10 €: 20 € for the
 first, about 28 thousand € for the first 100, 3.3 million for the first
 1,000, and 2.7 million € for the 10,000th level alone.
 
@@ -370,6 +370,295 @@ Built (1.50.1): every short on-board message (TAP AGAIN TO DEPLOY,
 INSUFFICIENT CRYPTO …) is drawn at 70% opacity, box and text together, and
 still takes no touches, so a tap on it reaches the spot beneath.
 
+## W. Chapter two — the owner's list of 2026-09-30 (♡1–♡6)
+
+**Asked (2026-09-30):** *"before doing any work add all of these to backlog so
+that if usage stops you, you can continue work later."* Six items, labelled
+♡1–♡6 by the owner (not to be confused with the older "♡. Music" section).
+None is started. Each notes what is already known from the code and what the
+owner still has to choose, so a later session can pick it up cold.
+
+### ♡1 🟨❓ Five more levels — built (1.51.0) under working names; names, bosses and music wait on the owner
+
+**Asked:** *"Time to make 5 more levels. Give me lane layouts, different color
+options, and online relevant 'Cyber related' names for the levels. Ask me for
+the options and let me choose."*
+
+**Process (as for levels 3–5):** draw 3–4 candidate layouts per level as
+rendered previews (see how NEURAL-MESH, DUCK-USB and DDoS were chosen), give
+2–3 dark theme colour options per level (`LevelTheme`: backdrop, grid, lane
+fill, lane border, lane marks; `LevelThemeTest` keeps them readable and
+clear of threat colours), and a short list of cyber-related names per level.
+**Nothing is built until the owner picks.**
+
+**Options shown to the owner (2026-09-30):** layouts 6A SPIRAL, 6B TRIDENT,
+6C LADDER · 7A MAZE, 7B PINCER, 7C STAIRCASE · 8A RING ROAD, 8B FOUR GATES,
+8C ZIGZAG · 9A STARBURST, 9B TRIPLE BRAID, 9C CHECKPOINT · 10A FIVE FRONTS,
+10B LABYRINTH, 10C GRIDLOCK — all defined in `ChapterTwoPreview` (run it to
+re-render into `app/build/chapter2`). Colours C1 VIOLET, C2 MIDNIGHT BLUE, C3
+MAGENTA, C4 TEAL, C5 STEEL, C6 SYNTHWAVE, C7 TOXIC LIME, C8 COPPER (hex values
+in the same file). Names offered per level are in the chat and below.
+**Owner's picks (2026-09-30):** level 6 = 6B TRIDENT in C6 SYNTHWAVE; level 7 =
+6A SPIRAL in C3 MAGENTA; level 8 = 8C ZIGZAG in C8 COPPER. Names not yet
+chosen. Levels 9 and 10: the owner asked for more route options and colours
+"from other parts of the spectrum" before choosing — second round in
+`ChapterTwoPreview` (9D–9G, 10D–10G, colours D1–D8).
+**Owner's picks, round 2 (2026-09-30):** level 9 = 10D HELIX in D8 ROSE GOLD;
+level 10 = 9B TRIPLE BRAID in D4 INDIGO. **All five layouts and colours are
+now chosen.** Still to choose: the five names. Then build (with the boss
+list from ♡5 and two music tracks per level from the owner).
+
+| Level | Layout | Colour | Name |
+|---|---|---|---|
+| 6 | 6B TRIDENT | C6 SYNTHWAVE | ❓ |
+| 7 | 6A SPIRAL | C3 MAGENTA | ❓ |
+| 8 | 8C ZIGZAG | C8 COPPER | ❓ |
+| 9 | 10D HELIX | D8 ROSE GOLD | ❓ |
+| 10 | 9B TRIPLE BRAID | D4 INDIGO | ❓ |
+
+**Built (1.51.0):** all five are in the game (`Maps.TRIDENT … BRAID`, ids
+trident/spiral/zigzag/helix/braid — fixed, since saves use them) under the
+layout names as **working titles**. Each unlocks at wave 100 on the one
+before; enemy health tuned so each is harder than the last
+(`MapDifficultyTest`: fixed board averages 53.8, 52.8, 52.6, 50.3, 49.0 —
+SPIRAL and ZIGZAG are close, re-check after their bosses land). Three picked
+lane edges (SYNTHWAVE, MAGENTA, COPPER) were darkened to pass the
+threat-colour rule. **Waiting on the owner:** the five names (rename is a
+one-line change per level), their bosses (♡5), and two music tracks each
+(they play the generated music until then; `LevelMusicTest` lists them).
+
+**Known constraints:** each level unlocks at wave 100 on the one before it
+(`GameMap.unlockMapId/unlockAtWave`) and must be harder than it
+(`MapDifficultyTest`, `threatHealthScale`); ~60–70 build spots with ~90 world
+units between agents (`NODE_CLEARANCE` 58, `MIN_NODE_SPACING` 56); themes are
+dark; each level gets two music tracks from the owner (`LevelMusic`); bosses
+stack by `MAP_PROGRESSION` (see ♡5). Levels 6–10 extend `Maps.all` and
+`MAP_PROGRESSION`.
+
+### ♡2 ✅ ANTI DUCK USB [<(o] — shipped in 1.52.0; ability confirmed by the owner 2026-10-01
+
+**Built (1.52.0):** look C `[<(o]`, drawn as a green↔yellow hologram that no
+agent skin changes. 500 ◇, earned by wave 100 on DUCK-USB. Ability (owner,
+2026-10-01: *"keep the duck ability"*): the hats' fire rate (3.3/s) with heavier
+shots (48 vs 34) and range 280, ×3 damage to SYN-STORM and GRADIENT, two maximum,
+keeps targeting modes (the hats stay the only always-boss-first agents).
+`AntiDuckTest`.
+
+**Asked:** *"For completion of duck usb level wave 100 - unlocks a unit called
+'Anti Duck Usb'. This will be more powerful than Red hat and blue hat, will
+cost 500◇, and symbol will be [🦆]. Maybe go hologram Green/Yellow color
+change for this guy, bypasses any skin and this unit will always look this
+way. If possible make the duck logo out of ASCII and if not possible let me
+know, give me options for how this character will look, let me choose."*
+
+**Spec so far:** cost 500 ◇; stronger than REDHAT (400 ◇) and BLUEHAT;
+unlocked by wave 100 on DUCK-USB (a per-map unlock, like SERVER SYSTEMS
+ENGINEER's beginner-level rule — `AgentType.earnedBy` needs a per-map
+record, `highestWaveByMap` has it); colour is a green↔yellow hologram cycle
+that ignores the SPECTRUM skin (see `BattlefieldRenderer.agentColor` and
+`holographic()`).
+
+*(Resolved 2026-10-01: look C, `[<(o]`.)* **Owner to choose:** the look. Show options before building: the [🦆] emoji
+glyph as asked (check it renders on Android's monospace fallback and fits
+the agent circle); a small ASCII duck drawn in the circle; and a hybrid.
+ASCII *is* possible at small sizes (a 2–3 line duck), but legibility inside a
+~52 px circle has to be shown, not promised. Also still to settle: its damage
+profile / ability (more powerful than the hats — e.g. bonus vs the DUCK-USB
+bosses SYN-STORM and GRADIENT?), range, and a deploy limit.
+
+### ♡3 ✅ CYBER OPERATIVE [>_<] — shipped in 1.52.0; owner picked look C (2026-10-01)
+
+**Built (1.52.0):** 600 ◇, earned by wave 100 on HUGGING-FACE, two maximum,
+TARPIT's range (300). Every agent in its range (itself included) cannot be
+jammed by any boss. 30 damage at 2.5/s, ×4 to WHITE EYE and BLACK EYE (over
+twice a hat's damage against them). Drawn with the logo's own paths (new
+`ic_cyber_operative.xml`, copied unchanged from the launcher icon) plus a faint
+aura — option C, the owner's pick (*"C for the cyber operative"*). Options
+rendered by `CyberOperativePreview`:
+A whole logo (with traces and packet), B shield and face, C B + anti-jam aura,
+D B in a node badge. `CyberOperativeTest`. Cost 600 ◇ confirmed by the owner (2026-10-01).
+
+**Asked:** *"For completion of hugging face level wave 100 - unlock [>_<]
+unit. This will be a unit that resembles the logo of the game, and can be
+called 'Cyber Operative' - this unit protects units within its range from
+jamming, has high fast damage to the [●_●] & [○_○] bosses, limit of two, same
+range parameters as tar pit, and hopefully can look almost identical to the
+games logo."*
+
+**Spec:** glyph [>_<], name CYBER OPERATIVE; `maxDeployed` 2; range = TARPIT's
+`baseRange`; agents in its range cannot be jammed (extend `Agent.jam()` —
+the immunity check lives there on purpose — with an "is covered by an
+Operative" test, refreshed like `damageBuff` in `CombatSystem.refreshBuffs`);
+high, fast damage to BLACK EYE [●_●] and WHITE EYE [○_○] (both HUGGING-FACE
+bosses; use `BossVariant.bonusDamageFrom`); unlock by wave 100 on
+HUGGING-FACE (per-map, as ♡2).
+
+*(Resolved 2026-10-01: look C.)* **Owner to choose:** the look, shown as renders against the game logo
+(the app icon / wordmark in `res/`).
+
+### ♡4 ✅ Personal stats per level and mode (1.51.0); KERNEL MODE (1.52.0)
+
+**KERNEL MODE (1.52.0):** unlocked by wave 100 on DDoS in HACK:AI (the per-level,
+per-mode record). Threat health ×4.0 (HACK:AI ×2.35), spawns ×0.6 apart (0.72),
+50 integrity (70), rewards ×2.0 (×1.5); music: the HACK:AI piece, driven
+(BOTTLE_DRIVE). Greyed in the difficulty list with its condition and best,
+and says what unlocks it when tapped. No Play Games leaderboard id yet — it
+keeps a local board until one is made (❓ optional).
+
+**Asked:** *"Need to have personal stats (separate from leaderboard) that tell
+you highest wave reached on each level, and difficulty mode - Add new
+difficulty level that only unlocks after completing DDoS level at wave 100
+on Hack.ai difficulty (should be grayed out and state the conditions if they
+click the difficulty level just like other similar features)."*
+
+**Stats:** a table on the STATISTICS screen: best wave per level × mode.
+`highestWaveByMap` is per level in any mode today, so this needs a per
+(level, mode) record (a new JSON pref like `MAP_BESTS_JSON`), kept in cloud
+saves with a max-merge like the others (`CloudSaveMerge.mergeStats`).
+
+**New difficulty:** a third `GameMode` after STANDARD and HACK:AI, unlocked
+by wave 100 on DDoS *in HACK:AI* (needs the per-(level, mode) record above).
+Locked: greyed on the menu, and tapping it says the condition, as locked
+levels and agents already do. *(Resolved: KERNEL MODE, 1.52.0.)* **Owner to choose:** its name and what makes
+it harder (spawn interval, health scale, reward scale — `GameMode` fields).
+
+### ♡5 ✅ Bosses for the five new levels — shipped in 1.52.0 (see the 2026-10-01 block)
+
+**Asked:** *"Need new boss suggestions to add to the new 5 levels - give me
+examples so I can work on adding them in."*
+
+Deliver a list (two per level, like levels 2–5) with name, glyph, mechanic
+and counter, in the style of `BossVariant` and the boss briefing. Nothing is
+built until the owner picks. Mechanics must be readable in the briefing and
+tested like `NeuralMeshBossBalanceTest` / `DuckUsbBossBalanceTest`.
+
+### ♡7 ✅ Main menu redesign — built (1.51.0); CoreUI Icons Free in 1.52.0
+
+**Icons (1.52.0):** 13 CoreUI Free icons converted to vector drawables
+(`ic_menu_*.xml`), CC BY 4.0, credited on ABOUT and in LICENSES.md. Plain SVG
+sources, so they port to iPhone and Steam as they are.
+
+**Asked (2026-09-30):** *"Main menu is crowded. We need a difficulty drop down
+menu, need to make all of the buttons smaller - scalable - legible on all
+phone sizes - and less crowded, descriptions of every single button is
+really messing things up. Maybe check here: coreui/coreui-icons at 1.0.0
+https://share.google/hQ73nca0CKbphcgCt for icons to use? … we could use a
+play button 'continue' at the bottom of the button in small text; a new run
+button 'New run' at the bottom of button in small text, and when they click
+New run when there is a save do a pop up window 'Are you sure you would like
+to start a fresh run.' Outside of play and continue we need to change the
+format here: Level selection is cluttering main menu. Let's only let user
+select level and difficulty when pressing Play or confirms New run, then
+level and difficulty selection menu."*
+
+**Spec:**
+- Main menu: smaller buttons, icon + a short label, **no description text
+  under each button**; scales and stays legible from a 568×320 phone up
+  (`ScreenSizeTest` / `MatchChromeTest`-style render checks at several
+  sizes, failing on overlap or overflow).
+- Two play buttons: **CONTINUE** (icon, small "Continue" caption underneath;
+  only when there is a saved run) and **NEW RUN** (icon, small "New run"
+  caption). NEW RUN with a save present → confirm pop-up: *"Are you sure you
+  would like to start a fresh run?"* (the save is lost only on yes).
+- Level and difficulty come **off the main menu**. After PLAY / a confirmed
+  NEW RUN, a separate selection screen: pick the level (locked ones greyed,
+  tapping says the condition, as now) and the difficulty from a **drop-down**
+  (STANDARD, HACK:AI, and the ♡4 mode when it exists; locked entries greyed
+  with their condition), then START.
+- CONTINUE goes straight into the saved run (its level and mode are in the
+  save).
+
+**Built (1.51.0):** CONTINUE and NEW RUN are two large icon tiles with a small
+caption; every other action is a small icon tile with a one-word label and
+no description, in a grid that sizes from the screen width (4 columns, 3 on
+narrow phones). NEW RUN with a save asks "Are you sure you would like to
+start a fresh run?" (START FRESH / KEEP MY SAVE). Level and difficulty moved
+to a new NEW RUN screen (`RunSetupScreen`): level list with locks, a
+difficulty drop-down (locked entries say their condition), START.
+`MenuRedesignTest` renders both at 568×320 and 800×360 and fails on any
+overlapping text. **Icons are stand-ins** (▶ + [@] € $ ◈ G ≡ ? # * i X) until
+the owner confirms a set.
+
+**Icons:** the owner suggested the CoreUI Icons set (coreui/coreui-icons
+1.0.0). The link given is a share.google short link — resolve it and confirm
+the set. Before using any of it, check its licence (the free CoreUI icons
+are believed to be CC BY 4.0, which needs visible attribution — add it to the
+About screen's credits, next to the music credits) and import only the
+icons used, as Android vector drawables. Alternative if the licence does not
+suit: Material Symbols (Apache 2.0) or drawing the few icons in-house.
+*(Resolved 2026-10-01: CoreUI Icons Free, shipped 1.52.0.)*
+
+### ♡ decisions, 2026-10-01 (owner's answers)
+
+- **♡5 bosses, one per new level:** 6 TRIDENT → BOTMASTER `[B∞]` (keeps
+  spawning BOTs); 7 SPIRAL → ROOTKIT (untargetable 2 s of every 6);
+  8 ZIGZAG → WORM (splits into 3 on death, and those split once more);
+  9 HELIX → SPOOFER (agents shoot a decoy copy) — *"test balance on this, it
+  sounds impossible"*; 10 TRIPLE BRAID → KERNEL PANIC (on death jams every
+  agent nearby for 3 s).
+  **Status: DONE (1.52.0).** Each leads its level's boss waves. Probe (mixed
+  level-24 board, wave 100, kill time vs BREACH): BOTMASTER 10.5 s vs 9.3,
+  ROOTKIT 22.2 vs 16.8, WORM 38.1 vs 27.3, SPOOFER 24.2 vs 14.9 (27.1 s with
+  no ANALYST/ROOT ADMIN — hard, not impossible), KERNEL PANIC 25.6 vs 18.5.
+- **♡2 look:** C, the `[<(o]` duck head. **Owner plans to port to iPhone and
+  Steam — keep that in mind for all future development** (prefer plain text
+  and vector art over platform emoji; keep game logic out of Android-only
+  code where it is cheap to do so). Ability and deploy limit not answered.
+- **♡3:** neither option liked — the CYBER OPERATIVE must look *identical to
+  the game's logo*; use an icon/drawing if needed. New options to show.
+- **♡4:** the new difficulty is **KERNEL MODE** (unlocked by wave 100 on DDoS
+  in HACK:AI).
+- **♡7:** icons from **CoreUI Icons** (https://coreui.io/icons/). Free set is
+  CC BY 4.0 → credit on the About screen.
+- **Music for levels 6–10 (owner, 2026-10-01):** *"I will generate all new
+  music for the new 5 levels. I'll send you two files for each level."*
+  Waiting on the files. When they arrive: `res/raw/level6.mp3` +
+  `level6_2.mp3` … `level10.mp3` + `level10_2.mp3`, add LEVEL_SIX–LEVEL_TEN to
+  `LevelMusic`, map them in `musicForMap`, update `LevelMusicTest` (which today
+  expects the five new levels to play generated music), rights note in
+  LICENSES.md like levels 1–5. Watch the bundle size (raw music is ~47 MB now).
+- **Item 8 (Agent Firmware third track):** owner asked for a detailed
+  explanation with examples before deciding. **Explained 2026-10-01** (in
+  chat): the owner asked for HP, damage and range per agent; agents in this
+  game have no HP (no threat ever damages an agent — threats only walk to the
+  core), so an HP track would buy nothing. FIRE RATE was put in its place.
+  Example: IDS (9 dmg, 1.0/s, range 330) with DAMAGE 100 / RATE 100 / RANGE
+  100 becomes 13.5 dmg, 1.05/s, 336.6 range. Alternatives offered: keep FIRE
+  RATE; or make the third track CRYPTO PER KILL, ARMOUR PIERCE, JAM
+  RESISTANCE, or CORE INTEGRITY (+max HP for the server, the closest thing
+  to "HP"). **Decided 2026-10-01: keep FIRE RATE.**
+
+### ♡6 ✅ ACE [♤] — shipped in 1.51.0
+
+**Asked:** *"completing DDoS level unlocks new agent [♤] called 'Ace' - he is
+a high level Cyber security operative with a Bachelor degree in Cyber
+security and helps prevent attacks by developing software - something along
+those lines as his description - this unit places walls on the lanes that
+have a set number of health and requires the hack enemies to 'destroy' them
+- play around with this one and make sure to do balance checks - this is to
+help player on the next wave of 5 levels so it needs to work at slowing
+attacks - this unit also deals massive damage to all bosses from all 5
+levels - balance the damage as well."*
+
+**Built (1.51.0):** cost 650 ◇, 46 damage, 0.9/s, range 260, three maximum,
+unlocked by wave 100 on DDoS (new per-level unlock: `AgentType.unlockMapId`,
+also what ♡2 and ♡3 will use). Wall health 150 × (1 + 5%/level) ×
+(1 + wave/40); a threat deals 10/s to it (elite ×2.5, boss ×12); rebuilt 6 s
+after it falls; one wall blocks every route through its point. Its shots deal
+×4 to every boss of levels 1–5. Balance (`AceTest`): on a pressured DDoS
+board, three ACEs reach wave 110 where three ROOT ADMINs reach 105; walls
+break 36–40 times a run and every wave still ends.
+
+**Spec:** glyph [♤], name ACE; unlocked by wave 100 on DDoS; description along
+the lines asked (a senior security engineer who builds defensive software).
+Mechanic: places a WALL on the nearest lane within range; threats stop at it
+and must deal damage to break it (wall health scales with wave and ACE
+level; respawns after a cooldown); ACE also deals heavy bonus damage to
+every boss of levels 1–5 (all current `BossVariant`s). Needs: a wall entity
+(pooled, like `Enemy`/`Projectile`), enemies halting and attacking it
+(`EnemySystem`), drawing, a deploy cap, and **balance checks** (probe
+like the 1.50.0 ones: time a wall holds per wave depth, and boss kill times
+with and without ACE; it must slow attacks, not stop them outright).
 ## E. A second map
 
 ### E1 ✅ SHIPPED in 1.36.0 — "Hugging-Face", selectable and earned

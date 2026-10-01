@@ -15,6 +15,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.unit.dp
 import com.cyopstd.game.model.AgentType
 import com.cyopstd.game.save.PlayerStats
@@ -97,6 +98,34 @@ fun StatisticsScreen(
                     .fillMaxHeight()
                     .verticalScroll(rememberScrollState())
             ) {
+                // ♡4 (owner, 2026-09-30): personal bests per level and mode,
+                // separate from the leaderboard.
+                TerminalPanel(title = "BEST WAVE BY LEVEL", accent = Palette.Purple) {
+                    Row(Modifier.fillMaxWidth()) {
+                        Text("LEVEL", style = MaterialTheme.typography.labelSmall,
+                            color = Palette.TextMuted, modifier = Modifier.weight(1.6f))
+                        for (mode in com.cyopstd.game.core.GameMode.entries) {
+                            Text(mode.runName, style = MaterialTheme.typography.labelSmall,
+                                color = Palette.TextMuted, modifier = Modifier.weight(1f), maxLines = 1)
+                        }
+                    }
+                    for (map in com.cyopstd.game.core.Maps.all) {
+                        Row(Modifier.fillMaxWidth().testTag("best-${map.id}")) {
+                            Text(map.displayName, style = MaterialTheme.typography.bodySmall,
+                                color = Palette.TextPrimary, modifier = Modifier.weight(1.6f), maxLines = 1)
+                            for (mode in com.cyopstd.game.core.GameMode.entries) {
+                                val best = stats.bestWave(map.id, mode.id)
+                                Text(if (best > 0) best.toString() else "\u2014",
+                                    style = MaterialTheme.typography.bodySmall,
+                                    color = if (best > 0) Palette.Crypto else Palette.TextMuted,
+                                    modifier = Modifier.weight(1f))
+                            }
+                        }
+                    }
+                }
+
+                Spacer(Modifier.height(12.dp))
+
                 TerminalPanel(title = "AGENT DEPLOYMENT BREAKDOWN", accent = Palette.Cyan) {
                     if (stats.deploymentsByAgent.isEmpty()) {
                         Caption("No deployments recorded yet. Play a run to populate this.")

@@ -9,6 +9,74 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [1.52.0] — 2026-10-01
+
+### Chapter-two bosses (♡5)
+
+- Each new level has its own boss, and it leads that level's boss waves:
+  - **BOTMASTER** `[B∞]` (TRIDENT) keeps dropping BOTs behind itself.
+  - **ROOTKIT** `[r00t]` (SPIRAL) hides for 2 s of every 6: nothing can
+    target it, though splash and chains still reach it.
+  - **WORM** `[~~>]` (ZIGZAG) breaks into three smaller worms when killed,
+    and those break once more.
+  - **SPOOFER** `[¿¿]` (HELIX) casts decoys of itself that soak up fire.
+    ANALYST and ROOT ADMIN see through them. Balance-tested: about 1.6× a
+    BREACH's kill time, and still beatable with no ANALYST or ROOT ADMIN.
+  - **KERNEL PANIC** `[KP]` (TRIPLE BRAID) jams every agent near it for
+    3 s when it dies. FIREWALL stands in it.
+- ZIGZAG and TRIPLE BRAID threats retuned so each level stays harder than the
+  one before it.
+
+### KERNEL MODE (♡4)
+
+- A third difficulty, unlocked by clearing wave 100 on DDoS in HACK:AI.
+  Threats ×4.0 health, spawns closer, 50 integrity, double rewards. Greyed
+  out with its condition until then.
+
+### New agents (♡2, ♡3)
+
+- **ANTI DUCK USB** `[<(o]`, earned by wave 100 on DUCK-USB: a green-and-
+  yellow hologram that skins do not change. The hats' fire rate, heavier
+  shots, ×3 damage to SYN-STORM and GRADIENT. Two maximum, 500 ◇.
+- **CYBER OPERATIVE** `[>_<]`, earned by wave 100 on HUGGING-FACE, drawn as
+  the game's logo. Agents in its range cannot be jammed; ×4 damage to WHITE
+  EYE and BLACK EYE. TARPIT's range, two maximum, 600 ◇.
+  Shown with a pulsing anti-jam aura (the owner's pick of four looks).
+
+### Main menu icons (♡7)
+
+- The main menu uses CoreUI Icons Free (CC BY 4.0), credited on ABOUT.
+
+
+## [1.51.0] — 2026-10-01
+
+### Five new levels (♡1)
+
+- TRIDENT, SPIRAL, ZIGZAG, HELIX and TRIPLE BRAID — the layouts and colours
+  the owner picked, under working names until the real names are chosen.
+  Each unlocks at wave 100 on the one before and is harder than the last.
+  They field the bosses of levels 1–5 and the generated music until their
+  own bosses and tracks arrive.
+
+### ACE [♤] (♡6)
+
+- New agent, earned by wave 100 on DDoS. Builds a wall across the nearest
+  route in range; threats must break it before they pass (bosses fastest),
+  and it is rebuilt 6 s after it falls. Deals ×4 damage to every boss of
+  levels 1–5. Three maximum, 650 ◇.
+
+### Personal bests per level and difficulty (♡4)
+
+- STATISTICS shows the best wave on every level in every difficulty,
+  separate from the leaderboard; kept in cloud saves.
+
+### Main menu (♡7)
+
+- Smaller, uncluttered: icon tiles with one-word labels, no descriptions,
+  sized for every phone. CONTINUE and NEW RUN lead; NEW RUN asks before
+  replacing a saved run. Level and difficulty (now a drop-down) are chosen
+  on a NEW RUN screen after it, instead of on the menu.
+
 ## [1.50.1] — 2026-09-28
 
 - The bottom-left BOSS WAVE box is gone: it covered deployment spots. Each

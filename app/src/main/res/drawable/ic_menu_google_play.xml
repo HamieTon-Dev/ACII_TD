@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- cil-gamepad from CoreUI Icons Free (https://coreui.io/icons/), CC BY 4.0. Credited on ABOUT. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="512"
+    android:viewportHeight="512">
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:pathData="M368,168H272V104H448a24.027,24.027,0,0,0,24-24V16H440V72H264a24.027,24.027,0,0,0-24,24v72H144A128.145,128.145,0,0,0,16,296V396.953A91.15,91.15,0,0,0,107.047,488h1.8A90.807,90.807,0,0,0,178.8,455.24l52.7-63.24h48.628l52.666,68.465A91.046,91.046,0,0,0,496,404.953V296A128.145,128.145,0,0,0,368,168Zm96,236.953a59.047,59.047,0,0,1-105.849,36L295.878,360H216.506l-62.294,74.754A58.893,58.893,0,0,1,108.85,456h-1.8A59.113,59.113,0,0,1,48,396.953V296a96.108,96.108,0,0,1,96-96H368a96.108,96.108,0,0,1,96,96Z" />
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:pathData="M360.0,248.0h32.0v32.0h-32.0Z" />
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:pathData="M360.0,328.0h32.0v32.0h-32.0Z" />
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:pathData="M320.0,288.0h32.0v32.0h-32.0Z" />
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:pathData="M400.0,288.0h32.0v32.0h-32.0Z" />
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:pathData="M152,248 L120,248 L120,288 L80,288 L80,320 L120,320 L120,360 L152,360 L152,320 L192,320 L192,288 L152,288 L152,248Z" />
+</vector>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  CYBER OPERATIVE [>_<] (backlog ♡3): the game's logo, shield and face only.
+  Every path is copied unchanged from ic_launcher_foreground.xml; only the
+  viewport is cropped to the shield (22..86 x 18..92 of the logo's 108), so
+  the agent is the logo, pixel for pixel, without the traces and the inbound
+  packet that only make sense on a launcher.
+-->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="64dp"
+    android:height="74dp"
+    android:viewportWidth="64"
+    android:viewportHeight="74">
+    <group
+        android:translateX="-22"
+        android:translateY="-18">
+        <!-- Outer shield glow. -->
+        <path
+            android:fillColor="#2623C55E"
+            android:pathData="M54,20 L84,31 L84,56 C84,73 70,84 54,90 C38,84 24,73 24,56 L24,31 Z" />
+        <!-- Shield body: dark solder mask, bright PCB-green edge. -->
+        <path
+            android:fillColor="#07301E"
+            android:strokeColor="#23C55E"
+            android:strokeWidth="3.2"
+            android:pathData="M54,25 L79,34 L79,56 C79,70 68,79 54,85 C40,79 29,70 29,56 L29,34 Z" />
+        <!-- ">" of the >_< face. -->
+        <path
+            android:strokeColor="#6EF7A5"
+            android:strokeWidth="4.2"
+            android:strokeLineCap="round"
+            android:strokeLineJoin="round"
+            android:pathData="M37,50.5 L43.5,57 L37,63.5" />
+        <!-- "_" of the >_< face, on the text baseline. -->
+        <path
+            android:strokeColor="#6EF7A5"
+            android:strokeWidth="4.2"
+            android:strokeLineCap="round"
+            android:pathData="M49,63 L59,63" />
+        <!-- "<" of the >_< face. -->
+        <path
+            android:strokeColor="#6EF7A5"
+            android:strokeWidth="4.2"
+            android:strokeLineCap="round"
+            android:strokeLineJoin="round"
+            android:pathData="M71,50.5 L64.5,57 L71,63.5" />
+    </group>
+</vector>

@@ -254,6 +254,14 @@ class WaveGenerator(private val random: Random = Random.Default) {
         val pool = BossVariant.poolFor(cycle, mapId)
         if (pool.isEmpty()) return List(count) { BossVariant.BREACH }
         val shuffled = pool.shuffled(random)
+        // Chapter two's levels each have one boss of their own (♡5). With
+        // every earlier boss in the pool too it would be a rare sight on its
+        // own level, so it leads every boss wave it is old enough for.
+        val own = BossVariant.ownBossOf(mapId)
+        if (own != null && own in pool) {
+            val rest = shuffled.filter { it != own }
+            return List(count) { if (it == 0 || rest.isEmpty()) own else rest[(it - 1) % rest.size] }
+        }
         return List(count) { shuffled[it % shuffled.size] }
     }
 

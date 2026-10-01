@@ -88,8 +88,8 @@ class HatAgentTest {
         for (variant in BossVariant.entries) {
             for (key in variant.bonusDamageFrom.keys) {
                 assertTrue(
-                    "${variant.displayName} grants a bonus to '$key', which is not a hat",
-                    key == "REDHAT" || key == "BLUEHAT"
+                    "${variant.displayName} grants a bonus to '$key', which is not a hat, ANTI DUCK USB or CYBER OPERATIVE",
+                    key == "REDHAT" || key == "BLUEHAT" || key == "ANTI_DUCK" || key == "CYBER_OPERATIVE"
                 )
             }
         }

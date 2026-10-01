@@ -42,7 +42,7 @@ class DdosTest {
 
     @Test
     fun `fields every boss in the game, and no earlier level fields its two`() {
-        assertEquals(BossVariant.entries.toSet(), BossVariant.poolFor(40, map.id).toSet())
+        assertEquals(BossVariant.entries.filter { it.isChapterOne }.toSet(), BossVariant.poolFor(40, map.id).toSet())
         val duck = BossVariant.poolFor(40, Maps.DUCK_USB.id).toSet()
         assertFalse(BossVariant.RANSOM in duck || BossVariant.EXFIL in duck)
     }

@@ -84,6 +84,7 @@ class GameRepository(private val store: DataStore<Preferences>) {
                 highestWaveHackAi = prefs[Keys.HIGHEST_WAVE_HACK_AI] ?: 0,
                 highestWaveBeginner = beginnerBest(prefs),
                 highestWaveByMap = decodeDeployments(prefs[Keys.MAP_BESTS_JSON]),
+                highestWaveByMapMode = mapModeBests(prefs),
                 totalAttacksBlocked = (prefs[Keys.TOTAL_PACKETS] ?: 0).toLong(),
                 totalBossesDefeated = (prefs[Keys.TOTAL_BOSSES] ?: 0).toLong(),
                 totalCryptoEarned = (prefs[Keys.TOTAL_CRYPTO] ?: 0).toLong(),
@@ -391,12 +392,33 @@ class GameRepository(private val store: DataStore<Preferences>) {
             if (wave > (bests[mapId] ?: 0)) {
                 prefs[Keys.MAP_BESTS_JSON] = encodeDeployments(bests + (mapId to wave))
             }
+            // Seed before raising, for the same reason as the beginner record.
+            val byMode = mapModeBests(prefs)
+            val key = PlayerStats.mapModeKey(mapId, modeId)
+            if (wave > (byMode[key] ?: 0)) {
+                prefs[Keys.MAP_MODE_BESTS_JSON] = encodeDeployments(byMode + (key to wave))
+            } else if (prefs[Keys.MAP_MODE_BESTS_JSON] == null) {
+                prefs[Keys.MAP_MODE_BESTS_JSON] = encodeDeployments(byMode)
+            }
         }
         if (mapId != null && AgentType.isBeginnerLevel(mapId, modeId) &&
             wave > beginnerBest(prefs)
         ) {
             prefs[Keys.HIGHEST_WAVE_BEGINNER] = wave
         }
+    }
+
+    /**
+     * Best wave per level and mode. A save from before the record existed is
+     * seeded from what it proves: if HACK:AI was never played, every level
+     * record was set in NETWORK DEFENCE. Otherwise which mode a record came
+     * from is unknown, so nothing is guessed and it is re-earned.
+     */
+    private fun mapModeBests(prefs: Preferences): Map<String, Int> {
+        prefs[Keys.MAP_MODE_BESTS_JSON]?.let { return decodeDeployments(it) }
+        if ((prefs[Keys.HIGHEST_WAVE_HACK_AI] ?: 0) > 0) return emptyMap()
+        return decodeDeployments(prefs[Keys.MAP_BESTS_JSON])
+            .mapKeys { (mapId, _) -> PlayerStats.mapModeKey(mapId, GameMode.STANDARD.id) }
     }
 
     /**
@@ -491,6 +513,8 @@ class GameRepository(private val store: DataStore<Preferences>) {
         val HIGHEST_WAVE_BEGINNER = intPreferencesKey("highest_wave_beginner")
         /** Best wave per level (any mode), keyed by `GameMap.id`. */
         val MAP_BESTS_JSON = stringPreferencesKey("map_bests_json")
+        /** Best wave per level and mode, keyed "map|mode". */
+        val MAP_MODE_BESTS_JSON = stringPreferencesKey("map_mode_bests_json")
         val TOTAL_PACKETS = intPreferencesKey("total_attacks")
         val TOTAL_BOSSES = intPreferencesKey("total_bosses")
         val TOTAL_CRYPTO = intPreferencesKey("total_crypto")
@@ -719,6 +743,12 @@ class GameRepository(private val store: DataStore<Preferences>) {
             prefs[Keys.MAP_BESTS_JSON] = encodeDeployments(
                 (localMaps.keys + save.stats.highestWaveByMap.keys).associateWith { key ->
                     maxOf(localMaps[key] ?: 0, save.stats.highestWaveByMap[key] ?: 0)
+                }
+            )
+            val localModes = mapModeBests(prefs)
+            prefs[Keys.MAP_MODE_BESTS_JSON] = encodeDeployments(
+                (localModes.keys + save.stats.highestWaveByMapMode.keys).associateWith { key ->
+                    maxOf(localModes[key] ?: 0, save.stats.highestWaveByMapMode[key] ?: 0)
                 }
             )
             prefs[Keys.TOTAL_PACKETS] = save.stats.totalAttacksBlocked.toInt()

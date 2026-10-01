@@ -56,6 +56,8 @@ sealed interface Screen {
     data object Splash : Screen
     data object MainMenu : Screen
     data object Game : Screen
+    /** Level and difficulty, between NEW RUN and the match (♡7). */
+    data object RunSetup : Screen
     data object Agents : Screen
     data object Firmware : Screen
     data object Codex : Screen
@@ -95,6 +97,26 @@ fun CyOpsApp(
 
             Screen.Splash -> SplashScreen(onFinished = { screen = Screen.MainMenu })
 
+            Screen.RunSetup -> {
+                BackHandler { screen = Screen.MainMenu }
+                com.cyopstd.game.ui.menu.RunSetupScreen(
+                    stats = viewModel.stats,
+                    availableModes = viewModel.availableModes,
+                    selectedMode = viewModel.selectedMode,
+                    availableMaps = viewModel.availableMaps,
+                    selectedMap = viewModel.selectedMap,
+                    backgroundAnimation = viewModel.settings.backgroundAnimation,
+                    onSelectMode = { viewModel.selectMode(it) },
+                    onSelectMap = { viewModel.selectMap(it) },
+                    onStart = {
+                        viewModel.playClick()
+                        viewModel.startNewGame()
+                        screen = Screen.Game
+                    },
+                    onBack = { viewModel.playClick(); screen = Screen.MainMenu }
+                )
+            }
+
             Screen.MainMenu -> {
                 BackHandler(enabled = true) { onExitApp() }
                 // Every arrival at the menu, including the first. Nothing used
@@ -109,17 +131,12 @@ fun CyOpsApp(
                     budget = viewModel.budget,
                     firmwareLevel = viewModel.firmwareLevel,
                     adsRemoved = viewModel.entitlements.adsRemoved,
-                    availableModes = viewModel.availableModes,
-                    selectedMode = viewModel.selectedMode,
-                    availableMaps = viewModel.availableMaps,
-                    selectedMap = viewModel.selectedMap,
                     backgroundAnimation = viewModel.settings.backgroundAnimation,
-                    onSelectMode = { viewModel.selectMode(it) },
-                    onSelectMap = { viewModel.selectMap(it) },
+                    // NEW RUN (confirmed if there was a save) → choose level
+                    // and difficulty first (♡7).
                     onPlay = {
                         viewModel.playClick()
-                        viewModel.startNewGame()
-                        screen = Screen.Game
+                        screen = Screen.RunSetup
                     },
                     onContinue = {
                         viewModel.playClick()

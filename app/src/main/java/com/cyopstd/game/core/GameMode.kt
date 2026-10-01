@@ -22,7 +22,16 @@ enum class GameMode(
     /** Multiplies the gap between spawns; below 1 means heavier pressure. */
     val spawnIntervalScale: Float,
     /** Starting integrity. */
-    val serverHp: Int
+    val serverHp: Int,
+    /**
+     * For a mode unlocked on one level in one mode rather than by a lifetime
+     * best: that level's `GameMap.id` and that mode's [id]. Strings, because
+     * an enum cannot name its own entries in its constructor.
+     */
+    val unlockMapId: String? = null,
+    val unlockModeId: String? = null,
+    /** How the unlock reads, e.g. "DDoS in HACK:AI"; null for "any level". */
+    val unlockWhere: String? = null
 ) {
     STANDARD(
         id = "standard",
@@ -49,11 +58,48 @@ enum class GameMode(
         rewardScale = 1.5f,
         spawnIntervalScale = 0.72f,
         serverHp = 70
+    ),
+
+    /**
+     * ♡4 (owner, 2026-10-01): KERNEL MODE, unlocked by clearing wave 100 on
+     * DDoS in HACK:AI. HACK:AI pushed further on every axis: threats about
+     * 1.7× as tough again, closer still, half the integrity of NETWORK
+     * DEFENCE. Rewards double so it pays for the trouble.
+     */
+    KERNEL_MODE(
+        id = "kernel_mode",
+        runName = "KERNEL MODE",
+        unlockAtWave = 100,
+        healthScale = 4.0,
+        rewardScale = 2.0f,
+        spawnIntervalScale = 0.6f,
+        serverHp = 50,
+        unlockMapId = "ddos",
+        unlockModeId = "hack_ai",
+        unlockWhere = "DDoS in HACK:AI"
     );
 
     val isUnlockedByDefault: Boolean get() = unlockAtWave <= 0
 
-    fun unlockedBy(highestWaveReached: Int): Boolean = highestWaveReached >= unlockAtWave
+    fun unlockedBy(highestWaveReached: Int): Boolean =
+        unlockMapId == null && highestWaveReached >= unlockAtWave
+
+    /**
+     * Whether a player with these records has earned this mode. [bestOn] is
+     * the best wave on a level in a mode, by ids.
+     */
+    fun unlockedBy(highestWaveReached: Int, bestOn: (mapId: String, modeId: String) -> Int): Boolean =
+        if (unlockMapId != null && unlockModeId != null) bestOn(unlockMapId, unlockModeId) >= unlockAtWave
+        else highestWaveReached >= unlockAtWave
+
+    /** The best counting toward this mode's unlock. */
+    fun bestTowardUnlock(highestWaveReached: Int, bestOn: (mapId: String, modeId: String) -> Int): Int =
+        if (unlockMapId != null && unlockModeId != null) bestOn(unlockMapId, unlockModeId)
+        else highestWaveReached
+
+    /** What unlocks it, in words: "clear wave 100 on DDoS in HACK:AI". */
+    val unlockRequirement: String
+        get() = "clear wave $unlockAtWave" + (unlockWhere?.let { " on $it" } ?: "")
 
     companion object {
         fun fromIdSafe(id: String?): GameMode =

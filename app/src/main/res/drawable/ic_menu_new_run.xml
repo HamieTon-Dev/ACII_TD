@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- cil-plus from CoreUI Icons Free (https://coreui.io/icons/), CC BY 4.0. Credited on ABOUT. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="512"
+    android:viewportHeight="512">
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:pathData="M440,240 L272,240 L272,72 L240,72 L240,240 L72,240 L72,272 L240,272 L240,440 L272,440 L272,272 L440,272 L440,240Z" />
+</vector>

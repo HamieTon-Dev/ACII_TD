@@ -305,6 +305,10 @@ class ProjectileSystem(private val engine: GameEngine, private val random: Rando
         // this function never grows.
         if (enemy.isBoss) {
             enemy.variant.bonusDamageFrom[sourceType.name]?.let { multiplier *= it }
+            // ACE: every boss of the first five levels.
+            if (sourceType == AgentType.ACE && enemy.variant.isChapterOne) {
+                multiplier *= com.cyopstd.game.core.Balance.ACE_BOSS_MULTIPLIER
+            }
         }
 
         if (sourceType == AgentType.FIREWALL && enemy.hasModifier(BossModifier.FIREWALL_RESISTANCE)) {

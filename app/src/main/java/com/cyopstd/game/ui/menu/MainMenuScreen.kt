@@ -1,5 +1,8 @@
 package com.cyopstd.game.ui.menu
 
+import androidx.compose.foundation.layout.size
+import com.cyopstd.game.R
+
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -19,6 +22,8 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
@@ -26,6 +31,7 @@ import androidx.compose.foundation.Canvas
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.cyopstd.game.core.GameMap
 import com.cyopstd.game.core.GameMode
 import com.cyopstd.game.core.Maps
@@ -51,13 +57,12 @@ fun MainMenuScreen(
     budget: Long,
     firmwareLevel: Int,
     adsRemoved: Boolean,
-    availableModes: List<GameMode>,
-    selectedMode: GameMode,
-    availableMaps: List<GameMap>,
-    selectedMap: GameMap,
     backgroundAnimation: Boolean,
-    onSelectMode: (GameMode) -> Unit,
-    onSelectMap: (GameMap) -> Unit,
+    /**
+     * NEW RUN, after the "start a fresh run?" confirmation when there is a
+     * save. Opens level and difficulty selection; the menu itself no longer
+     * holds them (♡7).
+     */
     onPlay: () -> Unit,
     onContinue: () -> Unit,
     onAgents: () -> Unit,
@@ -86,15 +91,20 @@ fun MainMenuScreen(
             density = 40
         )
 
+        var confirmNewRun by androidx.compose.runtime.remember { androidx.compose.runtime.mutableStateOf(false) }
+
+        // ♡7 (owner, 2026-09-30): less crowded. No description under every
+        // button; level and difficulty are chosen after NEW RUN, not here;
+        // everything scales with the width it is given.
         Row(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(horizontal = 24.dp, vertical = 16.dp)
+                .padding(horizontal = 20.dp, vertical = 12.dp)
         ) {
             // ---- Left: identity + at-a-glance status -----------------------
             Column(
                 modifier = Modifier
-                    .weight(1.15f)
+                    .weight(1f)
                     .fillMaxHeight()
                     .verticalScroll(rememberScrollState()),
                 verticalArrangement = Arrangement.Center
@@ -109,17 +119,15 @@ fun MainMenuScreen(
                     style = MaterialTheme.typography.titleLarge,
                     color = Palette.Green
                 )
-
-                Spacer(Modifier.height(10.dp))
+                Spacer(Modifier.height(8.dp))
                 AsciiRule(color = Palette.CyanDim)
-                Spacer(Modifier.height(14.dp))
+                Spacer(Modifier.height(10.dp))
 
                 // Never wraps: a wrapped line breaks the box apart. On a column
                 // too narrow for it at the normal size, the text shrinks to fit.
                 androidx.compose.foundation.layout.BoxWithConstraints(Modifier.fillMaxWidth()) {
                     val base = MaterialTheme.typography.bodySmall
                     val widest = TITLE_ART.lines().maxOf { it.length }
-                    // A monospace glyph is about 0.62 em wide.
                     val fitting = with(androidx.compose.ui.platform.LocalDensity.current) {
                         (maxWidth.toPx() / (widest * 0.62f)).toSp()
                     }
@@ -135,243 +143,119 @@ fun MainMenuScreen(
                     )
                 }
 
-                Spacer(Modifier.height(16.dp))
+                Spacer(Modifier.height(12.dp))
 
-                TerminalPanel(
-                    title = "NETWORK STATUS",
-                    accent = Palette.Green
-                ) {
-                    StatRow(
-                        "BEST WAVE",
-                        stats.highestWave.toString(),
-                        valueColor = Palette.Crypto
-                    )
-                    StatRow(
-                        "ATTACKS BLOCKED",
-                        stats.totalAttacksBlocked.toString(),
-                        valueColor = Palette.Cyan
-                    )
-                    StatRow(
-                        "BOSSES DEFEATED",
-                        stats.totalBossesDefeated.toString(),
-                        valueColor = Palette.Red
-                    )
-                    StatRow(
-                        "SAVED SESSION",
-                        if (hasSavedRun) "PRESENT" else "NONE",
-                        valueColor = if (hasSavedRun) Palette.Green else Palette.TextMuted
-                    )
-                    AsciiRule(color = Palette.Divider)
-                    StatRow(
-                        "\u20AC BUDGET",
-                        budget.toString(),
-                        valueColor = Palette.Cyan
-                    )
+                TerminalPanel(title = "NETWORK STATUS", accent = Palette.Green) {
+                    StatRow("BEST WAVE", stats.highestWave.toString(), valueColor = Palette.Crypto)
+                    StatRow("BOSSES DEFEATED", stats.totalBossesDefeated.toString(), valueColor = Palette.Red)
+                    StatRow("\u20AC BUDGET", budget.toString(), valueColor = Palette.Cyan)
                     StatRow(
                         "CORE FIRMWARE",
                         "LV $firmwareLevel  ${FirmwareFormat.multiplier(firmwareLevel)} DMG",
                         valueColor = Palette.Purple
                     )
                 }
-
-                Spacer(Modifier.height(12.dp))
-
-                TerminalPanel(
-                    title = "RUN MODE",
-                    accent = Palette.Red
-                ) {
-                    for (mode in GameMode.entries) {
-                        val unlocked = mode in availableModes
-                        ModeRow(
-                            mode = mode,
-                            selected = mode == selectedMode,
-                            unlocked = unlocked,
-                            highestWave = stats.highestWave,
-                            onClick = { onSelectMode(mode) }
-                        )
-                    }
-                }
-
-                Spacer(Modifier.height(12.dp))
-
-                TerminalPanel(
-                    title = "LEVEL",
-                    accent = Palette.Cyan
-                ) {
-                    for (map in Maps.all) {
-                        MapRow(
-                            map = map,
-                            selected = map == selectedMap,
-                            unlocked = map in availableMaps,
-                            bestOnUnlockMode = map.bestTowardUnlock(
-                                bestWaveOnMode = { mode ->
-                                    when (mode) {
-                                        GameMode.HACK_AI -> stats.highestWaveHackAi
-                                        GameMode.STANDARD -> stats.highestWave
-                                    }
-                                },
-                                bestWaveOnMap = { id -> stats.highestWaveByMap[id] ?: 0 }
-                            ).let { if (it == Int.MAX_VALUE) 0 else it },
-                            onClick = { onSelectMap(map) }
-                        )
-                    }
-                }
-
-                Spacer(Modifier.height(12.dp))
-                // This line used to read "OFFLINE · NO ACCOUNT · NO ADS · NO
-                // PURCHASES". Three quarters of that stopped being true the
-                // moment billing and ads were wired in, and a menu that lies
-                // about ads is worse than one that says nothing.
+                Spacer(Modifier.height(8.dp))
                 Caption(playsOfflineCaption(adsRemoved))
             }
 
-            Spacer(Modifier.width(24.dp))
+            Spacer(Modifier.width(20.dp))
 
             // ---- Right: the actions ---------------------------------------
-            Column(
+            androidx.compose.foundation.layout.BoxWithConstraints(
                 modifier = Modifier
-                    .weight(1f)
+                    .weight(1.15f)
                     .fillMaxHeight()
-                    .verticalScroll(rememberScrollState()),
-                verticalArrangement = Arrangement.Center
             ) {
-                // Choosing a mode or a level and forgetting is a wasted run,
-                // so the start button says exactly what is about to start.
-                val runDescription = if (selectedMode == GameMode.STANDARD) {
-                    "on ${selectedMap.displayName}"
-                } else {
-                    "${selectedMode.runName} on ${selectedMap.displayName}"
+                val columns = if (maxWidth >= 330.dp) 4 else 3
+                val gap = 8.dp
+                val tile = (maxWidth - gap * (columns - 1)) / columns
+                Column(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .verticalScroll(rememberScrollState()),
+                    verticalArrangement = Arrangement.Center
+                ) {
+                    Row(horizontalArrangement = Arrangement.spacedBy(gap)) {
+                        MenuTile(
+                            icon = R.drawable.ic_menu_continue,
+                            label = "CONTINUE",
+                            accent = Palette.Green,
+                            enabled = hasSavedRun,
+                            large = true,
+                            onClick = onContinue,
+                            modifier = Modifier.weight(1f)
+                        )
+                        MenuTile(
+                            icon = R.drawable.ic_menu_new_run,
+                            label = "NEW RUN",
+                            accent = if (hasSavedRun) Palette.Cyan else Palette.Green,
+                            large = true,
+                            onClick = { if (hasSavedRun) confirmNewRun = true else onPlay() },
+                            modifier = Modifier.weight(1f)
+                        )
+                    }
+                    Spacer(Modifier.height(gap))
+                    val tiles = listOf(
+                        MenuEntry(R.drawable.ic_menu_agents, "AGENTS", Palette.Cyan, onAgents),
+                        MenuEntry(R.drawable.ic_menu_firmware, "FIRMWARE", Palette.Crypto, onFirmware),
+                        MenuEntry(R.drawable.ic_menu_store, "STORE", Palette.Green, onStore),
+                        MenuEntry(R.drawable.ic_menu_loadout, "LOADOUT", Palette.Purple, onLoadout),
+                        MenuEntry(R.drawable.ic_menu_google_play, "GOOGLE PLAY", Palette.Blue, onPlayAccount),
+                        MenuEntry(R.drawable.ic_menu_leaderboard, "LEADERBOARD", Palette.Crypto, onLeaderboard),
+                        MenuEntry(R.drawable.ic_menu_codex, "CODEX", Palette.Purple, onCodex),
+                        MenuEntry(R.drawable.ic_menu_statistics, "STATISTICS", Palette.Cyan, onStatistics),
+                        MenuEntry(R.drawable.ic_menu_settings, "SETTINGS", Palette.Cyan, onSettings),
+                        MenuEntry(R.drawable.ic_menu_about, "ABOUT", Palette.Cyan, onAbout),
+                        MenuEntry(R.drawable.ic_menu_exit, "EXIT", Palette.Red, onExit)
+                    )
+                    for (row in tiles.chunked(columns)) {
+                        Row(horizontalArrangement = Arrangement.spacedBy(gap)) {
+                            for (entry in row) {
+                                MenuTile(
+                                    icon = entry.icon,
+                                    label = entry.label,
+                                    accent = entry.accent,
+                                    onClick = entry.onClick,
+                                    modifier = Modifier.width(tile)
+                                )
+                            }
+                        }
+                        Spacer(Modifier.height(gap))
+                    }
                 }
-                // With a saved run, resuming it is the likely intent, so
-                // CONTINUE leads and is the green button, and the start button
-                // becomes NEW RUN and says it replaces the save (owner,
-                // 2026-09-26). With no save, PLAY leads as it always has.
-                if (hasSavedRun) {
-                    BastionButton(
-                        text = "CONTINUE",
-                        subtitle = "Resume your saved session",
-                        leadingGlyph = "[=]",
-                        accent = Palette.Green,
-                        onClick = onContinue
-                    )
-                    Spacer(Modifier.height(10.dp))
-                    BastionButton(
-                        text = "NEW RUN",
-                        subtitle = "Start over ${runDescription} \u00B7 replaces your save",
-                        leadingGlyph = "[>]",
-                        onClick = onPlay
-                    )
-                } else {
-                    BastionButton(
-                        text = "PLAY",
-                        subtitle = if (selectedMode == GameMode.STANDARD) {
-                            "Start a run ${runDescription}"
-                        } else {
-                            runDescription
-                        },
-                        leadingGlyph = "[>]",
-                        accent = Palette.Green,
-                        onClick = onPlay
-                    )
-                    Spacer(Modifier.height(10.dp))
-                    BastionButton(
-                        text = "CONTINUE",
-                        subtitle = "No saved session",
-                        leadingGlyph = "[=]",
-                        enabled = false,
-                        onClick = onContinue
-                    )
-                }
-                Spacer(Modifier.height(10.dp))
-                BastionButton(
-                    text = "AGENTS",
-                    subtitle = "Review your cyber agent roster",
-                    leadingGlyph = "[@]",
-                    onClick = onAgents
-                )
-                Spacer(Modifier.height(10.dp))
-                BastionButton(
-                    text = "FIRMWARE",
-                    subtitle = if (budget > 0) {
-                        "\u20AC $budget to spend on permanent damage"
-                    } else {
-                        "Permanent upgrades \u00B7 earn \u20AC every 10 waves"
-                    },
-                    leadingGlyph = "[\u20AC]",
-                    accent = Palette.Crypto,
-                    onClick = onFirmware
-                )
-                Spacer(Modifier.height(10.dp))
-                BastionButton(
-                    text = "STORE",
-                    subtitle = "Skins, budget packs and conveniences",
-                    leadingGlyph = "[$]",
-                    accent = Palette.Green,
-                    onClick = onStore
-                )
-                Spacer(Modifier.height(10.dp))
-                BastionButton(
-                    text = "LOADOUT",
-                    subtitle = "Equip the skins and backgrounds you own",
-                    leadingGlyph = "[#]",
-                    accent = Palette.Purple,
-                    onClick = onLoadout
-                )
-                Spacer(Modifier.height(10.dp))
-                BastionButton(
-                    text = "GOOGLE PLAY",
-                    subtitle = "Purchases, restore and what leaves this device",
-                    leadingGlyph = "[G]",
-                    accent = Palette.Blue,
-                    onClick = onPlayAccount
-                )
-                Spacer(Modifier.height(10.dp))
-                BastionButton(
-                    text = "LEADERBOARD",
-                    subtitle = "Ranked by deepest wave reached",
-                    leadingGlyph = "[#]",
-                    accent = Palette.Crypto,
-                    onClick = onLeaderboard
-                )
-                Spacer(Modifier.height(10.dp))
-                BastionButton(
-                    text = "CODEX",
-                    subtitle = "Threats, agents and network terms",
-                    leadingGlyph = "[?]",
-                    accent = Palette.Purple,
-                    onClick = onCodex
-                )
-                Spacer(Modifier.height(10.dp))
-                BastionButton(
-                    text = "STATISTICS",
-                    subtitle = "Lifetime defence record",
-                    leadingGlyph = "[#]",
-                    onClick = onStatistics
-                )
-                Spacer(Modifier.height(10.dp))
-                BastionButton(
-                    text = "SETTINGS",
-                    subtitle = "Audio, haptics, visuals",
-                    leadingGlyph = "[*]",
-                    onClick = onSettings
-                )
-                Spacer(Modifier.height(10.dp))
-                BastionButton(
-                    text = "ABOUT",
-                    subtitle = "Version and credits",
-                    leadingGlyph = "[i]",
-                    onClick = onAbout
-                )
-                Spacer(Modifier.height(10.dp))
-                BastionButton(
-                    text = "EXIT",
-                    subtitle = "Close the application",
-                    leadingGlyph = "[X]",
-                    accent = Palette.Red,
-                    onClick = onExit
-                )
-                Spacer(Modifier.height(8.dp))
             }
+        }
+
+        if (confirmNewRun) {
+            androidx.compose.material3.AlertDialog(
+                onDismissRequest = { confirmNewRun = false },
+                containerColor = Palette.Surface,
+                title = {
+                    Text("NEW RUN", style = MaterialTheme.typography.titleMedium, color = Palette.Cyan)
+                },
+                text = {
+                    Text(
+                        "Are you sure you would like to start a fresh run? Your saved session will be replaced.",
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = Palette.TextPrimary
+                    )
+                },
+                confirmButton = {
+                    com.cyopstd.game.ui.common.CompactButton(
+                        text = "START FRESH",
+                        onClick = { confirmNewRun = false; onPlay() },
+                        accent = Palette.Green
+                    )
+                },
+                dismissButton = {
+                    com.cyopstd.game.ui.common.CompactButton(
+                        text = "KEEP MY SAVE",
+                        onClick = { confirmNewRun = false },
+                        accent = Palette.TextSecondary
+                    )
+                }
+            )
         }
 
         if (showGuide) {
@@ -386,132 +270,56 @@ fun MainMenuScreen(
     }
 }
 
-/**
- * One selectable level.
- *
- * Shown locked rather than hidden, for the same reason a locked mode is: the
- * gauntlet is what a player who has cleared HACK:AI is aiming at next, and
- * nobody aims at something they have never seen.
- */
-@Composable
-private fun MapRow(
-    map: GameMap,
-    selected: Boolean,
-    unlocked: Boolean,
-    bestOnUnlockMode: Int,
-    onClick: () -> Unit
-) {
-    val accent = when {
-        !unlocked -> Palette.TextMuted
-        selected -> Palette.Green
-        else -> Palette.CyanDim
-    }
-    Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(vertical = 3.dp)
-            .background(
-                if (selected) Palette.SurfaceRaised else androidx.compose.ui.graphics.Color.Transparent,
-                androidx.compose.foundation.shape.RoundedCornerShape(4.dp)
-            )
-            .border(
-                androidx.compose.foundation.BorderStroke(
-                    1.dp,
-                    accent.copy(alpha = if (selected) 0.8f else 0.3f)
-                ),
-                androidx.compose.foundation.shape.RoundedCornerShape(4.dp)
-            )
-            .clickable(enabled = unlocked, role = androidx.compose.ui.semantics.Role.RadioButton) {
-                onClick()
-            }
-            .padding(horizontal = 10.dp, vertical = 8.dp),
-        verticalAlignment = Alignment.CenterVertically
-    ) {
-        Text(
-            text = if (selected) "[*]" else if (unlocked) "[ ]" else "[X]",
-            style = MaterialTheme.typography.labelMedium,
-            color = accent
-        )
-        Spacer(Modifier.width(8.dp))
-        Column(Modifier.weight(1f)) {
-            Text(
-                text = map.displayName,
-                style = MaterialTheme.typography.titleSmall,
-                color = if (unlocked) Palette.TextPrimary else Palette.TextMuted
-            )
-            Caption(
-                if (unlocked) {
-                    map.tagline
-                } else {
-                    "LOCKED \u00B7 ${map.unlockRequirement} (best: $bestOnUnlockMode)"
-                }
-            )
-        }
-    }
-}
+private class MenuEntry(
+    @androidx.annotation.DrawableRes val icon: Int,
+    val label: String,
+    val accent: androidx.compose.ui.graphics.Color,
+    val onClick: () -> Unit
+)
 
 /**
- * One selectable difficulty.
- *
- * A locked mode is shown rather than hidden, with the wave that unlocks it:
- * HACK:AI is the thing to aim at after wave 100, and a player cannot aim at
- * something they have never seen. It is inert until earned.
+ * A main-menu button: an icon with a short label under it, and nothing else
+ * (owner, 2026-09-30: the descriptions under every button were the clutter).
+ * The icons are CoreUI Icons Free (owner's pick, ♡7), CC BY 4.0, credited
+ * on ABOUT; vector drawables, so they port to iOS and Steam as plain SVG.
  */
 @Composable
-private fun ModeRow(
-    mode: GameMode,
-    selected: Boolean,
-    unlocked: Boolean,
-    highestWave: Int,
-    onClick: () -> Unit
+private fun MenuTile(
+    @androidx.annotation.DrawableRes icon: Int,
+    label: String,
+    accent: androidx.compose.ui.graphics.Color,
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier,
+    enabled: Boolean = true,
+    large: Boolean = false
 ) {
-    val accent = when {
-        !unlocked -> Palette.TextMuted
-        selected -> Palette.Green
-        else -> Palette.CyanDim
-    }
-    Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(vertical = 3.dp)
-            .background(
-                if (selected) Palette.SurfaceRaised else androidx.compose.ui.graphics.Color.Transparent,
-                androidx.compose.foundation.shape.RoundedCornerShape(4.dp)
-            )
-            .border(
-                androidx.compose.foundation.BorderStroke(
-                    1.dp,
-                    accent.copy(alpha = if (selected) 0.8f else 0.3f)
-                ),
-                androidx.compose.foundation.shape.RoundedCornerShape(4.dp)
-            )
-            .clickable(enabled = unlocked, role = androidx.compose.ui.semantics.Role.RadioButton) {
-                onClick()
-            }
-            .padding(horizontal = 10.dp, vertical = 8.dp),
-        verticalAlignment = Alignment.CenterVertically
+    val color = if (enabled) accent else Palette.TextMuted
+    Column(
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center,
+        modifier = modifier
+            .height(if (large) 76.dp else 58.dp)
+            .background(Palette.Surface.copy(alpha = 0.85f), androidx.compose.foundation.shape.RoundedCornerShape(6.dp))
+            .border(1.dp, color.copy(alpha = if (enabled) 0.7f else 0.3f), androidx.compose.foundation.shape.RoundedCornerShape(6.dp))
+            .clickable(enabled = enabled, role = androidx.compose.ui.semantics.Role.Button, onClick = onClick)
+            .padding(4.dp)
     ) {
-        Text(
-            text = if (selected) "[*]" else if (unlocked) "[ ]" else "[X]",
-            style = MaterialTheme.typography.labelMedium,
-            color = accent
+        androidx.compose.material3.Icon(
+            painter = androidx.compose.ui.res.painterResource(icon),
+            contentDescription = null,
+            tint = color,
+            modifier = Modifier
+                .padding(bottom = 3.dp)
+                .size(if (large) 26.dp else 20.dp)
         )
-        Spacer(Modifier.width(8.dp))
-        Column(Modifier.weight(1f)) {
-            Text(
-                text = mode.runName,
-                style = MaterialTheme.typography.titleSmall,
-                color = if (unlocked) Palette.TextPrimary else Palette.TextMuted
-            )
-            Caption(
-                when {
-                    !unlocked -> "LOCKED \u00B7 clear wave ${mode.unlockAtWave} (best: $highestWave)"
-                    mode == GameMode.STANDARD -> "The standard curve."
-                    else -> "Tougher threats, closer together, less integrity. " +
-                        "Richer rewards."
-                }
-            )
-        }
+        Text(
+            text = label,
+            style = MaterialTheme.typography.labelSmall.copy(fontSize = if (large) 11.sp else 9.sp),
+            color = if (enabled) Palette.TextPrimary else Palette.TextMuted,
+            maxLines = 1,
+            softWrap = false,
+            overflow = androidx.compose.ui.text.style.TextOverflow.Ellipsis
+        )
     }
 }
 

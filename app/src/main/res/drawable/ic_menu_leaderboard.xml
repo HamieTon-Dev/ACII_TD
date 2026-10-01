@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- cil-list-numbered from CoreUI Icons Free (https://coreui.io/icons/), CC BY 4.0. Credited on ABOUT. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="512"
+    android:viewportHeight="512">
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:pathData="M184.0,80.0h288.0v32.0h-288.0Z" />
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:pathData="M184.0,240.0h288.0v32.0h-288.0Z" />
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:pathData="M184.0,400.0h288.0v32.0h-288.0Z" />
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:pathData="M120,160 L120,40 L56,40 L56,72 L88,72 L88,160 L120,160Z" />
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:pathData="M56,262.111 L56,312 L136,312 L136,280 L91.777,280 L136,257.889 L136,192 L56,192 L56,224 L104,224 L104,238.111 L56,262.111Z" />
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:pathData="M56,440 L56,472 L136,472 L136,344 L56,344 L56,376 L104,376 L104,392 L80,392 L80,424 L104,424 L104,440 L56,440Z" />
+</vector>

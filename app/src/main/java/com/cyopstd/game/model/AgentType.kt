@@ -135,7 +135,15 @@ enum class AgentType(
      * Repairs CORE-SERVER instead of shooting. It never targets anything, so
      * it needs no range; its timer is [Balance.engineerHealInterval].
      */
-    val healsServer: Boolean = false
+    val healsServer: Boolean = false,
+    /**
+     * Earned by reaching [unlockWave] on this one level (`GameMap.id`), in any
+     * mode, rather than anywhere. [unlockMapName] is how the lock text names it.
+     */
+    val unlockMapId: String? = null,
+    val unlockMapName: String? = null,
+    /** Builds a wall across the nearest route in range (ACE). */
+    val buildsWalls: Boolean = false
 ) {
     TARPIT(
         displayName = "TARPIT",
@@ -476,7 +484,116 @@ enum class AgentType(
         maxDeployed = MAX_ENGINEERS,
         beginnerLevelOnly = true,
         healsServer = true
+    ),
+    /**
+     * ACE [♤] (backlog ♡6, owner, 2026-09-30): earned by wave 100 on DDoS.
+     * Builds a wall across the nearest route in its range; threats have to
+     * break it down before they can pass, and it rebuilds after a pause. Hits
+     * every boss of levels 1–5 very hard. Built to carry a player into the
+     * second five levels.
+     */
+    ACE(
+        displayName = "ACE",
+        shortName = "ACE",
+        glyph = "\u2664",
+        cost = 650,
+        baseDamage = 46f,
+        baseFireRate = 0.9f,
+        baseRange = 260f,
+        attackStyle = AttackStyle.PRECISION,
+        unlockWave = 100,
+        abilityName = "PATCH WALL",
+        abilitySummary = "Walls off the nearest route in range; threats must break it. " +
+            "Hits every boss very hard. Three maximum.",
+        realWorld = "A senior security engineer with a bachelor's degree in cyber " +
+            "security, who stops attacks by building the software that defends " +
+            "against them: hardened services, patches and filters that are in " +
+            "place before the attack arrives rather than after it.",
+        inGame = "Builds a wall across the nearest route within its range. " +
+            "Threats stop at the wall and have to break it down before they can " +
+            "pass; bosses break it fastest. When it falls, ACE rebuilds it after " +
+            "a few seconds, stronger with every level. Its own shots deal " +
+            "${Balance.ACE_BOSS_MULTIPLIER.toInt()}\u00D7 damage to every boss of the first five " +
+            "levels. No more than three may be deployed.",
+        maxDeployed = 3,
+        allowsTargetingModes = true,
+        unlockMapId = "ddos",
+        unlockMapName = "DDoS",
+        buildsWalls = true
+    ),
+    /**
+     * ANTI DUCK USB `[<(o]` (backlog ♡2, owner): earned by wave 100 on
+     * DUCK-USB, 500◇, stronger than the hats. Drawn as a green-and-yellow
+     * hologram that no agent skin changes (owner's look C).
+     *
+     * Ability confirmed by the owner (2026-10-01, *"keep the duck
+     * ability"*): the hats' fire rate with heavier shots, and
+     * ×[Balance.ANTI_DUCK_MULTIPLIER] damage to DUCK-USB's own bosses,
+     * SYN-STORM and GRADIENT. Two maximum. Unlike the hats it keeps targeting
+     * modes, so the hats stay the only agents that always shoot a boss first.
+     */
+    ANTI_DUCK(
+        displayName = "ANTI DUCK USB",
+        shortName = "ANTIDUCK",
+        glyph = "<(o",
+        cost = 500,
+        baseDamage = 48f,
+        baseFireRate = HIGHEST_FIRE_RATE,
+        baseRange = 280f,
+        attackStyle = AttackStyle.PRECISION,
+        unlockWave = 100,
+        abilityName = "PAYLOAD BLOCK",
+        abilitySummary = "Hats' fire rate, heavier shots, and " +
+            "${Balance.ANTI_DUCK_MULTIPLIER.toInt()}\u00D7 damage to SYN-STORM and GRADIENT. Two maximum.",
+        realWorld = "A \"rubber ducky\" is a USB stick that pretends to be a " +
+            "keyboard and types an attack faster than anyone could. The defence " +
+            "is a USB guard that checks every new device before the computer " +
+            "trusts it, and blocks a keyboard that types like a machine.",
+        inGame = "Fires as fast as the hats and hits harder, with " +
+            "${Balance.ANTI_DUCK_MULTIPLIER.toInt()}\u00D7 damage to the DUCK-USB bosses " +
+            "SYN-STORM and GRADIENT. Keeps its targeting modes. No more than two " +
+            "may be deployed. Drawn as a hologram that agent skins do not change.",
+        maxDeployed = 2,
+        allowsTargetingModes = true,
+        unlockMapId = "duck_usb",
+        unlockMapName = "DUCK-USB"
+    ),
+    /**
+     * CYBER OPERATIVE `[>_<]` (backlog ♡3, owner): earned by wave 100 on
+     * HUGGING-FACE, two maximum, TARPIT's range. Nothing inside its range can
+     * be jammed, and it hits the HUGGING-FACE eyes, WHITE EYE and BLACK EYE,
+     * hard and fast. Drawn as the game's logo with an anti-jam aura: the
+     * owner's pick, option C of `CyberOperativePreview`.
+     */
+    CYBER_OPERATIVE(
+        displayName = "CYBER OPERATIVE",
+        shortName = "CYBEROP",
+        glyph = ">_<",
+        cost = 600,
+        baseDamage = 30f,
+        baseFireRate = 2.5f,
+        baseRange = 300f,
+        attackStyle = AttackStyle.SCAN,
+        unlockWave = 100,
+        abilityName = "COUNTERMEASURES",
+        abilitySummary = "Agents in its range cannot be jammed. " +
+            "${Balance.CYBER_OPERATIVE_EYE_MULTIPLIER.toInt()}\u00D7 damage to WHITE EYE and BLACK EYE. Two maximum.",
+        realWorld = "A cyber operations specialist runs defence as a live " +
+            "operation: watching for interference, keeping the team's tools " +
+            "working while someone is actively trying to switch them off, and " +
+            "going straight at the source of it.",
+        inGame = "Every agent inside its range, itself included, is immune to " +
+            "jamming from any boss. Fast, heavy shots, with " +
+            "${Balance.CYBER_OPERATIVE_EYE_MULTIPLIER.toInt()}\u00D7 damage to WHITE EYE " +
+            "and BLACK EYE. TARPIT's range. No more than two may be deployed.",
+        maxDeployed = 2,
+        allowsTargetingModes = true,
+        unlockMapId = "hugging_face",
+        unlockMapName = "HUGGING-FACE"
     );
+
+    /** Not fooled by a SPOOFER's decoys (♡5): the ones built to read a threat. */
+    val seesThroughDecoys: Boolean get() = this == ANALYST || this == ROOT_ADMIN
 
     /** Agents available from the very first run. */
     val unlockedByDefault: Boolean get() = unlockWave <= 0
@@ -494,13 +611,17 @@ enum class AgentType(
             unlockedByDefault -> "Available from the start."
             beginnerLevelOnly -> "Unlock this agent by reaching wave $unlockWave on " +
                 "$BEGINNER_LEVEL_NAME in $BEGINNER_MODE_NAME mode."
+            unlockMapName != null -> "Unlock this agent by reaching wave $unlockWave on $unlockMapName."
             else -> "Unlock this agent by reaching wave $unlockWave on any level."
         }
 
     /** Short form for a locked card or toast: "REACH WAVE 30". */
     val lockedLabel: String
-        get() = if (beginnerLevelOnly) "REACH WAVE $unlockWave ON $BEGINNER_LEVEL_NAME"
-        else "REACH WAVE $unlockWave"
+        get() = when {
+            beginnerLevelOnly -> "REACH WAVE $unlockWave ON $BEGINNER_LEVEL_NAME"
+            unlockMapName != null -> "REACH WAVE $unlockWave ON $unlockMapName"
+            else -> "REACH WAVE $unlockWave"
+        }
 
     fun statsAtLevel(level: Int): AgentStats {
         val steps = (level - 1).coerceIn(0, Balance.MAX_AGENT_LEVEL - 1)
@@ -548,9 +669,19 @@ enum class AgentType(
          * lost an unlock (the wave-30 race), or that predates an agent being
          * added, is repaired by this rather than needing the wave played again.
          */
-        fun earnedBy(highestWave: Int, highestWaveBeginner: Int = 0): List<AgentType> =
+        fun earnedBy(
+            highestWave: Int,
+            highestWaveBeginner: Int = 0,
+            /** Best wave per level, for agents earned on one level. */
+            bestByMap: Map<String, Int> = emptyMap()
+        ): List<AgentType> =
             entries.filter {
-                it.unlockWave in 1..(if (it.beginnerLevelOnly) highestWaveBeginner else highestWave)
+                val reached = when {
+                    it.beginnerLevelOnly -> highestWaveBeginner
+                    it.unlockMapId != null -> bestByMap[it.unlockMapId] ?: 0
+                    else -> highestWave
+                }
+                it.unlockWave in 1..reached
             }
 
         /** The level and mode that count for [beginnerLevelOnly] agents. */

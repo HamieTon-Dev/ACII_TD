@@ -73,6 +73,28 @@ class Enemy : Poolable {
     var ransomTimer: Float = 0f
 
     /**
+     * The chapter-two bosses' own clock (♡5): BOTMASTER's next drop, ROOTKIT's
+     * hide cycle, SPOOFER's next decoy.
+     */
+    var variantTimer: Float = 0f
+
+    /** ROOTKIT while it is hidden: no agent will pick it as a target. */
+    var hidden: Boolean = false
+
+    /** WORM: 0 for the original, 1 and 2 for the pieces it breaks into. */
+    var wormGeneration: Int = 0
+
+    /**
+     * A SPOOFER decoy: draws fire, does no harm, and is not part of the wave.
+     * [decoyOwner] is the SPOOFER that cast it, so its decoys go with it.
+     */
+    var decoy: Boolean = false
+    var decoyOwner: Enemy? = null
+
+    /** Whether an agent may pick this as a target at all. */
+    val targetable: Boolean get() = !hidden
+
+    /**
      * LICENSE: how many hits each agent type has landed on it, by
      * `AgentType.ordinal`. Sized generously so a new agent never overflows it.
      */
@@ -216,6 +238,11 @@ class Enemy : Poolable {
         split = false
         gradientHeat = 0f
         ransomTimer = 0f
+        variantTimer = 0f
+        hidden = false
+        wormGeneration = 0
+        decoy = false
+        decoyOwner = null
         licenseHits.fill(0)
         recentAttackerNodes.fill(-1)
         recentAttackerTimes.fill(0f)
@@ -255,7 +282,7 @@ class Agent : Poolable {
      * behaviour for free.
      */
     fun jam(seconds: Float) {
-        if (type.immuneToJam) return
+        if (type.immuneToJam || jamShielded) return
         if (seconds > disruptedFor) disruptedFor = seconds
     }
 
@@ -264,6 +291,9 @@ class Agent : Poolable {
         if (disruptedFor > 0f) disruptedFor -= dt
         if (ransomedFor > 0f) ransomedFor -= dt
     }
+
+    /** Inside a CYBER OPERATIVE's field (♡3): no jam lands. Recomputed each tick. */
+    var jamShielded: Boolean = false
 
     /** Seconds left on a RANSOM boss's upgrade lock; zero when free. */
     var ransomedFor: Float = 0f
@@ -274,6 +304,9 @@ class Agent : Poolable {
 
     var lifetimeKills: Int = 0
     var lifetimeDamage: Float = 0f
+
+    /** ACE: seconds until a fallen wall is rebuilt. */
+    var wallCooldown: Float = 0f
 
     /** AGENT FIRMWARE bought for this agent's type, as multipliers. */
     var firmwareDamage: Float = 1f
@@ -308,6 +341,7 @@ class Agent : Poolable {
         upgradeFlash = 0f
         disruptedFor = 0f
         ransomedFor = 0f
+        jamShielded = false
         damageBuff = 1f
         rateBuff = 1f
         targetingMode = TargetingMode.FIRST
@@ -316,6 +350,33 @@ class Agent : Poolable {
         firmwareDamage = 1f
         firmwareRate = 1f
         firmwareRange = 1f
+        wallCooldown = 0f
+    }
+}
+
+/**
+ * ACE's wall across a route (backlog ♡6). Where routes share a stretch of
+ * road, one wall blocks every route through that point, so it is stored as a
+ * stopping distance per route ([Float.NaN] where a route does not pass it).
+ */
+class Wall : Poolable {
+    override var active = false
+    var ownerNodeId: Int = -1
+    var x: Float = 0f
+    var y: Float = 0f
+    var health: Float = 0f
+    var maxHealth: Float = 1f
+    var hitFlash: Float = 0f
+    var progressByLane: FloatArray = FloatArray(0)
+
+    fun progressAt(lane: Int): Float = progressByLane.getOrElse(lane) { Float.NaN }
+
+    override fun reset() {
+        active = false
+        ownerNodeId = -1
+        health = 0f
+        hitFlash = 0f
+        progressByLane = FloatArray(0)
     }
 }
 

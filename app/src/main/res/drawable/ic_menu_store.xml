@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- cil-cart from CoreUI Icons Free (https://coreui.io/icons/), CC BY 4.0. Credited on ABOUT. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="512"
+    android:viewportHeight="512">
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:pathData="M160,96.039 L160,128.039 L464,128.039 L464,191.384 L428.5,304.039 L149.932,304.039 L109.932,16 L16,16 L16,48 L82.068,48 L122.068,336.039 L451.968,336.039 L496,196.306 L496,96.039 L160,96.039Z" />
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:pathData="M176.984,368.344a64.073,64.073,0,0,0-64,64h0a64,64,0,0,0,128,0h0A64.072,64.072,0,0,0,176.984,368.344Zm0,96a32,32,0,1,1,32-32A32.038,32.038,0,0,1,176.984,464.344Z" />
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:pathData="M400.984,368.344a64.073,64.073,0,0,0-64,64h0a64,64,0,0,0,128,0h0A64.072,64.072,0,0,0,400.984,368.344Zm0,96a32,32,0,1,1,32-32A32.038,32.038,0,0,1,400.984,464.344Z" />
+</vector>

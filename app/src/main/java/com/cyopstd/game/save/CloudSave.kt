@@ -158,6 +158,10 @@ object CloudSaveMerge {
         totalServerDamageTaken = maxOf(base.totalServerDamageTaken, other.totalServerDamageTaken),
         totalAgentsDeployed = maxOf(base.totalAgentsDeployed, other.totalAgentsDeployed),
         totalAgentUpgrades = maxOf(base.totalAgentUpgrades, other.totalAgentUpgrades),
+        highestWaveByMapMode = (base.highestWaveByMapMode.keys + other.highestWaveByMapMode.keys)
+            .associateWith { key ->
+                maxOf(base.highestWaveByMapMode[key] ?: 0, other.highestWaveByMapMode[key] ?: 0)
+            },
         // Per-agent deployment counts are lifetime totals too, so the same rule
         // applies key by key rather than to the map as a whole.
         deploymentsByAgent = (base.deploymentsByAgent.keys + other.deploymentsByAgent.keys)
