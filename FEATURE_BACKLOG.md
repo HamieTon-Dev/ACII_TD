@@ -610,6 +610,11 @@ suit: Material Symbols (Apache 2.0) or drawing the few icons in-house.
   in HACK:AI).
 - **♡7:** icons from **CoreUI Icons** (https://coreui.io/icons/). Free set is
   CC BY 4.0 → credit on the About screen.
+- **Level names 6–10 (owner, 2026-10-01):** *"give me a list of options for
+  each one appropriate cyber security breach nicknames and let me choose
+  before doing more work"*. Options shown in chat (five per level, themed on
+  each level's boss). Waiting on the owner's picks; then change only
+  `displayName` (and taglines) in `Maps.kt` — the ids stay, saves use them.
 - **Music for levels 6–10 (owner, 2026-10-01):** *"I will generate all new
   music for the new 5 levels. I'll send you two files for each level."*
   Waiting on the files. When they arrive: `res/raw/level6.mp3` +
