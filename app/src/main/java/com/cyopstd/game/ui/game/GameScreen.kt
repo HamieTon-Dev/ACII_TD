@@ -341,6 +341,7 @@ private fun GameScreenBody(
                 viewModel.leaveMatch()
                 onExitToMenu()
             },
+            backgroundAnimation = viewModel.settings.backgroundAnimation,
             musicPlayer = { modifier ->
                 MusicPlayerPanel(
                     state = MusicPlayerState(

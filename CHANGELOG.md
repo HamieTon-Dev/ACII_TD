@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [1.55.0] — 2026-10-02
+
 ### Leaderboards per level and difficulty
 
 - The leaderboard has LEVEL and DIFFICULTY drop-downs. THIS DEVICE filters
@@ -19,6 +21,29 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
   30 boards (10 levels × 3 difficulties) plus the existing all-level ones. A
   finished run posts to both its level's board and its difficulty's overall
   board. `LEADERBOARDS.md` lists the boards to create in Play Console.
+
+### Menu music
+
+- The main menu plays the owner's two new "Main Menu" tracks, alternating
+  (the generated track remains only as a fallback). They join the music
+  player and the soundtrack, now 22 tracks.
+- **Fixed:** the menu could stay silent after music had been turned off and
+  back on, until a match was played. Music is now always asked for and simply
+  stays silent while the volume is at zero, so it comes back by itself.
+
+### In a match
+
+- The level's name and the difficulty sit in the corner plate, under the
+  crypto and above the core server. The faint run name over the top of the
+  board is gone.
+
+### Main menu and menus
+
+- The lanes-to-core-server picture is a vector drawing instead of ASCII text,
+  so it scales cleanly and no longer misaligns.
+- New backdrop behind the main menu, the pause menu, the store and every
+  other menu: circles radiating from the centre, slowly turning and slowly
+  moving through the whole colour spectrum.
 
 ## [1.54.0] — 2026-10-01
 

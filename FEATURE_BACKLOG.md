@@ -644,6 +644,12 @@ suit: Material Symbols (Apache 2.0) or drawing the few icons in-house.
   art). 4. *"New circles radiating living background (full spectrum color
   change slowly, slowly rotating) behind main menu elements, pause menu, store
   menu, and other sub menus."*
+  **Done (1.55.0):** 1. root cause: every place that starts music returned
+  early at zero volume, so nothing was left asked to play when the volume
+  came back; now the request is always recorded (`BackgroundAudioTest`), and
+  the menu plays `menu`/`menu_2` (generated track as fallback). 2. corner
+  plate lines. 3. `menu_title_art.xml`. 4. `HaloBackdrop`, free and always on
+  behind menus (not a store item); off with background animation.
 - **Leaderboards per level and difficulty (owner, 2026-10-01):** *"Does the
   leaderboard show per level and difficulty highest achieved? If not, is this
   possible?"* Today: the local board is the top 25 runs of all levels mixed

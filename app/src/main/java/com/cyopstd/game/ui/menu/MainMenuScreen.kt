@@ -87,6 +87,7 @@ fun MainMenuScreen(
             .fillMaxSize()
             .background(Palette.Background)
     ) {
+        com.cyopstd.game.ui.common.HaloBackdrop(modifier = Modifier.fillMaxSize(), enabled = backgroundAnimation)
         AsciiBackdrop(
             modifier = Modifier.fillMaxSize(),
             enabled = backgroundAnimation,

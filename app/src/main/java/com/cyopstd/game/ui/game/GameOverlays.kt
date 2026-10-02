@@ -77,9 +77,13 @@ fun PauseOverlay(
     onSettings: () -> Unit,
     onMainMenu: () -> Unit,
     /** The music player (owner, 2026-10-01), beside the buttons; null for none. */
-    musicPlayer: (@Composable (Modifier) -> Unit)? = null
+    musicPlayer: (@Composable (Modifier) -> Unit)? = null,
+    /** Animates the radiating circles behind the menu; the game passes the setting. */
+    backgroundAnimation: Boolean = false
 ) {
     Scrim {
+        // The menus' radiating circles, behind the pause menu too (owner, 2026-10-01).
+        com.cyopstd.game.ui.common.HaloBackdrop(Modifier.fillMaxSize(), enabled = backgroundAnimation)
         Column(
             modifier = Modifier
                 .widthIn(max = if (musicPlayer != null) 760.dp else 420.dp)
