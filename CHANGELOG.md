@@ -9,6 +9,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [1.55.1] — 2026-10-02
+
+### Focus buttons light up
+
+- The BOSS focus button lights **red** and OTHER lights **yellow** while on
+  (OTHER was orange), with a brighter fill and a thicker border so the active
+  one stands out. The hint line under TARGETING matches.
+
 ## [1.55.0] — 2026-10-02
 
 ### Boss balance (owner, play-tested on a real build)
