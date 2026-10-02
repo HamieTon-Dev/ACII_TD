@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- cil-face-dead from CoreUI Icons Free (https://coreui.io/icons/), CC BY 4.0. Credited on ABOUT.
-     The BOSS focus ("skull") button: CoreUI Free has no skull, and this is its nearest. -->
+<!-- cil-mood-very-bad from CoreUI Icons Free (https://coreui.io/icons/), CC BY 4.0. Credited on ABOUT.
+     The BOSS focus button (owner's pick, 2026-10-02). -->
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
     android:width="24dp"
     android:height="24dp"
@@ -11,11 +11,21 @@
         android:pathData="M256,16C123.452,16,16,123.452,16,256S123.452,496,256,496,496,388.548,496,256,388.548,16,256,16ZM403.078,403.078a207.253,207.253,0,1,1,44.589-66.125A207.332,207.332,0,0,1,403.078,403.078Z" />
     <path
         android:fillColor="#FFFFFFFF"
-        android:pathData="M168,320H344V352H168Z" />
-    <path
-        android:fillColor="#FFFFFFFF"
-        android:pathData="M210.63,228.042L186.588,206.671L207.958,182.63L184.042,161.37L162.671,185.412L138.63,164.042L117.37,187.958L141.412,209.329L120.042,233.37L143.958,254.63L165.329,230.588L189.37,251.958L210.63,228.042Z" />
-    <path
-        android:fillColor="#FFFFFFFF"
-        android:pathData="M383.958,182.63L360.042,161.37L338.671,185.412L314.63,164.042L293.37,187.958L317.412,209.329L296.042,233.37L319.958,254.63L341.329,230.588L365.37,251.958L386.63,228.042L362.588,206.671L383.958,182.63Z" />
+        android:pathData="M256,280A104,104,0,0,0,152,384H360A104,104,0,0,0,256,280Z" />
+    <group
+        android:pivotX="164.002"
+        android:pivotY="208.001"
+        android:rotation="-48.366">
+        <path
+            android:fillColor="#FFFFFFFF"
+            android:pathData="M148,159.834H180.001V256.167H148Z" />
+    </group>
+    <group
+        android:pivotX="340.002"
+        android:pivotY="208"
+        android:rotation="-48.366">
+        <path
+            android:fillColor="#FFFFFFFF"
+            android:pathData="M291.834,192H388.167V224H291.834Z" />
+    </group>
 </vector>

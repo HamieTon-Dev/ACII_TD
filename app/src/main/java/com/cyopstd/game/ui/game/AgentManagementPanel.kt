@@ -411,8 +411,8 @@ internal fun plusTenAffordable(affordableLevels: Int, level: Int): Boolean {
 
 /**
  * A focus button (owner, 2026-10-02): a CoreUI icon with a very small label
- * under it, lit in [onTint] while on. The skull is cil-face-dead (CoreUI Free
- * has no skull); OTHER is cil-bug.
+ * under it, lit in [onTint] while on. BOSS is cil-mood-very-bad (CoreUI Free
+ * has no skull); OTHER is cil-asterisk. Both the owner's picks.
  */
 @Composable
 private fun FocusButton(

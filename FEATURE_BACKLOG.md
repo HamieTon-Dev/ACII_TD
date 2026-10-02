@@ -679,8 +679,9 @@ suit: Material Symbols (Apache 2.0) or drawing the few icons in-house.
   elites "other" text below it very small text"*. **Done:** two toggles beside
   CHANGE in the agent panel, each a CoreUI icon over a tiny label: BOSS (bosses
   only, holds fire otherwise) and OTHER (small units and elites, never bosses).
-  Tapping the lit one turns focus off. Saved with the run. Icons: CoreUI Free
-  has no skull, so BOSS is `cil-face-dead` (X eyes); OTHER is `cil-bug`. The ABOUT
+  Tapping the lit one turns focus off. Saved with the run. Icons (owner's
+  picks from a sheet of options, B2 and O10): BOSS is `cil-mood-very-bad`
+  (CoreUI Free has no skull); OTHER is `cil-asterisk`. The ABOUT
   credit now reads "Icons: CoreUI Icons Free". `BossBuffBalanceTest`.
 - ✅ **GAME-BREAKING: mid-wave money exploit (owner, 2026-10-02) — fixed in 1.55.0:** *"We need to
   save wave type, remaining units left on wave, and status of enemies spawned,

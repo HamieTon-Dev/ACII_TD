@@ -30,7 +30,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ### Agent focus: BOSS and OTHER
 
 - Two CoreUI buttons beside CHANGE in the agent panel, each with a tiny
-  label: BOSS (skull-style face) makes the agent shoot bosses only; OTHER (bug)
+  label: BOSS (angry face) makes the agent shoot bosses only; OTHER (asterisk)
   makes it shoot small units and elites only. Tap the lit one to turn it off.
   Saved with the run.
 
