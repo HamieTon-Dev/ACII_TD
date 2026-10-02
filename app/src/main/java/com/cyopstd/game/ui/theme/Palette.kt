@@ -30,6 +30,7 @@ object Palette {
     val Red = Color(0xFFFF2D55)
     val RedDeep = Color(0xFFC8102E)
     val Orange = Color(0xFFFF7A1A)
+    val Yellow = Color(0xFFFFE21A)
     val Magenta = Color(0xFFFF2EC4)
 
     // Information ----------------------------------------------------------

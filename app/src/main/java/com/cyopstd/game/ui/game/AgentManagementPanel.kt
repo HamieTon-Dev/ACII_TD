@@ -183,7 +183,7 @@ fun AgentManagementPanel(
                     Spacer(Modifier.width(4.dp))
                     FocusButton(
                         icon = com.cyopstd.game.R.drawable.ic_focus_other, label = "OTHER",
-                        on = agent.focus == com.cyopstd.game.model.TargetFocus.OTHERS, onTint = Palette.Orange,
+                        on = agent.focus == com.cyopstd.game.model.TargetFocus.OTHERS, onTint = Palette.Yellow,
                         tag = "focus-other"
                     ) { onToggleFocus(com.cyopstd.game.model.TargetFocus.OTHERS) }
                     Spacer(Modifier.width(6.dp))
@@ -203,7 +203,7 @@ fun AgentManagementPanel(
                 style = MaterialTheme.typography.labelSmall,
                 color = when (agent.focus) {
                     com.cyopstd.game.model.TargetFocus.BOSSES -> Palette.Red
-                    com.cyopstd.game.model.TargetFocus.OTHERS -> Palette.Orange
+                    com.cyopstd.game.model.TargetFocus.OTHERS -> Palette.Yellow
                     com.cyopstd.game.model.TargetFocus.ALL -> Palette.TextMuted
                 }
             )
@@ -411,8 +411,9 @@ internal fun plusTenAffordable(affordableLevels: Int, level: Int): Boolean {
 
 /**
  * A focus button (owner, 2026-10-02): a CoreUI icon with a very small label
- * under it, lit in [onTint] while on. BOSS is cil-mood-very-bad (CoreUI Free
- * has no skull); OTHER is cil-asterisk. Both the owner's picks.
+ * under it, lit in [onTint] while on: red for BOSS, yellow for OTHER (owner).
+ * BOSS is cil-mood-very-bad (CoreUI Free has no skull); OTHER is cil-asterisk.
+ * Both the owner's picks.
  */
 @Composable
 private fun FocusButton(
@@ -429,10 +430,10 @@ private fun FocusButton(
         modifier = Modifier
             .testTag(tag)
             .background(
-                if (on) onTint.copy(alpha = 0.18f) else Palette.Surface,
+                if (on) onTint.copy(alpha = 0.3f) else Palette.Surface,
                 RoundedCornerShape(4.dp)
             )
-            .border(1.dp, tint.copy(alpha = 0.8f), RoundedCornerShape(4.dp))
+            .border(if (on) 2.dp else 1.dp, if (on) tint else tint.copy(alpha = 0.8f), RoundedCornerShape(4.dp))
             .clickable(role = androidx.compose.ui.semantics.Role.Switch, onClick = onClick)
             .padding(horizontal = 5.dp, vertical = 3.dp)
     ) {
