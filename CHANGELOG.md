@@ -42,8 +42,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - The lanes-to-core-server picture is a vector drawing instead of ASCII text,
   so it scales cleanly and no longer misaligns.
 - New backdrop behind the main menu, the pause menu, the store and every
-  other menu: circles radiating from the centre, slowly turning and slowly
-  moving through the whole colour spectrum.
+  other menu (the owner's pick of six): two spectrum spiral arms winding out
+  from the centre over faint radiating rings, slowly turning and slowly
+  moving through the whole colour spectrum. Part of the game, not a store item.
 
 ## [1.54.0] — 2026-10-01
 
