@@ -659,7 +659,8 @@ suit: Material Symbols (Apache 2.0) or drawing the few icons in-house.
   before commit (menu background elements are not store items, they are part
   of the game)"*. Options A–F rendered. **Owner picked F, spectrum spiral
   (2026-10-02)**, and asked for a short video of it.
-  Built: `HaloBackdrop` is the spiral only; A–E removed. Videos sent.
+  Spiral-only code is written but **not committed or tested** (interrupted);
+  waiting on the owner's OK after the videos.
 - **Leaderboards per level and difficulty (owner, 2026-10-01):** *"Does the
   leaderboard show per level and difficulty highest achieved? If not, is this
   possible?"* Today: the local board is the top 25 runs of all levels mixed
