@@ -187,6 +187,134 @@ class BossDossierTest {
         )
     }
 
+    // ------------------------------------------- tap a boss (owner, 2026-10-02)
+
+    @Test
+    fun `the panel says what the boss is weak to and what to watch out for`() {
+        val counters = com.cyopstd.game.ui.game.BossBriefing.forBoss(BossVariant.SPOOFER, emptyList())
+        show(sample.copy(variant = BossVariant.SPOOFER, weakTo = counters.weakTo, warnings = counters.warnings))
+        compose.onNodeWithText("WEAK TO").assertExists()
+        compose.onNodeWithText("WATCH OUT").assertExists()
+        val analyst = counters.weakTo.first { it.first == com.cyopstd.game.model.AgentType.ANALYST }
+        compose.onNodeWithText("[${analyst.first.glyph}] ${analyst.first.displayName}: ${analyst.second}").assertExists()
+        compose.onNodeWithText(counters.warnings.first()).assertExists()
+    }
+
+    @Test
+    fun `with two bosses up the panel says which and offers the next`() {
+        var next = 0
+        compose.setContent {
+            CyOpsTheme {
+                Box(Modifier.fillMaxSize()) {
+                    BossDossierPanel(dossier = sample.copy(index = 2, count = 3), onClose = {}, onNext = { next++ })
+                }
+            }
+        }
+        compose.onNodeWithText("BOSS 2 OF 3 · TAP A BOSS TO SWITCH").assertIsDisplayed()
+        compose.onNodeWithText("NEXT BOSS").performClick()
+        assertEquals(1, next)
+    }
+
+    @Test
+    fun `tapping a boss opens the dossier on that boss, not the one in front`() {
+        val viewModel = bossFight()
+        val front = viewModel.engine.enemies.items.first { it.active && it.isBoss }
+        val back = secondBoss(viewModel, front, BossVariant.SPOOFER, progressBehind = 400f)
+
+        // The BOSS button follows the one closest to the core.
+        assertEquals(front.variant, viewModel.bossDossier()!!.variant)
+
+        viewModel.onBattlefieldTap(androidx.compose.ui.geometry.Offset(back.x + 20f, back.y - 10f))
+        assertTrue("tapping a boss should open its dossier", viewModel.showBossPanel)
+        val dossier = viewModel.bossDossier()!!
+        assertEquals(BossVariant.SPOOFER, dossier.variant)
+        assertEquals(back.health, dossier.health, 0.01f)
+        assertEquals(2, dossier.index)
+        assertEquals(2, dossier.count)
+        assertTrue("the dossier should list the boss's weaknesses", dossier.weakTo.isNotEmpty())
+        assertEquals(back, viewModel.inspectedBossOnField())
+
+        // NEXT BOSS wraps back to the front one.
+        viewModel.nextBoss()
+        assertEquals(front, viewModel.inspectedBossOnField())
+        viewModel.nextBoss()
+        assertEquals(back, viewModel.inspectedBossOnField())
+
+        // When the tapped boss is gone, the dossier falls back to the one left.
+        back.active = false
+        assertEquals(front.variant, viewModel.bossDossier()!!.variant)
+        assertEquals(1, viewModel.bossDossier()!!.count)
+    }
+
+    @Test
+    fun `tapping a SPOOFER decoy shows the real SPOOFER, so taps cannot unmask it`() {
+        val viewModel = bossFight()
+        val front = viewModel.engine.enemies.items.first { it.active && it.isBoss }
+        val spoofer = secondBoss(viewModel, front, BossVariant.SPOOFER, progressBehind = 400f)
+        val decoy = secondBoss(viewModel, front, BossVariant.SPOOFER, progressBehind = 250f)
+        decoy.decoy = true
+        decoy.decoyOwner = spoofer
+
+        viewModel.onBattlefieldTap(androidx.compose.ui.geometry.Offset(decoy.x, decoy.y))
+        assertEquals(spoofer, viewModel.inspectedBossOnField())
+        assertEquals(2, viewModel.bossDossier()!!.count)
+    }
+
+    @Test
+    fun `while placing an agent a tap on a boss is still a placement tap`() {
+        val viewModel = bossFight()
+        val boss = viewModel.engine.enemies.items.first { it.active && it.isBoss }
+        viewModel.choosePendingAgent(com.cyopstd.game.model.AgentType.FIREWALL)
+        viewModel.onBattlefieldTap(androidx.compose.ui.geometry.Offset(boss.x, boss.y))
+        assertFalse("placing an agent should not open the boss dossier", viewModel.showBossPanel)
+    }
+
+    @Test
+    fun `tapping empty board away from any boss does not open the dossier`() {
+        val viewModel = bossFight()
+        val boss = viewModel.engine.enemies.items.first { it.active && it.isBoss }
+        viewModel.onBattlefieldTap(androidx.compose.ui.geometry.Offset(boss.x, boss.y + 400f))
+        assertFalse(viewModel.showBossPanel)
+    }
+
+    private fun bossFight(): GameViewModel {
+        val viewModel = freshViewModel()
+        viewModel.startNewGame()
+        shadowOf(Looper.getMainLooper()).idle()
+        viewModel.engine.restore(
+            wave = 4, serverHp = 100, crypto = 0, placements = emptyList(),
+            attacksBlocked = 0, cryptoEarned = 0, bossesDefeated = 0,
+            serverDamageTaken = 0, agentsDeployed = 0, agentUpgrades = 0
+        )
+        viewModel.engine.startNextWave()
+        repeat(900) { viewModel.engine.update(1f / 60f, 1f) }
+        assertNotNull("no boss spawned on a boss wave", viewModel.bossDossier())
+        return viewModel
+    }
+
+    /** A second boss on the same route, [progressBehind] world units further from the core. */
+    private fun secondBoss(
+        viewModel: GameViewModel,
+        front: com.cyopstd.game.model.Enemy,
+        variant: BossVariant,
+        progressBehind: Float
+    ): com.cyopstd.game.model.Enemy {
+        val enemy = viewModel.engine.enemies.obtain()!!
+        enemy.reset()
+        enemy.active = true
+        enemy.isBoss = true
+        enemy.isElite = true
+        enemy.variant = variant
+        enemy.lane = front.lane
+        enemy.progress = (front.progress - progressBehind).coerceAtLeast(0f)
+        // Somewhere clear of the front boss's hit box.
+        enemy.x = front.x - progressBehind
+        enemy.y = front.y
+        enemy.maxHealth = 5_000f
+        enemy.health = 3_210f
+        return enemy
+    }
+
     private fun freshViewModel(): GameViewModel {
         val application = ApplicationProvider.getApplicationContext<Application>()
         val viewModel = GameViewModel(application, TestStores.isolatedRepository())

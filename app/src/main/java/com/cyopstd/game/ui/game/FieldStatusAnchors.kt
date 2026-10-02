@@ -57,10 +57,13 @@ class FieldStatusAnchors(
         fun measure(paint: Paint): FieldStatusAnchors {
             val previousSize = paint.textSize
             paint.textSize = BattlefieldRenderer.FIELD_STATUS_TEXT
-            val widest = maxOf(
+            var widest = maxOf(
                 paint.measureText(BattlefieldRenderer.WAVE_PLATE_TEMPLATE),
                 paint.measureText(BattlefieldRenderer.CRYPTO_PLATE_TEMPLATE)
             )
+            // The level and difficulty lines underneath (owner, 2026-10-01).
+            paint.textSize = BattlefieldRenderer.FIELD_RUN_TEXT
+            widest = maxOf(widest, paint.measureText(BattlefieldRenderer.RUN_PLATE_TEMPLATE))
             paint.textSize = previousSize
 
             val plateWidth = widest + PLATE_PADDING
@@ -77,7 +80,7 @@ class FieldStatusAnchors(
                     left = plateLeft,
                     top = waveBaseline - textHeight - 2f,
                     right = plateRight,
-                    bottom = cryptoBaseline + 10f
+                    bottom = cryptoBaseline + BattlefieldRenderer.FIELD_RUN_LINE * 2 + 10f
                 ),
                 // A line's box is its baseline lifted by the text height. The
                 // text is right-aligned at `right`, so the box runs from the

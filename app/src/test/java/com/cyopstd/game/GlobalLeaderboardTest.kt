@@ -1,10 +1,14 @@
 package com.cyopstd.game
 
 import androidx.compose.ui.test.junit4.createComposeRule
+import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
+import androidx.compose.ui.test.performScrollTo
 import androidx.compose.ui.test.performClick
 import com.cyopstd.game.ads.PlayServices
 import com.cyopstd.game.core.GameMode
+import com.cyopstd.game.core.Maps
+import com.cyopstd.game.save.BoardKey
 import com.cyopstd.game.save.GlobalScoreTag
 import com.cyopstd.game.save.LeaderboardEntry
 import com.cyopstd.game.save.NoGlobalLeaderboard
@@ -96,20 +100,22 @@ class GlobalLeaderboardTest {
     // ------------------------------------------------------------- the screen
 
     private fun show(
-        globalModes: List<GameMode>,
+        boards: Set<BoardKey>,
         globalEntries: List<LeaderboardEntry>? = null,
         signedIn: Boolean = true,
-        onShowGlobal: (GameMode) -> Unit = {}
+        entries: List<LeaderboardEntry> = emptyList(),
+        onShowGlobal: (BoardKey) -> Unit = {}
     ) {
         compose.setContent {
             CyOpsTheme {
                 LeaderboardScreen(
                     identity = PlayerIdentity(username = "NEO"),
-                    entries = emptyList(),
+                    entries = entries,
                     backgroundAnimation = false,
                     onRegister = {},
                     onBack = {},
-                    globalModes = globalModes,
+                    hasGlobalBoard = { it in boards },
+                    anyGlobalBoard = boards.isNotEmpty(),
                     globalEntries = globalEntries,
                     signedIn = signedIn,
                     onShowGlobal = onShowGlobal
@@ -118,31 +124,94 @@ class GlobalLeaderboardTest {
         }
     }
 
-    @Test
-    fun `a build with no board offers no GLOBAL view`() {
-        show(globalModes = emptyList())
-        compose.onNodeWithText("THIS DEVICE").assertDoesNotExist()
-        compose.onNodeWithText("GLOBAL · ${GameMode.STANDARD.runName}").assertDoesNotExist()
+    private fun pick(tag: String, option: String) {
+        compose.onNodeWithTag(tag).performClick()
+        compose.onNodeWithText(option).performScrollTo().performClick()
     }
 
     @Test
-    fun `the global view lists callsigns and asks for the right mode`() {
-        var asked: GameMode? = null
+    fun `a build with no board offers no WORLDWIDE view`() {
+        show(boards = emptySet())
+        compose.onNodeWithText("THIS DEVICE").assertDoesNotExist()
+        compose.onNodeWithText("WORLDWIDE").assertDoesNotExist()
+    }
+
+    @Test
+    fun `the worldwide view follows the level and difficulty picked`() {
+        val mirai = BoardKey(GameMode.HACK_AI, Maps.TRIDENT.id)
+        val asked = mutableListOf<BoardKey>()
         show(
-            globalModes = listOf(GameMode.STANDARD),
+            boards = setOf(BoardKey(GameMode.STANDARD), mirai),
             globalEntries = listOf(LeaderboardEntry("TRINITY", 212, 9_000_000)),
-            onShowGlobal = { asked = it }
+            onShowGlobal = { asked += it }
         )
-        compose.onNodeWithText("GLOBAL · ${GameMode.STANDARD.runName}").performClick()
-        assertEquals(GameMode.STANDARD, asked)
+        compose.onNodeWithText("WORLDWIDE").performClick()
+        compose.onNodeWithText("Pick a difficulty", substring = true).assertExists()
+
+        pick("board-difficulty", GameMode.STANDARD.runName)
+        assertEquals(BoardKey(GameMode.STANDARD), asked.last())
         compose.onNodeWithText("TRINITY").assertExists()
         compose.onNodeWithText("212").assertExists()
+
+        pick("board-level", "L6 \u00B7 MIRAI")
+        compose.onNodeWithText("No worldwide board for MIRAI", substring = true).assertExists()
+        pick("board-difficulty", GameMode.HACK_AI.runName)
+        assertEquals(mirai, asked.last())
     }
 
     @Test
     fun `a player who is not signed in is told how to join`() {
-        show(globalModes = listOf(GameMode.STANDARD), signedIn = false)
-        compose.onNodeWithText("GLOBAL · ${GameMode.STANDARD.runName}").performClick()
+        show(boards = setOf(BoardKey(GameMode.STANDARD)), signedIn = false)
+        compose.onNodeWithText("WORLDWIDE").performClick()
+        pick("board-difficulty", GameMode.STANDARD.runName)
         compose.onNodeWithText("Link your Google account", substring = true).assertExists()
+    }
+
+    @Test
+    fun `the device board filters by level and difficulty`() {
+        show(
+            boards = emptySet(),
+            entries = listOf(
+                LeaderboardEntry("ALPHA", 150, 1, modeId = GameMode.STANDARD.id, mapId = Maps.PERIMETER.id),
+                LeaderboardEntry("BRAVO", 90, 1, modeId = GameMode.HACK_AI.id, mapId = Maps.TRIDENT.id),
+                LeaderboardEntry("OLDRUN", 300, 1)
+            )
+        )
+        compose.onNodeWithText("ALPHA").assertExists()
+        compose.onNodeWithText("OLDRUN").assertExists()
+        pick("board-level", "L6 \u00B7 MIRAI")
+        compose.onNodeWithText("BRAVO").assertExists()
+        compose.onNodeWithText("ALPHA").assertDoesNotExist()
+        compose.onNodeWithText("OLDRUN").assertDoesNotExist()
+        pick("board-difficulty", GameMode.STANDARD.runName)
+        compose.onNodeWithText("No runs recorded on MIRAI", substring = true).assertExists()
+    }
+
+    // ----------------------------------------------------------- per level
+
+    @Test
+    fun `there is a board slot for every level in every difficulty`() {
+        val keys = com.cyopstd.game.ads.LevelLeaderboards.ids.keys
+        assertEquals(Maps.all.size * GameMode.entries.size, keys.size)
+        for (map in Maps.all) for (mode in GameMode.entries) assertTrue("${map.id}|${mode.id}" in keys)
+        assertEquals("MIRAI \u00B7 HACK:AI", com.cyopstd.game.ads.LevelLeaderboards.boardName(Maps.TRIDENT, GameMode.HACK_AI))
+        assertEquals("DUCK-USB \u00B7 KERNEL MODE", com.cyopstd.game.ads.LevelLeaderboards.boardName(Maps.DUCK_USB, GameMode.KERNEL_MODE))
+    }
+
+    @Test
+    fun `only filled-in per-level ids become boards, and only with a games project`() {
+        val raw = mapOf("trident|hack_ai" to " CgkIxyz ", "spiral|standard" to "")
+        assertTrue(com.cyopstd.game.ads.LevelLeaderboards.boards(gamesConfigured = false, raw = raw).isEmpty())
+        assertEquals(
+            mapOf(BoardKey(GameMode.HACK_AI, Maps.TRIDENT.id) to "CgkIxyz"),
+            com.cyopstd.game.ads.LevelLeaderboards.boards(gamesConfigured = true, raw = raw)
+        )
+    }
+
+    @Test
+    fun `a run is posted to its difficulty overall and to its level`() {
+        val entry = LeaderboardEntry("NEO", 120, 5, modeId = GameMode.HACK_AI.id, mapId = Maps.HELIX.id)
+        assertEquals(listOf(BoardKey(GameMode.HACK_AI), BoardKey(GameMode.HACK_AI, Maps.HELIX.id)), entry.boardKeys)
+        assertEquals(listOf(BoardKey(GameMode.STANDARD)), LeaderboardEntry("NEO", 1, 1).boardKeys)
     }
 }

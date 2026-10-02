@@ -109,7 +109,7 @@ object CodexContent {
         BossModifier.ENCRYPTION_SHIELD -> "A single CRYPTOGRAPHER swings the whole fight."
         BossModifier.ARMOR_PLATING -> "ZERO-DAY HUNTER and ROOT ADMIN ignore armour entirely."
         BossModifier.SPEED_BURST -> "Keep a TARPIT on the route to bleed off the acceleration."
-        BossModifier.REGENERATION -> "Burst it down; chip damage will never out-pace the repair."
+        BossModifier.REGENERATION -> "Keep it under fire: it only repairs after a moment unhit, so cover the gaps between kill zones."
         BossModifier.PACKET_REPLICATION -> "Leave swarm clear-up to IPS so your heavy hitters stay on the boss."
         BossModifier.AGENT_DISRUPTION -> "Spread your agents out so one jam cannot silence the line."
     }

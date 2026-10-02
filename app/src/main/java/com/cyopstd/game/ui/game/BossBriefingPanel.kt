@@ -59,7 +59,22 @@ data class BossBriefing(
             val bosses = plan.orders.filter { it.boss }.map { it.bossVariant }
                 .ifEmpty { listOf(plan.bossVariant) }
             val variants = bosses.distinct().map { v -> v to bosses.count { it == v } }
-            val modifiers = plan.bossModifiers
+            return of(plan.wave, variants, bosses.size, plan.bossModifiers)
+        }
+
+        /**
+         * The same weaknesses and warnings for one boss on the field, for the
+         * dossier opened by tapping it (owner, 2026-10-02).
+         */
+        fun forBoss(variant: BossVariant, modifiers: List<BossModifier>): BossBriefing =
+            of(wave = 0, variants = listOf(variant to 1), bossCount = 1, modifiers = modifiers)
+
+        private fun of(
+            wave: Int,
+            variants: List<Pair<BossVariant, Int>>,
+            bossCount: Int,
+            modifiers: List<BossModifier>
+        ): BossBriefing {
             val weakTo = ArrayList<Pair<AgentType, String>>()
 
             for ((variant, _) in variants) {
@@ -79,15 +94,12 @@ data class BossBriefing(
                 weakTo += AgentType.ROOT_ADMIN to "Few, huge hits barely speed GRADIENT up."
                 weakTo += AgentType.TARPIT to "Its field drags GRADIENT back down while it speeds up."
             }
-            if (variants.any { it.first == BossVariant.MODEL_COLLAPSE }) {
-                for (agent in listOf(AgentType.ROOT_ADMIN, AgentType.ZERO_DAY_HUNTER)) {
-                    weakTo += agent to "One heavy hitter does not feed MODEL COLLAPSE."
-                }
-            }
             if (BossModifier.ENCRYPTION_SHIELD in modifiers) {
                 weakTo += AgentType.CRYPTOGRAPHER to
                     "Breaks its encryption: \u00D7${formatMultiplier(ProjectileSystem.CRYPTOGRAPHER_VS_ENCRYPTED)} damage."
             }
+
+            weakTo += AgentType.TARPIT to "Its field slows bosses twice as hard as other threats."
 
             val warnings = ArrayList<String>()
             for ((variant, _) in variants) {
@@ -95,14 +107,10 @@ data class BossBriefing(
                 warnings += "${variant.displayName} jams ${agent.displayName} agents close to it. " +
                     "Place them back, at the edge of their range."
             }
-            if (variants.any { it.first == BossVariant.MODEL_COLLAPSE }) {
-                warnings += "MODEL COLLAPSE heals back part of every hit while " +
-                    "${BossVariant.COLLAPSE_SWARM} or more agents hit it at once, more " +
-                    "the bigger the crowd. Fewer, heavier hitters starve it."
-            }
             if (variants.any { it.first == BossVariant.LICENSE }) {
-                warnings += "LICENSE shrugs off any agent type that keeps hitting it. " +
-                    "Mix your agent types."
+                warnings += "Every ${BossVariant.LICENSE_CYCLE_SECONDS.toInt()} seconds LICENSE spends " +
+                    "${BossVariant.LICENSE_ACTIVE_SECONDS.toInt()} shrugging off any agent type that keeps " +
+                    "hitting it. Mix your agent types."
             }
             if (variants.any { it.first == BossVariant.RANSOM }) {
                 warnings += "RANSOM locks one agent's upgrades for " +
@@ -141,14 +149,19 @@ data class BossBriefing(
                 warnings += "KERNEL PANIC jams every agent within reach for 3 " +
                     "seconds when it dies. FIREWALL stands in it."
             }
+            if (BossModifier.REGENERATION in modifiers) {
+                warnings += "REGENERATION repairs it once it has gone " +
+                    "${formatMultiplier(com.cyopstd.game.core.Balance.REGEN_PAUSE_AFTER_HIT)} seconds without a hit. " +
+                    "Keep it under fire all the way along."
+            }
             if (BossModifier.FIREWALL_RESISTANCE in modifiers) {
                 warnings += "Resists FIREWALL agents."
             }
 
             return BossBriefing(
-                wave = plan.wave,
+                wave = wave,
                 variants = variants,
-                bossCount = bosses.size,
+                bossCount = bossCount,
                 modifiers = modifiers,
                 weakTo = weakTo.distinctBy { it.first },
                 warnings = warnings

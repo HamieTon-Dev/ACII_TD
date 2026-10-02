@@ -55,6 +55,14 @@ class EnemySystem(private val engine: GameEngine, private val random: Random) {
     /** Whether [enemy] was replicated by a boss rather than spawned from the plan. */
     internal fun isEscort(enemy: Enemy): Boolean = enemy in escortIds
 
+    /** A restored escort (mid-wave save): not part of the wave's count. */
+    internal fun markEscort(enemy: Enemy) {
+        escortIds.add(enemy)
+    }
+
+    /** Puts a restored enemy at its place on its route. */
+    internal fun place(enemy: Enemy) = placeOnPath(enemy)
+
     /** Rotates through the corridor so consecutive spawns never coincide. */
     private var laneSlotCursor = 0
 
@@ -109,7 +117,7 @@ class EnemySystem(private val engine: GameEngine, private val random: Random) {
             if (enemy.hasModifier(BossModifier.ARMOR_PLATING)) armor += 8f + wave * 0.25f
             enemy.burstTimer = 6f
             enemy.replicateTimer = 4.5f
-            enemy.disruptTimer = 5.5f
+            enemy.disruptTimer = 11f
             // The first variant jam lands a full interval after it walks out
             // of the spawn, not the moment it does.
             enemy.variantJamTimer = BossVariant.VARIANT_JAM_INTERVAL
@@ -177,8 +185,10 @@ class EnemySystem(private val engine: GameEngine, private val random: Random) {
             }
         }
 
-        if (enemy.hasModifier(BossModifier.REGENERATION) && enemy.health < enemy.maxHealth) {
-            enemy.regenAccumulator += enemy.maxHealth * 0.012f * dt
+        if (enemy.regenPause > 0f) {
+            enemy.regenPause -= dt
+        } else if (enemy.hasModifier(BossModifier.REGENERATION) && enemy.health < enemy.maxHealth) {
+            enemy.regenAccumulator += enemy.maxHealth * Balance.REGEN_SHARE_PER_SECOND * dt
             if (enemy.regenAccumulator >= 1f) {
                 val healed = enemy.regenAccumulator.toInt()
                 enemy.health = (enemy.health + healed).coerceAtMost(enemy.maxHealth)
@@ -206,7 +216,7 @@ class EnemySystem(private val engine: GameEngine, private val random: Random) {
             BossVariant.SPOOFER -> updateSpoofer(enemy, dt)
             else -> Unit
         }
-        updateModelCollapse(enemy, dt)
+        updateLicense(enemy, dt)
         updateRansom(enemy, dt)
         if (enemy.variant == BossVariant.GRADIENT && enemy.gradientHeat > 0f) {
             enemy.gradientHeat = (enemy.gradientHeat - BossVariant.GRADIENT_COOL_PER_SECOND * dt)
@@ -216,7 +226,7 @@ class EnemySystem(private val engine: GameEngine, private val random: Random) {
         if (enemy.hasModifier(BossModifier.AGENT_DISRUPTION)) {
             enemy.disruptTimer -= dt
             if (enemy.disruptTimer <= 0f) {
-                enemy.disruptTimer = 8f
+                enemy.disruptTimer = 16f
                 var jammed = 0
                 for (agent in engine.agents.items) {
                     if (!agent.active) continue
@@ -425,16 +435,20 @@ class EnemySystem(private val engine: GameEngine, private val random: Random) {
         )
     }
 
-    /** MODEL COLLAPSE's tell, about once a second while it is feeding. */
-    private fun updateModelCollapse(enemy: Enemy, dt: Float) {
-        if (enemy.variant != BossVariant.MODEL_COLLAPSE) return
-        val attackers = enemy.distinctAttackersWithin(engine.elapsedTime, BossVariant.COLLAPSE_WINDOW)
-        if (attackers < BossVariant.COLLAPSE_SWARM) return
-        if ((engine.elapsedTime % 1f) < dt) {
+    /**
+     * LICENSE's enforcement cycle (owner, 2026-10-02: *"only work for 2s then
+     * cooldown for 15 seconds"*). [Enemy.variantTimer] runs round the cycle;
+     * the damage cut applies only in its first [BossVariant.LICENSE_ACTIVE_SECONDS],
+     * and each new window starts the hit counts afresh.
+     */
+    private fun updateLicense(enemy: Enemy, dt: Float) {
+        if (enemy.variant != BossVariant.LICENSE || enemy.decoy) return
+        enemy.variantTimer += dt
+        if (enemy.variantTimer >= BossVariant.LICENSE_CYCLE_SECONDS) {
+            enemy.variantTimer -= BossVariant.LICENSE_CYCLE_SECONDS
+            enemy.licenseHits.fill(0)
             engine.effectSystem().spawnText(
-                enemy.x, enemy.y - 50f,
-                "+ FEEDING ${(BossVariant.collapseHealShare(attackers) * 100).toInt()}%",
-                GameEngine.COLOR_ELITE, 0.8f
+                enemy.x, enemy.y - 50f, "LICENSE ENFORCED", GameEngine.COLOR_ELITE, 0.9f
             )
         }
     }

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- cil-asterisk from CoreUI Icons Free (https://coreui.io/icons/), CC BY 4.0. Credited on ABOUT.
+     The OTHER focus button: small units and elites only (owner's pick, 2026-10-02). -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="512"
+    android:viewportHeight="512">
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:pathData="M286.903,256L416,177.877L416,141.115L415.717,140.646L272,227.617L272,72L240,72L240,227.617L96.283,140.646L96,141.115L96,177.877L225.097,256L96,334.123L96,370.885L96.283,371.354L240,284.383L240,440L272,440L272,284.383L415.717,371.354L416,370.885L416,334.123L286.903,256Z" />
+</vector>

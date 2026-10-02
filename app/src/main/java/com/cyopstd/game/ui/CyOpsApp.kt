@@ -284,15 +284,16 @@ fun CyOpsApp(
                     backgroundAnimation = viewModel.settings.backgroundAnimation,
                     onRegister = { viewModel.registerUsername(it) },
                     onBack = { viewModel.playClick(); screen = Screen.MainMenu },
-                    globalModes = viewModel.globalLeaderboardModes,
+                    hasGlobalBoard = viewModel::hasGlobalBoard,
+                    anyGlobalBoard = viewModel.globalLeaderboardAvailable,
                     globalEntries = viewModel.globalEntries,
                     globalLoading = viewModel.globalLoading,
                     signedIn = viewModel.cloudStatus == CloudSaveStatus.LINKED,
-                    onShowGlobal = { mode ->
+                    onShowGlobal = { key ->
                         viewModel.playClick()
-                        viewModel.refreshGlobalLeaderboard(mode)
+                        viewModel.refreshGlobalLeaderboard(key)
                     },
-                    onOpenNative = { mode -> viewModel.openGlobalLeaderboard(mode) }
+                    onOpenNative = { key -> viewModel.openGlobalLeaderboard(key) }
                 )
             }
 

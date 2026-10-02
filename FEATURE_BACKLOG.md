@@ -378,7 +378,7 @@ that if usage stops you, you can continue work later."* Six items, labelled
 None is started. Each notes what is already known from the code and what the
 owner still has to choose, so a later session can pick it up cold.
 
-### ♡1 🟨 Five more levels — built (1.51.0), bosses (1.52.0), named (1.53.0); music waits on the owner
+### ♡1 ✅ Five more levels — built (1.51.0), bosses (1.52.0), named (1.53.0), music (1.54.0)
 
 **Asked:** *"Time to make 5 more levels. Give me lane layouts, different color
 options, and online relevant 'Cyber related' names for the levels. Ask me for
@@ -634,6 +634,107 @@ suit: Material Symbols (Apache 2.0) or drawing the few icons in-house.
   **Done (1.53.0):** `MusicPlayerPanel` beside the pause buttons; `MusicLibrary`
   builds the list from `musicForMap`, so levels 6–10 join it when their files
   land; the pick is saved between sessions (see the follow-up below). `MusicPlayerTest`.
+- ✅ **Tap a boss for its details (owner, 2026-10-02) — done in 1.55.0:** *"make it to where you
+  can tap a boss and see that boss's weakness and health? currently the boss
+  button shows the furthest traveled one."*
+  **Done:** tapping a boss on the board opens the dossier on *that* boss
+  (health, armour, speed, distance, modifiers, plus WEAK TO and WATCH OUT
+  from the same tables as the pre-wave briefing). It is ringed on the board
+  while the dossier is open. With several bosses up it says "BOSS 2 OF 3" and
+  NEXT BOSS cycles them. The BOSS button still opens on the one nearest the core.
+  A SPOOFER decoy shows the real SPOOFER, so taps cannot unmask it. Taps while
+  placing an agent stay placement taps. `BossDossierTest`.
+- ✅ **Levels 3 and 4 too hard (owner, 2026-10-02) — 1.55.0, owner play-tests:** *"Tone down the difficulty
+  for level 3 and 4. Its almost impossible to get to wave 100 with even the best
+  strategy. Maybe Tarpit should slow the bosses down double what they do now.
+  Regen makes it almost impossible to kill these bosses."*
+  Follow-ups the same day: *"Tone down boss regen as well. They heal way too
+  fast"*; *"skip the balance tests ... I will test the new build myself"*.
+  **Done:** TARPIT's field slows bosses twice as much as other threats (28% →
+  56% at level 1), never below 30% of their speed. REGENERATION repairs 0.5% a
+  second (was 1.2%) and only after 2 seconds without a hit. Level health
+  scales unchanged. `MapDifficultyTest`'s level-order check is `@Ignore`d on
+  the owner's call. `BossBuffBalanceTest`.
+- ✅ **Boss buffs by RNG (owner, 2026-10-02) — 1.55.0:** *"It should be 33% chance
+  on each buff, and only a 15% chance to have all of the buffs. Having shroud,
+  regen, burst, and armour + all stacking all at the same time is too much."*
+  Then: *"Change the chance to have all buffs on 2%."* **Done:** each unlocked
+  modifier rolls on its own at 33%; 2% of bosses carry all of them (if the 33%
+  rolls land on all, one is dropped). Unlock order by boss cycle is unchanged.
+  `WaveGeneratorTest`.
+- ✅ **LICENSE 2s on / 15s cooldown (owner, 2026-10-02) — 1.55.0:** *"Debuff
+  License buff to only work for 2s then cooldown for 15 seconds."* **Done:** its
+  damage cut applies 2 seconds in every 17 ("LICENSE ENFORCED" when it starts),
+  and the hit counts reset each window. `NeuralMeshTest`.
+- ✅ **MODEL COLLAPSE buff removed (owner, 2026-10-02) — 1.55.0:** *"Remove Model
+  collapse Buff entirely."* **Done:** no more crowd heal; it is a plain boss with
+  ×1.1 health and ×0.95 speed. Still in the boss rotation; see owner input.
+- ✅ **Jam half as often (owner, 2026-10-02) — 1.55.0:** *"debuff jam to happen
+  half as often."* **Done:** the eyes' jam every 10 s (was 5), AGENT DISRUPTION
+  every 16 s (was 8, first at 11 rather than 5.5). Jam lengths unchanged.
+- ✅ **Skull and OTHER focus buttons (owner, 2026-10-02) — 1.55.0:** *"Add a Skull button
+  on AGENT unit window so that it focuses boss only"*, *"Use COREUI for the skull
+  button"*, then *"Skull should have small text below "Boss" and then add another
+  button using CoreUI icon with text below that focuses only small units and
+  elites "other" text below it very small text"*. **Done:** two toggles beside
+  CHANGE in the agent panel, each a CoreUI icon over a tiny label: BOSS (bosses
+  only, holds fire otherwise) and OTHER (small units and elites, never bosses).
+  Tapping the lit one turns focus off. Saved with the run. Icons (owner's
+  picks from a sheet of options, B2 and O10): BOSS is `cil-mood-very-bad`
+  (CoreUI Free has no skull); OTHER is `cil-asterisk`. The ABOUT
+  credit now reads "Icons: CoreUI Icons Free". `BossBuffBalanceTest`.
+- ✅ **GAME-BREAKING: mid-wave money exploit (owner, 2026-10-02) — fixed in 1.55.0:** *"We need to
+  save wave type, remaining units left on wave, and status of enemies spawned,
+  their positions etc when returning to main menu. Players can restart the
+  current wave and keep the money earned by partially or mostly completing a
+  wave, and then main menu, continue and keep the money earned and start a new
+  wave repeatedly."*
+  Fix: `WaveSnapshot` in `SavedRun.midWave` (pending and held spawns, every
+  enemy and its state, wave timer, boss warning, event); `GameEngine.snapshotWave`
+  / `restoreWave`; CONTINUE resumes paused. `MidWaveSaveTest`, `SavedRunMapTest`.
+  Not saved: shots in flight and ACE walls (rebuilt on their timer).
+- ✅ **Level preview (owner, 2026-10-02) — built in 1.55.0 after "finish things
+  that aren't done yet":** *"Clicking and holding a level will show a preview of what
+  the map looks like, or a button that shows the map and bosses info."* On the
+  NEW RUN level list: press-and-hold a level (or an info button on its row)
+  to see a picture of its map and its bosses.
+  `LevelPreviewDialog`: routes and core drawn from the waypoints and theme,
+  own bosses with signatures, the rest by glyph and name. `LoadoutTest`.
+- **Owner's requests, 2026-10-01 (evening):** two main-menu tracks supplied
+  (`Main menu (1)`, `Main menu (2)`). 1. *"Check for bug that makes music not
+  play on main menu or when resuming the app or going back to main menu."*
+  2. *"put the level name below currency and above the core server along with
+  the difficulty level"* (the in-match corner box: WAVE, ◇, then level ·
+  difficulty, then CORE-SERVER). 3. *"make this element in main menu as an
+  image or something that can scale better"* (the ASCII lanes → CORE-SERVER
+  art). 4. *"New circles radiating living background (full spectrum color
+  change slowly, slowly rotating) behind main menu elements, pause menu, store
+  menu, and other sub menus."*
+  **Done (1.55.0):** 1. root cause: every place that starts music returned
+  early at zero volume, so nothing was left asked to play when the volume
+  came back; now the request is always recorded (`BackgroundAudioTest`), and
+  the menu plays `menu`/`menu_2` (generated track as fallback). 2. corner
+  plate lines. 3. `menu_title_art.xml`. 4. `HaloBackdrop`, free and always on
+  behind menus (not a store item); off with background animation.
+  **Owner (2026-10-02):** *"give me examples of living background choices
+  before commit (menu background elements are not store items, they are part
+  of the game)"*. Options A–F rendered. **Owner picked F, spectrum spiral
+  (2026-10-02)**, and asked for a short video of it.
+  **Done (1.55.0):** owner said go ("finish things that aren't done");
+  `HaloBackdrop` is the spiral only, A–E removed, full suite green.
+- **Leaderboards per level and difficulty (owner, 2026-10-01):** *"Does the
+  leaderboard show per level and difficulty highest achieved? If not, is this
+  possible?"* Today: the local board is the top 25 runs of all levels mixed
+  (shows difficulty, not level; entries store no level), and the global boards
+  are one per difficulty. Per-level-and-difficulty bests exist only on
+  STATISTICS. Options offered: A local board with level + difficulty
+  drop-downs; B also global per level and difficulty (up to 30 Play Console
+  leaderboards, each an id to add); C global per level only (10). Waiting on
+  the owner's pick. **Owner picked B (2026-10-01): "all per level and
+  difficulty"** — local filters plus 30 global boards.
+  **Built:** `BoardKey`, `LevelLeaderboards` (30 empty id slots),
+  `LEADERBOARDS.md` for the owner. **Owner to do:** create the 30 boards and
+  send the ids.
 - **Music player follow-up (owner, 2026-10-01):** *"save the selected track
   between sessions - and lets replace all the icons on the pause menu (resume,
   restart level, settings... etc) let's give them all icons from CoreUI icons"*.
@@ -1892,6 +1993,15 @@ falls on the same licenses"*).
   development"*) and replaced with new pairs.
 - **Levels 4–5:** unchanged audio, retitled to the same naming.
 - **Levels 6–10:** new on 2026-10-01.
+- ✅ **Liminal Space and Liminal Haze (owner, 2026-10-02) — 1.55.0:** *"add these
+  two in rotation that can play on any map and will be included in the player
+  after level 5 unlock - same licenses"*. **Done:** `res/raw/liminal_space.mp3`
+  and `liminal_haze.mp3`, tagged "CyOps TD - Liminal Space" / "- Liminal Haze"
+  (album "CyOps TD Soundtrack", the owner's cover art kept). Every level's
+  rotation is its own two, Liminal Space, its own two, Liminal Haze
+  (`LevelMusic.rotation`). Listed once each in the music player and the
+  soundtrack as "· ANY LEVEL" (24 tracks). Same licence terms as the rest.
+  Owner: the Play Console `soundtrack` description should say 24 tracks.
 - Ownership certificates for AI-assisted tracks live with the owner, not in the
   repository (they carry personal details).
 - The main menu keeps its generated track; the generated match tracks remain

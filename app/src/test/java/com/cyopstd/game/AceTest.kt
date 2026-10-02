@@ -176,6 +176,9 @@ class AceTest {
         return Outcome(engine.currentWave, hpLost, broken, wallTime)
     }
 
+    @org.junit.Ignore(
+        "Owner, 2026-10-02: skip the balance tests; the boss retune is play-tested on a real build instead."
+    )
     @Test
     fun `balance - three ACEs hold a deep DDoS run better than three ROOT ADMINs, and never stall it`() {
         for (seed in 1..2) {

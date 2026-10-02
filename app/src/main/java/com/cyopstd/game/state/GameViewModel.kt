@@ -27,6 +27,7 @@ import com.cyopstd.game.core.GameMap
 import com.cyopstd.game.core.GameMode
 import com.cyopstd.game.core.Maps
 import com.cyopstd.game.model.BossModifier
+import com.cyopstd.game.model.Enemy
 import com.cyopstd.game.ui.game.BossDossier
 import com.cyopstd.game.ui.game.TutorialGate
 import com.cyopstd.game.ui.game.TutorialScript
@@ -263,6 +264,41 @@ class GameViewModel @JvmOverloads constructor(
     fun toggleBossPanel() {
         playClick()
         showBossPanel = !showBossPanel
+        // The BOSS button follows the boss closest to the core; tapping one
+        // on the board is how to look at a particular one.
+        inspectedBoss = null
+    }
+
+    /**
+     * The boss the player tapped (owner, 2026-10-02: "tap a boss and see that
+     * boss's weakness and health"), or null to follow the one closest to the
+     * core. Checked against the field every time it is read, so a boss that
+     * died, or a pooled enemy reused for something else, simply falls back.
+     */
+    private var inspectedBoss: Enemy? = null
+
+    /** The bosses on the field, closest to the core first. Decoys are not bosses. */
+    private fun bossesOnField(): List<Enemy> =
+        engine.enemies.items
+            .filter { it.active && it.isBoss && !it.decoy }
+            .sortedBy { distanceToCore(it) }
+
+    private fun distanceToCore(enemy: Enemy): Float =
+        (engine.map.laneLength[enemy.lane] - enemy.progress).coerceAtLeast(0f)
+
+    /** The boss the dossier is about right now, or null if there is none. */
+    fun inspectedBossOnField(): Enemy? {
+        val bosses = bossesOnField()
+        return inspectedBoss?.takeIf { it in bosses } ?: bosses.firstOrNull()
+    }
+
+    /** The dossier's NEXT BOSS: the next one back from the core, wrapping round. */
+    fun nextBoss() {
+        val bosses = bossesOnField()
+        if (bosses.size < 2) return
+        playClick()
+        val current = bosses.indexOf(inspectedBossOnField()).coerceAtLeast(0)
+        inspectedBoss = bosses[(current + 1) % bosses.size]
     }
 
     /**
@@ -296,17 +332,23 @@ class GameViewModel @JvmOverloads constructor(
      * `frameTick` so it recomposes with the simulation.
      */
     fun bossDossier(): BossDossier? {
-        val boss = engine.enemies.items.firstOrNull { it.active && it.isBoss && !it.decoy } ?: return null
+        val bosses = bossesOnField()
+        val boss = inspectedBoss?.takeIf { it in bosses } ?: bosses.firstOrNull() ?: return null
+        val modifiers = BossModifier.entries.filter { boss.hasModifier(it) }
+        val counters = com.cyopstd.game.ui.game.BossBriefing.forBoss(boss.variant, modifiers)
         return BossDossier(
             variant = boss.variant,
             health = boss.health,
             maxHealth = boss.maxHealth,
             armor = boss.armor,
             speed = boss.currentSpeed(),
-            modifiers = BossModifier.entries.filter { boss.hasModifier(it) },
+            modifiers = modifiers,
             revived = boss.revived,
-            distanceToCore = (engine.map.laneLength[boss.lane] - boss.progress)
-                .coerceAtLeast(0f)
+            distanceToCore = distanceToCore(boss),
+            weakTo = counters.weakTo,
+            warnings = counters.warnings,
+            index = bosses.indexOf(boss) + 1,
+            count = bosses.size
         )
     }
 
@@ -814,7 +856,8 @@ class GameViewModel @JvmOverloads constructor(
     }
 
     fun refreshLeaderboard() {
-        viewModelScope.launch { leaderboardEntries = leaderboard.top() }
+        // Every stored run: the screen filters by level and difficulty itself.
+        viewModelScope.launch { leaderboardEntries = leaderboard.top(Int.MAX_VALUE) }
     }
 
     /**
@@ -824,9 +867,13 @@ class GameViewModel @JvmOverloads constructor(
      * least one leaderboard id; otherwise nothing is global and the screen
      * does not offer a GLOBAL view at all.
      */
+    /** The per-level worldwide boards configured in this build (owner, 2026-10-01). */
+    private val levelBoardIds =
+        com.cyopstd.game.ads.LevelLeaderboards.boards(PlayServices.cloudSaveConfigured)
+
     private val globalBoard: GlobalLeaderboardGateway =
-        if (PlayServices.leaderboardIds.isNotEmpty()) {
-            PlayGamesLeaderboard(PlayServices.leaderboardIds)
+        if (PlayServices.leaderboardIds.isNotEmpty() || levelBoardIds.isNotEmpty()) {
+            PlayGamesLeaderboard(PlayServices.leaderboardIds, levelBoardIds)
         } else {
             NoGlobalLeaderboard()
         }
@@ -837,6 +884,9 @@ class GameViewModel @JvmOverloads constructor(
     /** Modes with a global board, in menu order. */
     val globalLeaderboardModes: List<GameMode>
         get() = GameMode.entries.filter { globalBoard.hasBoard(it) }
+
+    /** Whether [key] (a difficulty, on one level or all) has a worldwide board. */
+    fun hasGlobalBoard(key: com.cyopstd.game.save.BoardKey): Boolean = globalBoard.hasBoard(key)
 
     /**
      * The last global list read, or null when it has not been read or could
@@ -849,23 +899,23 @@ class GameViewModel @JvmOverloads constructor(
     var globalLoading by mutableStateOf(false)
         private set
 
-    fun refreshGlobalLeaderboard(mode: GameMode) {
-        if (!globalBoard.hasBoard(mode)) {
+    fun refreshGlobalLeaderboard(key: com.cyopstd.game.save.BoardKey) {
+        if (!globalBoard.hasBoard(key)) {
             globalEntries = null
             return
         }
         globalLoading = true
         viewModelScope.launch {
-            globalEntries = globalBoard.top(mode)
+            globalEntries = globalBoard.top(key)
             globalLoading = false
         }
     }
 
-    fun openGlobalLeaderboard(mode: GameMode) {
+    fun openGlobalLeaderboard(key: com.cyopstd.game.save.BoardKey) {
         playClick()
         // A failure here is almost always "not signed in", which the screen
         // already says beside the button; there is nothing to add.
-        viewModelScope.launch { globalBoard.openNative(mode) }
+        viewModelScope.launch { globalBoard.openNative(key) }
     }
 
     fun selectMode(mode: GameMode) {
@@ -1144,7 +1194,7 @@ class GameViewModel @JvmOverloads constructor(
                 serverHp = run.serverHp,
                 crypto = run.crypto,
                 placements = run.agents.map {
-                    GameEngine.SavedPlacement(it.nodeId, it.type, it.level, it.targeting)
+                    GameEngine.SavedPlacement(it.nodeId, it.type, it.level, it.targeting, it.focus)
                 },
                 attacksBlocked = run.attacksBlocked,
                 cryptoEarned = run.cryptoEarned,
@@ -1154,6 +1204,7 @@ class GameViewModel @JvmOverloads constructor(
                 agentUpgrades = run.agentUpgrades,
                 budgetEarned = run.budgetEarned
             )
+            run.midWave?.let(engine::restoreWave)
             engine.autoStartWaves = settings.autoStartWaves
             engine.autoStartBossWaves = settings.autoStartBossWaves
             engine.batterySaver = settings.batterySaver
@@ -1163,7 +1214,9 @@ class GameViewModel @JvmOverloads constructor(
             lastPhaseSeen = null
             selection = BattlefieldSelection()
             showDeployPanel = false
-            paused = false
+            // A wave resumed mid-fight starts paused, so the player sees the
+            // board before it moves again.
+            paused = run.midWave != null
             speedIndex = 0
             gameOverSummary = null
             runRecorded = false
@@ -1365,6 +1418,21 @@ class GameViewModel @JvmOverloads constructor(
         val node = nearestNode(worldPoint)
         val pending = selection.pendingAgent
 
+        // Tapping a boss opens its dossier. Not while placing an agent, where
+        // a tap means "here"; and a node closer to the finger than the boss
+        // still wins, so a boss walking past never blocks an agent's spot.
+        if (pending == null) {
+            val boss = bossAt(worldPoint)
+            if (boss != null && (node == null || boss.second <= distanceSq(node, worldPoint))) {
+                inspectedBoss = boss.first
+                showBossPanel = true
+                showDeployPanel = false
+                selection = BattlefieldSelection()
+                audio.play(GameSound.UI_CLICK)
+                return
+            }
+        }
+
         if (node == null) {
             selection = BattlefieldSelection()
             return
@@ -1416,6 +1484,43 @@ class GameViewModel @JvmOverloads constructor(
         } else {
             selection = BattlefieldSelection()
         }
+    }
+
+    /**
+     * The boss under [point], with the squared distance to its middle, or null.
+     * The hit box is the drawn chassis with a finger's margin round it. A
+     * SPOOFER decoy answers for the SPOOFER that cast it, so tapping cannot be
+     * used to tell the decoys from the real one.
+     */
+    private fun bossAt(point: Offset): Pair<Enemy, Float>? {
+        var best: Enemy? = null
+        var bestDistanceSq = Float.MAX_VALUE
+        for (enemy in engine.enemies.items) {
+            if (!enemy.active || !enemy.isBoss) continue
+            val size = when (enemy.wormGeneration) {
+                0 -> 1f
+                1 -> 0.72f
+                else -> 0.52f
+            }
+            val dx = enemy.x - point.x
+            val dy = enemy.y - point.y
+            if (kotlin.math.abs(dx) > BOSS_HALF_WIDTH * size + BOSS_TAP_MARGIN) continue
+            if (kotlin.math.abs(dy) > BOSS_HALF_HEIGHT * size + BOSS_TAP_MARGIN) continue
+            val distanceSq = dx * dx + dy * dy
+            if (distanceSq < bestDistanceSq) {
+                bestDistanceSq = distanceSq
+                best = enemy
+            }
+        }
+        val hit = best ?: return null
+        val boss = if (hit.decoy) hit.decoyOwner?.takeIf { it.active && it.isBoss } ?: return null else hit
+        return boss to bestDistanceSq
+    }
+
+    private fun distanceSq(node: com.cyopstd.game.core.NodePosition, point: Offset): Float {
+        val dx = node.x - point.x
+        val dy = node.y - point.y
+        return dx * dx + dy * dy
     }
 
     private fun nearestNode(point: Offset): com.cyopstd.game.core.NodePosition? {
@@ -1484,6 +1589,26 @@ class GameViewModel @JvmOverloads constructor(
         if (!agent.type.allowsTargetingModes) return
         val next = TargetingMode.entries[(agent.targetingMode.ordinal + 1) % TargetingMode.entries.size]
         engine.setTargetingMode(nodeId, next)
+        audio.play(GameSound.UI_CLICK)
+    }
+
+    /**
+     * The skull (BOSS) and OTHER buttons: turns [focus] on for the selected
+     * agent, or off again if it already is.
+     */
+    fun toggleFocus(focus: com.cyopstd.game.model.TargetFocus) {
+        val nodeId = selection.selectedNodeId ?: return
+        val agent = engine.agentAt(nodeId) ?: return
+        if (!agent.type.allowsTargetingModes) return
+        val next = if (agent.focus == focus) com.cyopstd.game.model.TargetFocus.ALL else focus
+        engine.setFocus(nodeId, next)
+        showTransient(
+            when (next) {
+                com.cyopstd.game.model.TargetFocus.BOSSES -> "FOCUS: BOSSES ONLY"
+                com.cyopstd.game.model.TargetFocus.OTHERS -> "FOCUS: SMALL UNITS AND ELITES ONLY"
+                com.cyopstd.game.model.TargetFocus.ALL -> "FOCUS OFF"
+            }
+        )
         audio.play(GameSound.UI_CLICK)
     }
 
@@ -1634,7 +1759,8 @@ class GameViewModel @JvmOverloads constructor(
                     wave = engine.currentWave,
                     damage = engine.runDamageDealt.toLong(),
                     modeId = engine.mode.id,
-                    at = System.currentTimeMillis() / 1000
+                    at = System.currentTimeMillis() / 1000,
+                    mapId = engine.map.id
                 )
             )
             refreshLeaderboard()
@@ -1647,7 +1773,8 @@ class GameViewModel @JvmOverloads constructor(
                         username = identity.username,
                         wave = engine.currentWave,
                         damage = engine.runDamageDealt.toLong(),
-                        modeId = engine.mode.id
+                        modeId = engine.mode.id,
+                        mapId = engine.map.id
                     )
                 )
             }
@@ -1726,7 +1853,7 @@ class GameViewModel @JvmOverloads constructor(
         matchActive = true
         paused = false
         audio.setInMatch(true, musicForMap(engine.map), trackForMode(engine.mode))
-        if (settings.musicVolume > 0.01f) audio.startMusic()
+        audio.startMusic()
         selection = BattlefieldSelection()
         showBossPanel = false
         showDeployPanel = false
@@ -1803,9 +1930,12 @@ class GameViewModel @JvmOverloads constructor(
 
     private suspend fun persistRun() {
         if (engine.phase == RunPhase.GAME_OVER || engine.serverHp <= 0) return
-        // The wave in progress is stored as-is and replayed on resume; a
-        // half-finished assault cannot be reconstructed meaningfully.
-        val waveToResume = if (engine.phase == RunPhase.PREPARING) {
+        // A wave in progress is saved as it stands, enemies and all, and
+        // resumes from there. It used to be replayed from its start with the
+        // crypto already earned in it kept, which let a player farm one wave's
+        // money by leaving to the menu and continuing (owner, 2026-10-02).
+        val midWave = engine.snapshotWave()
+        val waveToResume = if (midWave != null || engine.phase == RunPhase.PREPARING) {
             engine.currentWave
         } else {
             (engine.currentWave - 1).coerceAtLeast(0)
@@ -1816,7 +1946,7 @@ class GameViewModel @JvmOverloads constructor(
                 serverHp = engine.serverHp,
                 crypto = engine.crypto,
                 agents = engine.snapshotPlacements().map {
-                    SavedAgent(it.nodeId, it.agentTypeName, it.level, it.targetingOrdinal)
+                    SavedAgent(it.nodeId, it.agentTypeName, it.level, it.targetingOrdinal, it.focus)
                 },
                 attacksBlocked = engine.runAttacksBlocked,
                 cryptoEarned = engine.runCryptoEarned,
@@ -1829,7 +1959,8 @@ class GameViewModel @JvmOverloads constructor(
                 mapId = engine.map.id,
                 modeId = engine.mode.id,
                 revivesUsed = revivesUsed,
-                playSeconds = runPlaySeconds
+                playSeconds = runPlaySeconds,
+                midWave = midWave
             )
         )
         hasSavedRun = true
@@ -1916,7 +2047,7 @@ class GameViewModel @JvmOverloads constructor(
     fun onAppResumed() {
         // Whichever screen they left, not only a match: pausing no longer
         // clears which track that was, so startMusic picks the right one.
-        if (settings.musicVolume > 0.01f) audio.startMusic()
+        audio.startMusic()
     }
 
     /** Whether any music is currently asked to play. */
@@ -1939,5 +2070,10 @@ class GameViewModel @JvmOverloads constructor(
         private const val MAX_FRAME_SECONDS = 0.25f
         private const val UNLOCK_BANNER_MS = 3200L
         private const val TAP_RADIUS_MULTIPLIER = 2.0f
+
+        /** A boss chassis's half size on the board (as BattlefieldRenderer draws it), and the finger's margin. */
+        private const val BOSS_HALF_WIDTH = 74f
+        private const val BOSS_HALF_HEIGHT = 46f
+        private const val BOSS_TAP_MARGIN = 16f
     }
 }

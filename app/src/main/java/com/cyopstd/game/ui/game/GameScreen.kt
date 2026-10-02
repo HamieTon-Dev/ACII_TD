@@ -200,6 +200,7 @@ private fun GameScreenBody(
                     onUpgrade = { times -> viewModel.upgradeSelectedAgent(times) },
                     onSell = viewModel::sellSelectedAgent,
                     onCycleTargeting = viewModel::cycleTargetingMode,
+                    onToggleFocus = viewModel::toggleFocus,
                     onClose = viewModel::closeSelection,
                     modifier = Modifier
                         .align(Alignment.CenterEnd)
@@ -218,6 +219,8 @@ private fun GameScreenBody(
                     BossDossierPanel(
                         dossier = dossier,
                         onClose = viewModel::toggleBossPanel,
+                        unlockedAgents = viewModel.unlockedAgents,
+                        onNext = viewModel::nextBoss,
                         modifier = Modifier
                             .align(Alignment.TopEnd)
                             .padding(8.dp)
@@ -341,6 +344,7 @@ private fun GameScreenBody(
                 viewModel.leaveMatch()
                 onExitToMenu()
             },
+            backgroundAnimation = viewModel.settings.backgroundAnimation,
             musicPlayer = { modifier ->
                 MusicPlayerPanel(
                     state = MusicPlayerState(
@@ -529,7 +533,8 @@ private fun Battlefield(
                     transform = transform,
                     options = options,
                     selection = viewModel.selection,
-                    time = viewModel.renderTime
+                    time = viewModel.renderTime,
+                    inspectedBoss = if (viewModel.showBossPanel) viewModel.inspectedBossOnField() else null
                 )
             }
         }

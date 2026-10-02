@@ -301,14 +301,9 @@ enum class BossVariant(
     /**
      * NEURAL-MESH, the pair that punishes a lazy board (backlog §J).
      *
-     * MODEL COLLAPSE: *"heals while three or more agents hit it at once —
-     * punishes blobbing."* A model trained on too much of the same signal
-     * degrades; this one feeds on it. While [COLLAPSE_SWARM] or more different
-     * agents have hit it inside [COLLAPSE_WINDOW] seconds, it heals back part
-     * of every hit: [COLLAPSE_HEAL_PER_AGENT] for each agent beyond two, up to
-     * [COLLAPSE_MAX_HEAL]. Scaled rather than flat because a flat heal
-     * punished four ROOT ADMINs exactly as hard as twelve IPS, and the whole
-     * point is the blob. AI SENTINEL's three bolts are one agent.
+     * MODEL COLLAPSE used to heal back part of every hit while three or more
+     * agents hit it at once. The owner removed that buff entirely
+     * (2026-10-02); it is now a plain, slightly heavier boss.
      */
     MODEL_COLLAPSE(
         id = "model_collapse",
@@ -317,9 +312,8 @@ enum class BossVariant(
         healthScale = 1.1f,
         armorBonus = 0f,
         speedScale = 0.95f,
-        signature = "Heals back part of every hit while three or more agents " +
-            "hit it at once, more the bigger the crowd. Fewer, heavier hitters " +
-            "starve it.",
+        signature = "A bloated model: a little more health, a little slower. " +
+            "Its crowd-feeding heal was removed (owner, 2026-10-02).",
         firstCycle = 3,
         mapId = NEURAL_MESH_MAP_ID,
         palette = BossPalette.SPECTRUM
@@ -339,8 +333,8 @@ enum class BossVariant(
         healthScale = 1f,
         armorBonus = 2f,
         speedScale = 1f,
-        signature = "Shrugs off any agent type that keeps hitting it. A varied " +
-            "board keeps hurting it.",
+        signature = "For 2 seconds in every 17 it shrugs off any agent type " +
+            "that keeps hitting it. A varied board keeps hurting it.",
         firstCycle = 4,
         mapId = NEURAL_MESH_MAP_ID,
         palette = BossPalette.ICE
@@ -545,8 +539,11 @@ enum class BossVariant(
         /** How much health a ZOMBIE comes back with. */
         const val ZOMBIE_REVIVE_FRACTION = 0.4f
 
-        /** Seconds between one variant jam and the next. The owner's number. */
-        const val VARIANT_JAM_INTERVAL = 5f
+        /**
+         * Seconds between one variant jam and the next. The owner's number:
+         * 5, then doubled on 2026-10-02 (*"jam to happen half as often"*).
+         */
+        const val VARIANT_JAM_INTERVAL = 10f
 
         /** How long a variant jam holds. The owner's number: *"for 2 seconds."* */
         const val VARIANT_JAM_SECONDS = 2f
@@ -563,25 +560,16 @@ enum class BossVariant(
          */
         const val VARIANT_JAM_RADIUS = 100f
 
-        /** MODEL COLLAPSE feeds while this many different agents hit it... */
-        const val COLLAPSE_SWARM = 3
-
-        /** ...within this many seconds of each other... */
-        const val COLLAPSE_WINDOW = 1f
-
-        /** ...healing back this much of each hit per agent beyond two... */
-        const val COLLAPSE_HEAL_PER_AGENT = 0.08f
-
-        /** ...up to this much. */
-        const val COLLAPSE_MAX_HEAL = 0.6f
-
-        /** The share of a hit MODEL COLLAPSE heals back with [attackers] on it. */
-        fun collapseHealShare(attackers: Int): Float =
-            if (attackers < COLLAPSE_SWARM) 0f
-            else (COLLAPSE_HEAL_PER_AGENT * (attackers - 2)).coerceAtMost(COLLAPSE_MAX_HEAL)
-
         /** LICENSE: hits from one type before that type's damage is halved. */
         const val LICENSE_HALF_HITS = 25f
+
+        /** LICENSE enforces for this long, then cools down (owner, 2026-10-02). */
+        const val LICENSE_ACTIVE_SECONDS = 2f
+        const val LICENSE_COOLDOWN_SECONDS = 15f
+        const val LICENSE_CYCLE_SECONDS = LICENSE_ACTIVE_SECONDS + LICENSE_COOLDOWN_SECONDS
+
+        /** Whether LICENSE is enforcing at [cycleTime] seconds into its cycle. */
+        fun licenseEnforcing(cycleTime: Float): Boolean = cycleTime < LICENSE_ACTIVE_SECONDS
 
         /** LICENSE never takes less than this fraction of a hit. */
         const val LICENSE_FLOOR = 0.35f

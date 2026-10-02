@@ -6,6 +6,7 @@ import com.cyopstd.game.engine.GameEngine
 import com.cyopstd.game.engine.RunPhase
 import com.cyopstd.game.engine.WaveGenerator
 import com.cyopstd.game.model.AgentType
+import org.junit.Ignore
 import org.junit.Test
 import kotlin.random.Random
 
@@ -68,6 +69,10 @@ class MapDifficultyTest {
         return engine.currentWave - 1 + cleared
     }
 
+    @Ignore(
+        "Owner, 2026-10-02: skip the balance tests; the boss-buff retune (RNG modifiers, " +
+            "TARPIT x2 on bosses, slower REGEN) is play-tested on a real build instead."
+    )
     @Test
     fun `each level is harder than the one before it`() {
         val averages = Maps.all.map { map ->

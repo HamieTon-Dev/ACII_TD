@@ -151,7 +151,7 @@ fun AboutScreen(
                         "Original code, original artwork, original synthesized " +
                             "audio. Built with Kotlin, Jetpack Compose and the " +
                             "Android Canvas API.\n\n" +
-                            "Main menu icons: CoreUI Icons Free by creativeLabs " +
+                            "Icons: CoreUI Icons Free by creativeLabs " +
                             "(coreui.io/icons), licensed CC BY 4.0.\n\n" +
                             "Third-party dependency licenses are listed in " +
                             "LICENSES.md in the project repository."

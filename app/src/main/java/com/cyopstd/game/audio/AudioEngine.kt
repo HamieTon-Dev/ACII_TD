@@ -80,7 +80,34 @@ class AudioEngine(private val context: Context) {
      * each time would stutter the transition. A prepared player costs a few
      * megabytes of cache and swaps instantly.
      */
-    private val menuMusic = MusicEngine(context, ChiptuneComposer.Track.MENU)
+    private val menuPlaylist = PlaylistEngine(
+        context, MusicLibrary.menuTracks.map { it.resId }, "MENU",
+        onUnavailable = ::onMenuMusicUnavailable
+    )
+
+    /** The generated menu track, kept for a device that will not decode the files. */
+    private val menuFallback by lazy {
+        MusicEngine(context, ChiptuneComposer.Track.MENU).also { engine ->
+            engine.setVolume(musicLevel)
+            audioScope?.let(engine::prepare)
+        }
+    }
+
+    @Volatile
+    private var menuMusicUnavailable = false
+
+    /**
+     * The menu's music: the owner's two "Main Menu" tracks (2026-10-01),
+     * alternating, or the generated track where they will not play.
+     */
+    private val menuMusic: BackgroundTrack
+        get() = if (menuMusicUnavailable) menuFallback else menuPlaylist
+
+    private fun onMenuMusicUnavailable() {
+        menuMusicUnavailable = true
+        Log.w(TAG, "Menu music will not play here; falling back to the generated track")
+        if (menuPlaylist.wantsToPlay) menuFallback.start()
+    }
 
     /**
      * One playlist per level, built the first time that level is played.
@@ -150,7 +177,7 @@ class AudioEngine(private val context: Context) {
             audioScope?.let(it::prepare)
         }
         onJukeboxTrack(start)
-        if (inMatch && musicVolume > 0.01f) startMatchTrack()
+        if (inMatch) startMatchTrack()
     }
 
     /** Back to the level's own music. */
@@ -160,7 +187,7 @@ class AudioEngine(private val context: Context) {
         jukebox = null
         musicPausedByPlayer = false
         onJukeboxTrack(null)
-        if (inMatch && musicVolume > 0.01f) startMatchTrack()
+        if (inMatch) startMatchTrack()
     }
 
     /** The music player's play/pause. Only the music; the game is untouched. */
@@ -168,7 +195,7 @@ class AudioEngine(private val context: Context) {
         musicPausedByPlayer = paused
         if (paused) {
             pauseMatchTracks()
-        } else if (inMatch && musicVolume > 0.01f) {
+        } else if (inMatch) {
             startMatchTrack()
         }
     }
@@ -313,7 +340,10 @@ class AudioEngine(private val context: Context) {
     fun enterMenu() {
         inMatch = false
         pauseMatchTracks()
-        if (musicVolume <= 0.01f) return
+        // Asked for even at zero volume: the player stays silent until the
+        // volume comes up, and then plays. Returning early here used to leave
+        // nothing asked for, so a menu entered with the music off stayed
+        // silent after it was turned back on.
         menuMusic.start()
     }
 
@@ -368,8 +398,6 @@ class AudioEngine(private val context: Context) {
             matchTrack = track
             matchLevel = level
         }
-        if (musicVolume <= 0.01f) return
-
         if (value) {
             menuMusic.pause()
             startMatchTrack()
@@ -409,7 +437,6 @@ class AudioEngine(private val context: Context) {
 
     /** Starts (or resumes) whichever track belongs to the current screen. */
     fun startMusic() {
-        if (musicVolume <= 0.01f) return
         if (inMatch) startMatchTrack() else menuMusic.start()
     }
 
@@ -439,7 +466,7 @@ class AudioEngine(private val context: Context) {
      * that.
      */
     val musicWanted: Boolean
-        get() = menuMusic.wantsToPlay || matchEngines().any { it.wantsToPlay }
+        get() = musicVolume > 0.01f && (menuMusic.wantsToPlay || matchEngines().any { it.wantsToPlay })
 
     /**
      * How many match tracks are currently asking to play. Should never be two.
@@ -476,7 +503,8 @@ class AudioEngine(private val context: Context) {
     private fun applyMusicLevel() {
         val level = musicLevel
         matchEngines().forEach { it.setVolume(level) }
-        menuMusic.setVolume(level)
+        menuPlaylist.setVolume(level)
+        if (menuMusicUnavailable) menuFallback.setVolume(level)
     }
 
     /**
@@ -519,7 +547,8 @@ class AudioEngine(private val context: Context) {
             matchMusic.values.forEach { it.release() }
             matchMusic.clear()
         }
-        menuMusic.release()
+        menuPlaylist.release()
+        if (menuMusicUnavailable) menuFallback.release()
         try {
             soundPool?.release()
         } catch (error: Exception) {

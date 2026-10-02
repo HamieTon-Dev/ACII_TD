@@ -482,6 +482,33 @@ object Balance {
     const val ACE_WALL_REBUILD_SECONDS = 6f
     /** Damage per second one threat at the wall deals to it, before its kind. */
     const val ACE_WALL_DPS = 10f
+
+    /**
+     * REGENERATION (owner, 2026-10-02: *"Regen makes it almost impossible to
+     * kill these bosses"*). It used to repair 1.2% of maximum health every
+     * second, hit or not, which on a late boss out-healed most boards. Now it
+     * repairs at 0.5% a second, and only after it has gone [REGEN_PAUSE_AFTER_HIT]
+     * seconds without being hit: a boss under steady fire does not heal, one
+     * left alone between kill zones does.
+     */
+    const val REGEN_SHARE_PER_SECOND = 0.005f
+    const val REGEN_PAUSE_AFTER_HIT = 2f
+
+    /**
+     * TARPIT against bosses (owner, 2026-10-02: *"Tarpit should slow the
+     * bosses down double what they do now"*). A boss loses twice the speed an
+     * ordinary threat does in the field (28% becomes 56% at level 1), but never
+     * drops below [TARPIT_BOSS_MIN_FACTOR] of its speed, so a maxed TARPIT
+     * cannot pin a boss in place.
+     */
+    const val TARPIT_BOSS_SLOW_MULTIPLIER = 2f
+    const val TARPIT_BOSS_MIN_FACTOR = 0.30f
+
+    /** Each unlocked boss modifier's own chance (see WaveGenerator.rollModifiers). */
+    const val BOSS_MODIFIER_CHANCE = 0.33f
+
+    /** The chance a boss carries every modifier unlocked so far. */
+    const val BOSS_ALL_MODIFIERS_CHANCE = 0.02f
     const val ACE_WALL_ELITE_FACTOR = 2.5f
     const val ACE_WALL_BOSS_FACTOR = 12f
     /** ACE's shots against any boss of levels 1–5. */

@@ -99,4 +99,23 @@ class BackgroundAudioTest {
         shadowOf(Looper.getMainLooper()).idle()
         assertFalse("resuming turned the music back on", viewModel.musicWanted)
     }
+
+    @Test
+    fun `turning the music back up on the menu plays it`() {
+        // The owner's bug (2026-10-01): with the music off when the menu was
+        // reached, nothing was asked to play, so turning it back up stayed silent.
+        val viewModel = freshViewModel(musicVolume = 0f)
+        viewModel.onMenuShown()
+        assertFalse(viewModel.musicWanted)
+        // Settings are stored asynchronously and the stored value can arrive
+        // after a change; wait until the 0.6 has settled before judging.
+        val deadline = System.currentTimeMillis() + 5_000
+        do {
+            viewModel.updateSettings { it.copy(musicVolume = 0.6f) }
+            shadowOf(Looper.getMainLooper()).idle()
+            Thread.sleep(50)
+            shadowOf(Looper.getMainLooper()).idle()
+        } while (viewModel.settings.musicVolume < 0.5f && System.currentTimeMillis() < deadline)
+        assertTrue("turning the music up left the menu silent", viewModel.musicWanted)
+    }
 }

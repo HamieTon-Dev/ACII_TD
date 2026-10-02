@@ -75,27 +75,54 @@ class WaveGeneratorTest {
     }
 
     @Test
-    fun `wave ten boss is harder than wave five and carries a modifier`() {
+    fun `wave ten boss is harder than wave five`() {
         val five = generator().generate(5)
         val ten = generator().generate(10)
         assertTrue(ten.isBossWave)
-        assertTrue(
-            "wave 10 should introduce a modifier",
-            ten.bossModifiers.isNotEmpty()
-        )
         assertTrue(
             "wave 10 should have at least as much escort pressure",
             ten.orders.size > five.orders.size
         )
     }
 
+    /**
+     * Owner, 2026-10-02: *"33% chance on each buff"*, and all of them on 2%.
+     * Measured over many bosses, not one seed.
+     */
+    @Test
+    fun `boss modifiers are a roll, not a fixed stack`() {
+        val wave = 60
+        val pool = com.cyopstd.game.model.BossModifier.poolForCycle(com.cyopstd.game.core.Balance.bossCycle(wave))
+        assertTrue("wave 60 should have most modifiers unlocked", pool.size >= 4)
+        val runs = 4_000
+        var all = 0
+        var none = 0
+        val each = HashMap<com.cyopstd.game.model.BossModifier, Int>()
+        for (seed in 1..runs) {
+            val mods = generator(seed).generate(wave).bossModifiers
+            assertTrue("a boss rolled a modifier that is not unlocked yet", pool.containsAll(mods))
+            assertEquals("a modifier was rolled twice", mods.size, mods.toSet().size)
+            if (mods.size == pool.size) all++
+            if (mods.isEmpty()) none++
+            for (m in mods) each[m] = (each[m] ?: 0) + 1
+        }
+        val allShare = all.toDouble() / runs
+        assertTrue("all modifiers on ${"%.3f".format(allShare)} of bosses, want about 0.02", allShare in 0.01..0.035)
+        assertTrue("some bosses should be a clean fight", none > 0)
+        for (m in pool) {
+            // 2% from "all", plus 33% of the other 98%.
+            val share = (each[m] ?: 0).toDouble() / runs
+            assertTrue("$m on ${"%.3f".format(share)} of bosses, want about 0.34", share in 0.30..0.39)
+        }
+    }
+
     @Test
     fun `boss modifiers are introduced gradually`() {
         assertEquals(0, generator().generate(5).bossModifiers.size)
-        assertEquals(1, generator().generate(10).bossModifiers.size)
-        assertEquals(1, generator().generate(15).bossModifiers.size)
-        assertEquals(2, generator().generate(20).bossModifiers.size)
-        assertTrue(generator().generate(60).bossModifiers.size >= 3)
+        for (seed in 1..200) {
+            val ten = generator(seed).generate(10).bossModifiers
+            assertTrue(ten.all { it == com.cyopstd.game.model.BossModifier.ARMOR_PLATING })
+        }
     }
 
     @Test

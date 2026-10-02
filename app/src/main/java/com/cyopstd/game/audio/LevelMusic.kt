@@ -38,6 +38,22 @@ enum class LevelMusic(
 
     /** The variant that follows [index], wrapping. */
     fun variantAfter(index: Int): Int = (index + 1) % variants.size
+
+    /**
+     * What a match on this level actually plays, round and round: its own
+     * two, Liminal Space, its own two, Liminal Haze (owner, 2026-10-02: two
+     * tracks *"in rotation that can play on any map"*).
+     */
+    val rotation: List<Int>
+        get() = variants + ANY_LEVEL[0] + variants + ANY_LEVEL[1]
+
+    companion object {
+        /** The owner's two tracks for every level (2026-10-02). */
+        val ANY_LEVEL: List<Int> = listOf(R.raw.liminal_space, R.raw.liminal_haze)
+
+        /** Their names, in the same order. */
+        val ANY_LEVEL_NAMES: List<String> = listOf("Liminal Space", "Liminal Haze")
+    }
 }
 
 /**
@@ -78,10 +94,20 @@ data class MusicTrack(
     val level: Int,
     val levelName: String,
     /** 1 or 2: which of the level's two renders. */
-    val part: Int
+    val part: Int,
+    /** A track of its own name rather than a level's ("Liminal Space"). */
+    val name: String? = null
 ) {
-    /** The owner's naming (2026-10-01): "CyOps TD - Level 4 (1)". Also the ID3 title. */
-    val title: String get() = "CyOps TD - Level $level ($part)"
+    /**
+     * The owner's naming (2026-10-01): "CyOps TD - Level 4 (1)", or for the
+     * menu's tracks ([level] 0) "CyOps TD - Main Menu (1)". Also the ID3 title.
+     */
+    val title: String
+        get() = when {
+            name != null -> "CyOps TD - $name"
+            level == 0 -> "CyOps TD - Main Menu ($part)"
+            else -> "CyOps TD - Level $level ($part)"
+        }
 
     /** What the soundtrack is saved to the phone as. */
     val fileName: String get() = "$title.mp3"
@@ -91,7 +117,11 @@ data class MusicTrack(
 
     /** "CyOps TD - Level 4 (1) · 🦆 DUCK-USB": the title, and which level it belongs to. */
     val label: String
-        get() = "$title \u00B7 $levelName"
+        get() = when {
+            name != null -> "$title \u00B7 ANY LEVEL"
+            level == 0 -> title
+            else -> "$title \u00B7 $levelName"
+        }
 }
 
 /**
@@ -99,13 +129,27 @@ data class MusicTrack(
  * music appears in the list without this changing.
  */
 object MusicLibrary {
+    /** The main menu's two tracks (owner, 2026-10-01), first in the album. */
+    val menuTracks: List<MusicTrack> = listOf(R.raw.menu, R.raw.menu_2).mapIndexed { part, res ->
+        MusicTrack(res, MENU_ID, 0, "MAIN MENU", part + 1)
+    }
+
+    const val MENU_ID = "menu"
+
+    /** Liminal Space and Liminal Haze, which play on every level (2026-10-02), last in the album. */
+    val anyLevelTracks: List<MusicTrack> = LevelMusic.ANY_LEVEL.mapIndexed { part, res ->
+        MusicTrack(res, ANY_LEVEL_ID, -1, "ANY LEVEL", part + 1, name = LevelMusic.ANY_LEVEL_NAMES[part])
+    }
+
+    const val ANY_LEVEL_ID = "any"
+
     val tracks: List<MusicTrack> by lazy {
-        Maps.all.withIndex().flatMap { (i, map) ->
+        menuTracks + Maps.all.withIndex().flatMap { (i, map) ->
             val music = musicForMap(map) ?: return@flatMap emptyList()
             music.variants.mapIndexed { part, res ->
                 MusicTrack(res, map.id, i + 1, map.displayName, part + 1)
             }
-        }
+        } + anyLevelTracks
     }
 
     /** The track saved as [key], or null if there is none (or it no longer exists). */

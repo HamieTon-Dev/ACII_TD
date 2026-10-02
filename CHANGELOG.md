@@ -9,6 +9,95 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [1.55.0] — 2026-10-02
+
+### Boss balance (owner, play-tested on a real build)
+
+- **Boss buffs are a roll now.** Each unlocked modifier (ARMOR+, BURST,
+  FW-RES, REGEN, ENC-SHD, REPLICATE, DISRUPT) has its own 33% chance; only 2%
+  of bosses carry all of them. A late boss used to carry four, always.
+- **REGENERATION** repairs 0.5% of max health a second (was 1.2%), and only
+  after 2 seconds without a hit.
+- **TARPIT** slows bosses twice as much as other threats (56% at level 1),
+  never below 30% of their speed.
+- **LICENSE** shrugs off a repeated agent type for only 2 seconds in every 17
+  ("LICENSE ENFORCED"), with the counts reset each time.
+- **MODEL COLLAPSE** no longer heals off a crowd; it is a plain, slightly
+  heavier boss.
+- **Jams half as often:** WHITE/BLACK EYE every 10 s (was 5), AGENT
+  DISRUPTION every 16 s (was 8).
+
+### Agent focus: BOSS and OTHER
+
+- Two CoreUI buttons beside CHANGE in the agent panel, each with a tiny
+  label: BOSS (angry face) makes the agent shoot bosses only; OTHER (asterisk)
+  makes it shoot small units and elites only. Tap the lit one to turn it off.
+  Saved with the run.
+
+### Tap a boss
+
+- Tapping a boss on the board opens its dossier: health, armour, speed,
+  distance, modifiers, and now what it is WEAK TO and what to WATCH OUT for.
+  It is ringed on the board while open. With several bosses up, the dossier
+  says which one ("BOSS 2 OF 3") and NEXT BOSS cycles them. The BOSS button
+  opens on the one nearest the core.
+
+### Leaderboards per level and difficulty
+
+- The leaderboard has LEVEL and DIFFICULTY drop-downs. THIS DEVICE filters
+  your runs by them (runs now remember their level; older runs show under ALL
+  LEVELS), and keeps the best runs of every level and difficulty, not just
+  the top 25 overall. A LVL column shows each run's level.
+- WORLDWIDE shows the Play Games board for the level and difficulty picked:
+  30 boards (10 levels × 3 difficulties) plus the existing all-level ones. A
+  finished run posts to both its level's board and its difficulty's overall
+  board. `LEADERBOARDS.md` lists the boards to create in Play Console.
+
+### Menu music
+
+- The main menu plays the owner's two new "Main Menu" tracks, alternating
+  (the generated track remains only as a fallback). They join the music
+  player and the soundtrack.
+- Two new tracks, **Liminal Space** and **Liminal Haze**, play on every level:
+  each level's rotation is its own two tracks, Liminal Space, its own two
+  again, then Liminal Haze. Both are in the music player (unlocked after
+  level 5) and the soundtrack, now 24 tracks.
+- **Fixed:** the menu could stay silent after music had been turned off and
+  back on, until a match was played. Music is now always asked for and simply
+  stays silent while the volume is at zero, so it comes back by itself.
+
+### Fixed: replaying a wave for its money (game-breaking)
+
+- Leaving for the main menu mid-wave and pressing CONTINUE replayed the wave
+  from its start while keeping the crypto already earned in it, so one wave
+  could be farmed for money over and over. A wave in progress is now saved
+  exactly as it stands: what is still to spawn, what is waiting at the gate,
+  and every enemy on the board with its position, health and boss state
+  (splits, revives, decoys, escorts, timers). CONTINUE resumes inside that
+  wave, paused, so the player sees the board before it moves.
+
+### Level preview
+
+- In the NEW RUN level list, hold a level or tap the info button on its row
+  to see a preview: the map's routes and core in the level's own colours, the
+  level's own bosses with what they do, and every other boss that turns up
+  there. Works on locked levels too.
+
+### In a match
+
+- The level's name and the difficulty sit in the corner plate, under the
+  crypto and above the core server. The faint run name over the top of the
+  board is gone.
+
+### Main menu and menus
+
+- The lanes-to-core-server picture is a vector drawing instead of ASCII text,
+  so it scales cleanly and no longer misaligns.
+- New backdrop behind the main menu, the pause menu, the store and every
+  other menu (the owner's pick of six): two spectrum spiral arms winding out
+  from the centre over faint radiating rings, slowly turning and slowly
+  moving through the whole colour spectrum. Part of the game, not a store item.
+
 ## [1.54.0] — 2026-10-01
 
 ### All ten levels have their own music

@@ -162,6 +162,8 @@ class Enemy : Poolable {
     var burstTimer: Float = 0f
     var burstActive: Float = 0f
     var regenAccumulator: Float = 0f
+    /** REGENERATION waits this many seconds after a hit before repairing. */
+    var regenPause: Float = 0f
     var replicateTimer: Float = 0f
     var disruptTimer: Float = 0f
 
@@ -228,6 +230,7 @@ class Enemy : Poolable {
         burstTimer = 0f
         burstActive = 0f
         regenAccumulator = 0f
+        regenPause = 0f
         replicateTimer = 0f
         disruptTimer = 0f
         variantJamTimer = 0f
@@ -261,6 +264,9 @@ class Agent : Poolable {
     var level: Int = 1
     var cooldownRemaining: Float = 0f
     var targetingMode: TargetingMode = TargetingMode.FIRST
+
+    /** The skull (BOSS) and OTHER buttons: what this agent may shoot at all. */
+    var focus: TargetFocus = TargetFocus.ALL
 
     /** Seconds remaining on the muzzle-flash animation. */
     var fireFlash: Float = 0f
@@ -345,6 +351,7 @@ class Agent : Poolable {
         damageBuff = 1f
         rateBuff = 1f
         targetingMode = TargetingMode.FIRST
+        focus = TargetFocus.ALL
         lifetimeKills = 0
         lifetimeDamage = 0f
         firmwareDamage = 1f

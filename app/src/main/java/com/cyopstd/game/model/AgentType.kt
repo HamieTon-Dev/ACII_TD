@@ -18,6 +18,30 @@ enum class TargetingMode(val label: String, val description: String) {
     }
 }
 
+/**
+ * What an agent is allowed to shoot at all (owner, 2026-10-02): the skull
+ * button (BOSS) and the OTHER button in the agent panel. Applied on top of the
+ * targeting mode. With a focus on, an agent holds fire rather than shoot
+ * outside it.
+ */
+enum class TargetFocus {
+    ALL,
+    /** Bosses only (the skull). */
+    BOSSES,
+    /** Everything but bosses: small units and elites. */
+    OTHERS;
+
+    fun allows(enemy: Enemy): Boolean = when (this) {
+        ALL -> true
+        BOSSES -> enemy.isBoss
+        OTHERS -> !enemy.isBoss
+    }
+
+    companion object {
+        fun fromNameSafe(name: String?): TargetFocus = entries.firstOrNull { it.name == name } ?: ALL
+    }
+}
+
 /** The visual signature an agent's attack leaves on the battlefield. */
 enum class AttackStyle(val trail: String) {
     BOLT("--->"),

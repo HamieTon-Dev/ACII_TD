@@ -20,8 +20,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import com.cyopstd.game.model.AgentType
 import com.cyopstd.game.model.BossModifier
 import com.cyopstd.game.model.BossVariant
 import com.cyopstd.game.ui.common.AsciiRule
@@ -50,7 +52,14 @@ data class BossDossier(
     val speed: Float,
     val modifiers: List<BossModifier>,
     val revived: Boolean,
-    val distanceToCore: Float
+    val distanceToCore: Float,
+    /** Each line: an agent and why it is good against this boss (as the briefing says). */
+    val weakTo: List<Pair<AgentType, String>> = emptyList(),
+    /** What to watch out for with this boss. */
+    val warnings: List<String> = emptyList(),
+    /** Which boss on the field this is, from 1, and how many there are. */
+    val index: Int = 1,
+    val count: Int = 1
 ) {
     val fraction: Float get() = if (maxHealth <= 0f) 0f else (health / maxHealth).coerceIn(0f, 1f)
 }
@@ -77,12 +86,17 @@ private val PANEL_HEIGHT = 330.dp
 fun BossDossierPanel(
     dossier: BossDossier,
     onClose: () -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    /** Agents the player owns; the rest are marked locked. Null marks none. */
+    unlockedAgents: Set<String>? = null,
+    /** Shows the next boss on the field. Only offered when there is more than one. */
+    onNext: (() -> Unit)? = null
 ) {
     val scroll = rememberScrollState()
 
     Row(
         modifier = modifier
+            .testTag("boss-dossier")
             .width(430.dp)
             // A fixed height, not a maximum: the modifier list below uses a
             // vertical weight to keep CLOSE pinned under it, and a weight
@@ -97,21 +111,21 @@ fun BossDossierPanel(
         Box(Modifier.weight(1.25f)) {
             Column(Modifier.verticalScroll(scroll)) {
                 Row(verticalAlignment = Alignment.CenterVertically) {
-                    Text(
-                        text = dossier.variant.glyph,
-                        style = MaterialTheme.typography.titleLarge,
-                        color = Palette.Red
-                    )
+                    BossIcon(dossier.variant)
                     Spacer(Modifier.width(8.dp))
                     Column {
                         Text(
                             text = dossier.variant.displayName,
                             style = MaterialTheme.typography.titleSmall,
-                            color = Palette.TextPrimary
+                            color = bossUiColor(dossier.variant)
                         )
                         Caption(
-                            if (dossier.revived) "REANIMATED — it will not come back again"
-                            else "ON THE FIELD"
+                            when {
+                                dossier.revived -> "REANIMATED — it will not come back again"
+                                dossier.count > 1 ->
+                                    "BOSS ${dossier.index} OF ${dossier.count} · TAP A BOSS TO SWITCH"
+                                else -> "ON THE FIELD · TAP A BOSS TO SEE IT"
+                            }
                         )
                     }
                 }
@@ -148,6 +162,26 @@ fun BossDossierPanel(
                     )
                 }
 
+                if (dossier.weakTo.isNotEmpty()) {
+                    Spacer(Modifier.height(6.dp))
+                    Text("WEAK TO", style = MaterialTheme.typography.labelMedium, color = Palette.Green)
+                    for ((agent, why) in dossier.weakTo) {
+                        val owned = unlockedAgents?.let { agent.name in it } ?: true
+                        Text(
+                            text = "[${agent.glyph}] ${agent.displayName}${if (owned) "" else " (locked)"}: $why",
+                            style = MaterialTheme.typography.bodySmall,
+                            color = if (owned) Palette.Green else Palette.TextMuted
+                        )
+                    }
+                }
+                if (dossier.warnings.isNotEmpty()) {
+                    Spacer(Modifier.height(6.dp))
+                    Text("WATCH OUT", style = MaterialTheme.typography.labelMedium, color = Palette.Red)
+                    for (warning in dossier.warnings) {
+                        Text(warning, style = MaterialTheme.typography.bodySmall, color = Palette.TextSecondary)
+                    }
+                }
+
                 Spacer(Modifier.height(6.dp))
                 Caption(dossier.variant.signature)
             }
@@ -181,6 +215,18 @@ fun BossDossierPanel(
                 }
             }
 
+            if (onNext != null && dossier.count > 1) {
+                CompactButton(
+                    text = "NEXT BOSS",
+                    onClick = onNext,
+                    accent = Palette.Red,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .testTag("boss-dossier-next"),
+                    dense = true
+                )
+                Spacer(Modifier.height(4.dp))
+            }
             CompactButton(
                 text = "CLOSE",
                 onClick = onClose,

@@ -17,9 +17,22 @@ data class LeaderboardEntry(
     val damage: Long,
     val modeId: String = GameMode.STANDARD.id,
     /** Epoch seconds. Only used to break a total tie and to show recency. */
-    val at: Long = 0
+    val at: Long = 0,
+    /**
+     * The level, by `GameMap.id`; null for runs recorded before levels were
+     * (owner, 2026-10-01), which then only show under ALL LEVELS.
+     */
+    val mapId: String? = null
 ) {
     val mode: GameMode get() = GameMode.fromIdSafe(modeId)
+
+    /** Whether this run belongs on the board for [mapId] (null = every level) and [mode] (null = every mode). */
+    fun matches(mapId: String?, mode: GameMode?): Boolean =
+        (mapId == null || this.mapId == mapId) && (mode == null || this.mode == mode)
+
+    /** The worldwide boards this run is posted to: its difficulty overall, and its level in that difficulty. */
+    val boardKeys: List<BoardKey>
+        get() = listOfNotNull(BoardKey(mode), mapId?.let { BoardKey(mode, it) })
 
     companion object {
         /** Best first: deepest wave, then most damage, then most recent. */
@@ -27,6 +40,15 @@ data class LeaderboardEntry(
             .thenByDescending { it.damage }
             .thenByDescending { it.at }
     }
+}
+
+/**
+ * One worldwide board: a difficulty, on one level or (null) all of them
+ * (owner, 2026-10-01: boards "all per level and difficulty").
+ */
+data class BoardKey(val mode: GameMode, val mapId: String? = null) {
+    /** "mapId|modeId", how a per-level board's id is looked up. */
+    val key: String get() = "${mapId ?: "all"}|${mode.id}"
 }
 
 /**
@@ -59,10 +81,20 @@ class LocalLeaderboard(private val repository: GameRepository) : LeaderboardGate
     override suspend fun top(limit: Int): List<LeaderboardEntry> =
         repository.leaderboard().sortedWith(LeaderboardEntry.ranking).take(limit)
 
+    /** The best [limit] runs on [mapId] (null = every level) in [mode] (null = every mode). */
+    suspend fun top(limit: Int, mapId: String?, mode: GameMode?): List<LeaderboardEntry> =
+        repository.leaderboard().filter { it.matches(mapId, mode) }
+            .sortedWith(LeaderboardEntry.ranking).take(limit)
+
     override suspend fun submit(entry: LeaderboardEntry): Int {
-        val kept = (repository.leaderboard() + entry)
-            .sortedWith(LeaderboardEntry.ranking)
-            .take(LeaderboardGateway.MAX_ENTRIES)
+        // The best runs overall, and the best on every level in every mode,
+        // so a filtered board is never empty because the others crowded it out.
+        val all = (repository.leaderboard() + entry).sortedWith(LeaderboardEntry.ranking)
+        val keep = HashSet<LeaderboardEntry>()
+        keep += all.take(LeaderboardGateway.MAX_ENTRIES)
+        all.groupBy { it.mapId to it.modeId }.values
+            .forEach { keep += it.take(LeaderboardGateway.MAX_ENTRIES) }
+        val kept = all.filter { it in keep }
         repository.saveLeaderboard(kept)
         val index = kept.indexOfFirst {
             it.at == entry.at && it.wave == entry.wave && it.damage == entry.damage

@@ -18,16 +18,19 @@ import kotlinx.coroutines.suspendCancellableCoroutine
  * player's best, worldwide, and needs the player signed into Play Games —
  * the same sign-in the cloud save uses, so a linked player is already there.
  *
- * One Play Console leaderboard per [GameMode], because a HACK:AI wave and a
- * standard wave are not the same achievement and one list would bury the
- * harder mode under the easier one.
+ * One Play Console leaderboard per [GameMode] across all levels, because a
+ * HACK:AI wave and a standard wave are not the same achievement, and (owner,
+ * 2026-10-01) one per level in each mode as well: a [BoardKey].
  */
 interface GlobalLeaderboardGateway {
     /** True when this build has at least one leaderboard id configured. */
     val configured: Boolean
 
-    /** True when [mode] has a board of its own. */
-    fun hasBoard(mode: GameMode): Boolean
+    /** True when [key] has a board of its own. */
+    fun hasBoard(key: BoardKey): Boolean
+
+    /** True when [mode] has an all-levels board. */
+    fun hasBoard(mode: GameMode): Boolean = hasBoard(BoardKey(mode))
 
     /**
      * Posts a finished run. False on any failure — not signed in, offline, no
@@ -36,20 +39,24 @@ interface GlobalLeaderboardGateway {
      */
     suspend fun submit(entry: LeaderboardEntry): Boolean
 
-    /** The top of [mode]'s board, or null when it could not be read. */
-    suspend fun top(mode: GameMode, limit: Int = LeaderboardGateway.MAX_ENTRIES): List<LeaderboardEntry>?
+    /** The top of [key]'s board, or null when it could not be read. */
+    suspend fun top(key: BoardKey, limit: Int = LeaderboardGateway.MAX_ENTRIES): List<LeaderboardEntry>?
 
-    /** Opens Google's own leaderboard screen for [mode]. */
-    suspend fun openNative(mode: GameMode): Boolean
+    /** The top of [mode]'s all-levels board. */
+    suspend fun top(mode: GameMode, limit: Int = LeaderboardGateway.MAX_ENTRIES): List<LeaderboardEntry>? =
+        top(BoardKey(mode), limit)
+
+    /** Opens Google's own leaderboard screen for [key]. */
+    suspend fun openNative(key: BoardKey): Boolean
 }
 
 /** The gateway for a build with no leaderboard ids: nothing is global. */
 class NoGlobalLeaderboard : GlobalLeaderboardGateway {
     override val configured = false
-    override fun hasBoard(mode: GameMode) = false
+    override fun hasBoard(key: BoardKey) = false
     override suspend fun submit(entry: LeaderboardEntry) = false
-    override suspend fun top(mode: GameMode, limit: Int): List<LeaderboardEntry>? = null
-    override suspend fun openNative(mode: GameMode) = false
+    override suspend fun top(key: BoardKey, limit: Int): List<LeaderboardEntry>? = null
+    override suspend fun openNative(key: BoardKey) = false
 }
 
 /**
@@ -96,8 +103,13 @@ object GlobalScoreTag {
  * attached after that.
  */
 class PlayGamesLeaderboard(
-    private val boardIds: Map<GameMode, String>
+    modeBoardIds: Map<GameMode, String>,
+    /** Per level and mode (owner, 2026-10-01). */
+    levelBoardIds: Map<BoardKey, String> = emptyMap()
 ) : GlobalLeaderboardGateway {
+
+    private val boardIds: Map<BoardKey, String> =
+        modeBoardIds.mapKeys { BoardKey(it.key) } + levelBoardIds
 
     private var activityRef = WeakReference<Activity?>(null)
 
@@ -107,10 +119,19 @@ class PlayGamesLeaderboard(
 
     override val configured: Boolean get() = boardIds.isNotEmpty()
 
-    override fun hasBoard(mode: GameMode): Boolean = boardIds[mode] != null
+    override fun hasBoard(key: BoardKey): Boolean = boardIds[key] != null
 
+    /** Posted to its difficulty's all-levels board and to its level's board, each that exists. */
     override suspend fun submit(entry: LeaderboardEntry): Boolean {
-        val id = boardIds[entry.mode] ?: return false
+        var any = false
+        for (key in entry.boardKeys) {
+            val id = boardIds[key] ?: continue
+            if (submitTo(id, entry)) any = true
+        }
+        return any
+    }
+
+    private suspend fun submitTo(id: String, entry: LeaderboardEntry): Boolean {
         val activity = activityRef.get() ?: return false
         return runCatching {
             PlayGames.getLeaderboardsClient(activity)
@@ -126,8 +147,9 @@ class PlayGamesLeaderboard(
         }
     }
 
-    override suspend fun top(mode: GameMode, limit: Int): List<LeaderboardEntry>? {
-        val id = boardIds[mode] ?: return null
+    override suspend fun top(key: BoardKey, limit: Int): List<LeaderboardEntry>? {
+        val mode = key.mode
+        val id = boardIds[key] ?: return null
         val activity = activityRef.get() ?: return null
         return runCatching {
             val data = PlayGames.getLeaderboardsClient(activity)
@@ -147,7 +169,8 @@ class PlayGamesLeaderboard(
                         wave = score.rawScore.coerceIn(0, Int.MAX_VALUE.toLong()).toInt(),
                         damage = damage ?: 0,
                         modeId = mode.id,
-                        at = score.timestampMillis / 1000
+                        at = score.timestampMillis / 1000,
+                        mapId = key.mapId
                     )
                 }
             } finally {
@@ -161,8 +184,8 @@ class PlayGamesLeaderboard(
         }
     }
 
-    override suspend fun openNative(mode: GameMode): Boolean {
-        val id = boardIds[mode] ?: return false
+    override suspend fun openNative(key: BoardKey): Boolean {
+        val id = boardIds[key] ?: return false
         val activity = activityRef.get() ?: return false
         return runCatching {
             val intent = PlayGames.getLeaderboardsClient(activity)

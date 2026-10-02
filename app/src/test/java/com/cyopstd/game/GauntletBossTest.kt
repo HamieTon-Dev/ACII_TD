@@ -300,7 +300,8 @@ class GauntletBossTest {
         val far = Post(AgentType.REDHAT, BossVariant.VARIANT_JAM_RADIUS + 80f, 0f)
         val blue = Post(AgentType.BLUEHAT, 0f, 60f)
         val firewall = Post(AgentType.FIREWALL, -60f, 0f)
-        run(BossVariant.WHITE_EYE, seconds = 6f, posts = listOf(near, far, blue, firewall))
+        // Past the first jam, which lands one interval (10 s) in.
+        run(BossVariant.WHITE_EYE, seconds = 12f, posts = listOf(near, far, blue, firewall))
 
         assertTrue("the RED HAT beside it was never jammed", near.peakJam > 0f)
         assertEquals("a RED HAT out of reach must be untouched", 0f, far.peakJam, 0.0001f)
@@ -312,7 +313,7 @@ class GauntletBossTest {
     fun `BLACK EYE is the same fight with the colours swapped`() {
         val red = Post(AgentType.REDHAT, 60f, 0f)
         val blue = Post(AgentType.BLUEHAT, 0f, 60f)
-        run(BossVariant.BLACK_EYE, seconds = 6f, posts = listOf(red, blue))
+        run(BossVariant.BLACK_EYE, seconds = 12f, posts = listOf(red, blue))
 
         assertTrue("the BLUE HAT beside it was never jammed", blue.peakJam > 0f)
         assertEquals("BLACK EYE must not touch RED HAT", 0f, red.peakJam, 0.0001f)
@@ -328,13 +329,13 @@ class GauntletBossTest {
     }
 
     @Test
-    fun `the jam lands once every five seconds, not continuously`() {
+    fun `the jam lands once every ten seconds, not continuously`() {
         val near = Post(AgentType.REDHAT, 60f, 0f)
         run(BossVariant.WHITE_EYE, seconds = 21f, posts = listOf(near))
 
-        // Four beats fit in twenty-one seconds at a five-second cadence; the
-        // first lands at five, not at zero.
-        assertEquals("jam onsets over 21s", 4, near.onsets)
+        // Two beats fit in twenty-one seconds at a ten-second cadence; the
+        // first lands at ten, not at zero.
+        assertEquals("jam onsets over 21s", 2, near.onsets)
         assertTrue(
             "the jam should last about ${BossVariant.VARIANT_JAM_SECONDS}s",
             near.peakJam <= BossVariant.VARIANT_JAM_SECONDS + 0.05f
@@ -347,7 +348,8 @@ class GauntletBossTest {
 
     @Test
     fun `the jam is the numbers the owner asked for`() {
-        assertEquals("once every 5 seconds", 5f, BossVariant.VARIANT_JAM_INTERVAL, 0.001f)
+        // 5 seconds, then half as often (owner, 2026-10-02).
+        assertEquals("once every 10 seconds", 10f, BossVariant.VARIANT_JAM_INTERVAL, 0.001f)
         assertEquals("for 2 seconds", 2f, BossVariant.VARIANT_JAM_SECONDS, 0.001f)
         assertEquals("within range of 100", 100f, BossVariant.VARIANT_JAM_RADIUS, 0.001f)
     }

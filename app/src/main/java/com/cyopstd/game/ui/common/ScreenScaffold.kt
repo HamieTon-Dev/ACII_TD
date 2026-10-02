@@ -37,6 +37,7 @@ fun ScreenScaffold(
             .fillMaxSize()
             .background(Palette.Background)
     ) {
+        HaloBackdrop(modifier = Modifier.fillMaxSize(), enabled = backgroundAnimation)
         AsciiBackdrop(
             modifier = Modifier.fillMaxSize(),
             enabled = backgroundAnimation,
