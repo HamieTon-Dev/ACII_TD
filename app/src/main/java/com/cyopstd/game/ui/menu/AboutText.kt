@@ -24,7 +24,12 @@ object AboutText {
     const val DEVELOPER = "HamieTon.dev"
 
     const val GAME_TITLE = "CyOps TD"
-    const val GAME_SUBTITLE = "Packet Bastion · ASCII Cyber Defense"
+    /**
+     * The subtitle under the title on the splash and the main menu, and on
+     * ABOUT (owner, 2026-10-02: *"CyOps TD / Cyber Operatives: Tower defense"*;
+     * was "ASCII CYBER DEFENSE").
+     */
+    const val GAME_SUBTITLE = "Cyber Operatives: Tower Defense"
 
     /**
      * Copyright line.

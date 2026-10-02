@@ -9,6 +9,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+### Changed
+
+- The subtitle under the title on the splash and the main menu is now
+  "CYBER OPERATIVES: TOWER DEFENSE" (was "ASCII CYBER DEFENSE"), and ABOUT
+  reads "CyOps TD · Cyber Operatives: Tower Defense".
+
 ## [1.55.0] — 2026-10-02
 
 ### Boss balance (owner, play-tested on a real build)
