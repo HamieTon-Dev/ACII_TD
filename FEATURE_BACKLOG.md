@@ -668,7 +668,12 @@ suit: Material Symbols (Apache 2.0) or drawing the few icons in-house.
   and the hit counts reset each window. `NeuralMeshTest`.
 - ✅ **MODEL COLLAPSE buff removed (owner, 2026-10-02) — 1.55.0:** *"Remove Model
   collapse Buff entirely."* **Done:** no more crowd heal; it is a plain boss with
-  ×1.1 health and ×0.95 speed. Still in the boss rotation; see owner input.
+  ×1.1 health and ×0.95 speed. **Decided (owner, 2026-10-02):** *"Model collapse
+  will be in rotation. May add a special ability later on if I feel balance is
+  good."* It stays in the rotation as a plain boss.
+- ⬜ **MODEL COLLAPSE: a new special ability — maybe, later (owner's call):** only
+  if the owner feels the balance is good after play-testing 1.55.0. Don't start
+  until asked.
 - ✅ **Jam half as often (owner, 2026-10-02) — 1.55.0:** *"debuff jam to happen
   half as often."* **Done:** the eyes' jam every 10 s (was 5), AGENT DISRUPTION
   every 16 s (was 8, first at 11 rather than 5.5). Jam lengths unchanged.
