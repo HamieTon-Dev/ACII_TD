@@ -634,6 +634,16 @@ suit: Material Symbols (Apache 2.0) or drawing the few icons in-house.
   **Done (1.53.0):** `MusicPlayerPanel` beside the pause buttons; `MusicLibrary`
   builds the list from `musicForMap`, so levels 6–10 join it when their files
   land; the pick is saved between sessions (see the follow-up below). `MusicPlayerTest`.
+- ✅ **GAME-BREAKING: mid-wave money exploit (owner, 2026-10-02) — fixed in 1.55.0:** *"We need to
+  save wave type, remaining units left on wave, and status of enemies spawned,
+  their positions etc when returning to main menu. Players can restart the
+  current wave and keep the money earned by partially or mostly completing a
+  wave, and then main menu, continue and keep the money earned and start a new
+  wave repeatedly."*
+  Fix: `WaveSnapshot` in `SavedRun.midWave` (pending and held spawns, every
+  enemy and its state, wave timer, boss warning, event); `GameEngine.snapshotWave`
+  / `restoreWave`; CONTINUE resumes paused. `MidWaveSaveTest`, `SavedRunMapTest`.
+  Not saved: shots in flight and ACE walls (rebuilt on their timer).
 - ✅ **Level preview (owner, 2026-10-02) — built in 1.55.0 after "finish things
   that aren't done yet":** *"Clicking and holding a level will show a preview of what
   the map looks like, or a button that shows the map and bosses info."* On the

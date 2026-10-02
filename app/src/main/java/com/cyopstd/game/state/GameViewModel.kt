@@ -1162,6 +1162,7 @@ class GameViewModel @JvmOverloads constructor(
                 agentUpgrades = run.agentUpgrades,
                 budgetEarned = run.budgetEarned
             )
+            run.midWave?.let(engine::restoreWave)
             engine.autoStartWaves = settings.autoStartWaves
             engine.autoStartBossWaves = settings.autoStartBossWaves
             engine.batterySaver = settings.batterySaver
@@ -1171,7 +1172,9 @@ class GameViewModel @JvmOverloads constructor(
             lastPhaseSeen = null
             selection = BattlefieldSelection()
             showDeployPanel = false
-            paused = false
+            // A wave resumed mid-fight starts paused, so the player sees the
+            // board before it moves again.
+            paused = run.midWave != null
             speedIndex = 0
             gameOverSummary = null
             runRecorded = false
@@ -1813,9 +1816,12 @@ class GameViewModel @JvmOverloads constructor(
 
     private suspend fun persistRun() {
         if (engine.phase == RunPhase.GAME_OVER || engine.serverHp <= 0) return
-        // The wave in progress is stored as-is and replayed on resume; a
-        // half-finished assault cannot be reconstructed meaningfully.
-        val waveToResume = if (engine.phase == RunPhase.PREPARING) {
+        // A wave in progress is saved as it stands, enemies and all, and
+        // resumes from there. It used to be replayed from its start with the
+        // crypto already earned in it kept, which let a player farm one wave's
+        // money by leaving to the menu and continuing (owner, 2026-10-02).
+        val midWave = engine.snapshotWave()
+        val waveToResume = if (midWave != null || engine.phase == RunPhase.PREPARING) {
             engine.currentWave
         } else {
             (engine.currentWave - 1).coerceAtLeast(0)
@@ -1839,7 +1845,8 @@ class GameViewModel @JvmOverloads constructor(
                 mapId = engine.map.id,
                 modeId = engine.mode.id,
                 revivesUsed = revivesUsed,
-                playSeconds = runPlaySeconds
+                playSeconds = runPlaySeconds,
+                midWave = midWave
             )
         )
         hasSavedRun = true

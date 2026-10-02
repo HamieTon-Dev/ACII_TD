@@ -222,4 +222,47 @@ class SavedRunMapTest {
         pumpUntil { loaded }
         assertEquals(Maps.PERIMETER.id, viewModel.engine.map.id)
     }
+
+    @Test
+    fun `leaving mid-wave and continuing resumes the same wave, not a fresh copy of it`() {
+        // The owner's game-breaking bug (2026-10-02): this path replayed the
+        // wave from its start with the money already earned in it kept.
+        val viewModel = freshViewModel()
+        viewModel.startNewGame()
+        settle()
+        viewModel.engine.startNextWave()
+        repeat(120) { viewModel.engine.update(0.05f, 1f) }
+        val wave = viewModel.engine.currentWave
+        val crypto = viewModel.engine.crypto
+        val remaining = viewModel.engine.enemiesRemaining
+        val onBoard = viewModel.engine.enemies.activeCount()
+        assertTrue("the wave should be under way", onBoard > 0)
+
+        viewModel.leaveMatch()
+        var saved: SavedRun? = null
+        pumpUntil {
+            saved = readSavedRun()
+            saved?.midWave != null
+        }
+        assertEquals(wave, saved?.wave)
+
+        val next = freshViewModelSharing()
+        var loaded = false
+        next.continueGame(onLoaded = { loaded = true })
+        pumpUntil { loaded }
+        assertTrue(loaded)
+        assertEquals(wave, next.engine.currentWave)
+        assertEquals(crypto, next.engine.crypto)
+        assertEquals(remaining, next.engine.enemiesRemaining)
+        assertEquals(onBoard, next.engine.enemies.activeCount())
+        assertTrue("a resumed wave should open paused", next.paused)
+    }
+
+    /** A second view model on the same save, as after going back to the menu. */
+    private fun freshViewModelSharing(): GameViewModel {
+        val application = ApplicationProvider.getApplicationContext<Application>()
+        val viewModel = GameViewModel(application, repository)
+        shadowOf(Looper.getMainLooper()).idle()
+        return viewModel
+    }
 }

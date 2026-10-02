@@ -31,6 +31,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
   back on, until a match was played. Music is now always asked for and simply
   stays silent while the volume is at zero, so it comes back by itself.
 
+### Fixed: replaying a wave for its money (game-breaking)
+
+- Leaving for the main menu mid-wave and pressing CONTINUE replayed the wave
+  from its start while keeping the crypto already earned in it, so one wave
+  could be farmed for money over and over. A wave in progress is now saved
+  exactly as it stands: what is still to spawn, what is waiting at the gate,
+  and every enemy on the board with its position, health and boss state
+  (splits, revives, decoys, escorts, timers). CONTINUE resumes inside that
+  wave, paused, so the player sees the board before it moves.
+
 ### Level preview
 
 - In the NEW RUN level list, hold a level or tap the info button on its row

@@ -55,6 +55,14 @@ class EnemySystem(private val engine: GameEngine, private val random: Random) {
     /** Whether [enemy] was replicated by a boss rather than spawned from the plan. */
     internal fun isEscort(enemy: Enemy): Boolean = enemy in escortIds
 
+    /** A restored escort (mid-wave save): not part of the wave's count. */
+    internal fun markEscort(enemy: Enemy) {
+        escortIds.add(enemy)
+    }
+
+    /** Puts a restored enemy at its place on its route. */
+    internal fun place(enemy: Enemy) = placeOnPath(enemy)
+
     /** Rotates through the corridor so consecutive spawns never coincide. */
     private var laneSlotCursor = 0
 

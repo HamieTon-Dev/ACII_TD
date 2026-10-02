@@ -329,10 +329,10 @@ class GameEngine(
     }
 
     /**
-     * Rebuild a run from a saved snapshot. Packets that were mid-flight are not
-     * persisted; the player resumes at the start of the wave they were fighting,
-     * which is both simpler and kinder than dropping them into a half-finished
-     * assault with no idea what is already on the board.
+     * Rebuild a run from a saved snapshot: the board, the money and the run's
+     * totals. A wave that was in progress is put back afterwards by
+     * [restoreWave]; without one the run resumes in the break before the next
+     * wave.
      */
     fun restore(
         wave: Int,
@@ -386,6 +386,152 @@ class GameEngine(
         // A run resumed in the break before a wave gets that wave's agents,
         // exactly as if it had just cleared the wave before.
         unlockAgentsForWave(currentWave + 1)
+    }
+
+    // ------------------------------------------------------ mid-wave saves
+
+    /**
+     * The wave in progress, for the save; null between waves (owner,
+     * 2026-10-02: saving only the wave number let a player replay a wave for
+     * its money again and again). See [WaveSnapshot].
+     */
+    fun snapshotWave(): WaveSnapshot? {
+        if (phase != RunPhase.IN_WAVE && phase != RunPhase.BOSS_WARNING) return null
+        val activePlan = plan ?: return null
+        val live = enemies.items.filter { it.active }
+        val index = HashMap<Enemy, Int>().apply { live.forEachIndexed { i, e -> put(e, i) } }
+        return WaveSnapshot(
+            isBossWave = activePlan.isBossWave,
+            phase = phase.name,
+            bossWarningRemaining = bossWarningRemaining,
+            waveTimer = waveTimer,
+            pending = activePlan.orders.drop(nextOrderIndex).map { it.toSnapshot() },
+            held = heldSpawns.map { it.toSnapshot() },
+            enemiesRemaining = enemiesRemaining,
+            bossModifiers = activeBossModifiers.map { it.name },
+            bossVariant = activeBossVariant.id,
+            event = activeEvent?.name,
+            enemies = live.map { e ->
+                EnemySnapshot(
+                    type = e.type.name, lane = e.lane, progress = e.progress, laneOffset = e.laneOffset,
+                    health = e.health, maxHealth = e.maxHealth, baseSpeed = e.baseSpeed, armor = e.armor,
+                    serverDamage = e.serverDamage, reward = e.reward, elite = e.isElite, boss = e.isBoss,
+                    variant = e.variant.id,
+                    modifiers = com.cyopstd.game.model.BossModifier.entries
+                        .filter { (e.modifiers and (1 shl it.ordinal)) != 0 }.map { it.name },
+                    revived = e.revived, split = e.split, gradientHeat = e.gradientHeat,
+                    ransomTimer = e.ransomTimer, variantTimer = e.variantTimer, hidden = e.hidden,
+                    wormGeneration = e.wormGeneration, decoy = e.decoy,
+                    decoyOwner = e.decoyOwner?.let { index[it] } ?: -1,
+                    escort = enemySystem.isEscort(e),
+                    slowRemaining = e.slowRemaining, slowFactor = e.slowFactor,
+                    burstTimer = e.burstTimer, burstActive = e.burstActive,
+                    replicateTimer = e.replicateTimer, disruptTimer = e.disruptTimer,
+                    variantJamTimer = e.variantJamTimer, phase = e.phase
+                )
+            }
+        )
+    }
+
+    /**
+     * Put a saved wave back, after [restore] has rebuilt the board. [restore]
+     * must have been given the wave in progress as its wave.
+     */
+    fun restoreWave(snapshot: WaveSnapshot) {
+        val pending = snapshot.pending.mapNotNull { it.toOrder() }
+        plan = WavePlan(
+            wave = currentWave,
+            isBossWave = snapshot.isBossWave,
+            orders = pending,
+            bossModifiers = snapshot.bossModifiers.mapNotNull { bossModifierNamed(it) },
+            bossVariant = com.cyopstd.game.model.BossVariant.fromIdSafe(snapshot.bossVariant),
+            event = snapshot.event?.let { name -> WaveEvent.entries.firstOrNull { it.name == name } }
+        )
+        nextOrderIndex = 0
+        waveTimer = snapshot.waveTimer
+        heldSpawns.clear()
+        snapshot.held.mapNotNullTo(heldSpawns) { it.toOrder() }
+        heldReleaseCooldown = 0f
+        enemiesRemaining = snapshot.enemiesRemaining.coerceAtLeast(0)
+        activeBossModifiers = plan!!.bossModifiers
+        activeBossVariant = plan!!.bossVariant
+        activeBossVariants = (plan!!.bossVariants + snapshot.enemies.filter { it.boss }
+            .map { com.cyopstd.game.model.BossVariant.fromIdSafe(it.variant) }).distinct()
+            .ifEmpty { listOf(activeBossVariant) }
+        activeEvent = plan!!.event
+
+        val made = ArrayList<Enemy?>()
+        for (s in snapshot.enemies) {
+            val type = EnemyType.entries.firstOrNull { it.name == s.type }
+            val e = if (type == null) null else enemies.obtain()
+            if (e == null || type == null) {
+                made += null
+                // A plan enemy that cannot come back still has to leave the count.
+                if (!s.escort && !s.decoy) enemiesRemaining = (enemiesRemaining - 1).coerceAtLeast(0)
+                continue
+            }
+            e.reset()
+            e.active = true
+            e.type = type
+            e.lane = s.lane.coerceIn(0, map.laneCount - 1)
+            e.progress = s.progress
+            e.laneOffset = s.laneOffset
+            e.maxHealth = s.maxHealth
+            e.health = s.health.coerceIn(0.5f, s.maxHealth)
+            e.baseSpeed = s.baseSpeed
+            e.armor = s.armor
+            e.serverDamage = s.serverDamage
+            e.reward = s.reward
+            e.isElite = s.elite
+            e.isBoss = s.boss
+            e.variant = com.cyopstd.game.model.BossVariant.fromIdSafe(s.variant)
+            for (name in s.modifiers) bossModifierNamed(name)?.let { e.addModifier(it) }
+            e.revived = s.revived
+            e.split = s.split
+            e.gradientHeat = s.gradientHeat
+            e.ransomTimer = s.ransomTimer
+            e.variantTimer = s.variantTimer
+            e.hidden = s.hidden
+            e.wormGeneration = s.wormGeneration
+            e.decoy = s.decoy
+            e.slowRemaining = s.slowRemaining
+            e.slowFactor = s.slowFactor
+            e.burstTimer = s.burstTimer
+            e.burstActive = s.burstActive
+            e.replicateTimer = s.replicateTimer
+            e.disruptTimer = s.disruptTimer
+            e.variantJamTimer = s.variantJamTimer
+            e.phase = s.phase
+            enemySystem.place(e)
+            if (s.escort) enemySystem.markEscort(e)
+            made += e
+        }
+        // Decoys find their SPOOFER again by position in the list.
+        snapshot.enemies.forEachIndexed { i, s ->
+            if (s.decoyOwner >= 0) made[i]?.decoyOwner = made.getOrNull(s.decoyOwner)
+        }
+
+        phase = if (snapshot.phase == RunPhase.BOSS_WARNING.name) RunPhase.BOSS_WARNING else RunPhase.IN_WAVE
+        bossWarningRemaining = if (phase == RunPhase.BOSS_WARNING) snapshot.bossWarningRemaining else 0f
+        unlockAgentsForWave(currentWave)
+    }
+
+    private fun bossModifierNamed(name: String) =
+        com.cyopstd.game.model.BossModifier.entries.firstOrNull { it.name == name }
+
+    private fun SpawnOrder.toSnapshot() = SpawnSnapshot(
+        time = time, type = type.name, lane = lane, elite = elite, boss = boss,
+        bossModifiers = bossModifiers.map { it.name }, bossVariant = bossVariant.id, anonymous = anonymous
+    )
+
+    private fun SpawnSnapshot.toOrder(): SpawnOrder? {
+        val enemyType = EnemyType.entries.firstOrNull { it.name == type } ?: return null
+        return SpawnOrder(
+            time = time, type = enemyType, lane = lane, elite = elite, boss = boss,
+            bossModifiers = bossModifiers.mapNotNull { bossModifierNamed(it) },
+            bossVariant = com.cyopstd.game.model.BossVariant.fromIdSafe(bossVariant),
+            anonymous = anonymous
+        )
     }
 
     /** A persistable agent placement. */

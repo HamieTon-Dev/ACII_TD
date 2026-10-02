@@ -19,7 +19,10 @@ data class SavedAgent(
 @Serializable
 data class SavedRun(
     val version: Int = SAVE_VERSION,
-    /** The wave the player was on. It is replayed from the start on resume. */
+    /**
+     * The last wave cleared, or (when [midWave] is set) the wave in progress,
+     * which resumes exactly where it was left.
+     */
     val wave: Int = 0,
     val serverHp: Int = 100,
     val crypto: Int = 0,
@@ -72,7 +75,15 @@ data class SavedRun(
      * minutes, and a run resumed from CONTINUE has to remember the time it
      * had already put in. Zero for saves written before this field existed.
      */
-    val playSeconds: Float = 0f
+    val playSeconds: Float = 0f,
+    /**
+     * The wave in progress, exactly as it stood (owner, 2026-10-02); null when
+     * the run was saved between waves. With this set, [wave] is the wave in
+     * progress and CONTINUE carries on inside it instead of replaying it, so
+     * leaving for the menu can no longer be used to earn one wave's money
+     * over and over.
+     */
+    val midWave: com.cyopstd.game.engine.WaveSnapshot? = null
 ) {
     /** A run is only worth offering as CONTINUE if the server is still standing. */
     val isResumable: Boolean get() = serverHp > 0 && wave >= 0
