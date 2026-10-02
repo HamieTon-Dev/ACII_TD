@@ -634,6 +634,11 @@ suit: Material Symbols (Apache 2.0) or drawing the few icons in-house.
   **Done (1.53.0):** `MusicPlayerPanel` beside the pause buttons; `MusicLibrary`
   builds the list from `musicForMap`, so levels 6–10 join it when their files
   land; the pick is saved between sessions (see the follow-up below). `MusicPlayerTest`.
+- ⬜ **Level preview (owner, 2026-10-02) — not started; wait until the owner
+  says to begin:** *"Clicking and holding a level will show a preview of what
+  the map looks like, or a button that shows the map and bosses info."* On the
+  NEW RUN level list: press-and-hold a level (or an info button on its row)
+  to see a picture of its map and its bosses.
 - **Owner's requests, 2026-10-01 (evening):** two main-menu tracks supplied
   (`Main menu (1)`, `Main menu (2)`). 1. *"Check for bug that makes music not
   play on main menu or when resuming the app or going back to main menu."*
@@ -652,7 +657,9 @@ suit: Material Symbols (Apache 2.0) or drawing the few icons in-house.
   behind menus (not a store item); off with background animation.
   **Owner (2026-10-02):** *"give me examples of living background choices
   before commit (menu background elements are not store items, they are part
-  of the game)"*. Options rendered; waiting on the pick before PR #22 is merged.
+  of the game)"*. Options A–F rendered. **Owner picked F, spectrum spiral
+  (2026-10-02)**, and asked for a short video of it.
+  Built: `HaloBackdrop` is the spiral only; A–E removed. Videos sent.
 - **Leaderboards per level and difficulty (owner, 2026-10-01):** *"Does the
   leaderboard show per level and difficulty highest achieved? If not, is this
   possible?"* Today: the local board is the top 25 runs of all levels mixed
