@@ -650,6 +650,9 @@ suit: Material Symbols (Apache 2.0) or drawing the few icons in-house.
   the menu plays `menu`/`menu_2` (generated track as fallback). 2. corner
   plate lines. 3. `menu_title_art.xml`. 4. `HaloBackdrop`, free and always on
   behind menus (not a store item); off with background animation.
+  **Owner (2026-10-02):** *"give me examples of living background choices
+  before commit (menu background elements are not store items, they are part
+  of the game)"*. Options rendered; waiting on the pick before PR #22 is merged.
 - **Leaderboards per level and difficulty (owner, 2026-10-01):** *"Does the
   leaderboard show per level and difficulty highest achieved? If not, is this
   possible?"* Today: the local board is the top 25 runs of all levels mixed
