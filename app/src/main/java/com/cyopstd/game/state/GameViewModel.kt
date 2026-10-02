@@ -27,6 +27,7 @@ import com.cyopstd.game.core.GameMap
 import com.cyopstd.game.core.GameMode
 import com.cyopstd.game.core.Maps
 import com.cyopstd.game.model.BossModifier
+import com.cyopstd.game.model.Enemy
 import com.cyopstd.game.ui.game.BossDossier
 import com.cyopstd.game.ui.game.TutorialGate
 import com.cyopstd.game.ui.game.TutorialScript
@@ -263,6 +264,41 @@ class GameViewModel @JvmOverloads constructor(
     fun toggleBossPanel() {
         playClick()
         showBossPanel = !showBossPanel
+        // The BOSS button follows the boss closest to the core; tapping one
+        // on the board is how to look at a particular one.
+        inspectedBoss = null
+    }
+
+    /**
+     * The boss the player tapped (owner, 2026-10-02: "tap a boss and see that
+     * boss's weakness and health"), or null to follow the one closest to the
+     * core. Checked against the field every time it is read, so a boss that
+     * died, or a pooled enemy reused for something else, simply falls back.
+     */
+    private var inspectedBoss: Enemy? = null
+
+    /** The bosses on the field, closest to the core first. Decoys are not bosses. */
+    private fun bossesOnField(): List<Enemy> =
+        engine.enemies.items
+            .filter { it.active && it.isBoss && !it.decoy }
+            .sortedBy { distanceToCore(it) }
+
+    private fun distanceToCore(enemy: Enemy): Float =
+        (engine.map.laneLength[enemy.lane] - enemy.progress).coerceAtLeast(0f)
+
+    /** The boss the dossier is about right now, or null if there is none. */
+    fun inspectedBossOnField(): Enemy? {
+        val bosses = bossesOnField()
+        return inspectedBoss?.takeIf { it in bosses } ?: bosses.firstOrNull()
+    }
+
+    /** The dossier's NEXT BOSS: the next one back from the core, wrapping round. */
+    fun nextBoss() {
+        val bosses = bossesOnField()
+        if (bosses.size < 2) return
+        playClick()
+        val current = bosses.indexOf(inspectedBossOnField()).coerceAtLeast(0)
+        inspectedBoss = bosses[(current + 1) % bosses.size]
     }
 
     /**
@@ -296,17 +332,23 @@ class GameViewModel @JvmOverloads constructor(
      * `frameTick` so it recomposes with the simulation.
      */
     fun bossDossier(): BossDossier? {
-        val boss = engine.enemies.items.firstOrNull { it.active && it.isBoss && !it.decoy } ?: return null
+        val bosses = bossesOnField()
+        val boss = inspectedBoss?.takeIf { it in bosses } ?: bosses.firstOrNull() ?: return null
+        val modifiers = BossModifier.entries.filter { boss.hasModifier(it) }
+        val counters = com.cyopstd.game.ui.game.BossBriefing.forBoss(boss.variant, modifiers)
         return BossDossier(
             variant = boss.variant,
             health = boss.health,
             maxHealth = boss.maxHealth,
             armor = boss.armor,
             speed = boss.currentSpeed(),
-            modifiers = BossModifier.entries.filter { boss.hasModifier(it) },
+            modifiers = modifiers,
             revived = boss.revived,
-            distanceToCore = (engine.map.laneLength[boss.lane] - boss.progress)
-                .coerceAtLeast(0f)
+            distanceToCore = distanceToCore(boss),
+            weakTo = counters.weakTo,
+            warnings = counters.warnings,
+            index = bosses.indexOf(boss) + 1,
+            count = bosses.size
         )
     }
 
@@ -1376,6 +1418,21 @@ class GameViewModel @JvmOverloads constructor(
         val node = nearestNode(worldPoint)
         val pending = selection.pendingAgent
 
+        // Tapping a boss opens its dossier. Not while placing an agent, where
+        // a tap means "here"; and a node closer to the finger than the boss
+        // still wins, so a boss walking past never blocks an agent's spot.
+        if (pending == null) {
+            val boss = bossAt(worldPoint)
+            if (boss != null && (node == null || boss.second <= distanceSq(node, worldPoint))) {
+                inspectedBoss = boss.first
+                showBossPanel = true
+                showDeployPanel = false
+                selection = BattlefieldSelection()
+                audio.play(GameSound.UI_CLICK)
+                return
+            }
+        }
+
         if (node == null) {
             selection = BattlefieldSelection()
             return
@@ -1427,6 +1484,43 @@ class GameViewModel @JvmOverloads constructor(
         } else {
             selection = BattlefieldSelection()
         }
+    }
+
+    /**
+     * The boss under [point], with the squared distance to its middle, or null.
+     * The hit box is the drawn chassis with a finger's margin round it. A
+     * SPOOFER decoy answers for the SPOOFER that cast it, so tapping cannot be
+     * used to tell the decoys from the real one.
+     */
+    private fun bossAt(point: Offset): Pair<Enemy, Float>? {
+        var best: Enemy? = null
+        var bestDistanceSq = Float.MAX_VALUE
+        for (enemy in engine.enemies.items) {
+            if (!enemy.active || !enemy.isBoss) continue
+            val size = when (enemy.wormGeneration) {
+                0 -> 1f
+                1 -> 0.72f
+                else -> 0.52f
+            }
+            val dx = enemy.x - point.x
+            val dy = enemy.y - point.y
+            if (kotlin.math.abs(dx) > BOSS_HALF_WIDTH * size + BOSS_TAP_MARGIN) continue
+            if (kotlin.math.abs(dy) > BOSS_HALF_HEIGHT * size + BOSS_TAP_MARGIN) continue
+            val distanceSq = dx * dx + dy * dy
+            if (distanceSq < bestDistanceSq) {
+                bestDistanceSq = distanceSq
+                best = enemy
+            }
+        }
+        val hit = best ?: return null
+        val boss = if (hit.decoy) hit.decoyOwner?.takeIf { it.active && it.isBoss } ?: return null else hit
+        return boss to bestDistanceSq
+    }
+
+    private fun distanceSq(node: com.cyopstd.game.core.NodePosition, point: Offset): Float {
+        val dx = node.x - point.x
+        val dy = node.y - point.y
+        return dx * dx + dy * dy
     }
 
     private fun nearestNode(point: Offset): com.cyopstd.game.core.NodePosition? {
@@ -1956,5 +2050,10 @@ class GameViewModel @JvmOverloads constructor(
         private const val MAX_FRAME_SECONDS = 0.25f
         private const val UNLOCK_BANNER_MS = 3200L
         private const val TAP_RADIUS_MULTIPLIER = 2.0f
+
+        /** A boss chassis's half size on the board (as BattlefieldRenderer draws it), and the finger's margin. */
+        private const val BOSS_HALF_WIDTH = 74f
+        private const val BOSS_HALF_HEIGHT = 46f
+        private const val BOSS_TAP_MARGIN = 16f
     }
 }

@@ -166,9 +166,12 @@ class BattlefieldRenderer {
         transform: WorldTransform,
         options: BattlefieldRenderOptions,
         selection: BattlefieldSelection,
-        time: Float
+        time: Float,
+        /** The boss whose dossier is open, ringed so the player can see which one it is. */
+        inspectedBoss: Enemy? = null
     ) {
         frameTime = time
+        this.inspectedBoss = inspectedBoss
         // Taken once per frame, before anything is drawn.
         map = engine.map
         advanceRackAnimation(time, engine)
@@ -1638,6 +1641,7 @@ class BattlefieldRenderer {
             val enemy = items[enemyOrder[k]]
             if (enemy.isBoss) drawBoss(canvas, enemy, time) else drawThreatChip(canvas, enemy)
         }
+        inspectedBoss?.let { if (it.active) drawInspectedRing(canvas, it, time) }
         textPaint.alpha = 255
         thinTextPaint.alpha = 255
     }
@@ -1711,6 +1715,36 @@ class BattlefieldRenderer {
             alpha = entering,
             always = false
         )
+    }
+
+    /** Set for the frame by [draw]. */
+    private var inspectedBoss: Enemy? = null
+
+    /** Pulsing corner brackets round the boss the dossier is about. */
+    private fun drawInspectedRing(canvas: android.graphics.Canvas, enemy: Enemy, time: Float) {
+        val size = when (enemy.wormGeneration) {
+            0 -> 1f
+            1 -> 0.72f
+            else -> 0.52f
+        }
+        val pulse = 0.5f + 0.5f * kotlin.math.sin(time * 5f)
+        val pad = 10f + 4f * pulse
+        val left = enemy.x - 74f * size - pad
+        val right = enemy.x + 74f * size + pad
+        val top = enemy.y - 46f * size - pad
+        val bottom = enemy.y + 46f * size + pad
+        val arm = 18f
+        strokePaint.color = Palette.Crypto.toArgb()
+        strokePaint.alpha = (170 + 85 * pulse).toInt()
+        strokePaint.strokeWidth = 3f
+        canvas.drawLine(left, top, left + arm, top, strokePaint)
+        canvas.drawLine(left, top, left, top + arm, strokePaint)
+        canvas.drawLine(right, top, right - arm, top, strokePaint)
+        canvas.drawLine(right, top, right, top + arm, strokePaint)
+        canvas.drawLine(left, bottom, left + arm, bottom, strokePaint)
+        canvas.drawLine(left, bottom, left, bottom - arm, strokePaint)
+        canvas.drawLine(right, bottom, right - arm, bottom, strokePaint)
+        canvas.drawLine(right, bottom, right, bottom - arm, strokePaint)
     }
 
     private fun drawBoss(canvas: android.graphics.Canvas, enemy: Enemy, time: Float) {

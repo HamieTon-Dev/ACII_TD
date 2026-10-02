@@ -59,7 +59,22 @@ data class BossBriefing(
             val bosses = plan.orders.filter { it.boss }.map { it.bossVariant }
                 .ifEmpty { listOf(plan.bossVariant) }
             val variants = bosses.distinct().map { v -> v to bosses.count { it == v } }
-            val modifiers = plan.bossModifiers
+            return of(plan.wave, variants, bosses.size, plan.bossModifiers)
+        }
+
+        /**
+         * The same weaknesses and warnings for one boss on the field, for the
+         * dossier opened by tapping it (owner, 2026-10-02).
+         */
+        fun forBoss(variant: BossVariant, modifiers: List<BossModifier>): BossBriefing =
+            of(wave = 0, variants = listOf(variant to 1), bossCount = 1, modifiers = modifiers)
+
+        private fun of(
+            wave: Int,
+            variants: List<Pair<BossVariant, Int>>,
+            bossCount: Int,
+            modifiers: List<BossModifier>
+        ): BossBriefing {
             val weakTo = ArrayList<Pair<AgentType, String>>()
 
             for ((variant, _) in variants) {
@@ -146,9 +161,9 @@ data class BossBriefing(
             }
 
             return BossBriefing(
-                wave = plan.wave,
+                wave = wave,
                 variants = variants,
-                bossCount = bosses.size,
+                bossCount = bossCount,
                 modifiers = modifiers,
                 weakTo = weakTo.distinctBy { it.first },
                 warnings = warnings

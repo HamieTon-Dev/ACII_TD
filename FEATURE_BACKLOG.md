@@ -634,6 +634,20 @@ suit: Material Symbols (Apache 2.0) or drawing the few icons in-house.
   **Done (1.53.0):** `MusicPlayerPanel` beside the pause buttons; `MusicLibrary`
   builds the list from `musicForMap`, so levels 6–10 join it when their files
   land; the pick is saved between sessions (see the follow-up below). `MusicPlayerTest`.
+- ✅ **Tap a boss for its details (owner, 2026-10-02) — done in 1.55.0:** *"make it to where you
+  can tap a boss and see that boss's weakness and health? currently the boss
+  button shows the furthest traveled one."*
+  **Done:** tapping a boss on the board opens the dossier on *that* boss
+  (health, armour, speed, distance, modifiers, plus WEAK TO and WATCH OUT
+  from the same tables as the pre-wave briefing). It is ringed on the board
+  while the dossier is open. With several bosses up it says "BOSS 2 OF 3" and
+  NEXT BOSS cycles them. The BOSS button still opens on the one nearest the core.
+  A SPOOFER decoy shows the real SPOOFER, so taps cannot unmask it. Taps while
+  placing an agent stay placement taps. `BossDossierTest`.
+- 🟨 **Levels 3 and 4 too hard (owner, 2026-10-02):** *"Tone down the difficulty
+  for level 3 and 4. Its almost impossible to get to wave 100 with even the best
+  strategy. Maybe Tarpit should slow the bosses down double what they do now.
+  Regen makes it almost impossible to kill these bosses."*
 - ✅ **GAME-BREAKING: mid-wave money exploit (owner, 2026-10-02) — fixed in 1.55.0:** *"We need to
   save wave type, remaining units left on wave, and status of enemies spawned,
   their positions etc when returning to main menu. Players can restart the

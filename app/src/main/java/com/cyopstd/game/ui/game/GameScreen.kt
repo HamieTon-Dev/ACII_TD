@@ -218,6 +218,8 @@ private fun GameScreenBody(
                     BossDossierPanel(
                         dossier = dossier,
                         onClose = viewModel::toggleBossPanel,
+                        unlockedAgents = viewModel.unlockedAgents,
+                        onNext = viewModel::nextBoss,
                         modifier = Modifier
                             .align(Alignment.TopEnd)
                             .padding(8.dp)
@@ -530,7 +532,8 @@ private fun Battlefield(
                     transform = transform,
                     options = options,
                     selection = viewModel.selection,
-                    time = viewModel.renderTime
+                    time = viewModel.renderTime,
+                    inspectedBoss = if (viewModel.showBossPanel) viewModel.inspectedBossOnField() else null
                 )
             }
         }
