@@ -1,5 +1,6 @@
 package com.cyopstd.game.ui.splash
 
+import com.cyopstd.game.ui.menu.AboutText
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -69,7 +70,7 @@ fun SplashScreen(onFinished: () -> Unit) {
                 textAlign = TextAlign.Center
             )
             Text(
-                text = "ASCII CYBER DEFENSE",
+                text = AboutText.GAME_SUBTITLE.uppercase(),
                 style = MaterialTheme.typography.titleLarge,
                 color = Palette.Green,
                 textAlign = TextAlign.Center

@@ -668,7 +668,24 @@ suit: Material Symbols (Apache 2.0) or drawing the few icons in-house.
   and the hit counts reset each window. `NeuralMeshTest`.
 - ✅ **MODEL COLLAPSE buff removed (owner, 2026-10-02) — 1.55.0:** *"Remove Model
   collapse Buff entirely."* **Done:** no more crowd heal; it is a plain boss with
-  ×1.1 health and ×0.95 speed. Still in the boss rotation; see owner input.
+  ×1.1 health and ×0.95 speed. **Decided (owner, 2026-10-02):** *"Model collapse
+  will be in rotation. May add a special ability later on if I feel balance is
+  good."* It stays in the rotation as a plain boss.
+- ✅ **New subtitle (owner, 2026-10-02) — 1.55.1:** *"lets change this to say: CyOps TD /
+  Cyber Operatives: Tower defense"*. **Done:** splash and main menu read "CYBER
+  OPERATIVES: TOWER DEFENSE" under the title (was "ASCII CYBER DEFENSE"); ABOUT
+  reads "CyOps TD · Cyber Operatives: Tower Defense". One constant,
+  `AboutText.GAME_SUBTITLE`.
+- ✅ **Grey out agents at their limit (owner, 2026-10-02) — 1.55.1:** *"gray these
+  out when you have max units used on the map"* (screenshot circling [S],
+  ANTI DUCK and CYBER OPERATIVE in the agent bar). **Done:** an agent with a deploy
+  limit that is all on the board is drawn grey and faded, with "MAX" in place
+  of its cost on the compact bar and "MAX n DEPLOYED" on the full cards.
+  Tapping it says "<NAME> LIMIT — n MAX" instead of selecting it. Selling one
+  brings it back. `MaxedAgentsTest`.
+- ⬜ **MODEL COLLAPSE: a new special ability — maybe, later (owner's call):** only
+  if the owner feels the balance is good after play-testing 1.55.0. Don't start
+  until asked.
 - ✅ **Jam half as often (owner, 2026-10-02) — 1.55.0:** *"debuff jam to happen
   half as often."* **Done:** the eyes' jam every 10 s (was 5), AGENT DISRUPTION
   every 16 s (was 8, first at 11 rather than 5.5). Jam lengths unchanged.

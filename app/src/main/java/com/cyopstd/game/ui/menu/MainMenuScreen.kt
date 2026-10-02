@@ -118,7 +118,7 @@ fun MainMenuScreen(
                     color = Palette.Cyan
                 )
                 Text(
-                    text = "ASCII CYBER DEFENSE",
+                    text = AboutText.GAME_SUBTITLE.uppercase(),
                     style = MaterialTheme.typography.titleLarge,
                     color = Palette.Green
                 )

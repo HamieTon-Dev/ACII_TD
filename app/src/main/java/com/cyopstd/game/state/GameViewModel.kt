@@ -1374,9 +1374,19 @@ class GameViewModel @JvmOverloads constructor(
         audio.play(GameSound.UI_CLICK)
     }
 
+    /** Agents already deployed as many times as they may be. */
+    fun maxedOutAgents(): Set<AgentType> =
+        AgentType.catalog.filterTo(HashSet()) {
+            it.maxDeployed > 0 && engine.activeCountOf(it) >= it.maxDeployed
+        }
+
     fun choosePendingAgent(type: AgentType) {
         if (type.name !in unlockedAgents) {
             showTransient("AGENT LOCKED — ${type.lockedLabel}")
+            return
+        }
+        if (type.maxDeployed > 0 && engine.activeCountOf(type) >= type.maxDeployed) {
+            showTransient("${type.displayName} LIMIT — ${type.maxDeployed} MAX")
             return
         }
         selection = selection.copy(pendingAgent = type, selectedNodeId = null, previewNodeId = null)

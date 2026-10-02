@@ -89,7 +89,7 @@ class GameUiTest {
         }
 
         compose.onNodeWithText("CyOps TD").assertIsDisplayed()
-        compose.onNodeWithText("ASCII CYBER DEFENSE").assertIsDisplayed()
+        compose.onNodeWithText("CYBER OPERATIVES: TOWER DEFENSE").assertIsDisplayed()
         for (action in listOf(
             "CONTINUE", "NEW RUN", "AGENTS", "FIRMWARE", "STORE", "LOADOUT", "GOOGLE PLAY",
             "LEADERBOARD", "CODEX", "STATISTICS", "SETTINGS", "ABOUT", "EXIT"
