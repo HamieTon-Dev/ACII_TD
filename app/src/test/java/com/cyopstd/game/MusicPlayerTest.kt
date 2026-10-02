@@ -44,8 +44,9 @@ class MusicPlayerTest {
     @Test
     fun `the library lists both tracks of every level with music, in level order`() {
         val tracks = MusicLibrary.tracks
-        assertEquals(22, tracks.size)
-        assertEquals(listOf(0, 0) + (1..10).flatMap { listOf(it, it) }, tracks.map { it.level })
+        assertEquals(24, tracks.size)
+        // Menu, levels 1-10, then the two any-level tracks (level -1).
+        assertEquals(listOf(0, 0) + (1..10).flatMap { listOf(it, it) } + listOf(-1, -1), tracks.map { it.level })
         // The owner's naming: "CyOps TD - Level X (Y)", the menu's first.
         assertEquals("CyOps TD - Main Menu (1)", tracks[0].title)
         assertEquals("CyOps TD - Main Menu (1)", tracks[0].label)

@@ -1993,6 +1993,15 @@ falls on the same licenses"*).
   development"*) and replaced with new pairs.
 - **Levels 4–5:** unchanged audio, retitled to the same naming.
 - **Levels 6–10:** new on 2026-10-01.
+- ✅ **Liminal Space and Liminal Haze (owner, 2026-10-02) — 1.55.0:** *"add these
+  two in rotation that can play on any map and will be included in the player
+  after level 5 unlock - same licenses"*. **Done:** `res/raw/liminal_space.mp3`
+  and `liminal_haze.mp3`, tagged "CyOps TD - Liminal Space" / "- Liminal Haze"
+  (album "CyOps TD Soundtrack", the owner's cover art kept). Every level's
+  rotation is its own two, Liminal Space, its own two, Liminal Haze
+  (`LevelMusic.rotation`). Listed once each in the music player and the
+  soundtrack as "· ANY LEVEL" (24 tracks). Same licence terms as the rest.
+  Owner: the Play Console `soundtrack` description should say 24 tracks.
 - Ownership certificates for AI-assisted tracks live with the owner, not in the
   repository (they carry personal details).
 - The main menu keeps its generated track; the generated match tracks remain

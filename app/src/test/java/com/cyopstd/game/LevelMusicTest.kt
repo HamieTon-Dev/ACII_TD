@@ -60,7 +60,8 @@ class LevelMusicTest {
             .sorted()
         assertEquals(
             "the supplied tracks should be the mp3s in res/raw",
-            ((1..10).flatMap { listOf("level$it", "level${it}_2") } + listOf("menu", "menu_2")).sorted(),
+            ((1..10).flatMap { listOf("level$it", "level${it}_2") } +
+                listOf("menu", "menu_2", "liminal_space", "liminal_haze")).sorted(),
             shipped
         )
         // A file in res/raw that no level names is dead weight in the download,
@@ -68,8 +69,27 @@ class LevelMusicTest {
         assertEquals(
             "${shipped.size} files shipped, ${LevelMusic.entries.sumOf { it.variants.size }} referenced",
             shipped.size,
-            LevelMusic.entries.sumOf { it.variants.size } + com.cyopstd.game.audio.MusicLibrary.menuTracks.size
+            LevelMusic.entries.sumOf { it.variants.size } + com.cyopstd.game.audio.MusicLibrary.menuTracks.size +
+                LevelMusic.ANY_LEVEL.size
         )
+    }
+
+    @Test
+    fun `every level plays Liminal Space and Liminal Haze in its rotation`() {
+        for (level in LevelMusic.entries) {
+            assertEquals(
+                "${level.name} rotation",
+                level.variants + LevelMusic.ANY_LEVEL[0] + level.variants + LevelMusic.ANY_LEVEL[1],
+                level.rotation
+            )
+        }
+        val library = com.cyopstd.game.audio.MusicLibrary.tracks
+        val titles = library.map { it.title }
+        assertTrue("CyOps TD - Liminal Space" in titles)
+        assertTrue("CyOps TD - Liminal Haze" in titles)
+        // Each once in the music player (and the soundtrack), not once per level.
+        assertEquals(1, library.count { it.resId == LevelMusic.ANY_LEVEL[0] })
+        assertEquals(1, library.count { it.resId == LevelMusic.ANY_LEVEL[1] })
     }
 
     @Test

@@ -41,9 +41,9 @@ class PlaylistEngine(
     private val onTrackChanged: (Int) -> Unit = {}
 ) : BackgroundTrack {
 
-    /** A level's own two renders, alternating. */
+    /** A level's rotation: its own two renders and the two any-level tracks. */
     constructor(context: Context, music: LevelMusic, onUnavailable: () -> Unit = {}) :
-        this(context, music.variants, music.name, 0, onUnavailable)
+        this(context, music.rotation, music.name, 0, onUnavailable)
 
     private val lock = Any()
     private var player: MediaPlayer? = null

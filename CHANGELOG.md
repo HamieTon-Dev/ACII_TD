@@ -57,7 +57,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 - The main menu plays the owner's two new "Main Menu" tracks, alternating
   (the generated track remains only as a fallback). They join the music
-  player and the soundtrack, now 22 tracks.
+  player and the soundtrack.
+- Two new tracks, **Liminal Space** and **Liminal Haze**, play on every level:
+  each level's rotation is its own two tracks, Liminal Space, its own two
+  again, then Liminal Haze. Both are in the music player (unlocked after
+  level 5) and the soundtrack, now 24 tracks.
 - **Fixed:** the menu could stay silent after music had been turned off and
   back on, until a match was played. Music is now always asked for and simply
   stays silent while the volume is at zero, so it comes back by itself.
