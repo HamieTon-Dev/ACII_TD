@@ -251,6 +251,8 @@ private fun GameScreenBody(
                     bestWave = viewModel.stats.highestWave,
                     bestWaveBeginner = viewModel.stats.highestWaveBeginner,
                     compact = settings.compactAgentBar,
+                    // Read alongside hud, so it is fresh after every place and sell.
+                    maxedOut = viewModel.maxedOutAgents(),
                     // The compact strip hugs the bottom-left corner instead of
                     // spanning the screen, so it covers as little board as it can.
                     modifier = Modifier

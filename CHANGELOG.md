@@ -16,6 +16,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - The subtitle under the title on the splash and the main menu is now
   "CYBER OPERATIVES: TOWER DEFENSE" (was "ASCII CYBER DEFENSE"), and ABOUT
   reads "CyOps TD · Cyber Operatives: Tower Defense".
+- Agents with a deploy limit (SERVER ENGINEER, the hats, ACE, ANTI DUCK,
+  CYBER OPERATIVE) are greyed out in the agent bar once that many are on the
+  board, with "MAX" in place of the cost. Tapping one says it is at its
+  limit. Selling one brings it back.
 
 ## [1.55.0] — 2026-10-02
 

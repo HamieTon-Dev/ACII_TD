@@ -29,6 +29,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.unit.dp
 import com.cyopstd.game.model.AgentType
@@ -57,7 +58,12 @@ fun DeployPanel(
     /** Best wave on the beginner level, for agents only it unlocks. */
     bestWaveBeginner: Int = 0,
     /** Icons and costs only; see [GameSettings.compactAgentBar]. */
-    compact: Boolean = false
+    compact: Boolean = false,
+    /**
+     * Agents already on the board as many times as they are allowed (owner,
+     * 2026-10-02: *"gray these out when you have max units used on the map"*).
+     */
+    maxedOut: Set<AgentType> = emptySet()
 ) {
     var lockedInfo by remember { mutableStateOf<AgentType?>(null) }
     /** The agent whose full details the "i" on its card has opened. */
@@ -72,7 +78,8 @@ fun DeployPanel(
             onSelect = onSelect,
             bestWave = bestWave,
             bestWaveBeginner = bestWaveBeginner,
-            modifier = modifier
+            modifier = modifier,
+            maxedOut = maxedOut
         )
         return
     }
@@ -137,6 +144,7 @@ fun DeployPanel(
                     type = type,
                     unlocked = unlocked,
                     affordable = affordable,
+                    maxed = unlocked && type in maxedOut,
                     selected = selected == type,
                     onClick = {
                         if (unlocked) {
@@ -176,10 +184,12 @@ private fun AgentCard(
     selected: Boolean,
     onClick: () -> Unit,
     onInfo: () -> Unit,
-    infoOpen: Boolean
+    infoOpen: Boolean,
+    /** At its deploy limit: greyed out, "MAX" in place of the cost. */
+    maxed: Boolean = false
 ) {
     val accent = when {
-        !unlocked -> Palette.TextMuted
+        !unlocked || maxed -> Palette.TextMuted
         selected -> Palette.Green
         affordable -> Palette.Cyan
         else -> Palette.Orange
@@ -188,6 +198,8 @@ private fun AgentCard(
     Column(
         modifier = Modifier
             .width(166.dp)
+            .testTag("agent-card-${type.name}")
+            .alpha(if (maxed) MAXED_ALPHA else 1f)
             .background(
                 if (selected) accent.copy(alpha = 0.16f) else Palette.SurfaceRaised.copy(alpha = 0.6f),
                 RoundedCornerShape(4.dp)
@@ -218,14 +230,18 @@ private fun AgentCard(
                 Text(
                     text = type.shortName,
                     style = MaterialTheme.typography.labelMedium,
-                    color = if (unlocked) Palette.TextPrimary else Palette.TextMuted,
+                    color = if (unlocked && !maxed) Palette.TextPrimary else Palette.TextMuted,
                     maxLines = 1
                 )
                 Text(
-                    text = if (unlocked) "◇ ${type.cost}" else "LOCKED",
+                    text = when {
+                        !unlocked -> "LOCKED"
+                        maxed -> "MAX ${type.maxDeployed} DEPLOYED"
+                        else -> "◇ ${type.cost}"
+                    },
                     style = MaterialTheme.typography.labelSmall,
                     color = when {
-                        !unlocked -> Palette.TextMuted
+                        !unlocked || maxed -> Palette.TextMuted
                         affordable -> Palette.Crypto
                         else -> Palette.Red
                     }
@@ -374,7 +390,8 @@ private fun CompactDeployBar(
     onSelect: (AgentType) -> Unit,
     bestWave: Int,
     bestWaveBeginner: Int,
-    modifier: Modifier
+    modifier: Modifier,
+    maxedOut: Set<AgentType> = emptySet()
 ) {
     Column(
         modifier = modifier
@@ -397,6 +414,7 @@ private fun CompactDeployBar(
                     type = type,
                     unlocked = unlocked,
                     affordable = crypto >= type.cost,
+                    maxed = unlocked && type in maxedOut,
                     selected = selected == type,
                     onClick = {
                         if (unlocked) {
@@ -418,11 +436,17 @@ private fun CompactAgentIcon(
     unlocked: Boolean,
     affordable: Boolean,
     selected: Boolean,
-    onClick: () -> Unit
+    onClick: () -> Unit,
+    /** At its deploy limit: grey, faded, "MAX" under it in place of the cost. */
+    maxed: Boolean = false
 ) {
-    val color = if (unlocked) agentClassColor(type) else Palette.TextMuted
+    val color = if (unlocked && !maxed) agentClassColor(type) else Palette.TextMuted
     // Too dear right now: still there, but faded, like the full cards.
-    val strength = if (!unlocked || affordable) 1f else 0.45f
+    val strength = when {
+        maxed -> MAXED_ALPHA
+        !unlocked || affordable -> 1f
+        else -> 0.45f
+    }
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier
@@ -452,13 +476,20 @@ private fun CompactAgentIcon(
         }
         Spacer(Modifier.height(2.dp))
         Text(
-            text = if (unlocked) "${type.cost}" else "\uD83D\uDD12",
+            text = when {
+                !unlocked -> "\uD83D\uDD12"
+                maxed -> "MAX"
+                else -> "${type.cost}"
+            },
             style = MaterialTheme.typography.labelSmall,
-            color = if (unlocked) Palette.Crypto.copy(alpha = strength) else Palette.TextMuted,
+            color = if (unlocked && !maxed) Palette.Crypto.copy(alpha = strength) else Palette.TextMuted,
             maxLines = 1
         )
     }
 }
+
+/** How faded an agent at its deploy limit is drawn. */
+private const val MAXED_ALPHA = 0.4f
 
 private val COMPACT_ICON_WIDTH = 54.dp
 private val COMPACT_ICON_HEIGHT = 32.dp

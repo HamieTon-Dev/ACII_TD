@@ -676,6 +676,13 @@ suit: Material Symbols (Apache 2.0) or drawing the few icons in-house.
   OPERATIVES: TOWER DEFENSE" under the title (was "ASCII CYBER DEFENSE"); ABOUT
   reads "CyOps TD · Cyber Operatives: Tower Defense". One constant,
   `AboutText.GAME_SUBTITLE`.
+- ✅ **Grey out agents at their limit (owner, 2026-10-02) — 1.55.1:** *"gray these
+  out when you have max units used on the map"* (screenshot circling [S],
+  ANTI DUCK and CYBER OPERATIVE in the agent bar). **Done:** an agent with a deploy
+  limit that is all on the board is drawn grey and faded, with "MAX" in place
+  of its cost on the compact bar and "MAX n DEPLOYED" on the full cards.
+  Tapping it says "<NAME> LIMIT — n MAX" instead of selecting it. Selling one
+  brings it back. `MaxedAgentsTest`.
 - ⬜ **MODEL COLLAPSE: a new special ability — maybe, later (owner's call):** only
   if the owner feels the balance is good after play-testing 1.55.0. Don't start
   until asked.
