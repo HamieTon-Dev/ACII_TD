@@ -671,7 +671,7 @@ suit: Material Symbols (Apache 2.0) or drawing the few icons in-house.
   ×1.1 health and ×0.95 speed. **Decided (owner, 2026-10-02):** *"Model collapse
   will be in rotation. May add a special ability later on if I feel balance is
   good."* It stays in the rotation as a plain boss.
-- ✅ **New subtitle (owner, 2026-10-02):** *"lets change this to say: CyOps TD /
+- ✅ **New subtitle (owner, 2026-10-02) — 1.55.1:** *"lets change this to say: CyOps TD /
   Cyber Operatives: Tower defense"*. **Done:** splash and main menu read "CYBER
   OPERATIVES: TOWER DEFENSE" under the title (was "ASCII CYBER DEFENSE"); ABOUT
   reads "CyOps TD · Cyber Operatives: Tower Defense". One constant,

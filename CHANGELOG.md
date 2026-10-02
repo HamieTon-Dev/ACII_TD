@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [1.55.1] — 2026-10-02
+
 ### Changed
 
 - The subtitle under the title on the splash and the main menu is now
