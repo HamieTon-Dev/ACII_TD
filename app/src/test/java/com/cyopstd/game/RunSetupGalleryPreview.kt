@@ -54,4 +54,37 @@ class RunSetupGalleryPreview {
             bitmap.compress(Bitmap.CompressFormat.PNG, 100, it)
         }
     }
+
+    @Test
+    fun `render a level preview`() {
+        compose.setContent {
+            CyOpsTheme {
+                com.cyopstd.game.ui.menu.LevelPreviewDialog(
+                    map = Maps.TRIDENT, number = 6, unlocked = true, onClose = {}
+                )
+            }
+        }
+        compose.waitForIdle()
+        val global = Class.forName("android.view.WindowManagerGlobal")
+        val instance = global.getMethod("getInstance").invoke(null)
+        @Suppress("UNCHECKED_CAST")
+        val views = global.getDeclaredField("mViews").apply { isAccessible = true }
+            .get(instance) as List<android.view.View>
+        val base = compose.activity.window.decorView
+        val bitmap = Bitmap.createBitmap(base.width, base.height, Bitmap.Config.ARGB_8888)
+        val canvas = Canvas(bitmap)
+        compose.runOnUiThread {
+            for (v in views) {
+                if (v.width == 0) continue
+                val at = IntArray(2)
+                v.getLocationOnScreen(at)
+                canvas.save()
+                canvas.translate(at[0].toFloat(), at[1].toFloat())
+                v.draw(canvas)
+                canvas.restore()
+            }
+        }
+        File("build/previews").mkdirs()
+        File("build/previews/level-preview.png").outputStream().use { bitmap.compress(Bitmap.CompressFormat.PNG, 100, it) }
+    }
 }

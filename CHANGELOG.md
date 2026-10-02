@@ -31,6 +31,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
   back on, until a match was played. Music is now always asked for and simply
   stays silent while the volume is at zero, so it comes back by itself.
 
+### Level preview
+
+- In the NEW RUN level list, hold a level or tap the info button on its row
+  to see a preview: the map's routes and core in the level's own colours, the
+  level's own bosses with what they do, and every other boss that turns up
+  there. Works on locked levels too.
+
 ### In a match
 
 - The level's name and the difficulty sit in the corner plate, under the

@@ -4,6 +4,7 @@ import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -66,6 +67,16 @@ fun RunSetupScreen(
     onBack: () -> Unit
 ) {
     var lockedNote by remember { mutableStateOf<String?>(null) }
+    // The level whose preview is open (owner, 2026-10-02), or null.
+    var previewing by remember { mutableStateOf<GameMap?>(null) }
+    previewing?.let { map ->
+        LevelPreviewDialog(
+            map = map,
+            number = Maps.all.indexOf(map) + 1,
+            unlocked = map in availableMaps,
+            onClose = { previewing = null }
+        )
+    }
     ScreenScaffold(
         title = "NEW RUN",
         subtitle = "Choose a level and a difficulty",
@@ -98,7 +109,8 @@ fun RunSetupScreen(
                                 } else {
                                     lockedNote = "${map.displayName} is locked: ${map.unlockRequirement}."
                                 }
-                            }
+                            },
+                            onPreview = { previewing = map }
                         )
                     }
                 }
@@ -212,6 +224,7 @@ private fun modeSummary(mode: GameMode): String = when (mode) {
  * what they can see. An open level leads with its number; a locked one has a
  * lock in that place and the whole row is greyed (owner, 2026-10-01).
  */
+@OptIn(androidx.compose.foundation.ExperimentalFoundationApi::class)
 @Composable
 private fun MapRow(
     map: GameMap,
@@ -219,7 +232,9 @@ private fun MapRow(
     selected: Boolean,
     unlocked: Boolean,
     best: Int,
-    onClick: () -> Unit
+    onClick: () -> Unit,
+    /** Hold the row, or tap its info button: the map and its bosses. */
+    onPreview: () -> Unit
 ) {
     val accent = when {
         !unlocked -> Palette.TextMuted
@@ -234,7 +249,7 @@ private fun MapRow(
             .alpha(if (unlocked) 1f else LOCKED_ROW_ALPHA)
             .background(if (selected) Palette.SurfaceRaised else Color.Transparent, RoundedCornerShape(4.dp))
             .border(BorderStroke(1.dp, accent.copy(alpha = if (selected) 0.8f else 0.3f)), RoundedCornerShape(4.dp))
-            .clickable(role = Role.RadioButton, onClick = onClick)
+            .combinedClickable(role = Role.RadioButton, onClick = onClick, onLongClick = onPreview)
             .padding(horizontal = 10.dp, vertical = 7.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
@@ -273,6 +288,22 @@ private fun MapRow(
                 color = if (unlocked) Palette.TextPrimary else Palette.TextMuted
             )
             Caption(if (unlocked) map.tagline else "LOCKED · ${map.unlockRequirement} (best: $best)")
+        }
+        Spacer(Modifier.width(8.dp))
+        Box(
+            contentAlignment = Alignment.Center,
+            modifier = Modifier
+                .size(30.dp)
+                .testTag("level-info-${map.id}")
+                .border(1.dp, Palette.CyanDim.copy(alpha = 0.7f), RoundedCornerShape(4.dp))
+                .clickable(role = Role.Button, onClick = onPreview)
+        ) {
+            androidx.compose.material3.Icon(
+                painter = androidx.compose.ui.res.painterResource(R.drawable.ic_menu_about),
+                contentDescription = "Preview ${map.displayName}",
+                tint = Palette.Cyan,
+                modifier = Modifier.size(16.dp)
+            )
         }
     }
 }

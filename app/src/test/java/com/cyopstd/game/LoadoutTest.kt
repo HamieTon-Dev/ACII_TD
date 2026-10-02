@@ -7,6 +7,9 @@ import androidx.compose.ui.test.onAllNodesWithText
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.performClick
+import androidx.compose.ui.test.performScrollTo
+import androidx.compose.ui.test.longClick
+import androidx.compose.ui.test.performTouchInput
 import android.app.Application
 import androidx.test.core.app.ApplicationProvider
 import com.cyopstd.game.core.GameMode
@@ -227,6 +230,26 @@ class LoadoutTest {
         compose.onNodeWithText(GameMode.HACK_AI.runName).performClick()
         assertNull(picked)
         compose.onNodeWithTag("locked-note").assertIsDisplayed()
+    }
+
+    @Test
+    fun `the info button shows a level's map and its own bosses`() {
+        setup(highestWave = 40, modes = listOf(GameMode.STANDARD))
+        compose.onNodeWithTag("level-info-${Maps.TRIDENT.id}").performScrollTo().performClick()
+        compose.onNodeWithTag("level-preview").assertExists()
+        compose.onNodeWithTag("level-preview-map").assertExists()
+        compose.onNodeWithText("BOTMASTER").assertExists()
+        compose.onNodeWithText("CLOSE").performClick()
+        compose.onNodeWithTag("level-preview").assertDoesNotExist()
+    }
+
+    @Test
+    fun `holding a level opens its preview too`() {
+        setup(highestWave = 40, modes = listOf(GameMode.STANDARD))
+        compose.onNodeWithTag("level-${Maps.DUCK_USB.id}").performScrollTo()
+            .performTouchInput { longClick() }
+        compose.onNodeWithTag("level-preview").assertExists()
+        compose.onNodeWithText("SYN-STORM").assertExists()
     }
 
     @Test
