@@ -98,29 +98,36 @@ class NeuralMeshTest {
     }
 
     @Test
-    fun `MODEL COLLAPSE feeds on a crowd, not on two agents`() {
-        assertEquals(0f, BossVariant.collapseHealShare(2), 0f)
-        assertEquals(0.08f, BossVariant.collapseHealShare(3), 0.0001f)
-        assertEquals(0.4f, BossVariant.collapseHealShare(7), 0.0001f)
-        assertEquals(BossVariant.COLLAPSE_MAX_HEAL, BossVariant.collapseHealShare(16), 0.0001f)
-
+    fun `MODEL COLLAPSE no longer heals off a crowd (owner, 2026-10-02)`() {
         val (engine, boss) = bossOf(BossVariant.MODEL_COLLAPSE)
         boss.maxHealth = 100_000f; boss.health = 100_000f
         for (node in 0 until 7) {
             engine.projectileSystem().applyDamage(boss, 100f, AgentType.IPS, ignoresArmor = true, heavy = false, sourceNodeId = node)
         }
-        val crowdHit = boss.health
+        val before = boss.health
         engine.projectileSystem().applyDamage(boss, 100f, AgentType.IPS, ignoresArmor = true, heavy = false, sourceNodeId = 0)
-        assertEquals("with seven on it, a 100 hit lands as 60", 60f, crowdHit - boss.health, 0.5f)
+        assertEquals("with seven on it, a 100 hit still lands as 100", 100f, before - boss.health, 0.5f)
     }
 
     @Test
-    fun `MODEL COLLAPSE learns who hit it from real shots`() {
-        val (engine, boss) = bossOf(BossVariant.MODEL_COLLAPSE)
-        for (node in 0 until 3) {
-            engine.projectileSystem().applyDamage(boss, 5f, AgentType.FIREWALL, false, false, sourceNodeId = node)
+    fun `LICENSE enforces for 2 seconds, then cools down for 15`() {
+        val (engine, boss) = bossOf(BossVariant.LICENSE)
+        boss.maxHealth = 1_000_000f; boss.health = 1_000_000f
+        fun hit(): Float {
+            val before = boss.health
+            engine.projectileSystem().applyDamage(boss, 10f, AgentType.FIREWALL, ignoresArmor = true, heavy = false)
+            return before - boss.health
         }
-        assertEquals(3, boss.distinctAttackersWithin(engine.elapsedTime, BossVariant.COLLAPSE_WINDOW))
+        repeat(200) { hit() }
+        assertTrue("while enforcing, a worn-out type should hit weaker", hit() < 9f)
+        // Into the cooldown: full damage, however many hits.
+        repeat(150) { engine.update(0.02f, 1f) } // 3 seconds
+        repeat(200) { hit() }
+        assertEquals(10f, hit(), 0.01f)
+        // The next window starts the counts afresh.
+        repeat(750) { engine.update(0.02f, 1f) } // to 18 seconds
+        assertTrue(BossVariant.licenseEnforcing(boss.variantTimer))
+        assertEquals(10f, hit(), 0.01f)
     }
 
     @Test

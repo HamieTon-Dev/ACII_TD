@@ -222,7 +222,7 @@ enum class BossModifier(
     ),
     REGENERATION(
         "REGENERATION", "REGEN",
-        "Slowly repairs itself while it is still moving."
+        "Slowly repairs itself once it has gone a moment without being hit."
     ),
     PACKET_REPLICATION(
         "ATTACK REPLICATION", "REPLICATE",
@@ -253,15 +253,6 @@ enum class BossModifier(
                 ENCRYPTION_SHIELD, PACKET_REPLICATION
             )
             else -> entries.toList()
-        }
-
-        /** How many modifiers a boss of [cycle] rolls. */
-        fun countForCycle(cycle: Int): Int = when {
-            cycle <= 1 -> 0
-            cycle <= 3 -> 1
-            cycle <= 6 -> 2
-            cycle <= 10 -> 3
-            else -> 4
         }
     }
 }

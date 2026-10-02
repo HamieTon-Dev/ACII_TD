@@ -207,16 +207,10 @@ class ProjectileSystem(private val engine: GameEngine, private val random: Rando
             when (enemy.variant) {
                 BossVariant.LICENSE -> {
                     val slot = sourceType.ordinal
-                    if (slot < enemy.licenseHits.size) {
+                    if (BossVariant.licenseEnforcing(enemy.variantTimer) && slot < enemy.licenseHits.size) {
                         damage *= BossVariant.licenseMultiplier(enemy.licenseHits[slot])
                         enemy.licenseHits[slot]++
                     }
-                }
-                BossVariant.MODEL_COLLAPSE -> {
-                    enemy.recordAttacker(sourceNodeId, engine.elapsedTime)
-                    val swarm = enemy.distinctAttackersWithin(engine.elapsedTime, BossVariant.COLLAPSE_WINDOW)
-                    // Heals back its share of the hit, which nets out as less damage.
-                    damage *= 1f - BossVariant.collapseHealShare(swarm)
                 }
                 else -> Unit
             }
@@ -232,6 +226,7 @@ class ProjectileSystem(private val engine: GameEngine, private val random: Rando
 
         enemy.health -= damage
         enemy.hitFlash = HIT_FLASH_SECONDS
+        enemy.regenPause = Balance.REGEN_PAUSE_AFTER_HIT
 
         if (enemy.isBoss) {
             when (enemy.variant) {

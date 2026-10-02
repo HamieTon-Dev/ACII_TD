@@ -644,10 +644,44 @@ suit: Material Symbols (Apache 2.0) or drawing the few icons in-house.
   NEXT BOSS cycles them. The BOSS button still opens on the one nearest the core.
   A SPOOFER decoy shows the real SPOOFER, so taps cannot unmask it. Taps while
   placing an agent stay placement taps. `BossDossierTest`.
-- 🟨 **Levels 3 and 4 too hard (owner, 2026-10-02):** *"Tone down the difficulty
+- ✅ **Levels 3 and 4 too hard (owner, 2026-10-02) — 1.55.0, owner play-tests:** *"Tone down the difficulty
   for level 3 and 4. Its almost impossible to get to wave 100 with even the best
   strategy. Maybe Tarpit should slow the bosses down double what they do now.
   Regen makes it almost impossible to kill these bosses."*
+  Follow-ups the same day: *"Tone down boss regen as well. They heal way too
+  fast"*; *"skip the balance tests ... I will test the new build myself"*.
+  **Done:** TARPIT's field slows bosses twice as much as other threats (28% →
+  56% at level 1), never below 30% of their speed. REGENERATION repairs 0.5% a
+  second (was 1.2%) and only after 2 seconds without a hit. Level health
+  scales unchanged. `MapDifficultyTest`'s level-order check is `@Ignore`d on
+  the owner's call. `BossBuffBalanceTest`.
+- ✅ **Boss buffs by RNG (owner, 2026-10-02) — 1.55.0:** *"It should be 33% chance
+  on each buff, and only a 15% chance to have all of the buffs. Having shroud,
+  regen, burst, and armour + all stacking all at the same time is too much."*
+  Then: *"Change the chance to have all buffs on 2%."* **Done:** each unlocked
+  modifier rolls on its own at 33%; 2% of bosses carry all of them (if the 33%
+  rolls land on all, one is dropped). Unlock order by boss cycle is unchanged.
+  `WaveGeneratorTest`.
+- ✅ **LICENSE 2s on / 15s cooldown (owner, 2026-10-02) — 1.55.0:** *"Debuff
+  License buff to only work for 2s then cooldown for 15 seconds."* **Done:** its
+  damage cut applies 2 seconds in every 17 ("LICENSE ENFORCED" when it starts),
+  and the hit counts reset each window. `NeuralMeshTest`.
+- ✅ **MODEL COLLAPSE buff removed (owner, 2026-10-02) — 1.55.0:** *"Remove Model
+  collapse Buff entirely."* **Done:** no more crowd heal; it is a plain boss with
+  ×1.1 health and ×0.95 speed. Still in the boss rotation; see owner input.
+- ✅ **Jam half as often (owner, 2026-10-02) — 1.55.0:** *"debuff jam to happen
+  half as often."* **Done:** the eyes' jam every 10 s (was 5), AGENT DISRUPTION
+  every 16 s (was 8, first at 11 rather than 5.5). Jam lengths unchanged.
+- ✅ **Skull and OTHER focus buttons (owner, 2026-10-02) — 1.55.0:** *"Add a Skull button
+  on AGENT unit window so that it focuses boss only"*, *"Use COREUI for the skull
+  button"*, then *"Skull should have small text below "Boss" and then add another
+  button using CoreUI icon with text below that focuses only small units and
+  elites "other" text below it very small text"*. **Done:** two toggles beside
+  CHANGE in the agent panel, each a CoreUI icon over a tiny label: BOSS (bosses
+  only, holds fire otherwise) and OTHER (small units and elites, never bosses).
+  Tapping the lit one turns focus off. Saved with the run. Icons: CoreUI Free
+  has no skull, so BOSS is `cil-face-dead` (X eyes); OTHER is `cil-bug`. The ABOUT
+  credit now reads "Icons: CoreUI Icons Free". `BossBuffBalanceTest`.
 - ✅ **GAME-BREAKING: mid-wave money exploit (owner, 2026-10-02) — fixed in 1.55.0:** *"We need to
   save wave type, remaining units left on wave, and status of enemies spawned,
   their positions etc when returning to main menu. Players can restart the

@@ -200,6 +200,7 @@ private fun GameScreenBody(
                     onUpgrade = { times -> viewModel.upgradeSelectedAgent(times) },
                     onSell = viewModel::sellSelectedAgent,
                     onCycleTargeting = viewModel::cycleTargetingMode,
+                    onToggleFocus = viewModel::toggleFocus,
                     onClose = viewModel::closeSelection,
                     modifier = Modifier
                         .align(Alignment.CenterEnd)

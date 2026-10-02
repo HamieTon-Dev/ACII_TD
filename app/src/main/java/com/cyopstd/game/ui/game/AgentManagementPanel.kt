@@ -14,6 +14,9 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.clickable
+import androidx.compose.ui.platform.testTag
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
@@ -57,7 +60,9 @@ fun AgentManagementPanel(
     onSell: () -> Unit,
     onCycleTargeting: () -> Unit,
     onClose: () -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    /** The skull (BOSS) and OTHER focus buttons. */
+    onToggleFocus: (com.cyopstd.game.model.TargetFocus) -> Unit = {}
 ) {
     val type = agent.type
     // Shown with this agent's AGENT FIRMWARE applied: what it actually does.
@@ -169,16 +174,38 @@ fun AgentManagementPanel(
                         color = Palette.Purple
                     )
                 }
-                CompactButton(
-                    text = "CHANGE",
-                    onClick = onCycleTargeting,
-                    accent = Palette.Purple
-                )
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    FocusButton(
+                        icon = com.cyopstd.game.R.drawable.ic_boss_focus, label = "BOSS",
+                        on = agent.focus == com.cyopstd.game.model.TargetFocus.BOSSES, onTint = Palette.Red,
+                        tag = "focus-boss"
+                    ) { onToggleFocus(com.cyopstd.game.model.TargetFocus.BOSSES) }
+                    Spacer(Modifier.width(4.dp))
+                    FocusButton(
+                        icon = com.cyopstd.game.R.drawable.ic_focus_other, label = "OTHER",
+                        on = agent.focus == com.cyopstd.game.model.TargetFocus.OTHERS, onTint = Palette.Orange,
+                        tag = "focus-other"
+                    ) { onToggleFocus(com.cyopstd.game.model.TargetFocus.OTHERS) }
+                    Spacer(Modifier.width(6.dp))
+                    CompactButton(
+                        text = "CHANGE",
+                        onClick = onCycleTargeting,
+                        accent = Palette.Purple
+                    )
+                }
             }
             Text(
-                text = agent.targetingMode.description,
+                text = when (agent.focus) {
+                    com.cyopstd.game.model.TargetFocus.BOSSES -> "BOSS: shoots bosses only, holds fire otherwise"
+                    com.cyopstd.game.model.TargetFocus.OTHERS -> "OTHER: small units and elites only, never bosses"
+                    com.cyopstd.game.model.TargetFocus.ALL -> agent.targetingMode.description
+                },
                 style = MaterialTheme.typography.labelSmall,
-                color = Palette.TextMuted
+                color = when (agent.focus) {
+                    com.cyopstd.game.model.TargetFocus.BOSSES -> Palette.Red
+                    com.cyopstd.game.model.TargetFocus.OTHERS -> Palette.Orange
+                    com.cyopstd.game.model.TargetFocus.ALL -> Palette.TextMuted
+                }
             )
         }
 
@@ -380,4 +407,48 @@ private fun UpgradeStatRow(label: String, current: String, next: String?) {
 internal fun plusTenAffordable(affordableLevels: Int, level: Int): Boolean {
     val step = minOf(10, Balance.MAX_AGENT_LEVEL - level)
     return step > 0 && affordableLevels >= step
+}
+
+/**
+ * A focus button (owner, 2026-10-02): a CoreUI icon with a very small label
+ * under it, lit in [onTint] while on. The skull is cil-face-dead (CoreUI Free
+ * has no skull); OTHER is cil-bug.
+ */
+@Composable
+private fun FocusButton(
+    @androidx.annotation.DrawableRes icon: Int,
+    label: String,
+    on: Boolean,
+    onTint: Color,
+    tag: String,
+    onClick: () -> Unit
+) {
+    val tint = if (on) onTint else Palette.TextSecondary
+    Column(
+        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = Modifier
+            .testTag(tag)
+            .background(
+                if (on) onTint.copy(alpha = 0.18f) else Palette.Surface,
+                RoundedCornerShape(4.dp)
+            )
+            .border(1.dp, tint.copy(alpha = 0.8f), RoundedCornerShape(4.dp))
+            .clickable(role = androidx.compose.ui.semantics.Role.Switch, onClick = onClick)
+            .padding(horizontal = 5.dp, vertical = 3.dp)
+    ) {
+        androidx.compose.material3.Icon(
+            androidx.compose.ui.res.painterResource(icon),
+            contentDescription = "$label focus ${if (on) "on" else "off"}",
+            tint = tint,
+            modifier = Modifier.size(20.dp)
+        )
+        Text(
+            text = label,
+            style = MaterialTheme.typography.labelSmall.copy(
+                fontSize = androidx.compose.ui.unit.TextUnit(8f, androidx.compose.ui.unit.TextUnitType.Sp),
+                lineHeight = androidx.compose.ui.unit.TextUnit(9f, androidx.compose.ui.unit.TextUnitType.Sp)
+            ),
+            color = tint
+        )
+    }
 }

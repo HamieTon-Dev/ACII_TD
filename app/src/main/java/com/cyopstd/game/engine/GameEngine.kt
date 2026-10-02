@@ -13,6 +13,7 @@ import com.cyopstd.game.model.Enemy
 import com.cyopstd.game.model.EnemyType
 import com.cyopstd.game.model.ObjectPool
 import com.cyopstd.game.model.Projectile
+import com.cyopstd.game.model.TargetFocus
 import com.cyopstd.game.model.TargetingMode
 import kotlin.math.min
 import kotlin.random.Random
@@ -378,6 +379,7 @@ class GameEngine(
             agent.y = node.y
             agent.level = placement.level.coerceIn(1, Balance.MAX_AGENT_LEVEL)
             agent.targetingMode = TargetingMode.fromOrdinalSafe(placement.targetingOrdinal)
+            agent.focus = TargetFocus.fromNameSafe(placement.focus)
             agent.applyFirmware(firmwareFor(type))
         }
 
@@ -539,7 +541,9 @@ class GameEngine(
         val nodeId: Int,
         val agentTypeName: String,
         val level: Int,
-        val targetingOrdinal: Int
+        val targetingOrdinal: Int,
+        /** A [TargetFocus] name. */
+        val focus: String = TargetFocus.ALL.name
     )
 
     fun snapshotPlacements(): List<SavedPlacement> {
@@ -550,7 +554,8 @@ class GameEngine(
                 nodeId = agent.nodeId,
                 agentTypeName = agent.type.name,
                 level = agent.level,
-                targetingOrdinal = agent.targetingMode.ordinal
+                targetingOrdinal = agent.targetingMode.ordinal,
+                focus = agent.focus.name
             )
         }
         return result
@@ -1081,6 +1086,10 @@ class GameEngine(
 
     fun setTargetingMode(nodeId: Int, mode: TargetingMode) {
         agentAt(nodeId)?.targetingMode = mode
+    }
+
+    fun setFocus(nodeId: Int, focus: TargetFocus) {
+        agentAt(nodeId)?.focus = focus
     }
 
     // ------------------------------------------------------------ economy hooks

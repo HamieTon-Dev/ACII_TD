@@ -1,5 +1,6 @@
 package com.cyopstd.game.engine
 
+import com.cyopstd.game.core.Balance
 import com.cyopstd.game.model.Agent
 import com.cyopstd.game.model.AgentType
 import com.cyopstd.game.model.Enemy
@@ -148,7 +149,9 @@ class CombatSystem(private val engine: GameEngine, private val random: Random) {
             if (dx * dx + dy * dy > rangeSq) continue
             // Refreshed every frame while in the field, and expiring quickly
             // once out of it, so leaving a tarpit's radius is felt at once.
-            engine.enemySystem().applySlow(enemy, factor, TARPIT_FIELD_LINGER)
+            engine.enemySystem().applySlow(
+                enemy, if (enemy.isBoss) tarpitBossSlowFactor(agent.level) else factor, TARPIT_FIELD_LINGER
+            )
         }
     }
 
@@ -283,6 +286,7 @@ class CombatSystem(private val engine: GameEngine, private val random: Random) {
      */
     private fun canTarget(agent: Agent, enemy: Enemy): Boolean {
         if (!enemy.targetable) return false
+        if (!agent.focus.allows(enemy)) return false
         if (enemy.decoy && agent.type.seesThroughDecoys) return false
         return true
     }
@@ -294,6 +298,11 @@ class CombatSystem(private val engine: GameEngine, private val random: Random) {
         /** 0.72x at level 1, deepening to a 0.55x floor. */
         fun tarpitSlowFactor(level: Int): Float =
             (0.72f - (level - 1) * 0.01f).coerceAtLeast(0.55f)
+
+        /** The same field against a boss: twice the slow, floored (see Balance). */
+        fun tarpitBossSlowFactor(level: Int): Float =
+            (1f - (1f - tarpitSlowFactor(level)) * Balance.TARPIT_BOSS_SLOW_MULTIPLIER)
+                .coerceAtLeast(Balance.TARPIT_BOSS_MIN_FACTOR)
 
         const val FIRE_FLASH_SECONDS = 0.13f
         const val SENTINEL_TARGETS = 3

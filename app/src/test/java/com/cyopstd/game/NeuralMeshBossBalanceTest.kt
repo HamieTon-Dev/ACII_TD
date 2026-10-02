@@ -67,6 +67,9 @@ class NeuralMeshBossBalanceTest {
         AgentType.ROOT_ADMIN, AgentType.ROOT_ADMIN, AgentType.ZERO_DAY_HUNTER, AgentType.ZERO_DAY_HUNTER
     )
 
+    @org.junit.Ignore(
+        "Owner, 2026-10-02: skip the balance tests; the boss retune is play-tested on a real build instead."
+    )
     @Test
     fun `the new bosses are harder against the board they punish and fair against the right one`() {
         // 20 since 1.50.0, when NEURAL-MESH's threat health went from ×2.2 to
@@ -83,12 +86,11 @@ class NeuralMeshBossBalanceTest {
         )
         for ((name, r) in results) println("NMB $name: ${if (r.killed) "killed in %.1fs".format(r.seconds) else "GOT THROUGH at %.1fs".format(r.seconds) + ""}")
 
-        val collapseBlob = results.getValue("MODEL COLLAPSE vs 12 ANALYST")
-        val breachBlob = results.getValue("BREACH vs 12 ANALYST")
-        assertTrue("MODEL COLLAPSE should outlast BREACH against a blob",
-            !collapseBlob.killed || collapseBlob.seconds > breachBlob.seconds * 1.2f)
+        // MODEL COLLAPSE no longer outlasts BREACH against a blob: the owner
+        // removed its crowd heal (2026-10-02).
         assertTrue("four heavy hitters must still kill MODEL COLLAPSE",
             results.getValue("MODEL COLLAPSE vs 4 heavies").killed)
+        val breachBlob = results.getValue("BREACH vs 12 ANALYST")
         val licenseBlob = results.getValue("LICENSE vs 12 ANALYST")
         assertTrue("LICENSE should outlast BREACH against one agent type",
             !licenseBlob.killed || licenseBlob.seconds > breachBlob.seconds * 1.2f)

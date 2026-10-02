@@ -1194,7 +1194,7 @@ class GameViewModel @JvmOverloads constructor(
                 serverHp = run.serverHp,
                 crypto = run.crypto,
                 placements = run.agents.map {
-                    GameEngine.SavedPlacement(it.nodeId, it.type, it.level, it.targeting)
+                    GameEngine.SavedPlacement(it.nodeId, it.type, it.level, it.targeting, it.focus)
                 },
                 attacksBlocked = run.attacksBlocked,
                 cryptoEarned = run.cryptoEarned,
@@ -1592,6 +1592,26 @@ class GameViewModel @JvmOverloads constructor(
         audio.play(GameSound.UI_CLICK)
     }
 
+    /**
+     * The skull (BOSS) and OTHER buttons: turns [focus] on for the selected
+     * agent, or off again if it already is.
+     */
+    fun toggleFocus(focus: com.cyopstd.game.model.TargetFocus) {
+        val nodeId = selection.selectedNodeId ?: return
+        val agent = engine.agentAt(nodeId) ?: return
+        if (!agent.type.allowsTargetingModes) return
+        val next = if (agent.focus == focus) com.cyopstd.game.model.TargetFocus.ALL else focus
+        engine.setFocus(nodeId, next)
+        showTransient(
+            when (next) {
+                com.cyopstd.game.model.TargetFocus.BOSSES -> "FOCUS: BOSSES ONLY"
+                com.cyopstd.game.model.TargetFocus.OTHERS -> "FOCUS: SMALL UNITS AND ELITES ONLY"
+                com.cyopstd.game.model.TargetFocus.ALL -> "FOCUS OFF"
+            }
+        )
+        audio.play(GameSound.UI_CLICK)
+    }
+
     fun showTransient(message: String) {
         transientMessage = message
         transientMessageExpiry = System.currentTimeMillis() + TRANSIENT_MS
@@ -1926,7 +1946,7 @@ class GameViewModel @JvmOverloads constructor(
                 serverHp = engine.serverHp,
                 crypto = engine.crypto,
                 agents = engine.snapshotPlacements().map {
-                    SavedAgent(it.nodeId, it.agentTypeName, it.level, it.targetingOrdinal)
+                    SavedAgent(it.nodeId, it.agentTypeName, it.level, it.targetingOrdinal, it.focus)
                 },
                 attacksBlocked = engine.runAttacksBlocked,
                 cryptoEarned = engine.runCryptoEarned,

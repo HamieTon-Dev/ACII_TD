@@ -265,11 +265,24 @@ class WaveGenerator(private val random: Random = Random.Default) {
         return List(count) { shuffled[it % shuffled.size] }
     }
 
+    /**
+     * A boss's modifiers (owner, 2026-10-02: *"33% chance on each buff"*, and
+     * all of them at once on 2%). It used to take a fixed
+     * count from the pool, so a late boss always carried four, and SHIELD,
+     * REGEN, BURST and ARMOUR+ stacked into a boss maxed agents could not kill.
+     *
+     * Now [Balance.BOSS_ALL_MODIFIERS_CHANCE] of bosses carry everything
+     * unlocked; the rest roll each unlocked modifier on its own at
+     * [Balance.BOSS_MODIFIER_CHANCE], and if that lands on all of them one is
+     * dropped, so "all of them" stays the 2% case.
+     */
     private fun rollModifiers(cycle: Int): List<BossModifier> {
         val pool = BossModifier.poolForCycle(cycle)
-        val count = BossModifier.countForCycle(cycle).coerceAtMost(pool.size)
-        if (count <= 0 || pool.isEmpty()) return emptyList()
-        return pool.shuffled(random).take(count)
+        if (pool.isEmpty()) return emptyList()
+        if (random.nextFloat() < Balance.BOSS_ALL_MODIFIERS_CHANCE) return pool.shuffled(random)
+        val rolled = pool.filter { random.nextFloat() < Balance.BOSS_MODIFIER_CHANCE }.toMutableList()
+        if (pool.size > 1 && rolled.size == pool.size) rolled.removeAt(random.nextInt(rolled.size))
+        return rolled.shuffled(random)
     }
 
     // ------------------------------------------------------- archetype pool

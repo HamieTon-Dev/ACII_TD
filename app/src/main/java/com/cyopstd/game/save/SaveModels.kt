@@ -13,7 +13,9 @@ data class SavedAgent(
     val nodeId: Int = 0,
     val type: String = "FIREWALL",
     val level: Int = 1,
-    val targeting: Int = 0
+    val targeting: Int = 0,
+    /** The agent's TargetFocus name: the skull (BOSS) and OTHER buttons. */
+    val focus: String = "ALL"
 )
 
 @Serializable

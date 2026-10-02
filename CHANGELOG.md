@@ -11,6 +11,37 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [1.55.0] — 2026-10-02
 
+### Boss balance (owner, play-tested on a real build)
+
+- **Boss buffs are a roll now.** Each unlocked modifier (ARMOR+, BURST,
+  FW-RES, REGEN, ENC-SHD, REPLICATE, DISRUPT) has its own 33% chance; only 2%
+  of bosses carry all of them. A late boss used to carry four, always.
+- **REGENERATION** repairs 0.5% of max health a second (was 1.2%), and only
+  after 2 seconds without a hit.
+- **TARPIT** slows bosses twice as much as other threats (56% at level 1),
+  never below 30% of their speed.
+- **LICENSE** shrugs off a repeated agent type for only 2 seconds in every 17
+  ("LICENSE ENFORCED"), with the counts reset each time.
+- **MODEL COLLAPSE** no longer heals off a crowd; it is a plain, slightly
+  heavier boss.
+- **Jams half as often:** WHITE/BLACK EYE every 10 s (was 5), AGENT
+  DISRUPTION every 16 s (was 8).
+
+### Agent focus: BOSS and OTHER
+
+- Two CoreUI buttons beside CHANGE in the agent panel, each with a tiny
+  label: BOSS (skull-style face) makes the agent shoot bosses only; OTHER (bug)
+  makes it shoot small units and elites only. Tap the lit one to turn it off.
+  Saved with the run.
+
+### Tap a boss
+
+- Tapping a boss on the board opens its dossier: health, armour, speed,
+  distance, modifiers, and now what it is WEAK TO and what to WATCH OUT for.
+  It is ringed on the board while open. With several bosses up, the dossier
+  says which one ("BOSS 2 OF 3") and NEXT BOSS cycles them. The BOSS button
+  opens on the one nearest the core.
+
 ### Leaderboards per level and difficulty
 
 - The leaderboard has LEVEL and DIFFICULTY drop-downs. THIS DEVICE filters
