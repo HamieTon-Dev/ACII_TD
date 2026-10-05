@@ -20,6 +20,9 @@ internal object LanguageCatalog {
         Language("zh-TW", "繁體中文", "Chinese (Traditional)"),
         Language("ar", "العربية", "Arabic"),
         Language("hi", "हिन्दी", "Hindi"),
-        Language("tr", "Türkçe", "Turkish")
+        Language("tr", "Türkçe", "Turkish"),
+        Language("pl", "Polski", "Polish"),
+        Language("nl", "Nederlands", "Dutch"),
+        Language("id", "Bahasa Indonesia", "Indonesian")
     )
 }

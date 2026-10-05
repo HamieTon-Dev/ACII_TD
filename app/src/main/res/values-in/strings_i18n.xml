@@ -1,0 +1,864 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Translation of values/strings_i18n.xml. Machine-quality (AI) translation; see FEATURE_BACKLOG.md. -->
+<resources>
+    <string name="t_0069698f" formatted="false">"€ {0} di anggaran"</string>
+    <string name="t_00bdf050" formatted="false">"PERANGKAT INI"</string>
+    <string name="t_00c74b4a" formatted="false">"Menyerang hingga tiga ancaman berbeda di setiap tembakan, menjadikannya jawaban tim untuk gelombang yang lebar. Menampilkan pemilih target."</string>
+    <string name="t_00cb85ad" formatted="false">"LANGKAH 4 — PILIH TARPIT"</string>
+    <string name="t_00f316c1" formatted="false">"BIAYA LEVEL BERIKUTNYA"</string>
+    <string name="t_00fafa13" formatted="false">"AKUN INI MEMILIKI"</string>
+    <string name="t_01278423" formatted="false">"APA YANG BERUBAH"</string>
+    <string name="t_014c06bb" formatted="false">"{0} dari {1} terbuka · gelombang terbaik {2}"</string>
+    <string name="t_01b91dff" formatted="false">"RANSOM mengunci upgrade satu agen selama {0} detik, setiap beberapa detik. Upgrade sebelum ia tiba."</string>
+    <string name="t_01ba7032" formatted="false">"0 level"</string>
+    <string name="t_01f2a69d" formatted="false">"CATATAN SESI"</string>
+    <string name="t_0288b770" formatted="false">"Ketuk tombol AGEN di bilah kontrol di bawah."</string>
+    <string name="t_02b88c49" formatted="false">"Semua audio dibuat di perangkat saat dimulai; game ini tidak membawa file suara."</string>
+    <string name="t_02f0f435" formatted="false">"Root, atau administrator, adalah tingkat wewenang tertinggi di sebuah sistem: ia bisa menghentikan proses apa pun dan mengubah apa saja. Justru karena itu, praktik yang baik adalah memberikannya sejarang dan sesingkat mungkin. \"Root admin\" adalah singkatan untuk tingkat akses itu, bukan jabatan."</string>
+    <string name="t_0306926d" formatted="false">"Tiga jalur serangan menuju server inti"</string>
+    <string name="t_0358799e" formatted="false">"Berlaku untuk setiap {0} di setiap pertandingan mulai sekarang, di atas FIRMWARE INTI. Level awal murah; setiap level lebih mahal dari sebelumnya, dan level teratas berharga jutaan."</string>
+    <string name="t_0397b7d9" formatted="false">"MULAI GELOMBANG BOS OTOMATIS"</string>
+    <string name="t_03d108e0" formatted="false">"Tertaut, tetapi Google tidak dapat dijangkau. Tidak ada yang hilang — simpanan di perangkat ini yang sedang dimainkan, dan sinkronisasi berikutnya akan memperbarui akun."</string>
+    <string name="t_059b388a" formatted="false">"&gt; gelombang {0} dibersihkan — bersiap untuk gelombang {1}"</string>
+    <string name="t_05ea5d0e" formatted="false">"Tersedia sejak awal."</string>
+    <string name="t_05f2ef1e" formatted="false">"Lagu berikutnya"</string>
+    <string name="t_063d8618" formatted="false">"Kode jahat yang menyamar sebagai sesuatu yang kamu minta. Lambat tetapi terbungkus tebal — zirah menumpulkan setiap serangan, jadi tembakan cepat yang lemah sia-sia."</string>
+    <string name="t_07269781" formatted="false">"Pilih tingkat kesulitan untuk melihat papan peringkat dunianya."</string>
+    <string name="t_07a3d7ab" formatted="false">"Semua yang dimiliki, termasuk revive, kembali dari Google Play lewat PULIHKAN di perangkat apa pun. Itu tidak pernah menjadi bagian dari simpanan cloud, jadi tidak ada file simpanan yang bisa memberi atau mengambil pembelian."</string>
+    <string name="t_07fbf4bd" formatted="false">"BANGKIT LAGI"</string>
+    <string name="t_08039ac7" formatted="false">"TOKO"</string>
+    <string name="t_08175caa" formatted="false">"WARNA KELAS"</string>
+    <string name="t_08218c08" formatted="false">"MENAUTKAN…"</string>
+    <string name="t_08279524" formatted="false">"Kode yang menyalahgunakan celah tertentu dalam sistem. Eksploit bergerak cepat dan memukul keras; jangkauan deteksi lebih penting daripada damage mentah saat mereka datang."</string>
+    <string name="t_086b8b8e" formatted="false">"BOS"</string>
+    <string name="t_08f0711d" formatted="false">"PULIHKAN PEMBELIAN"</string>
+    <string name="t_09653280" formatted="false">"KE INTI"</string>
+    <string name="t_0a0bc63d" formatted="false">"Lagu sebelumnya"</string>
+    <string name="t_0a2301f4" formatted="false">"PROGRES TERSIMPAN"</string>
+    <string name="t_0a344034" formatted="false">"BERIKUTNYA: GELOMBANG {0}"</string>
+    <string name="t_0ae74b3e" formatted="false">"SERANGAN ZERO-DAY"</string>
+    <string name="t_0b205685" formatted="false">"Menginisialisasi Jaringan..."</string>
+    <string name="t_0b809aa5" formatted="false">"Belum ada papan dunia untuk {0}. Permainan di sana dicatat di perangkat ini."</string>
+    <string name="t_0bc6e19b" formatted="false">"Tidak memberi damage sendiri. Memperkuat setiap agen dalam jangkauan dengan +30% damage dan +20% laju tembak, jadi nilainya sepenuhnya tergantung di mana kamu menaruhnya."</string>
+    <string name="t_0bd16003" formatted="false">"MAKS"</string>
+    <string name="t_0bfbeb5b" formatted="false">"Tahan mereka di medan TARPIT, lalu biarkan IPS membersihkan antrean."</string>
+    <string name="t_0c121fb2" formatted="false">"PROGRES TERSINKRON"</string>
+    <string name="t_0c147607" formatted="false">"PEMINDAIAN DALAM"</string>
+    <string name="t_0c16a4ef" formatted="false">"Belum ada skor. Selesaikan satu permainan untuk jadi yang pertama."</string>
+    <string name="t_0c997319" formatted="false">"WORM TERBELAH"</string>
+    <string name="t_0cb4ce2b" formatted="false">"GELOMBANG {0} AMAN  ◇{1}"</string>
+    <string name="t_0cfa4a6e" formatted="false">"BOS LEVEL INI"</string>
+    <string name="t_0d884b08" formatted="false">"PENYUSUPAN (BOS)"</string>
+    <string name="t_0d8c63a6" formatted="false">"Setiap serangan merambat ke 2 ancaman terdekat dengan 55% damage."</string>
+    <string name="t_0df4bfec" formatted="false">"LEMAH TERHADAP"</string>
+    <string name="t_0e69fc6c" formatted="false">"Bilah penempatan hanya menampilkan ikon dan harga tiap agen"</string>
+    <string name="t_0eb480b6" formatted="false">"Kisi perspektif yang menjauh, dengan jalur kejar di bawahnya."</string>
+    <string name="t_0f47943c" formatted="false">"FOKUS MATI"</string>
+    <string name="t_0f5d5911" formatted="false">"HEMAT BATERAI"</string>
+    <string name="t_0f80d304" formatted="false">"DAMAGE AGEN"</string>
+    <string name="t_0f9a43d6" formatted="false">"SEMUA LATAR HIDUP"</string>
+    <string name="t_0fa88218" formatted="false">"Google Play tidak dapat dijangkau — biasanya tidak ada jaringan. Apa pun yang sudah dibeli tetap milikmu; tekan PULIHKAN setelah kembali online dan itu akan muncul lagi."</string>
+    <string name="t_0fd40469" formatted="false">"PERFORMA"</string>
+    <string name="t_0fd4c0f4" formatted="false">"SLOT CORE-SERVER HANYA UNTUK [S]"</string>
+    <string name="t_1046865f" formatted="false">"Terus memunculkan BOT di belakangnya. Bunuh cepat atau tenggelam dalam botnet-nya."</string>
+    <string name="t_107ea55b" formatted="false">"UPGRADE DISANDERA"</string>
+    <string name="t_108f4363" formatted="false">"PASANG"</string>
+    <string name="t_111611f9" formatted="false">"TEMBOK PATCH"</string>
+    <string name="t_1181f7e7" formatted="false">"AGEN DIGANGGU"</string>
+    <string name="t_11c0f105" formatted="false">"MUSIK LEVEL (OTOMATIS)"</string>
+    <string name="t_11c8546c" formatted="false">"damage"</string>
+    <string name="t_11d858aa" formatted="false">"GELOMBANG TERTINGGI"</string>
+    <string name="t_1213b2b6" formatted="false">"{0} JAM LALU"</string>
+    <string name="t_12193f21" formatted="false">"Arsitek jaringan merancang bagaimana jaringan dibagi. Segmentasi berarti pembobolan di satu area tidak bisa begitu saja masuk ke area berikutnya, sehingga kerusakan dari satu kegagalan terbatas. Ini pekerjaan desain sebelum insiden, bukan alat yang dipakai saat insiden."</string>
+    <string name="t_1248f6ec" formatted="false">"Menyimpan soundtrack memerlukan Android 10 atau lebih baru."</string>
+    <string name="t_125ca8ca" formatted="false">"PAKET PEMULA"</string>
+    <string name="t_12a36ceb" formatted="false">"DIPALSUKAN"</string>
+    <string name="t_12e8edf9" formatted="false">"BAHASA"</string>
+    <string name="t_1380e038" formatted="false">"DISANDERA · UPGRADE TERKUNCI {0} dtk"</string>
+    <string name="t_138da392" formatted="false">"Kisi yang selnya menghangat dan mendingin mengikuti lalu lintas."</string>
+    <string name="t_13df4b88" formatted="false">"FIRMWARE"</string>
+    <string name="t_13ee9782" formatted="false">"DITEMPATKAN"</string>
+    <string name="t_141ad814" formatted="false">"MASUKAN"</string>
+    <string name="t_143628e2" formatted="false">"HANYA IKLAN REVIVE · SUKARELA"</string>
+    <string name="t_1489b7f6" formatted="false">"{0} HARI LALU"</string>
+    <string name="t_14bdf6f2" formatted="false">"PERMAINAN TERPANDU BUTUH FIREWALL DULU"</string>
+    <string name="t_14c27ca9" formatted="false">"ANALYST memberi 80% damage ekstra ke elite. Agen yang mengabaikan zirah membantu."</string>
+    <string name="t_14cecaa5" formatted="false">"Membuat data tak terbaca tanpa kunci"</string>
+    <string name="t_14ecbe1d" formatted="false">"{0}/dtk"</string>
+    <string name="t_1512aeac" formatted="false">"{0} level"</string>
+    <string name="t_154419d5" formatted="false">"Dihitung terenkripsi: kebanyakan agen memberi damage berkurang."</string>
+    <string name="t_154a5adf" formatted="false">"LV"</string>
+    <string name="t_15680f7c" formatted="false">"Gunakan untuk damage FIRMWARE INTI permanen."</string>
+    <string name="t_1571a208" formatted="false">"Tempatkan dua TARPIT agar auranya menutupi area yang ditembak FIREWALL-mu. Perlambatan membuat damage mengenai sasaran."</string>
+    <string name="t_15aa2838" formatted="false">"Kisi kasar yang selnya menghangat dan mendingin mengikuti lalu lintas."</string>
+    <string name="t_15ede35d" formatted="false">"◇ {0} · tersedia sejak awal"</string>
+    <string name="t_167ae054" formatted="false">"Ini akan menghapus permainan tersimpan, semua agen yang terbuka, semua statistik, dan pengaturanmu.\n\nTindakan ini tidak dapat dibatalkan."</string>
+    <string name="t_17a13ae4" formatted="false">"Bos bergerak lambat tetapi memukul CORE-SERVER sebesar {0} integritas. Mereka memberi crypto terbanyak di game, dan makin kuat setiap siklus."</string>
+    <string name="t_17e0e9f0" formatted="false">"Laju tembak sangat tinggi, selalu membidik bos lebih dulu dari apa pun dalam jangkauan, dan memberi damage ganda ke [!!!] BREACH. Terbuka di gelombang 30 dan maksimal empat yang boleh ditempatkan."</string>
+    <string name="t_1877f7c0" formatted="false">"TIDAK TERPASANG"</string>
+    <string name="t_197d534b" formatted="false">"Gunakan € ANGGARAN — disimpan setiap gelombang kesepuluh dan tetap ada setelahnya — untuk peningkatan damage permanen bagi setiap agen."</string>
+    <string name="t_1991565e" formatted="false">"BATAS LAJU"</string>
+    <string name="t_19cbe369" formatted="false">"AGEN FAVORIT"</string>
+    <string name="t_1a155da6" formatted="false">"GELOMBANG BERIKUTNYA"</string>
+    <string name="t_1a2a0f17" formatted="false">"TERKUNCI"</string>
+    <string name="t_1a73c7da" formatted="false">"laju tembak"</string>
+    <string name="t_1aba43b0" formatted="false">"Jejak elips lambat di sekitar inti, seperti penjadwal yang sedang bekerja."</string>
+    <string name="t_1b0d8052" formatted="false">"Guncang medan saat CORE-SERVER terkena serangan"</string>
+    <string name="t_1ba327c9" formatted="false">"Serangan web paling umum"</string>
+    <string name="t_1ba41734" formatted="false">"SERANGAN DIBLOKIR"</string>
+    <string name="t_1cc19733" formatted="false">"DUNIA NYATA"</string>
+    <string name="t_1d162704" formatted="false">"Yakin ingin memulai permainan baru? Sesi tersimpanmu akan diganti."</string>
+    <string name="t_1d29935f" formatted="false">"{0} DIGANGGU"</string>
+    <string name="t_1d8fe548" formatted="false">"MULAI BARU"</string>
+    <string name="t_1dea7837" formatted="false">"HACK:AI melampaui batasnya. Setengah integritas, hadiah ganda."</string>
+    <string name="t_1deb5c00" formatted="false">"TERTAUT · OFFLINE"</string>
+    <string name="t_1e09b492" formatted="false">"🔒 [{0}] {1} · TERKUNCI"</string>
+    <string name="t_1e6ed1a9" formatted="false">"LATAR HIDUP"</string>
+    <string name="t_1ef7821b" formatted="false">"Kisi biru neon yang menjauh ke inti, dengan cincin holografik yang bergeser dari biru ke hijau."</string>
+    <string name="t_1f3159fc" formatted="false">"WARNA AGEN"</string>
+    <string name="t_1f5df304" formatted="false">"KONEKSI DIRESET"</string>
+    <string name="t_1ff44d56" formatted="false">"LISENSI DITEGAKKAN"</string>
+    <string name="t_20ce505d" formatted="false">"JEDA"</string>
+    <string name="t_21399575" formatted="false">"PENGEMBANG"</string>
+    <string name="t_2198b685" formatted="false">"Tampilkan radius pindai agen yang dipilih"</string>
+    <string name="t_21bb43e3" formatted="false">"{0} · LEVEL APA PUN"</string>
+    <string name="t_22100250" formatted="false">"LEVEL {0} · MAKS"</string>
+    <string name="t_224d65ed" formatted="false">"SKIN CORE-SERVER"</string>
+    <string name="t_22686e59" formatted="false">"KONEKSI"</string>
+    <string name="t_227cde14" formatted="false">"{0} di {1}"</string>
+    <string name="t_2283d7ca" formatted="false">"NODE TERISI"</string>
+    <string name="t_22b6479a" formatted="false">"Spesialis operasi siber menjalankan pertahanan sebagai operasi langsung: mengawasi gangguan, menjaga alat tim tetap berjalan saat ada yang aktif mencoba mematikannya, dan langsung menyerang sumbernya."</string>
+    <string name="t_22c4ef22" formatted="false">"Isinya diacak, jadi kebanyakan pertahanan tidak bisa membaca apa yang mereka tembak dan hanya memberi sebagian damage. Agen CRYPTOGRAPHER menembus sandi itu langsung."</string>
+    <string name="t_23020c53" formatted="false">" · {0} terjangkau"</string>
+    <string name="t_236f5b12" formatted="false">"TOTAL BOS DIKALAHKAN"</string>
+    <string name="t_23763c89" formatted="false">"PENGATURAN"</string>
+    <string name="t_23961a76" formatted="false">"BOS {0} DARI {1} · KETUK BOS UNTUK BERALIH"</string>
+    <string name="t_24adcafc" formatted="false">"TOTAL DAMAGE KE SERVER"</string>
+    <string name="t_24bbb47b" formatted="false">"ITEM TERKUNCI"</string>
+    <string name="t_24d3a2ef" formatted="false">"TEMBOK RUNTUH"</string>
+    <string name="t_255b5911" formatted="false">"Hijau fosfor CRT, garis pindai, dan sapuan penyegaran."</string>
+    <string name="t_2570d23e" formatted="false">"Pusatkan tembakan. ANALYST dan ROOT ADMIN memikul gelombang bos."</string>
+    <string name="t_25a6b96b" formatted="false">"Damage jarak menengah yang andal dengan harga murah, dan satu-satunya agen yang kebal JAM bos. Jangkauannya pendek, jadi harus berdiri dekat jalur — justru karena itu kekebalan tersebut penting."</string>
+    <string name="t_25bd1975" formatted="false">"DMG"</string>
+    <string name="t_25efb9da" formatted="false">"RADIUS LEDAKAN"</string>
+    <string name="t_260d60b1" formatted="false">"SATU IKLAN SETELAH KALAH · REVIVE SUKARELA"</string>
+    <string name="t_26b80d1f" formatted="false">"SELESAI"</string>
+    <string name="t_27a68119" formatted="false">"STATUS JARINGAN"</string>
+    <string name="t_27d9802d" formatted="false">"SATU IKLAN SETELAH KALAH"</string>
+    <string name="t_27daad70" formatted="false">"Embun beku merayap dari tepi."</string>
+    <string name="t_28c31125" formatted="false">"Berzirah dan sabar. Serangan tunggal yang berat mengalahkannya; tembakan cepat sia-sia."</string>
+    <string name="t_28e339dd" formatted="false">"Kolom karakter jatuh yang jarang di belakang medan."</string>
+    <string name="t_296fb456" formatted="false">"PERBAIKAN +{0} HP · SETIAP {1} dtk · SLOT CORE-SERVER · MAKS {2}"</string>
+    <string name="t_297ae895" formatted="false">"DIKARANTINA"</string>
+    <string name="t_2a1bde6e" formatted="false">"Sistem Pencegahan Intrusi berada di jalur lalu lintas dan diizinkan bertindak atas apa yang dideteksinya, memutus atau mereset koneksi alih-alih hanya memberi peringatan. Konsekuensinya nyata: IPS yang salah menilai lalu lintas sah akan memblokirnya."</string>
+    <string name="t_2a934539" formatted="false">"ASAL SERANGAN"</string>
+    <string name="t_2a9b95e6" formatted="false">"Memberi ×{0} damage ke setiap bos."</string>
+    <string name="t_2bb9a482" formatted="false">"Firewall memeriksa lalu lintas terhadap daftar aturan dan membuang apa pun yang tidak cocok. Ini pertahanan perimeter tertua dan masih yang terpenting."</string>
+    <string name="t_2be00c84" formatted="false">"UBAH CALLSIGN"</string>
+    <string name="t_2c13b917" formatted="false">"Memberi ×{0} damage ke {1}."</string>
+    <string name="t_2ce4713d" formatted="false">"&gt; menyinkronkan CORE-SERVER"</string>
+    <string name="t_2d14c154" formatted="false">"Arus data diagonal lambat melintasi medan."</string>
+    <string name="t_2dcb788c" formatted="false">"Game ini dikembangkan dengan bantuan alat kecerdasan buatan, yang digunakan sebagai sarana pendidikan dan pengembangan selama belajar pemrograman dan pengembangan perangkat lunak.\n\nAlat AI membantu di bidang seperti pengembangan kode, pemecahan masalah, dokumentasi, dan pembelajaran. Keputusan desain akhir, arah gameplay, pengujian, dan keputusan publikasi tetap menjadi tanggung jawab pengembang.\n\nGame ini tidak dibuat, disponsori, didukung, dimiliki, atau diterbitkan oleh perusahaan kecerdasan buatan mana pun."</string>
+    <string name="t_2df53561" formatted="false">"Penyaring lalu lintas berbasis aturan"</string>
+    <string name="t_2e0cf790" formatted="false">"LAINNYA"</string>
+    <string name="t_2e19cc63" formatted="false">"Bangkit sekali lagi dengan 40% nyawa. Membunuhnya tidak sama dengan menuntaskannya."</string>
+    <string name="t_2ef9e2c6" formatted="false">"SERANGAN SIBER"</string>
+    <string name="t_2f3549f7" formatted="false">"SIMPANAN CLOUD TIDAK TERSEDIA"</string>
+    <string name="t_302a4f0a" formatted="false">"DASAR"</string>
+    <string name="t_302eea27" formatted="false">"TAHU APA YANG DATANG?"</string>
+    <string name="t_3083c674" formatted="false">"HIDUP: ARUS"</string>
+    <string name="t_30867b62" formatted="false">"Bisa dimainkan sepenuhnya offline"</string>
+    <string name="t_30ed929d" formatted="false">"Buka agen ini dengan mencapai gelombang {0} di {1}."</string>
+    <string name="t_31359ec6" formatted="false">"fokus {0} mati"</string>
+    <string name="t_313900e6" formatted="false">"UPLINK ARSITEK"</string>
+    <string name="t_314d733e" formatted="false">"€ {0} tersedia"</string>
+    <string name="t_317b7de0" formatted="false">"Kode yang jatuh di dalam rak itu sendiri."</string>
+    <string name="t_31d43b93" formatted="false">"HIDUP: HUJAN"</string>
+    <string name="t_326bdc38" formatted="false">"AGEN TIDAK TERDAFTAR"</string>
+    <string name="t_32a3e9f3" formatted="false">"SPESIAL — {0}"</string>
+    <string name="t_32bafd88" formatted="false">"LANJUT"</string>
+    <string name="t_32e6f915" formatted="false">"TERJANGKAU SEKARANG"</string>
+    <string name="t_332ec80a" formatted="false">"Apa pun bisa membunuhnya. Jangan membangun berlebihan untuk mereka."</string>
+    <string name="t_33cd995a" formatted="false">"PENYUSUPAN DIBLOKIR"</string>
+    <string name="t_3425c9d3" formatted="false">"LEVEL {0}"</string>
+    <string name="t_35350bff" formatted="false">"Cincin penahanan yang berdenyut."</string>
+    <string name="t_3595e52a" formatted="false">"RUTE {0}"</string>
+    <string name="t_35c82960" formatted="false">"INTI: GLACIER"</string>
+    <string name="t_35f74be9" formatted="false">"Damage target tunggal luar biasa yang mengabaikan semua zirah. Agen termahal di game dan terbuka sangat terlambat. Menampilkan pemilih target."</string>
+    <string name="t_36900a0f" formatted="false">"Murah dan hampir tidak berbahaya. Semua yang ada di dalam radiusnya merangkak."</string>
+    <string name="t_37447c3a" formatted="false">"Laju tembak sangat tinggi, dan setiap tembakan memercik."</string>
+    <string name="t_376bc6d2" formatted="false">"Hitung mundur tetap berjalan saat ini terbuka."</string>
+    <string name="t_376c54b2" formatted="false">"HAPUS IKLAN"</string>
+    <string name="t_379656ef" formatted="false">"INTI: VOID"</string>
+    <string name="t_37bc9401" formatted="false">"Versi ini menampilkan iklan dari Google AdMob. Menonton iklan untuk melanjutkan permainan selalu opsional dan tidak pernah wajib untuk bermain."</string>
+    <string name="t_384d3555" formatted="false">"{0} aktif"</string>
+    <string name="t_384e5d9f" formatted="false">"SIMPANAN CLOUD"</string>
+    <string name="t_385b9a87" formatted="false">"Tarpit menerima koneksi jahat lalu menjawab selambat yang diizinkan, menahan penyerang di soket yang tidak ke mana-mana. Ini taktik penundaan, bukan pemblokiran: nilainya adalah waktu yang dihabiskan pihak lawan."</string>
+    <string name="t_38695d86" formatted="false">"CADANGAN PROGRES"</string>
+    <string name="t_38c1e7e0" formatted="false">"DENGAN IKLAN"</string>
+    <string name="t_38d9a5af" formatted="false">"&gt; jaringan dibobol"</string>
+    <string name="t_38e03b91" formatted="false">"TERPASANG PENUH"</string>
+    <string name="t_3950774a" formatted="false">"TERDAFTAR SEBAGAI"</string>
+    <string name="t_395af116" formatted="false">"PERETASAN ANONIM"</string>
+    <string name="t_396e8daa" formatted="false">"SPEKTRUM"</string>
+    <string name="t_3a06e0fa" formatted="false">"MUSIK"</string>
+    <string name="t_3a7e7fe6" formatted="false">"JENIS BUILD"</string>
+    <string name="t_3a8a0a59" formatted="false">"Setiap serangan mempercepatnya, sekecil apa pun; ia melambat bila dibiarkan. Sedikit serangan besar mengalahkan banyak serangan kecil."</string>
+    <string name="t_3aa6f2eb" formatted="false">"ZERO-DAY HUNTER dan ROOT ADMIN sepenuhnya mengabaikan zirah."</string>
+    <string name="t_3aaad671" formatted="false">"KETUK UNTUK DETAIL"</string>
+    <string name="t_3b12a908" formatted="false">"GRADIENT makin cepat setiap terkena serangan, sekecil apa pun, dan melambat bila dibiarkan. Sedikit serangan besar mengalahkan banyak serangan kecil."</string>
+    <string name="t_3b53a59d" formatted="false">"Mulai gelombang bos otomatis juga. Mati: gelombang bos menunggumu"</string>
+    <string name="t_3bc78174" formatted="false">"PENGEMBANGAN DIBANTU AI"</string>
+    <string name="t_3c66aec8" formatted="false">"Gelombang, agen, € dan firmware-mu disimpan ke akun Google-mu. Masuk ke akun itu di perangkat lain dan semuanya ada di sana. Sinkron saat kamu keluar dari game dan saat permainan berakhir."</string>
+    <string name="t_3cef355d" formatted="false">"Sisa nyawa tertinggi"</string>
+    <string name="t_3d17c701" formatted="false">"LONJAKAN KECEPATAN"</string>
+    <string name="t_3d331382" formatted="false">"Jalur yang dilalui lalu lintas"</string>
+    <string name="t_3d509ddc" formatted="false">"Bagi dua frame rate dan hilangkan efek dekoratif"</string>
+    <string name="t_3d83d177" formatted="false">"AGEN SIBER"</string>
+    <string name="t_3db03eca" formatted="false">"REKORMU"</string>
+    <string name="t_3e12b118" formatted="false">"BANTUAN"</string>
+    <string name="t_3e27e12f" formatted="false">"Sisa nyawa terendah"</string>
+    <string name="t_3ecdd82e" formatted="false">"Zero-day adalah kerentanan yang tidak sempat diperbaiki pembela sama sekali, karena tidak ada yang tahu keberadaannya. Tidak ada tanda tangan untuk dicocokkan, dan itulah yang membuatnya sangat berbahaya."</string>
+    <string name="t_3fa2aee2" formatted="false">"Menerima 35% lebih sedikit damage dari agen FIREWALL."</string>
+    <string name="t_401924c3" formatted="false">"SKIN CORE-SERVER"</string>
+    <string name="t_4071c698" formatted="false">"Google Play menjawab. Pembelian dan pemulihan berjalan normal."</string>
+    <string name="t_40b15bdb" formatted="false">"Disimpan setiap gelombang kesepuluh. Makin dalam permainan, makin besar bayarannya — hadiahnya tumbuh sebesar kuadrat tonggaknya, jadi satu permainan dalam mengalahkan lima permainan dangkal."</string>
+    <string name="t_4104a0b2" formatted="false">"Terbaikmu di {0}: gelombang {1}"</string>
+    <string name="t_4108bc91" formatted="false">"JABAT TANGAN DITOLAK"</string>
+    <string name="t_41203058" formatted="false">"PERLENGKAPAN"</string>
+    <string name="t_412ea11f" formatted="false">"Ketuk dua node penempatan yang disorot di samping rute. Dua bukan saran: satu agen tidak bisa menjaga jalur sendirian."</string>
+    <string name="t_419c5ded" formatted="false">"TOTAL PERMAINAN"</string>
+    <string name="t_41a1b85e" formatted="false">"OPSI PRIVASI"</string>
+    <string name="t_41ca8ef5" formatted="false">"Disimpan lokal di perangkat ini · tidak ada yang diunggah"</string>
+    <string name="t_41e88f52" formatted="false">"Cubit dengan dua jari untuk memperbesar papan — node lebih mudah diketuk dari dekat. Saat diperbesar, seret dengan satu jari untuk bergerak. Cubit sampai habis untuk melihat seluruh papan lagi."</string>
+    <string name="t_4208e473" formatted="false">"TANPA IKLAN"</string>
+    <string name="t_420bd000" formatted="false">"BOTMASTER menjatuhkan BOT di belakangnya setiap beberapa detik. Bunuh cepat, dan sisakan sesuatu untuk gerombolannya."</string>
+    <string name="t_4273a8be" formatted="false">"AKUN"</string>
+    <string name="t_42832744" formatted="false">"Tanpa judi, kotak jarahan, atau hadiah berbayar acak"</string>
+    <string name="t_42880e6f" formatted="false">"TERKUNCI · {0}"</string>
+    <string name="t_42a0e053" formatted="false">"TENTANG"</string>
+    <string name="t_42addf6c" formatted="false">"BUKA TOKO"</string>
+    <string name="t_42afe7bc" formatted="false">"MENYAMBUNGKAN"</string>
+    <string name="t_42ef8058" formatted="false">"REKOR PERTAHANAN"</string>
+    <string name="t_4306ee12" formatted="false">"ANGGARAN €1,500"</string>
+    <string name="t_4333987a" formatted="false">"Kolom karakter jatuh yang jarang."</string>
+    <string name="t_43a1c2e8" formatted="false">"BIAYA UPGRADE"</string>
+    <string name="t_441ec9a9" formatted="false">"Tur singkat menu. LANJUT untuk meneruskan, LEWATI untuk menutup. Kamu bisa memutarnya ulang kapan saja dari PENGATURAN."</string>
+    <string name="t_4427afab" formatted="false">"Zirah menumpulkan serangan kecil: bawa ANALYST atau ROOT ADMIN, bukan IPS."</string>
+    <string name="t_4439e789" formatted="false">"TERKUNCI · Selesaikan level 5 (bersihkan gelombang 100 di DDoS) untuk membuka pemutar musik dan daftar lagu."</string>
+    <string name="t_448177d3" formatted="false">"SINKRON TERAKHIR"</string>
+    <string name="t_4494c488" formatted="false">"{0} MNT LALU"</string>
+    <string name="t_44c51c30" formatted="false">"SERANGAN DIBLOKIR"</string>
+    <string name="t_44fbbc54" formatted="false">"&gt; !! serangan siber datang — pembobolan besar menuju !!"</string>
+    <string name="t_4538f2a7" formatted="false">"Firewall memeriksa lalu lintas terhadap seperangkat aturan dan membuang apa pun yang tidak diizinkan aturan. Biasanya ini kontrol pertama antara jaringan tak tepercaya dan sesuatu yang layak dilindungi, dan dinilai dari aturan yang diberikan, bukan dari kepintarannya."</string>
+    <string name="t_45b17976" formatted="false">"Damage target tunggal yang berat, sama di setiap tembakan bukan untung-untungan, dan mengabaikan zirah. Mahal dan lambat; satu saja tidak bisa menahan jalur."</string>
+    <string name="t_4631883a" formatted="false">"PASANG MAKS  (+{0})"</string>
+    <string name="t_463cbc28" formatted="false">"NYAWA ×{0} · ZIRAH +{1} · KECEPATAN ×{2}"</string>
+    <string name="t_466578df" formatted="false">"Lanjutkan gelombang ini dengan setengah integritas."</string>
+    <string name="t_466b92a9" formatted="false">"UPLINK SEGMEN"</string>
+    <string name="t_46984fe6" formatted="false">"MAIN · LANJUTKAN"</string>
+    <string name="t_46cc0ef8" formatted="false">"Ini juga menaikkan ◇ crypto yang dibayar setiap permainan, +{0}% per level hingga dua kali lipat. Tidak memengaruhi nyawa musuh atau susunan gelombang."</string>
+    <string name="t_4735c1ed" formatted="false">"Serangan siber menuju CORE-SERVER. Tempatkan Agen Siber di samping rute untuk menghentikannya sebelum tiba."</string>
+    <string name="t_4747b424" formatted="false">"MUSUH"</string>
+    <string name="t_477d52c6" formatted="false">"Tertaut. Masuk ke akun Google yang sama di ponsel atau tablet lain dan progresmu ada di sana."</string>
+    <string name="t_47c5c237" formatted="false">"NODE TIDAK VALID"</string>
+    <string name="t_485268f0" formatted="false">"&gt; mempersenjatai agen siber"</string>
+    <string name="t_4882e1dc" formatted="false">"KERNEL PANIC mengganggu setiap agen dalam jangkauan selama 3 detik saat mati. FIREWALL tetap bertahan."</string>
+    <string name="t_488d4b25" formatted="false">"Ribuan mesin mengirim lalu lintas ke satu target sekaligus. Tidak ada permintaan tunggal yang merupakan serangan; banjirnya yang menyerang. Tujuannya bukan masuk, melainkan membuat layanan tak bisa dipakai."</string>
+    <string name="t_4905ed7b" formatted="false">"TIDAK ADA"</string>
+    <string name="t_494c304d" formatted="false">"-◇{0} DICURI"</string>
+    <string name="t_49848f53" formatted="false">"BLIND SQL INJECTION"</string>
+    <string name="t_498754a7" formatted="false">"SIMPAN SOUNDTRACK KE PONSEL"</string>
+    <string name="t_4af4306b" formatted="false">"BUILD"</string>
+    <string name="t_4c1012d3" formatted="false">"Terus tembaki: ia hanya memperbaiki diri setelah beberapa saat tak terkena, jadi tutup celah di antara zona pembantaian."</string>
+    <string name="t_4c6d3272" formatted="false">"🔒 TERKUNCI"</string>
+    <string name="t_4cc6f55a" formatted="false">"Google Play Game tidak dapat dijangkau. Permainanmu dicatat di perangkat ini dan yang terbaik diunggah saat permainan berikutnya berakhir ketika kamu online."</string>
+    <string name="t_4d54c785" formatted="false">"MENEMPATKAN {0} — ketuk node"</string>
+    <string name="t_4d6e69d2" formatted="false">"PEMUTAR MUSIK"</string>
+    <string name="t_4d7ab8a3" formatted="false">"CALLSIGN"</string>
+    <string name="t_4e2b3472" formatted="false">"TIDAK ADA SESI TERSIMPAN"</string>
+    <string name="t_4ebbf8bd" formatted="false">"Sisa {0} revive di permainan ini."</string>
+    <string name="t_4f0fcb18" formatted="false">"Datang setiap gelombang kelima"</string>
+    <string name="t_4f160176" formatted="false">"Permainan panen. Tanpa trik, tanpa gangguan — dua puluh persen lebih banyak darinya dibanding apa pun di papan."</string>
+    <string name="t_5022c684" formatted="false">"ENKRIPSI"</string>
+    <string name="t_5067a989" formatted="false">"RANTAI TERJERAT"</string>
+    <string name="t_5079b771" formatted="false">"Buka agen ini dengan mencapai gelombang {0} di {1} dalam mode {2}."</string>
+    <string name="t_509d7851" formatted="false">" · DAMPAK {0}"</string>
+    <string name="t_513901c7" formatted="false">" · BEBAS IKLAN"</string>
+    <string name="t_513dcdc9" formatted="false">"PER AGEN"</string>
+    <string name="t_520a6b88" formatted="false">"Setiap level sedikit lebih mahal dari sebelumnya, jadi pengalinya terus naik tetapi tidak pernah lepas kendali. Tidak ada batas yang realistis kamu capai."</string>
+    <string name="t_5333e76e" formatted="false">"RENDER"</string>
+    <string name="t_53e605b3" formatted="false">"AWAS"</string>
+    <string name="t_543ce9f7" formatted="false">"SETIAP"</string>
+    <string name="t_54523d94" formatted="false">"Rak tempat intimu dibangun. Terlihat di medan perang."</string>
+    <string name="t_54743050" formatted="false">"TOTAL SERANGAN DIBLOKIR"</string>
+    <string name="t_54797d92" formatted="false">"Jejak sirkuit yang berjalan di bawah tampilan."</string>
+    <string name="t_549824f8" formatted="false">"PORT AMAN"</string>
+    <string name="t_5571a722" formatted="false">"BISA OFFLINE · TANPA LOGIN"</string>
+    <string name="t_55f85167" formatted="false">"MENU AGEN RINGKAS"</string>
+    <string name="t_565a738e" formatted="false">"TIDAK, BIARKAN AKU MAIN"</string>
+    <string name="t_56a9a004" formatted="false">"Injeksi dalam gelap"</string>
+    <string name="t_56bafb67" formatted="false">"Satu revive per permainan."</string>
+    <string name="t_56c54890" formatted="false">"Model yang membengkak: nyawa sedikit lebih banyak, sedikit lebih lambat."</string>
+    <string name="t_56c6b2ae" formatted="false">"Kebebasan fiksi, ditandai jelas: agen ini cukup mengabaikan sifat ENCRYPTED alih-alih diperlambat olehnya, dan memberi damage tiga kali lipat ke apa pun yang memilikinya. Kriptografi nyata tidak bekerja seperti ini dan tidak ada apa pun di sini yang membobol sandi nyata."</string>
+    <string name="t_5749c8dc" formatted="false">"Gelombang {0} dan semua yang ditempatkan akan hilang."</string>
+    <string name="t_5785b710" formatted="false">"Pilih agen, lalu ketuk node penempatan yang disorot."</string>
+    <string name="t_57f88861" formatted="false">"FOKUS: HANYA BOS"</string>
+    <string name="t_582ec4a0" formatted="false">"Komputer yang dibobol diam-diam menerima perintah dari pengendali pusat. Pemiliknya biasanya tidak tahu. Botnet-lah yang memungkinkan serangan DDoS besar."</string>
+    <string name="t_5840893d" formatted="false">"PENYUSUPAN DIBENDUNG"</string>
+    <string name="t_58a5f08a" formatted="false">"Kisi polos. Tanpa gerakan."</string>
+    <string name="t_597ee3cb" formatted="false">"TANDA TANGAN COCOK"</string>
+    <string name="t_5a02fc0a" formatted="false">"PAKET REVIVE"</string>
+    <string name="t_5a3d8598" formatted="false">"Terdekat ke CORE-SERVER"</string>
+    <string name="t_5a911db6" formatted="false">"AKUN GOOGLE-MU"</string>
+    <string name="t_5aa1d1dc" formatted="false">"fokus {0} nyala"</string>
+    <string name="t_5b19a621" formatted="false">"Serangan terhadap celah yang belum ditambal siapa pun — pembela tidak punya waktu sama sekali untuk bersiap. Langka, tangguh, dan layak crypto sungguhan untuk dihentikan."</string>
+    <string name="t_5c19fc6b" formatted="false">"BELI SOUNDTRACK CyOps TD · {0}"</string>
+    <string name="t_5c3f86fb" formatted="false">"TERKUAT"</string>
+    <string name="t_5d1868fb" formatted="false">"INTI"</string>
+    <string name="t_5d377851" formatted="false">"Upgrade permanen · setiap pertandingan mulai sekarang"</string>
+    <string name="t_5d4d0273" formatted="false">"{0} terkunci: {1}."</string>
+    <string name="t_5de47a9b" formatted="false">"SEMUA TINGKAT KESULITAN"</string>
+    <string name="t_5de55828" formatted="false">"!! INTEGRITAS RENDAH !!"</string>
+    <string name="t_5e75065a" formatted="false">"TERHUBUNG"</string>
+    <string name="t_5f2258c9" formatted="false">"Uang di sebelah kiri. Disimpan setiap gelombang kesepuluh dan tetap ada saat permainan berakhir. Permainan lebih dalam membayar jauh lebih banyak."</string>
+    <string name="t_5fd47bcf" formatted="false">"INTI: MERIDIAN"</string>
+    <string name="t_602fffef" formatted="false">"Semua kecuali CRYPTOGRAPHER kehilangan lebih dari setengah damage-nya di sini."</string>
+    <string name="t_6049b1e7" formatted="false">"LATAR HIDUP"</string>
+    <string name="t_60a5a04c" formatted="false">"Jeda musik"</string>
+    <string name="t_60ecea1a" formatted="false">"MUTLAK"</string>
+    <string name="t_60f81814" formatted="false">"Setiap {0} detik LICENSE menghabiskan {1} untuk mengabaikan jenis agen apa pun yang terus memukulnya. Campur jenis agenmu."</string>
+    <string name="t_61919374" formatted="false">"BANGKIT LAGI — ia tidak akan kembali lagi"</string>
+    <string name="t_61ebe734" formatted="false">"GUNCANGAN LAYAR"</string>
+    <string name="t_625afb79" formatted="false">"Dimiliki. Disimpan ke Music/CyOps TD sebagai \"CyOps TD - Level X (Y)\"."</string>
+    <string name="t_628c7cd9" formatted="false">"RINCIAN PENEMPATAN AGEN"</string>
+    <string name="t_62f8af50" formatted="false">"+{0} HP / {1} dtk"</string>
+    <string name="t_63374e04" formatted="false">"MENU UTAMA"</string>
+    <string name="t_633e8e1a" formatted="false">"Pecah menjadi tiga cacing lebih kecil saat dibunuh, dan masing-masing pecah sekali lagi. Damage percikan adalah temanmu."</string>
+    <string name="t_6343926d" formatted="false">"GANGGUAN"</string>
+    <string name="t_638aaa93" formatted="false">"JUGA MUNCUL DI SINI"</string>
+    <string name="t_63b00a3c" formatted="false">"Data yang dikirim lewat jaringan dipotong menjadi paket: potongan kecil dengan alamat tujuan dan muatan. Paket bukan serangan — hampir semuanya lalu lintas biasa. Yang kamu tembak di sini adalah paket yang membawa serangan tertentu, karena itulah masing-masing dinamai menurut serangannya, bukan paketnya."</string>
+    <string name="t_63b54927" formatted="false">"3 revive per permainan dan tak pernah ada iklan revive, plus €5,000."</string>
+    <string name="t_63bef594" formatted="false">"HP {0}"</string>
+    <string name="t_63f3d76a" formatted="false">"SIMPAN"</string>
+    <string name="t_63facb82" formatted="false">"HIDUP: DENYUT"</string>
+    <string name="t_6480a147" formatted="false">"GELOMBANG {0}  —  PERKUAT PERIMETER"</string>
+    <string name="t_648a945b" formatted="false">"DUA HAL YANG TAK DIBERI TAHU SIAPA PUN"</string>
+    <string name="t_6490c689" formatted="false">"Tanpa mata uang kripto nyata, blockchain, dompet, penambangan, atau NFT"</string>
+    <string name="t_64d398f9" formatted="false">"JANGKAUAN"</string>
+    <string name="t_65155738" formatted="false">"KECEPATAN 5×"</string>
+    <string name="t_65252ce7" formatted="false">"PERTAMA"</string>
+    <string name="t_6554cde7" formatted="false">"Menanyakan Google Play apa yang dimiliki akun ini. Biasanya hanya sebentar."</string>
+    <string name="t_655c9284" formatted="false">"HIDUP: KISI"</string>
+    <string name="t_656e6ce8" formatted="false">"AGEN"</string>
+    <string name="t_65c8fd90" formatted="false">"BRIEFING ANCAMAN"</string>
+    <string name="t_6678bfdf" formatted="false">"Saat mati, setiap agen di dekatnya diganggu selama 3 detik. Bunuh jauh dari papanmu, atau saat gelombang berikutnya masih jauh."</string>
+    <string name="t_66fa85d7" formatted="false">"Sebar agenmu agar satu gangguan tidak membungkam seluruh barisan."</string>
+    <string name="t_6700226a" formatted="false">"TERTAUT"</string>
+    <string name="t_67043715" formatted="false">"ZIRAH"</string>
+    <string name="t_67313d46" formatted="false">"TEMBOK BERDIRI"</string>
+    <string name="t_6757b458" formatted="false">"SERANGAN DIHENTIKAN"</string>
+    <string name="t_6813ef42" formatted="false">"PERETASAN ANONIM — {0} BOT DATANG DENGAN KECEPATAN GANDA"</string>
+    <string name="t_681745bd" formatted="false">"AGEN TERKUNCI — {0}"</string>
+    <string name="t_682d973f" formatted="false">"MULAI"</string>
+    <string name="t_68e88af7" formatted="false">"ZONA BAHAYA"</string>
+    <string name="t_68e985d6" formatted="false">"Tidak ada hal lain yang dikirim ke mana pun. Game ini bisa dimainkan tanpa jaringan sama sekali."</string>
+    <string name="t_6904aeb4" formatted="false">"GAME"</string>
+    <string name="t_69698cdc" formatted="false">"WORM pecah menjadi tiga cacing lebih kecil saat dibunuh, dan itu pecah sekali lagi. Bunuh lebih awal, dengan damage percikan di dekatnya."</string>
+    <string name="t_69a293c4" formatted="false">"SUDO TERMINATE"</string>
+    <string name="t_6ad356c5" formatted="false">"Tiga rute: satu lurus di tengah, dua yang zig-zag di atas dan di bawahnya."</string>
+    <string name="t_6b2d8165" formatted="false">"LV {0}  {1} DMG"</string>
+    <string name="t_6c161f51" formatted="false">"Selama 2 detik dari setiap 17, ia mengabaikan jenis agen apa pun yang terus memukulnya. Papan yang beragam tetap melukainya."</string>
+    <string name="t_6c7aa396" formatted="false">"Bos berbeda, kelemahan berbeda."</string>
+    <string name="t_6ca9de88" formatted="false">"AGEN SPEKTRUM"</string>
+    <string name="t_6cb7e8e3" formatted="false">"Serangan lambat dan berat. +80% damage ke elite dan bos."</string>
+    <string name="t_6cbf7c76" formatted="false">"BOS DIKALAHKAN"</string>
+    <string name="t_6ccdc653" formatted="false">"Mengabaikan enkripsi sepenuhnya dan memberi damage tiga kali lipat padanya."</string>
+    <string name="t_6cedde69" formatted="false">"VOLUME MUSIK"</string>
+    <string name="t_6d2d6d6b" formatted="false">"Mengabaikan zirahnya."</string>
+    <string name="t_6d907c0d" formatted="false">"\"Tim biru\" mempertahankan sistem dan merespons insiden — pasangan dari tim merah. \"Topi biru\" dipakai dengan lebih dari satu cara di industri dan bukan istilah baku, jadi hanya arti tim biru yang dijelaskan di sini."</string>
+    <string name="t_6dbe0ea3" formatted="false">"LEVEL"</string>
+    <string name="t_6f053419" formatted="false">"BATAS {0} — MAKS {1}"</string>
+    <string name="t_6f21a684" formatted="false">"BOS — setiap gelombang kelima"</string>
+    <string name="t_70d42172" formatted="false">"Membagi jaringan agar pembobolan di satu area tidak menjangkau sisanya. Karena itulah satu laptop yang dibobol tidak seharusnya berarti seluruh perusahaan dibobol."</string>
+    <string name="t_7191bf1d" formatted="false">"PERSISTENSI"</string>
+    <string name="t_71c5931f" formatted="false">"Hemat baterai hanya mengubah apa yang digambar. Kesulitan gelombang, damage, dan waktu sama sekali tidak terpengaruh."</string>
+    <string name="t_72102eb0" formatted="false">"Pembelian, pemulihan, dan apa yang keluar dari perangkat ini"</string>
+    <string name="t_722a0bad" formatted="false">"PUTAR ULANG PANDUAN"</string>
+    <string name="t_73236391" formatted="false">"Game ini sendiri tidak mengumpulkan data pribadi"</string>
+    <string name="t_735d4940" formatted="false">"VOLUME EFEK SUARA"</string>
+    <string name="t_73907e76" formatted="false">"Semua 24 lagu dari game, disimpan ke folder Music ponselmu untuk diputar di mana saja."</string>
+    <string name="t_7397fdaa" formatted="false">"Cahaya dingin yang bergerak di balik segalanya."</string>
+    <string name="t_739a7f7a" formatted="false">"© {0} {1}. Hak cipta dilindungi."</string>
+    <string name="t_73d812dc" formatted="false">"Setiap gelombang kelima, dan apa yang dibawanya"</string>
+    <string name="t_73e8cb50" formatted="false">"Kode asli, karya seni asli, audio sintesis asli. Dibuat dengan Kotlin, Jetpack Compose, dan Android Canvas API.\n\nIkon: CoreUI Icons Free oleh creativeLabs (coreui.io/icons), berlisensi CC BY 4.0.\n\nLisensi dependensi pihak ketiga tercantum di LICENSES.md di repositori proyek."</string>
+    <string name="t_74066c59" formatted="false">"DALAM GAME"</string>
+    <string name="t_746ab6c3" formatted="false">"IPS memberi 35% damage ekstra ke gerombolan. Tempatkan di tempat jalur bertemu."</string>
+    <string name="t_746d814e" formatted="false">"Menghapus permainan tersimpan, agen terbuka, statistik, dan pengaturan. Tindakan ini tidak dapat dibatalkan."</string>
+    <string name="t_74aa6c59" formatted="false">"€ ANGGARAN TIDAK CUKUP"</string>
+    <string name="t_74fff44e" formatted="false">"Membuat salinan umpan dirinya yang menyerap tembakan. ANALYST dan ROOT ADMIN bisa melihat tembus."</string>
+    <string name="t_750800eb" formatted="false">"Menembak secepat apa pun di tim dan selalu menembak bos lebih dulu. Damage ganda ke [GG] GOOD GAME. Maksimal empat."</string>
+    <string name="t_7596436a" formatted="false">"Insinyur keamanan senior bergelar sarjana keamanan siber, yang menghentikan serangan dengan membangun perangkat lunak yang bertahan dari serangan itu: layanan yang diperkuat, patch, dan filter yang sudah terpasang sebelum serangan tiba, bukan sesudahnya."</string>
+    <string name="t_75b191e4" formatted="false">"Membangun tembok melintang di rute terdekat dalam jangkauannya. Ancaman berhenti di tembok dan harus menghancurkannya sebelum bisa lewat; bos menghancurkannya paling cepat. Saat runtuh, ACE membangunnya kembali setelah beberapa detik, makin kuat setiap level. Tembakannya sendiri memberi {0}× damage ke setiap bos di lima level pertama. Maksimal tiga yang boleh ditempatkan."</string>
+    <string name="t_75bd8866" formatted="false">"Pilih level dan tingkat kesulitan"</string>
+    <string name="t_75e65d90" formatted="false">"KETUK DUA KALI UNTUK MENEMPATKAN"</string>
+    <string name="t_75f24f6e" formatted="false">"Setiap beberapa detik, mengunci upgrade satu agen selama 8 detik. Upgrade sebelum ia tiba."</string>
+    <string name="t_7682806a" formatted="false">"LANGKAH 2 — PILIH FIREWALL"</string>
+    <string name="t_77212b64" formatted="false">"Ini gelombang serangan yang kamu hadapi. Terus naik selama kamu menahan server — setiap gelombang kelima membawa bos."</string>
+    <string name="t_772b21ba" formatted="false">"Pertahanan yang kamu tempatkan"</string>
+    <string name="t_77a2583e" formatted="false">"Dua hal berbeda disebut \"kuantum\" di dunia keamanan dan perlu dibedakan. Distribusi kunci kuantum memakai fisika untuk mendeteksi penyadapan pada sebuah jalur, dan hanya dipakai di lingkungan khusus yang langka. Kriptografi pasca-kuantum adalah matematika perangkat lunak biasa yang dirancang tahan terhadap komputer kuantum masa depan, dan itulah yang benar-benar sedang diterapkan."</string>
+    <string name="t_77a6da9b" formatted="false">"Cincin yang bergerak keluar dari inti."</string>
+    <string name="t_77d03aa5" formatted="false">"Injeksi buta tidak mendapat pesan kesalahan apa pun, jadi penyerang menyimpulkan jawabannya satu pertanyaan benar-atau-salah sekaligus. Lebih lambat dan jauh lebih sabar dari injeksi biasa, dan datang sudah diperkuat terhadap pertahanan yang jelas."</string>
+    <string name="t_77e5929c" formatted="false">"Ketukan pertama menampilkan jangkauan agen di titik itu; ketuk lagi untuk menempatkan"</string>
+    <string name="t_77e8896f" formatted="false">"Satu rute memotong papan dari sudut ke sudut lima kali."</string>
+    <string name="t_77f7e381" formatted="false">" · ZIRAH {0}"</string>
+    <string name="t_782074f1" formatted="false">"  ·  OTOMATIS {0}"</string>
+    <string name="t_7841323b" formatted="false">"SAPUAN BERTAHAN"</string>
+    <string name="t_78526608" formatted="false">"GELOMBANG DICAPAI"</string>
+    <string name="t_78a52e3b" formatted="false">"TERSEMBUNYI"</string>
+    <string name="t_7922c8d5" formatted="false">"Memperkuat setiap agen dalam jangkauan: +30% damage, +20% laju tembak."</string>
+    <string name="t_79a4baee" formatted="false">"&lt; KEMBALI"</string>
+    <string name="t_79fc7a80" formatted="false">"Hanya berlaku saat MULAI GELOMBANG OTOMATIS menyala"</string>
+    <string name="t_7a1f56c4" formatted="false">"SINKRONKAN SEKARANG"</string>
+    <string name="t_7aba529e" formatted="false">"Membobol enkripsinya: ×{0} damage."</string>
+    <string name="t_7abfb3c7" formatted="false">"Membelah dua saat nyawa tinggal setengah, dan bagian kedua mengambil rute lain."</string>
+    <string name="t_7b3bb73f" formatted="false">"ANCAMAN DINETRALKAN"</string>
+    <string name="t_7b84a6c4" formatted="false">"Tautkan akun Google-mu di layar GOOGLE PLAY untuk melihat papan dunia dan mengunggah ke sana. Permainanmu tetap dicatat di perangkat ini."</string>
+    <string name="t_7ba7f176" formatted="false">"+{0}% DMG"</string>
+    <string name="t_7be6fbad" formatted="false">"GELOMBANG {0} · SIMULASI BERHENTI"</string>
+    <string name="t_7bf2105b" formatted="false">"Distributed Denial of Service"</string>
+    <string name="t_7c4e4414" formatted="false">"TERAKHIR"</string>
+    <string name="t_7c6853de" formatted="false">"DUNIA · {0}"</string>
+    <string name="t_7d5cc77f" formatted="false">"TOTAL CRYPTO DIPEROLEH"</string>
+    <string name="t_7dc33bc2" formatted="false">"LEVEL MAKSIMUM TERCAPAI"</string>
+    <string name="t_7e1cf3a7" formatted="false">"PERBAIKI"</string>
+    <string name="t_7e522f64" formatted="false">"KREDIT"</string>
+    <string name="t_7e72ed35" formatted="false">"PROGRES TERSIMPAN DI AKUNMU"</string>
+    <string name="t_7e906966" formatted="false">"{0} lagu disimpan ke Music/CyOps TD."</string>
+    <string name="t_7ea71dbe" formatted="false">"Buka AGEN lagi dan pilih TARPIT. Ia tidak memberi damage — ia memperlambat setiap ancaman di dalam auranya sehingga FIREWALL-mu mendapat lebih banyak tembakan."</string>
+    <string name="t_7f11b512" formatted="false">"{0} · {1} PER PERMAINAN {2}"</string>
+    <string name="t_7fd8e294" formatted="false">"&gt; perimeter online"</string>
+    <string name="t_804ef7d5" formatted="false">"Serangan paling umum di internet, dan ancaman dasar di sini. Penyerang mengetik perintah basis data ke kolom yang seharusnya berisi nama atau kata sandi; jika aplikasi meneruskannya begitu saja, basis data menurut."</string>
+    <string name="t_80592dd9" formatted="false">"VERSI"</string>
+    <string name="t_8175c5fc" formatted="false">"INTEGRITAS CORE-SERVER"</string>
+    <string name="t_8198af01" formatted="false">"Bersembunyi 2 detik dari setiap 6: tidak ada yang bisa membidiknya. Percikan dan rantai masih mengenainya."</string>
+    <string name="t_81e23c68" formatted="false">"LAINNYA: hanya unit kecil dan elite, tidak pernah bos"</string>
+    <string name="t_8230b283" formatted="false">"IDS memberi 45% damage ekstra ke serangan cepat dan melihatnya datang lebih dulu."</string>
+    <string name="t_82966ea3" formatted="false">"HITUNGAN GELOMBANG"</string>
+    <string name="t_829e8e06" formatted="false">"Agen dalam jangkauannya tidak bisa diganggu. {0}× damage ke WHITE EYE dan BLACK EYE. Maksimal dua."</string>
+    <string name="t_82a1fee3" formatted="false">"Yakin ingin memulai ulang permainanmu?"</string>
+    <string name="t_82a70835" formatted="false">"Tanpa tautan, progres permainan hanya ada di perangkat ini. Uninstall atau reset pabrik menghapusnya; pembelian tetap selamat dari keduanya."</string>
+    <string name="t_830a30fd" formatted="false">"ANGGARAN"</string>
+    <string name="t_830b01d9" formatted="false">"Firmware melipatgandakan damage setiap agen yang kamu tempatkan, di setiap pertandingan mulai sekarang. Diterapkan sebelum zirah dan sebelum tabel penangkal, jadi membantu Cryptographer melawan enkripsi sama persis seperti membantu Firewall melawan lalu lintas biasa."</string>
+    <string name="t_831712ed" formatted="false">"AGEN SIBER BARU TERBUKA"</string>
+    <string name="t_83186dce" formatted="false">"HANYA PERANGKAT INI"</string>
+    <string name="t_8340a76d" formatted="false">"MENGAPA PENTING"</string>
+    <string name="t_838b0928" formatted="false">"Memunculkan serangan pengawal saat maju."</string>
+    <string name="t_8478f19e" formatted="false">"APA YANG KELUAR DARI PERANGKAT INI"</string>
+    <string name="t_848f3f46" formatted="false">"HAPUS SEMUA PROGRES?"</string>
+    <string name="t_852bda75" formatted="false">"KODEKS"</string>
+    <string name="t_862b3f34" formatted="false">"TEMPATKAN AGEN SIBER"</string>
+    <string name="t_869cf6b4" formatted="false">"DAFTARKAN CALLSIGN"</string>
+    <string name="t_86cce90c" formatted="false">"TERLEMAH"</string>
+    <string name="t_87442b62" formatted="false">"GELOMBANG BERIKUTNYA · BREACH"</string>
+    <string name="t_87a9dd3e" formatted="false">"GELOMBANG, € DAN FIRMWARE"</string>
+    <string name="t_87d92d69" formatted="false">"Jangkauan deteksi sangat jauh; +45% damage ke serangan cepat."</string>
+    <string name="t_8806feca" formatted="false">"Enam skin CORE-SERVER, plus €2,000. NEONGRID dijual terpisah."</string>
+    <string name="t_882561c2" formatted="false">"PENILAIAN ANCAMAN"</string>
+    <string name="t_891fc63b" formatted="false">"PEMALSUAN HILANG"</string>
+    <string name="t_8980d82b" formatted="false">"{0} dipilih — ketuk node yang disorot untuk menempatkan."</string>
+    <string name="t_899bae42" formatted="false">"Opsional. Semua di game berfungsi tanpa menautkan, dan tidak ada yang diunggah selain progresmu."</string>
+    <string name="t_89a47932" formatted="false">"Putar musik"</string>
+    <string name="t_89c7b011" formatted="false">"Buka lagi formulir persetujuan Google untuk mengubah apa yang boleh dilakukan mitra iklan dengan data dari perangkat ini. Progres game-mu disimpan di perangkat ini dan tidak pernah menjadi bagiannya."</string>
+    <string name="t_89d7c51c" formatted="false">"Pergi, kembali, lalu jalan pulang panjang bersama ke rak."</string>
+    <string name="t_89dd34f8" formatted="false">"Serahkan pembersihan gerombolan ke IPS agar penembak beratmu tetap di bos."</string>
+    <string name="t_89e1b0eb" formatted="false">"Medannya menarik GRADIENT turun lagi saat ia mempercepat."</string>
+    <string name="t_89e450ea" formatted="false">"DIHAPUS · IKLAN REVIVE TERPISAH"</string>
+    <string name="t_8a058fa3" formatted="false">"Kurva standar."</string>
+    <string name="t_8a86921d" formatted="false">"Tombol di kanan bisa digulir. Di bawahnya: TOKO, PERLENGKAPAN (pakai skin dan latar), GOOGLE PLAY (pembelian dan simpanan cloud), PAPAN PERINGKAT, KODEKS (ancaman dan agen dijelaskan), STATISTIK, PENGATURAN, dan TENTANG."</string>
+    <string name="t_8a96f0aa" formatted="false">"TIDAK TERSEDIA"</string>
+    <string name="t_8aa097b1" formatted="false">"  (TERKUNCI)"</string>
+    <string name="t_8aec13a9" formatted="false">"Distributed Denial of Service: volumelah serangannya. Setiap permintaan sepele, tetapi datang lebih cepat dari apa pun di game dan selalu ada lagi."</string>
+    <string name="t_8af0e8d8" formatted="false">"Upaya pembobolan terkoordinasi. Tanpa trik, hanya bobot."</string>
+    <string name="t_8b094c6c" formatted="false">"Menyambung ke Google Play…"</string>
+    <string name="t_8c42a507" formatted="false">"Jarum es yang memancar dari inti yang membeku."</string>
+    <string name="t_8c61de92" formatted="false">"MULAI GELOMBANG OTOMATIS"</string>
+    <string name="t_8d56a5da" formatted="false">"Jejak elips lambat yang mengitari inti."</string>
+    <string name="t_8d91a14b" formatted="false">"GOOGLE PLAY"</string>
+    <string name="t_8d9dd637" formatted="false">"BOS: hanya menembak bos, selain itu menahan tembakan"</string>
+    <string name="t_8e0413ab" formatted="false">"Versi ini tidak memiliki pembelian dalam aplikasi."</string>
+    <string name="t_8e3787c1" formatted="false">"TERKUNCI · {0} (terbaik: {1})"</string>
+    <string name="t_8f0536a7" formatted="false">"PASANG MAKS"</string>
+    <string name="t_8f37a712" formatted="false">"DAMAGE DIBERIKAN"</string>
+    <string name="t_8f48da3c" formatted="false">"JARINGAN DIBOBOL"</string>
+    <string name="t_8f5d0f11" formatted="false">"EKONOMI"</string>
+    <string name="t_8f61abf9" formatted="false">"MEMPROSES…"</string>
+    <string name="t_8f68a3ab" formatted="false">"&gt; memuat tanda tangan ancaman"</string>
+    <string name="t_8ff6e51c" formatted="false">"Belum ada permainan tercatat di {0}."</string>
+    <string name="t_90391726" formatted="false">"LANJUTKAN"</string>
+    <string name="t_910b3ae9" formatted="false">"Uang yang didapat untuk membeli agen pembela server. Crypto◇ didapat dari setiap kill dan setiap gelombang yang selesai."</string>
+    <string name="t_915c2f22" formatted="false">"{0} lagu disimpan, lalu ponsel menolak sisanya. Kosongkan sedikit ruang dan coba lagi."</string>
+    <string name="t_919816cc" formatted="false">"Google Play tidak dapat dijangkau. Apa pun yang sudah dibeli tetap milikmu — coba PULIHKAN setelah kembali online."</string>
+    <string name="t_91ae1cd3" formatted="false">"Glosarium bahasa sederhana"</string>
+    <string name="t_91d4d5fc" formatted="false">"TERSEDIA · ◇ {0}"</string>
+    <string name="t_9231c915" formatted="false">"Cincin penahanan amber di sekitar reaksi yang berjalan."</string>
+    <string name="t_933bf2fb" formatted="false">"HAPUS IKLAN mencakup iklan di antara permainan; iklan revive terpisah."</string>
+    <string name="t_935cf7b5" formatted="false">"Laju tembak topi, tembakan lebih berat, dan {0}× damage ke SYN-STORM dan GRADIENT. Maksimal dua."</string>
+    <string name="t_93875a49" formatted="false">"jangkauan"</string>
+    <string name="t_93f1bd2f" formatted="false">"Laju tembak sangat tinggi, selalu membidik bos lebih dulu dari apa pun dalam jangkauan, dan memberi damage ganda ke [GG] GOOD GAME. Terbuka di gelombang 30 dan maksimal empat yang boleh ditempatkan."</string>
+    <string name="t_94061f4f" formatted="false">"Hampir tidak memberi damage. Semua di dalam radiusnya merangkak, sehingga ancaman tetap dalam jangkauan penembakmu jauh lebih lama. Murah, dan tak berguna sendirian — ia pengganda kekuatan untuk apa pun yang menembak di sebelahnya."</string>
+    <string name="t_941dea68" formatted="false">"ANGKA DAMAGE"</string>
+    <string name="t_9427590a" formatted="false">"Tampilkan nilai damage melayang saat mengenai"</string>
+    <string name="t_94bbec0b" formatted="false">"Ketuk GELOMBANG BERIKUTNYA. Agenmu menembak otomatis. Setiap serangan yang kamu hentikan membayar ◇ Crypto, yang membeli lebih banyak agen dan upgrade."</string>
+    <string name="t_94dc88d3" formatted="false">"Setiap level firmware menambah +{0}% damage ke setiap agen dan +{1}% ◇ crypto yang didapat dalam permainan (hingga dua kali lipat), di setiap pertandingan mendatang. Tak pernah hilang."</string>
+    <string name="t_95051192" formatted="false">"BELUM DIATUR"</string>
+    <string name="t_952dc0bb" formatted="false">"PAPAN PERINGKAT"</string>
+    <string name="t_959b6bbb" formatted="false">"MAKS {0} DITEMPATKAN"</string>
+    <string name="t_9655a074" formatted="false">"Arus data lambat di balik menu dan papan."</string>
+    <string name="t_97e1363f" formatted="false">"Pengurangan damage tetap yang besar di setiap serangan."</string>
+    <string name="t_98189a64" formatted="false">"Tidak ada. Ini pertarungan langsung."</string>
+    <string name="t_9873614b" formatted="false">"Jangkauan deteksi terjauh di tim, dan +45% damage terhadap serangan cepat. Laju tembak lambat — ini pengintai yang kebetulan menembak, paling baik ditempatkan di mana ia bisa menjangkau banyak jalur."</string>
+    <string name="t_98a9c7f2" formatted="false">"€ ANGGARAN"</string>
+    <string name="t_98b63553" formatted="false">"Tidak perlu akun atau login untuk bermain"</string>
+    <string name="t_98cc567c" formatted="false">"DAMAGE TERBAIK"</string>
+    <string name="t_98f4abc6" formatted="false">"◇ {0} · terbuka di gelombang {1} di {2}"</string>
+    <string name="t_98fbe3ee" formatted="false">"MULTI-LOCK"</string>
+    <string name="t_991bd4c3" formatted="false">"Satu CRYPTOGRAPHER bisa membalikkan seluruh pertarungan."</string>
+    <string name="t_991c8ba8" formatted="false">"TOTAL UPGRADE AGEN"</string>
+    <string name="t_996095bd" formatted="false">"Nama, istilah, dan merek dagang tertentu yang disebut dalam game ini mungkin milik pemiliknya masing-masing. Rujukan tersebut digunakan semata-mata untuk identifikasi, komentar, konteks pendidikan, dan representasi fiksi dalam game.\n\nGame ini dikembangkan secara independen dan tidak berafiliasi dengan, disponsori, didukung, atau disetujui oleh Red Hat, Microsoft, atau pemilik merek dagang pihak ketiga lainnya.\n\nSemua merek dagang, nama produk, nama perusahaan, dan logo pihak ketiga tetap menjadi milik pemiliknya masing-masing."</string>
+    <string name="t_99ab6437" formatted="false">"Tampilkan lagi tur menu utama dan penjelasan FIRMWARE saat kamu membuka layar itu berikutnya."</string>
+    <string name="t_99cfdd6c" formatted="false">"Pratinjau {0}"</string>
+    <string name="t_99d175d2" formatted="false">"Pasang TARPIT di rute untuk meredam percepatannya."</string>
+    <string name="t_99f43c9c" formatted="false">"CRYPTO TIDAK CUKUP"</string>
+    <string name="t_9a8ee779" formatted="false">"Menembak secepat apa pun di tim dan selalu menembak bos lebih dulu. Damage ganda ke [!!!] BREACH. Maksimal empat."</string>
+    <string name="t_9a9bcdd3" formatted="false">"SLOT"</string>
+    <string name="t_9aa5d01a" formatted="false">"Tak pernah ada iklan interstisial setelah gagal, plus €5,000. Iklan revive bersifat sukarela dan terpisah — lihat PAKET REVIVE."</string>
+    <string name="t_9adba547" formatted="false">"Nilai terbaik per euro."</string>
+    <string name="t_9ae9f14f" formatted="false">"Hanyutan lambat titik-titik jauh."</string>
+    <string name="t_9aed28a1" formatted="false">"BATAS PENEMPATAN TERCAPAI"</string>
+    <string name="t_9b08be38" formatted="false">"Menanyakan Google Play Game…"</string>
+    <string name="t_9b1d7455" formatted="false">"GELOMBANG {0}"</string>
+    <string name="t_9b4c97a7" formatted="false">"Dinamai dari kuda kayu: perangkat lunak yang tampak seperti sesuatu yang kamu inginkan, membawa sesuatu yang sama sekali tidak kamu inginkan."</string>
+    <string name="t_9b557f99" formatted="false">"Terbaikmu: gelombang {0}"</string>
+    <string name="t_9b989bfb" formatted="false">"TERBAIK"</string>
+    <string name="t_9bcd1b03" formatted="false">"Ketujuh latar hidup, plus €2,000."</string>
+    <string name="t_9bd1faf7" formatted="false">"Pengembalian dana, metode pembayaran, dan tanda terima ditangani Google, bukan game ini."</string>
+    <string name="t_9c2ade2b" formatted="false">"LV {0}  ×{1}"</string>
+    <string name="t_9c6be09c" formatted="false">"MODIFIER"</string>
+    <string name="t_9d0c4ff1" formatted="false">"&gt; gelombang {0} aktif — sisa {1} ancaman"</string>
+    <string name="t_9d29de23" formatted="false">"GELOMBANG TERBAIK PER LEVEL"</string>
+    <string name="t_9d2c3eea" formatted="false">"ISTILAH JARINGAN"</string>
+    <string name="t_9d36e329" formatted="false">"DISANDERA"</string>
+    <string name="t_9d5ca8b9" formatted="false">"MAU REVIVE?"</string>
+    <string name="t_9df821c5" formatted="false">"SELAMAT DATANG DI CyOps TD"</string>
+    <string name="t_9e30871d" formatted="false">"Satu mesin yang dibobol dan menerima perintah dari orang lain. Satu bot tidak berbahaya. Botnet berisi ribuan tidak — karena itulah mereka selalu datang berkelompok."</string>
+    <string name="t_9e77c8cf" formatted="false">"Menambahkan kecepatan simulasi kelima untuk membersihkan gelombang dengan cepat."</string>
+    <string name="t_9ef0ebe5" formatted="false">"SEGMENTASI"</string>
+    <string name="t_9f26f678" formatted="false">"  →"</string>
+    <string name="t_9f70f631" formatted="false">"LAJU TEMBAK"</string>
+    <string name="t_9fb6c271" formatted="false">"Sebentar mengganggu agen di dekatnya, memperlambat laju tembak mereka."</string>
+    <string name="t_a12f7814" formatted="false">"+{0} (BOS)"</string>
+    <string name="t_a15faa1f" formatted="false">"MODE"</string>
+    <string name="t_a19abbd4" formatted="false">"Setiap agen siber, apa fungsinya, dan gelombang yang membukanya."</string>
+    <string name="t_a21dbf00" formatted="false">"ANGGARAN €{0} DISIMPAN"</string>
+    <string name="t_a24181ff" formatted="false">"APA YANG MENYERANG"</string>
+    <string name="t_a2517472" formatted="false">"TOKO TIDAK TERSEDIA"</string>
+    <string name="t_a29c69ba" formatted="false">"KELUAR"</string>
+    <string name="t_a2b3bef5" formatted="false">"CAPAI GELOMBANG {0}"</string>
+    <string name="t_a2dd8300" formatted="false">"Ujian berat. Dua rute, berbalik arah, lalu satu putaran sebelum rak."</string>
+    <string name="t_a2e2f704" formatted="false">"PEMECAH SANDI"</string>
+    <string name="t_a32353a8" formatted="false">"ANGGARAN €9,000"</string>
+    <string name="t_a36e1b6d" formatted="false">"TIDAK ADA DI VERSI INI"</string>
+    <string name="t_a3ebab03" formatted="false">"Celah tak dikenal yang belum ditambal"</string>
+    <string name="t_a4a2cd90" formatted="false">"&gt;&gt; REKOR BARU &lt;&lt;"</string>
+    <string name="t_a4fd7522" formatted="false">" · MAKS {0}"</string>
+    <string name="t_a5460e4e" formatted="false">"Serangan tunggal lambat dan berat dengan +80% damage ke elite dan bos. Lemah melawan gerombolan. Menampilkan pemilih target, jadi kamu bisa mengarahkannya ke apa yang benar-benar ingin kamu habisi."</string>
+    <string name="t_a596b409" formatted="false">"KECEPATAN 5× ADA DI TOKO"</string>
+    <string name="t_a599c90a" formatted="false">"Setiap agen dalam jangkauannya, termasuk dirinya, kebal gangguan dari bos mana pun. Tembakan cepat dan berat, dengan {0}× damage ke WHITE EYE dan BLACK EYE. Jangkauan TARPIT. Maksimal dua yang boleh ditempatkan."</string>
+    <string name="t_a5b1ffba" formatted="false">"Akses sistem tanpa batas"</string>
+    <string name="t_a5da8eea" formatted="false">"Terjebak di satu gelombang? Simpan anggaran, pasang firmware, dan papan yang sama akan memukul lebih keras di permainan berikutnya."</string>
+    <string name="t_a6291e29" formatted="false">"ANGGARAN €5,000"</string>
+    <string name="t_a62c1133" formatted="false">"Tidak ada kemampuan peretasan nyata — tidak ada apa pun di sini yang menyentuh jaringan nyata"</string>
+    <string name="t_a66c22f9" formatted="false">"Ubah bahasa dari PENGATURAN di menu utama: beralih akan memulai ulang game, yang akan mengakhiri permainan ini."</string>
+    <string name="t_a6cd2e07" formatted="false">"{0}-{1} karakter. A-Z, 0-9, tanda hubung, dan garis bawah."</string>
+    <string name="t_a6ee02f4" formatted="false">"BATAL"</string>
+    <string name="t_a727a483" formatted="false">"TERMASUK"</string>
+    <string name="t_a7c5a24a" formatted="false">"Menyimpan ke Music/CyOps TD…"</string>
+    <string name="t_a7c97dfd" formatted="false">"RESET"</string>
+    <string name="t_a7e02911" formatted="false">"DI INTI"</string>
+    <string name="t_a7e24bd6" formatted="false">"PEMBIDIKAN"</string>
+    <string name="t_a8031bce" formatted="false">"BUKA HALAMAN TOKO"</string>
+    <string name="t_a8191219" formatted="false">"SPOOFER membuat salinan umpan dirinya yang menyerap tembakan. ANALYST dan ROOT ADMIN bisa melihat tembus."</string>
+    <string name="t_a8768bb2" formatted="false">"SKIN AGEN"</string>
+    <string name="t_a8935036" formatted="false">"CRYPTO DIPEROLEH"</string>
+    <string name="t_a92b98a8" formatted="false">"CRYPTO ◇"</string>
+    <string name="t_a9a8f56c" formatted="false">"VISUAL"</string>
+    <string name="t_a9ad0741" formatted="false">"€ PERMAINAN INI"</string>
+    <string name="t_a9cf50ec" formatted="false">"Lalu lintas nyata mengikuti rute melalui switch dan router untuk mencapai tujuannya. Dua rute berliku di sini adalah jalur itu, berbalik arah agar kamu bisa melihat setiap lompatan sekaligus."</string>
+    <string name="t_a9d9e481" formatted="false">"CORE-SERVER adalah yang kamu pertahankan, dan angka INTEGRITAS di bilah atas adalah satu-satunya nyawamu. Setiap paket jahat yang mencapai rak menggigit sebagian darinya. Pada 0 server jebol dan permainan berakhir — jadi tidak meloloskan apa pun adalah seluruh tugasnya."</string>
+    <string name="t_aab511c4" formatted="false">"ROOTKIT bersembunyi 2 detik dari setiap 6 dan tidak ada yang bisa membidiknya. Percikan dan rantai masih mengenainya."</string>
+    <string name="t_aac1d4da" formatted="false">"TIDAK TERTAUT"</string>
+    <string name="t_aadac61a" formatted="false">"Aplikasi mengajukan pertanyaan ke basis data dalam SQL. Jika input pengguna ditempel langsung ke pertanyaan itu, penyerang bisa menulis akhirannya sendiri — membongkar tabel pengguna, melewati login, atau menghapus semuanya. Perbaikannya lama dan terkenal (kueri berparameter), dan itulah yang membuat frustrasi bahwa ini masih serangan yang paling sering kamu temui."</string>
+    <string name="t_ab62d63d" formatted="false">"Sistem Deteksi Intrusi mengawasi aktivitas jaringan atau host untuk pola yang mirip serangan dan memberi peringatan. Ia melapor; ia tidak memblokir. Seseorang, atau sesuatu yang lain, tetap harus bertindak atas temuannya."</string>
+    <string name="t_aca3253a" formatted="false">"DI MEDAN · KETUK BOS UNTUK MELIHATNYA"</string>
+    <string name="t_ad03a515" formatted="false">"Membagi jaringan menjadi zona"</string>
+    <string name="t_ad26a7c7" formatted="false">"tidak diketahui"</string>
+    <string name="t_ae00f867" formatted="false">"ANALITIK"</string>
+    <string name="t_ae59bf94" formatted="false">"JUAL  ◇ {0}"</string>
+    <string name="t_b0147d1e" formatted="false">"Andalkan agen non-FIREWALL untuk gelombang ini."</string>
+    <string name="t_b0af39a6" formatted="false">"UBAH"</string>
+    <string name="t_b0d341a2" formatted="false">"LEBIH DARI SEBULAN LALU"</string>
+    <string name="t_b0f472d0" formatted="false">"KESULITAN"</string>
+    <string name="t_b16e2042" formatted="false">"Ladang bintang ungu di balik rak."</string>
+    <string name="t_b2029176" formatted="false">"Mulai gelombang berikutnya otomatis setelah jeda singkat"</string>
+    <string name="t_b253fa2b" formatted="false">"Kriptografi melindungi data saat dikirim dan saat disimpan, sehingga menyadapnya tidak sama dengan membacanya. Penyerang juga memakainya — banyak lalu lintas jahat terenkripsi — itulah sebabnya pembela memeriksa di titik akhir yang mereka kendalikan alih-alih mencoba membobol enkripsinya."</string>
+    <string name="t_b28b05f8" formatted="false">"Sistem Pencegahan Intrusi"</string>
+    <string name="t_b2dbc630" formatted="false">"FIREWALL AKTIF"</string>
+    <string name="t_b32b1a1d" formatted="false">"KENYAMANAN"</string>
+    <string name="t_b3735fe8" formatted="false">"Kisi sirkuit yang bernapas bersama gelombang."</string>
+    <string name="t_b3b53e34" formatted="false">"Pembelian terikat pada akun Google-mu, bukan perangkat ini. Instal ulang atau ganti ponsel tidak menghilangkannya."</string>
+    <string name="t_b3c34c67" formatted="false">"BARU SAJA"</string>
+    <string name="t_b40b6d1c" formatted="false">"\"Tim merah\" menyerang sistem dengan izin, untuk menemukan apa yang akan ditemukan penyerang lebih dulu. \"Topi merah\" adalah slang tidak resmi, bukan jabatan atau sertifikasi, dan maknanya berbeda antarpemakai; bagian tim merah-lah yang baku."</string>
+    <string name="t_b5ca7a98" formatted="false">"Gelombang terbaik setiap pemain di seluruh dunia, menurut callsign. Daftarkan satu di kanan, atau Google menampilkan nama Play Game-mu."</string>
+    <string name="t_b649891d" formatted="false">"DIJEDA"</string>
+    <string name="t_b683e66d" formatted="false">"{0} terkunci: {1} untuk membukanya."</string>
+    <string name="t_b6bcb68c" formatted="false">"Damage target tunggal yang berat, sama di setiap tembakan. Mengabaikan semua zirah."</string>
+    <string name="t_b7ba0ba1" formatted="false">"REGENERATION memperbaikinya setelah {0} detik tak terkena. Terus tembaki sepanjang jalan."</string>
+    <string name="t_b7c4c2a3" formatted="false">"[{0}] {1} (terkunci): {2}"</string>
+    <string name="t_b7cf2aab" formatted="false">"TIDAK ADA APLIKASI YANG BISA MEMBUKA GOOGLE PLAY"</string>
+    <string name="t_b8201e22" formatted="false">"BERIKUTNYA: GELOMBANG {0} · BOS"</string>
+    <string name="t_b82dfd13" formatted="false">"MEMBAWAMU KE"</string>
+    <string name="t_b835d746" formatted="false">"LANGKAH 5 — TEMPATKAN DUA TARPIT"</string>
+    <string name="t_b8cbfe08" formatted="false">"Terjauh dari CORE-SERVER"</string>
+    <string name="t_b8f9cbc8" formatted="false">"DMG {0}  LAJU {1}/dtk"</string>
+    <string name="t_b8ffa95c" formatted="false">"HIDUP: AURORA"</string>
+    <string name="t_b9918647" formatted="false">"Dibayar untuk ada di sini. Tanpa trik, tanpa gangguan — dua puluh persen lebih banyak darinya dibanding apa pun di papan."</string>
+    <string name="t_b9a3ada7" formatted="false">"EXFIL itu cepat. Jika mencapai inti, ia mencuri setengah crypto-mu alih-alih integritas. Belanjakan dulu, atau hentikan dia."</string>
+    <string name="t_b9c6b239" formatted="false">"Digambar di bawah jalur, dan di balik setiap menu."</string>
+    <string name="t_badb0f4a" formatted="false">"Secara berkala melesat menuju server."</string>
+    <string name="t_bae2cee7" formatted="false">"YA — TONTON IKLAN"</string>
+    <string name="t_bb0a2d46" formatted="false">"PILIH"</string>
+    <string name="t_bb621985" formatted="false">"DIPERKUAT"</string>
+    <string name="t_bb93827c" formatted="false">"REVIVE GAGAL — PERMAINAN SUDAH BERAKHIR"</string>
+    <string name="t_bc855067" formatted="false">"AKSES DITOLAK"</string>
+    <string name="t_bcdf64b3" formatted="false">"SQL INJECTION"</string>
+    <string name="t_bceaf8ce" formatted="false">"!!! SERANGAN SIBER DATANG !!!"</string>
+    <string name="t_bd0c6acd" formatted="false">"BERIKUTNYA € {0} · +{1}% {2} per level"</string>
+    <string name="t_bd1b1fc9" formatted="false">"MATI"</string>
+    <string name="t_bd8215e6" formatted="false">"YA, JELASKAN"</string>
+    <string name="t_bd84c20a" formatted="false">"GELOMBANG {0} AMAN"</string>
+    <string name="t_be1fc25b" formatted="false">"Damage serba bisa yang andal, dan tidak bisa diganggu."</string>
+    <string name="t_beb11f45" formatted="false">"Modifier bos"</string>
+    <string name="t_beb3cdc3" formatted="false">"Medannya memperlambat bos dua kali lebih kuat dari ancaman lain."</string>
+    <string name="t_bec37550" formatted="false">"PERBAIKAN PANAS"</string>
+    <string name="t_bed8ffbb" formatted="false">"Pulihkan menanyakan ulang ke Play apa yang dimiliki akun Google ini. Aman ditekan kapan saja dan tidak pernah menagihmu."</string>
+    <string name="t_bf09fcca" formatted="false">"Versi ini tidak memiliki proyek Play Game yang dikonfigurasi, jadi progres tetap di perangkat ini. Cadangan bawaan Android tetap memulihkannya saat kamu memasang ulang di ponsel yang masuk ke akun Google yang sama."</string>
+    <string name="t_bf0c2eaa" formatted="false">"MEREPLIKASI"</string>
+    <string name="t_bf7cfb98" formatted="false">"Versi ini tidak memiliki iklan untuk dikonfigurasi."</string>
+    <string name="t_c1386132" formatted="false">"◇ CRYPTO"</string>
+    <string name="t_c164d2e8" formatted="false">"Menembak secepat topi dan memukul lebih keras, dengan {0}× damage ke bos DUCK-USB SYN-STORM dan GRADIENT. Mempertahankan mode pembidikannya. Maksimal dua yang boleh ditempatkan. Digambar sebagai hologram yang tidak diubah skin agen."</string>
+    <string name="t_c19b9c99" formatted="false">"INTEGRITAS CORE-SERVER 0 · KONEKSI DIPUTUS"</string>
+    <string name="t_c1b7bcc5" formatted="false">"Versi ini tidak menampilkan iklan."</string>
+    <string name="t_c2658f4d" formatted="false">"Damage target tunggal luar biasa. Mengabaikan semua zirah."</string>
+    <string name="t_c2c8c2f8" formatted="false">"TAMPILKAN JANGKAUAN AGEN"</string>
+    <string name="t_c2d127eb" formatted="false">"LEWATI ×"</string>
+    <string name="t_c31db047" formatted="false">"PAKET REVIVE — tanpa iklan."</string>
+    <string name="t_c39850a1" formatted="false">"LANGKAH 3 — TEMPATKAN DUA FIREWALL"</string>
+    <string name="t_c3e1a996" formatted="false">"◇ Crypto dan € Anggaran adalah sumber daya fiksi dalam game. Tidak bernilai uang, tidak bisa ditukar dengan apa pun di luar game, dan tidak bisa keluar dari perangkat."</string>
+    <string name="t_c405af57" formatted="false">"MAIN memulai permainan di level dan mode yang dipilih di kiri. Jika ada permainan tersimpan, LANJUTKAN melanjutkannya dan PERMAINAN BARU memulai dari awal."</string>
+    <string name="t_c40bc4a4" formatted="false">"IDS memantau aktivitas jaringan untuk perilaku mencurigakan dan ancaman keamanan, lalu memberi peringatan. Ia mengawasi; ia tidak memblokir."</string>
+    <string name="t_c4a14a23" formatted="false">"Pilih FIREWALL. Murah, andal, dan tidak bisa diganggu."</string>
+    <string name="t_c4b7782d" formatted="false">"Analis keamanan adalah pekerjaan nyata. Manusia dalam lingkaran mengambil apa yang ditandai alat otomatis, mencari tahu apa yang sebenarnya terjadi, dan memutuskan apa yang harus dilakukan. Lebih lambat dari mesin, dan jauh lebih baik untuk kasus yang tidak cocok dengan pola yang dikenal."</string>
+    <string name="t_c4d0dc6f" formatted="false">"Alat pembelajaran mesin menandai pola tak biasa di jauh lebih banyak sinyal daripada yang bisa dibaca manusia, dan dipakai untuk menyaring apa yang perlu diperhatikan. Mereka membantu analis alih-alih menggantikannya, dan menghasilkan positif palsu — tanda adalah petunjuk, bukan vonis."</string>
+    <string name="t_c51041e3" formatted="false">"  ·"</string>
+    <string name="t_c55cc938" formatted="false">"PERMAINAN BARU"</string>
+    <string name="t_c55e934e" formatted="false">"GULIR UNTUK LEBIH"</string>
+    <string name="t_c570c6cd" formatted="false">"Kolom kode jatuh di dalam rak."</string>
+    <string name="t_c5cb18f9" formatted="false">"SEMUA LEVEL"</string>
+    <string name="t_c81c4fa0" formatted="false">"1 level"</string>
+    <string name="t_c8a9aae9" formatted="false">"Tiga rute berjalin dua kali: setiap jalur berpindah sisi."</string>
+    <string name="t_c9301368" formatted="false">"INTI: REACTOR"</string>
+    <string name="t_c9402c75" formatted="false">"TIDAK"</string>
+    <string name="t_c944e5aa" formatted="false">"PENANGKAL"</string>
+    <string name="t_c9a2aee9" formatted="false">"Buka agen ini dengan mencapai gelombang {0} di level mana pun."</string>
+    <string name="t_ca02a8f8" formatted="false">"Setiap agen memakai warna dari tugasnya."</string>
+    <string name="t_ca5ea88d" formatted="false">"NILAI TERBAIK"</string>
+    <string name="t_cabf47fa" formatted="false">"MAKS +{0}"</string>
+    <string name="t_cb02b3da" formatted="false">"Siklus warna lambat di seluruh tim."</string>
+    <string name="t_cb1fd3f1" formatted="false">"IPS adalah IDS yang berwenang bertindak. Saat mengenali serangan, ia membuang lalu lintasnya sendiri alih-alih hanya memberi tahu seseorang."</string>
+    <string name="t_cb4ff573" formatted="false">"IKLAN DAN PEMBELIAN"</string>
+    <string name="t_cbd3b516" formatted="false">"Tanpa iklan, skin agen SPECTRUM, latar DRIFT, dan €2,000."</string>
+    <string name="t_cbd47695" formatted="false">"BLOKIR MUATAN"</string>
+    <string name="t_cbf7d422" formatted="false">"SYN-STORM membelah dua saat nyawa tinggal setengah, dan bagian kedua mengambil rute lain. Jaga setiap rute."</string>
+    <string name="t_cc52e024" formatted="false">"BERIKUTNYA: GELOMBANG {0} — BOS · KETUK BOS BERIKUTNYA UNTUK BRIEFING"</string>
+    <string name="t_cc5435ac" formatted="false">"Apa yang datang di jalur"</string>
+    <string name="t_cc5c44e8" formatted="false">"FOKUS: HANYA UNIT KECIL DAN ELITE"</string>
+    <string name="t_cc6791f1" formatted="false">"Tahan terhadap agen FIREWALL."</string>
+    <string name="t_cc7fe141" formatted="false">"Mengawasi alat serangan. Sebentar mengganggu agen RED HAT di dekatnya, setiap beberapa detik."</string>
+    <string name="t_cc9e044b" formatted="false">"HIDUP: ORBIT"</string>
+    <string name="t_ccb963f2" formatted="false">"PAKET"</string>
+    <string name="t_ccbd0815" formatted="false">"Rak bawaan."</string>
+    <string name="t_ccbefbf5" formatted="false">"JANGKAUAN PINDAI {0}"</string>
+    <string name="t_ccd3b8ff" formatted="false">"Opsi privasi tidak tersedia saat ini."</string>
+    <string name="t_cce0919d" formatted="false">"DIMILIKI"</string>
+    <string name="t_cd27794d" formatted="false">"Callsign hanya berlaku di perangkat ini dan bukan akun Google. Ia menamai permainanmu di papan peringkat."</string>
+    <string name="t_cd7ef0df" formatted="false">"PEMBERITAHUAN MEREK DAGANG DAN PIHAK KETIGA"</string>
+    <string name="t_cd8fc1d8" formatted="false">"Pembelian dalam aplikasi opsional tersedia lewat Google Play. Tidak ada apa pun di game yang dikunci di baliknya."</string>
+    <string name="t_cde6047e" formatted="false">"Sistem Deteksi Intrusi"</string>
+    <string name="t_ce2cde0d" formatted="false">"LANGKAH 1 — BUKA TIM"</string>
+    <string name="t_ce56b8c8" formatted="false">"KELOLA DI GOOGLE PLAY"</string>
+    <string name="t_ce8b48c9" formatted="false">"GAMEPLAY"</string>
+    <string name="t_cec6cd66" formatted="false">"Belum ada permainan tercatat. Selesaikan satu permainan dan akan tercantum di sini, diurutkan menurut gelombang yang kamu capai."</string>
+    <string name="t_cee3b8c9" formatted="false">"LEWATI"</string>
+    <string name="t_cfd886ad" formatted="false">"Dua rute menyisir separuhnya masing-masing. Menara di celah tengah menjangkau keduanya."</string>
+    <string name="t_d0112898" formatted="false">"UMPAN"</string>
+    <string name="t_d07db54c" formatted="false">"ROOT / ADMIN"</string>
+    <string name="t_d08f5138" formatted="false">"Dua rute berliku yang berbalik melewati senjata yang sama."</string>
+    <string name="t_d10c0c39" formatted="false">"Laju tembak sangat tinggi dan setiap tembakan memercik, jadi ini jawaban untuk gerombolan, bukan untuk satu target berat. Lebih mahal dari IDS dan jangkauannya lebih pendek."</string>
+    <string name="t_d11351ac" formatted="false">"NYALA"</string>
+    <string name="t_d173b657" formatted="false">"Akun yang bisa melakukan apa saja di sebuah sistem. Penyerang menginginkannya; pembela menjaganya dengan hati-hati. Sebagian besar pekerjaan keamanan adalah membatasi siapa yang mendapatkannya dan untuk berapa lama."</string>
+    <string name="t_d19c7c8e" formatted="false">"◇ {0} · terbuka di gelombang {1}"</string>
+    <string name="t_d22f26dd" formatted="false">"Menyerang hingga 3 ancaman berbeda di setiap tembakan."</string>
+    <string name="t_d2ee5fd2" formatted="false">"Progres tersimpan otomatis"</string>
+    <string name="t_d31b24bf" formatted="false">"{0} · {1}  ·  terbaik {2}"</string>
+    <string name="t_d35bc038" formatted="false">"{0} — {1} Ia tidak memberi damage; ia membeli waktu untuk agen lainmu."</string>
+    <string name="t_d415f020" formatted="false">"Zero-day adalah celah yang belum ada perbaikannya — pembela tidak punya waktu sama sekali untuk menambalnya. Peneliti kerentanan mencarinya agar bisa dilaporkan dan diperbaiki sebelum orang lain menemukannya lebih dulu. \"Zero-day hunter\" adalah singkatan tidak resmi, bukan sertifikasi atau jabatan resmi."</string>
+    <string name="t_d477fdfb" formatted="false">"FIRMWARE TERPASANG PENUH"</string>
+    <string name="t_d488d098" formatted="false">"PERMAINAN TERPANDU BUTUH TARPIT BERIKUTNYA"</string>
+    <string name="t_d48f1170" formatted="false">"▼  LEBIH BANYAK DI BAWAH"</string>
+    <string name="t_d4bb26ac" formatted="false">"PAKET SKIN INTI"</string>
+    <string name="t_d5acb32b" formatted="false">"Getaran saat peringatan bos, server terkena, dan game over"</string>
+    <string name="t_d5b86d2a" formatted="false">"Pusat Operasi Keamanan"</string>
+    <string name="t_d5d0b693" formatted="false">"LANJUTKAN"</string>
+    <string name="t_d62907f6" formatted="false">"FIRMWARE TERPASANG"</string>
+    <string name="t_d63b9487" formatted="false">"TAK TERJANGKAU"</string>
+    <string name="t_d736d92d" formatted="false">"OKE"</string>
+    <string name="t_d8386755" formatted="false">"PENAGIHAN GOOGLE PLAY"</string>
+    <string name="t_d84b41e9" formatted="false">"Damage berkelanjutan yang menang. IPS atau FIREWALL yang sudah di-level."</string>
+    <string name="t_d8705eb7" formatted="false">"Serangan siber maju di sepanjang rute jaringan menuju CORE-SERVER. Kamu menempatkan Agen Siber di samping jalur; mereka mendeteksi dan menghancurkan apa yang lewat. Setiap serangan yang kamu hentikan membayar ◇ Crypto, yang membeli lebih banyak agen dan upgrade. Setiap gelombang kelima adalah bos. Tidak ada gelombang terakhir — satu-satunya pertanyaan adalah seberapa jauh kamu bisa."</string>
+    <string name="t_d889d3ab" formatted="false">"+1, +10, dan +100 membeli sebanyak itu level. PASANG MAKS menghabiskan sebanyak yang bisa kamu bayar. Setiap level sedikit lebih mahal."</string>
+    <string name="t_d8bcdc1d" formatted="false">"MULAI ULANG"</string>
+    <string name="t_d8fec6d4" formatted="false">"TOTAL AGEN DITEMPATKAN"</string>
+    <string name="t_d9074af5" formatted="false">"Enkripsi mengacak data sehingga hanya pemilik kunci yang tepat yang bisa membacanya. Ia melindungi lalu lintas sah — dan sama baiknya menyembunyikan muatan penyerang dari pemeriksaan."</string>
+    <string name="t_d92ad54a" formatted="false">"Versi ini tidak memiliki penagihan Google Play yang dikonfigurasi, atau perangkat ini tidak punya Play Store. Tidak ada yang bisa dibeli, dan tidak ada yang berbayar yang wajib untuk bermain."</string>
+    <string name="t_d9694eb9" formatted="false">"Celah yang sama, tanpa umpan balik. Aplikasi tidak mengembalikan kesalahan maupun data, jadi penyerang mengajukan pertanyaan ya-atau-tidak dan mengamati apa yang berubah — waktu, panjang halaman, kode status — untuk membaca basis data sedikit demi sedikit. Lambat, sabar, dan jauh lebih sulit terlihat di log."</string>
+    <string name="t_d9b49353" formatted="false">"COBA LAGI"</string>
+    <string name="t_d9b88563" formatted="false">"Satuan lalu lintas jaringan"</string>
+    <string name="t_d9c57847" formatted="false">"PERIMETER SIAP"</string>
+    <string name="t_da10b268" formatted="false">"TIDAK DIMILIKI"</string>
+    <string name="t_da169a1a" formatted="false">"DUNIA"</string>
+    <string name="t_da3ae5ed" formatted="false">"Tidak memberi damage dan tidak membidik apa pun. Memperbaiki 1 poin integritas CORE-SERVER setiap 30 detik saat gelombang berjalan (tidak pernah saat jeda atau dijeda). Ditempatkan di CORE-SERVER itu sendiri, yang punya dua slot untuknya, dan tidak di tempat lain. Level memperpendek pengatur waktunya. Maksimal dua yang boleh ditempatkan."</string>
+    <string name="t_dad4b11e" formatted="false">"SAPUAN MENYERANG"</string>
+    <string name="t_db696c4d" formatted="false">"Sangat besar dan berzirah tebal, tetapi lambat. Bawa sesuatu yang mengabaikan zirah."</string>
+    <string name="t_db971746" formatted="false">"Mengawasi alat pertahanan. Sebentar mengganggu agen BLUE HAT di dekatnya, setiap beberapa detik."</string>
+    <string name="t_dba0a883" formatted="false">"Jaringan mesin yang dibajak"</string>
+    <string name="t_dbc1a374" formatted="false">"IKLAN TIDAK SELESAI — TIDAK ADA YANG TERPAKAI"</string>
+    <string name="t_dc09f8b7" formatted="false">"GANGGUAN — bos bisa mengganggu agen, membagi dua laju tembaknya selama berlangsung. {0} dibuat untuk tidak peduli."</string>
+    <string name="t_dc37fa05" formatted="false">"Pita lebar cahaya dingin yang bergerak di balik segalanya."</string>
+    <string name="t_dc62badb" formatted="false">"GELAR"</string>
+    <string name="t_dce01a82" formatted="false">"MASUKKAN CALLSIGN"</string>
+    <string name="t_dd220c90" formatted="false">"PERIKLANAN"</string>
+    <string name="t_dd4083b5" formatted="false">"Tidak ada yang dibeli. Semua di atas juga bisa didapat atau cukup dimainkan tanpanya."</string>
+    <string name="t_dd55f56b" formatted="false">"Dua rute berjalin tiga kali sebelum rak, seperti untaian DNA."</string>
+    <string name="t_ddb5514a" formatted="false">"BUKA DI GOOGLE PLAY GAME"</string>
+    <string name="t_ddcb2958" formatted="false">"Dinamai dari yang pertama dan benar-benar fiksi ilmiah: setiap serangan merambat ke dua ancaman terdekat dengan 55% damage. Kuat melawan gelombang yang bergerombol, sia-sia untuk target tunggal. Menampilkan pemilih target."</string>
+    <string name="t_ddd374d9" formatted="false">"Ringkasan singkat serangan yang akan kamu temui, para bos, dan apa yang dilakukan agenmu terhadapnya. Sekitar dua puluh detik."</string>
+    <string name="t_dee83e52" formatted="false">"OPASITAS PANEL DALAM GAME"</string>
+    <string name="t_e00d9a42" formatted="false">"TEMPATKAN DI SLOT CORE-SERVER"</string>
+    <string name="t_e01007ce" formatted="false">"Nilai per euro lebih baik dari paket kecil."</string>
+    <string name="t_e07706fa" formatted="false">"PERANGKAT INI HINGGA DITAUTKAN"</string>
+    <string name="t_e0a2aaa4" formatted="false">"TAUTKAN AKUN GOOGLE"</string>
+    <string name="t_e12d998f" formatted="false">"PAKET"</string>
+    <string name="t_e13093ea" formatted="false">"DAMAGE"</string>
+    <string name="t_e1892d25" formatted="false">"FIRMWARE INTI"</string>
+    <string name="t_e1df4ef7" formatted="false">"BOS"</string>
+    <string name="t_e3407723" formatted="false">"YA"</string>
+    <string name="t_e3a7e50c" formatted="false">"SIMPAN DATAKU"</string>
+    <string name="t_e3c4a9cc" formatted="false">"{0} mengganggu agen {1} di dekatnya. Tempatkan mereka di belakang, di tepi jangkauannya."</string>
+    <string name="t_e4554374" formatted="false">"TUTUP"</string>
+    <string name="t_e55f9c78" formatted="false">"APA YANG TIDAK DILAKUKAN GAME INI"</string>
+    <string name="t_e587f42b" formatted="false">"BAWAAN SISTEM (bahasa ponsel)"</string>
+    <string name="t_e5e7e535" formatted="false">"SYN-STORM TERBELAH"</string>
+    <string name="t_e6694d9c" formatted="false">"Memperbaiki 1 integritas CORE-SERVER setiap 30 detik gelombang berjalan, dari salah satu dari dua slot di CORE-SERVER. Lebih cepat seiring level. Maksimal dua."</string>
+    <string name="t_e807eff2" formatted="false">"Menutup rute terdekat dalam jangkauan dengan tembok; ancaman harus menghancurkannya. Memukul setiap bos sangat keras. Maksimal tiga."</string>
+    <string name="t_e8757749" formatted="false">"bersihkan gelombang {0} di {1}"</string>
+    <string name="t_e8987cec" formatted="false">"RESET PROGRES"</string>
+    <string name="t_e94c961d" formatted="false">"STATISTIK"</string>
+    <string name="t_e979d28d" formatted="false">"LAJU"</string>
+    <string name="t_e99d5d17" formatted="false">"Paket € dibelanjakan, bukan dimiliki: dikreditkan sekali dan PULIHKAN tidak memberikannya lagi."</string>
+    <string name="t_e9caa97b" formatted="false">"Belum ada penempatan tercatat. Mainkan satu permainan untuk mengisinya."</string>
+    <string name="t_ea16b407" formatted="false">"Jejak emas di atas nila pekat."</string>
+    <string name="t_ea31efb2" formatted="false">"bersihkan gelombang {0}"</string>
+    <string name="t_eab5f205" formatted="false">"UBAH CALLSIGN"</string>
+    <string name="t_eaf7396d" formatted="false">"GOOGLE TAK TERJANGKAU — SIMPANAN TETAP DI PERANGKAT"</string>
+    <string name="t_eb2e832a" formatted="false">"AGEN {0}"</string>
+    <string name="t_ebdd4d5e" formatted="false">"DIHAPUS · TIDAK ADA"</string>
+    <string name="t_ec91403d" formatted="false">"GELOMBANG"</string>
+    <string name="t_ed31a176" formatted="false">"Kisi sirkuit bernapas yang bereaksi terhadap gelombang."</string>
+    <string name="t_ed5c9d47" formatted="false">"PER LEVEL"</string>
+    <string name="t_ed7160a0" formatted="false">"TIDAK PERNAH"</string>
+    <string name="t_ed7ecda7" formatted="false">"Terkunci"</string>
+    <string name="t_ee0803eb" formatted="false">"TANGGUH"</string>
+    <string name="t_ee094192" formatted="false">"Versi ini tidak memiliki penagihan Google Play yang dikonfigurasi, jadi tidak ada yang bisa dibeli di sini. Setiap bagian game yang tidak berbayar berjalan persis seperti biasa."</string>
+    <string name="t_ee5525d9" formatted="false">"KERNEL PANIC · {0} DIGANGGU"</string>
+    <string name="t_ee6595fd" formatted="false">"Tim dan ruangan yang mengawasi peringatan. Jika game ini punya latar, itu adalah layar dinding SOC pukul 3 pagi."</string>
+    <string name="t_eea62f11" formatted="false">"PEMBELIAN"</string>
+    <string name="t_eef967f2" formatted="false">"PERBESAR MEDAN PERANG"</string>
+    <string name="t_ef29f425" formatted="false">"AUDIO"</string>
+    <string name="t_efcf9890" formatted="false">"DMG {0} · LAJU {1}/dtk · JKN {2}"</string>
+    <string name="t_f001b942" formatted="false">"DIBENTENGI"</string>
+    <string name="t_f03b01af" formatted="false">"Perlahan memperbaiki diri setelah beberapa saat tidak terkena."</string>
+    <string name="t_f100d10c" formatted="false">"Apa pun yang bertanda TERKUNCI ada di toko. Tidak ada apa pun di sini yang mengubah cara bermain — skin hanya tampilan, bukan keuntungan."</string>
+    <string name="t_f16b76bc" formatted="false">"\"Rubber ducky\" adalah stik USB yang berpura-pura menjadi keyboard dan mengetik serangan lebih cepat dari siapa pun. Pertahanannya adalah penjaga USB yang memeriksa setiap perangkat baru sebelum komputer memercayainya, dan memblokir keyboard yang mengetik seperti mesin."</string>
+    <string name="t_f17dfdae" formatted="false">"Satu rute panjang turun dari atas dan berputar spiral keluar menuju rak."</string>
+    <string name="t_f25360a0" formatted="false">"Perubahan langsung berlaku dan tersimpan di perangkat ini"</string>
+    <string name="t_f293dfd1" formatted="false">"PEMERIKSAAN PEMBELIAN"</string>
+    <string name="t_f2e7479c" formatted="false">"Tautkan akun Google-mu untuk menyimpan progres di ponsel atau tablet mana pun. Google akan meminta izin untuk mengelola data tersimpan game ini di akunmu — itu penyimpanan simpanan game, dan hanya itu yang dipakai."</string>
+    <string name="t_f2ed0368" formatted="false">"Cepat. Jika mencapai inti, ia mencuri setengah crypto-mu alih-alih integritas."</string>
+    <string name="t_f2f63d9f" formatted="false">"DI PERANGKAT INI"</string>
+    <string name="t_f33c5b01" formatted="false">"LANGKAH 6 — MULAI GELOMBANG"</string>
+    <string name="t_f38eb808" formatted="false">"Ancaman lebih tangguh, lebih rapat, integritas lebih sedikit. Hadiah lebih besar."</string>
+    <string name="t_f3e23f71" formatted="false">"INTI: CASCADE"</string>
+    <string name="t_f49a4ff9" formatted="false">"AGEN TERKUNCI"</string>
+    <string name="t_f4f677dc" formatted="false">"TOTAL PEROLEHAN"</string>
+    <string name="t_f5537783" formatted="false">"INTI: MAINFRAME"</string>
+    <string name="t_f590e2c9" formatted="false">"RUTE"</string>
+    <string name="t_f5b866e4" formatted="false">"Upaya pembobolan terkoordinasi dengan redundansi cukup untuk mengabaikan jaringan yang tak siap. Setiap gelombang kelima membawa satu, dan masing-masing lebih tangguh dari sebelumnya."</string>
+    <string name="t_f60f5840" formatted="false">"Masih tidak ada akun CyOps dan tidak ada kata sandi. Pembelian mengikuti akun Google yang masuk ke Play Store di perangkat ini. Progres mengikuti akun Google yang kamu tautkan di atas — pilihan terpisah dan opsional: game ini lengkap tanpanya."</string>
+    <string name="t_f692d3ce" formatted="false">"BOTNET"</string>
+    <string name="t_f69a80a7" formatted="false">"Game akan dimulai ulang untuk beralih ke {0}. Progresmu tetap tersimpan."</string>
+    <string name="t_f6f93110" formatted="false">"INTI: NEONGRID"</string>
+    <string name="t_f720bfa7" formatted="false">"Garis pindai fosfor CRT."</string>
+    <string name="t_f76fff7f" formatted="false">"Perangkat lunak jahat: kode yang ditulis untuk merusak, mengganggu, atau mencuri. Muatannya lebih besar dari injeksi sederhana, jadi menyerap lebih banyak damage sebelum hancur."</string>
+    <string name="t_f7a4fc70" formatted="false">"KETUK LAGI UNTUK MENEMPATKAN"</string>
+    <string name="t_f7a7b98a" formatted="false">"DMG {0} · LAJU {1} · JKN {2}"</string>
+    <string name="t_f7eb1496" formatted="false">"Peringkat ditentukan oleh gelombang terdalam yang kamu capai. Damage yang diberikan memecah seri."</string>
+    <string name="t_f803ec67" formatted="false">"RIWAYAT PESANAN &amp; PENGEMBALIAN DANA"</string>
+    <string name="t_f85117ec" formatted="false">"Semua {0} lagu sudah ada di Music/CyOps TD."</string>
+    <string name="t_f8723c46" formatted="false">"KECEPATAN"</string>
+    <string name="t_f8d84db3" formatted="false">"TIDAK TERDAFTAR"</string>
+    <string name="t_f8e6e39f" formatted="false">"Insinyur sistem menjaga server tetap berjalan: menambal, mengganti komponen yang rusak, memulihkan dari cadangan, dan memantau kesehatan mesin. \"Insinyur sistem server\" menggambarkan jenis pekerjaan itu; jabatannya berbeda-beda antarorganisasi."</string>
+    <string name="t_f9807a9f" formatted="false">"&gt; siaga — tempatkan agen dan mulai gelombang 1"</string>
+    <string name="t_f9cec260" formatted="false">"Sedikit serangan besar hampir tidak mempercepat GRADIENT."</string>
+    <string name="t_f9d6b090" formatted="false">"Data ASCII yang melayang di balik medan perang dan menu"</string>
+    <string name="t_fa1b4500" formatted="false">"Statistik terakumulasi di setiap permainan, termasuk permainan yang kamu tinggalkan dari menu jeda. Mereset progres di PENGATURAN menghapus semuanya."</string>
+    <string name="t_fa60c2c6" formatted="false">"HIDUP: PETA PANAS"</string>
+    <string name="t_fb735826" formatted="false">"GETARAN"</string>
+    <string name="t_fb889492" formatted="false">"Game tower defense yang dikembangkan secara independen, mengutamakan offline, bertema keamanan siber. Skenario, agen, dan terminologinya difiksikan untuk gameplay, dengan penjelasan singkat dunia nyata agar konsep di baliknya bisa dipelajari. Game ini tidak mengajarkan teknik menyerang dan tidak menjalankan fungsi keamanan nyata."</string>
+    <string name="t_fbca7f29" formatted="false">"Malware dalam penyamaran berguna"</string>
+    <string name="t_fbd9e20c" formatted="false">"ANIMASI LATAR"</string>
+    <string name="t_fc778505" formatted="false">"Rak bersih, tanpa tanda."</string>
+    <string name="t_fcc1e712" formatted="false">"PRIVASI"</string>
+    <string name="t_fd3cb488" formatted="false">"CARA KERJA MASUK"</string>
+    <string name="t_fdb0282f" formatted="false">"MEMUAT IKLAN…"</string>
+    <string name="t_fde05efe" formatted="false">"CAPAI GELOMBANG {0} DI {1}"</string>
+    <string name="t_fe26fa48" formatted="false">"GELOMBANG TERBAIK"</string>
+    <string name="t_fe451d7a" formatted="false">"SISTEM DIPULIHKAN — INTEGRITAS {0}"</string>
+    <string name="t_fe86390c" formatted="false">" · KCP {0}"</string>
+    <string name="t_feeee285" formatted="false">"{0} skin inti · {1} latar tersedia"</string>
+    <string name="t_feef9615" formatted="false">"BOS BERIKUTNYA"</string>
+    <string name="t_ff2d6a51" formatted="false">"Tiga rute bertukar tempat dua kali. Setiap persimpangan adalah titik yang mengenai dua."</string>
+    <string name="t_ffa57dc1" formatted="false">"&gt; memasang topologi jalur"</string>
+    <string name="t_ffc3db58" formatted="false">"JKN {0}"</string>
+    <string name="t_ffff9bd9" formatted="false">"Agen perlahan bergeser melintasi spektrum warna, setiap unit sedikit bergeser dari yang berikutnya."</string>
+</resources>

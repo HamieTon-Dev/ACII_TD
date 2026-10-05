@@ -1,0 +1,864 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Translation of values/strings_i18n.xml. Machine-quality (AI) translation; see FEATURE_BACKLOG.md. -->
+<resources>
+    <string name="t_0069698f" formatted="false">"€ {0} in het budget"</string>
+    <string name="t_00bdf050" formatted="false">"DIT APPARAAT"</string>
+    <string name="t_00c74b4a" formatted="false">"Valt met elk salvo tot drie afzonderlijke dreigingen aan, wat hem het antwoord van de ploeg op een brede golf maakt. Toont de doelkiezer."</string>
+    <string name="t_00cb85ad" formatted="false">"STAP 4 — KIES TARPIT"</string>
+    <string name="t_00f316c1" formatted="false">"KOSTEN VOLGEND NIVEAU"</string>
+    <string name="t_00fafa13" formatted="false">"DIT ACCOUNT BEZIT"</string>
+    <string name="t_01278423" formatted="false">"WAT DIT VERANDERT"</string>
+    <string name="t_014c06bb" formatted="false">"{0} van {1} ontgrendeld · beste golf {2}"</string>
+    <string name="t_01b91dff" formatted="false">"RANSOM vergrendelt om de paar seconden de upgrades van één agent voor {0} seconden. Upgrade voordat hij aankomt."</string>
+    <string name="t_01ba7032" formatted="false">"0 niveaus"</string>
+    <string name="t_01f2a69d" formatted="false">"SESSIENOTITIES"</string>
+    <string name="t_0288b770" formatted="false">"Tik op de knop AGENTEN in de bedieningsbalk hieronder."</string>
+    <string name="t_02b88c49" formatted="false">"Alle audio wordt bij het opstarten op het apparaat gegenereerd; de game bevat geen geluidsbestanden."</string>
+    <string name="t_02f0f435" formatted="false">"Root, of beheerder, is het hoogste gezagsniveau op een systeem: het kan elk proces stoppen en alles wijzigen. Juist daarom is het goede praktijk om het zo zelden en zo kort mogelijk toe te kennen. \"Root admin\" is een afkorting voor het toegangsniveau, geen functietitel."</string>
+    <string name="t_0306926d" formatted="false">"Drie aanvalsroutes naar de kernserver"</string>
+    <string name="t_0358799e" formatted="false">"Geldt vanaf nu in elke wedstrijd voor elke {0}, bovenop KERNFIRMWARE. De eerste niveaus zijn goedkoop; elk kost meer dan het vorige en de hoogste niveaus kosten miljoenen."</string>
+    <string name="t_0397b7d9" formatted="false">"BAASGOLVEN AUTOMATISCH STARTEN"</string>
+    <string name="t_03d108e0" formatted="false">"Gekoppeld, maar Google was niet bereikbaar. Er gaat niets verloren — er wordt gespeeld met de opslag op dit apparaat en de volgende synchronisatie werkt het account bij."</string>
+    <string name="t_059b388a" formatted="false">"&gt; golf {0} afgeslagen — maak je klaar voor golf {1}"</string>
+    <string name="t_05ea5d0e" formatted="false">"Vanaf het begin beschikbaar."</string>
+    <string name="t_05f2ef1e" formatted="false">"Volgend nummer"</string>
+    <string name="t_063d8618" formatted="false">"Vijandige code vermomd als iets waar je om vroeg. Traag maar zwaar ingepakt — pantser stompt elke afzonderlijke treffer af, dus snelle zwakke schoten verspillen zichzelf."</string>
+    <string name="t_07269781" formatted="false">"Kies een moeilijkheid om het wereldwijde klassement te zien."</string>
+    <string name="t_07a3d7ab" formatted="false">"Alles wat je bezit, revives inbegrepen, komt op elk apparaat via HERSTEL terug van Google Play. Het maakt nooit deel uit van de cloudopslag, dus geen enkel opslagbestand kan een aankoop geven of afnemen."</string>
+    <string name="t_07fbf4bd" formatted="false">"HERREZEN"</string>
+    <string name="t_08039ac7" formatted="false">"WINKEL"</string>
+    <string name="t_08175caa" formatted="false">"KLASSEKLEUREN"</string>
+    <string name="t_08218c08" formatted="false">"KOPPELEN…"</string>
+    <string name="t_08279524" formatted="false">"Code die een specifieke fout in een systeem misbruikt. Exploits bewegen snel en slaan hard; bereik van detectie telt meer dan ruwe schade als ze eraan komen."</string>
+    <string name="t_086b8b8e" formatted="false">"BAAS"</string>
+    <string name="t_08f0711d" formatted="false">"AANKOPEN HERSTELLEN"</string>
+    <string name="t_09653280" formatted="false">"NAAR KERN"</string>
+    <string name="t_0a0bc63d" formatted="false">"Vorig nummer"</string>
+    <string name="t_0a2301f4" formatted="false">"OPGESLAGEN VOORTGANG"</string>
+    <string name="t_0a344034" formatted="false">"VOLGENDE: GOLF {0}"</string>
+    <string name="t_0ae74b3e" formatted="false">"ZERO-DAY-AANVAL"</string>
+    <string name="t_0b205685" formatted="false">"Netwerk initialiseren..."</string>
+    <string name="t_0b809aa5" formatted="false">"Nog geen wereldwijd klassement voor {0}. Runs daar worden op dit apparaat bijgehouden."</string>
+    <string name="t_0bc6e19b" formatted="false">"Doet zelf geen schade. Geeft elke agent binnen bereik +30% schade en +20% vuursnelheid, dus zijn waarde zit helemaal in waar je hem neerzet."</string>
+    <string name="t_0bd16003" formatted="false">"MAX"</string>
+    <string name="t_0bfbeb5b" formatted="false">"Houd ze vast in een TARPIT-veld en laat IPS de achterstand wegwerken."</string>
+    <string name="t_0c121fb2" formatted="false">"VOORTGANG GESYNCHRONISEERD"</string>
+    <string name="t_0c147607" formatted="false">"DIEPE SCAN"</string>
+    <string name="t_0c16a4ef" formatted="false">"Nog geen scores. Voltooi een run om de eerste te zijn."</string>
+    <string name="t_0c997319" formatted="false">"WORM-SPLITSING"</string>
+    <string name="t_0cb4ce2b" formatted="false">"GOLF {0} VEILIGGESTELD  ◇{1}"</string>
+    <string name="t_0cfa4a6e" formatted="false">"BAZEN VAN DIT NIVEAU"</string>
+    <string name="t_0d884b08" formatted="false">"INBRAAK (BAAS)"</string>
+    <string name="t_0d8c63a6" formatted="false">"Elke treffer springt over op 2 nabije dreigingen voor 55% schade."</string>
+    <string name="t_0df4bfec" formatted="false">"ZWAK TEGEN"</string>
+    <string name="t_0e69fc6c" formatted="false">"Inzetbalk toont alleen het icoon en de prijs van elke agent"</string>
+    <string name="t_0eb480b6" formatted="false">"Een wegvluchtend perspectiefraster met een achtervolgingsstrook eronder."</string>
+    <string name="t_0f47943c" formatted="false">"FOCUS UIT"</string>
+    <string name="t_0f5d5911" formatted="false">"BATTERIJBESPARING"</string>
+    <string name="t_0f80d304" formatted="false">"AGENTSCHADE"</string>
+    <string name="t_0f9a43d6" formatted="false">"ALLE LEVENDE ACHTERGRONDEN"</string>
+    <string name="t_0fa88218" formatted="false">"Google Play was niet bereikbaar — meestal geen netwerk. Alles wat je al kocht is nog steeds van jou; druk op HERSTEL zodra je weer online bent en het verschijnt weer."</string>
+    <string name="t_0fd40469" formatted="false">"PRESTATIES"</string>
+    <string name="t_0fd4c0f4" formatted="false">"CORE-SERVER-SLOTS ALLEEN VOOR [S]"</string>
+    <string name="t_1046865f" formatted="false">"Blijft BOT's achter zich uitspuwen. Dood hem snel of verdrink in zijn botnet."</string>
+    <string name="t_107ea55b" formatted="false">"UPGRADES GEGIJZELD"</string>
+    <string name="t_108f4363" formatted="false">"INSTALLEREN"</string>
+    <string name="t_111611f9" formatted="false">"PATCHMUUR"</string>
+    <string name="t_1181f7e7" formatted="false">"AGENTEN GESTOORD"</string>
+    <string name="t_11c0f105" formatted="false">"NIVEAUMUZIEK (AUTO)"</string>
+    <string name="t_11c8546c" formatted="false">"schade"</string>
+    <string name="t_11d858aa" formatted="false">"HOOGSTE GOLF"</string>
+    <string name="t_1213b2b6" formatted="false">"{0} UUR GELEDEN"</string>
+    <string name="t_12193f21" formatted="false">"Netwerkarchitecten ontwerpen hoe een netwerk wordt opgedeeld. Segmentatie betekent dat een inbraak in één zone niet zomaar de volgende in kan lopen, wat de schade van elk afzonderlijk falen beperkt. Het is ontwerpwerk vóór een incident, geen hulpmiddel tijdens een incident."</string>
+    <string name="t_1248f6ec" formatted="false">"De soundtrack opslaan vereist Android 10 of nieuwer."</string>
+    <string name="t_125ca8ca" formatted="false">"STARTERSPAKKET"</string>
+    <string name="t_12a36ceb" formatted="false">"VERVALST"</string>
+    <string name="t_12e8edf9" formatted="false">"TAAL"</string>
+    <string name="t_1380e038" formatted="false">"GEGIJZELD · UPGRADES VERGRENDELD {0}s"</string>
+    <string name="t_138da392" formatted="false">"Een raster waarvan de cellen opwarmen en afkoelen met het verkeer."</string>
+    <string name="t_13df4b88" formatted="false">"FIRMWARE"</string>
+    <string name="t_13ee9782" formatted="false">"INGEZET"</string>
+    <string name="t_141ad814" formatted="false">"FEEDBACK"</string>
+    <string name="t_143628e2" formatted="false">"ALLEEN REVIVE-ADVERTENTIES · VRIJWILLIG"</string>
+    <string name="t_1489b7f6" formatted="false">"{0} DAGEN GELEDEN"</string>
+    <string name="t_14bdf6f2" formatted="false">"DE BEGELEIDE RUN HEEFT EERST FIREWALL NODIG"</string>
+    <string name="t_14c27ca9" formatted="false">"ANALYST doet 80% extra schade aan elites. Agenten die pantser negeren helpen."</string>
+    <string name="t_14cecaa5" formatted="false">"Gegevens onleesbaar maken zonder sleutel"</string>
+    <string name="t_14ecbe1d" formatted="false">"{0}/sec"</string>
+    <string name="t_1512aeac" formatted="false">"{0} niveaus"</string>
+    <string name="t_154419d5" formatted="false">"Telt als versleuteld: de meeste agenten doen minder schade."</string>
+    <string name="t_154a5adf" formatted="false">"NIV"</string>
+    <string name="t_15680f7c" formatted="false">"Besteed het aan permanente KERNFIRMWARE-schade."</string>
+    <string name="t_1571a208" formatted="false">"Plaats twee TARPIT's zodat hun aura's de grond bedekken waar je FIREWALL's op schieten. Vertragen zorgt dat de schade raak is."</string>
+    <string name="t_15aa2838" formatted="false">"Een grof raster waarvan de cellen opwarmen en afkoelen met het verkeer."</string>
+    <string name="t_15ede35d" formatted="false">"◇ {0} · vanaf het begin beschikbaar"</string>
+    <string name="t_167ae054" formatted="false">"Dit wist je opgeslagen run, elke ontgrendelde agent, alle statistieken en je instellingen.\n\nDit kan niet ongedaan worden gemaakt."</string>
+    <string name="t_17a13ae4" formatted="false">"Bazen bewegen langzaam maar raken CORE-SERVER voor {0} integriteit. Ze leveren de meeste crypto in de game op en worden elke cyclus taaier."</string>
+    <string name="t_17e0e9f0" formatted="false">"Zeer hoge vuursnelheid, richt altijd eerst op bazen vóór al het andere binnen bereik en doet dubbele schade aan [!!!] BREACH. Wordt ontgrendeld bij golf 30 en er mogen er niet meer dan vier worden ingezet."</string>
+    <string name="t_1877f7c0" formatted="false">"GEDE-ÏNSTALLEERD"</string>
+    <string name="t_197d534b" formatted="false">"Besteed € BUDGET — opgespaard bij elke tiende golf van een run en daarna bewaard — aan een permanente schadeboost voor elke agent."</string>
+    <string name="t_1991565e" formatted="false">"SNELHEIDSLIMIET"</string>
+    <string name="t_19cbe369" formatted="false">"FAVORIETE AGENT"</string>
+    <string name="t_1a155da6" formatted="false">"VOLGENDE GOLF"</string>
+    <string name="t_1a2a0f17" formatted="false">"VERGRENDELD"</string>
+    <string name="t_1a73c7da" formatted="false">"vuursnelheid"</string>
+    <string name="t_1aba43b0" formatted="false">"Trage ellipsvormige sporen rond de kern, als een planner aan het werk."</string>
+    <string name="t_1b0d8052" formatted="false">"Schud het slagveld als CORE-SERVER wordt geraakt"</string>
+    <string name="t_1ba327c9" formatted="false">"De meest voorkomende webaanval"</string>
+    <string name="t_1ba41734" formatted="false">"AANVALLEN GEBLOKKEERD"</string>
+    <string name="t_1cc19733" formatted="false">"ECHTE WERELD"</string>
+    <string name="t_1d162704" formatted="false">"Weet je zeker dat je een nieuwe run wilt starten? Je opgeslagen sessie wordt vervangen."</string>
+    <string name="t_1d29935f" formatted="false">"{0} GESTOORD"</string>
+    <string name="t_1d8fe548" formatted="false">"OPNIEUW BEGINNEN"</string>
+    <string name="t_1dea7837" formatted="false">"HACK:AI is over zijn grenzen gegaan. Halve integriteit, dubbele beloningen."</string>
+    <string name="t_1deb5c00" formatted="false">"GEKOPPELD · OFFLINE"</string>
+    <string name="t_1e09b492" formatted="false">"🔒 [{0}] {1} · VERGRENDELD"</string>
+    <string name="t_1e6ed1a9" formatted="false">"LEVENDE ACHTERGRONDEN"</string>
+    <string name="t_1ef7821b" formatted="false">"Neonblauw raster dat de kern in loopt, met een holografische ring die van blauw naar groen glijdt."</string>
+    <string name="t_1f3159fc" formatted="false">"AGENTKLEUREN"</string>
+    <string name="t_1f5df304" formatted="false">"VERBINDING HERSTELD"</string>
+    <string name="t_1ff44d56" formatted="false">"LICENTIE AFGEDWONGEN"</string>
+    <string name="t_20ce505d" formatted="false">"PAUZE"</string>
+    <string name="t_21399575" formatted="false">"ONTWIKKELAAR"</string>
+    <string name="t_2198b685" formatted="false">"Teken de scanradius van de geselecteerde agent"</string>
+    <string name="t_21bb43e3" formatted="false">"{0} · ELK NIVEAU"</string>
+    <string name="t_22100250" formatted="false">"NIVEAU {0} · MAX"</string>
+    <string name="t_224d65ed" formatted="false">"CORE-SERVER-SKINS"</string>
+    <string name="t_22686e59" formatted="false">"VERBINDING"</string>
+    <string name="t_227cde14" formatted="false">"{0} in {1}"</string>
+    <string name="t_2283d7ca" formatted="false">"KNOOPPUNT BEZET"</string>
+    <string name="t_22b6479a" formatted="false">"Een specialist in cyberoperaties voert verdediging als een live operatie: let op verstoring, houdt het gereedschap van het team draaiend terwijl iemand het actief probeert uit te schakelen, en gaat recht op de bron af."</string>
+    <string name="t_22c4ef22" formatted="false">"De inhoud is versleuteld, dus de meeste verdedigingen kunnen niet lezen waarop ze schieten en doen maar gedeeltelijke schade. Een CRYPTOGRAPHER-agent snijdt dwars door het cijfer."</string>
+    <string name="t_23020c53" formatted="false">" · {0} betaalbaar"</string>
+    <string name="t_236f5b12" formatted="false">"TOTAAL VERSLAGEN BAZEN"</string>
+    <string name="t_23763c89" formatted="false">"INSTELLINGEN"</string>
+    <string name="t_23961a76" formatted="false">"BAAS {0} VAN {1} · TIK OP EEN BAAS OM TE WISSELEN"</string>
+    <string name="t_24adcafc" formatted="false">"TOTALE SCHADE AAN SERVER"</string>
+    <string name="t_24bbb47b" formatted="false">"VERGRENDELDE ITEMS"</string>
+    <string name="t_24d3a2ef" formatted="false">"MUUR GEVALLEN"</string>
+    <string name="t_255b5911" formatted="false">"CRT-fosforgroen, scanlijnen en een verversingsveeg."</string>
+    <string name="t_2570d23e" formatted="false">"Concentreer het vuur. ANALYST en ROOT ADMIN dragen de baasgolven."</string>
+    <string name="t_25a6b96b" formatted="false">"Betrouwbare schade op middellange afstand voor een lage prijs, en de enige agent die immuun is voor een baas-JAM. Kort bereik, dus hij moet dicht bij de route staan — precies daarom doet die immuniteit ertoe."</string>
+    <string name="t_25bd1975" formatted="false">"SCH"</string>
+    <string name="t_25efb9da" formatted="false">"EXPLOSIESTRAAL"</string>
+    <string name="t_260d60b1" formatted="false">"ÉÉN ADVERTENTIE NA EEN VERLOREN RUN · REVIVE VRIJWILLIG"</string>
+    <string name="t_26b80d1f" formatted="false">"KLAAR"</string>
+    <string name="t_27a68119" formatted="false">"NETWERKSTATUS"</string>
+    <string name="t_27d9802d" formatted="false">"ÉÉN ADVERTENTIE NA EEN VERLOREN RUN"</string>
+    <string name="t_27daad70" formatted="false">"Rijp die vanaf de randen binnenkruipt."</string>
+    <string name="t_28c31125" formatted="false">"Gepantserd en geduldig. Zware losse treffers verslaan hem; snel vuur is verspild."</string>
+    <string name="t_28e339dd" formatted="false">"Spaarzame kolommen vallende tekens achter het veld."</string>
+    <string name="t_296fb456" formatted="false">"REPARATIE +{0} HP · ELKE {1}s · SLOT CORE-SERVER · MAX {2}"</string>
+    <string name="t_297ae895" formatted="false">"IN QUARANTAINE"</string>
+    <string name="t_2a1bde6e" formatted="false">"Een inbraakpreventiesysteem zit in het verkeerspad en mag handelen op wat het detecteert: het verbreekt of reset een verbinding in plaats van alleen te waarschuwen. De afweging is echt: een IPS dat legitiem verkeer verkeerd inschat, blokkeert het."</string>
+    <string name="t_2a934539" formatted="false">"AANVALSBRON"</string>
+    <string name="t_2a9b95e6" formatted="false">"Doet ×{0} schade aan elke baas."</string>
+    <string name="t_2bb9a482" formatted="false">"Een firewall controleert verkeer aan de hand van een lijst regels en laat alles vallen wat niet overeenkomt. Het is de oudste en nog steeds belangrijkste verdediging aan de rand."</string>
+    <string name="t_2be00c84" formatted="false">"ROEPNAAM BEWERKEN"</string>
+    <string name="t_2c13b917" formatted="false">"Doet ×{0} schade aan {1}."</string>
+    <string name="t_2ce4713d" formatted="false">"&gt; CORE-SERVER synchroniseren"</string>
+    <string name="t_2d14c154" formatted="false">"Trage diagonale datastromen dwars over het veld."</string>
+    <string name="t_2dcb788c" formatted="false">"Deze game is ontwikkeld met hulp van kunstmatige-intelligentietools, gebruikt als leer- en ontwikkelhulpmiddel tijdens het leren programmeren en software ontwikkelen.\n\nAI-tools hielpen bij onder meer codeontwikkeling, probleemoplossing, documentatie en leren. Definitieve ontwerpbeslissingen, de richting van de gameplay, testen en publicatiebeslissingen blijven de verantwoordelijkheid van de ontwikkelaar.\n\nDeze game is niet gegenereerd, gesponsord, onderschreven, in eigendom van of uitgegeven door een AI-bedrijf."</string>
+    <string name="t_2df53561" formatted="false">"Verkeersfilter op basis van regels"</string>
+    <string name="t_2e0cf790" formatted="false">"OVERIG"</string>
+    <string name="t_2e19cc63" formatted="false">"Staat één keer weer op met 40% gezondheid. Hem doden is niet hetzelfde als hem afmaken."</string>
+    <string name="t_2ef9e2c6" formatted="false">"CYBERAANVALLEN"</string>
+    <string name="t_2f3549f7" formatted="false">"CLOUDOPSLAG NIET BESCHIKBAAR"</string>
+    <string name="t_302a4f0a" formatted="false">"BASIS"</string>
+    <string name="t_302eea27" formatted="false">"WETEN WAT ER AANKOMT?"</string>
+    <string name="t_3083c674" formatted="false">"LEVEND: DRIFT"</string>
+    <string name="t_30867b62" formatted="false">"Volledig offline speelbaar"</string>
+    <string name="t_30ed929d" formatted="false">"Ontgrendel deze agent door golf {0} te halen op {1}."</string>
+    <string name="t_31359ec6" formatted="false">"{0} focus uit"</string>
+    <string name="t_313900e6" formatted="false">"ARCHITECT-UPLINK"</string>
+    <string name="t_314d733e" formatted="false">"€ {0} beschikbaar"</string>
+    <string name="t_317b7de0" formatted="false">"Code die in het rek zelf naar beneden valt."</string>
+    <string name="t_31d43b93" formatted="false">"LEVEND: REGEN"</string>
+    <string name="t_326bdc38" formatted="false">"AGENT NIET GEREGISTREERD"</string>
+    <string name="t_32a3e9f3" formatted="false">"SPECIAAL — {0}"</string>
+    <string name="t_32bafd88" formatted="false">"VOLGENDE"</string>
+    <string name="t_32e6f915" formatted="false">"NU BETAALBAAR"</string>
+    <string name="t_332ec80a" formatted="false">"Alles doodt deze. Bouw er niet te veel voor."</string>
+    <string name="t_33cd995a" formatted="false">"INBRAAK GEBLOKKEERD"</string>
+    <string name="t_3425c9d3" formatted="false">"NIVEAU {0}"</string>
+    <string name="t_35350bff" formatted="false">"Een pulserende insluitingsring."</string>
+    <string name="t_3595e52a" formatted="false">"ROUTE {0}"</string>
+    <string name="t_35c82960" formatted="false">"KERN: GLACIER"</string>
+    <string name="t_35f74be9" formatted="false">"Overweldigende schade op één doel die alle pantser negeert. De duurste agent in de game en heel laat ontgrendeld. Toont de doelkiezer."</string>
+    <string name="t_36900a0f" formatted="false">"Goedkoop en bijna onschadelijk. Alles binnen zijn straal kruipt."</string>
+    <string name="t_37447c3a" formatted="false">"Extreem hoge vuursnelheid en elk schot spat."</string>
+    <string name="t_376bc6d2" formatted="false">"Het aftellen loopt door terwijl dit open is."</string>
+    <string name="t_376c54b2" formatted="false">"ADVERTENTIES VERWIJDEREN"</string>
+    <string name="t_379656ef" formatted="false">"KERN: VOID"</string>
+    <string name="t_37bc9401" formatted="false">"Deze versie toont advertenties van Google AdMob. Een advertentie bekijken om een run voort te zetten is altijd optioneel en nooit nodig om te spelen."</string>
+    <string name="t_384d3555" formatted="false">"{0} actief"</string>
+    <string name="t_384e5d9f" formatted="false">"CLOUDOPSLAG"</string>
+    <string name="t_385b9a87" formatted="false">"Een tarpit accepteert een vijandige verbinding en antwoordt dan zo traag als het mag, waardoor de aanvaller vastzit op een socket die nergens heen gaat. Het is een vertragingstactiek, geen blokkade: de waarde is de tijd die het de andere kant kost."</string>
+    <string name="t_38695d86" formatted="false">"VOORTGANGSBACK-UP"</string>
+    <string name="t_38c1e7e0" formatted="false">"VIA ADVERTENTIE"</string>
+    <string name="t_38d9a5af" formatted="false">"&gt; netwerk gecompromitteerd"</string>
+    <string name="t_38e03b91" formatted="false">"VOLLEDIG GEÏNSTALLEERD"</string>
+    <string name="t_3950774a" formatted="false">"GEREGISTREERD ALS"</string>
+    <string name="t_395af116" formatted="false">"ANONIEME HACK"</string>
+    <string name="t_396e8daa" formatted="false">"SPECTRUM"</string>
+    <string name="t_3a06e0fa" formatted="false">"MUZIEK"</string>
+    <string name="t_3a7e7fe6" formatted="false">"BUILDTYPE"</string>
+    <string name="t_3a8a0a59" formatted="false">"Elke treffer versnelt hem, hoe klein ook; hij vertraagt als je hem met rust laat. Weinig grote treffers verslaan veel kleine."</string>
+    <string name="t_3aa6f2eb" formatted="false">"ZERO-DAY HUNTER en ROOT ADMIN negeren pantser volledig."</string>
+    <string name="t_3aaad671" formatted="false">"TIK VOOR DETAILS"</string>
+    <string name="t_3b12a908" formatted="false">"GRADIENT versnelt bij elke treffer, hoe klein ook, en vertraagt als je hem met rust laat. Weinig grote treffers verslaan veel kleine."</string>
+    <string name="t_3b53a59d" formatted="false">"Start ook baasgolven automatisch. Uit: baasgolven wachten op jou"</string>
+    <string name="t_3bc78174" formatted="false">"AI-ONDERSTEUNDE ONTWIKKELING"</string>
+    <string name="t_3c66aec8" formatted="false">"Je golven, agenten, € en firmware worden in je Google-account opgeslagen. Log daarop in op een ander apparaat en ze zijn er. Synchroniseert als je de game verlaat en als een run eindigt."</string>
+    <string name="t_3cef355d" formatted="false">"Hoogste resterende gezondheid"</string>
+    <string name="t_3d17c701" formatted="false">"SNELHEIDSUITBARSTING"</string>
+    <string name="t_3d331382" formatted="false">"Het pad dat verkeer volgt"</string>
+    <string name="t_3d509ddc" formatted="false">"Halveer de framerate en laat decoratieve effecten weg"</string>
+    <string name="t_3d83d177" formatted="false">"CYBERAGENTEN"</string>
+    <string name="t_3db03eca" formatted="false">"JOUW RECORD"</string>
+    <string name="t_3e12b118" formatted="false">"HULP"</string>
+    <string name="t_3e27e12f" formatted="false">"Laagste resterende gezondheid"</string>
+    <string name="t_3ecdd82e" formatted="false">"Een zero-day is een kwetsbaarheid die de verdediger nul dagen had om te repareren, omdat niemand wist dat ze bestond. Er is geen signatuur om tegen te matchen, en dat maakt ze zo gevaarlijk."</string>
+    <string name="t_3fa2aee2" formatted="false">"Krijgt 35% minder schade van FIREWALL-agenten."</string>
+    <string name="t_401924c3" formatted="false">"CORE-SERVER-SKIN"</string>
+    <string name="t_4071c698" formatted="false">"Google Play reageerde. Aankopen en herstellen werken normaal."</string>
+    <string name="t_40b15bdb" formatted="false">"Opgespaard bij elke tiende golf. Hoe dieper een run gaat, hoe meer die oplevert — de beloning groeit met het kwadraat van de mijlpaal, dus één diepe run verslaat vijf ondiepe."</string>
+    <string name="t_4104a0b2" formatted="false">"Jouw beste op {0}: golf {1}"</string>
+    <string name="t_4108bc91" formatted="false">"HANDDRUK GEWEIGERD"</string>
+    <string name="t_41203058" formatted="false">"UITRUSTING"</string>
+    <string name="t_412ea11f" formatted="false">"Tik op twee gemarkeerde inzetknooppunten naast een route. Twee is geen suggestie: één agent kan een route niet alleen afdekken."</string>
+    <string name="t_419c5ded" formatted="false">"TOTAAL GESPEELDE SPELLEN"</string>
+    <string name="t_41a1b85e" formatted="false">"PRIVACYOPTIES"</string>
+    <string name="t_41ca8ef5" formatted="false">"Lokaal opgeslagen op dit apparaat · er wordt niets geüpload"</string>
+    <string name="t_41e88f52" formatted="false">"Knijp met twee vingers om in te zoomen op het bord — knooppunten zijn van dichtbij makkelijker aan te tikken. Sleep tijdens het inzoomen met één vinger om rond te gaan. Knijp helemaal uit om het hele bord weer te zien."</string>
+    <string name="t_4208e473" formatted="false">"GEEN ADVERTENTIE"</string>
+    <string name="t_420bd000" formatted="false">"BOTMASTER laat om de paar seconden BOT's achter zich. Dood hem snel en houd iets over voor de zwerm."</string>
+    <string name="t_4273a8be" formatted="false">"ACCOUNT"</string>
+    <string name="t_42832744" formatted="false">"Geen gokken, lootboxen of willekeurige betaalde beloningen"</string>
+    <string name="t_42880e6f" formatted="false">"VERGRENDELD · {0}"</string>
+    <string name="t_42a0e053" formatted="false">"OVER"</string>
+    <string name="t_42addf6c" formatted="false">"WINKEL OPENEN"</string>
+    <string name="t_42afe7bc" formatted="false">"VERBINDEN"</string>
+    <string name="t_42ef8058" formatted="false">"VERDEDIGINGSRECORD"</string>
+    <string name="t_4306ee12" formatted="false">"€1,500 BUDGET"</string>
+    <string name="t_4333987a" formatted="false">"Spaarzame kolommen vallende tekens."</string>
+    <string name="t_43a1c2e8" formatted="false">"UPGRADEKOSTEN"</string>
+    <string name="t_441ec9a9" formatted="false">"Een korte rondleiding door het menu. VOLGENDE om door te gaan, OVERSLAAN om te sluiten. Je kunt hem altijd opnieuw afspelen via INSTELLINGEN."</string>
+    <string name="t_4427afab" formatted="false">"Pantser stompt kleine treffers af: neem ANALYST of ROOT ADMIN mee, geen IPS."</string>
+    <string name="t_4439e789" formatted="false">"VERGRENDELD · Voltooi niveau 5 (sla golf 100 af op DDoS) om de muziekspeler en de nummerlijst te ontgrendelen."</string>
+    <string name="t_448177d3" formatted="false">"LAATSTE SYNCHRONISATIE"</string>
+    <string name="t_4494c488" formatted="false">"{0} MIN GELEDEN"</string>
+    <string name="t_44c51c30" formatted="false">"AANVAL GEBLOKKEERD"</string>
+    <string name="t_44fbbc54" formatted="false">"&gt; !! cyberaanval op komst — grote inbraak onderweg !!"</string>
+    <string name="t_4538f2a7" formatted="false">"Een firewall controleert verkeer aan de hand van een set regels en laat alles vallen wat de regels niet toestaan. Het is meestal de eerste maatregel tussen een onbetrouwbaar netwerk en iets wat bescherming waard is, en wordt beoordeeld op de regels die het krijgt, niet op slimheid."</string>
+    <string name="t_45b17976" formatted="false">"Zware schade op één doel, bij elk schot identiek in plaats van een gok, en negeert pantser. Duur en traag; één ervan houdt een route niet alleen."</string>
+    <string name="t_4631883a" formatted="false">"MAX INSTALLEREN  (+{0})"</string>
+    <string name="t_463cbc28" formatted="false">"GEZONDHEID ×{0} · PANTSER +{1} · SNELHEID ×{2}"</string>
+    <string name="t_466578df" formatted="false">"Hervat deze golf met halve integriteit."</string>
+    <string name="t_466b92a9" formatted="false">"SEGMENT-UPLINK"</string>
+    <string name="t_46984fe6" formatted="false">"SPELEN · DOORGAAN"</string>
+    <string name="t_46cc0ef8" formatted="false">"Het verhoogt ook de ◇ crypto die elke run oplevert, +{0}% per niveau tot het dubbele. Het heeft geen invloed op vijandelijke gezondheid of golfsamenstelling."</string>
+    <string name="t_4735c1ed" formatted="false">"Er komen cyberaanvallen op CORE-SERVER af. Zet Cyberagenten naast de routes in om ze te stoppen voordat ze aankomen."</string>
+    <string name="t_4747b424" formatted="false">"VIJANDEN"</string>
+    <string name="t_477d52c6" formatted="false">"Gekoppeld. Log in op hetzelfde Google-account op een andere telefoon of tablet en je voortgang staat daar."</string>
+    <string name="t_47c5c237" formatted="false">"ONGELDIG KNOOPPUNT"</string>
+    <string name="t_485268f0" formatted="false">"&gt; cyberagenten bewapenen"</string>
+    <string name="t_4882e1dc" formatted="false">"KERNEL PANIC stoort bij zijn dood elke agent binnen bereik 3 seconden lang. FIREWALL houdt stand."</string>
+    <string name="t_488d4b25" formatted="false">"Duizenden machines sturen tegelijk verkeer naar één doel. Geen enkel verzoek is een aanval; de vloed is het. Het doel is niet inbreken, maar de dienst onbruikbaar maken."</string>
+    <string name="t_4905ed7b" formatted="false">"GEEN"</string>
+    <string name="t_494c304d" formatted="false">"-◇{0} BUITGEMAAKT"</string>
+    <string name="t_49848f53" formatted="false">"BLINDE SQL-INJECTIE"</string>
+    <string name="t_498754a7" formatted="false">"SOUNDTRACK OP TELEFOON OPSLAAN"</string>
+    <string name="t_4af4306b" formatted="false">"BUILD"</string>
+    <string name="t_4c1012d3" formatted="false">"Houd hem onder vuur: hij repareert pas na een moment zonder treffer, dus dek de gaten tussen de dodingszones af."</string>
+    <string name="t_4c6d3272" formatted="false">"🔒 VERGRENDELD"</string>
+    <string name="t_4cc6f55a" formatted="false">"Google Play Games was niet bereikbaar. Je runs worden op dit apparaat bijgehouden en je beste wordt geplaatst de volgende keer dat een run eindigt terwijl je online bent."</string>
+    <string name="t_4d54c785" formatted="false">"{0} PLAATSEN — tik op een knooppunt"</string>
+    <string name="t_4d6e69d2" formatted="false">"MUZIEKSPELER"</string>
+    <string name="t_4d7ab8a3" formatted="false">"ROEPNAAM"</string>
+    <string name="t_4e2b3472" formatted="false">"GEEN OPGESLAGEN SESSIE"</string>
+    <string name="t_4ebbf8bd" formatted="false">"Nog {0} revives deze run."</string>
+    <string name="t_4f0fcb18" formatted="false">"Komt bij elke vijfde golf"</string>
+    <string name="t_4f160176" formatted="false">"De oogstrun. Geen trucs, geen storing — twintig procent meer ervan dan van wat dan ook op het bord."</string>
+    <string name="t_5022c684" formatted="false">"VERSLEUTELING"</string>
+    <string name="t_5067a989" formatted="false">"VERSTRENGELDE KETTING"</string>
+    <string name="t_5079b771" formatted="false">"Ontgrendel deze agent door golf {0} te halen op {1} in de modus {2}."</string>
+    <string name="t_509d7851" formatted="false">" · IMPACT {0}"</string>
+    <string name="t_513901c7" formatted="false">" · ADVERTENTIEVRIJ"</string>
+    <string name="t_513dcdc9" formatted="false">"PER AGENT"</string>
+    <string name="t_520a6b88" formatted="false">"Elk niveau kost iets meer dan het vorige, dus de vermenigvuldiger blijft stijgen maar loopt nooit uit de hand. Er is geen plafond dat je realistisch bereikt."</string>
+    <string name="t_5333e76e" formatted="false">"WEERGAVE"</string>
+    <string name="t_53e605b3" formatted="false">"OPGELET"</string>
+    <string name="t_543ce9f7" formatted="false">"ELKE"</string>
+    <string name="t_54523d94" formatted="false">"Het rek waarin je kern is gebouwd. Zichtbaar op het slagveld."</string>
+    <string name="t_54743050" formatted="false">"TOTAAL GEBLOKKEERDE AANVALLEN"</string>
+    <string name="t_54797d92" formatted="false">"Printsporen die onder de uitlezingen lopen."</string>
+    <string name="t_549824f8" formatted="false">"POORT BEVEILIGD"</string>
+    <string name="t_5571a722" formatted="false">"SPEELT OFFLINE · GEEN LOGIN NODIG"</string>
+    <string name="t_55f85167" formatted="false">"COMPACT AGENTENMENU"</string>
+    <string name="t_565a738e" formatted="false">"NEE, LAAT ME SPELEN"</string>
+    <string name="t_56a9a004" formatted="false">"Injectie met het licht uit"</string>
+    <string name="t_56bafb67" formatted="false">"Eén revive per run."</string>
+    <string name="t_56c54890" formatted="false">"Een opgeblazen model: iets meer gezondheid, iets trager."</string>
+    <string name="t_56c6b2ae" formatted="false">"Fictieve vrijheid, duidelijk aangegeven: deze agent negeert de eigenschap ENCRYPTED gewoon in plaats van erdoor te worden vertraagd, en doet drievoudige schade aan alles wat haar draagt. Echte cryptografie werkt niet zo en niets hier kraakt een echt cijfer."</string>
+    <string name="t_5749c8dc" formatted="false">"Golf {0} en alles wat is ingezet gaan verloren."</string>
+    <string name="t_5785b710" formatted="false">"Selecteer een agent en tik dan op een gemarkeerd inzetknooppunt."</string>
+    <string name="t_57f88861" formatted="false">"FOCUS: ALLEEN BAZEN"</string>
+    <string name="t_582ec4a0" formatted="false">"Gecompromitteerde computers die stilletjes bevelen aannemen van een centrale controller. De eigenaars hebben meestal geen idee. Botnets maken grote DDoS-aanvallen mogelijk."</string>
+    <string name="t_5840893d" formatted="false">"INBRAAK INGEDAMD"</string>
+    <string name="t_58a5f08a" formatted="false">"Het gewone raster. Geen beweging."</string>
+    <string name="t_597ee3cb" formatted="false">"SIGNATUUR HERKEND"</string>
+    <string name="t_5a02fc0a" formatted="false">"REVIVE-PAKKET"</string>
+    <string name="t_5a3d8598" formatted="false">"Dichtst bij CORE-SERVER"</string>
+    <string name="t_5a911db6" formatted="false">"JOUW GOOGLE-ACCOUNT"</string>
+    <string name="t_5aa1d1dc" formatted="false">"{0} focus aan"</string>
+    <string name="t_5b19a621" formatted="false">"Een aanval op een fout die nog niemand heeft gepatcht — de verdediger had nul dagen om zich voor te bereiden. Zeldzaam, taai en echte crypto waard om te stoppen."</string>
+    <string name="t_5c19fc6b" formatted="false">"KOOP DE CyOps TD-SOUNDTRACK · {0}"</string>
+    <string name="t_5c3f86fb" formatted="false">"STERKSTE"</string>
+    <string name="t_5d1868fb" formatted="false">"KERN"</string>
+    <string name="t_5d377851" formatted="false">"Permanente upgrades · elke wedstrijd vanaf nu"</string>
+    <string name="t_5d4d0273" formatted="false">"{0} is vergrendeld: {1}."</string>
+    <string name="t_5de47a9b" formatted="false">"ALLE MOEILIJKHEDEN"</string>
+    <string name="t_5de55828" formatted="false">"!! INTEGRITEIT LAAG !!"</string>
+    <string name="t_5e75065a" formatted="false">"VERBONDEN"</string>
+    <string name="t_5f2258c9" formatted="false">"Het geld links. Het wordt bij elke tiende golf van een run opgespaard en blijft na de run bewaard. Diepere runs leveren veel meer op."</string>
+    <string name="t_5fd47bcf" formatted="false">"KERN: MERIDIAN"</string>
+    <string name="t_602fffef" formatted="false">"Alles behalve CRYPTOGRAPHER verliest hier meer dan de helft van zijn schade."</string>
+    <string name="t_6049b1e7" formatted="false">"LEVENDE ACHTERGROND"</string>
+    <string name="t_60a5a04c" formatted="false">"Muziek pauzeren"</string>
+    <string name="t_60ecea1a" formatted="false">"ABSOLUUT"</string>
+    <string name="t_60f81814" formatted="false">"Elke {0} seconden besteedt LICENSE {1} aan het negeren van elk agenttype dat hem blijft raken. Mix je agenttypes."</string>
+    <string name="t_61919374" formatted="false">"HERREZEN — hij komt niet nog eens terug"</string>
+    <string name="t_61ebe734" formatted="false">"SCHERMSCHOK"</string>
+    <string name="t_625afb79" formatted="false">"In bezit. Slaat op in Music/CyOps TD als \"CyOps TD - Level X (Y)\"."</string>
+    <string name="t_628c7cd9" formatted="false">"VERDELING AGENTINZET"</string>
+    <string name="t_62f8af50" formatted="false">"+{0} HP / {1}s"</string>
+    <string name="t_63374e04" formatted="false">"HOOFDMENU"</string>
+    <string name="t_633e8e1a" formatted="false">"Valt bij zijn dood uiteen in drie kleinere wormen, en elk daarvan valt nog één keer uiteen. Spatschade is je vriend."</string>
+    <string name="t_6343926d" formatted="false">"STORING"</string>
+    <string name="t_638aaa93" formatted="false">"OOK HIER TE ZIEN"</string>
+    <string name="t_63b00a3c" formatted="false">"Gegevens die over een netwerk worden verzonden, worden in pakketten gehakt: kleine stukjes met een bestemmingsadres en een payload. Een pakket is geen aanval — bijna alle zijn gewoon verkeer. Waar je hier op schiet zijn pakketten met een specifieke aanval, en daarom is elk vernoemd naar de aanval in plaats van naar het pakket."</string>
+    <string name="t_63b54927" formatted="false">"3 revives per run en nooit revive-advertenties, plus €5,000."</string>
+    <string name="t_63bef594" formatted="false">"HP {0}"</string>
+    <string name="t_63f3d76a" formatted="false">"OPSLAAN"</string>
+    <string name="t_63facb82" formatted="false">"LEVEND: PULS"</string>
+    <string name="t_6480a147" formatted="false">"GOLF {0}  —  VERSTERK DE RAND"</string>
+    <string name="t_648a945b" formatted="false">"TWEE DINGEN DIE NIEMAND JE VERTELT"</string>
+    <string name="t_6490c689" formatted="false">"Geen echte cryptovaluta, blockchain, wallets, mining of NFT's"</string>
+    <string name="t_64d398f9" formatted="false">"BEREIK"</string>
+    <string name="t_65155738" formatted="false">"5× SNELHEID"</string>
+    <string name="t_65252ce7" formatted="false">"EERSTE"</string>
+    <string name="t_6554cde7" formatted="false">"Google Play vragen wat dit account bezit. Dat duurt meestal even."</string>
+    <string name="t_655c9284" formatted="false">"LEVEND: ROOSTER"</string>
+    <string name="t_656e6ce8" formatted="false">"AGENTEN"</string>
+    <string name="t_65c8fd90" formatted="false">"DREIGINGSBRIEFING"</string>
+    <string name="t_6678bfdf" formatted="false">"Als hij sterft, wordt elke agent in de buurt 3 seconden gestoord. Dood hem ver van je bord, of als de volgende golf nog ver weg is."</string>
+    <string name="t_66fa85d7" formatted="false">"Spreid je agenten zodat één storing de linie niet kan stilleggen."</string>
+    <string name="t_6700226a" formatted="false">"GEKOPPELD"</string>
+    <string name="t_67043715" formatted="false">"PANTSER"</string>
+    <string name="t_67313d46" formatted="false">"MUUR STAAT"</string>
+    <string name="t_6757b458" formatted="false">"AANVALLEN GESTOPT"</string>
+    <string name="t_6813ef42" formatted="false">"ANONIEME HACK — {0} BOT'S KOMEN MET DUBBELE SNELHEID"</string>
+    <string name="t_681745bd" formatted="false">"AGENT VERGRENDELD — {0}"</string>
+    <string name="t_682d973f" formatted="false">"START"</string>
+    <string name="t_68e88af7" formatted="false">"GEVARENZONE"</string>
+    <string name="t_68e985d6" formatted="false">"Niets anders wordt ergens naartoe gestuurd. De game is speelbaar zonder enig netwerk."</string>
+    <string name="t_6904aeb4" formatted="false">"DE GAME"</string>
+    <string name="t_69698cdc" formatted="false">"WORM valt bij zijn dood uiteen in drie kleinere wormen, en die vallen nog één keer uiteen. Dood hem vroeg, met spatschade in de buurt."</string>
+    <string name="t_69a293c4" formatted="false">"SUDO BEËINDIGEN"</string>
+    <string name="t_6ad356c5" formatted="false">"Drie routes: een rechte lijn door het midden en twee die erboven en eronder zigzaggen."</string>
+    <string name="t_6b2d8165" formatted="false">"NIV {0}  {1} SCH"</string>
+    <string name="t_6c161f51" formatted="false">"2 seconden van elke 17 negeert hij elk agenttype dat hem blijft raken. Een gevarieerd bord blijft hem pijn doen."</string>
+    <string name="t_6c7aa396" formatted="false">"Andere bazen, andere zwakheden."</string>
+    <string name="t_6ca9de88" formatted="false">"SPECTRUM-AGENTEN"</string>
+    <string name="t_6cb7e8e3" formatted="false">"Trage, zware treffers. +80% schade aan elites en bazen."</string>
+    <string name="t_6cbf7c76" formatted="false">"BAZEN VERSLAGEN"</string>
+    <string name="t_6ccdc653" formatted="false">"Negeert versleuteling volledig en doet er drievoudige schade aan."</string>
+    <string name="t_6cedde69" formatted="false">"MUZIEKVOLUME"</string>
+    <string name="t_6d2d6d6b" formatted="false">"Negeert zijn pantser."</string>
+    <string name="t_6d907c0d" formatted="false">"Een \"blue team\" verdedigt een systeem en reageert op incidenten — de tegenhanger van een red team. \"Blue hat\" wordt in de sector op meer dan één manier gebruikt en is geen gestandaardiseerde term, dus alleen de betekenis van blue team wordt hier beschreven."</string>
+    <string name="t_6dbe0ea3" formatted="false">"NIVEAU"</string>
+    <string name="t_6f053419" formatted="false">"{0}-LIMIET — MAX {1}"</string>
+    <string name="t_6f21a684" formatted="false">"BAZEN — elke vijfde golf"</string>
+    <string name="t_70d42172" formatted="false">"Een netwerk opsplitsen zodat een inbraak in één zone de rest niet bereikt. Daarom zou één gecompromitteerde laptop geen gecompromitteerd bedrijf moeten betekenen."</string>
+    <string name="t_7191bf1d" formatted="false">"PERSISTENTIE"</string>
+    <string name="t_71c5931f" formatted="false">"Batterijbesparing verandert alleen wat er getekend wordt. Golfmoeilijkheid, schade en timing blijven volledig onaangetast."</string>
+    <string name="t_72102eb0" formatted="false">"Aankopen, herstel en wat dit apparaat verlaat"</string>
+    <string name="t_722a0bad" formatted="false">"GIDSEN OPNIEUW TONEN"</string>
+    <string name="t_73236391" formatted="false">"De game zelf verzamelt geen persoonsgegevens"</string>
+    <string name="t_735d4940" formatted="false">"VOLUME GELUIDSEFFECTEN"</string>
+    <string name="t_73907e76" formatted="false">"Alle 24 nummers uit de game, opgeslagen in de Music-map van je telefoon om overal af te spelen."</string>
+    <string name="t_7397fdaa" formatted="false">"Koud licht dat achter alles beweegt."</string>
+    <string name="t_739a7f7a" formatted="false">"© {0} {1}. Alle rechten voorbehouden."</string>
+    <string name="t_73d812dc" formatted="false">"Elke vijfde golf, en wat die brengt"</string>
+    <string name="t_73e8cb50" formatted="false">"Originele code, originele kunst, originele gesynthetiseerde audio. Gebouwd met Kotlin, Jetpack Compose en de Android Canvas API.\n\nIconen: CoreUI Icons Free van creativeLabs (coreui.io/icons), gelicentieerd onder CC BY 4.0.\n\nLicenties van externe afhankelijkheden staan in LICENSES.md in de projectrepository."</string>
+    <string name="t_74066c59" formatted="false">"IN DE GAME"</string>
+    <string name="t_746ab6c3" formatted="false">"IPS doet 35% extra schade aan zwermen. Zet hem waar routes samenkomen."</string>
+    <string name="t_746d814e" formatted="false">"Verwijdert je opgeslagen run, ontgrendelde agenten, statistieken en instellingen. Dit kan niet ongedaan worden gemaakt."</string>
+    <string name="t_74aa6c59" formatted="false">"ONVOLDOENDE € BUDGET"</string>
+    <string name="t_74fff44e" formatted="false">"Werpt lokkopieën van zichzelf op die vuur opvangen. ANALYST en ROOT ADMIN prikken erdoorheen."</string>
+    <string name="t_750800eb" formatted="false">"Vuurt zo snel als wat dan ook in de ploeg en schiet altijd eerst op een baas. Dubbele schade aan [GG] GOOD GAME. Maximaal vier."</string>
+    <string name="t_7596436a" formatted="false">"Een senior beveiligingsingenieur met een bachelor in cybersecurity, die aanvallen stopt door de software te bouwen die zich ertegen verdedigt: geharde diensten, patches en filters die er al zijn vóór de aanval, niet erna."</string>
+    <string name="t_75b191e4" formatted="false">"Bouwt een muur dwars over de dichtstbijzijnde route binnen bereik. Dreigingen stoppen bij de muur en moeten hem afbreken voordat ze verder kunnen; bazen breken hem het snelst. Als hij valt, bouwt ACE hem na een paar seconden opnieuw op, sterker met elk niveau. Zijn eigen schoten doen {0}× schade aan elke baas van de eerste vijf niveaus. Er mogen er niet meer dan drie worden ingezet."</string>
+    <string name="t_75bd8866" formatted="false">"Kies een niveau en een moeilijkheid"</string>
+    <string name="t_75e65d90" formatted="false">"TWEE KEER TIKKEN OM IN TE ZETTEN"</string>
+    <string name="t_75f24f6e" formatted="false">"Vergrendelt om de paar seconden de upgrades van één agent voor 8 seconden. Upgrade voordat hij aankomt."</string>
+    <string name="t_7682806a" formatted="false">"STAP 2 — KIES FIREWALL"</string>
+    <string name="t_77212b64" formatted="false">"Dit is de aanvalsgolf waar je tegenover staat. Hij blijft stijgen zolang je de server houdt — elke vijfde golf brengt een baas."</string>
+    <string name="t_772b21ba" formatted="false">"De verdediging die je inzet"</string>
+    <string name="t_77a2583e" formatted="false">"Twee verschillende dingen heten in beveiliging \"kwantum\" en het loont om ze uit elkaar te houden. Kwantumsleuteldistributie gebruikt natuurkunde om afluisteren op een verbinding te detecteren en wordt alleen in zeldzame, gespecialiseerde situaties ingezet. Post-kwantumcryptografie is gewone softwarewiskunde die bestand moet zijn tegen toekomstige kwantumcomputers, en dat is degene die echt wordt uitgerold."</string>
+    <string name="t_77a6da9b" formatted="false">"Ringen die vanuit de kern naar buiten reizen."</string>
+    <string name="t_77d03aa5" formatted="false">"Een blinde injectie krijgt geen foutmeldingen terug, dus de aanvaller leidt het antwoord af met één waar-of-onwaarvraag tegelijk. Het is trager en veel geduldiger dan een gewone injectie, en komt gehard tegen de voor de hand liggende verdedigingen."</string>
+    <string name="t_77e5929c" formatted="false">"De eerste tik toont het bereik van de agent op die plek; tik nogmaals om in te zetten"</string>
+    <string name="t_77e8896f" formatted="false">"Eén route snijdt vijf keer van hoek tot hoek over het bord."</string>
+    <string name="t_77f7e381" formatted="false">" · PANTSER {0}"</string>
+    <string name="t_782074f1" formatted="false">"  ·  AUTO {0}"</string>
+    <string name="t_7841323b" formatted="false">"DEFENSIEVE VEEG"</string>
+    <string name="t_78526608" formatted="false">"BEREIKTE GOLF"</string>
+    <string name="t_78a52e3b" formatted="false">"VERBORGEN"</string>
+    <string name="t_7922c8d5" formatted="false">"Versterkt elke agent binnen bereik: +30% schade, +20% vuursnelheid."</string>
+    <string name="t_79a4baee" formatted="false">"&lt; TERUG"</string>
+    <string name="t_79fc7a80" formatted="false">"Geldt alleen als GOLVEN AUTOMATISCH STARTEN aan staat"</string>
+    <string name="t_7a1f56c4" formatted="false">"NU SYNCHRONISEREN"</string>
+    <string name="t_7aba529e" formatted="false">"Breekt zijn versleuteling: ×{0} schade."</string>
+    <string name="t_7abfb3c7" formatted="false">"Splitst bij halve gezondheid in tweeën, en de tweede helft neemt een andere route."</string>
+    <string name="t_7b3bb73f" formatted="false">"DREIGING GENEUTRALISEERD"</string>
+    <string name="t_7b84a6c4" formatted="false">"Koppel je Google-account op het scherm GOOGLE PLAY om het wereldwijde klassement te zien en erop te posten. Je runs worden nog steeds op dit apparaat bijgehouden."</string>
+    <string name="t_7ba7f176" formatted="false">"+{0}% SCH"</string>
+    <string name="t_7be6fbad" formatted="false">"GOLF {0} · SIMULATIE GESTOPT"</string>
+    <string name="t_7bf2105b" formatted="false">"Distributed Denial of Service"</string>
+    <string name="t_7c4e4414" formatted="false">"LAATSTE"</string>
+    <string name="t_7c6853de" formatted="false">"WERELDWIJD · {0}"</string>
+    <string name="t_7d5cc77f" formatted="false">"TOTAAL VERDIENDE CRYPTO"</string>
+    <string name="t_7dc33bc2" formatted="false">"MAXIMAAL NIVEAU BEREIKT"</string>
+    <string name="t_7e1cf3a7" formatted="false">"REPARATIE"</string>
+    <string name="t_7e522f64" formatted="false">"CREDITS"</string>
+    <string name="t_7e72ed35" formatted="false">"VOORTGANG OPGESLAGEN IN JE ACCOUNT"</string>
+    <string name="t_7e906966" formatted="false">"{0} nummers opgeslagen in Music/CyOps TD."</string>
+    <string name="t_7ea71dbe" formatted="false">"Open AGENTEN opnieuw en selecteer TARPIT. Hij doet geen schade — hij vertraagt elke dreiging binnen zijn aura zodat je FIREWALL's er meer schoten op krijgen."</string>
+    <string name="t_7f11b512" formatted="false">"{0} · {1} PER RUN {2}"</string>
+    <string name="t_7fd8e294" formatted="false">"&gt; rand online"</string>
+    <string name="t_804ef7d5" formatted="false">"De meest voorkomende aanval op internet, en hier de basisdreiging. Een aanvaller typt databaseopdrachten in een veld dat een naam of wachtwoord verwachtte; als de applicatie dat rechtstreeks doorgeeft, gehoorzaamt de database."</string>
+    <string name="t_80592dd9" formatted="false">"VERSIE"</string>
+    <string name="t_8175c5fc" formatted="false">"CORE-SERVER-INTEGRITEIT"</string>
+    <string name="t_8198af01" formatted="false">"Verbergt zich 2 seconden van elke 6: niets kan hem als doel kiezen. Spatschade en kettingen bereiken hem nog wel."</string>
+    <string name="t_81e23c68" formatted="false">"OVERIG: alleen kleine eenheden en elites, nooit bazen"</string>
+    <string name="t_8230b283" formatted="false">"IDS doet 45% extra schade aan snelle aanvallen en ziet ze als eerste aankomen."</string>
+    <string name="t_82966ea3" formatted="false">"DE GOLFTELLER"</string>
+    <string name="t_829e8e06" formatted="false">"Agenten binnen zijn bereik kunnen niet worden gestoord. {0}× schade aan WHITE EYE en BLACK EYE. Maximaal twee."</string>
+    <string name="t_82a1fee3" formatted="false">"Weet je zeker dat je je run opnieuw wilt starten?"</string>
+    <string name="t_82a70835" formatted="false">"Zonder koppeling leeft runvoortgang alleen op dit apparaat. Een de-installatie of fabrieksreset wist hem; aankopen overleven beide."</string>
+    <string name="t_830a30fd" formatted="false">"BUDGET"</string>
+    <string name="t_830b01d9" formatted="false">"Firmware vermenigvuldigt de schade van elke agent die je inzet, in elke wedstrijd vanaf nu. Hij wordt toegepast vóór pantser en vóór de countertabel, dus hij helpt een Cryptographer tegen versleuteling precies evenveel als een Firewall tegen gewoon verkeer."</string>
+    <string name="t_831712ed" formatted="false">"NIEUWE CYBERAGENT ONTGRENDELD"</string>
+    <string name="t_83186dce" formatted="false">"ALLEEN DIT APPARAAT"</string>
+    <string name="t_8340a76d" formatted="false">"WAAROM HET ERTOE DOET"</string>
+    <string name="t_838b0928" formatted="false">"Roept escorterende aanvallen op terwijl hij oprukt."</string>
+    <string name="t_8478f19e" formatted="false">"WAT DIT APPARAAT VERLAAT"</string>
+    <string name="t_848f3f46" formatted="false">"ALLE VOORTGANG VERWIJDEREN?"</string>
+    <string name="t_852bda75" formatted="false">"CODEX"</string>
+    <string name="t_862b3f34" formatted="false">"CYBERAGENT INZETTEN"</string>
+    <string name="t_869cf6b4" formatted="false">"ROEPNAAM REGISTREREN"</string>
+    <string name="t_86cce90c" formatted="false">"ZWAKSTE"</string>
+    <string name="t_87442b62" formatted="false">"VOLGENDE GOLF · BREACH"</string>
+    <string name="t_87a9dd3e" formatted="false">"GOLVEN, € EN FIRMWARE"</string>
+    <string name="t_87d92d69" formatted="false">"Zeer groot detectiebereik; +45% schade aan snelle aanvallen."</string>
+    <string name="t_8806feca" formatted="false">"Zes CORE-SERVER-skins, plus €2,000. NEONGRID wordt apart verkocht."</string>
+    <string name="t_882561c2" formatted="false">"DREIGINGSANALYSE"</string>
+    <string name="t_891fc63b" formatted="false">"VERVALSING WEG"</string>
+    <string name="t_8980d82b" formatted="false">"{0} geselecteerd — tik op een gemarkeerd knooppunt om in te zetten."</string>
+    <string name="t_899bae42" formatted="false">"Optioneel. Alles in de game werkt zonder koppeling, en alleen je voortgang wordt ooit geüpload."</string>
+    <string name="t_89a47932" formatted="false">"Muziek afspelen"</string>
+    <string name="t_89c7b011" formatted="false">"Open het toestemmingsformulier van Google opnieuw om te wijzigen wat advertentiepartners mogen doen met gegevens van dit apparaat. Je gamevoortgang staat op dit apparaat en maakt er nooit deel van uit."</string>
+    <string name="t_89d7c51c" formatted="false">"Heen, terug en een lange gedeelde terugweg naar het rek."</string>
+    <string name="t_89dd34f8" formatted="false">"Laat het opruimen van zwermen aan IPS over zodat je zware schutters op de baas blijven."</string>
+    <string name="t_89e1b0eb" formatted="false">"Zijn veld trekt GRADIENT terug omlaag terwijl die versnelt."</string>
+    <string name="t_89e450ea" formatted="false">"VERWIJDERD · REVIVE-ADVERTENTIES APART"</string>
+    <string name="t_8a058fa3" formatted="false">"De standaardcurve."</string>
+    <string name="t_8a86921d" formatted="false">"De knoppen rechts scrollen. Verder naar beneden: WINKEL, UITRUSTING (skins en achtergronden uitrusten), GOOGLE PLAY (aankopen en cloudopslag), KLASSEMENT, CODEX (dreigingen en agenten uitgelegd), STATISTIEKEN, INSTELLINGEN en OVER."</string>
+    <string name="t_8a96f0aa" formatted="false">"NIET BESCHIKBAAR"</string>
+    <string name="t_8aa097b1" formatted="false">"  (VERGRENDELD)"</string>
+    <string name="t_8aec13a9" formatted="false">"Distributed Denial of Service: de aanval is het volume. Elk verzoek is onbeduidend, maar ze komen sneller dan wat dan ook in de game en er zijn er altijd meer."</string>
+    <string name="t_8af0e8d8" formatted="false">"Een gecoördineerde inbraakpoging. Geen trucs, alleen gewicht."</string>
+    <string name="t_8b094c6c" formatted="false">"Verbinden met Google Play…"</string>
+    <string name="t_8c42a507" formatted="false">"IJsnaalden die uitstralen vanuit een bevroren kern."</string>
+    <string name="t_8c61de92" formatted="false">"GOLVEN AUTOMATISCH STARTEN"</string>
+    <string name="t_8d56a5da" formatted="false">"Trage ellipsvormige sporen die rond de kern draaien."</string>
+    <string name="t_8d91a14b" formatted="false">"GOOGLE PLAY"</string>
+    <string name="t_8d9dd637" formatted="false">"BAAS: schiet alleen op bazen, houdt anders het vuur in"</string>
+    <string name="t_8e0413ab" formatted="false">"Deze versie heeft geen in-app-aankopen."</string>
+    <string name="t_8e3787c1" formatted="false">"VERGRENDELD · {0} (beste: {1})"</string>
+    <string name="t_8f0536a7" formatted="false">"MAX INSTALLEREN"</string>
+    <string name="t_8f37a712" formatted="false">"TOEGEBRACHTE SCHADE"</string>
+    <string name="t_8f48da3c" formatted="false">"NETWERK GECOMPROMITTEERD"</string>
+    <string name="t_8f5d0f11" formatted="false">"ECONOMIE"</string>
+    <string name="t_8f61abf9" formatted="false">"BEZIG…"</string>
+    <string name="t_8f68a3ab" formatted="false">"&gt; dreigingssignaturen laden"</string>
+    <string name="t_8ff6e51c" formatted="false">"Nog geen runs bijgehouden op {0}."</string>
+    <string name="t_90391726" formatted="false">"HERVATTEN"</string>
+    <string name="t_910b3ae9" formatted="false">"Geld verdiend om agenten te kopen die de server verdedigen. Crypto◇ verdien je voor elke kill en elke voltooide golf."</string>
+    <string name="t_915c2f22" formatted="false">"{0} nummers opgeslagen, daarna weigerde de telefoon de rest. Maak wat ruimte vrij en probeer het opnieuw."</string>
+    <string name="t_919816cc" formatted="false">"Google Play was niet bereikbaar. Alles wat je al kocht is nog steeds van jou — probeer HERSTEL zodra je weer online bent."</string>
+    <string name="t_91ae1cd3" formatted="false">"Woordenlijst in gewone taal"</string>
+    <string name="t_91d4d5fc" formatted="false">"BESCHIKBAAR · ◇ {0}"</string>
+    <string name="t_9231c915" formatted="false">"Amberkleurige insluitingsringen rond een lopende reactie."</string>
+    <string name="t_933bf2fb" formatted="false">"ADVERTENTIES VERWIJDEREN dekt advertenties tussen runs; revive-advertenties staan los."</string>
+    <string name="t_935cf7b5" formatted="false">"De vuursnelheid van de hoeden, zwaardere schoten en {0}× schade aan SYN-STORM en GRADIENT. Maximaal twee."</string>
+    <string name="t_93875a49" formatted="false">"bereik"</string>
+    <string name="t_93f1bd2f" formatted="false">"Zeer hoge vuursnelheid, richt altijd eerst op bazen vóór al het andere binnen bereik en doet dubbele schade aan [GG] GOOD GAME. Wordt ontgrendeld bij golf 30 en er mogen er niet meer dan vier worden ingezet."</string>
+    <string name="t_94061f4f" formatted="false">"Doet bijna geen schade. Alles binnen zijn straal kruipt, waardoor dreigingen veel langer binnen bereik van je schadedealers blijven. Goedkoop, en in zijn eentje nutteloos — hij is een krachtvermenigvuldiger voor wat er ook naast hem schiet."</string>
+    <string name="t_941dea68" formatted="false">"SCHADEGETALLEN"</string>
+    <string name="t_9427590a" formatted="false">"Toon zwevende schadewaarden bij treffers"</string>
+    <string name="t_94bbec0b" formatted="false">"Tik op VOLGENDE GOLF. Je agenten vuren automatisch. Elke gestopte aanval levert ◇ Crypto op, waarmee je meer agenten en upgrades koopt."</string>
+    <string name="t_94dc88d3" formatted="false">"Elk firmwareniveau voegt +{0}% schade toe aan elke agent en +{1}% ◇ crypto verdiend in runs (tot het dubbele), in elke toekomstige wedstrijd. Het verdwijnt nooit."</string>
+    <string name="t_95051192" formatted="false">"NIET INGESTELD"</string>
+    <string name="t_952dc0bb" formatted="false">"KLASSEMENT"</string>
+    <string name="t_959b6bbb" formatted="false">"MAX {0} INGEZET"</string>
+    <string name="t_9655a074" formatted="false">"Trage datastromen achter het menu en het bord."</string>
+    <string name="t_97e1363f" formatted="false">"Zware vaste schadevermindering bij elke treffer."</string>
+    <string name="t_98189a64" formatted="false">"Geen. Dit is een eerlijk gevecht."</string>
+    <string name="t_9873614b" formatted="false">"Het grootste detectiebereik in de ploeg, en +45% schade tegen snelle aanvallen. Lage vuursnelheid — het is een verkenner die toevallig schiet, het best geplaatst waar hij veel route kan bestrijken."</string>
+    <string name="t_98a9c7f2" formatted="false">"€ BUDGET"</string>
+    <string name="t_98b63553" formatted="false">"Geen account of login nodig om te spelen"</string>
+    <string name="t_98cc567c" formatted="false">"BESTE SCHADE"</string>
+    <string name="t_98f4abc6" formatted="false">"◇ {0} · ontgrendeld bij golf {1} op {2}"</string>
+    <string name="t_98fbe3ee" formatted="false">"MULTI-LOCK"</string>
+    <string name="t_991bd4c3" formatted="false">"Eén CRYPTOGRAPHER beslist het hele gevecht."</string>
+    <string name="t_991c8ba8" formatted="false">"TOTAAL AGENTUPGRADES"</string>
+    <string name="t_996095bd" formatted="false">"Bepaalde namen, termen en handelsmerken die in deze game worden genoemd, kunnen eigendom zijn van hun respectieve eigenaars. Zulke verwijzingen worden uitsluitend gebruikt voor identificatie, commentaar, educatieve context en fictieve weergave binnen de game.\n\nDeze game is onafhankelijk ontwikkeld en is niet gelieerd aan, gesponsord, onderschreven of goedgekeurd door Red Hat, Microsoft of enige andere externe handelsmerkeigenaar.\n\nAlle handelsmerken, productnamen, bedrijfsnamen en logo's van derden blijven eigendom van hun respectieve eigenaars."</string>
+    <string name="t_99ab6437" formatted="false">"Toon de rondleiding door het hoofdmenu en de FIRMWARE-uitleg opnieuw de volgende keer dat je die schermen opent."</string>
+    <string name="t_99cfdd6c" formatted="false">"Voorbeeld {0}"</string>
+    <string name="t_99d175d2" formatted="false">"Houd een TARPIT op de route om de versnelling af te remmen."</string>
+    <string name="t_99f43c9c" formatted="false">"ONVOLDOENDE CRYPTO"</string>
+    <string name="t_9a8ee779" formatted="false">"Vuurt zo snel als wat dan ook in de ploeg en schiet altijd eerst op een baas. Dubbele schade aan [!!!] BREACH. Maximaal vier."</string>
+    <string name="t_9a9bcdd3" formatted="false">"SLOT"</string>
+    <string name="t_9aa5d01a" formatted="false">"Nooit een tussentijdse advertentie na een mislukte run, plus €5,000. Revive-advertenties zijn vrijwillig en apart — zie REVIVE-PAKKET."</string>
+    <string name="t_9adba547" formatted="false">"De beste waarde per euro."</string>
+    <string name="t_9ae9f14f" formatted="false">"Een trage drift van verre punten."</string>
+    <string name="t_9aed28a1" formatted="false">"INZETLIMIET BEREIKT"</string>
+    <string name="t_9b08be38" formatted="false">"Google Play Games vragen…"</string>
+    <string name="t_9b1d7455" formatted="false">"GOLF {0}"</string>
+    <string name="t_9b4c97a7" formatted="false">"Vernoemd naar het houten paard: software die eruitziet als iets wat je wilt, met iets erin wat je absoluut niet wilt."</string>
+    <string name="t_9b557f99" formatted="false">"Jouw beste: golf {0}"</string>
+    <string name="t_9b989bfb" formatted="false">"BESTE"</string>
+    <string name="t_9bcd1b03" formatted="false">"Alle zeven levende achtergronden, plus €2,000."</string>
+    <string name="t_9bd1faf7" formatted="false">"Terugbetalingen, betaalmethoden en bonnen worden door Google afgehandeld, niet door deze game."</string>
+    <string name="t_9c2ade2b" formatted="false">"NIV {0}  ×{1}"</string>
+    <string name="t_9c6be09c" formatted="false">"MODIFIERS"</string>
+    <string name="t_9d0c4ff1" formatted="false">"&gt; golf {0} actief — nog {1} dreigingen"</string>
+    <string name="t_9d29de23" formatted="false">"BESTE GOLF PER NIVEAU"</string>
+    <string name="t_9d2c3eea" formatted="false">"NETWERKBEGRIPPEN"</string>
+    <string name="t_9d36e329" formatted="false">"GEGIJZELD"</string>
+    <string name="t_9d5ca8b9" formatted="false">"WIL JE EEN REVIVE?"</string>
+    <string name="t_9df821c5" formatted="false">"WELKOM BIJ CyOps TD"</string>
+    <string name="t_9e30871d" formatted="false">"Eén gecompromitteerde machine die bevelen van iemand anders aanneemt. Eén bot is onschadelijk. Een botnet van duizenden niet — daarom komen ze altijd in groepen."</string>
+    <string name="t_9e77c8cf" formatted="false">"Voegt een vijfde simulatiesnelheid toe om golven snel af te werken."</string>
+    <string name="t_9ef0ebe5" formatted="false">"SEGMENTATIE"</string>
+    <string name="t_9f26f678" formatted="false">"  →"</string>
+    <string name="t_9f70f631" formatted="false">"VUURSNELHEID"</string>
+    <string name="t_9fb6c271" formatted="false">"Stoort kort agenten in de buurt en verlaagt hun vuursnelheid."</string>
+    <string name="t_a12f7814" formatted="false">"+{0} (BAAS)"</string>
+    <string name="t_a15faa1f" formatted="false">"MODUS"</string>
+    <string name="t_a19abbd4" formatted="false">"Elke cyberagent, wat hij doet en de golf die hem ontgrendelt."</string>
+    <string name="t_a21dbf00" formatted="false">"€{0} BUDGET OPGESPAARD"</string>
+    <string name="t_a24181ff" formatted="false">"WAT ER AANVALT"</string>
+    <string name="t_a2517472" formatted="false">"WINKEL NIET BESCHIKBAAR"</string>
+    <string name="t_a29c69ba" formatted="false">"AFSLUITEN"</string>
+    <string name="t_a2b3bef5" formatted="false">"HAAL GOLF {0}"</string>
+    <string name="t_a2dd8300" formatted="false">"Een beproeving. Twee routes, teruggevouwen, dan een rondje vóór het rek."</string>
+    <string name="t_a2e2f704" formatted="false">"CIJFERBREUK"</string>
+    <string name="t_a32353a8" formatted="false">"€9,000 BUDGET"</string>
+    <string name="t_a36e1b6d" formatted="false">"NIET IN DEZE VERSIE"</string>
+    <string name="t_a3ebab03" formatted="false">"Een ongepatchte, onbekende fout"</string>
+    <string name="t_a4a2cd90" formatted="false">"&gt;&gt; NIEUW RECORD &lt;&lt;"</string>
+    <string name="t_a4fd7522" formatted="false">" · MAX {0}"</string>
+    <string name="t_a5460e4e" formatted="false">"Trage, zware losse treffers met +80% schade tegen elites en bazen. Zwak tegen zwermen. Toont de doelkiezer, zodat je hem kunt richten op wat je echt dood wilt hebben."</string>
+    <string name="t_a596b409" formatted="false">"5× SNELHEID ZIT IN DE WINKEL"</string>
+    <string name="t_a599c90a" formatted="false">"Elke agent binnen zijn bereik, hijzelf inbegrepen, is immuun voor storing door elke baas. Snelle, zware schoten, met {0}× schade aan WHITE EYE en BLACK EYE. Bereik van TARPIT. Er mogen er niet meer dan twee worden ingezet."</string>
+    <string name="t_a5b1ffba" formatted="false">"Onbeperkte systeemtoegang"</string>
+    <string name="t_a5da8eea" formatted="false">"Vast bij een golf? Spaar budget op, installeer firmware, en hetzelfde bord slaat de volgende run harder."</string>
+    <string name="t_a6291e29" formatted="false">"€5,000 BUDGET"</string>
+    <string name="t_a62c1133" formatted="false">"Geen echte hackmogelijkheden — niets hier raakt een echt netwerk"</string>
+    <string name="t_a66c22f9" formatted="false">"Wijzig de taal via INSTELLINGEN in het hoofdmenu: wisselen herstart de game, wat deze run zou beëindigen."</string>
+    <string name="t_a6cd2e07" formatted="false">"{0}-{1} tekens. A-Z, 0-9, streepje en underscore."</string>
+    <string name="t_a6ee02f4" formatted="false">"ANNULEREN"</string>
+    <string name="t_a727a483" formatted="false">"BEVAT"</string>
+    <string name="t_a7c5a24a" formatted="false">"Opslaan in Music/CyOps TD…"</string>
+    <string name="t_a7c97dfd" formatted="false">"RESETTEN"</string>
+    <string name="t_a7e02911" formatted="false">"OP KERN"</string>
+    <string name="t_a7e24bd6" formatted="false">"DOELWITKEUZE"</string>
+    <string name="t_a8031bce" formatted="false">"WINKELPAGINA OPENEN"</string>
+    <string name="t_a8191219" formatted="false">"SPOOFER werpt lokkopieën van zichzelf op die vuur opvangen. ANALYST en ROOT ADMIN prikken erdoorheen."</string>
+    <string name="t_a8768bb2" formatted="false">"AGENTSKINS"</string>
+    <string name="t_a8935036" formatted="false">"CRYPTO VERDIEND"</string>
+    <string name="t_a92b98a8" formatted="false">"CRYPTO ◇"</string>
+    <string name="t_a9a8f56c" formatted="false">"BEELD"</string>
+    <string name="t_a9ad0741" formatted="false">"€ DEZE RUN"</string>
+    <string name="t_a9cf50ec" formatted="false">"Echt verkeer volgt een route via switches en routers om zijn bestemming te bereiken. De twee slingerende routes hier zijn dat pad, teruggevouwen zodat je elke hop tegelijk ziet."</string>
+    <string name="t_a9d9e481" formatted="false">"CORE-SERVER is wat je verdedigt, en de INTEGRITEIT-uitlezing in de bovenste balk is het enige leven dat je hebt. Elk vijandig pakket dat het rek bereikt, neemt er een hap uit. Bij 0 is de server doorbroken en eindigt de run — dus niets doorlaten is de hele klus."</string>
+    <string name="t_aab511c4" formatted="false">"ROOTKIT verbergt zich 2 seconden van elke 6 en niets kan hem als doel kiezen. Spatschade en kettingen bereiken hem nog wel."</string>
+    <string name="t_aac1d4da" formatted="false">"NIET GEKOPPELD"</string>
+    <string name="t_aadac61a" formatted="false">"Applicaties stellen databases vragen in SQL. Als gebruikersinvoer rechtstreeks in die vraag wordt geplakt, kan een aanvaller er zijn eigen einde aan schrijven — een gebruikerstabel dumpen, een login omzeilen of alles wissen. De oplossing is oud en bekend (geparametriseerde queries), en juist dat maakt het zo frustrerend dat het nog steeds de aanval is die je het vaakst tegenkomt."</string>
+    <string name="t_ab62d63d" formatted="false">"Een inbraakdetectiesysteem bekijkt netwerk- of hostactiviteit op patronen die op een aanval lijken en slaat alarm. Het rapporteert; het blokkeert niet. Iemand of iets anders moet nog steeds handelen op wat het vindt."</string>
+    <string name="t_aca3253a" formatted="false">"OP HET VELD · TIK OP EEN BAAS OM HEM TE ZIEN"</string>
+    <string name="t_ad03a515" formatted="false">"Een netwerk in zones verdelen"</string>
+    <string name="t_ad26a7c7" formatted="false">"onbekend"</string>
+    <string name="t_ae00f867" formatted="false">"ANALYSE"</string>
+    <string name="t_ae59bf94" formatted="false">"VERKOPEN  ◇ {0}"</string>
+    <string name="t_b0147d1e" formatted="false">"Leun deze golf op niet-FIREWALL-agenten."</string>
+    <string name="t_b0af39a6" formatted="false">"WIJZIGEN"</string>
+    <string name="t_b0d341a2" formatted="false">"MEER DAN EEN MAAND GELEDEN"</string>
+    <string name="t_b0f472d0" formatted="false">"MOEILIJKHEID"</string>
+    <string name="t_b16e2042" formatted="false">"Een violet sterrenveld achter het rek."</string>
+    <string name="t_b2029176" formatted="false">"Start de volgende golf automatisch na een korte pauze"</string>
+    <string name="t_b253fa2b" formatted="false">"Cryptografie beschermt gegevens onderweg en in opslag, zodat onderscheppen niet hetzelfde is als lezen. Aanvallers gebruiken het ook — veel vijandig verkeer is versleuteld — en daarom inspecteren verdedigers op eindpunten die zij beheren in plaats van de versleuteling zelf te proberen te kraken."</string>
+    <string name="t_b28b05f8" formatted="false">"Inbraakpreventiesysteem"</string>
+    <string name="t_b2dbc630" formatted="false">"FIREWALL ACTIEF"</string>
+    <string name="t_b32b1a1d" formatted="false">"GEMAK"</string>
+    <string name="t_b3735fe8" formatted="false">"Een printrooster dat ademt met de golf."</string>
+    <string name="t_b3b53e34" formatted="false">"Aankopen zijn gekoppeld aan je Google-account, niet aan dit apparaat. Opnieuw installeren of van telefoon wisselen verliest ze niet."</string>
+    <string name="t_b3c34c67" formatted="false">"ZOJUIST"</string>
+    <string name="t_b40b6d1c" formatted="false">"Een \"red team\" valt met toestemming een systeem aan om te vinden wat een aanvaller als eerste zou vinden. \"Red hat\" is informeel jargon in plaats van een functietitel of certificering, en de betekenis verschilt per gebruiker; het red-team-deel is wat standaard is."</string>
+    <string name="t_b5ca7a98" formatted="false">"De beste golf van elke speler wereldwijd, op roepnaam. Registreer er rechts een, anders toont Google je Play Games-naam."</string>
+    <string name="t_b649891d" formatted="false">"GEPAUZEERD"</string>
+    <string name="t_b683e66d" formatted="false">"{0} is vergrendeld: {1} om te ontgrendelen."</string>
+    <string name="t_b6bcb68c" formatted="false">"Zware schade op één doel, bij elk schot identiek. Negeert alle pantser."</string>
+    <string name="t_b7ba0ba1" formatted="false">"REGENERATION repareert hem zodra hij {0} seconden niet geraakt is. Houd hem de hele weg onder vuur."</string>
+    <string name="t_b7c4c2a3" formatted="false">"[{0}] {1} (vergrendeld): {2}"</string>
+    <string name="t_b7cf2aab" formatted="false">"GEEN APP KAN GOOGLE PLAY OPENEN"</string>
+    <string name="t_b8201e22" formatted="false">"VOLGENDE: GOLF {0} · BAAS"</string>
+    <string name="t_b82dfd13" formatted="false">"BRENGT JE NAAR"</string>
+    <string name="t_b835d746" formatted="false">"STAP 5 — ZET TWEE TARPIT'S IN"</string>
+    <string name="t_b8cbfe08" formatted="false">"Verst van CORE-SERVER"</string>
+    <string name="t_b8f9cbc8" formatted="false">"SCH {0}  TEMPO {1}/s"</string>
+    <string name="t_b8ffa95c" formatted="false">"LEVEND: AURORA"</string>
+    <string name="t_b9918647" formatted="false">"Betaald om hier te zijn. Geen trucs, geen storing — twintig procent meer ervan dan van wat dan ook op het bord."</string>
+    <string name="t_b9a3ada7" formatted="false">"EXFIL is snel. Als hij de kern bereikt, steelt hij de helft van je crypto in plaats van integriteit. Geef eerst uit, of stop hem."</string>
+    <string name="t_b9c6b239" formatted="false">"Getekend onder de routes en achter elk menu."</string>
+    <string name="t_badb0f4a" formatted="false">"Versnelt periodiek richting de server."</string>
+    <string name="t_bae2cee7" formatted="false">"JA — BEKIJK ADVERTENTIE"</string>
+    <string name="t_bb0a2d46" formatted="false">"SELECTEREN"</string>
+    <string name="t_bb621985" formatted="false">"GEHARD"</string>
+    <string name="t_bb93827c" formatted="false">"REVIVE MISLUKT — RUN AL VOORBIJ"</string>
+    <string name="t_bc855067" formatted="false">"TOEGANG GEWEIGERD"</string>
+    <string name="t_bcdf64b3" formatted="false">"SQL-INJECTIE"</string>
+    <string name="t_bceaf8ce" formatted="false">"!!! CYBERAANVAL OP KOMST !!!"</string>
+    <string name="t_bd0c6acd" formatted="false">"VOLGENDE € {0} · +{1}% {2} per niveau"</string>
+    <string name="t_bd1b1fc9" formatted="false">"UIT"</string>
+    <string name="t_bd8215e6" formatted="false">"JA, BRIEF ME"</string>
+    <string name="t_bd84c20a" formatted="false">"GOLF {0} VEILIGGESTELD"</string>
+    <string name="t_be1fc25b" formatted="false">"Betrouwbare allround schade, en hij kan niet worden gestoord."</string>
+    <string name="t_beb11f45" formatted="false">"Baasmodifier"</string>
+    <string name="t_beb3cdc3" formatted="false">"Zijn veld vertraagt bazen twee keer zo hard als andere dreigingen."</string>
+    <string name="t_bec37550" formatted="false">"HETE REPARATIE"</string>
+    <string name="t_bed8ffbb" formatted="false">"Herstellen vraagt Play opnieuw wat dit Google-account bezit. Het is altijd veilig om erop te drukken en het brengt nooit kosten in rekening."</string>
+    <string name="t_bf09fcca" formatted="false">"Deze versie heeft geen Play Games-project geconfigureerd, dus voortgang blijft op dit apparaat. De eigen back-up van Android herstelt hem nog steeds als je opnieuw installeert op een telefoon die op hetzelfde Google-account is ingelogd."</string>
+    <string name="t_bf0c2eaa" formatted="false">"REPLICEERT"</string>
+    <string name="t_bf7cfb98" formatted="false">"Deze versie heeft geen advertenties om te configureren."</string>
+    <string name="t_c1386132" formatted="false">"◇ CRYPTO"</string>
+    <string name="t_c164d2e8" formatted="false">"Vuurt zo snel als de hoeden en raakt harder, met {0}× schade aan de DUCK-USB-bazen SYN-STORM en GRADIENT. Behoudt zijn doelmodi. Er mogen er niet meer dan twee worden ingezet. Getekend als hologram dat agentskins niet veranderen."</string>
+    <string name="t_c19b9c99" formatted="false">"CORE-SERVER-INTEGRITEIT 0 · VERBINDING VERBROKEN"</string>
+    <string name="t_c1b7bcc5" formatted="false">"Deze versie toont geen advertenties."</string>
+    <string name="t_c2658f4d" formatted="false">"Overweldigende schade op één doel. Negeert alle pantser."</string>
+    <string name="t_c2c8c2f8" formatted="false">"AGENTBEREIK TONEN"</string>
+    <string name="t_c2d127eb" formatted="false">"OVERSLAAN ×"</string>
+    <string name="t_c31db047" formatted="false">"REVIVE-PAKKET — geen advertentie."</string>
+    <string name="t_c39850a1" formatted="false">"STAP 3 — ZET TWEE FIREWALL'S IN"</string>
+    <string name="t_c3e1a996" formatted="false">"◇ Crypto en € Budget zijn fictieve middelen in de game. Ze hebben geen geldwaarde, kunnen niet worden ingeruild voor iets buiten de game en kunnen het apparaat niet verlaten."</string>
+    <string name="t_c405af57" formatted="false">"SPELEN start een run op het niveau en de runmodus die links zijn gekozen. Als er een run is opgeslagen, pakt DOORGAAN die op en begint NIEUWE RUN opnieuw."</string>
+    <string name="t_c40bc4a4" formatted="false">"Een IDS bewaakt netwerkactiviteit op verdacht gedrag en beveiligingsdreigingen en slaat dan alarm. Het kijkt; het blokkeert niet."</string>
+    <string name="t_c4a14a23" formatted="false">"Selecteer FIREWALL. Hij is goedkoop, betrouwbaar en kan niet worden gestoord."</string>
+    <string name="t_c4b7782d" formatted="false">"Beveiligingsanalist is een echt beroep. De mens in de lus neemt wat de geautomatiseerde tools hebben gemarkeerd, zoekt uit wat er werkelijk gebeurde en beslist wat eraan te doen. Trager dan een machine, en veel beter bij gevallen die niet bij een bekend patroon passen."</string>
+    <string name="t_c4d0dc6f" formatted="false">"Machine-learningtools markeren ongebruikelijke patronen in veel meer signalen dan een mens kan lezen, en worden gebruikt om te beperken wat aandacht verdient. Ze helpen analisten in plaats van hen te vervangen, en ze geven valse positieven — een markering is een aanwijzing, geen oordeel."</string>
+    <string name="t_c51041e3" formatted="false">"  ·"</string>
+    <string name="t_c55cc938" formatted="false">"NIEUWE RUN"</string>
+    <string name="t_c55e934e" formatted="false">"SCROL VOOR MEER"</string>
+    <string name="t_c570c6cd" formatted="false">"Vallende codekolommen in het rek."</string>
+    <string name="t_c5cb18f9" formatted="false">"ALLE NIVEAUS"</string>
+    <string name="t_c81c4fa0" formatted="false">"1 niveau"</string>
+    <string name="t_c8a9aae9" formatted="false">"Drie routes vlechten twee keer door elkaar: elke route wisselt van kant."</string>
+    <string name="t_c9301368" formatted="false">"KERN: REACTOR"</string>
+    <string name="t_c9402c75" formatted="false">"NEE"</string>
+    <string name="t_c944e5aa" formatted="false">"TEGENMAATREGELEN"</string>
+    <string name="t_c9a2aee9" formatted="false">"Ontgrendel deze agent door golf {0} te halen op elk niveau."</string>
+    <string name="t_ca02a8f8" formatted="false">"Elke agent draagt de kleur van wat hij doet."</string>
+    <string name="t_ca5ea88d" formatted="false">"BESTE WAARDE"</string>
+    <string name="t_cabf47fa" formatted="false">"MAX +{0}"</string>
+    <string name="t_cb02b3da" formatted="false">"Een trage kleurcyclus over de hele ploeg."</string>
+    <string name="t_cb1fd3f1" formatted="false">"Een IPS is een IDS met de bevoegdheid om te handelen. Als het een aanval herkent, laat het het verkeer zelf vallen in plaats van het alleen aan iemand te melden."</string>
+    <string name="t_cb4ff573" formatted="false">"ADVERTENTIES EN AANKOPEN"</string>
+    <string name="t_cbd3b516" formatted="false">"Geen advertenties, de SPECTRUM-agentskin, de DRIFT-achtergrond en €2,000."</string>
+    <string name="t_cbd47695" formatted="false">"PAYLOADBLOKKADE"</string>
+    <string name="t_cbf7d422" formatted="false">"SYN-STORM splitst bij halve gezondheid in tweeën, en de tweede helft neemt een andere route. Dek elke route af."</string>
+    <string name="t_cc52e024" formatted="false">"VOLGENDE: GOLF {0} — BAAS · TIK OP VOLGENDE BAAS VOOR DE BRIEFING"</string>
+    <string name="t_cc5435ac" formatted="false">"Wat er over de routes aankomt"</string>
+    <string name="t_cc5c44e8" formatted="false">"FOCUS: ALLEEN KLEINE EENHEDEN EN ELITES"</string>
+    <string name="t_cc6791f1" formatted="false">"Bestand tegen FIREWALL-agenten."</string>
+    <string name="t_cc7fe141" formatted="false">"Let op offensief gereedschap. Stoort om de paar seconden kort RED HAT-agenten dicht bij hem."</string>
+    <string name="t_cc9e044b" formatted="false">"LEVEND: BAAN"</string>
+    <string name="t_ccb963f2" formatted="false">"PAKKET"</string>
+    <string name="t_ccbd0815" formatted="false">"Het standaardrek."</string>
+    <string name="t_ccbefbf5" formatted="false">"SCANBEREIK {0}"</string>
+    <string name="t_ccd3b8ff" formatted="false">"Privacyopties zijn nu niet beschikbaar."</string>
+    <string name="t_cce0919d" formatted="false">"IN BEZIT"</string>
+    <string name="t_cd27794d" formatted="false">"De roepnaam is lokaal op dit apparaat en is geen Google-account. Hij benoemt je runs in het klassement."</string>
+    <string name="t_cd7ef0df" formatted="false">"HANDELSMERKEN EN DERDEN"</string>
+    <string name="t_cd8fc1d8" formatted="false">"Optionele in-app-aankopen zijn beschikbaar via Google Play. Niets in de game zit erachter vergrendeld."</string>
+    <string name="t_cde6047e" formatted="false">"Inbraakdetectiesysteem"</string>
+    <string name="t_ce2cde0d" formatted="false">"STAP 1 — OPEN DE PLOEG"</string>
+    <string name="t_ce56b8c8" formatted="false">"BEHEREN OP GOOGLE PLAY"</string>
+    <string name="t_ce8b48c9" formatted="false">"GAMEPLAY"</string>
+    <string name="t_cec6cd66" formatted="false">"Nog geen runs bijgehouden. Voltooi een run en hij verschijnt hier, gerangschikt op de golf die je haalde."</string>
+    <string name="t_cee3b8c9" formatted="false">"OVERSLAAN"</string>
+    <string name="t_cfd886ad" formatted="false">"Twee routes kammen hun eigen helft. Torens in de middelste opening bereiken beide."</string>
+    <string name="t_d0112898" formatted="false">"LOKAAS"</string>
+    <string name="t_d07db54c" formatted="false">"ROOT / ADMIN"</string>
+    <string name="t_d08f5138" formatted="false">"Twee slingerende routes die terugkeren langs dezelfde kanonnen."</string>
+    <string name="t_d10c0c39" formatted="false">"Zeer hoge vuursnelheid en elk schot spat, dus hij is het antwoord op een zwerm in plaats van op één zwaar doel. Kost meer dan een IDS en reikt minder ver."</string>
+    <string name="t_d11351ac" formatted="false">"AAN"</string>
+    <string name="t_d173b657" formatted="false">"Het account dat alles kan op een systeem. Aanvallers willen het; verdedigers bewaken het zorgvuldig. Het meeste beveiligingswerk gaat over beperken wie het krijgt en voor hoe lang."</string>
+    <string name="t_d19c7c8e" formatted="false">"◇ {0} · ontgrendeld bij golf {1}"</string>
+    <string name="t_d22f26dd" formatted="false">"Valt met elk salvo tot 3 afzonderlijke dreigingen aan."</string>
+    <string name="t_d2ee5fd2" formatted="false">"Voortgang wordt automatisch opgeslagen"</string>
+    <string name="t_d31b24bf" formatted="false">"{0} · {1}  ·  beste {2}"</string>
+    <string name="t_d35bc038" formatted="false">"{0} — {1} Hij doet geen schade; hij koopt tijd voor je andere agenten."</string>
+    <string name="t_d415f020" formatted="false">"Een zero-day is een fout waarvoor nog geen oplossing bestaat — de verdediger had nul dagen om te patchen. Kwetsbaarheidsonderzoekers zoeken ze zodat ze gemeld en gerepareerd kunnen worden voordat iemand anders ze eerst vindt. \"Zero-day hunter\" is informele afkorting, geen certificering of formele functietitel."</string>
+    <string name="t_d477fdfb" formatted="false">"FIRMWARE VOLLEDIG GEÏNSTALLEERD"</string>
+    <string name="t_d488d098" formatted="false">"DE BEGELEIDE RUN HEEFT NU TARPIT NODIG"</string>
+    <string name="t_d48f1170" formatted="false">"▼  MEER HIERONDER"</string>
+    <string name="t_d4bb26ac" formatted="false">"KERNSKINPAKKET"</string>
+    <string name="t_d5acb32b" formatted="false">"Trillingen bij baaswaarschuwingen, servertreffers en game over"</string>
+    <string name="t_d5b86d2a" formatted="false">"Security Operations Centre"</string>
+    <string name="t_d5d0b693" formatted="false">"DOORGAAN"</string>
+    <string name="t_d62907f6" formatted="false">"GEÏNSTALLEERDE FIRMWARE"</string>
+    <string name="t_d63b9487" formatted="false">"ONBEREIKBAAR"</string>
+    <string name="t_d736d92d" formatted="false">"OK"</string>
+    <string name="t_d8386755" formatted="false">"GOOGLE PLAY-FACTURERING"</string>
+    <string name="t_d84b41e9" formatted="false">"Aanhoudende schade wint. IPS of een opgewaardeerde FIREWALL."</string>
+    <string name="t_d8705eb7" formatted="false">"Cyberaanvallen rukken over netwerkroutes op naar CORE-SERVER. Jij zet Cyberagenten naast de routes in; ze detecteren en vernietigen wat langskomt. Elke gestopte aanval levert ◇ Crypto op, waarmee je meer agenten en upgrades koopt. Elke vijfde golf is een baas. Er is geen laatste golf — de enige vraag is hoe ver je komt."</string>
+    <string name="t_d889d3ab" formatted="false">"+1, +10 en +100 kopen zoveel niveaus. MAX INSTALLEREN besteedt zoveel als je je kunt veroorloven. Elk niveau kost iets meer."</string>
+    <string name="t_d8bcdc1d" formatted="false">"HERSTARTEN"</string>
+    <string name="t_d8fec6d4" formatted="false">"TOTAAL INGEZETTE AGENTEN"</string>
+    <string name="t_d9074af5" formatted="false">"Versleuteling husselt gegevens zodat alleen iemand met de juiste sleutel ze kan lezen. Het beschermt legitiem verkeer — en verbergt net zo goed de payload van een aanvaller voor inspectie."</string>
+    <string name="t_d92ad54a" formatted="false">"Deze versie heeft geen Google Play-facturering geconfigureerd, of dit apparaat heeft geen Play Store. Er kan niets worden gekocht, en niets wat geld kost is nodig om te spelen."</string>
+    <string name="t_d9694eb9" formatted="false">"Dezelfde fout, geen feedback. De applicatie geeft geen fout en geen gegevens terug, dus de aanvaller stelt ja-of-neevragen en kijkt wat er verandert — timing, paginalengte, statuscodes — om de database bit voor bit te lezen. Traag, geduldig en veel moeilijker te zien in een log."</string>
+    <string name="t_d9b49353" formatted="false">"OPNIEUW"</string>
+    <string name="t_d9b88563" formatted="false">"De eenheid van netwerkverkeer"</string>
+    <string name="t_d9c57847" formatted="false">"RAND GEREED"</string>
+    <string name="t_da10b268" formatted="false">"NIET IN BEZIT"</string>
+    <string name="t_da169a1a" formatted="false">"WERELDWIJD"</string>
+    <string name="t_da3ae5ed" formatted="false">"Doet geen schade en kiest geen doel. Repareert 1 punt CORE-SERVER-integriteit elke 30 seconden terwijl een golf loopt (nooit tijdens de pauze of als het spel gepauzeerd is). Hij wordt op de CORE-SERVER zelf ingezet, die er twee slots voor heeft, en nergens anders. Niveaus verkorten de timer. Er mogen er niet meer dan twee worden ingezet."</string>
+    <string name="t_dad4b11e" formatted="false">"OFFENSIEVE VEEG"</string>
+    <string name="t_db696c4d" formatted="false">"Enorm en zwaar gepantserd, maar traag. Neem iets mee dat pantser negeert."</string>
+    <string name="t_db971746" formatted="false">"Let op defensief gereedschap. Stoort om de paar seconden kort BLUE HAT-agenten dicht bij hem."</string>
+    <string name="t_dba0a883" formatted="false">"Een netwerk van gekaapte machines"</string>
+    <string name="t_dbc1a374" formatted="false">"ADVERTENTIE NIET VOLTOOID — NIETS UITGEGEVEN"</string>
+    <string name="t_dc09f8b7" formatted="false">"STORING — een baas kan een agent verstoren, waardoor zijn vuursnelheid zolang het duurt halveert. {0} is gebouwd om zich daar niets van aan te trekken."</string>
+    <string name="t_dc37fa05" formatted="false">"Brede banden koud licht die achter alles bewegen."</string>
+    <string name="t_dc62badb" formatted="false">"TITEL"</string>
+    <string name="t_dce01a82" formatted="false">"ROEPNAAM INVOEREN"</string>
+    <string name="t_dd220c90" formatted="false">"ADVERTENTIES"</string>
+    <string name="t_dd4083b5" formatted="false">"Niets gekocht. Alles hierboven kan ook worden verdiend of je speelt gewoon zonder."</string>
+    <string name="t_dd55f56b" formatted="false">"Twee routes vlechten drie keer door elkaar vóór het rek, als een DNA-streng."</string>
+    <string name="t_ddb5514a" formatted="false">"OPENEN IN GOOGLE PLAY GAMES"</string>
+    <string name="t_ddcb2958" formatted="false">"Vernoemd naar de eerste en onvervalste sciencefiction: elke treffer springt over op twee nabije dreigingen voor 55% schade. Sterk tegen samengeklonterde golven, verspild aan een eenzaam doel. Toont de doelkiezer."</string>
+    <string name="t_ddd374d9" formatted="false">"Een kort overzicht van de aanvallen die je tegenkomt, de bazen en wat je agenten eraan doen. Duurt ongeveer twintig seconden."</string>
+    <string name="t_dee83e52" formatted="false">"DEKKING PANELEN IN GAME"</string>
+    <string name="t_e00d9a42" formatted="false">"PLAATS OP EEN CORE-SERVER-SLOT"</string>
+    <string name="t_e01007ce" formatted="false">"Betere waarde per euro dan het kleine pakket."</string>
+    <string name="t_e07706fa" formatted="false">"DIT APPARAAT TOT KOPPELING"</string>
+    <string name="t_e0a2aaa4" formatted="false">"GOOGLE-ACCOUNT KOPPELEN"</string>
+    <string name="t_e12d998f" formatted="false">"PAKKET"</string>
+    <string name="t_e13093ea" formatted="false">"SCHADE"</string>
+    <string name="t_e1892d25" formatted="false">"KERNFIRMWARE"</string>
+    <string name="t_e1df4ef7" formatted="false">"BAZEN"</string>
+    <string name="t_e3407723" formatted="false">"JA"</string>
+    <string name="t_e3a7e50c" formatted="false">"MIJN OPSLAG BEHOUDEN"</string>
+    <string name="t_e3c4a9cc" formatted="false">"{0} stoort {1}-agenten dicht bij hem. Zet ze naar achteren, aan de rand van hun bereik."</string>
+    <string name="t_e4554374" formatted="false">"SLUITEN"</string>
+    <string name="t_e55f9c78" formatted="false">"WAT DEZE GAME NIET DOET"</string>
+    <string name="t_e587f42b" formatted="false">"SYSTEEMSTANDAARD (taal van telefoon)"</string>
+    <string name="t_e5e7e535" formatted="false">"SYN-STORM-SPLITSING"</string>
+    <string name="t_e6694d9c" formatted="false">"Repareert 1 CORE-SERVER-integriteit elke 30 seconden van een lopende golf, vanuit een van de twee slots op de CORE-SERVER. Sneller met niveaus. Maximaal twee."</string>
+    <string name="t_e807eff2" formatted="false">"Sluit de dichtstbijzijnde route binnen bereik af met een muur; dreigingen moeten hem afbreken. Raakt elke baas heel hard. Maximaal drie."</string>
+    <string name="t_e8757749" formatted="false">"sla golf {0} af op {1}"</string>
+    <string name="t_e8987cec" formatted="false">"VOORTGANG RESETTEN"</string>
+    <string name="t_e94c961d" formatted="false">"STATISTIEKEN"</string>
+    <string name="t_e979d28d" formatted="false">"TEMPO"</string>
+    <string name="t_e99d5d17" formatted="false">"€-pakketten worden uitgegeven, niet bezeten: ze worden één keer bijgeschreven en HERSTEL geeft ze niet opnieuw."</string>
+    <string name="t_e9caa97b" formatted="false">"Nog geen inzetten bijgehouden. Speel een run om dit te vullen."</string>
+    <string name="t_ea16b407" formatted="false">"Gouden sporen op diep indigo."</string>
+    <string name="t_ea31efb2" formatted="false">"sla golf {0} af"</string>
+    <string name="t_eab5f205" formatted="false">"ROEPNAAM WIJZIGEN"</string>
+    <string name="t_eaf7396d" formatted="false">"GOOGLE ONBEREIKBAAR — OPSLAG BEWAARD OP APPARAAT"</string>
+    <string name="t_eb2e832a" formatted="false">"AGENT {0}"</string>
+    <string name="t_ebdd4d5e" formatted="false">"VERWIJDERD · GEEN"</string>
+    <string name="t_ec91403d" formatted="false">"GOLF"</string>
+    <string name="t_ed31a176" formatted="false">"Een ademend printrooster dat op de golf reageert."</string>
+    <string name="t_ed5c9d47" formatted="false">"PER NIVEAU"</string>
+    <string name="t_ed7160a0" formatted="false">"NOOIT"</string>
+    <string name="t_ed7ecda7" formatted="false">"Vergrendeld"</string>
+    <string name="t_ee0803eb" formatted="false">"VEERKRACHTIG"</string>
+    <string name="t_ee094192" formatted="false">"Deze versie heeft geen Google Play-facturering geconfigureerd, dus hier kan niets worden gekocht. Elk deel van de game dat geen geld kost, werkt precies zoals normaal."</string>
+    <string name="t_ee5525d9" formatted="false">"KERNEL PANIC · {0} GESTOORD"</string>
+    <string name="t_ee6595fd" formatted="false">"Het team en de ruimte die de waarschuwingen bewaken. Als deze game een decor heeft, is het een SOC-videowand om 3 uur 's nachts."</string>
+    <string name="t_eea62f11" formatted="false">"AANKOPEN"</string>
+    <string name="t_eef967f2" formatted="false">"ZOOM OP HET SLAGVELD"</string>
+    <string name="t_ef29f425" formatted="false">"AUDIO"</string>
+    <string name="t_efcf9890" formatted="false">"SCH {0} · TEMPO {1}/s · BER {2}"</string>
+    <string name="t_f001b942" formatted="false">"VERSTERKT"</string>
+    <string name="t_f03b01af" formatted="false">"Repareert zichzelf langzaam als hij even niet geraakt is."</string>
+    <string name="t_f100d10c" formatted="false">"Alles met VERGRENDELD staat in de winkel. Niets hier verandert hoe de game speelt — skins zijn uiterlijk, geen voordeel."</string>
+    <string name="t_f16b76bc" formatted="false">"Een \"rubber ducky\" is een USB-stick die zich voordoet als toetsenbord en een aanval sneller typt dan wie dan ook. De verdediging is een USB-bewaker die elk nieuw apparaat controleert voordat de computer het vertrouwt, en een toetsenbord blokkeert dat typt als een machine."</string>
+    <string name="t_f17dfdae" formatted="false">"Eén lange route valt van boven binnen en spiraalt naar buiten naar het rek."</string>
+    <string name="t_f25360a0" formatted="false">"Wijzigingen gelden direct en blijven bewaard op dit apparaat"</string>
+    <string name="t_f293dfd1" formatted="false">"AANKOOPCONTROLES"</string>
+    <string name="t_f2e7479c" formatted="false">"Koppel je Google-account om je voortgang op elke telefoon of tablet te bewaren. Google vraagt toestemming om de opgeslagen gegevens van deze game in je account te beheren — dat is de opslag voor opgeslagen spellen, en meer gebruikt dit niet."</string>
+    <string name="t_f2ed0368" formatted="false">"Snel. Als hij de kern bereikt, steelt hij de helft van je crypto in plaats van integriteit."</string>
+    <string name="t_f2f63d9f" formatted="false">"OP DIT APPARAAT"</string>
+    <string name="t_f33c5b01" formatted="false">"STAP 6 — START DE GOLF"</string>
+    <string name="t_f38eb808" formatted="false">"Taaiere dreigingen, dichter op elkaar, minder integriteit. Rijkere beloningen."</string>
+    <string name="t_f3e23f71" formatted="false">"KERN: CASCADE"</string>
+    <string name="t_f49a4ff9" formatted="false">"AGENT VERGRENDELD"</string>
+    <string name="t_f4f677dc" formatted="false">"TOTAAL VERDIEND"</string>
+    <string name="t_f5537783" formatted="false">"KERN: MAINFRAME"</string>
+    <string name="t_f590e2c9" formatted="false">"ROUTE"</string>
+    <string name="t_f5b866e4" formatted="false">"Een gecoördineerde inbraakpoging met genoeg redundantie om een onvoorbereid netwerk van zich af te schudden. Elke vijfde golf brengt er een, en elke is taaier dan de vorige."</string>
+    <string name="t_f60f5840" formatted="false">"Er is nog steeds geen CyOps-account en geen wachtwoord. Aankopen volgen het Google-account dat in de Play Store op dit apparaat is ingelogd. Voortgang volgt het Google-account dat je hierboven koppelt — een aparte, optionele keuze: de game is compleet zonder."</string>
+    <string name="t_f692d3ce" formatted="false">"BOTNET"</string>
+    <string name="t_f69a80a7" formatted="false">"De game herstart om over te schakelen naar {0}. Je voortgang blijft behouden."</string>
+    <string name="t_f6f93110" formatted="false">"KERN: NEONGRID"</string>
+    <string name="t_f720bfa7" formatted="false">"CRT-fosforscanlijnen."</string>
+    <string name="t_f76fff7f" formatted="false">"Kwaadaardige software: code geschreven om te beschadigen, te verstoren of te stelen. Hij draagt meer payload dan een eenvoudige injectie, dus hij vangt meer schade op voordat hij uiteenvalt."</string>
+    <string name="t_f7a4fc70" formatted="false">"TIK NOGMAALS OM IN TE ZETTEN"</string>
+    <string name="t_f7a7b98a" formatted="false">"SCH {0} · TEMPO {1} · BER {2}"</string>
+    <string name="t_f7eb1496" formatted="false">"De rang wordt bepaald door de diepste golf die je hebt gehaald. Toegebrachte schade beslist bij gelijkspel."</string>
+    <string name="t_f803ec67" formatted="false">"BESTELGESCHIEDENIS EN TERUGBETALINGEN"</string>
+    <string name="t_f85117ec" formatted="false">"Alle {0} nummers staan al in Music/CyOps TD."</string>
+    <string name="t_f8723c46" formatted="false">"SNELHEID"</string>
+    <string name="t_f8d84db3" formatted="false">"NIET GEREGISTREERD"</string>
+    <string name="t_f8e6e39f" formatted="false">"Systeemingenieurs houden servers draaiende: patchen, kapotte onderdelen vervangen, back-ups terugzetten en de gezondheid van de machines bewaken. \"Server systems engineer\" beschrijft dat soort werk; functietitels ervoor verschillen per organisatie."</string>
+    <string name="t_f9807a9f" formatted="false">"&gt; paraat — zet agenten in en start golf 1"</string>
+    <string name="t_f9cec260" formatted="false">"Een paar enorme treffers versnellen GRADIENT nauwelijks."</string>
+    <string name="t_f9d6b090" formatted="false">"Drijvende ASCII-data achter het slagveld en de menu's"</string>
+    <string name="t_fa1b4500" formatted="false">"Statistieken stapelen zich op over elke run, inclusief runs die je via het pauzemenu opgeeft. Voortgang resetten in INSTELLINGEN wist alles."</string>
+    <string name="t_fa60c2c6" formatted="false">"LEVEND: HITTEKAART"</string>
+    <string name="t_fb735826" formatted="false">"TRILLING"</string>
+    <string name="t_fb889492" formatted="false">"Een onafhankelijk ontwikkelde, offline-first towerdefensegame met een cybersecuritythema. De scenario's, agenten en terminologie zijn voor de gameplay gefictionaliseerd, met korte uitleg uit de echte wereld zodat de concepten erachter te leren zijn. Hij leert geen offensieve technieken en vervult geen echte beveiligingsfunctie."</string>
+    <string name="t_fbca7f29" formatted="false">"Malware in een nuttige vermomming"</string>
+    <string name="t_fbd9e20c" formatted="false">"ACHTERGRONDANIMATIE"</string>
+    <string name="t_fc778505" formatted="false">"Een schoon rek, geen merkteken."</string>
+    <string name="t_fcc1e712" formatted="false">"PRIVACY"</string>
+    <string name="t_fd3cb488" formatted="false">"HOE INLOGGEN WERKT"</string>
+    <string name="t_fdb0282f" formatted="false">"ADVERTENTIE LADEN…"</string>
+    <string name="t_fde05efe" formatted="false">"HAAL GOLF {0} OP {1}"</string>
+    <string name="t_fe26fa48" formatted="false">"BESTE GOLF"</string>
+    <string name="t_fe451d7a" formatted="false">"SYSTEMEN HERSTELD — INTEGRITEIT {0}"</string>
+    <string name="t_fe86390c" formatted="false">" · SNH {0}"</string>
+    <string name="t_feeee285" formatted="false">"{0} kernskins · {1} achtergronden beschikbaar"</string>
+    <string name="t_feef9615" formatted="false">"VOLGENDE BAAS"</string>
+    <string name="t_ff2d6a51" formatted="false">"Drie routes wisselen twee keer van plaats. Elke kruising is een plek die er twee raakt."</string>
+    <string name="t_ffa57dc1" formatted="false">"&gt; routetopologie koppelen"</string>
+    <string name="t_ffc3db58" formatted="false">"BER {0}"</string>
+    <string name="t_ffff9bd9" formatted="false">"Agenten drijven langzaam door het kleurenspectrum, elke eenheid verschoven ten opzichte van de volgende."</string>
+</resources>
