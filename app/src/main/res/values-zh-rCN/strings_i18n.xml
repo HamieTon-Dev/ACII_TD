@@ -1,0 +1,864 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Translation of values/strings_i18n.xml. Machine-quality (AI) translation; see FEATURE_BACKLOG.md. -->
+<resources>
+    <string name="t_0069698f" formatted="false">"预算中有 € {0}"</string>
+    <string name="t_00bdf050" formatted="false">"本设备"</string>
+    <string name="t_00c74b4a" formatted="false">"每轮齐射最多攻击三个不同的威胁，是阵容中应对宽阔波次的答案。可选择瞄准方式。"</string>
+    <string name="t_00cb85ad" formatted="false">"第 4 步 — 选择 TARPIT"</string>
+    <string name="t_00f316c1" formatted="false">"下一级费用"</string>
+    <string name="t_00fafa13" formatted="false">"此账号拥有"</string>
+    <string name="t_01278423" formatted="false">"这会改变什么"</string>
+    <string name="t_014c06bb" formatted="false">"已解锁 {0}/{1} · 最佳波次 {2}"</string>
+    <string name="t_01b91dff" formatted="false">"RANSOM 每隔几秒就会锁定一名特工的升级 {0} 秒。在它到来之前升级。"</string>
+    <string name="t_01ba7032" formatted="false">"0 级"</string>
+    <string name="t_01f2a69d" formatted="false">"会话笔记"</string>
+    <string name="t_0288b770" formatted="false">"点击下方控制栏中的 特工 按钮。"</string>
+    <string name="t_02b88c49" formatted="false">"所有音频都在启动时于设备上生成；游戏不附带任何声音文件。"</string>
+    <string name="t_02f0f435" formatted="false">"Root（即管理员）是系统中的最高权限：它可以停止任何进程、更改任何内容。正因如此，良好的做法是尽可能少、尽可能短时间地授予它。“Root admin”是对这一访问级别的简称，而不是职位名称。"</string>
+    <string name="t_0306926d" formatted="false">"三条攻击通道通往核心服务器"</string>
+    <string name="t_0358799e" formatted="false">"从现在起在每场对局中作用于每个 {0}，叠加在核心固件之上。前几级很便宜；每一级都比上一级贵，最高几级要花费数百万。"</string>
+    <string name="t_0397b7d9" formatted="false">"自动开始首领波次"</string>
+    <string name="t_03d108e0" formatted="false">"已关联，但无法连接 Google。没有任何损失——正在使用的是本设备上的存档，下次同步时会更新账号。"</string>
+    <string name="t_059b388a" formatted="false">"&gt; 第 {0} 波已清除 — 准备迎接第 {1} 波"</string>
+    <string name="t_05ea5d0e" formatted="false">"一开始即可使用。"</string>
+    <string name="t_05f2ef1e" formatted="false">"下一首"</string>
+    <string name="t_063d8618" formatted="false">"伪装成你所需之物的恶意代码。移动缓慢但包裹厚重——护甲会削弱每一次单独的攻击，所以快速而微弱的射击对它是浪费。"</string>
+    <string name="t_07269781" formatted="false">"选择一个难度以查看其全球排行榜。"</string>
+    <string name="t_07a3d7ab" formatted="false">"所有已拥有的内容（包括复活）都可以在任何设备上通过 恢复 从 Google Play 找回。它们从不属于云存档，因此任何存档文件都无法授予或夺走一次购买。"</string>
+    <string name="t_07fbf4bd" formatted="false">"已复活"</string>
+    <string name="t_08039ac7" formatted="false">"商店"</string>
+    <string name="t_08175caa" formatted="false">"职业配色"</string>
+    <string name="t_08218c08" formatted="false">"正在关联…"</string>
+    <string name="t_08279524" formatted="false">"利用系统中某个特定缺陷的代码。漏洞利用移动快、打得狠；当它们来袭时，探测范围比纯粹的伤害更重要。"</string>
+    <string name="t_086b8b8e" formatted="false">"首领"</string>
+    <string name="t_08f0711d" formatted="false">"恢复购买"</string>
+    <string name="t_09653280" formatted="false">"到核心"</string>
+    <string name="t_0a0bc63d" formatted="false">"上一首"</string>
+    <string name="t_0a2301f4" formatted="false">"已保存的进度"</string>
+    <string name="t_0a344034" formatted="false">"下一波：第 {0} 波"</string>
+    <string name="t_0ae74b3e" formatted="false">"零日打击"</string>
+    <string name="t_0b205685" formatted="false">"正在初始化网络..."</string>
+    <string name="t_0b809aa5" formatted="false">"{0} 暂无全球排行榜。在那里的对局会记录在本设备上。"</string>
+    <string name="t_0bc6e19b" formatted="false">"自身不造成伤害。使范围内每名特工伤害 +30%、射速 +20%，所以它的价值完全取决于你把它放在哪里。"</string>
+    <string name="t_0bd16003" formatted="false">"最高"</string>
+    <string name="t_0bfbeb5b" formatted="false">"用 TARPIT 力场拖住它们，再让 IPS 清理积压。"</string>
+    <string name="t_0c121fb2" formatted="false">"进度已同步"</string>
+    <string name="t_0c147607" formatted="false">"深度扫描"</string>
+    <string name="t_0c16a4ef" formatted="false">"尚无成绩。完成一局，成为第一名。"</string>
+    <string name="t_0c997319" formatted="false">"WORM 分裂"</string>
+    <string name="t_0cb4ce2b" formatted="false">"第 {0} 波已守住  ◇{1}"</string>
+    <string name="t_0cfa4a6e" formatted="false">"本关卡的首领"</string>
+    <string name="t_0d884b08" formatted="false">"入侵（首领）"</string>
+    <string name="t_0d8c63a6" formatted="false">"每次命中都会连锁到附近 2 个威胁，造成 55% 伤害。"</string>
+    <string name="t_0df4bfec" formatted="false">"弱点"</string>
+    <string name="t_0e69fc6c" formatted="false">"部署栏只显示每名特工的图标和费用"</string>
+    <string name="t_0eb480b6" formatted="false">"向远处延伸的透视网格，下方有一条追逐带。"</string>
+    <string name="t_0f47943c" formatted="false">"专注关闭"</string>
+    <string name="t_0f5d5911" formatted="false">"省电模式"</string>
+    <string name="t_0f80d304" formatted="false">"特工伤害"</string>
+    <string name="t_0f9a43d6" formatted="false">"全部动态背景"</string>
+    <string name="t_0fa88218" formatted="false">"无法连接 Google Play——通常是没有网络。已购买的内容仍然属于你；恢复联网后按 恢复，它就会重新出现。"</string>
+    <string name="t_0fd40469" formatted="false">"性能"</string>
+    <string name="t_0fd4c0f4" formatted="false">"CORE-SERVER 插槽仅供 [S] 使用"</string>
+    <string name="t_1046865f" formatted="false">"不断在身后生成 BOT。快速消灭它，否则会被它的僵尸网络淹没。"</string>
+    <string name="t_107ea55b" formatted="false">"升级被勒索"</string>
+    <string name="t_108f4363" formatted="false">"安装"</string>
+    <string name="t_111611f9" formatted="false">"补丁墙"</string>
+    <string name="t_1181f7e7" formatted="false">"特工被干扰"</string>
+    <string name="t_11c0f105" formatted="false">"关卡音乐（自动）"</string>
+    <string name="t_11c8546c" formatted="false">"伤害"</string>
+    <string name="t_11d858aa" formatted="false">"最高波次"</string>
+    <string name="t_1213b2b6" formatted="false">"{0} 小时前"</string>
+    <string name="t_12193f21" formatted="false">"网络架构师设计网络如何划分。分段意味着一个区域的失陷不能直接蔓延到下一个区域，从而限制任何单一故障的损害。这是事件发生前的设计工作，而不是事件中使用的工具。"</string>
+    <string name="t_1248f6ec" formatted="false">"保存原声音乐需要 Android 10 或更高版本。"</string>
+    <string name="t_125ca8ca" formatted="false">"新手礼包"</string>
+    <string name="t_12a36ceb" formatted="false">"伪装"</string>
+    <string name="t_12e8edf9" formatted="false">"语言"</string>
+    <string name="t_1380e038" formatted="false">"已被勒索 · 升级锁定 {0} 秒"</string>
+    <string name="t_138da392" formatted="false">"单元格随流量升温冷却的网格。"</string>
+    <string name="t_13df4b88" formatted="false">"固件"</string>
+    <string name="t_13ee9782" formatted="false">"已部署"</string>
+    <string name="t_141ad814" formatted="false">"反馈"</string>
+    <string name="t_143628e2" formatted="false">"仅复活广告 · 自愿观看"</string>
+    <string name="t_1489b7f6" formatted="false">"{0} 天前"</string>
+    <string name="t_14bdf6f2" formatted="false">"引导局需要先选择 FIREWALL"</string>
+    <string name="t_14c27ca9" formatted="false">"ANALYST 对精英造成 80% 额外伤害。无视护甲的特工很有帮助。"</string>
+    <string name="t_14cecaa5" formatted="false">"没有密钥就无法读取数据"</string>
+    <string name="t_14ecbe1d" formatted="false">"{0}/秒"</string>
+    <string name="t_1512aeac" formatted="false">"{0} 级"</string>
+    <string name="t_154419d5" formatted="false">"算作加密：大多数特工只能造成削减后的伤害。"</string>
+    <string name="t_154a5adf" formatted="false">"等级"</string>
+    <string name="t_15680f7c" formatted="false">"用来购买永久的核心固件伤害。"</string>
+    <string name="t_1571a208" formatted="false">"放置两个 TARPIT，让它们的光环覆盖你的 FIREWALL 正在射击的区域。减速才能让伤害打中。"</string>
+    <string name="t_15aa2838" formatted="false">"单元格随流量升温冷却的粗网格。"</string>
+    <string name="t_15ede35d" formatted="false">"◇ {0} · 一开始即可使用"</string>
+    <string name="t_167ae054" formatted="false">"这将清除你保存的对局、所有已解锁的特工、全部统计数据和你的设置。\n\n此操作无法撤销。"</string>
+    <string name="t_17a13ae4" formatted="false">"首领移动缓慢，但会对 CORE-SERVER 造成 {0} 点完整性伤害。它们给出游戏中最多的加密币，并且每个周期都会变强。"</string>
+    <string name="t_17e0e9f0" formatted="false">"射速极高，总是优先攻击范围内的首领，并对 [!!!] BREACH 造成双倍伤害。第 30 波解锁，最多部署四个。"</string>
+    <string name="t_1877f7c0" formatted="false">"已卸载"</string>
+    <string name="t_197d534b" formatted="false">"花费 € 预算——在每局的每第十波存入并在之后保留——为每名特工购买永久伤害加成。"</string>
+    <string name="t_1991565e" formatted="false">"速率限制"</string>
+    <string name="t_19cbe369" formatted="false">"最喜爱的特工"</string>
+    <string name="t_1a155da6" formatted="false">"下一波"</string>
+    <string name="t_1a2a0f17" formatted="false">"已锁定"</string>
+    <string name="t_1a73c7da" formatted="false">"射速"</string>
+    <string name="t_1aba43b0" formatted="false">"环绕核心的缓慢椭圆轨迹，就像正在工作的调度器。"</string>
+    <string name="t_1b0d8052" formatted="false">"CORE-SERVER 被击中时震动战场"</string>
+    <string name="t_1ba327c9" formatted="false">"最常见的网络攻击"</string>
+    <string name="t_1ba41734" formatted="false">"已阻挡攻击"</string>
+    <string name="t_1cc19733" formatted="false">"现实世界"</string>
+    <string name="t_1d162704" formatted="false">"确定要开始新的一局吗？你保存的会话将被替换。"</string>
+    <string name="t_1d29935f" formatted="false">"{0} 被干扰"</string>
+    <string name="t_1d8fe548" formatted="false">"重新开始"</string>
+    <string name="t_1dea7837" formatted="false">"HACK:AI 突破了极限。完整性减半，奖励翻倍。"</string>
+    <string name="t_1deb5c00" formatted="false">"已关联 · 离线"</string>
+    <string name="t_1e09b492" formatted="false">"🔒 [{0}] {1} · 已锁定"</string>
+    <string name="t_1e6ed1a9" formatted="false">"动态背景"</string>
+    <string name="t_1ef7821b" formatted="false">"向核心延伸的霓虹蓝网格，带有一道由蓝转绿的全息光环。"</string>
+    <string name="t_1f3159fc" formatted="false">"特工配色"</string>
+    <string name="t_1f5df304" formatted="false">"连接重置"</string>
+    <string name="t_1ff44d56" formatted="false">"许可证强制执行"</string>
+    <string name="t_20ce505d" formatted="false">"暂停"</string>
+    <string name="t_21399575" formatted="false">"开发者"</string>
+    <string name="t_2198b685" formatted="false">"显示所选特工的扫描半径"</string>
+    <string name="t_21bb43e3" formatted="false">"{0} · 任意关卡"</string>
+    <string name="t_22100250" formatted="false">"第 {0} 关 · 最高"</string>
+    <string name="t_224d65ed" formatted="false">"CORE-SERVER 皮肤"</string>
+    <string name="t_22686e59" formatted="false">"连接"</string>
+    <string name="t_227cde14" formatted="false">"{1} 中的 {0}"</string>
+    <string name="t_2283d7ca" formatted="false">"节点已被占用"</string>
+    <string name="t_22b6479a" formatted="false">"网络行动专家把防御当作一场实时行动来执行：监视干扰，在有人主动试图关闭团队工具时保持它们运行，并直接打击干扰的源头。"</string>
+    <string name="t_22c4ef22" formatted="false">"它的内容被打乱，因此大多数防御无法读取正在射击的目标，只能造成部分伤害。CRYPTOGRAPHER 特工可以直接穿透密码。"</string>
+    <string name="t_23020c53" formatted="false">" · 可负担 {0} 个"</string>
+    <string name="t_236f5b12" formatted="false">"击败首领总数"</string>
+    <string name="t_23763c89" formatted="false">"设置"</string>
+    <string name="t_23961a76" formatted="false">"首领 {0}/{1} · 点击首领以切换"</string>
+    <string name="t_24adcafc" formatted="false">"服务器受到的总伤害"</string>
+    <string name="t_24bbb47b" formatted="false">"锁定的物品"</string>
+    <string name="t_24d3a2ef" formatted="false">"墙已倒下"</string>
+    <string name="t_255b5911" formatted="false">"CRT 荧光绿、扫描线和刷新扫光。"</string>
+    <string name="t_2570d23e" formatted="false">"集中火力。ANALYST 和 ROOT ADMIN 是首领波的主力。"</string>
+    <string name="t_25a6b96b" formatted="false">"价格低廉、可靠的中程伤害，也是唯一免疫首领干扰的特工。射程短，所以必须靠近通道——这正是这种免疫如此重要的原因。"</string>
+    <string name="t_25bd1975" formatted="false">"伤害"</string>
+    <string name="t_25efb9da" formatted="false">"爆炸半径"</string>
+    <string name="t_260d60b1" formatted="false">"失败一局后一次广告 · 复活自愿"</string>
+    <string name="t_26b80d1f" formatted="false">"完成"</string>
+    <string name="t_27a68119" formatted="false">"网络状态"</string>
+    <string name="t_27d9802d" formatted="false">"失败一局后一次广告"</string>
+    <string name="t_27daad70" formatted="false">"从边缘蔓延进来的冰霜。"</string>
+    <string name="t_28c31125" formatted="false">"装甲厚重且有耐心。沉重的单次攻击能打败它；快速射击是浪费。"</string>
+    <string name="t_28e339dd" formatted="false">"战场后方稀疏的下落字符列。"</string>
+    <string name="t_296fb456" formatted="false">"修复 +{0} HP · 每 {1} 秒 · 插槽 CORE-SERVER · 最多 {2}"</string>
+    <string name="t_297ae895" formatted="false">"已隔离"</string>
+    <string name="t_2a1bde6e" formatted="false">"入侵防御系统位于流量路径中，并被允许对其检测到的内容采取行动，丢弃或重置连接，而不只是发出警报。代价是真实的：误判合法流量的 IPS 会把它阻挡。"</string>
+    <string name="t_2a934539" formatted="false">"攻击来源"</string>
+    <string name="t_2a9b95e6" formatted="false">"对每个首领造成 ×{0} 伤害。"</string>
+    <string name="t_2bb9a482" formatted="false">"防火墙根据一组规则检查流量，并丢弃任何不匹配的内容。它是最古老、至今仍然最重要的边界防御。"</string>
+    <string name="t_2be00c84" formatted="false">"编辑代号"</string>
+    <string name="t_2c13b917" formatted="false">"对 {1} 造成 ×{0} 伤害。"</string>
+    <string name="t_2ce4713d" formatted="false">"&gt; 正在同步 CORE-SERVER"</string>
+    <string name="t_2d14c154" formatted="false">"横穿战场的缓慢斜向数据流。"</string>
+    <string name="t_2dcb788c" formatted="false">"本游戏的开发借助了人工智能工具，这些工具在学习编程和软件开发期间被用作教育和开发辅助。\n\nAI 工具协助了代码开发、故障排查、文档编写和学习等方面。最终的设计决策、玩法方向、测试和发布决定仍由开发者负责。\n\n本游戏并非由任何人工智能公司生成、赞助、认可、拥有或发行。"</string>
+    <string name="t_2df53561" formatted="false">"基于规则的流量过滤器"</string>
+    <string name="t_2e0cf790" formatted="false">"其他"</string>
+    <string name="t_2e19cc63" formatted="false">"会以 40% 生命值重新站起来一次。杀死它不等于解决它。"</string>
+    <string name="t_2ef9e2c6" formatted="false">"网络攻击"</string>
+    <string name="t_2f3549f7" formatted="false">"云存档不可用"</string>
+    <string name="t_302a4f0a" formatted="false">"基准"</string>
+    <string name="t_302eea27" formatted="false">"想知道会来什么吗？"</string>
+    <string name="t_3083c674" formatted="false">"动态：漂流"</string>
+    <string name="t_30867b62" formatted="false">"完全离线游玩"</string>
+    <string name="t_30ed929d" formatted="false">"在 {1} 上到达第 {0} 波即可解锁此特工。"</string>
+    <string name="t_31359ec6" formatted="false">"{0} 专注关闭"</string>
+    <string name="t_313900e6" formatted="false">"架构师上行链路"</string>
+    <string name="t_314d733e" formatted="false">"可用 € {0}"</string>
+    <string name="t_317b7de0" formatted="false">"机架内部下落的代码。"</string>
+    <string name="t_31d43b93" formatted="false">"动态：雨幕"</string>
+    <string name="t_326bdc38" formatted="false">"特工未注册"</string>
+    <string name="t_32a3e9f3" formatted="false">"特殊 — {0}"</string>
+    <string name="t_32bafd88" formatted="false">"下一步"</string>
+    <string name="t_32e6f915" formatted="false">"现在可负担"</string>
+    <string name="t_332ec80a" formatted="false">"什么都能杀死它们。不要为它们过度建造。"</string>
+    <string name="t_33cd995a" formatted="false">"入侵已阻挡"</string>
+    <string name="t_3425c9d3" formatted="false">"第 {0} 关"</string>
+    <string name="t_35350bff" formatted="false">"脉动的隔离环。"</string>
+    <string name="t_3595e52a" formatted="false">"路线 {0}"</string>
+    <string name="t_35c82960" formatted="false">"核心：GLACIER"</string>
+    <string name="t_35f74be9" formatted="false">"压倒性的单体伤害，无视所有护甲。游戏中最昂贵的特工，解锁很晚。可选择瞄准方式。"</string>
+    <string name="t_36900a0f" formatted="false">"便宜且几乎无害。半径内的一切都会缓慢爬行。"</string>
+    <string name="t_37447c3a" formatted="false">"射速极高，每一发都有溅射。"</string>
+    <string name="t_376bc6d2" formatted="false">"打开此界面时倒计时仍在继续。"</string>
+    <string name="t_376c54b2" formatted="false">"移除广告"</string>
+    <string name="t_379656ef" formatted="false">"核心：VOID"</string>
+    <string name="t_37bc9401" formatted="false">"此版本显示由 Google AdMob 提供的广告。观看广告以继续对局始终是可选的，从不是游玩的必要条件。"</string>
+    <string name="t_384d3555" formatted="false">"{0} 存活"</string>
+    <string name="t_384e5d9f" formatted="false">"云存档"</string>
+    <string name="t_385b9a87" formatted="false">"焦油坑会接受一个恶意连接，然后以允许的最慢速度回应，把攻击者挂在一个毫无进展的套接字上。这是一种拖延战术，而非阻挡战术：价值在于它让对方耗费的时间。"</string>
+    <string name="t_38695d86" formatted="false">"进度备份"</string>
+    <string name="t_38c1e7e0" formatted="false">"看广告"</string>
+    <string name="t_38d9a5af" formatted="false">"&gt; 网络已失陷"</string>
+    <string name="t_38e03b91" formatted="false">"已全部安装"</string>
+    <string name="t_3950774a" formatted="false">"已注册为"</string>
+    <string name="t_395af116" formatted="false">"匿名黑客"</string>
+    <string name="t_396e8daa" formatted="false">"光谱"</string>
+    <string name="t_3a06e0fa" formatted="false">"音乐"</string>
+    <string name="t_3a7e7fe6" formatted="false">"构建类型"</string>
+    <string name="t_3a8a0a59" formatted="false">"每次命中都会让它加速，无论多小；无人攻击时会减速。少量重击胜过大量轻击。"</string>
+    <string name="t_3aa6f2eb" formatted="false">"ZERO-DAY HUNTER 和 ROOT ADMIN 完全无视护甲。"</string>
+    <string name="t_3aaad671" formatted="false">"点击查看详情"</string>
+    <string name="t_3b12a908" formatted="false">"GRADIENT 每次被命中都会加速，无论多小，无人攻击时会减速。少量重击胜过大量轻击。"</string>
+    <string name="t_3b53a59d" formatted="false">"同时自动开始首领波次。关闭：首领波次会等你"</string>
+    <string name="t_3bc78174" formatted="false">"AI 辅助开发"</string>
+    <string name="t_3c66aec8" formatted="false">"你的波次、特工、€ 和固件会保存到你的 Google 账号。在另一台设备上登录它，它们就在那里。离开游戏和一局结束时会同步。"</string>
+    <string name="t_3cef355d" formatted="false">"剩余生命最高"</string>
+    <string name="t_3d17c701" formatted="false">"速度爆发"</string>
+    <string name="t_3d331382" formatted="false">"流量经过的路径"</string>
+    <string name="t_3d509ddc" formatted="false">"帧率减半并去掉装饰效果"</string>
+    <string name="t_3d83d177" formatted="false">"网络特工"</string>
+    <string name="t_3db03eca" formatted="false">"你的记录"</string>
+    <string name="t_3e12b118" formatted="false">"帮助"</string>
+    <string name="t_3e27e12f" formatted="false">"剩余生命最低"</string>
+    <string name="t_3ecdd82e" formatted="false">"零日是防御者没有任何时间（零天）去修复的漏洞，因为没人知道它的存在。没有可匹配的特征码，这正是它们如此危险的原因。"</string>
+    <string name="t_3fa2aee2" formatted="false">"受到 FIREWALL 特工的伤害减少 35%。"</string>
+    <string name="t_401924c3" formatted="false">"CORE-SERVER 皮肤"</string>
+    <string name="t_4071c698" formatted="false">"Google Play 已响应。购买和恢复正常可用。"</string>
+    <string name="t_40b15bdb" formatted="false">"在每第十波存入。一局走得越深，收益越多——奖励随里程碑的平方增长，因此一次深入的对局胜过五次浅尝。"</string>
+    <string name="t_4104a0b2" formatted="false">"你在 {0} 上的最佳：第 {1} 波"</string>
+    <string name="t_4108bc91" formatted="false">"握手被拒绝"</string>
+    <string name="t_41203058" formatted="false">"装备"</string>
+    <string name="t_412ea11f" formatted="false">"点击路线旁两个高亮的部署节点。两个不是建议：一名特工无法独自守住一条通道。"</string>
+    <string name="t_419c5ded" formatted="false">"总游戏局数"</string>
+    <string name="t_41a1b85e" formatted="false">"隐私选项"</string>
+    <string name="t_41ca8ef5" formatted="false">"仅保存在本设备上 · 不会上传任何内容"</string>
+    <string name="t_41e88f52" formatted="false">"用两根手指捏合以放大棋盘——近距离更容易点击节点。放大时，用一根手指拖动来移动。完全捏合缩小即可再次看到整个棋盘。"</string>
+    <string name="t_4208e473" formatted="false">"无广告"</string>
+    <string name="t_420bd000" formatted="false">"BOTMASTER 每隔几秒就在身后放下 BOT。快速消灭它，并留一些火力对付虫群。"</string>
+    <string name="t_4273a8be" formatted="false">"账号"</string>
+    <string name="t_42832744" formatted="false">"无赌博、无战利品箱、无随机付费奖励"</string>
+    <string name="t_42880e6f" formatted="false">"已锁定 · {0}"</string>
+    <string name="t_42a0e053" formatted="false">"关于"</string>
+    <string name="t_42addf6c" formatted="false">"打开商店"</string>
+    <string name="t_42afe7bc" formatted="false">"正在连接"</string>
+    <string name="t_42ef8058" formatted="false">"防御记录"</string>
+    <string name="t_4306ee12" formatted="false">"€1,500 预算"</string>
+    <string name="t_4333987a" formatted="false">"稀疏的下落字符列。"</string>
+    <string name="t_43a1c2e8" formatted="false">"升级费用"</string>
+    <string name="t_441ec9a9" formatted="false">"菜单快速导览。按 下一步 继续，按 跳过 关闭。你可以随时在 设置 中重新播放。"</string>
+    <string name="t_4427afab" formatted="false">"护甲会削弱小伤害：带上 ANALYST 或 ROOT ADMIN，而不是 IPS。"</string>
+    <string name="t_4439e789" formatted="false">"已锁定 · 完成第 5 关（在 DDoS 上清除第 100 波）即可解锁音乐播放器和曲目列表。"</string>
+    <string name="t_448177d3" formatted="false">"上次同步"</string>
+    <string name="t_4494c488" formatted="false">"{0} 分钟前"</string>
+    <string name="t_44c51c30" formatted="false">"攻击已阻挡"</string>
+    <string name="t_44fbbc54" formatted="false">"&gt; !! 网络攻击来袭 — 重大入侵即将到来 !!"</string>
+    <string name="t_4538f2a7" formatted="false">"防火墙根据一组规则检查流量，并丢弃规则不允许的任何内容。它通常是放在不受信任网络与值得保护之物之间的第一道控制，评判它的是所给的规则，而不是它有多聪明。"</string>
+    <string name="t_45b17976" formatted="false">"沉重的单体伤害，每一发都相同而非碰运气，并且无视护甲。昂贵且缓慢；单凭一个守不住一条通道。"</string>
+    <string name="t_4631883a" formatted="false">"安装到最高（+{0}）"</string>
+    <string name="t_463cbc28" formatted="false">"生命 ×{0} · 护甲 +{1} · 速度 ×{2}"</string>
+    <string name="t_466578df" formatted="false">"以一半完整性继续本波。"</string>
+    <string name="t_466b92a9" formatted="false">"分段上行链路"</string>
+    <string name="t_46984fe6" formatted="false">"开始 · 继续"</string>
+    <string name="t_46cc0ef8" formatted="false">"它还会提高每局给出的 ◇ 加密币，每级 +{0}%，最多翻倍。它不会影响敌人生命值或波次构成。"</string>
+    <string name="t_4735c1ed" formatted="false">"网络攻击正涌向 CORE-SERVER。在路线旁部署网络特工，在它们抵达之前阻止它们。"</string>
+    <string name="t_4747b424" formatted="false">"敌人"</string>
+    <string name="t_477d52c6" formatted="false">"已关联。在另一部手机或平板上登录同一个 Google 账号，你的进度就在那里。"</string>
+    <string name="t_47c5c237" formatted="false">"无效节点"</string>
+    <string name="t_485268f0" formatted="false">"&gt; 正在武装网络特工"</string>
+    <string name="t_4882e1dc" formatted="false">"KERNEL PANIC 死亡时会干扰范围内的每名特工 3 秒。FIREWALL 不受影响。"</string>
+    <string name="t_488d4b25" formatted="false">"成千上万台机器同时向一个目标发送流量。没有任何单个请求是攻击；洪流才是。目的不是闯入，而是让服务无法使用。"</string>
+    <string name="t_4905ed7b" formatted="false">"无"</string>
+    <string name="t_494c304d" formatted="false">"-◇{0} 被窃取"</string>
+    <string name="t_49848f53" formatted="false">"SQL 盲注"</string>
+    <string name="t_498754a7" formatted="false">"将原声音乐保存到手机"</string>
+    <string name="t_4af4306b" formatted="false">"构建"</string>
+    <string name="t_4c1012d3" formatted="false">"持续对它开火：它只在一段时间未被命中后才会修复，所以要覆盖击杀区之间的空隙。"</string>
+    <string name="t_4c6d3272" formatted="false">"🔒 已锁定"</string>
+    <string name="t_4cc6f55a" formatted="false">"无法连接 Google Play 游戏。你的对局记录在本设备上，下次联网时结束一局，你的最佳成绩就会上传。"</string>
+    <string name="t_4d54c785" formatted="false">"正在放置 {0} — 点击一个节点"</string>
+    <string name="t_4d6e69d2" formatted="false">"音乐播放器"</string>
+    <string name="t_4d7ab8a3" formatted="false">"代号"</string>
+    <string name="t_4e2b3472" formatted="false">"没有已保存的会话"</string>
+    <string name="t_4ebbf8bd" formatted="false">"本局还剩 {0} 次复活。"</string>
+    <string name="t_4f0fcb18" formatted="false">"每第五波出现"</string>
+    <string name="t_4f160176" formatted="false">"收割局。没有花招，没有干扰——比棋盘上任何东西都多出百分之二十。"</string>
+    <string name="t_5022c684" formatted="false">"加密"</string>
+    <string name="t_5067a989" formatted="false">"纠缠链"</string>
+    <string name="t_5079b771" formatted="false">"在 {1} 的 {2} 模式中到达第 {0} 波即可解锁此特工。"</string>
+    <string name="t_509d7851" formatted="false">" · 冲击 {0}"</string>
+    <string name="t_513901c7" formatted="false">" · 无广告"</string>
+    <string name="t_513dcdc9" formatted="false">"每名特工"</string>
+    <string name="t_520a6b88" formatted="false">"每一级都比上一级稍贵一些，所以倍率持续攀升但不会失控。没有你实际能达到的上限。"</string>
+    <string name="t_5333e76e" formatted="false">"渲染"</string>
+    <string name="t_53e605b3" formatted="false">"注意"</string>
+    <string name="t_543ce9f7" formatted="false">"每"</string>
+    <string name="t_54523d94" formatted="false">"你的核心所在的机架。在战场上可见。"</string>
+    <string name="t_54743050" formatted="false">"阻挡攻击总数"</string>
+    <string name="t_54797d92" formatted="false">"读数下方延伸的电路走线。"</string>
+    <string name="t_549824f8" formatted="false">"端口已加固"</string>
+    <string name="t_5571a722" formatted="false">"离线游玩 · 无需登录"</string>
+    <string name="t_55f85167" formatted="false">"精简特工菜单"</string>
+    <string name="t_565a738e" formatted="false">"不，让我直接玩"</string>
+    <string name="t_56a9a004" formatted="false">"关着灯的注入"</string>
+    <string name="t_56bafb67" formatted="false">"每局一次复活。"</string>
+    <string name="t_56c54890" formatted="false">"臃肿的模型：生命值稍高，速度稍慢。"</string>
+    <string name="t_56c6b2ae" formatted="false">"虚构设定，明确标注：这名特工直接无视加密特性而不会因此被削弱，并对带有该特性的任何目标造成三倍伤害。真正的密码学并不是这样运作的，这里没有任何东西能破解真实的密码。"</string>
+    <string name="t_5749c8dc" formatted="false">"第 {0} 波以及所有已部署的内容都将丢失。"</string>
+    <string name="t_5785b710" formatted="false">"选择一名特工，然后点击一个高亮的部署节点。"</string>
+    <string name="t_57f88861" formatted="false">"专注：仅首领"</string>
+    <string name="t_582ec4a0" formatted="false">"被入侵的计算机悄悄地接受中央控制器的指令。它们的主人通常毫不知情。僵尸网络使大规模 DDoS 攻击成为可能。"</string>
+    <string name="t_5840893d" formatted="false">"入侵已遏制"</string>
+    <string name="t_58a5f08a" formatted="false">"普通网格。没有动画。"</string>
+    <string name="t_597ee3cb" formatted="false">"特征匹配"</string>
+    <string name="t_5a02fc0a" formatted="false">"复活礼包"</string>
+    <string name="t_5a3d8598" formatted="false">"离 CORE-SERVER 最近"</string>
+    <string name="t_5a911db6" formatted="false">"你的 Google 账号"</string>
+    <string name="t_5aa1d1dc" formatted="false">"{0} 专注开启"</string>
+    <string name="t_5b19a621" formatted="false">"针对尚无人修补的缺陷的攻击——防御者有零天时间准备。稀有、坚韧，击退它能获得可观的加密币。"</string>
+    <string name="t_5c19fc6b" formatted="false">"购买 CyOps TD 原声音乐 · {0}"</string>
+    <string name="t_5c3f86fb" formatted="false">"最强"</string>
+    <string name="t_5d1868fb" formatted="false">"核心"</string>
+    <string name="t_5d377851" formatted="false">"永久升级 · 从现在起的每场对局"</string>
+    <string name="t_5d4d0273" formatted="false">"{0} 已锁定：{1}。"</string>
+    <string name="t_5de47a9b" formatted="false">"所有难度"</string>
+    <string name="t_5de55828" formatted="false">"!! 完整性低 !!"</string>
+    <string name="t_5e75065a" formatted="false">"已连接"</string>
+    <string name="t_5f2258c9" formatted="false">"左侧的资金。它在每局的每第十波存入，并在对局结束时保留。越深入的对局收益越多。"</string>
+    <string name="t_5fd47bcf" formatted="false">"核心：MERIDIAN"</string>
+    <string name="t_602fffef" formatted="false">"除 CRYPTOGRAPHER 外，所有特工在这里都会损失一半以上的伤害。"</string>
+    <string name="t_6049b1e7" formatted="false">"动态背景"</string>
+    <string name="t_60a5a04c" formatted="false">"暂停音乐"</string>
+    <string name="t_60ecea1a" formatted="false">"绝对"</string>
+    <string name="t_60f81814" formatted="false">"每 {0} 秒，LICENSE 会用 {1} 无视任何持续攻击它的特工类型。混合使用不同的特工类型。"</string>
+    <string name="t_61919374" formatted="false">"已复活 — 它不会再回来了"</string>
+    <string name="t_61ebe734" formatted="false">"屏幕震动"</string>
+    <string name="t_625afb79" formatted="false">"已拥有。保存到 Music/CyOps TD，文件名为“CyOps TD - Level X (Y)”。"</string>
+    <string name="t_628c7cd9" formatted="false">"特工部署分布"</string>
+    <string name="t_62f8af50" formatted="false">"+{0} HP / {1} 秒"</string>
+    <string name="t_63374e04" formatted="false">"主菜单"</string>
+    <string name="t_633e8e1a" formatted="false">"被杀死时会分裂成三条较小的蠕虫，每一条还会再分裂一次。溅射是你的朋友。"</string>
+    <string name="t_6343926d" formatted="false">"干扰"</string>
+    <string name="t_638aaa93" formatted="false">"这里也会出现"</string>
+    <string name="t_63b00a3c" formatted="false">"通过网络发送的数据被切成数据包：带有目标地址和有效载荷的小块。数据包本身不是攻击——几乎所有数据包都是普通流量。你在这里射击的是携带特定攻击的数据包，这就是为什么每一个都以攻击而非数据包命名。"</string>
+    <string name="t_63b54927" formatted="false">"每局 3 次复活且永无复活广告，另加 €5,000。"</string>
+    <string name="t_63bef594" formatted="false">"HP {0}"</string>
+    <string name="t_63f3d76a" formatted="false">"保存"</string>
+    <string name="t_63facb82" formatted="false">"动态：脉冲"</string>
+    <string name="t_6480a147" formatted="false">"第 {0} 波  —  稳住边界"</string>
+    <string name="t_648a945b" formatted="false">"没人告诉你的两件事"</string>
+    <string name="t_6490c689" formatted="false">"无真实加密货币、区块链、钱包、挖矿或 NFT"</string>
+    <string name="t_64d398f9" formatted="false">"射程"</string>
+    <string name="t_65155738" formatted="false">"5× 速度"</string>
+    <string name="t_65252ce7" formatted="false">"最前"</string>
+    <string name="t_6554cde7" formatted="false">"正在向 Google Play 查询此账号拥有的内容。通常只需片刻。"</string>
+    <string name="t_655c9284" formatted="false">"动态：晶格"</string>
+    <string name="t_656e6ce8" formatted="false">"特工"</string>
+    <string name="t_65c8fd90" formatted="false">"威胁简报"</string>
+    <string name="t_6678bfdf" formatted="false">"它死亡时，附近的每名特工都会被干扰 3 秒。在远离你阵地的地方杀死它，或趁下一波还远时杀死它。"</string>
+    <string name="t_66fa85d7" formatted="false">"把特工分散开，这样一次干扰无法让整条防线沉默。"</string>
+    <string name="t_6700226a" formatted="false">"已关联"</string>
+    <string name="t_67043715" formatted="false">"护甲"</string>
+    <string name="t_67313d46" formatted="false">"墙已建起"</string>
+    <string name="t_6757b458" formatted="false">"已阻止攻击"</string>
+    <string name="t_6813ef42" formatted="false">"匿名黑客 — {0} 个 BOT 以双倍速度来袭"</string>
+    <string name="t_681745bd" formatted="false">"特工已锁定 — {0}"</string>
+    <string name="t_682d973f" formatted="false">"开始"</string>
+    <string name="t_68e88af7" formatted="false">"危险区域"</string>
+    <string name="t_68e985d6" formatted="false">"不会向任何地方发送其他内容。完全没有网络也可以玩这个游戏。"</string>
+    <string name="t_6904aeb4" formatted="false">"游戏"</string>
+    <string name="t_69698cdc" formatted="false">"WORM 被杀死时会分裂成三条较小的蠕虫，它们还会再分裂一次。尽早杀死它，并在附近准备溅射。"</string>
+    <string name="t_69a293c4" formatted="false">"SUDO 终止"</string>
+    <string name="t_6ad356c5" formatted="false">"三条路线：一条直穿中间，两条在其上下呈之字形。"</string>
+    <string name="t_6b2d8165" formatted="false">"等级 {0}  {1} 伤害"</string>
+    <string name="t_6c161f51" formatted="false">"每 17 秒中有 2 秒，它会无视任何持续攻击它的特工类型。多样化的阵容能持续伤害它。"</string>
+    <string name="t_6c7aa396" formatted="false">"不同的首领，不同的弱点。"</string>
+    <string name="t_6ca9de88" formatted="false">"光谱特工"</string>
+    <string name="t_6cb7e8e3" formatted="false">"缓慢的重击。对精英和首领伤害 +80%。"</string>
+    <string name="t_6cbf7c76" formatted="false">"已击败首领"</string>
+    <string name="t_6ccdc653" formatted="false">"完全无视加密，并对其造成三倍伤害。"</string>
+    <string name="t_6cedde69" formatted="false">"音乐音量"</string>
+    <string name="t_6d2d6d6b" formatted="false">"无视它的护甲。"</string>
+    <string name="t_6d907c0d" formatted="false">"“蓝队”负责防御系统并响应事件——是红队的对应方。“蓝帽”在业内有不止一种用法，并非标准化术语，因此这里只描述蓝队的含义。"</string>
+    <string name="t_6dbe0ea3" formatted="false">"关卡"</string>
+    <string name="t_6f053419" formatted="false">"{0} 上限 — 最多 {1}"</string>
+    <string name="t_6f21a684" formatted="false">"首领 — 每第五波"</string>
+    <string name="t_70d42172" formatted="false">"划分网络，使一个区域的入侵无法触及其余部分。这就是为什么一台被入侵的笔记本电脑不应意味着整家公司被入侵。"</string>
+    <string name="t_7191bf1d" formatted="false">"持久化"</string>
+    <string name="t_71c5931f" formatted="false">"省电模式只改变绘制的内容。波次难度、伤害和时机完全不受影响。"</string>
+    <string name="t_72102eb0" formatted="false">"购买、恢复以及离开本设备的内容"</string>
+    <string name="t_722a0bad" formatted="false">"重新播放引导"</string>
+    <string name="t_73236391" formatted="false">"游戏本身不收集任何个人数据"</string>
+    <string name="t_735d4940" formatted="false">"音效音量"</string>
+    <string name="t_73907e76" formatted="false">"游戏中的全部 24 首曲目，保存到手机的 Music 文件夹，随处播放。"</string>
+    <string name="t_7397fdaa" formatted="false">"在一切背后移动的冷光。"</string>
+    <string name="t_739a7f7a" formatted="false">"© {0} {1}。保留所有权利。"</string>
+    <string name="t_73d812dc" formatted="false">"每第五波，以及它带来什么"</string>
+    <string name="t_73e8cb50" formatted="false">"原创代码、原创美术、原创合成音频。使用 Kotlin、Jetpack Compose 和 Android Canvas API 构建。\n\n图标：CoreUI Icons Free，作者 creativeLabs（coreui.io/icons），采用 CC BY 4.0 许可。\n\n第三方依赖的许可证列在项目仓库的 LICENSES.md 中。"</string>
+    <string name="t_74066c59" formatted="false">"游戏内"</string>
+    <string name="t_746ab6c3" formatted="false">"IPS 对虫群造成 35% 额外伤害。把它放在通道汇合处。"</string>
+    <string name="t_746d814e" formatted="false">"删除你保存的对局、已解锁的特工、统计数据和设置。此操作无法撤销。"</string>
+    <string name="t_74aa6c59" formatted="false">"€ 预算不足"</string>
+    <string name="t_74fff44e" formatted="false">"放出吸收火力的诱饵分身。ANALYST 和 ROOT ADMIN 能看穿它们。"</string>
+    <string name="t_750800eb" formatted="false">"射速与阵容中最快的一样，并且总是先射击首领。对 [GG] GOOD GAME 造成双倍伤害。最多四个。"</string>
+    <string name="t_7596436a" formatted="false">"一名拥有网络安全学士学位的高级安全工程师，通过构建防御软件来阻止攻击：加固的服务、补丁和过滤器，在攻击到来之前而不是之后就已就位。"</string>
+    <string name="t_75b191e4" formatted="false">"在射程内最近的路线上建一道墙。威胁会在墙前停下，必须将其摧毁才能通过；首领摧毁得最快。墙倒下后，ACE 会在几秒后重建，每升一级都更坚固。它自身的射击对前五关的每个首领造成 {0}× 伤害。最多部署三个。"</string>
+    <string name="t_75bd8866" formatted="false">"选择关卡和难度"</string>
+    <string name="t_75e65d90" formatted="false">"点击两次以部署"</string>
+    <string name="t_75f24f6e" formatted="false">"每隔几秒锁定一名特工的升级 8 秒。在它到来之前升级。"</string>
+    <string name="t_7682806a" formatted="false">"第 2 步 — 选择 FIREWALL"</string>
+    <string name="t_77212b64" formatted="false">"这是你正在面对的攻击波次。只要你守住服务器，它就会一直增加——每第五波会有一个首领。"</string>
+    <string name="t_772b21ba" formatted="false">"你部署的防御"</string>
+    <string name="t_77a2583e" formatted="false">"安全领域中有两种不同的东西都被称为“量子”，值得分清。量子密钥分发利用物理学来检测链路上的窃听，只在少数专门场合部署。后量子密码学是普通的软件数学，旨在抵御未来的量子计算机，也是真正在推广的那一种。"</string>
+    <string name="t_77a6da9b" formatted="false">"从核心向外扩散的环。"</string>
+    <string name="t_77d03aa5" formatted="false">"盲注得不到任何错误信息，因此攻击者每次通过一个是非问题来推断答案。它比普通注入更慢、更有耐心，并且对显而易见的防御早有准备。"</string>
+    <string name="t_77e5929c" formatted="false">"第一次点击会显示特工在该位置的射程；再次点击即可部署"</string>
+    <string name="t_77e8896f" formatted="false">"一条路线从棋盘一角斜劈到另一角，往返五次。"</string>
+    <string name="t_77f7e381" formatted="false">" · 护甲 {0}"</string>
+    <string name="t_782074f1" formatted="false">"  ·  自动 {0}"</string>
+    <string name="t_7841323b" formatted="false">"防御性扫荡"</string>
+    <string name="t_78526608" formatted="false">"到达的波次"</string>
+    <string name="t_78a52e3b" formatted="false">"隐藏"</string>
+    <string name="t_7922c8d5" formatted="false">"强化范围内每名特工：伤害 +30%，射速 +20%。"</string>
+    <string name="t_79a4baee" formatted="false">"&lt; 返回"</string>
+    <string name="t_79fc7a80" formatted="false">"仅在 自动开始波次 开启时生效"</string>
+    <string name="t_7a1f56c4" formatted="false">"立即同步"</string>
+    <string name="t_7aba529e" formatted="false">"破解它的加密：×{0} 伤害。"</string>
+    <string name="t_7abfb3c7" formatted="false">"生命值降到一半时一分为二，后一半会走另一条路线。"</string>
+    <string name="t_7b3bb73f" formatted="false">"威胁已消除"</string>
+    <string name="t_7b84a6c4" formatted="false">"在 GOOGLE PLAY 界面关联你的 Google 账号，即可查看全球排行榜并上传成绩。你的对局仍会记录在本设备上。"</string>
+    <string name="t_7ba7f176" formatted="false">"+{0}% 伤害"</string>
+    <string name="t_7be6fbad" formatted="false">"第 {0} 波 · 模拟已停止"</string>
+    <string name="t_7bf2105b" formatted="false">"分布式拒绝服务"</string>
+    <string name="t_7c4e4414" formatted="false">"最后"</string>
+    <string name="t_7c6853de" formatted="false">"全球 · {0}"</string>
+    <string name="t_7d5cc77f" formatted="false">"赚取的加密币总数"</string>
+    <string name="t_7dc33bc2" formatted="false">"已达到最高等级"</string>
+    <string name="t_7e1cf3a7" formatted="false">"修复"</string>
+    <string name="t_7e522f64" formatted="false">"制作人员"</string>
+    <string name="t_7e72ed35" formatted="false">"进度已保存到你的账号"</string>
+    <string name="t_7e906966" formatted="false">"已将 {0} 首曲目保存到 Music/CyOps TD。"</string>
+    <string name="t_7ea71dbe" formatted="false">"再次打开 特工 并选择 TARPIT。它不造成伤害——它会让光环内的每个威胁减速，让你的 FIREWALL 有更多机会射击它们。"</string>
+    <string name="t_7f11b512" formatted="false">"{0} · 每局 {1} {2}"</string>
+    <string name="t_7fd8e294" formatted="false">"&gt; 边界已上线"</string>
+    <string name="t_804ef7d5" formatted="false">"互联网上最常见的攻击，也是这里的基准威胁。攻击者在原本要求输入名称或密码的字段中键入数据库命令；如果应用程序直接把它传递过去，数据库就会照做。"</string>
+    <string name="t_80592dd9" formatted="false">"版本"</string>
+    <string name="t_8175c5fc" formatted="false">"CORE-SERVER 完整性"</string>
+    <string name="t_8198af01" formatted="false">"每 6 秒中隐身 2 秒：任何东西都无法瞄准它。溅射和连锁仍能波及它。"</string>
+    <string name="t_81e23c68" formatted="false">"其他：仅小型单位和精英，从不攻击首领"</string>
+    <string name="t_8230b283" formatted="false">"IDS 对快速攻击造成 45% 额外伤害，并最先发现它们。"</string>
+    <string name="t_82966ea3" formatted="false">"波次计数"</string>
+    <string name="t_829e8e06" formatted="false">"其范围内的特工无法被干扰。对 WHITE EYE 和 BLACK EYE 造成 {0}× 伤害。最多两个。"</string>
+    <string name="t_82a1fee3" formatted="false">"确定要重新开始这一局吗？"</string>
+    <string name="t_82a70835" formatted="false">"未关联时，对局进度只存在于本设备上。卸载或恢复出厂设置会清除它；购买在两种情况下都会保留。"</string>
+    <string name="t_830a30fd" formatted="false">"预算"</string>
+    <string name="t_830b01d9" formatted="false">"固件会在从现在起的每场对局中，倍增你部署的每名特工的伤害。它在护甲和克制表之前生效，所以它帮助 Cryptographer 对付加密的程度，与帮助 Firewall 对付普通流量的程度完全一样。"</string>
+    <string name="t_831712ed" formatted="false">"新的网络特工已解锁"</string>
+    <string name="t_83186dce" formatted="false">"仅限本设备"</string>
+    <string name="t_8340a76d" formatted="false">"为何重要"</string>
+    <string name="t_838b0928" formatted="false">"前进时生成护送攻击。"</string>
+    <string name="t_8478f19e" formatted="false">"离开本设备的内容"</string>
+    <string name="t_848f3f46" formatted="false">"删除所有进度？"</string>
+    <string name="t_852bda75" formatted="false">"图鉴"</string>
+    <string name="t_862b3f34" formatted="false">"部署网络特工"</string>
+    <string name="t_869cf6b4" formatted="false">"注册代号"</string>
+    <string name="t_86cce90c" formatted="false">"最弱"</string>
+    <string name="t_87442b62" formatted="false">"下一波 · BREACH"</string>
+    <string name="t_87a9dd3e" formatted="false">"波次、€ 和固件"</string>
+    <string name="t_87d92d69" formatted="false">"探测范围极远；对快速攻击伤害 +45%。"</string>
+    <string name="t_8806feca" formatted="false">"六款 CORE-SERVER 皮肤，另加 €2,000。NEONGRID 单独出售。"</string>
+    <string name="t_882561c2" formatted="false">"威胁评估"</string>
+    <string name="t_891fc63b" formatted="false">"伪装已解除"</string>
+    <string name="t_8980d82b" formatted="false">"已选择 {0} — 点击一个高亮节点进行部署。"</string>
+    <string name="t_899bae42" formatted="false">"可选。不关联游戏中的一切也都能用，除了你的进度之外不会上传任何东西。"</string>
+    <string name="t_89a47932" formatted="false">"播放音乐"</string>
+    <string name="t_89c7b011" formatted="false">"重新打开 Google 的同意表单，更改广告合作伙伴可以如何使用本设备的数据。你的游戏进度存储在本设备上，从不包含在其中。"</string>
+    <string name="t_89d7c51c" formatted="false">"出去、回来，然后一段很长的共享回程通往机架。"</string>
+    <string name="t_89dd34f8" formatted="false">"把清理虫群交给 IPS，让你的重火力专注于首领。"</string>
+    <string name="t_89e1b0eb" formatted="false">"它的力场会在 GRADIENT 加速时把它拉回来。"</string>
+    <string name="t_89e450ea" formatted="false">"已移除 · 复活广告另计"</string>
+    <string name="t_8a058fa3" formatted="false">"标准曲线。"</string>
+    <string name="t_8a86921d" formatted="false">"右侧的按钮可以滚动。往下还有：商店、装备（装备皮肤和背景）、GOOGLE PLAY（购买和云存档）、排行榜、图鉴（威胁和特工说明）、统计、设置 和 关于。"</string>
+    <string name="t_8a96f0aa" formatted="false">"不可用"</string>
+    <string name="t_8aa097b1" formatted="false">"  （已锁定）"</string>
+    <string name="t_8aec13a9" formatted="false">"分布式拒绝服务：数量就是攻击。每个请求都微不足道，但它们来得比游戏中任何东西都快，而且永远还有更多。"</string>
+    <string name="t_8af0e8d8" formatted="false">"一次有组织的入侵尝试。没有花招，只有分量。"</string>
+    <string name="t_8b094c6c" formatted="false">"正在连接 Google Play…"</string>
+    <string name="t_8c42a507" formatted="false">"从冰封核心放射出的冰针。"</string>
+    <string name="t_8c61de92" formatted="false">"自动开始波次"</string>
+    <string name="t_8d56a5da" formatted="false">"环绕核心的缓慢椭圆轨迹。"</string>
+    <string name="t_8d91a14b" formatted="false">"GOOGLE PLAY"</string>
+    <string name="t_8d9dd637" formatted="false">"首领：只射击首领，否则停火"</string>
+    <string name="t_8e0413ab" formatted="false">"此版本没有应用内购买。"</string>
+    <string name="t_8e3787c1" formatted="false">"已锁定 · {0}（最佳：{1}）"</string>
+    <string name="t_8f0536a7" formatted="false">"安装到最高"</string>
+    <string name="t_8f37a712" formatted="false">"造成的伤害"</string>
+    <string name="t_8f48da3c" formatted="false">"网络已失陷"</string>
+    <string name="t_8f5d0f11" formatted="false">"经济"</string>
+    <string name="t_8f61abf9" formatted="false">"处理中…"</string>
+    <string name="t_8f68a3ab" formatted="false">"&gt; 正在加载威胁特征"</string>
+    <string name="t_8ff6e51c" formatted="false">"{0} 尚无对局记录。"</string>
+    <string name="t_90391726" formatted="false">"继续"</string>
+    <string name="t_910b3ae9" formatted="false">"用于购买特工保卫服务器的资金。每次击杀和每完成一波都能获得加密币◇。"</string>
+    <string name="t_915c2f22" formatted="false">"已保存 {0} 首曲目，然后手机拒绝了其余的。释放一些空间后再试。"</string>
+    <string name="t_919816cc" formatted="false">"无法连接 Google Play。已购买的内容仍然属于你——恢复联网后试试 恢复。"</string>
+    <string name="t_91ae1cd3" formatted="false">"通俗术语表"</string>
+    <string name="t_91d4d5fc" formatted="false">"可用 · ◇ {0}"</string>
+    <string name="t_9231c915" formatted="false">"围绕运行中反应堆的琥珀色隔离环。"</string>
+    <string name="t_933bf2fb" formatted="false">"移除广告 涵盖对局之间的广告；复活广告另计。"</string>
+    <string name="t_935cf7b5" formatted="false">"拥有帽子特工的射速、更重的射击，并对 SYN-STORM 和 GRADIENT 造成 {0}× 伤害。最多两个。"</string>
+    <string name="t_93875a49" formatted="false">"射程"</string>
+    <string name="t_93f1bd2f" formatted="false">"射速极高，总是优先攻击范围内的首领，并对 [GG] GOOD GAME 造成双倍伤害。第 30 波解锁，最多部署四个。"</string>
+    <string name="t_94061f4f" formatted="false">"几乎不造成伤害。半径内的一切都会缓慢爬行，让威胁更久地留在你的输出特工射程内。便宜，单独使用毫无用处——它是旁边任何射手的力量倍增器。"</string>
+    <string name="t_941dea68" formatted="false">"伤害数字"</string>
+    <string name="t_9427590a" formatted="false">"命中时显示浮动伤害数值"</string>
+    <string name="t_94bbec0b" formatted="false">"点击 下一波。你的特工会自动开火。每阻止一次攻击都会获得 ◇ 加密币，可以购买更多特工和升级。"</string>
+    <string name="t_94dc88d3" formatted="false">"每级固件使每名特工伤害 +{0}%，对局中获得的 ◇ 加密币 +{1}%（最多翻倍），对未来每场对局都有效。它永远不会消失。"</string>
+    <string name="t_95051192" formatted="false">"未设置"</string>
+    <string name="t_952dc0bb" formatted="false">"排行榜"</string>
+    <string name="t_959b6bbb" formatted="false">"最多部署 {0} 个"</string>
+    <string name="t_9655a074" formatted="false">"菜单和棋盘后方缓慢的数据流。"</string>
+    <string name="t_97e1363f" formatted="false">"每次命中都有大量固定伤害减免。"</string>
+    <string name="t_98189a64" formatted="false">"无。这是一场正面对决。"</string>
+    <string name="t_9873614b" formatted="false">"阵容中最远的探测范围，对快速攻击伤害 +45%。射速慢——它是一个顺便会射击的侦察兵，最好放在能覆盖大段通道的地方。"</string>
+    <string name="t_98a9c7f2" formatted="false">"€ 预算"</string>
+    <string name="t_98b63553" formatted="false">"游玩无需账号或登录"</string>
+    <string name="t_98cc567c" formatted="false">"最佳伤害"</string>
+    <string name="t_98f4abc6" formatted="false">"◇ {0} · 在 {2} 上第 {1} 波解锁"</string>
+    <string name="t_98fbe3ee" formatted="false">"多重锁定"</string>
+    <string name="t_991bd4c3" formatted="false">"一个 CRYPTOGRAPHER 就能扭转整场战斗。"</string>
+    <string name="t_991c8ba8" formatted="false">"特工升级总数"</string>
+    <string name="t_996095bd" formatted="false">"本游戏中提及的某些名称、术语和商标可能是其各自所有者的财产。此类提及仅用于识别、评论、教育背景以及游戏中的虚构表现。\n\n本游戏为独立开发，与 Red Hat、Microsoft 或任何其他第三方商标所有者没有关联，也未获得其赞助、认可或批准。\n\n所有第三方商标、产品名称、公司名称和标志仍归其各自所有者所有。"</string>
+    <string name="t_99ab6437" formatted="false">"下次打开这些界面时，再次显示主菜单导览和固件说明。"</string>
+    <string name="t_99cfdd6c" formatted="false">"预览 {0}"</string>
+    <string name="t_99d175d2" formatted="false">"在路线上保留一个 TARPIT 来抵消加速。"</string>
+    <string name="t_99f43c9c" formatted="false">"加密币不足"</string>
+    <string name="t_9a8ee779" formatted="false">"射速与阵容中最快的一样，并且总是先射击首领。对 [!!!] BREACH 造成双倍伤害。最多四个。"</string>
+    <string name="t_9a9bcdd3" formatted="false">"插槽"</string>
+    <string name="t_9aa5d01a" formatted="false">"失败一局后永不出现插页广告，另加 €5,000。复活广告是自愿且单独的——见 复活礼包。"</string>
+    <string name="t_9adba547" formatted="false">"每欧元最超值。"</string>
+    <string name="t_9ae9f14f" formatted="false">"遥远光点的缓慢漂移。"</string>
+    <string name="t_9aed28a1" formatted="false">"已达到部署上限"</string>
+    <string name="t_9b08be38" formatted="false">"正在查询 Google Play 游戏…"</string>
+    <string name="t_9b1d7455" formatted="false">"第 {0} 波"</string>
+    <string name="t_9b4c97a7" formatted="false">"以木马命名：看起来像你想要的软件，携带的却是你绝对不想要的东西。"</string>
+    <string name="t_9b557f99" formatted="false">"你的最佳：第 {0} 波"</string>
+    <string name="t_9b989bfb" formatted="false">"最佳"</string>
+    <string name="t_9bcd1b03" formatted="false">"全部七款动态背景，另加 €2,000。"</string>
+    <string name="t_9bd1faf7" formatted="false">"退款、付款方式和收据由 Google 处理，而不是由本游戏处理。"</string>
+    <string name="t_9c2ade2b" formatted="false">"等级 {0}  ×{1}"</string>
+    <string name="t_9c6be09c" formatted="false">"修饰词条"</string>
+    <string name="t_9d0c4ff1" formatted="false">"&gt; 第 {0} 波进行中 — 剩余 {1} 个威胁"</string>
+    <string name="t_9d29de23" formatted="false">"各关卡最佳波次"</string>
+    <string name="t_9d2c3eea" formatted="false">"网络术语"</string>
+    <string name="t_9d36e329" formatted="false">"已被勒索"</string>
+    <string name="t_9d5ca8b9" formatted="false">"要复活吗？"</string>
+    <string name="t_9df821c5" formatted="false">"欢迎来到 CyOps TD"</string>
+    <string name="t_9e30871d" formatted="false">"一台被入侵、接受他人指令的机器。一个 bot 无害。由成千上万台组成的僵尸网络则不然——这就是它们总是成群出现的原因。"</string>
+    <string name="t_9e77c8cf" formatted="false">"增加第五档模拟速度，用于快速清理波次。"</string>
+    <string name="t_9ef0ebe5" formatted="false">"分段"</string>
+    <string name="t_9f26f678" formatted="false">"  →"</string>
+    <string name="t_9f70f631" formatted="false">"射速"</string>
+    <string name="t_9fb6c271" formatted="false">"短暂干扰附近的特工，降低它们的射速。"</string>
+    <string name="t_a12f7814" formatted="false">"+{0}（首领）"</string>
+    <string name="t_a15faa1f" formatted="false">"模式"</string>
+    <string name="t_a19abbd4" formatted="false">"每名网络特工、它的作用，以及解锁它的波次。"</string>
+    <string name="t_a21dbf00" formatted="false">"已存入 €{0} 预算"</string>
+    <string name="t_a24181ff" formatted="false">"正在攻击的是什么"</string>
+    <string name="t_a2517472" formatted="false">"商店不可用"</string>
+    <string name="t_a29c69ba" formatted="false">"退出"</string>
+    <string name="t_a2b3bef5" formatted="false">"到达第 {0} 波"</string>
+    <string name="t_a2dd8300" formatted="false">"一场考验。两条路线折返，然后在机架前绕一圈。"</string>
+    <string name="t_a2e2f704" formatted="false">"密码破解"</string>
+    <string name="t_a32353a8" formatted="false">"€9,000 预算"</string>
+    <string name="t_a36e1b6d" formatted="false">"此版本不包含"</string>
+    <string name="t_a3ebab03" formatted="false">"未修补的未知缺陷"</string>
+    <string name="t_a4a2cd90" formatted="false">"&gt;&gt; 新纪录 &lt;&lt;"</string>
+    <string name="t_a4fd7522" formatted="false">" · 最多 {0}"</string>
+    <string name="t_a5460e4e" formatted="false">"缓慢沉重的单次攻击，对精英和首领伤害 +80%。对虫群表现差。可选择瞄准方式，让你瞄准真正想消灭的目标。"</string>
+    <string name="t_a596b409" formatted="false">"5× 速度在商店中"</string>
+    <string name="t_a599c90a" formatted="false">"其范围内的每名特工（包括它自己）都免疫任何首领的干扰。快速沉重的射击，对 WHITE EYE 和 BLACK EYE 造成 {0}× 伤害。射程与 TARPIT 相同。最多部署两个。"</string>
+    <string name="t_a5b1ffba" formatted="false">"不受限制的系统访问"</string>
+    <string name="t_a5da8eea" formatted="false">"卡在某一波？存入预算、安装固件，下一局同样的棋盘会打得更狠。"</string>
+    <string name="t_a6291e29" formatted="false">"€5,000 预算"</string>
+    <string name="t_a62c1133" formatted="false">"不具备真实的黑客能力——这里没有任何东西会接触真实网络"</string>
+    <string name="t_a66c22f9" formatted="false">"请在主菜单的 设置 中更改语言：切换会重启游戏，这将结束本局。"</string>
+    <string name="t_a6cd2e07" formatted="false">"{0}-{1} 个字符。A-Z、0-9、短横线和下划线。"</string>
+    <string name="t_a6ee02f4" formatted="false">"取消"</string>
+    <string name="t_a727a483" formatted="false">"包含"</string>
+    <string name="t_a7c5a24a" formatted="false">"正在保存到 Music/CyOps TD…"</string>
+    <string name="t_a7c97dfd" formatted="false">"重置"</string>
+    <string name="t_a7e02911" formatted="false">"在核心上"</string>
+    <string name="t_a7e24bd6" formatted="false">"瞄准"</string>
+    <string name="t_a8031bce" formatted="false">"打开商店页面"</string>
+    <string name="t_a8191219" formatted="false">"SPOOFER 放出吸收火力的诱饵分身。ANALYST 和 ROOT ADMIN 能看穿它们。"</string>
+    <string name="t_a8768bb2" formatted="false">"特工皮肤"</string>
+    <string name="t_a8935036" formatted="false">"获得的加密币"</string>
+    <string name="t_a92b98a8" formatted="false">"加密币 ◇"</string>
+    <string name="t_a9a8f56c" formatted="false">"视觉效果"</string>
+    <string name="t_a9ad0741" formatted="false">"本局 €"</string>
+    <string name="t_a9cf50ec" formatted="false">"真实流量会经由交换机和路由器沿一条路线到达目的地。这里两条蛇形路线就是那条路径，来回折返，让你一次看清每一跳。"</string>
+    <string name="t_a9d9e481" formatted="false">"CORE-SERVER 是你要保卫的目标，顶部栏中的 完整性 读数是你唯一的生命。每个抵达机架的恶意数据包都会咬掉一块。降到 0 时服务器被攻破，对局结束——所以不让任何东西通过就是全部任务。"</string>
+    <string name="t_aab511c4" formatted="false">"ROOTKIT 每 6 秒中隐身 2 秒，任何东西都无法瞄准它。溅射和连锁仍能波及它。"</string>
+    <string name="t_aac1d4da" formatted="false">"未关联"</string>
+    <string name="t_aadac61a" formatted="false">"应用程序用 SQL 向数据库提问。如果用户输入被直接粘贴进这个问题，攻击者就可以自己续写结尾——导出用户表、绕过登录，或者全部删除。修复方法古老且众所周知（参数化查询），这也正是令人沮丧之处：它仍然是你最常遇到的攻击。"</string>
+    <string name="t_ab62d63d" formatted="false">"入侵检测系统监视网络或主机活动中看起来像攻击的模式，并发出警报。它负责报告；它不负责阻挡。仍然需要某个人或某样东西对它的发现采取行动。"</string>
+    <string name="t_aca3253a" formatted="false">"在场上 · 点击首领查看"</string>
+    <string name="t_ad03a515" formatted="false">"把网络划分为区域"</string>
+    <string name="t_ad26a7c7" formatted="false">"未知"</string>
+    <string name="t_ae00f867" formatted="false">"分析"</string>
+    <string name="t_ae59bf94" formatted="false">"出售  ◇ {0}"</string>
+    <string name="t_b0147d1e" formatted="false">"本波请依靠非 FIREWALL 特工。"</string>
+    <string name="t_b0af39a6" formatted="false">"更改"</string>
+    <string name="t_b0d341a2" formatted="false">"一个多月前"</string>
+    <string name="t_b0f472d0" formatted="false">"难度"</string>
+    <string name="t_b16e2042" formatted="false">"机架后方的紫色星空。"</string>
+    <string name="t_b2029176" formatted="false">"短暂停顿后自动开始下一波"</string>
+    <string name="t_b253fa2b" formatted="false">"密码学保护传输中和存储中的数据，使截获它不等于读懂它。攻击者也在使用它——大量恶意流量是加密的——这就是为什么防御者在自己控制的端点上检查，而不是试图破解加密本身。"</string>
+    <string name="t_b28b05f8" formatted="false">"入侵防御系统"</string>
+    <string name="t_b2dbc630" formatted="false">"防火墙已启用"</string>
+    <string name="t_b32b1a1d" formatted="false">"便利"</string>
+    <string name="t_b3735fe8" formatted="false">"随波次呼吸的电路晶格。"</string>
+    <string name="t_b3b53e34" formatted="false">"购买与你的 Google 账号绑定，而不是与本设备绑定。重新安装或更换手机不会丢失它们。"</string>
+    <string name="t_b3c34c67" formatted="false">"刚刚"</string>
+    <string name="t_b40b6d1c" formatted="false">"“红队”在获得许可的情况下攻击系统，以找出攻击者会首先发现的东西。“红帽”是非正式俚语，而非职位或认证，其含义因人而异；红队这一半才是标准的部分。"</string>
+    <string name="t_b5ca7a98" formatted="false">"全球每位玩家的最佳波次，按代号列出。在右侧注册一个，否则 Google 会显示你的 Play 游戏名称。"</string>
+    <string name="t_b649891d" formatted="false">"已暂停"</string>
+    <string name="t_b683e66d" formatted="false">"{0} 已锁定：{1} 即可解锁。"</string>
+    <string name="t_b6bcb68c" formatted="false">"沉重的单体伤害，每一发都相同。无视所有护甲。"</string>
+    <string name="t_b7ba0ba1" formatted="false">"REGENERATION 在 {0} 秒未被命中后就会修复它。一路上都要持续对它开火。"</string>
+    <string name="t_b7c4c2a3" formatted="false">"[{0}] {1}（已锁定）：{2}"</string>
+    <string name="t_b7cf2aab" formatted="false">"没有应用可以打开 GOOGLE PLAY"</string>
+    <string name="t_b8201e22" formatted="false">"下一波：第 {0} 波 · 首领"</string>
+    <string name="t_b82dfd13" formatted="false">"前往"</string>
+    <string name="t_b835d746" formatted="false">"第 5 步 — 部署两个 TARPIT"</string>
+    <string name="t_b8cbfe08" formatted="false">"离 CORE-SERVER 最远"</string>
+    <string name="t_b8f9cbc8" formatted="false">"伤害 {0}  射速 {1}/秒"</string>
+    <string name="t_b8ffa95c" formatted="false">"动态：极光"</string>
+    <string name="t_b9918647" formatted="false">"为此付费。没有花招，没有干扰——比棋盘上任何东西都多出百分之二十。"</string>
+    <string name="t_b9a3ada7" formatted="false">"EXFIL 很快。如果它抵达核心，会偷走你一半的加密币而不是完整性。先花掉，或者阻止它。"</string>
+    <string name="t_b9c6b239" formatted="false">"绘制在通道下方，以及每个菜单的背后。"</string>
+    <string name="t_badb0f4a" formatted="false">"周期性地向服务器加速。"</string>
+    <string name="t_bae2cee7" formatted="false">"是 — 观看广告"</string>
+    <string name="t_bb0a2d46" formatted="false">"选择"</string>
+    <string name="t_bb621985" formatted="false">"已加固"</string>
+    <string name="t_bb93827c" formatted="false">"复活失败 — 对局已结束"</string>
+    <string name="t_bc855067" formatted="false">"拒绝访问"</string>
+    <string name="t_bcdf64b3" formatted="false">"SQL 注入"</string>
+    <string name="t_bceaf8ce" formatted="false">"!!! 网络攻击来袭 !!!"</string>
+    <string name="t_bd0c6acd" formatted="false">"下一级 € {0} · 每级 +{1}% {2}"</string>
+    <string name="t_bd1b1fc9" formatted="false">"关"</string>
+    <string name="t_bd8215e6" formatted="false">"好，给我讲讲"</string>
+    <string name="t_bd84c20a" formatted="false">"第 {0} 波已守住"</string>
+    <string name="t_be1fc25b" formatted="false">"可靠的全能伤害，而且无法被干扰。"</string>
+    <string name="t_beb11f45" formatted="false">"首领修饰词条"</string>
+    <string name="t_beb3cdc3" formatted="false">"它的力场对首领的减速是其他威胁的两倍。"</string>
+    <string name="t_bec37550" formatted="false">"热修复"</string>
+    <string name="t_bed8ffbb" formatted="false">"恢复 会重新向 Play 查询此 Google 账号拥有的内容。任何时候按下都是安全的，绝不会向你收费。"</string>
+    <string name="t_bf09fcca" formatted="false">"此版本没有配置 Play 游戏项目，因此进度保留在本设备上。当你在登录同一 Google 账号的手机上重新安装时，Android 自身的备份仍会恢复它。"</string>
+    <string name="t_bf0c2eaa" formatted="false">"复制中"</string>
+    <string name="t_bf7cfb98" formatted="false">"此版本没有可配置的广告。"</string>
+    <string name="t_c1386132" formatted="false">"◇ 加密币"</string>
+    <string name="t_c164d2e8" formatted="false">"射速与帽子特工一样快且伤害更高，对 DUCK-USB 首领 SYN-STORM 和 GRADIENT 造成 {0}× 伤害。保留其瞄准模式。最多部署两个。以全息影像绘制，特工皮肤不会改变它。"</string>
+    <string name="t_c19b9c99" formatted="false">"CORE-SERVER 完整性 0 · 连接已终止"</string>
+    <string name="t_c1b7bcc5" formatted="false">"此版本不显示广告。"</string>
+    <string name="t_c2658f4d" formatted="false">"压倒性的单体伤害。无视所有护甲。"</string>
+    <string name="t_c2c8c2f8" formatted="false">"显示特工射程"</string>
+    <string name="t_c2d127eb" formatted="false">"跳过 ×"</string>
+    <string name="t_c31db047" formatted="false">"复活礼包 — 无广告。"</string>
+    <string name="t_c39850a1" formatted="false">"第 3 步 — 部署两个 FIREWALL"</string>
+    <string name="t_c3e1a996" formatted="false">"◇ 加密币和 € 预算是虚构的游戏内资源。它们没有货币价值，不能兑换游戏之外的任何东西，也不能离开本设备。"</string>
+    <string name="t_c405af57" formatted="false">"开始 会以左侧所选的关卡和模式开始一局。有存档时，继续 会接着玩，新的一局 则重新开始。"</string>
+    <string name="t_c40bc4a4" formatted="false">"IDS 监视网络活动中的可疑行为和安全威胁，然后发出警报。它负责监视；它不负责阻挡。"</string>
+    <string name="t_c4a14a23" formatted="false">"选择 FIREWALL。它便宜、可靠，且无法被干扰。"</string>
+    <string name="t_c4b7782d" formatted="false">"安全分析师是一份真实的工作。处在环路中的人接手自动化工具标记的内容，弄清实际发生了什么，并决定如何处理。比机器慢，但在不符合已知模式的情况上要好得多。"</string>
+    <string name="t_c4d0dc6f" formatted="false">"机器学习工具能在远多于人能阅读的信号中标记异常模式，用来缩小值得关注的范围。它们协助分析师而不是取代他们，并且会产生误报——一个标记是线索，而不是结论。"</string>
+    <string name="t_c51041e3" formatted="false">"  ·"</string>
+    <string name="t_c55cc938" formatted="false">"新的一局"</string>
+    <string name="t_c55e934e" formatted="false">"向下滚动查看更多"</string>
+    <string name="t_c570c6cd" formatted="false">"机架内部下落的代码列。"</string>
+    <string name="t_c5cb18f9" formatted="false">"所有关卡"</string>
+    <string name="t_c81c4fa0" formatted="false">"1 级"</string>
+    <string name="t_c8a9aae9" formatted="false">"三条路线两次相互交织：每条通道都会换边。"</string>
+    <string name="t_c9301368" formatted="false">"核心：REACTOR"</string>
+    <string name="t_c9402c75" formatted="false">"否"</string>
+    <string name="t_c944e5aa" formatted="false">"对策"</string>
+    <string name="t_c9a2aee9" formatted="false">"在任意关卡到达第 {0} 波即可解锁此特工。"</string>
+    <string name="t_ca02a8f8" formatted="false">"每名特工都穿着代表其职能的颜色。"</string>
+    <string name="t_ca5ea88d" formatted="false">"最超值"</string>
+    <string name="t_cabf47fa" formatted="false">"最高 +{0}"</string>
+    <string name="t_cb02b3da" formatted="false">"整个阵容缓慢的颜色循环。"</string>
+    <string name="t_cb1fd3f1" formatted="false">"IPS 就是拥有行动权限的 IDS。当它识别出攻击时，会亲自丢弃流量，而不只是告诉别人。"</string>
+    <string name="t_cb4ff573" formatted="false">"广告与购买"</string>
+    <string name="t_cbd3b516" formatted="false">"无广告、SPECTRUM 特工皮肤、DRIFT 背景，以及 €2,000。"</string>
+    <string name="t_cbd47695" formatted="false">"载荷拦截"</string>
+    <string name="t_cbf7d422" formatted="false">"SYN-STORM 生命值降到一半时一分为二，后一半会走另一条路线。覆盖每一条路线。"</string>
+    <string name="t_cc52e024" formatted="false">"下一波：第 {0} 波 — 首领 · 点击 下一个首领 查看简报"</string>
+    <string name="t_cc5435ac" formatted="false">"什么正沿着通道而来"</string>
+    <string name="t_cc5c44e8" formatted="false">"专注：仅小型单位和精英"</string>
+    <string name="t_cc6791f1" formatted="false">"抵抗 FIREWALL 特工。"</string>
+    <string name="t_cc7fe141" formatted="false">"监视进攻性工具。每隔几秒短暂干扰靠近它的 RED HAT 特工。"</string>
+    <string name="t_cc9e044b" formatted="false">"动态：轨道"</string>
+    <string name="t_ccb963f2" formatted="false">"数据包"</string>
+    <string name="t_ccbd0815" formatted="false">"默认机架。"</string>
+    <string name="t_ccbefbf5" formatted="false">"扫描范围 {0}"</string>
+    <string name="t_ccd3b8ff" formatted="false">"隐私选项目前不可用。"</string>
+    <string name="t_cce0919d" formatted="false">"已拥有"</string>
+    <string name="t_cd27794d" formatted="false">"代号仅限本设备，不是 Google 账号。它会在排行榜上标注你的对局。"</string>
+    <string name="t_cd7ef0df" formatted="false">"商标与第三方声明"</string>
+    <string name="t_cd8fc1d8" formatted="false">"可通过 Google Play 进行可选的应用内购买。游戏中没有任何内容需要购买才能解锁。"</string>
+    <string name="t_cde6047e" formatted="false">"入侵检测系统"</string>
+    <string name="t_ce2cde0d" formatted="false">"第 1 步 — 打开阵容"</string>
+    <string name="t_ce56b8c8" formatted="false">"在 GOOGLE PLAY 上管理"</string>
+    <string name="t_ce8b48c9" formatted="false">"玩法"</string>
+    <string name="t_cec6cd66" formatted="false">"尚无对局记录。完成一局后它会列在这里，按你到达的波次排名。"</string>
+    <string name="t_cee3b8c9" formatted="false">"跳过"</string>
+    <string name="t_cfd886ad" formatted="false">"两条路线各自梳理一半区域。中间空隙的塔能同时覆盖两边。"</string>
+    <string name="t_d0112898" formatted="false">"诱饵"</string>
+    <string name="t_d07db54c" formatted="false">"ROOT / ADMIN"</string>
+    <string name="t_d08f5138" formatted="false">"两条蛇形路线，折返经过同一批炮台。"</string>
+    <string name="t_d10c0c39" formatted="false">"射速极高，每一发都有溅射，所以它是应对虫群的答案，而不是对付单个重型目标。比 IDS 更贵，射程更短。"</string>
+    <string name="t_d11351ac" formatted="false">"开"</string>
+    <string name="t_d173b657" formatted="false">"在系统上无所不能的账号。攻击者想要它；防御者小心守护它。大多数安全工作都在于限制谁能获得它以及能持有多久。"</string>
+    <string name="t_d19c7c8e" formatted="false">"◇ {0} · 第 {1} 波解锁"</string>
+    <string name="t_d22f26dd" formatted="false">"每轮齐射最多攻击 3 个不同的威胁。"</string>
+    <string name="t_d2ee5fd2" formatted="false">"进度会自动保存"</string>
+    <string name="t_d31b24bf" formatted="false">"{0} · {1}  ·  最佳 {2}"</string>
+    <string name="t_d35bc038" formatted="false">"{0} — {1} 它不造成伤害；它为你的其他特工争取时间。"</string>
+    <string name="t_d415f020" formatted="false">"零日是尚无修复方法的缺陷——防御者有零天时间去修补。漏洞研究人员寻找这些缺陷，以便在别人先发现之前报告并修复。“零日猎人”是非正式的简称，不是认证或正式职位。"</string>
+    <string name="t_d477fdfb" formatted="false">"固件已全部安装"</string>
+    <string name="t_d488d098" formatted="false">"引导局接下来需要 TARPIT"</string>
+    <string name="t_d48f1170" formatted="false">"▼  下方还有更多"</string>
+    <string name="t_d4bb26ac" formatted="false">"核心皮肤包"</string>
+    <string name="t_d5acb32b" formatted="false">"首领警报、服务器受击和游戏结束时振动"</string>
+    <string name="t_d5b86d2a" formatted="false">"安全运营中心"</string>
+    <string name="t_d5d0b693" formatted="false">"继续"</string>
+    <string name="t_d62907f6" formatted="false">"已安装的固件"</string>
+    <string name="t_d63b9487" formatted="false">"无法访问"</string>
+    <string name="t_d736d92d" formatted="false">"确定"</string>
+    <string name="t_d8386755" formatted="false">"GOOGLE PLAY 结算"</string>
+    <string name="t_d84b41e9" formatted="false">"持续伤害才能取胜。IPS 或升级过的 FIREWALL。"</string>
+    <string name="t_d8705eb7" formatted="false">"网络攻击沿着网络路线向 CORE-SERVER 推进。你在通道旁部署网络特工；它们会探测并摧毁经过的东西。每阻止一次攻击都会获得 ◇ 加密币，可以购买更多特工和升级。每第五波是首领。没有最后一波——唯一的问题是你能走多远。"</string>
+    <string name="t_d889d3ab" formatted="false">"+1、+10 和 +100 购买相应数量的等级。安装到最高 会花掉你能负担的全部。每一级都稍贵一些。"</string>
+    <string name="t_d8bcdc1d" formatted="false">"重新开始"</string>
+    <string name="t_d8fec6d4" formatted="false">"部署特工总数"</string>
+    <string name="t_d9074af5" formatted="false">"加密会打乱数据，只有持有正确密钥的人才能读取。它保护合法流量——同样也能把攻击者的有效载荷藏起来，躲过检查。"</string>
+    <string name="t_d92ad54a" formatted="false">"此版本没有配置 Google Play 结算，或者本设备没有 Play 商店。无法购买任何东西，游玩也不需要任何付费内容。"</string>
+    <string name="t_d9694eb9" formatted="false">"同样的缺陷，没有反馈。应用程序不返回错误也不返回数据，所以攻击者提出是非问题，观察有什么变化——时间、页面长度、状态码——一位一位地读取数据库。缓慢、耐心，在日志中更难发现。"</string>
+    <string name="t_d9b49353" formatted="false">"重试"</string>
+    <string name="t_d9b88563" formatted="false">"网络流量的单位"</string>
+    <string name="t_d9c57847" formatted="false">"边界已就绪"</string>
+    <string name="t_da10b268" formatted="false">"未拥有"</string>
+    <string name="t_da169a1a" formatted="false">"全球"</string>
+    <string name="t_da3ae5ed" formatted="false">"不造成伤害，也不瞄准任何东西。在波次进行时每 30 秒修复 1 点 CORE-SERVER 完整性（休息期间或暂停时不会）。它只能部署在 CORE-SERVER 本身上，那里有两个专用插槽，其他地方都不行。升级会缩短计时。最多部署两个。"</string>
+    <string name="t_dad4b11e" formatted="false">"进攻性扫荡"</string>
+    <string name="t_db696c4d" formatted="false">"巨大且装甲厚重，但很慢。带上能无视护甲的东西。"</string>
+    <string name="t_db971746" formatted="false">"监视防御性工具。每隔几秒短暂干扰靠近它的 BLUE HAT 特工。"</string>
+    <string name="t_dba0a883" formatted="false">"被劫持机器组成的网络"</string>
+    <string name="t_dbc1a374" formatted="false">"广告未完成 — 未消耗任何东西"</string>
+    <string name="t_dc09f8b7" formatted="false">"干扰 — 首领可以扰乱特工，使其在持续期间射速减半。{0} 天生不在乎这个。"</string>
+    <string name="t_dc37fa05" formatted="false">"在一切背后移动的宽阔冷光带。"</string>
+    <string name="t_dc62badb" formatted="false">"称号"</string>
+    <string name="t_dce01a82" formatted="false">"输入代号"</string>
+    <string name="t_dd220c90" formatted="false">"广告"</string>
+    <string name="t_dd4083b5" formatted="false">"未购买任何内容。以上所有内容也都可以赚取，或者干脆不需要它也能玩。"</string>
+    <string name="t_dd55f56b" formatted="false">"两条路线在抵达机架前相互交织三次，就像一条 DNA 链。"</string>
+    <string name="t_ddb5514a" formatted="false">"在 GOOGLE PLAY 游戏中打开"</string>
+    <string name="t_ddcb2958" formatted="false">"以第一个、也是彻头彻尾科幻的那个命名：每次命中都会连锁到附近两个威胁，造成 55% 伤害。对密集波次很强，对单个目标是浪费。可选择瞄准方式。"</string>
+    <string name="t_ddd374d9" formatted="false">"快速介绍你将遇到的攻击、首领，以及你的特工如何应对。大约需要二十秒。"</string>
+    <string name="t_dee83e52" formatted="false">"游戏内面板不透明度"</string>
+    <string name="t_e00d9a42" formatted="false">"放在 CORE-SERVER 插槽上"</string>
+    <string name="t_e01007ce" formatted="false">"比小礼包每欧元更超值。"</string>
+    <string name="t_e07706fa" formatted="false">"在关联之前仅限本设备"</string>
+    <string name="t_e0a2aaa4" formatted="false">"关联 GOOGLE 账号"</string>
+    <string name="t_e12d998f" formatted="false">"礼包"</string>
+    <string name="t_e13093ea" formatted="false">"伤害"</string>
+    <string name="t_e1892d25" formatted="false">"核心固件"</string>
+    <string name="t_e1df4ef7" formatted="false">"首领"</string>
+    <string name="t_e3407723" formatted="false">"是"</string>
+    <string name="t_e3a7e50c" formatted="false">"保留我的存档"</string>
+    <string name="t_e3c4a9cc" formatted="false">"{0} 会干扰靠近它的 {1} 特工。把它们往后放，放在射程边缘。"</string>
+    <string name="t_e4554374" formatted="false">"关闭"</string>
+    <string name="t_e55f9c78" formatted="false">"本游戏不做的事"</string>
+    <string name="t_e587f42b" formatted="false">"系统默认（手机语言）"</string>
+    <string name="t_e5e7e535" formatted="false">"SYN-STORM 分裂"</string>
+    <string name="t_e6694d9c" formatted="false">"在波次进行中每 30 秒修复 1 点 CORE-SERVER 完整性，部署在 CORE-SERVER 上的两个插槽之一。升级后更快。最多两个。"</string>
+    <string name="t_e807eff2" formatted="false">"封锁射程内最近的路线；威胁必须将其摧毁。对每个首领都伤害极高。最多三个。"</string>
+    <string name="t_e8757749" formatted="false">"在 {1} 上清除第 {0} 波"</string>
+    <string name="t_e8987cec" formatted="false">"重置进度"</string>
+    <string name="t_e94c961d" formatted="false">"统计"</string>
+    <string name="t_e979d28d" formatted="false">"射速"</string>
+    <string name="t_e99d5d17" formatted="false">"€ 礼包是消耗品而非拥有物：只会发放一次，恢复 不会再次发放。"</string>
+    <string name="t_e9caa97b" formatted="false">"尚无部署记录。玩一局即可填充此处。"</string>
+    <string name="t_ea16b407" formatted="false">"深靛蓝上的金色走线。"</string>
+    <string name="t_ea31efb2" formatted="false">"清除第 {0} 波"</string>
+    <string name="t_eab5f205" formatted="false">"更改代号"</string>
+    <string name="t_eaf7396d" formatted="false">"无法连接 GOOGLE — 存档保留在设备上"</string>
+    <string name="t_eb2e832a" formatted="false">"特工 {0}"</string>
+    <string name="t_ebdd4d5e" formatted="false">"已移除 · 无"</string>
+    <string name="t_ec91403d" formatted="false">"波次"</string>
+    <string name="t_ed31a176" formatted="false">"随波次反应、会呼吸的电路晶格。"</string>
+    <string name="t_ed5c9d47" formatted="false">"每级"</string>
+    <string name="t_ed7160a0" formatted="false">"从不"</string>
+    <string name="t_ed7ecda7" formatted="false">"已锁定"</string>
+    <string name="t_ee0803eb" formatted="false">"顽强"</string>
+    <string name="t_ee094192" formatted="false">"此版本没有配置 Google Play 结算，因此这里无法购买任何东西。游戏中所有不花钱的部分都完全正常运作。"</string>
+    <string name="t_ee5525d9" formatted="false">"KERNEL PANIC · {0} 被干扰"</string>
+    <string name="t_ee6595fd" formatted="false">"监视警报的团队和房间。如果说这个游戏有场景设定，那就是凌晨 3 点的 SOC 大屏。"</string>
+    <string name="t_eea62f11" formatted="false">"购买"</string>
+    <string name="t_eef967f2" formatted="false">"缩放战场"</string>
+    <string name="t_ef29f425" formatted="false">"音频"</string>
+    <string name="t_efcf9890" formatted="false">"伤害 {0} · 射速 {1}/秒 · 射程 {2}"</string>
+    <string name="t_f001b942" formatted="false">"强化"</string>
+    <string name="t_f03b01af" formatted="false">"一段时间未被命中后会缓慢自我修复。"</string>
+    <string name="t_f100d10c" formatted="false">"标有 已锁定 的物品都在商店里。这里的任何东西都不会改变游戏玩法——皮肤只是外观，不是优势。"</string>
+    <string name="t_f16b76bc" formatted="false">"“橡皮鸭”是一个伪装成键盘的 USB 设备，打出攻击指令的速度比任何人都快。防御手段是 USB 防护，它在计算机信任任何新设备之前对其进行检查，并阻止像机器一样打字的键盘。"</string>
+    <string name="t_f17dfdae" formatted="false">"一条长路线从顶部进入，向外螺旋延伸到机架。"</string>
+    <string name="t_f25360a0" formatted="false">"更改立即生效，并保存在本设备上"</string>
+    <string name="t_f293dfd1" formatted="false">"购买检查"</string>
+    <string name="t_f2e7479c" formatted="false">"关联你的 Google 账号，在任何手机或平板上保留你的进度。Google 会请求管理本游戏在你账号中保存数据的权限——那就是游戏存档存储，这也是它唯一使用的内容。"</string>
+    <string name="t_f2ed0368" formatted="false">"很快。如果它抵达核心，会偷走你一半的加密币而不是完整性。"</string>
+    <string name="t_f2f63d9f" formatted="false">"在本设备上"</string>
+    <string name="t_f33c5b01" formatted="false">"第 6 步 — 开始这一波"</string>
+    <string name="t_f38eb808" formatted="false">"更强的威胁，更密集，更少的完整性。更丰厚的奖励。"</string>
+    <string name="t_f3e23f71" formatted="false">"核心：CASCADE"</string>
+    <string name="t_f49a4ff9" formatted="false">"特工已锁定"</string>
+    <string name="t_f4f677dc" formatted="false">"累计获得"</string>
+    <string name="t_f5537783" formatted="false">"核心：MAINFRAME"</string>
+    <string name="t_f590e2c9" formatted="false">"路线"</string>
+    <string name="t_f5b866e4" formatted="false">"一次有组织的入侵尝试，具有足够的冗余，能对毫无准备的网络不屑一顾。每第五波出现一个，而且一个比一个强。"</string>
+    <string name="t_f60f5840" formatted="false">"仍然没有 CyOps 账号，也没有密码。购买跟随本设备上登录 Play 商店的 Google 账号。进度跟随你在上方关联的 Google 账号——这是一个单独的、可选的选择：没有它游戏也是完整的。"</string>
+    <string name="t_f692d3ce" formatted="false">"僵尸网络"</string>
+    <string name="t_f69a80a7" formatted="false">"游戏将重启以切换到 {0}。你的进度会被保留。"</string>
+    <string name="t_f6f93110" formatted="false">"核心：NEONGRID"</string>
+    <string name="t_f720bfa7" formatted="false">"CRT 荧光扫描线。"</string>
+    <string name="t_f76fff7f" formatted="false">"恶意软件：为破坏、干扰或窃取而编写的代码。它比简单的注入携带更多载荷，所以在瓦解之前能承受更多伤害。"</string>
+    <string name="t_f7a4fc70" formatted="false">"再次点击以部署"</string>
+    <string name="t_f7a7b98a" formatted="false">"伤害 {0} · 射速 {1} · 射程 {2}"</string>
+    <string name="t_f7eb1496" formatted="false">"排名由你到达的最深波次决定。造成的伤害用于决胜。"</string>
+    <string name="t_f803ec67" formatted="false">"订单记录与退款"</string>
+    <string name="t_f85117ec" formatted="false">"全部 {0} 首曲目都已在 Music/CyOps TD 中。"</string>
+    <string name="t_f8723c46" formatted="false">"速度"</string>
+    <string name="t_f8d84db3" formatted="false">"未注册"</string>
+    <string name="t_f8e6e39f" formatted="false">"系统工程师让服务器保持运行：打补丁、更换故障部件、从备份恢复，以及监控机器的健康状况。“服务器系统工程师”描述的是这类工作；不同组织对此的职位名称各不相同。"</string>
+    <string name="t_f9807a9f" formatted="false">"&gt; 待命中 — 部署特工并开始第 1 波"</string>
+    <string name="t_f9cec260" formatted="false">"少量巨大的命中几乎不会让 GRADIENT 加速。"</string>
+    <string name="t_f9d6b090" formatted="false">"战场和菜单后方漂移的 ASCII 数据"</string>
+    <string name="t_fa1b4500" formatted="false">"统计数据在每一局中累积，包括你从暂停菜单放弃的对局。在 设置 中重置进度会清除全部数据。"</string>
+    <string name="t_fa60c2c6" formatted="false">"动态：热力图"</string>
+    <string name="t_fb735826" formatted="false">"振动"</string>
+    <string name="t_fb889492" formatted="false">"一款独立开发、离线优先、以网络安全为主题的塔防游戏。情景、特工和术语都为游戏性而虚构，并附有简短的现实世界解释，让背后的概念可以学习。它不教授任何攻击技术，也不执行任何真实的安全功能。"</string>
+    <string name="t_fbca7f29" formatted="false">"伪装得很有用的恶意软件"</string>
+    <string name="t_fbd9e20c" formatted="false">"背景动画"</string>
+    <string name="t_fc778505" formatted="false">"干净的机架，没有标记。"</string>
+    <string name="t_fcc1e712" formatted="false">"隐私"</string>
+    <string name="t_fd3cb488" formatted="false">"登录如何运作"</string>
+    <string name="t_fdb0282f" formatted="false">"正在加载广告…"</string>
+    <string name="t_fde05efe" formatted="false">"在 {1} 上到达第 {0} 波"</string>
+    <string name="t_fe26fa48" formatted="false">"最佳波次"</string>
+    <string name="t_fe451d7a" formatted="false">"系统已恢复 — 完整性 {0}"</string>
+    <string name="t_fe86390c" formatted="false">" · 速度 {0}"</string>
+    <string name="t_feeee285" formatted="false">"{0} 款核心皮肤 · {1} 款背景可用"</string>
+    <string name="t_feef9615" formatted="false">"下一个首领"</string>
+    <string name="t_ff2d6a51" formatted="false">"三条路线两次互换位置。每个交叉点都是能同时打到两条的位置。"</string>
+    <string name="t_ffa57dc1" formatted="false">"&gt; 正在挂载通道拓扑"</string>
+    <string name="t_ffc3db58" formatted="false">"射程 {0}"</string>
+    <string name="t_ffff9bd9" formatted="false">"特工缓慢地在色谱中漂移，每个单位与下一个错开。"</string>
+</resources>

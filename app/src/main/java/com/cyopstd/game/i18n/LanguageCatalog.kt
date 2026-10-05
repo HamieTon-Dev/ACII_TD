@@ -14,6 +14,9 @@ internal object LanguageCatalog {
         Language("de", "Deutsch", "German"),
         Language("it", "Italiano", "Italian"),
         Language("ru", "Русский", "Russian"),
-        Language("ja", "日本語", "Japanese")
+        Language("ja", "日本語", "Japanese"),
+        Language("ko", "한국어", "Korean"),
+        Language("zh-CN", "简体中文", "Chinese (Simplified)"),
+        Language("zh-TW", "繁體中文", "Chinese (Traditional)")
     )
 }
