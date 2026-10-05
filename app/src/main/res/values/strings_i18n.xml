@@ -33,7 +33,6 @@
     <string name="t_086b8b8e" formatted="false">"BOSS"</string>
     <string name="t_08f0711d" formatted="false">"RESTORE PURCHASES"</string>
     <string name="t_09653280" formatted="false">"TO CORE"</string>
-    <string name="t_098f0a1b" formatted="false">"SOC"</string>
     <string name="t_0a0bc63d" formatted="false">"Previous track"</string>
     <string name="t_0a2301f4" formatted="false">"SAVED PROGRESS"</string>
     <string name="t_0a344034" formatted="false">"NEXT: WAVE {0}"</string>
@@ -105,7 +104,6 @@
     <string name="t_1a73c7da" formatted="false">"fire rate"</string>
     <string name="t_1aba43b0" formatted="false">"Slow elliptical traces around the core, like a scheduler at work."</string>
     <string name="t_1b0d8052" formatted="false">"Shake the battlefield when CORE-SERVER is hit"</string>
-    <string name="t_1b892aa9" formatted="false">"music-previous"</string>
     <string name="t_1ba327c9" formatted="false">"The most common web attack there is"</string>
     <string name="t_1ba41734" formatted="false">"ATTACKS BLOCKED"</string>
     <string name="t_1cc19733" formatted="false">"REAL-WORLD"</string>
@@ -289,7 +287,6 @@
     <string name="t_513901c7" formatted="false">" · AD-FREE"</string>
     <string name="t_513dcdc9" formatted="false">"PER AGENT"</string>
     <string name="t_520a6b88" formatted="false">"Each level costs slightly more than the last, so the multiplier keeps climbing but never runs away. There is no cap you will realistically reach."</string>
-    <string name="t_52bd83a2" formatted="false">"CyOps TD"</string>
     <string name="t_5333e76e" formatted="false">"RENDERING"</string>
     <string name="t_53e605b3" formatted="false">"WATCH OUT"</string>
     <string name="t_543ce9f7" formatted="false">"EVERY"</string>
@@ -302,13 +299,13 @@
     <string name="t_565a738e" formatted="false">"NO, LET ME PLAY"</string>
     <string name="t_56a9a004" formatted="false">"Injection with the lights off"</string>
     <string name="t_56bafb67" formatted="false">"One revive per run."</string>
+    <string name="t_56c54890" formatted="false">"A bloated model: a little more health, a little slower."</string>
     <string name="t_56c6b2ae" formatted="false">"Fictional licence, clearly flagged: this agent simply ignores the ENCRYPTED trait instead of being slowed by it, and deals triple damage to anything carrying it. Real cryptography does not work this way and nothing here breaks any real cipher."</string>
     <string name="t_5749c8dc" formatted="false">"Wave {0} and everything deployed will be lost."</string>
     <string name="t_5785b710" formatted="false">"Select an agent, then tap a highlighted deployment node."</string>
     <string name="t_57f88861" formatted="false">"FOCUS: BOSSES ONLY"</string>
     <string name="t_582ec4a0" formatted="false">"Compromised computers quietly taking orders from a central controller. Their owners usually have no idea. Botnets are what make large DDoS attacks possible."</string>
     <string name="t_5840893d" formatted="false">"INTRUSION CONTAINED"</string>
-    <string name="t_5889f3ea" formatted="false">"Compose UI + native Canvas"</string>
     <string name="t_58a5f08a" formatted="false">"The plain grid. No motion."</string>
     <string name="t_597ee3cb" formatted="false">"SIGNATURE MATCHED"</string>
     <string name="t_5a02fc0a" formatted="false">"REVIVE PACK"</string>
@@ -361,7 +358,6 @@
     <string name="t_67043715" formatted="false">"ARMOUR"</string>
     <string name="t_67313d46" formatted="false">"WALL UP"</string>
     <string name="t_6757b458" formatted="false">"ATTACKS STOPPED"</string>
-    <string name="t_67e26b41" formatted="false">"music-play-pause"</string>
     <string name="t_6813ef42" formatted="false">"ANONYMOUS HACK — {0} BOTS INCOMING AT DOUBLE SPEED"</string>
     <string name="t_681745bd" formatted="false">"AGENT LOCKED — {0}"</string>
     <string name="t_682d973f" formatted="false">"START"</string>
@@ -498,7 +494,6 @@
     <string name="t_8f5d0f11" formatted="false">"ECONOMY"</string>
     <string name="t_8f61abf9" formatted="false">"WORKING…"</string>
     <string name="t_8f68a3ab" formatted="false">"&gt; loading threat signatures"</string>
-    <string name="t_8fd7e203" formatted="false">"Jetpack DataStore"</string>
     <string name="t_8ff6e51c" formatted="false">"No runs recorded on {0} yet."</string>
     <string name="t_90391726" formatted="false">"RESUME"</string>
     <string name="t_910b3ae9" formatted="false">"Money earned to buy agents to defend server. Crypto◇ earned for every kill and every wave completed."</string>
@@ -713,7 +708,6 @@
     <string name="t_ce2cde0d" formatted="false">"STEP 1 — OPEN THE ROSTER"</string>
     <string name="t_ce56b8c8" formatted="false">"MANAGE ON GOOGLE PLAY"</string>
     <string name="t_ce8b48c9" formatted="false">"GAMEPLAY"</string>
-    <string name="t_ceb6dbab" formatted="false">"CyOps TD SOUNDTRACK"</string>
     <string name="t_cec6cd66" formatted="false">"No runs recorded yet. Finish a run and it will be listed here, ranked by the wave you reached."</string>
     <string name="t_cee3b8c9" formatted="false">"SKIP"</string>
     <string name="t_cfd886ad" formatted="false">"Two routes comb their own halves. Towers in the middle gap reach both."</string>
@@ -726,7 +720,6 @@
     <string name="t_d19c7c8e" formatted="false">"◇ {0} · unlocks at wave {1}"</string>
     <string name="t_d22f26dd" formatted="false">"Engages up to 3 separate threats with every volley."</string>
     <string name="t_d2ee5fd2" formatted="false">"Progress is saved automatically"</string>
-    <string name="t_d30ca708" formatted="false">"music-next"</string>
     <string name="t_d31b24bf" formatted="false">"{0} · {1}  ·  best {2}"</string>
     <string name="t_d35bc038" formatted="false">"{0} — {1} It deals no damage; it buys your other agents time."</string>
     <string name="t_d415f020" formatted="false">"A zero-day is a flaw with no fix available yet — the defender has had zero days to patch it. Vulnerability researchers look for these so they can be reported and fixed before someone else finds them first. \"Zero-day hunter\" is informal shorthand, not a certification or a formal job title."</string>
@@ -783,7 +776,6 @@
     <string name="t_e3a7e50c" formatted="false">"KEEP MY SAVE"</string>
     <string name="t_e3c4a9cc" formatted="false">"{0} jams {1} agents close to it. Place them back, at the edge of their range."</string>
     <string name="t_e4554374" formatted="false">"CLOSE"</string>
-    <string name="t_e51fdb29" formatted="false">"P R E S E N T S"</string>
     <string name="t_e55f9c78" formatted="false">"WHAT THIS GAME DOES NOT DO"</string>
     <string name="t_e587f42b" formatted="false">"SYSTEM DEFAULT (phone language)"</string>
     <string name="t_e5e7e535" formatted="false">"SYN-STORM SPLIT"</string>
@@ -863,7 +855,6 @@
     <string name="t_fe26fa48" formatted="false">"BEST WAVE"</string>
     <string name="t_fe451d7a" formatted="false">"SYSTEMS RESTORED — INTEGRITY {0}"</string>
     <string name="t_fe86390c" formatted="false">" · SPD {0}"</string>
-    <string name="t_feb9b1d1" formatted="false">"A bloated model: a little more health, a little slower. Its crowd-feeding heal was removed (owner, 2026-10-02)."</string>
     <string name="t_feeee285" formatted="false">"{0} core skins · {1} backgrounds available"</string>
     <string name="t_feef9615" formatted="false">"NEXT BOSS"</string>
     <string name="t_ff2d6a51" formatted="false">"Three routes swap places twice. Every crossing is a spot that hits two."</string>

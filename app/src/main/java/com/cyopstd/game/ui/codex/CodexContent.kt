@@ -240,7 +240,7 @@ object CodexContent {
         ),
         Entry(
             glyph = "[@]",
-            title = tr("SOC"),
+            title = "SOC",
             subtitle = tr("Security Operations Centre"),
             body = tr("The team and the room watching the alerts. If this game has a " +
                 "setting, it is a SOC wall display at 3am.")

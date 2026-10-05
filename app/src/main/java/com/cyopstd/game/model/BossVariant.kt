@@ -314,8 +314,7 @@ enum class BossVariant(
         healthScale = 1.1f,
         armorBonus = 0f,
         speedScale = 0.95f,
-        signature = tr("A bloated model: a little more health, a little slower. " +
-            "Its crowd-feeding heal was removed (owner, 2026-10-02)."),
+        signature = tr("A bloated model: a little more health, a little slower."),
         firstCycle = 3,
         mapId = NEURAL_MESH_MAP_ID,
         palette = BossPalette.SPECTRUM

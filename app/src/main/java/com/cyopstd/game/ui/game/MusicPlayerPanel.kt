@@ -188,14 +188,14 @@ fun MusicPlayerPanel(
                 .fillMaxWidth()
                 .alpha(dim)
         ) {
-            TransportButton(R.drawable.ic_media_previous, tr("Previous track"), tr("music-previous"), accent,
+            TransportButton(R.drawable.ic_media_previous, tr("Previous track"), "music-previous", accent,
                 Modifier.weight(1f)) { guarded(onPrevious) }
             TransportButton(
                 if (state.paused) R.drawable.ic_media_play else R.drawable.ic_media_pause,
-                if (state.paused) tr("Play music") else tr("Pause music"), tr("music-play-pause"),
+                if (state.paused) tr("Play music") else tr("Pause music"), "music-play-pause",
                 if (state.unlocked) Palette.Green else Palette.TextMuted, Modifier.weight(1f)
             ) { guarded(onPlayPause) }
-            TransportButton(R.drawable.ic_media_next, tr("Next track"), tr("music-next"), accent,
+            TransportButton(R.drawable.ic_media_next, tr("Next track"), "music-next", accent,
                 Modifier.weight(1f)) { guarded(onNext) }
         }
 

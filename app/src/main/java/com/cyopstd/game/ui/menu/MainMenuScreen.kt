@@ -115,7 +115,7 @@ fun MainMenuScreen(
                 verticalArrangement = Arrangement.Center
             ) {
                 Text(
-                    text = tr("CyOps TD"),
+                    text = "CyOps TD",
                     style = MaterialTheme.typography.displayMedium,
                     color = Palette.Cyan
                 )

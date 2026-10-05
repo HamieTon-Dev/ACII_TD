@@ -274,7 +274,7 @@ enum class Sku(
     SOUNDTRACK(
         id = "soundtrack",
         kind = SkuKind.PERMANENT,
-        title = tr("CyOps TD SOUNDTRACK"),
+        title = "CyOps TD SOUNDTRACK",
         summary = tr("All 24 tracks from the game, saved to your phone's Music " +
             "folder to play anywhere."),
         fallbackPrice = "$4.99"

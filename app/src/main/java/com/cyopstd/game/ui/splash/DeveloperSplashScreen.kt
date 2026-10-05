@@ -121,7 +121,7 @@ fun DeveloperSplashScreen(onFinished: () -> Unit) {
             )
             Spacer(Modifier.height(18.dp))
             Text(
-                text = tr("P R E S E N T S"),
+                text = "P R E S E N T S",
                 color = Palette.GreenDim,
                 textAlign = TextAlign.Center,
                 style = MaterialTheme.typography.titleSmall

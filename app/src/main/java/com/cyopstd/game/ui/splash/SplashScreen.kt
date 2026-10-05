@@ -66,7 +66,7 @@ fun SplashScreen(onFinished: () -> Unit) {
             // it would be the same signature twice in four seconds -- and
             // this screen's job is the game, not the publisher.
             Text(
-                text = tr("CyOps TD"),
+                text = "CyOps TD",
                 style = MaterialTheme.typography.displayMedium,
                 color = Palette.Cyan,
                 textAlign = TextAlign.Center

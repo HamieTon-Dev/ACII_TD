@@ -70,8 +70,8 @@ fun AboutScreen(
                     StatRow(tr("PACKAGE"), BuildConfig.APPLICATION_ID)
                     StatRow(tr("BUILD TYPE"), BuildConfig.BUILD_TYPE)
                     StatRow(tr("DEVELOPER"), AboutText.DEVELOPER, valueColor = Palette.Cyan)
-                    StatRow(tr("RENDERING"), tr("Compose UI + native Canvas"))
-                    StatRow(tr("PERSISTENCE"), tr("Jetpack DataStore"))
+                    StatRow(tr("RENDERING"), "Compose UI + native Canvas")
+                    StatRow(tr("PERSISTENCE"), "Jetpack DataStore")
                 }
 
                 Spacer(Modifier.height(12.dp))
