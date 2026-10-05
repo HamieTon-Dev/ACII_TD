@@ -1,5 +1,7 @@
 package com.cyopstd.game.core
 
+import com.cyopstd.game.i18n.tr
+
 import kotlin.math.abs
 import kotlin.math.atan2
 import kotlin.math.hypot
@@ -207,8 +209,8 @@ class GameMap(
     /** One line for a locked row in the menu. */
     val unlockRequirement: String
         get() = when {
-            unlockMapId != null -> "clear wave $unlockAtWave on $unlockMapName"
-            unlockMode != null -> "clear wave $unlockAtWave on ${unlockMode.runName}"
+            unlockMapId != null -> tr("clear wave {0} on {1}", unlockAtWave, unlockMapName)
+            unlockMode != null -> tr("clear wave {0} on {1}", unlockAtWave, unlockMode.runName)
             else -> ""
         }
 

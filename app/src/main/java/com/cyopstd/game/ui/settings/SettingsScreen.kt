@@ -1,5 +1,7 @@
 package com.cyopstd.game.ui.settings
 
+import com.cyopstd.game.i18n.tr
+
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
@@ -61,13 +63,18 @@ fun SettingsScreen(
     privacyOptionsRequired: Boolean = false,
     onPrivacyOptions: () -> Unit = {},
     /** Show the main-menu tour and the FIRMWARE explainer again. */
-    onReplayGuides: () -> Unit = {}
+    onReplayGuides: () -> Unit = {},
+    /** The player's language, or null for the phone's. */
+    language: com.cyopstd.game.i18n.Language? = null,
+    /** False from inside a match, where a restart would end the run. */
+    languageChangeAllowed: Boolean = true,
+    onLanguage: (com.cyopstd.game.i18n.Language?) -> Unit = {}
 ) {
     var confirmingReset by remember { mutableStateOf(false) }
 
     ScreenScaffold(
-        title = "SETTINGS",
-        subtitle = "Changes apply immediately and persist on this device",
+        title = tr("SETTINGS"),
+        subtitle = tr("Changes apply immediately and persist on this device"),
         onBack = onBack,
         backgroundAnimation = backgroundAnimation
     ) {
@@ -81,35 +88,46 @@ fun SettingsScreen(
                     .fillMaxHeight()
                     .verticalScroll(rememberScrollState())
             ) {
-                TerminalPanel(title = "AUDIO", accent = Palette.Cyan) {
+                // First, so a player who cannot read the current language
+                // finds it without scrolling.
+                LanguagePanel(
+                    current = language,
+                    languages = com.cyopstd.game.i18n.Languages.all,
+                    changeAllowed = languageChangeAllowed,
+                    onApply = onLanguage
+                )
+
+                Spacer(Modifier.height(12.dp))
+
+                TerminalPanel(title = tr("AUDIO"), accent = Palette.Cyan) {
                     SliderRow(
-                        label = "MUSIC VOLUME",
+                        label = tr("MUSIC VOLUME"),
                         value = settings.musicVolume,
                         onValueChange = { v -> onUpdate { it.copy(musicVolume = v) } }
                     )
                     SliderRow(
-                        label = "SOUND EFFECTS VOLUME",
+                        label = tr("SOUND EFFECTS VOLUME"),
                         value = settings.sfxVolume,
                         onValueChange = { v -> onUpdate { it.copy(sfxVolume = v) } }
                     )
                     Caption(
-                        "All audio is generated on-device at startup; the game " +
-                            "ships no sound files."
+                        tr("All audio is generated on-device at startup; the game " +
+                            "ships no sound files.")
                     )
                 }
 
                 Spacer(Modifier.height(12.dp))
 
-                TerminalPanel(title = "FEEDBACK", accent = Palette.Green) {
+                TerminalPanel(title = tr("FEEDBACK"), accent = Palette.Green) {
                     ToggleRow(
-                        label = "VIBRATION",
-                        description = "Haptics on boss alerts, server hits and game over",
+                        label = tr("VIBRATION"),
+                        description = tr("Haptics on boss alerts, server hits and game over"),
                         checked = settings.vibrationEnabled,
                         onCheckedChange = { v -> onUpdate { it.copy(vibrationEnabled = v) } }
                     )
                     ToggleRow(
-                        label = "SCREEN SHAKE",
-                        description = "Shake the battlefield when CORE-SERVER is hit",
+                        label = tr("SCREEN SHAKE"),
+                        description = tr("Shake the battlefield when CORE-SERVER is hit"),
                         checked = settings.screenShake,
                         onCheckedChange = { v -> onUpdate { it.copy(screenShake = v) } }
                     )
@@ -117,40 +135,40 @@ fun SettingsScreen(
 
                 Spacer(Modifier.height(12.dp))
 
-                TerminalPanel(title = "GAMEPLAY", accent = Palette.Purple) {
+                TerminalPanel(title = tr("GAMEPLAY"), accent = Palette.Purple) {
                     ToggleRow(
-                        label = "AUTO START WAVES",
-                        description = "Begin the next wave automatically after a short pause",
+                        label = tr("AUTO START WAVES"),
+                        description = tr("Begin the next wave automatically after a short pause"),
                         checked = settings.autoStartWaves,
                         onCheckedChange = { v -> onUpdate { it.copy(autoStartWaves = v) } }
                     )
                     // Boss waves wait for you unless this is on too, so you
                     // can build up before one.
                     ToggleRow(
-                        label = "AUTO START BOSS WAVES",
+                        label = tr("AUTO START BOSS WAVES"),
                         description = if (settings.autoStartWaves) {
-                            "Also start boss waves automatically. Off: boss waves wait for you"
+                            tr("Also start boss waves automatically. Off: boss waves wait for you")
                         } else {
-                            "Only applies when AUTO START WAVES is on"
+                            tr("Only applies when AUTO START WAVES is on")
                         },
                         checked = settings.autoStartBossWaves,
                         onCheckedChange = { v -> onUpdate { it.copy(autoStartBossWaves = v) } }
                     )
                     ToggleRow(
-                        label = "SHOW AGENT RANGE",
-                        description = "Draw the scan radius of the selected agent",
+                        label = tr("SHOW AGENT RANGE"),
+                        description = tr("Draw the scan radius of the selected agent"),
                         checked = settings.showAgentRange,
                         onCheckedChange = { v -> onUpdate { it.copy(showAgentRange = v) } }
                     )
                     ToggleRow(
-                        label = "COMPACT AGENTS MENU",
-                        description = "Deploy bar shows only each agent's icon and cost",
+                        label = tr("COMPACT AGENTS MENU"),
+                        description = tr("Deploy bar shows only each agent's icon and cost"),
                         checked = settings.compactAgentBar,
                         onCheckedChange = { v -> onUpdate { it.copy(compactAgentBar = v) } }
                     )
                     ToggleRow(
-                        label = "TAP TWICE TO DEPLOY",
-                        description = "First tap shows the agent's range on that spot; tap it again to deploy",
+                        label = tr("TAP TWICE TO DEPLOY"),
+                        description = tr("First tap shows the agent's range on that spot; tap it again to deploy"),
                         checked = settings.confirmPlacement,
                         onCheckedChange = { v -> onUpdate { it.copy(confirmPlacement = v) } }
                     )
@@ -163,10 +181,10 @@ fun SettingsScreen(
                     .fillMaxHeight()
                     .verticalScroll(rememberScrollState())
             ) {
-                TerminalPanel(title = "VISUALS", accent = Palette.Cyan) {
+                TerminalPanel(title = tr("VISUALS"), accent = Palette.Cyan) {
                     // How much of the board shows through the in-game pop-ups.
                     SliderRow(
-                        label = "IN-GAME PANEL OPACITY",
+                        label = tr("IN-GAME PANEL OPACITY"),
                         value = settings.panelOpacity,
                         onValueChange = { v ->
                             onUpdate {
@@ -179,14 +197,14 @@ fun SettingsScreen(
                         }
                     )
                     ToggleRow(
-                        label = "BACKGROUND ANIMATION",
-                        description = "Drifting ASCII data behind the battlefield and menus",
+                        label = tr("BACKGROUND ANIMATION"),
+                        description = tr("Drifting ASCII data behind the battlefield and menus"),
                         checked = settings.backgroundAnimation,
                         onCheckedChange = { v -> onUpdate { it.copy(backgroundAnimation = v) } }
                     )
                     ToggleRow(
-                        label = "DAMAGE NUMBERS",
-                        description = "Show floating damage values on hits",
+                        label = tr("DAMAGE NUMBERS"),
+                        description = tr("Show floating damage values on hits"),
                         checked = settings.damageNumbers,
                         onCheckedChange = { v -> onUpdate { it.copy(damageNumbers = v) } }
                     )
@@ -194,14 +212,14 @@ fun SettingsScreen(
 
                 Spacer(Modifier.height(12.dp))
 
-                TerminalPanel(title = "HELP", accent = Palette.Green) {
+                TerminalPanel(title = tr("HELP"), accent = Palette.Green) {
                     Caption(
-                        "Show the main-menu tour and the FIRMWARE explainer again, " +
-                            "next time you open those screens."
+                        tr("Show the main-menu tour and the FIRMWARE explainer again, " +
+                            "next time you open those screens.")
                     )
                     Spacer(Modifier.height(8.dp))
                     BastionButton(
-                        text = "REPLAY GUIDES",
+                        text = tr("REPLAY GUIDES"),
                         accent = Palette.Green,
                         leadingGlyph = "[?]",
                         onClick = onReplayGuides
@@ -210,30 +228,30 @@ fun SettingsScreen(
 
                 Spacer(Modifier.height(12.dp))
 
-                TerminalPanel(title = "PERFORMANCE", accent = Palette.Orange) {
+                TerminalPanel(title = tr("PERFORMANCE"), accent = Palette.Orange) {
                     ToggleRow(
-                        label = "BATTERY SAVER",
-                        description = "Halve the frame rate and drop decorative effects",
+                        label = tr("BATTERY SAVER"),
+                        description = tr("Halve the frame rate and drop decorative effects"),
                         checked = settings.batterySaver,
                         onCheckedChange = { v -> onUpdate { it.copy(batterySaver = v) } }
                     )
                     Caption(
-                        "Battery saver only changes what is drawn. Wave difficulty, " +
-                            "damage and timing are completely unaffected."
+                        tr("Battery saver only changes what is drawn. Wave difficulty, " +
+                            "damage and timing are completely unaffected.")
                     )
                 }
 
                 if (privacyOptionsRequired) {
                     Spacer(Modifier.height(12.dp))
-                    TerminalPanel(title = "PRIVACY", accent = Palette.Crypto) {
+                    TerminalPanel(title = tr("PRIVACY"), accent = Palette.Crypto) {
                         Caption(
-                            "Reopen Google's consent form to change what advertising " +
+                            tr("Reopen Google's consent form to change what advertising " +
                                 "partners may do with data from this device. Your game " +
-                                "progress is stored on this device and is never part of it."
+                                "progress is stored on this device and is never part of it.")
                         )
                         Spacer(Modifier.height(10.dp))
                         BastionButton(
-                            text = "PRIVACY OPTIONS",
+                            text = tr("PRIVACY OPTIONS"),
                             accent = Palette.Crypto,
                             leadingGlyph = "[i]",
                             onClick = onPrivacyOptions
@@ -243,14 +261,14 @@ fun SettingsScreen(
 
                 Spacer(Modifier.height(12.dp))
 
-                TerminalPanel(title = "DANGER ZONE", accent = Palette.Red) {
+                TerminalPanel(title = tr("DANGER ZONE"), accent = Palette.Red) {
                     Caption(
-                        "Deletes your saved run, unlocked agents, statistics and " +
-                            "settings. This cannot be undone."
+                        tr("Deletes your saved run, unlocked agents, statistics and " +
+                            "settings. This cannot be undone.")
                     )
                     Spacer(Modifier.height(10.dp))
                     BastionButton(
-                        text = "RESET PROGRESS",
+                        text = tr("RESET PROGRESS"),
                         accent = Palette.Red,
                         leadingGlyph = "[!]",
                         onClick = { confirmingReset = true }
@@ -289,28 +307,28 @@ private fun ResetConfirmation(onCancel: () -> Unit, onConfirm: () -> Unit) {
                 .padding(22.dp)
         ) {
             Text(
-                text = "DELETE ALL PROGRESS?",
+                text = tr("DELETE ALL PROGRESS?"),
                 style = MaterialTheme.typography.headlineMedium,
                 color = Palette.Red
             )
             AsciiRule(color = Palette.RedDeep)
             Spacer(Modifier.height(10.dp))
             Text(
-                text = "This erases your saved run, every unlocked agent, all " +
-                    "statistics and your settings.\n\nThis cannot be undone.",
+                text = tr("This erases your saved run, every unlocked agent, all " +
+                    "statistics and your settings.\n\nThis cannot be undone."),
                 style = MaterialTheme.typography.bodyMedium,
                 color = Palette.TextSecondary
             )
             Spacer(Modifier.height(18.dp))
             Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
                 CompactButton(
-                    text = "CANCEL",
+                    text = tr("CANCEL"),
                     onClick = onCancel,
                     accent = Palette.Cyan,
                     modifier = Modifier.weight(1f)
                 )
                 CompactButton(
-                    text = "RESET",
+                    text = tr("RESET"),
                     onClick = onConfirm,
                     accent = Palette.Red,
                     modifier = Modifier.weight(1f)

@@ -1,5 +1,7 @@
 package com.cyopstd.game.core
 
+import com.cyopstd.game.i18n.tr
+
 /**
  * The difficulty a run is played at.
  *
@@ -76,7 +78,7 @@ enum class GameMode(
         serverHp = 50,
         unlockMapId = "ddos",
         unlockModeId = "hack_ai",
-        unlockWhere = "DDoS in HACK:AI"
+        unlockWhere = tr("{0} in {1}", "DDoS", "HACK:AI")
     );
 
     val isUnlockedByDefault: Boolean get() = unlockAtWave <= 0
@@ -99,7 +101,8 @@ enum class GameMode(
 
     /** What unlocks it, in words: "clear wave 100 on DDoS in HACK:AI". */
     val unlockRequirement: String
-        get() = "clear wave $unlockAtWave" + (unlockWhere?.let { " on $it" } ?: "")
+        get() = unlockWhere?.let { tr("clear wave {0} on {1}", unlockAtWave, it) }
+            ?: tr("clear wave {0}", unlockAtWave)
 
     companion object {
         fun fromIdSafe(id: String?): GameMode =

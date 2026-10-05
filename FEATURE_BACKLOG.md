@@ -683,6 +683,18 @@ suit: Material Symbols (Apache 2.0) or drawing the few icons in-house.
   of its cost on the compact bar and "MAX n DEPLOYED" on the full cards.
   Tapping it says "<NAME> LIMIT — n MAX" instead of selecting it. Selling one
   brings it back. `MaxedAgentsTest`.
+- 🟨 **100+ languages, with a selector (owner, 2026-10-05):** *"I need the game to be
+  available in 100+ languages. Can this be done with a underlying engine with
+  selector? Give me a full list once its done of all the languages or if it is
+  avaliable in all 178 languages on google console"*. Plan: (1) engine — every
+  visible English line goes through `tr()`, collected into
+  `res/values/strings_i18n.xml`; per-language files in `res/values-*`; English
+  fallback; LANGUAGE in SETTINGS (restart to apply). (2) Translations written
+  into the repo (offline, in the APK, and they carry over to an iPhone/Steam
+  port), 100+ languages. Agent, boss and level names stay English. Play Console
+  facts: store-listing translations cover ~80 languages (incl. regional
+  variants), not 178; Play's free Gemini string translation also reads
+  strings.xml, so it works on top of this if wanted.
 - ⬜ **MODEL COLLAPSE: a new special ability — maybe, later (owner's call):** only
   if the owner feels the balance is good after play-testing 1.55.0. Don't start
   until asked.

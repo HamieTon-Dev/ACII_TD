@@ -1,5 +1,7 @@
 package com.cyopstd.game.model
 
+import com.cyopstd.game.i18n.tr
+
 import com.cyopstd.game.core.Balance
 
 /**
@@ -7,10 +9,10 @@ import com.cyopstd.game.core.Balance
  * and the only mode simple agents expose; advanced agents let the player switch.
  */
 enum class TargetingMode(val label: String, val description: String) {
-    FIRST("FIRST", "Closest to CORE-SERVER"),
-    LAST("LAST", "Furthest from CORE-SERVER"),
-    STRONGEST("STRONGEST", "Highest remaining health"),
-    WEAKEST("WEAKEST", "Lowest remaining health");
+    FIRST(tr("FIRST"), tr("Closest to CORE-SERVER")),
+    LAST(tr("LAST"), tr("Furthest from CORE-SERVER")),
+    STRONGEST(tr("STRONGEST"), tr("Highest remaining health")),
+    WEAKEST(tr("WEAKEST"), tr("Lowest remaining health"));
 
     companion object {
         fun fromOrdinalSafe(ordinal: Int): TargetingMode =
@@ -180,16 +182,16 @@ enum class AgentType(
         baseRange = 300f,
         attackStyle = AttackStyle.THROTTLE,
         unlockWave = 0,
-        abilityName = "RATE LIMIT",
-        abilitySummary = "Cheap and nearly harmless. Everything inside its radius crawls.",
-        realWorld = "A tarpit accepts a hostile connection and then answers as " +
+        abilityName = tr("RATE LIMIT"),
+        abilitySummary = tr("Cheap and nearly harmless. Everything inside its radius crawls."),
+        realWorld = tr("A tarpit accepts a hostile connection and then answers as " +
             "slowly as it is allowed to, holding the attacker open on a socket " +
             "that is going nowhere. It is a delaying tactic, not a blocking " +
-            "one: the value is the time it costs the other side.",
-        inGame = "Deals almost no damage. Everything inside its radius crawls, " +
+            "one: the value is the time it costs the other side."),
+        inGame = tr("Deals almost no damage. Everything inside its radius crawls, " +
             "which keeps threats in range of your damage dealers for far " +
             "longer. Cheap, and useless on its own — it is a force multiplier " +
-            "for whatever is shooting next to it."
+            "for whatever is shooting next to it.")
     ),
     FIREWALL(
         displayName = "FIREWALL",
@@ -201,16 +203,16 @@ enum class AgentType(
         baseRange = 195f,
         attackStyle = AttackStyle.BOLT,
         unlockWave = 0,
-        abilityName = "HARDENED",
-        abilitySummary = "Reliable all-round damage, and it cannot be jammed.",
-        realWorld = "A firewall checks traffic against a set of rules and drops " +
+        abilityName = tr("HARDENED"),
+        abilitySummary = tr("Reliable all-round damage, and it cannot be jammed."),
+        realWorld = tr("A firewall checks traffic against a set of rules and drops " +
             "anything the rules do not allow. It is usually the first control " +
             "placed between an untrusted network and something worth " +
             "protecting, and it is judged on the rules it is given rather than " +
-            "on cleverness.",
-        inGame = "Reliable mid-range damage at a low price, and the only agent " +
+            "on cleverness."),
+        inGame = tr("Reliable mid-range damage at a low price, and the only agent " +
             "immune to a boss JAM. Short reach, so it has to stand close to the " +
-            "lane — which is exactly why that immunity matters.",
+            "lane — which is exactly why that immunity matters."),
         // The agent with the shortest reach has no choice but to stand where a
         // boss can jam it, so immunity is the identity that makes standing
         // there worth doing.
@@ -226,15 +228,15 @@ enum class AgentType(
         baseRange = 330f,
         attackStyle = AttackStyle.SCAN,
         unlockWave = 0,
-        abilityName = "DEEP SCAN",
-        abilitySummary = "Very long detection range; +45% damage to fast attacks.",
-        realWorld = "An Intrusion Detection System watches network or host " +
+        abilityName = tr("DEEP SCAN"),
+        abilitySummary = tr("Very long detection range; +45% damage to fast attacks."),
+        realWorld = tr("An Intrusion Detection System watches network or host " +
             "activity for patterns that look like an attack and raises an " +
             "alert. It reports; it does not block. Someone, or something else, " +
-            "still has to act on what it finds.",
-        inGame = "The longest detection range in the roster, and +45% damage " +
+            "still has to act on what it finds."),
+        inGame = tr("The longest detection range in the roster, and +45% damage " +
             "against fast attacks. Slow rate of fire — it is a spotter that " +
-            "happens to shoot, best placed where it can cover a lot of lane."
+            "happens to shoot, best placed where it can cover a lot of lane.")
     ),
     IPS(
         displayName = "IPS",
@@ -246,15 +248,15 @@ enum class AgentType(
         baseRange = 260f,
         attackStyle = AttackStyle.BURST,
         unlockWave = 3,
-        abilityName = "BLAST RADIUS",
-        abilitySummary = "Extremely high rate of fire, and every shot splashes.",
-        realWorld = "An Intrusion Prevention System sits in the traffic path and " +
+        abilityName = tr("BLAST RADIUS"),
+        abilitySummary = tr("Extremely high rate of fire, and every shot splashes."),
+        realWorld = tr("An Intrusion Prevention System sits in the traffic path and " +
             "is permitted to act on what it detects, dropping or resetting a " +
             "connection rather than only alerting. The trade-off is real: an " +
-            "IPS that misjudges legitimate traffic blocks it.",
-        inGame = "Very high rate of fire and every shot splashes, so it is the " +
+            "IPS that misjudges legitimate traffic blocks it."),
+        inGame = tr("Very high rate of fire and every shot splashes, so it is the " +
             "answer to a swarm rather than to a single heavy target. Costs " +
-            "more than an IDS and reaches less far.",
+            "more than an IDS and reaches less far."),
         // IPS was the roster's outlier: dearer than IDS and reaching 120 units
         // less, with an identity nobody could feel next to FIREWALL. Splash is
         // the job no other cheap agent does -- the answer to a swarm.
@@ -270,15 +272,15 @@ enum class AgentType(
         baseRange = 268f,
         attackStyle = AttackStyle.PRECISION,
         unlockWave = 5,
-        abilityName = "THREAT ASSESSMENT",
-        abilitySummary = "Slow, heavy hits. +80% damage to elites and bosses.",
-        realWorld = "Security analyst is a real job. The human in the loop takes " +
+        abilityName = tr("THREAT ASSESSMENT"),
+        abilitySummary = tr("Slow, heavy hits. +80% damage to elites and bosses."),
+        realWorld = tr("Security analyst is a real job. The human in the loop takes " +
             "what the automated tools flagged, works out what actually " +
             "happened, and decides what to do about it. Slower than a machine, " +
-            "and far better on the cases that do not match a known pattern.",
-        inGame = "Slow, heavy single hits with +80% damage against elites and " +
+            "and far better on the cases that do not match a known pattern."),
+        inGame = tr("Slow, heavy single hits with +80% damage against elites and " +
             "bosses. Poor against swarms. Exposes the targeting selector, so " +
-            "you can aim it at the thing you actually want dead.",
+            "you can aim it at the thing you actually want dead."),
         allowsTargetingModes = true
     ),
     CRYPTOGRAPHER(
@@ -291,17 +293,17 @@ enum class AgentType(
         baseRange = 276f,
         attackStyle = AttackStyle.CIPHER,
         unlockWave = 10,
-        abilityName = "CIPHER BREAK",
-        abilitySummary = "Ignores encryption entirely and deals triple damage to it.",
-        realWorld = "Cryptography protects data in transit and at rest, so that " +
+        abilityName = tr("CIPHER BREAK"),
+        abilitySummary = tr("Ignores encryption entirely and deals triple damage to it."),
+        realWorld = tr("Cryptography protects data in transit and at rest, so that " +
             "intercepting it is not the same as reading it. Attackers use it " +
             "too — a lot of hostile traffic is encrypted — which is why " +
             "defenders inspect at endpoints they control rather than trying to " +
-            "break the encryption itself.",
-        inGame = "Fictional licence, clearly flagged: this agent simply ignores " +
+            "break the encryption itself."),
+        inGame = tr("Fictional licence, clearly flagged: this agent simply ignores " +
             "the ENCRYPTED trait instead of being slowed by it, and deals " +
             "triple damage to anything carrying it. Real cryptography does not " +
-            "work this way and nothing here breaks any real cipher."
+            "work this way and nothing here breaks any real cipher.")
     ),
     ZERO_DAY_HUNTER(
         displayName = "ZERO-DAY HUNTER",
@@ -313,17 +315,17 @@ enum class AgentType(
         baseRange = 284f,
         attackStyle = AttackStyle.HUNTER,
         unlockWave = 15,
-        abilityName = "ZERO-DAY STRIKE",
-        abilitySummary = "Heavy single-target damage, identical every shot. " +
-            "Ignores all armour.",
-        realWorld = "A zero-day is a flaw with no fix available yet — the " +
+        abilityName = tr("ZERO-DAY STRIKE"),
+        abilitySummary = tr("Heavy single-target damage, identical every shot. " +
+            "Ignores all armour."),
+        realWorld = tr("A zero-day is a flaw with no fix available yet — the " +
             "defender has had zero days to patch it. Vulnerability researchers " +
             "look for these so they can be reported and fixed before someone " +
             "else finds them first. \"Zero-day hunter\" is informal shorthand, " +
-            "not a certification or a formal job title.",
-        inGame = "Heavy single-target damage, identical on every shot rather " +
+            "not a certification or a formal job title."),
+        inGame = tr("Heavy single-target damage, identical on every shot rather " +
             "than a gamble, and it ignores armour. Expensive and slow; one of " +
-            "these does not hold a lane on its own.",
+            "these does not hold a lane on its own."),
         allowsTargetingModes = true
     ),
     AI_SENTINEL(
@@ -336,15 +338,15 @@ enum class AgentType(
         baseRange = 292f,
         attackStyle = AttackStyle.SENTINEL,
         unlockWave = 20,
-        abilityName = "MULTI-LOCK",
-        abilitySummary = "Engages up to 3 separate threats with every volley.",
-        realWorld = "Machine-learning tools flag unusual patterns across far more " +
+        abilityName = tr("MULTI-LOCK"),
+        abilitySummary = tr("Engages up to 3 separate threats with every volley."),
+        realWorld = tr("Machine-learning tools flag unusual patterns across far more " +
             "signals than a person can read, and are used to narrow down what " +
             "deserves attention. They assist analysts rather than replace them, " +
-            "and they produce false positives — a flag is a lead, not a verdict.",
-        inGame = "Engages up to three separate threats with every volley, which " +
+            "and they produce false positives — a flag is a lead, not a verdict."),
+        inGame = tr("Engages up to three separate threats with every volley, which " +
             "makes it the roster's answer to a wide wave. Exposes the targeting " +
-            "selector.",
+            "selector."),
         allowsTargetingModes = true
     ),
     QUANTUM_DEFENDER(
@@ -357,18 +359,18 @@ enum class AgentType(
         baseRange = 300f,
         attackStyle = AttackStyle.QUANTUM,
         unlockWave = 30,
-        abilityName = "ENTANGLED CHAIN",
-        abilitySummary = "Each hit chains to 2 nearby threats for 55% damage.",
-        realWorld = "Two different things get called \"quantum\" in security and " +
+        abilityName = tr("ENTANGLED CHAIN"),
+        abilitySummary = tr("Each hit chains to 2 nearby threats for 55% damage."),
+        realWorld = tr("Two different things get called \"quantum\" in security and " +
             "they are worth keeping apart. Quantum key distribution uses " +
             "physics to detect eavesdropping on a link, and is deployed only in " +
             "rare, specialised settings. Post-quantum cryptography is ordinary " +
             "software maths designed to resist future quantum computers, and is " +
-            "the one actually being rolled out.",
-        inGame = "Named after the first and firmly science fiction: each hit " +
+            "the one actually being rolled out."),
+        inGame = tr("Named after the first and firmly science fiction: each hit " +
             "chains to two nearby threats for 55% damage. Strong against " +
             "clustered waves, wasted on a lone target. Exposes the targeting " +
-            "selector.",
+            "selector."),
         allowsTargetingModes = true
     ),
     ROOT_ADMIN(
@@ -381,16 +383,16 @@ enum class AgentType(
         baseRange = 316f,
         attackStyle = AttackStyle.ROOT,
         unlockWave = 40,
-        abilityName = "SUDO TERMINATE",
-        abilitySummary = "Overwhelming single-target damage. Ignores all armour.",
-        realWorld = "Root, or administrator, is the highest level of authority on " +
+        abilityName = tr("SUDO TERMINATE"),
+        abilitySummary = tr("Overwhelming single-target damage. Ignores all armour."),
+        realWorld = tr("Root, or administrator, is the highest level of authority on " +
             "a system: it can stop any process and change anything. Precisely " +
             "because of that, good practice is to hand it out as rarely as " +
             "possible and for as short a time as possible. \"Root admin\" is " +
-            "shorthand for the access level, not a job title.",
-        inGame = "Overwhelming single-target damage that ignores all armour. The " +
+            "shorthand for the access level, not a job title."),
+        inGame = tr("Overwhelming single-target damage that ignores all armour. The " +
             "most expensive agent in the game and unlocked very late. Exposes " +
-            "the targeting selector.",
+            "the targeting selector."),
         allowsTargetingModes = true
     ),
     /**
@@ -416,17 +418,17 @@ enum class AgentType(
         baseRange = 272f,
         attackStyle = AttackStyle.PRECISION,
         unlockWave = 30,
-        abilityName = "OFFENSIVE SWEEP",
-        abilitySummary = "Fires as fast as anything in the roster and always " +
-            "shoots a boss first. Double damage to [GG] GOOD GAME. Four maximum.",
-        realWorld = "A \"red team\" attacks a system with permission, to find what " +
+        abilityName = tr("OFFENSIVE SWEEP"),
+        abilitySummary = tr("Fires as fast as anything in the roster and always " +
+            "shoots a boss first. Double damage to [GG] GOOD GAME. Four maximum."),
+        realWorld = tr("A \"red team\" attacks a system with permission, to find what " +
             "an attacker would find first. \"Red hat\" is informal slang " +
             "rather than a job title or a certification, and its meaning varies " +
             "between people who use it; the red team half is the part that is " +
-            "standard.",
-        inGame = "Very high rate of fire, always targets bosses over anything " +
+            "standard."),
+        inGame = tr("Very high rate of fire, always targets bosses over anything " +
             "else in range, and deals double damage to [GG] GOOD GAME. " +
-            "Unlocks at wave 30 and no more than four may be deployed.",
+            "Unlocks at wave 30 and no more than four may be deployed."),
         allowsTargetingModes = false,
         alwaysPrioritisesBosses = true,
         maxDeployed = MAX_HATS
@@ -441,16 +443,16 @@ enum class AgentType(
         baseRange = 272f,
         attackStyle = AttackStyle.SENTINEL,
         unlockWave = 30,
-        abilityName = "DEFENSIVE SWEEP",
-        abilitySummary = "Fires as fast as anything in the roster and always " +
-            "shoots a boss first. Double damage to [!!!] BREACH. Four maximum.",
-        realWorld = "A \"blue team\" defends a system and responds to incidents — " +
+        abilityName = tr("DEFENSIVE SWEEP"),
+        abilitySummary = tr("Fires as fast as anything in the roster and always " +
+            "shoots a boss first. Double damage to [!!!] BREACH. Four maximum."),
+        realWorld = tr("A \"blue team\" defends a system and responds to incidents — " +
             "the counterpart to a red team. \"Blue hat\" is used in more than one " +
             "way in the industry and is not a standardised term, so only the " +
-            "blue team meaning is described here.",
-        inGame = "Very high rate of fire, always targets bosses over anything " +
+            "blue team meaning is described here."),
+        inGame = tr("Very high rate of fire, always targets bosses over anything " +
             "else in range, and deals double damage to [!!!] BREACH. " +
-            "Unlocks at wave 30 and no more than four may be deployed.",
+            "Unlocks at wave 30 and no more than four may be deployed."),
         allowsTargetingModes = false,
         alwaysPrioritisesBosses = true,
         maxDeployed = MAX_HATS
@@ -465,15 +467,15 @@ enum class AgentType(
         baseRange = 296f,
         attackStyle = AttackStyle.ARCHITECT,
         unlockWave = 50,
-        abilityName = "SEGMENT UPLINK",
-        abilitySummary = "Buffs every agent in range: +30% damage, +20% fire rate.",
-        realWorld = "Network architects design how a network is divided up. " +
+        abilityName = tr("SEGMENT UPLINK"),
+        abilitySummary = tr("Buffs every agent in range: +30% damage, +20% fire rate."),
+        realWorld = tr("Network architects design how a network is divided up. " +
             "Segmentation means a compromise in one area cannot simply walk " +
             "into the next, which limits the damage of any single failure. It " +
-            "is design work done before an incident, not a tool used during one.",
-        inGame = "Deals no damage of its own. Buffs every agent in range by +30% " +
+            "is design work done before an incident, not a tool used during one."),
+        inGame = tr("Deals no damage of its own. Buffs every agent in range by +30% " +
             "damage and +20% fire rate, so its value is entirely in where you " +
-            "put it."
+            "put it.")
     ),
     /**
      * The healer (owner, 2026-09-26). The first agent that defends by
@@ -492,19 +494,19 @@ enum class AgentType(
         baseRange = 0f,
         attackStyle = AttackStyle.REPAIR,
         unlockWave = 100,
-        abilityName = "HOT REPAIR",
-        abilitySummary = "Repairs 1 CORE-SERVER integrity every 30 seconds of a " +
+        abilityName = tr("HOT REPAIR"),
+        abilitySummary = tr("Repairs 1 CORE-SERVER integrity every 30 seconds of a " +
             "running wave, from one of the two slots on the CORE-SERVER. Faster " +
-            "with levels. Two maximum.",
-        realWorld = "Systems engineers keep servers running: patching, " +
+            "with levels. Two maximum."),
+        realWorld = tr("Systems engineers keep servers running: patching, " +
             "replacing failed parts, restoring from backup and watching the " +
             "health of the machines. \"Server systems engineer\" describes " +
-            "that kind of work; titles for it vary between organisations.",
-        inGame = "Deals no damage and targets nothing. Repairs 1 point of " +
+            "that kind of work; titles for it vary between organisations."),
+        inGame = tr("Deals no damage and targets nothing. Repairs 1 point of " +
             "CORE-SERVER integrity every 30 seconds while a wave is running " +
             "(never during the break or while paused). It deploys on the " +
             "CORE-SERVER itself, which has two slots for it, and nowhere else. " +
-            "Levels shorten the timer. No more than two may be deployed.",
+            "Levels shorten the timer. No more than two may be deployed."),
         maxDeployed = MAX_ENGINEERS,
         beginnerLevelOnly = true,
         healsServer = true
@@ -526,19 +528,22 @@ enum class AgentType(
         baseRange = 260f,
         attackStyle = AttackStyle.PRECISION,
         unlockWave = 100,
-        abilityName = "PATCH WALL",
-        abilitySummary = "Walls off the nearest route in range; threats must break it. " +
-            "Hits every boss very hard. Three maximum.",
-        realWorld = "A senior security engineer with a bachelor's degree in cyber " +
+        abilityName = tr("PATCH WALL"),
+        abilitySummary = tr("Walls off the nearest route in range; threats must break it. " +
+            "Hits every boss very hard. Three maximum."),
+        realWorld = tr("A senior security engineer with a bachelor's degree in cyber " +
             "security, who stops attacks by building the software that defends " +
             "against them: hardened services, patches and filters that are in " +
-            "place before the attack arrives rather than after it.",
-        inGame = "Builds a wall across the nearest route within its range. " +
-            "Threats stop at the wall and have to break it down before they can " +
-            "pass; bosses break it fastest. When it falls, ACE rebuilds it after " +
-            "a few seconds, stronger with every level. Its own shots deal " +
-            "${Balance.ACE_BOSS_MULTIPLIER.toInt()}\u00D7 damage to every boss of the first five " +
-            "levels. No more than three may be deployed.",
+            "place before the attack arrives rather than after it."),
+        inGame = tr(
+            "Builds a wall across the nearest route within its range. " +
+                "Threats stop at the wall and have to break it down before they can " +
+                "pass; bosses break it fastest. When it falls, ACE rebuilds it after " +
+                "a few seconds, stronger with every level. Its own shots deal " +
+                "{0}\u00D7 damage to every boss of the first five " +
+                "levels. No more than three may be deployed.",
+            Balance.ACE_BOSS_MULTIPLIER.toInt()
+        ),
         maxDeployed = 3,
         allowsTargetingModes = true,
         unlockMapId = "ddos",
@@ -566,17 +571,23 @@ enum class AgentType(
         baseRange = 280f,
         attackStyle = AttackStyle.PRECISION,
         unlockWave = 100,
-        abilityName = "PAYLOAD BLOCK",
-        abilitySummary = "Hats' fire rate, heavier shots, and " +
-            "${Balance.ANTI_DUCK_MULTIPLIER.toInt()}\u00D7 damage to SYN-STORM and GRADIENT. Two maximum.",
-        realWorld = "A \"rubber ducky\" is a USB stick that pretends to be a " +
+        abilityName = tr("PAYLOAD BLOCK"),
+        abilitySummary = tr(
+            "Hats' fire rate, heavier shots, and " +
+                "{0}\u00D7 damage to SYN-STORM and GRADIENT. Two maximum.",
+            Balance.ANTI_DUCK_MULTIPLIER.toInt()
+        ),
+        realWorld = tr("A \"rubber ducky\" is a USB stick that pretends to be a " +
             "keyboard and types an attack faster than anyone could. The defence " +
             "is a USB guard that checks every new device before the computer " +
-            "trusts it, and blocks a keyboard that types like a machine.",
-        inGame = "Fires as fast as the hats and hits harder, with " +
-            "${Balance.ANTI_DUCK_MULTIPLIER.toInt()}\u00D7 damage to the DUCK-USB bosses " +
-            "SYN-STORM and GRADIENT. Keeps its targeting modes. No more than two " +
-            "may be deployed. Drawn as a hologram that agent skins do not change.",
+            "trusts it, and blocks a keyboard that types like a machine."),
+        inGame = tr(
+            "Fires as fast as the hats and hits harder, with " +
+                "{0}\u00D7 damage to the DUCK-USB bosses " +
+                "SYN-STORM and GRADIENT. Keeps its targeting modes. No more than two " +
+                "may be deployed. Drawn as a hologram that agent skins do not change.",
+            Balance.ANTI_DUCK_MULTIPLIER.toInt()
+        ),
         maxDeployed = 2,
         allowsTargetingModes = true,
         unlockMapId = "duck_usb",
@@ -599,17 +610,23 @@ enum class AgentType(
         baseRange = 300f,
         attackStyle = AttackStyle.SCAN,
         unlockWave = 100,
-        abilityName = "COUNTERMEASURES",
-        abilitySummary = "Agents in its range cannot be jammed. " +
-            "${Balance.CYBER_OPERATIVE_EYE_MULTIPLIER.toInt()}\u00D7 damage to WHITE EYE and BLACK EYE. Two maximum.",
-        realWorld = "A cyber operations specialist runs defence as a live " +
+        abilityName = tr("COUNTERMEASURES"),
+        abilitySummary = tr(
+            "Agents in its range cannot be jammed. " +
+                "{0}\u00D7 damage to WHITE EYE and BLACK EYE. Two maximum.",
+            Balance.CYBER_OPERATIVE_EYE_MULTIPLIER.toInt()
+        ),
+        realWorld = tr("A cyber operations specialist runs defence as a live " +
             "operation: watching for interference, keeping the team's tools " +
             "working while someone is actively trying to switch them off, and " +
-            "going straight at the source of it.",
-        inGame = "Every agent inside its range, itself included, is immune to " +
-            "jamming from any boss. Fast, heavy shots, with " +
-            "${Balance.CYBER_OPERATIVE_EYE_MULTIPLIER.toInt()}\u00D7 damage to WHITE EYE " +
-            "and BLACK EYE. TARPIT's range. No more than two may be deployed.",
+            "going straight at the source of it."),
+        inGame = tr(
+            "Every agent inside its range, itself included, is immune to " +
+                "jamming from any boss. Fast, heavy shots, with " +
+                "{0}\u00D7 damage to WHITE EYE " +
+                "and BLACK EYE. TARPIT's range. No more than two may be deployed.",
+            Balance.CYBER_OPERATIVE_EYE_MULTIPLIER.toInt()
+        ),
         maxDeployed = 2,
         allowsTargetingModes = true,
         unlockMapId = "hugging_face",
@@ -632,19 +649,21 @@ enum class AgentType(
      */
     val unlockRequirement: String
         get() = when {
-            unlockedByDefault -> "Available from the start."
-            beginnerLevelOnly -> "Unlock this agent by reaching wave $unlockWave on " +
-                "$BEGINNER_LEVEL_NAME in $BEGINNER_MODE_NAME mode."
-            unlockMapName != null -> "Unlock this agent by reaching wave $unlockWave on $unlockMapName."
-            else -> "Unlock this agent by reaching wave $unlockWave on any level."
+            unlockedByDefault -> tr("Available from the start.")
+            beginnerLevelOnly -> tr(
+                "Unlock this agent by reaching wave {0} on {1} in {2} mode.",
+                unlockWave, BEGINNER_LEVEL_NAME, BEGINNER_MODE_NAME
+            )
+            unlockMapName != null -> tr("Unlock this agent by reaching wave {0} on {1}.", unlockWave, unlockMapName)
+            else -> tr("Unlock this agent by reaching wave {0} on any level.", unlockWave)
         }
 
     /** Short form for a locked card or toast: "REACH WAVE 30". */
     val lockedLabel: String
         get() = when {
-            beginnerLevelOnly -> "REACH WAVE $unlockWave ON $BEGINNER_LEVEL_NAME"
-            unlockMapName != null -> "REACH WAVE $unlockWave ON $unlockMapName"
-            else -> "REACH WAVE $unlockWave"
+            beginnerLevelOnly -> tr("REACH WAVE {0} ON {1}", unlockWave, BEGINNER_LEVEL_NAME)
+            unlockMapName != null -> tr("REACH WAVE {0} ON {1}", unlockWave, unlockMapName)
+            else -> tr("REACH WAVE {0}", unlockWave)
         }
 
     fun statsAtLevel(level: Int): AgentStats {

@@ -1,5 +1,7 @@
 package com.cyopstd.game.model
 
+import com.cyopstd.game.i18n.tr
+
 /**
  * Damage families. An agent can be strong or weak against a family, which is
  * what makes tower composition matter instead of "buy the highest DPS".
@@ -53,10 +55,10 @@ enum class EnemyType(
         traits = setOf(ThreatTrait.STANDARD),
         rewardTier = RewardTier.NORMAL,
         glyphScale = 0.72f,
-        codexEntry = "The most common attack on the internet, and the baseline " +
+        codexEntry = tr("The most common attack on the internet, and the baseline " +
             "threat here. An attacker types database commands into a field that " +
             "expected a name or a password; if the application passes that " +
-            "straight through, the database obeys."
+            "straight through, the database obeys.")
     ),
     MALWARE(
         displayName = "MALWARE",
@@ -68,9 +70,9 @@ enum class EnemyType(
         traits = setOf(ThreatTrait.STANDARD),
         rewardTier = RewardTier.NORMAL,
         glyphScale = 1.05f,
-        codexEntry = "Malicious software: code written to damage, disrupt or steal. " +
+        codexEntry = tr("Malicious software: code written to damage, disrupt or steal. " +
             "It carries more payload than a simple injection, so it soaks up more " +
-            "damage before it breaks apart."
+            "damage before it breaks apart.")
     ),
     BOT(
         displayName = "BOT",
@@ -82,9 +84,9 @@ enum class EnemyType(
         traits = setOf(ThreatTrait.SWARM),
         rewardTier = RewardTier.NORMAL,
         glyphScale = 0.92f,
-        codexEntry = "A single compromised machine taking orders from someone else. " +
+        codexEntry = tr("A single compromised machine taking orders from someone else. " +
             "One bot is harmless. A botnet of thousands is not — which is why " +
-            "these always arrive in groups."
+            "these always arrive in groups.")
     ),
     TROJAN(
         displayName = "TROJAN",
@@ -96,9 +98,9 @@ enum class EnemyType(
         traits = setOf(ThreatTrait.ARMORED),
         rewardTier = RewardTier.NORMAL,
         glyphScale = 1.1f,
-        codexEntry = "Hostile code disguised as something you asked for. Slow to " +
+        codexEntry = tr("Hostile code disguised as something you asked for. Slow to " +
             "move but heavily wrapped — armour blunts every individual hit, so " +
-            "fast weak shots waste themselves on it."
+            "fast weak shots waste themselves on it.")
     ),
     EXPLOIT(
         displayName = "EXPLOIT",
@@ -110,9 +112,9 @@ enum class EnemyType(
         traits = setOf(ThreatTrait.STANDARD),
         rewardTier = RewardTier.NORMAL,
         glyphScale = 1f,
-        codexEntry = "Code that abuses a specific flaw in a system. Exploits move " +
+        codexEntry = tr("Code that abuses a specific flaw in a system. Exploits move " +
             "fast and hit hard; detection range matters more than raw damage " +
-            "when these are inbound."
+            "when these are inbound.")
     ),
     ENCRYPTED(
         displayName = "ENCRYPTED PAYLOAD",
@@ -124,9 +126,9 @@ enum class EnemyType(
         traits = setOf(ThreatTrait.ENCRYPTED),
         rewardTier = RewardTier.NORMAL,
         glyphScale = 1f,
-        codexEntry = "Its contents are scrambled, so most defences cannot read what " +
+        codexEntry = tr("Its contents are scrambled, so most defences cannot read what " +
             "they are shooting at and only land partial damage. A CRYPTOGRAPHER " +
-            "agent cuts straight through the cipher."
+            "agent cuts straight through the cipher.")
     ),
     SQL_BLIND(
         displayName = "BLIND SQLi",
@@ -138,10 +140,10 @@ enum class EnemyType(
         traits = setOf(ThreatTrait.ARMORED),
         rewardTier = RewardTier.NORMAL,
         glyphScale = 0.66f,
-        codexEntry = "A blind injection gets no error messages back, so the " +
+        codexEntry = tr("A blind injection gets no error messages back, so the " +
             "attacker infers the answer one true-or-false question at a time. " +
             "It is slower and far more patient than a normal injection, and it " +
-            "arrives hardened against the obvious defences."
+            "arrives hardened against the obvious defences.")
     ),
     DDOS(
         displayName = "DDoS FLOOD",
@@ -156,9 +158,9 @@ enum class EnemyType(
         traits = setOf(ThreatTrait.SWARM),
         rewardTier = RewardTier.NORMAL,
         glyphScale = 0.62f,
-        codexEntry = "Distributed Denial of Service: the attack is the volume. Each " +
+        codexEntry = tr("Distributed Denial of Service: the attack is the volume. Each " +
             "request is trivial, but they arrive faster than anything else in the " +
-            "game and there are always more."
+            "game and there are always more.")
     ),
     ZERO_DAY(
         displayName = "ZERO-DAY",
@@ -170,9 +172,9 @@ enum class EnemyType(
         traits = setOf(ThreatTrait.ELITE, ThreatTrait.ARMORED),
         rewardTier = RewardTier.ELITE,
         glyphScale = 1.2f,
-        codexEntry = "An attack against a flaw nobody has patched yet — the defender " +
+        codexEntry = tr("An attack against a flaw nobody has patched yet — the defender " +
             "has had zero days to prepare. Rare, tough, and worth real crypto to " +
-            "shut down."
+            "shut down.")
     ),
     BOSS(
         displayName = "BREACH",
@@ -184,9 +186,9 @@ enum class EnemyType(
         traits = setOf(ThreatTrait.ELITE, ThreatTrait.ARMORED),
         rewardTier = RewardTier.BOSS,
         glyphScale = 2.1f,
-        codexEntry = "A coordinated breach attempt with enough redundancy to shrug " +
+        codexEntry = tr("A coordinated breach attempt with enough redundancy to shrug " +
             "off an unprepared network. Every fifth wave brings one, and each is " +
-            "tougher than the last."
+            "tougher than the last.")
     );
 
     val isBoss: Boolean get() = this == BOSS
@@ -206,31 +208,31 @@ enum class BossModifier(
 ) {
     FIREWALL_RESISTANCE(
         "FIREWALL RESISTANCE", "FW-RES",
-        "Takes 35% less damage from FIREWALL agents."
+        tr("Takes 35% less damage from FIREWALL agents.")
     ),
     ENCRYPTION_SHIELD(
         "ENCRYPTION SHIELD", "ENC-SHD",
-        "Counts as encrypted: most agents land reduced damage."
+        tr("Counts as encrypted: most agents land reduced damage.")
     ),
     ARMOR_PLATING(
         "ARMOR PLATING", "ARMOR+",
-        "Heavy flat damage reduction on every hit."
+        tr("Heavy flat damage reduction on every hit.")
     ),
     SPEED_BURST(
         "SPEED BURST", "BURST",
-        "Periodically accelerates toward the server."
+        tr("Periodically accelerates toward the server.")
     ),
     REGENERATION(
         "REGENERATION", "REGEN",
-        "Slowly repairs itself once it has gone a moment without being hit."
+        tr("Slowly repairs itself once it has gone a moment without being hit.")
     ),
     PACKET_REPLICATION(
         "ATTACK REPLICATION", "REPLICATE",
-        "Spawns escort attacks as it advances."
+        tr("Spawns escort attacks as it advances.")
     ),
     AGENT_DISRUPTION(
         "AGENT DISRUPTION", "DISRUPT",
-        "Briefly jams nearby agents, slowing their fire rate."
+        tr("Briefly jams nearby agents, slowing their fire rate.")
     );
 
     companion object {

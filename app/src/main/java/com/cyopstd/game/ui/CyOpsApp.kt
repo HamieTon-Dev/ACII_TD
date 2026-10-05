@@ -337,7 +337,14 @@ fun CyOpsApp(
                         // a position to show it anyway.
                         (context as? android.app.Activity)?.let(viewModel::showPrivacyOptions)
                     },
-                    onReplayGuides = viewModel::replayGuides
+                    onReplayGuides = viewModel::replayGuides,
+                    language = com.cyopstd.game.i18n.Languages.current(context),
+                    languageChangeAllowed = settingsReturn == Screen.MainMenu,
+                    onLanguage = { pick ->
+                        (context as? android.app.Activity)?.let { activity ->
+                            com.cyopstd.game.i18n.Languages.applyAndRestart(activity, pick)
+                        }
+                    }
                 )
             }
 
