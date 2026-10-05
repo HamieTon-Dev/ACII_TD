@@ -1,0 +1,864 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Translation of values/strings_i18n.xml. Machine-quality (AI) translation; see FEATURE_BACKLOG.md. -->
+<resources>
+    <string name="t_0069698f" formatted="false">"€ {0} ในงบประมาณ"</string>
+    <string name="t_00bdf050" formatted="false">"อุปกรณ์นี้"</string>
+    <string name="t_00c74b4a" formatted="false">"โจมตีภัยคุกคามแยกกันได้สูงสุดสามตัวในทุกชุดยิง ทำให้เป็นคำตอบของทีมต่อคลื่นที่กว้าง เปิดตัวเลือกเป้าหมาย"</string>
+    <string name="t_00cb85ad" formatted="false">"ขั้นที่ 4 — เลือก TARPIT"</string>
+    <string name="t_00f316c1" formatted="false">"ค่าเลเวลถัดไป"</string>
+    <string name="t_00fafa13" formatted="false">"บัญชีนี้มี"</string>
+    <string name="t_01278423" formatted="false">"สิ่งนี้เปลี่ยนอะไร"</string>
+    <string name="t_014c06bb" formatted="false">"ปลดล็อก {0} จาก {1} · คลื่นดีที่สุด {2}"</string>
+    <string name="t_01b91dff" formatted="false">"RANSOM ล็อกการอัปเกรดของเอเจนต์หนึ่งตัวนาน {0} วินาที ทุกไม่กี่วินาที อัปเกรดก่อนมันมาถึง"</string>
+    <string name="t_01ba7032" formatted="false">"0 เลเวล"</string>
+    <string name="t_01f2a69d" formatted="false">"บันทึกเซสชัน"</string>
+    <string name="t_0288b770" formatted="false">"แตะปุ่ม เอเจนต์ บนแถบควบคุมด้านล่าง"</string>
+    <string name="t_02b88c49" formatted="false">"เสียงทั้งหมดสร้างขึ้นบนอุปกรณ์ตอนเริ่ม เกมไม่มีไฟล์เสียงมาด้วย"</string>
+    <string name="t_02f0f435" formatted="false">"Root หรือผู้ดูแลระบบ คือสิทธิ์สูงสุดบนระบบ: หยุดโปรเซสใดก็ได้และเปลี่ยนแปลงทุกอย่างได้ ด้วยเหตุนี้เอง แนวปฏิบัติที่ดีคือให้สิทธิ์นี้ให้น้อยครั้งและสั้นที่สุดเท่าที่ทำได้ \"Root admin\" เป็นคำย่อของระดับการเข้าถึง ไม่ใช่ชื่อตำแหน่ง"</string>
+    <string name="t_0306926d" formatted="false">"เส้นทางโจมตีสามสายมุ่งสู่เซิร์ฟเวอร์หลัก"</string>
+    <string name="t_0358799e" formatted="false">"มีผลกับ {0} ทุกตัวในทุกแมตช์นับจากนี้ เพิ่มจากเฟิร์มแวร์แกน เลเวลแรก ๆ ราคาถูก แต่ละเลเวลแพงกว่าเลเวลก่อน และเลเวลสูงสุดราคาเป็นล้าน"</string>
+    <string name="t_0397b7d9" formatted="false">"เริ่มคลื่นบอสอัตโนมัติ"</string>
+    <string name="t_03d108e0" formatted="false">"เชื่อมแล้ว แต่ติดต่อ Google ไม่ได้ ไม่มีอะไรหาย — กำลังเล่นด้วยเซฟบนอุปกรณ์นี้ และการซิงก์ครั้งถัดไปจะอัปเดตบัญชีให้"</string>
+    <string name="t_059b388a" formatted="false">"&gt; เคลียร์คลื่น {0} แล้ว — เตรียมรับคลื่น {1}"</string>
+    <string name="t_05ea5d0e" formatted="false">"ใช้ได้ตั้งแต่เริ่ม"</string>
+    <string name="t_05f2ef1e" formatted="false">"เพลงถัดไป"</string>
+    <string name="t_063d8618" formatted="false">"โค้ดร้ายที่ปลอมเป็นสิ่งที่คุณขอ เคลื่อนช้าแต่ห่อหุ้มหนา — เกราะทำให้ทุกการโจมตีเดี่ยวทื่อลง การยิงเร็วแต่อ่อนจึงสูญเปล่า"</string>
+    <string name="t_07269781" formatted="false">"เลือกระดับความยากเพื่อดูกระดานทั่วโลก"</string>
+    <string name="t_07a3d7ab" formatted="false">"ทุกอย่างที่เป็นเจ้าของ รวมถึงการชุบชีวิต จะกลับมาจาก Google Play ด้วย กู้คืน บนอุปกรณ์ใดก็ได้ ไม่เคยเป็นส่วนหนึ่งของเซฟบนคลาวด์ ไฟล์เซฟใดจึงให้หรือเอาการซื้อไปไม่ได้"</string>
+    <string name="t_07fbf4bd" formatted="false">"ฟื้นคืนชีพ"</string>
+    <string name="t_08039ac7" formatted="false">"ร้านค้า"</string>
+    <string name="t_08175caa" formatted="false">"สีตามคลาส"</string>
+    <string name="t_08218c08" formatted="false">"กำลังเชื่อม…"</string>
+    <string name="t_08279524" formatted="false">"โค้ดที่ใช้ช่องโหว่เฉพาะในระบบ เอ็กซ์พลอยต์เคลื่อนเร็วและตีแรง เมื่อมันกำลังมา ระยะตรวจจับสำคัญกว่าดาเมจดิบ"</string>
+    <string name="t_086b8b8e" formatted="false">"บอส"</string>
+    <string name="t_08f0711d" formatted="false">"กู้คืนการซื้อ"</string>
+    <string name="t_09653280" formatted="false">"สู่แกน"</string>
+    <string name="t_0a0bc63d" formatted="false">"เพลงก่อนหน้า"</string>
+    <string name="t_0a2301f4" formatted="false">"ความคืบหน้าที่บันทึก"</string>
+    <string name="t_0a344034" formatted="false">"ถัดไป: คลื่น {0}"</string>
+    <string name="t_0ae74b3e" formatted="false">"การโจมตีซีโร่เดย์"</string>
+    <string name="t_0b205685" formatted="false">"กำลังเริ่มเครือข่าย..."</string>
+    <string name="t_0b809aa5" formatted="false">"ยังไม่มีกระดานทั่วโลกสำหรับ {0} การเล่นที่นั่นบันทึกบนอุปกรณ์นี้"</string>
+    <string name="t_0bc6e19b" formatted="false">"ไม่สร้างดาเมจเอง เสริมเอเจนต์ทุกตัวในระยะ +30% ดาเมจ และ +20% อัตรายิง คุณค่าทั้งหมดจึงอยู่ที่คุณวางมันตรงไหน"</string>
+    <string name="t_0bd16003" formatted="false">"สูงสุด"</string>
+    <string name="t_0bfbeb5b" formatted="false">"ตรึงพวกมันไว้ในสนาม TARPIT แล้วให้ IPS เคลียร์ส่วนที่ค้าง"</string>
+    <string name="t_0c121fb2" formatted="false">"ซิงก์ความคืบหน้าแล้ว"</string>
+    <string name="t_0c147607" formatted="false">"สแกนลึก"</string>
+    <string name="t_0c16a4ef" formatted="false">"ยังไม่มีคะแนน เล่นให้จบสักรอบเพื่อเป็นคนแรก"</string>
+    <string name="t_0c997319" formatted="false">"WORM แตกตัว"</string>
+    <string name="t_0cb4ce2b" formatted="false">"รักษาคลื่น {0} ได้  ◇{1}"</string>
+    <string name="t_0cfa4a6e" formatted="false">"บอสของด่านนี้"</string>
+    <string name="t_0d884b08" formatted="false">"การบุกรุก (บอส)"</string>
+    <string name="t_0d8c63a6" formatted="false">"ทุกการโจมตีลามไปยังภัยใกล้เคียง 2 ตัวด้วยดาเมจ 55%"</string>
+    <string name="t_0df4bfec" formatted="false">"แพ้ทาง"</string>
+    <string name="t_0e69fc6c" formatted="false">"แถบวางแสดงเพียงไอคอนและราคาของเอเจนต์แต่ละตัว"</string>
+    <string name="t_0eb480b6" formatted="false">"ตารางเปอร์สเปกทีฟที่ถอยห่าง พร้อมแถบไล่ล่าด้านล่าง"</string>
+    <string name="t_0f47943c" formatted="false">"ปิดการโฟกัส"</string>
+    <string name="t_0f5d5911" formatted="false">"ประหยัดแบตเตอรี่"</string>
+    <string name="t_0f80d304" formatted="false">"ดาเมจเอเจนต์"</string>
+    <string name="t_0f9a43d6" formatted="false">"พื้นหลังมีชีวิตทั้งหมด"</string>
+    <string name="t_0fa88218" formatted="false">"ติดต่อ Google Play ไม่ได้ — ปกติเพราะไม่มีเครือข่าย ของที่ซื้อแล้วยังเป็นของคุณ เมื่อกลับมาออนไลน์ให้กด กู้คืน แล้วจะปรากฏอีกครั้ง"</string>
+    <string name="t_0fd40469" formatted="false">"ประสิทธิภาพ"</string>
+    <string name="t_0fd4c0f4" formatted="false">"ช่อง CORE-SERVER สำหรับ [S] เท่านั้น"</string>
+    <string name="t_1046865f" formatted="false">"ปล่อย BOT ออกมาข้างหลังไม่หยุด ฆ่ามันให้เร็ว ไม่งั้นจะจมในบอตเน็ตของมัน"</string>
+    <string name="t_107ea55b" formatted="false">"อัปเกรดถูกเรียกค่าไถ่"</string>
+    <string name="t_108f4363" formatted="false">"ติดตั้ง"</string>
+    <string name="t_111611f9" formatted="false">"กำแพงแพตช์"</string>
+    <string name="t_1181f7e7" formatted="false">"เอเจนต์ถูกรบกวน"</string>
+    <string name="t_11c0f105" formatted="false">"เพลงประจำด่าน (อัตโนมัติ)"</string>
+    <string name="t_11c8546c" formatted="false">"ดาเมจ"</string>
+    <string name="t_11d858aa" formatted="false">"คลื่นสูงสุด"</string>
+    <string name="t_1213b2b6" formatted="false">"{0} ชม. ที่แล้ว"</string>
+    <string name="t_12193f21" formatted="false">"สถาปนิกเครือข่ายออกแบบว่าจะแบ่งเครือข่ายอย่างไร การแบ่งส่วนหมายถึงการเจาะระบบในโซนหนึ่งเดินเข้าโซนถัดไปไม่ได้ง่าย ๆ ซึ่งจำกัดความเสียหายจากความล้มเหลวแต่ละครั้ง เป็นงานออกแบบก่อนเกิดเหตุ ไม่ใช่เครื่องมือที่ใช้ระหว่างเหตุ"</string>
+    <string name="t_1248f6ec" formatted="false">"การบันทึกซาวด์แทร็กต้องใช้ Android 10 ขึ้นไป"</string>
+    <string name="t_125ca8ca" formatted="false">"แพ็กเริ่มต้น"</string>
+    <string name="t_12a36ceb" formatted="false">"ถูกปลอมแปลง"</string>
+    <string name="t_12e8edf9" formatted="false">"ภาษา"</string>
+    <string name="t_1380e038" formatted="false">"ถูกเรียกค่าไถ่ · ล็อกอัปเกรด {0} วิ"</string>
+    <string name="t_138da392" formatted="false">"ตารางที่ช่องร้อนขึ้นและเย็นลงตามทราฟฟิก"</string>
+    <string name="t_13df4b88" formatted="false">"เฟิร์มแวร์"</string>
+    <string name="t_13ee9782" formatted="false">"วางแล้ว"</string>
+    <string name="t_141ad814" formatted="false">"ความคิดเห็น"</string>
+    <string name="t_143628e2" formatted="false">"โฆษณาชุบชีวิตเท่านั้น · สมัครใจ"</string>
+    <string name="t_1489b7f6" formatted="false">"{0} วันที่แล้ว"</string>
+    <string name="t_14bdf6f2" formatted="false">"การเล่นแบบนำทางต้องใช้ FIREWALL ก่อน"</string>
+    <string name="t_14c27ca9" formatted="false">"ANALYST สร้างดาเมจพิเศษ 80% ต่ออีลีท เอเจนต์ที่ไม่สนเกราะช่วยได้"</string>
+    <string name="t_14cecaa5" formatted="false">"ทำให้ข้อมูลอ่านไม่ได้หากไม่มีกุญแจ"</string>
+    <string name="t_14ecbe1d" formatted="false">"{0}/วิ"</string>
+    <string name="t_1512aeac" formatted="false">"{0} เลเวล"</string>
+    <string name="t_154419d5" formatted="false">"นับว่าเข้ารหัส: เอเจนต์ส่วนใหญ่สร้างดาเมจลดลง"</string>
+    <string name="t_154a5adf" formatted="false">"เลเวล"</string>
+    <string name="t_15680f7c" formatted="false">"ใช้ซื้อดาเมจเฟิร์มแวร์แกนถาวร"</string>
+    <string name="t_1571a208" formatted="false">"วาง TARPIT สองตัวให้ออร่าคลุมพื้นที่ที่ FIREWALL ของคุณกำลังยิง การทำให้ช้าลงคือสิ่งที่ทำให้ดาเมจเข้าเป้า"</string>
+    <string name="t_15aa2838" formatted="false">"ตารางหยาบที่ช่องร้อนขึ้นและเย็นลงตามทราฟฟิก"</string>
+    <string name="t_15ede35d" formatted="false">"◇ {0} · ใช้ได้ตั้งแต่เริ่ม"</string>
+    <string name="t_167ae054" formatted="false">"การนี้จะลบรอบที่บันทึก เอเจนต์ที่ปลดล็อกทั้งหมด สถิติทั้งหมด และการตั้งค่าของคุณ\n\nไม่สามารถย้อนกลับได้"</string>
+    <string name="t_17a13ae4" formatted="false">"บอสเคลื่อนช้าแต่ตี CORE-SERVER {0} ความสมบูรณ์ ให้คริปโตมากที่สุดในเกม และแกร่งขึ้นทุกรอบ"</string>
+    <string name="t_17e0e9f0" formatted="false">"อัตรายิงสูงมาก เล็งบอสก่อนสิ่งอื่นในระยะเสมอ และสร้างดาเมจสองเท่าต่อ [!!!] BREACH ปลดล็อกที่คลื่น 30 และวางได้ไม่เกินสี่ตัว"</string>
+    <string name="t_1877f7c0" formatted="false">"ยังไม่ติดตั้ง"</string>
+    <string name="t_197d534b" formatted="false">"ใช้ € งบประมาณ — สะสมทุกคลื่นที่สิบของรอบและเก็บไว้หลังจากนั้น — เพื่อเพิ่มดาเมจถาวรให้เอเจนต์ทุกตัว"</string>
+    <string name="t_1991565e" formatted="false">"จำกัดอัตรา"</string>
+    <string name="t_19cbe369" formatted="false">"เอเจนต์โปรด"</string>
+    <string name="t_1a155da6" formatted="false">"คลื่นถัดไป"</string>
+    <string name="t_1a2a0f17" formatted="false">"ล็อก"</string>
+    <string name="t_1a73c7da" formatted="false">"อัตรายิง"</string>
+    <string name="t_1aba43b0" formatted="false">"รอยวงรีช้า ๆ รอบแกน เหมือนตัวจัดตารางที่กำลังทำงาน"</string>
+    <string name="t_1b0d8052" formatted="false">"เขย่าสนามรบเมื่อ CORE-SERVER ถูกโจมตี"</string>
+    <string name="t_1ba327c9" formatted="false">"การโจมตีเว็บที่พบบ่อยที่สุด"</string>
+    <string name="t_1ba41734" formatted="false">"การโจมตีที่บล็อก"</string>
+    <string name="t_1cc19733" formatted="false">"โลกจริง"</string>
+    <string name="t_1d162704" formatted="false">"แน่ใจไหมว่าจะเริ่มรอบใหม่? เซสชันที่บันทึกไว้จะถูกแทนที่"</string>
+    <string name="t_1d29935f" formatted="false">"{0} ถูกรบกวน"</string>
+    <string name="t_1d8fe548" formatted="false">"เริ่มใหม่"</string>
+    <string name="t_1dea7837" formatted="false">"HACK:AI ทะลุขีดจำกัดแล้ว ความสมบูรณ์ครึ่งเดียว รางวัลสองเท่า"</string>
+    <string name="t_1deb5c00" formatted="false">"เชื่อมแล้ว · ออฟไลน์"</string>
+    <string name="t_1e09b492" formatted="false">"🔒 [{0}] {1} · ล็อก"</string>
+    <string name="t_1e6ed1a9" formatted="false">"พื้นหลังมีชีวิต"</string>
+    <string name="t_1ef7821b" formatted="false">"ตารางสีน้ำเงินนีออนที่ทอดเข้าสู่แกน พร้อมวงแหวนโฮโลแกรมที่ไล่จากน้ำเงินเป็นเขียว"</string>
+    <string name="t_1f3159fc" formatted="false">"สีเอเจนต์"</string>
+    <string name="t_1f5df304" formatted="false">"รีเซ็ตการเชื่อมต่อ"</string>
+    <string name="t_1ff44d56" formatted="false">"บังคับใช้ไลเซนส์"</string>
+    <string name="t_20ce505d" formatted="false">"หยุดชั่วคราว"</string>
+    <string name="t_21399575" formatted="false">"ผู้พัฒนา"</string>
+    <string name="t_2198b685" formatted="false">"แสดงรัศมีสแกนของเอเจนต์ที่เลือก"</string>
+    <string name="t_21bb43e3" formatted="false">"{0} · ด่านใดก็ได้"</string>
+    <string name="t_22100250" formatted="false">"ด่าน {0} · สูงสุด"</string>
+    <string name="t_224d65ed" formatted="false">"สกิน CORE-SERVER"</string>
+    <string name="t_22686e59" formatted="false">"การเชื่อมต่อ"</string>
+    <string name="t_227cde14" formatted="false">"{0} ใน {1}"</string>
+    <string name="t_2283d7ca" formatted="false">"โหนดไม่ว่าง"</string>
+    <string name="t_22b6479a" formatted="false">"ผู้เชี่ยวชาญปฏิบัติการไซเบอร์ดำเนินการป้องกันเหมือนปฏิบัติการสด: เฝ้าดูการรบกวน รักษาเครื่องมือของทีมให้ทำงานขณะที่มีคนพยายามปิดมันอยู่ และพุ่งตรงไปที่ต้นตอ"</string>
+    <string name="t_22c4ef22" formatted="false">"เนื้อในถูกสลับจนอ่านไม่ออก การป้องกันส่วนใหญ่จึงไม่รู้ว่ากำลังยิงอะไรและสร้างดาเมจได้แค่บางส่วน เอเจนต์ CRYPTOGRAPHER ทะลวงรหัสได้ตรง ๆ"</string>
+    <string name="t_23020c53" formatted="false">" · ซื้อได้ {0}"</string>
+    <string name="t_236f5b12" formatted="false">"บอสที่ปราบทั้งหมด"</string>
+    <string name="t_23763c89" formatted="false">"การตั้งค่า"</string>
+    <string name="t_23961a76" formatted="false">"บอส {0} จาก {1} · แตะบอสเพื่อสลับ"</string>
+    <string name="t_24adcafc" formatted="false">"ดาเมจที่เซิร์ฟเวอร์ได้รับทั้งหมด"</string>
+    <string name="t_24bbb47b" formatted="false">"ไอเท็มที่ล็อก"</string>
+    <string name="t_24d3a2ef" formatted="false">"กำแพงพัง"</string>
+    <string name="t_255b5911" formatted="false">"สีเขียวฟอสเฟอร์ CRT เส้นสแกน และแสงกวาดรีเฟรช"</string>
+    <string name="t_2570d23e" formatted="false">"รวมไฟยิง ANALYST และ ROOT ADMIN แบกคลื่นบอส"</string>
+    <string name="t_25a6b96b" formatted="false">"ดาเมจระยะกลางที่เชื่อถือได้ในราคาถูก และเป็นเอเจนต์เดียวที่ไม่โดน JAM ของบอส ระยะสั้นจึงต้องยืนใกล้เส้นทาง — นี่แหละคือเหตุที่ภูมิคุ้มกันนั้นสำคัญ"</string>
+    <string name="t_25bd1975" formatted="false">"ดาเมจ"</string>
+    <string name="t_25efb9da" formatted="false">"รัศมีระเบิด"</string>
+    <string name="t_260d60b1" formatted="false">"โฆษณาหนึ่งครั้งหลังแพ้ · ชุบชีวิตแบบสมัครใจ"</string>
+    <string name="t_26b80d1f" formatted="false">"เสร็จ"</string>
+    <string name="t_27a68119" formatted="false">"สถานะเครือข่าย"</string>
+    <string name="t_27d9802d" formatted="false">"โฆษณาหนึ่งครั้งหลังแพ้"</string>
+    <string name="t_27daad70" formatted="false">"น้ำค้างแข็งคืบคลานจากขอบ"</string>
+    <string name="t_28c31125" formatted="false">"มีเกราะและอดทน การโจมตีหนักครั้งเดียวชนะมัน ยิงรัวเปล่าประโยชน์"</string>
+    <string name="t_28e339dd" formatted="false">"คอลัมน์ตัวอักษรร่วงหล่นเบาบางหลังสนาม"</string>
+    <string name="t_296fb456" formatted="false">"ซ่อม +{0} HP · ทุก {1} วิ · ช่อง CORE-SERVER · สูงสุด {2}"</string>
+    <string name="t_297ae895" formatted="false">"ถูกกักกัน"</string>
+    <string name="t_2a1bde6e" formatted="false">"ระบบป้องกันการบุกรุกอยู่บนเส้นทางทราฟฟิกและได้รับอนุญาตให้จัดการสิ่งที่ตรวจพบ โดยตัดหรือรีเซ็ตการเชื่อมต่อแทนการแค่แจ้งเตือน ข้อแลกเปลี่ยนมีจริง: IPS ที่ประเมินทราฟฟิกปกติผิดจะบล็อกมัน"</string>
+    <string name="t_2a934539" formatted="false">"ต้นทางการโจมตี"</string>
+    <string name="t_2a9b95e6" formatted="false">"สร้างดาเมจ ×{0} ต่อบอสทุกตัว"</string>
+    <string name="t_2bb9a482" formatted="false">"ไฟร์วอลล์ตรวจทราฟฟิกตามรายการกฎและทิ้งทุกอย่างที่ไม่ตรง เป็นการป้องกันแนวขอบที่เก่าแก่ที่สุดและยังสำคัญที่สุด"</string>
+    <string name="t_2be00c84" formatted="false">"แก้ไขชื่อเรียก"</string>
+    <string name="t_2c13b917" formatted="false">"สร้างดาเมจ ×{0} ต่อ {1}"</string>
+    <string name="t_2ce4713d" formatted="false">"&gt; กำลังซิงก์ CORE-SERVER"</string>
+    <string name="t_2d14c154" formatted="false">"กระแสข้อมูลแนวทแยงเคลื่อนช้าข้ามสนาม"</string>
+    <string name="t_2dcb788c" formatted="false">"เกมนี้พัฒนาโดยมีเครื่องมือปัญญาประดิษฐ์ช่วย ซึ่งใช้เป็นเครื่องมือช่วยการเรียนรู้และการพัฒนาในช่วงที่เรียนเขียนโปรแกรมและพัฒนาซอฟต์แวร์\n\nเครื่องมือ AI ช่วยในด้านต่าง ๆ เช่น การพัฒนาโค้ด การแก้ปัญหา การทำเอกสาร และการเรียนรู้ การตัดสินใจด้านการออกแบบขั้นสุดท้าย ทิศทางการเล่น การทดสอบ และการตัดสินใจเผยแพร่ ยังคงเป็นความรับผิดชอบของผู้พัฒนา\n\nเกมนี้ไม่ได้สร้าง สนับสนุน รับรอง เป็นเจ้าของ หรือเผยแพร่โดยบริษัทปัญญาประดิษฐ์ใด ๆ"</string>
+    <string name="t_2df53561" formatted="false">"ตัวกรองทราฟฟิกตามกฎ"</string>
+    <string name="t_2e0cf790" formatted="false">"อื่น ๆ"</string>
+    <string name="t_2e19cc63" formatted="false">"ลุกขึ้นได้อีกครั้งด้วยพลังชีวิต 40% ฆ่ามันไม่เท่ากับปิดฉากมัน"</string>
+    <string name="t_2ef9e2c6" formatted="false">"การโจมตีไซเบอร์"</string>
+    <string name="t_2f3549f7" formatted="false">"เซฟบนคลาวด์ใช้ไม่ได้"</string>
+    <string name="t_302a4f0a" formatted="false">"พื้นฐาน"</string>
+    <string name="t_302eea27" formatted="false">"อยากรู้ไหมว่าอะไรจะมา?"</string>
+    <string name="t_3083c674" formatted="false">"มีชีวิต: ล่องลอย"</string>
+    <string name="t_30867b62" formatted="false">"เล่นออฟไลน์ได้ทั้งหมด"</string>
+    <string name="t_30ed929d" formatted="false">"ปลดล็อกเอเจนต์นี้โดยไปถึงคลื่น {0} บน {1}"</string>
+    <string name="t_31359ec6" formatted="false">"ปิดโฟกัส {0}"</string>
+    <string name="t_313900e6" formatted="false">"อัปลิงก์สถาปนิก"</string>
+    <string name="t_314d733e" formatted="false">"มี € {0}"</string>
+    <string name="t_317b7de0" formatted="false">"โค้ดที่ร่วงอยู่ในแร็กเอง"</string>
+    <string name="t_31d43b93" formatted="false">"มีชีวิต: ฝนตก"</string>
+    <string name="t_326bdc38" formatted="false">"เอเจนต์ยังไม่ลงทะเบียน"</string>
+    <string name="t_32a3e9f3" formatted="false">"พิเศษ — {0}"</string>
+    <string name="t_32bafd88" formatted="false">"ถัดไป"</string>
+    <string name="t_32e6f915" formatted="false">"ซื้อได้ตอนนี้"</string>
+    <string name="t_332ec80a" formatted="false">"อะไรก็ฆ่ามันได้ อย่าสร้างเกินจำเป็นเพื่อมัน"</string>
+    <string name="t_33cd995a" formatted="false">"บล็อกการบุกรุกแล้ว"</string>
+    <string name="t_3425c9d3" formatted="false">"ด่าน {0}"</string>
+    <string name="t_35350bff" formatted="false">"วงแหวนกักกันที่เต้นเป็นจังหวะ"</string>
+    <string name="t_3595e52a" formatted="false">"เส้นทาง {0}"</string>
+    <string name="t_35c82960" formatted="false">"แกน: GLACIER"</string>
+    <string name="t_35f74be9" formatted="false">"ดาเมจเป้าเดี่ยวมหาศาลที่ไม่สนเกราะทั้งหมด เอเจนต์ที่แพงที่สุดในเกมและปลดล็อกช้ามาก เปิดตัวเลือกเป้าหมาย"</string>
+    <string name="t_36900a0f" formatted="false">"ราคาถูกและแทบไม่มีอันตราย ทุกอย่างในรัศมีคลานช้า"</string>
+    <string name="t_37447c3a" formatted="false">"อัตรายิงสูงสุดขีด และทุกนัดกระจาย"</string>
+    <string name="t_376bc6d2" formatted="false">"การนับถอยหลังยังเดินอยู่ขณะเปิดหน้านี้"</string>
+    <string name="t_376c54b2" formatted="false">"ลบโฆษณา"</string>
+    <string name="t_379656ef" formatted="false">"แกน: VOID"</string>
+    <string name="t_37bc9401" formatted="false">"รุ่นนี้แสดงโฆษณาจาก Google AdMob การดูโฆษณาเพื่อเล่นต่อเป็นทางเลือกเสมอและไม่จำเป็นต่อการเล่นเลย"</string>
+    <string name="t_384d3555" formatted="false">"{0} มีชีวิต"</string>
+    <string name="t_384e5d9f" formatted="false">"เซฟบนคลาวด์"</string>
+    <string name="t_385b9a87" formatted="false">"ทาร์พิตรับการเชื่อมต่อที่เป็นศัตรูแล้วตอบช้าที่สุดเท่าที่อนุญาต ตรึงผู้โจมตีไว้บนซ็อกเก็ตที่ไม่ไปไหน เป็นยุทธวิธีถ่วงเวลา ไม่ใช่บล็อก: คุณค่าคือเวลาที่อีกฝ่ายต้องเสียไป"</string>
+    <string name="t_38695d86" formatted="false">"สำรองความคืบหน้า"</string>
+    <string name="t_38c1e7e0" formatted="false">"แลกโฆษณา"</string>
+    <string name="t_38d9a5af" formatted="false">"&gt; เครือข่ายถูกเจาะ"</string>
+    <string name="t_38e03b91" formatted="false">"ติดตั้งครบแล้ว"</string>
+    <string name="t_3950774a" formatted="false">"ลงทะเบียนเป็น"</string>
+    <string name="t_395af116" formatted="false">"แฮกนิรนาม"</string>
+    <string name="t_396e8daa" formatted="false">"สเปกตรัม"</string>
+    <string name="t_3a06e0fa" formatted="false">"เพลง"</string>
+    <string name="t_3a7e7fe6" formatted="false">"ประเภทบิลด์"</string>
+    <string name="t_3a8a0a59" formatted="false">"ทุกการโจมตีทำให้มันเร็วขึ้น ไม่ว่าเล็กแค่ไหน และช้าลงเมื่อถูกปล่อยไว้ โจมตีใหญ่ไม่กี่ครั้งชนะโจมตีเล็กหลายครั้ง"</string>
+    <string name="t_3aa6f2eb" formatted="false">"ZERO-DAY HUNTER และ ROOT ADMIN ไม่สนเกราะเลย"</string>
+    <string name="t_3aaad671" formatted="false">"แตะเพื่อดูรายละเอียด"</string>
+    <string name="t_3b12a908" formatted="false">"GRADIENT เร็วขึ้นทุกครั้งที่โดน ไม่ว่าเล็กแค่ไหน และช้าลงเมื่อถูกปล่อยไว้ โจมตีใหญ่ไม่กี่ครั้งชนะโจมตีเล็กหลายครั้ง"</string>
+    <string name="t_3b53a59d" formatted="false">"เริ่มคลื่นบอสอัตโนมัติด้วย ปิด: คลื่นบอสจะรอคุณ"</string>
+    <string name="t_3bc78174" formatted="false">"การพัฒนาโดยมี AI ช่วย"</string>
+    <string name="t_3c66aec8" formatted="false">"คลื่น เอเจนต์ € และเฟิร์มแวร์ของคุณถูกบันทึกในบัญชี Google ลงชื่อเข้าใช้บนอุปกรณ์อื่นแล้วจะอยู่ที่นั่น ซิงก์เมื่อออกจากเกมและเมื่อจบรอบ"</string>
+    <string name="t_3cef355d" formatted="false">"พลังชีวิตเหลือมากที่สุด"</string>
+    <string name="t_3d17c701" formatted="false">"พุ่งเร็ว"</string>
+    <string name="t_3d331382" formatted="false">"เส้นทางที่ทราฟฟิกวิ่ง"</string>
+    <string name="t_3d509ddc" formatted="false">"ลดเฟรมเรตลงครึ่งและตัดเอฟเฟกต์ตกแต่ง"</string>
+    <string name="t_3d83d177" formatted="false">"เอเจนต์ไซเบอร์"</string>
+    <string name="t_3db03eca" formatted="false">"สถิติของคุณ"</string>
+    <string name="t_3e12b118" formatted="false">"ช่วยเหลือ"</string>
+    <string name="t_3e27e12f" formatted="false">"พลังชีวิตเหลือน้อยที่สุด"</string>
+    <string name="t_3ecdd82e" formatted="false">"ซีโร่เดย์คือช่องโหว่ที่ฝ่ายป้องกันมีเวลาศูนย์วันในการแก้ เพราะไม่มีใครรู้ว่ามันมีอยู่ ไม่มีซิกเนเจอร์ให้จับคู่ ซึ่งทำให้มันอันตรายมาก"</string>
+    <string name="t_3fa2aee2" formatted="false">"รับดาเมจจากเอเจนต์ FIREWALL น้อยลง 35%"</string>
+    <string name="t_401924c3" formatted="false">"สกิน CORE-SERVER"</string>
+    <string name="t_4071c698" formatted="false">"Google Play ตอบกลับแล้ว การซื้อและกู้คืนทำงานปกติ"</string>
+    <string name="t_40b15bdb" formatted="false">"สะสมทุกคลื่นที่สิบ ยิ่งรอบลึก ยิ่งได้มาก — รางวัลโตตามกำลังสองของหลักไมล์ รอบลึกครั้งเดียวจึงชนะรอบตื้นห้าครั้ง"</string>
+    <string name="t_4104a0b2" formatted="false">"ดีที่สุดของคุณบน {0}: คลื่น {1}"</string>
+    <string name="t_4108bc91" formatted="false">"การจับมือถูกปฏิเสธ"</string>
+    <string name="t_41203058" formatted="false">"อุปกรณ์สวมใส่"</string>
+    <string name="t_412ea11f" formatted="false">"แตะโหนดวางที่ไฮไลต์สองจุดข้างเส้นทาง สองไม่ใช่คำแนะนำ: เอเจนต์ตัวเดียวคุมเลนไม่ไหว"</string>
+    <string name="t_419c5ded" formatted="false">"จำนวนเกมทั้งหมด"</string>
+    <string name="t_41a1b85e" formatted="false">"ตัวเลือกความเป็นส่วนตัว"</string>
+    <string name="t_41ca8ef5" formatted="false">"เก็บไว้บนอุปกรณ์นี้ · ไม่มีการอัปโหลดใด ๆ"</string>
+    <string name="t_41e88f52" formatted="false">"ถ่างสองนิ้วเพื่อซูมกระดาน — ใกล้ ๆ แตะโหนดง่ายกว่า ขณะซูมให้ลากนิ้วเดียวเพื่อเลื่อน หุบนิ้วจนสุดเพื่อดูทั้งกระดานอีกครั้ง"</string>
+    <string name="t_4208e473" formatted="false">"ไม่มีโฆษณา"</string>
+    <string name="t_420bd000" formatted="false">"BOTMASTER ปล่อย BOT ข้างหลังทุกไม่กี่วินาที ฆ่ามันให้เร็ว และเหลือกำลังไว้รับฝูง"</string>
+    <string name="t_4273a8be" formatted="false">"บัญชี"</string>
+    <string name="t_42832744" formatted="false">"ไม่มีการพนัน กล่องสุ่ม หรือรางวัลแบบจ่ายเงินสุ่ม"</string>
+    <string name="t_42880e6f" formatted="false">"ล็อก · {0}"</string>
+    <string name="t_42a0e053" formatted="false">"เกี่ยวกับ"</string>
+    <string name="t_42addf6c" formatted="false">"เปิดร้านค้า"</string>
+    <string name="t_42afe7bc" formatted="false">"กำลังเชื่อมต่อ"</string>
+    <string name="t_42ef8058" formatted="false">"บันทึกการป้องกัน"</string>
+    <string name="t_4306ee12" formatted="false">"งบ €1,500"</string>
+    <string name="t_4333987a" formatted="false">"คอลัมน์ตัวอักษรร่วงหล่นเบาบาง"</string>
+    <string name="t_43a1c2e8" formatted="false">"ค่าอัปเกรด"</string>
+    <string name="t_441ec9a9" formatted="false">"ทัวร์เมนูสั้น ๆ ถัดไป เพื่อไปต่อ ข้าม เพื่อปิด ดูซ้ำได้ทุกเมื่อจาก การตั้งค่า"</string>
+    <string name="t_4427afab" formatted="false">"เกราะทำให้การโจมตีเล็กทื่อ: ใช้ ANALYST หรือ ROOT ADMIN ไม่ใช่ IPS"</string>
+    <string name="t_4439e789" formatted="false">"ล็อก · ผ่านด่าน 5 (เคลียร์คลื่น 100 บน DDoS) เพื่อปลดล็อกเครื่องเล่นเพลงและรายการเพลง"</string>
+    <string name="t_448177d3" formatted="false">"ซิงก์ล่าสุด"</string>
+    <string name="t_4494c488" formatted="false">"{0} นาทีที่แล้ว"</string>
+    <string name="t_44c51c30" formatted="false">"บล็อกการโจมตีแล้ว"</string>
+    <string name="t_44fbbc54" formatted="false">"&gt; !! การโจมตีไซเบอร์กำลังมา — การเจาะระบบครั้งใหญ่ใกล้เข้ามา !!"</string>
+    <string name="t_4538f2a7" formatted="false">"ไฟร์วอลล์ตรวจทราฟฟิกตามชุดกฎและทิ้งทุกอย่างที่กฎไม่อนุญาต มักเป็นด่านควบคุมแรกระหว่างเครือข่ายที่ไม่น่าไว้ใจกับสิ่งที่ควรปกป้อง และวัดผลจากกฎที่ได้รับ ไม่ใช่ความฉลาด"</string>
+    <string name="t_45b17976" formatted="false">"ดาเมจเป้าเดี่ยวหนัก เท่ากันทุกนัดไม่ต้องลุ้น และไม่สนเกราะ แพงและช้า ตัวเดียวคุมเลนไม่อยู่"</string>
+    <string name="t_4631883a" formatted="false">"ติดตั้งสูงสุด  (+{0})"</string>
+    <string name="t_463cbc28" formatted="false">"พลังชีวิต ×{0} · เกราะ +{1} · ความเร็ว ×{2}"</string>
+    <string name="t_466578df" formatted="false">"เล่นคลื่นนี้ต่อด้วยความสมบูรณ์ครึ่งหนึ่ง"</string>
+    <string name="t_466b92a9" formatted="false">"อัปลิงก์เซกเมนต์"</string>
+    <string name="t_46984fe6" formatted="false">"เล่น · ต่อ"</string>
+    <string name="t_46cc0ef8" formatted="false">"ยังเพิ่ม ◇ คริปโตที่ได้ในแต่ละรอบ +{0}% ต่อเลเวลจนถึงสองเท่า ไม่มีผลต่อพลังชีวิตศัตรูหรือองค์ประกอบคลื่น"</string>
+    <string name="t_4735c1ed" formatted="false">"การโจมตีไซเบอร์กำลังมุ่งสู่ CORE-SERVER วางเอเจนต์ไซเบอร์ข้างเส้นทางเพื่อหยุดก่อนถึง"</string>
+    <string name="t_4747b424" formatted="false">"ศัตรู"</string>
+    <string name="t_477d52c6" formatted="false">"เชื่อมแล้ว ลงชื่อเข้าบัญชี Google เดียวกันบนโทรศัพท์หรือแท็บเล็ตอื่น แล้วความคืบหน้าจะอยู่ที่นั่น"</string>
+    <string name="t_47c5c237" formatted="false">"โหนดไม่ถูกต้อง"</string>
+    <string name="t_485268f0" formatted="false">"&gt; กำลังติดอาวุธเอเจนต์ไซเบอร์"</string>
+    <string name="t_4882e1dc" formatted="false">"KERNEL PANIC รบกวนเอเจนต์ทุกตัวในระยะ 3 วินาทีเมื่อมันตาย FIREWALL ทนได้"</string>
+    <string name="t_488d4b25" formatted="false">"เครื่องนับพันส่งทราฟฟิกไปยังเป้าเดียวพร้อมกัน ไม่มีคำขอใดเป็นการโจมตี ตัวน้ำท่วมต่างหาก เป้าหมายไม่ใช่การบุกเข้า แต่ทำให้บริการใช้ไม่ได้"</string>
+    <string name="t_4905ed7b" formatted="false">"ไม่มี"</string>
+    <string name="t_494c304d" formatted="false">"-◇{0} ถูกขโมย"</string>
+    <string name="t_49848f53" formatted="false">"BLIND SQL INJECTION"</string>
+    <string name="t_498754a7" formatted="false">"บันทึกซาวด์แทร็กลงโทรศัพท์"</string>
+    <string name="t_4af4306b" formatted="false">"บิลด์"</string>
+    <string name="t_4c1012d3" formatted="false">"ยิงใส่ไม่หยุด: มันซ่อมตัวเองหลังไม่โดนสักพัก จึงต้องปิดช่องว่างระหว่างโซนสังหาร"</string>
+    <string name="t_4c6d3272" formatted="false">"🔒 ล็อก"</string>
+    <string name="t_4cc6f55a" formatted="false">"ติดต่อ Google Play เกมส์ไม่ได้ รอบของคุณบันทึกบนอุปกรณ์นี้ และผลดีที่สุดจะถูกโพสต์เมื่อจบรอบครั้งถัดไปขณะออนไลน์"</string>
+    <string name="t_4d54c785" formatted="false">"กำลังวาง {0} — แตะโหนด"</string>
+    <string name="t_4d6e69d2" formatted="false">"เครื่องเล่นเพลง"</string>
+    <string name="t_4d7ab8a3" formatted="false">"ชื่อเรียก"</string>
+    <string name="t_4e2b3472" formatted="false">"ไม่มีเซสชันที่บันทึก"</string>
+    <string name="t_4ebbf8bd" formatted="false">"รอบนี้เหลือการชุบชีวิต {0} ครั้ง"</string>
+    <string name="t_4f0fcb18" formatted="false">"มาทุกคลื่นที่ห้า"</string>
+    <string name="t_4f160176" formatted="false">"รอบเก็บเกี่ยว ไม่มีลูกเล่น ไม่มีการรบกวน — มากกว่าสิ่งอื่นบนกระดานยี่สิบเปอร์เซ็นต์"</string>
+    <string name="t_5022c684" formatted="false">"การเข้ารหัส"</string>
+    <string name="t_5067a989" formatted="false">"โซ่พัวพัน"</string>
+    <string name="t_5079b771" formatted="false">"ปลดล็อกเอเจนต์นี้โดยไปถึงคลื่น {0} บน {1} ในโหมด {2}"</string>
+    <string name="t_509d7851" formatted="false">" · แรงกระแทก {0}"</string>
+    <string name="t_513901c7" formatted="false">" · ไม่มีโฆษณา"</string>
+    <string name="t_513dcdc9" formatted="false">"ต่อเอเจนต์"</string>
+    <string name="t_520a6b88" formatted="false">"แต่ละเลเวลแพงขึ้นเล็กน้อยจากเลเวลก่อน ตัวคูณจึงเพิ่มต่อไปแต่ไม่เคยพุ่งเกินควบคุม ไม่มีเพดานที่คุณจะไปถึงจริง"</string>
+    <string name="t_5333e76e" formatted="false">"การเรนเดอร์"</string>
+    <string name="t_53e605b3" formatted="false">"ระวัง"</string>
+    <string name="t_543ce9f7" formatted="false">"ทุก"</string>
+    <string name="t_54523d94" formatted="false">"แร็กที่แกนของคุณติดตั้งอยู่ เห็นได้บนสนามรบ"</string>
+    <string name="t_54743050" formatted="false">"การโจมตีที่บล็อกทั้งหมด"</string>
+    <string name="t_54797d92" formatted="false">"ลายวงจรที่วิ่งใต้หน้าจอแสดงผล"</string>
+    <string name="t_549824f8" formatted="false">"พอร์ตปลอดภัย"</string>
+    <string name="t_5571a722" formatted="false">"เล่นออฟไลน์ · ไม่ต้องล็อกอิน"</string>
+    <string name="t_55f85167" formatted="false">"เมนูเอเจนต์แบบกะทัดรัด"</string>
+    <string name="t_565a738e" formatted="false">"ไม่ ให้ฉันเล่นเลย"</string>
+    <string name="t_56a9a004" formatted="false">"การฉีดในความมืด"</string>
+    <string name="t_56bafb67" formatted="false">"ชุบชีวิตได้หนึ่งครั้งต่อรอบ"</string>
+    <string name="t_56c54890" formatted="false">"โมเดลที่บวม: พลังชีวิตมากขึ้นหน่อย ช้าลงหน่อย"</string>
+    <string name="t_56c6b2ae" formatted="false">"เสรีภาพเชิงนิยาย ระบุชัดเจน: เอเจนต์นี้แค่ไม่สนคุณสมบัติ ENCRYPTED แทนที่จะถูกลดทอน และสร้างดาเมจสามเท่าต่อทุกอย่างที่มีคุณสมบัตินั้น วิทยาการเข้ารหัสจริงไม่ทำงานแบบนี้ และไม่มีอะไรในนี้ถอดรหัสจริงได้"</string>
+    <string name="t_5749c8dc" formatted="false">"คลื่น {0} และทุกอย่างที่วางไว้จะหายไป"</string>
+    <string name="t_5785b710" formatted="false">"เลือกเอเจนต์ แล้วแตะโหนดวางที่ไฮไลต์"</string>
+    <string name="t_57f88861" formatted="false">"โฟกัส: บอสเท่านั้น"</string>
+    <string name="t_582ec4a0" formatted="false">"คอมพิวเตอร์ที่ถูกเจาะรับคำสั่งเงียบ ๆ จากตัวควบคุมกลาง เจ้าของมักไม่รู้ตัว บอตเน็ตคือสิ่งที่ทำให้การโจมตี DDoS ขนาดใหญ่เกิดขึ้นได้"</string>
+    <string name="t_5840893d" formatted="false">"ควบคุมการบุกรุกได้"</string>
+    <string name="t_58a5f08a" formatted="false">"ตารางเรียบ ไม่มีการเคลื่อนไหว"</string>
+    <string name="t_597ee3cb" formatted="false">"ซิกเนเจอร์ตรงกัน"</string>
+    <string name="t_5a02fc0a" formatted="false">"แพ็กชุบชีวิต"</string>
+    <string name="t_5a3d8598" formatted="false">"ใกล้ CORE-SERVER ที่สุด"</string>
+    <string name="t_5a911db6" formatted="false">"บัญชี Google ของคุณ"</string>
+    <string name="t_5aa1d1dc" formatted="false">"เปิดโฟกัส {0}"</string>
+    <string name="t_5b19a621" formatted="false">"การโจมตีช่องโหว่ที่ยังไม่มีใครแพตช์ — ฝ่ายป้องกันมีเวลาเตรียมตัวศูนย์วัน หายาก ทนทาน และคุ้มคริปโตจริงจังที่จะหยุดมัน"</string>
+    <string name="t_5c19fc6b" formatted="false">"ซื้อซาวด์แทร็ก CyOps TD · {0}"</string>
+    <string name="t_5c3f86fb" formatted="false">"แข็งแกร่งที่สุด"</string>
+    <string name="t_5d1868fb" formatted="false">"แกน"</string>
+    <string name="t_5d377851" formatted="false">"อัปเกรดถาวร · ทุกแมตช์นับจากนี้"</string>
+    <string name="t_5d4d0273" formatted="false">"{0} ถูกล็อก: {1}"</string>
+    <string name="t_5de47a9b" formatted="false">"ทุกระดับความยาก"</string>
+    <string name="t_5de55828" formatted="false">"!! ความสมบูรณ์ต่ำ !!"</string>
+    <string name="t_5e75065a" formatted="false">"เชื่อมต่อแล้ว"</string>
+    <string name="t_5f2258c9" formatted="false">"เงินทางซ้าย สะสมทุกคลื่นที่สิบของรอบและเก็บไว้เมื่อจบรอบ รอบที่ลึกกว่าได้มากกว่ามาก"</string>
+    <string name="t_5fd47bcf" formatted="false">"แกน: MERIDIAN"</string>
+    <string name="t_602fffef" formatted="false">"ทุกอย่างยกเว้น CRYPTOGRAPHER เสียดาเมจเกินครึ่งที่นี่"</string>
+    <string name="t_6049b1e7" formatted="false">"พื้นหลังมีชีวิต"</string>
+    <string name="t_60a5a04c" formatted="false">"หยุดเพลง"</string>
+    <string name="t_60ecea1a" formatted="false">"สมบูรณ์"</string>
+    <string name="t_60f81814" formatted="false">"ทุก {0} วินาที LICENSE ใช้เวลา {1} ไม่สนเอเจนต์ประเภทที่ตีมันไม่หยุด ผสมประเภทเอเจนต์"</string>
+    <string name="t_61919374" formatted="false">"ฟื้นคืนชีพ — มันจะไม่กลับมาอีก"</string>
+    <string name="t_61ebe734" formatted="false">"หน้าจอสั่น"</string>
+    <string name="t_625afb79" formatted="false">"เป็นเจ้าของแล้ว บันทึกลง Music/CyOps TD เป็น \"CyOps TD - Level X (Y)\""</string>
+    <string name="t_628c7cd9" formatted="false">"สัดส่วนการวางเอเจนต์"</string>
+    <string name="t_62f8af50" formatted="false">"+{0} HP / {1} วิ"</string>
+    <string name="t_63374e04" formatted="false">"เมนูหลัก"</string>
+    <string name="t_633e8e1a" formatted="false">"แตกเป็นหนอนเล็กสามตัวเมื่อถูกฆ่า และแต่ละตัวแตกอีกครั้ง ดาเมจกระจายคือเพื่อนคุณ"</string>
+    <string name="t_6343926d" formatted="false">"รบกวน"</string>
+    <string name="t_638aaa93" formatted="false">"ปรากฏที่นี่ด้วย"</string>
+    <string name="t_63b00a3c" formatted="false">"ข้อมูลที่ส่งผ่านเครือข่ายถูกหั่นเป็นแพ็กเก็ต: ชิ้นเล็ก ๆ ที่มีที่อยู่ปลายทางและเพย์โหลด แพ็กเก็ตไม่ใช่การโจมตี — แทบทั้งหมดเป็นทราฟฟิกปกติ สิ่งที่คุณยิงที่นี่คือแพ็กเก็ตที่บรรทุกการโจมตีเฉพาะ จึงตั้งชื่อตามการโจมตีแทนแพ็กเก็ต"</string>
+    <string name="t_63b54927" formatted="false">"ชุบชีวิต 3 ครั้งต่อรอบและไม่มีโฆษณาชุบชีวิตเลย พร้อม €5,000"</string>
+    <string name="t_63bef594" formatted="false">"HP {0}"</string>
+    <string name="t_63f3d76a" formatted="false">"บันทึก"</string>
+    <string name="t_63facb82" formatted="false">"มีชีวิต: ชีพจร"</string>
+    <string name="t_6480a147" formatted="false">"คลื่น {0}  —  เสริมแนวขอบ"</string>
+    <string name="t_648a945b" formatted="false">"สองเรื่องที่ไม่มีใครบอก"</string>
+    <string name="t_6490c689" formatted="false">"ไม่มีคริปโตเคอร์เรนซีจริง บล็อกเชน กระเป๋าเงิน การขุด หรือ NFT"</string>
+    <string name="t_64d398f9" formatted="false">"ระยะ"</string>
+    <string name="t_65155738" formatted="false">"ความเร็ว 5×"</string>
+    <string name="t_65252ce7" formatted="false">"แรกสุด"</string>
+    <string name="t_6554cde7" formatted="false">"กำลังถาม Google Play ว่าบัญชีนี้มีอะไร ปกติใช้เวลาครู่เดียว"</string>
+    <string name="t_655c9284" formatted="false">"มีชีวิต: โครงตาข่าย"</string>
+    <string name="t_656e6ce8" formatted="false">"เอเจนต์"</string>
+    <string name="t_65c8fd90" formatted="false">"บรีฟภัยคุกคาม"</string>
+    <string name="t_6678bfdf" formatted="false">"เมื่อมันตาย เอเจนต์ใกล้ ๆ ทุกตัวถูกรบกวน 3 วินาที ฆ่ามันไกลจากกระดาน หรือตอนคลื่นถัดไปยังอยู่ไกล"</string>
+    <string name="t_66fa85d7" formatted="false">"กระจายเอเจนต์ เพื่อไม่ให้การรบกวนครั้งเดียวปิดเสียงทั้งแนว"</string>
+    <string name="t_6700226a" formatted="false">"เชื่อมแล้ว"</string>
+    <string name="t_67043715" formatted="false">"เกราะ"</string>
+    <string name="t_67313d46" formatted="false">"กำแพงตั้งแล้ว"</string>
+    <string name="t_6757b458" formatted="false">"การโจมตีที่หยุดได้"</string>
+    <string name="t_6813ef42" formatted="false">"แฮกนิรนาม — BOT {0} ตัวกำลังมาด้วยความเร็วสองเท่า"</string>
+    <string name="t_681745bd" formatted="false">"เอเจนต์ถูกล็อก — {0}"</string>
+    <string name="t_682d973f" formatted="false">"เริ่ม"</string>
+    <string name="t_68e88af7" formatted="false">"เขตอันตราย"</string>
+    <string name="t_68e985d6" formatted="false">"ไม่มีอะไรอื่นถูกส่งไปไหน เล่นเกมได้โดยไม่มีเครือข่ายเลย"</string>
+    <string name="t_6904aeb4" formatted="false">"ตัวเกม"</string>
+    <string name="t_69698cdc" formatted="false">"WORM แตกเป็นหนอนเล็กสามตัวเมื่อถูกฆ่า และพวกนั้นแตกอีกครั้ง ฆ่ามันแต่เนิ่น ๆ โดยมีดาเมจกระจายอยู่ใกล้"</string>
+    <string name="t_69a293c4" formatted="false">"SUDO TERMINATE"</string>
+    <string name="t_6ad356c5" formatted="false">"สามเส้นทาง: ตรงกลางหนึ่งเส้น และสองเส้นที่ซิกแซกอยู่ด้านบนและล่าง"</string>
+    <string name="t_6b2d8165" formatted="false">"เลเวล {0}  {1} ดาเมจ"</string>
+    <string name="t_6c161f51" formatted="false">"ทุก 2 วินาทีใน 17 วินาที มันไม่สนเอเจนต์ประเภทที่ตีมันไม่หยุด กระดานที่หลากหลายยังทำร้ายมันได้"</string>
+    <string name="t_6c7aa396" formatted="false">"บอสต่างกัน จุดอ่อนต่างกัน"</string>
+    <string name="t_6ca9de88" formatted="false">"เอเจนต์สเปกตรัม"</string>
+    <string name="t_6cb7e8e3" formatted="false">"การโจมตีช้าและหนัก +80% ดาเมจต่ออีลีทและบอส"</string>
+    <string name="t_6cbf7c76" formatted="false">"บอสที่ปราบ"</string>
+    <string name="t_6ccdc653" formatted="false">"ไม่สนการเข้ารหัสเลยและสร้างดาเมจสามเท่าต่อมัน"</string>
+    <string name="t_6cedde69" formatted="false">"ระดับเสียงเพลง"</string>
+    <string name="t_6d2d6d6b" formatted="false">"ไม่สนเกราะของมัน"</string>
+    <string name="t_6d907c0d" formatted="false">"\"ทีมน้ำเงิน\" ป้องกันระบบและรับมือเหตุการณ์ — คู่ตรงข้ามของทีมแดง \"หมวกน้ำเงิน\" ใช้ในวงการได้หลายความหมายและไม่ใช่คำมาตรฐาน ที่นี่จึงอธิบายเพียงความหมายทีมน้ำเงิน"</string>
+    <string name="t_6dbe0ea3" formatted="false">"ด่าน"</string>
+    <string name="t_6f053419" formatted="false">"จำกัด {0} — สูงสุด {1}"</string>
+    <string name="t_6f21a684" formatted="false">"บอส — ทุกคลื่นที่ห้า"</string>
+    <string name="t_70d42172" formatted="false">"แบ่งเครือข่ายเพื่อให้การเจาะในโซนหนึ่งไปไม่ถึงส่วนที่เหลือ นี่คือเหตุที่แล็ปท็อปที่ถูกเจาะเครื่องเดียวไม่ควรหมายถึงบริษัทที่ถูกเจาะทั้งบริษัท"</string>
+    <string name="t_7191bf1d" formatted="false">"การคงอยู่"</string>
+    <string name="t_71c5931f" formatted="false">"ประหยัดแบตเปลี่ยนแค่สิ่งที่วาด ความยากของคลื่น ดาเมจ และจังหวะเวลาไม่ได้รับผลกระทบเลย"</string>
+    <string name="t_72102eb0" formatted="false">"การซื้อ การกู้คืน และสิ่งที่ออกจากอุปกรณ์นี้"</string>
+    <string name="t_722a0bad" formatted="false">"ดูคู่มืออีกครั้ง"</string>
+    <string name="t_73236391" formatted="false">"ตัวเกมไม่เก็บข้อมูลส่วนบุคคลใด ๆ"</string>
+    <string name="t_735d4940" formatted="false">"ระดับเสียงเอฟเฟกต์"</string>
+    <string name="t_73907e76" formatted="false">"เพลงทั้ง 24 เพลงจากเกม บันทึกลงโฟลเดอร์ Music ของโทรศัพท์เพื่อฟังได้ทุกที่"</string>
+    <string name="t_7397fdaa" formatted="false">"แสงเย็นเคลื่อนอยู่เบื้องหลังทุกสิ่ง"</string>
+    <string name="t_739a7f7a" formatted="false">"© {0} {1} สงวนลิขสิทธิ์"</string>
+    <string name="t_73d812dc" formatted="false">"ทุกคลื่นที่ห้า และสิ่งที่มันนำมา"</string>
+    <string name="t_73e8cb50" formatted="false">"โค้ดต้นฉบับ งานศิลป์ต้นฉบับ เสียงสังเคราะห์ต้นฉบับ สร้างด้วย Kotlin, Jetpack Compose และ Android Canvas API\n\nไอคอน: CoreUI Icons Free โดย creativeLabs (coreui.io/icons) อนุญาตภายใต้ CC BY 4.0\n\nใบอนุญาตของไลบรารีภายนอกระบุไว้ใน LICENSES.md ในคลังโปรเจกต์"</string>
+    <string name="t_74066c59" formatted="false">"ในเกม"</string>
+    <string name="t_746ab6c3" formatted="false">"IPS สร้างดาเมจพิเศษ 35% ต่อฝูง วางไว้ตรงที่เลนมาบรรจบ"</string>
+    <string name="t_746d814e" formatted="false">"ลบรอบที่บันทึก เอเจนต์ที่ปลดล็อก สถิติ และการตั้งค่า ไม่สามารถย้อนกลับได้"</string>
+    <string name="t_74aa6c59" formatted="false">"€ งบประมาณไม่พอ"</string>
+    <string name="t_74fff44e" formatted="false">"สร้างร่างล่อของตัวเองที่ดูดซับกระสุน ANALYST และ ROOT ADMIN มองทะลุได้"</string>
+    <string name="t_750800eb" formatted="false">"ยิงเร็วเท่าใครในทีมและยิงบอสก่อนเสมอ ดาเมจสองเท่าต่อ [GG] GOOD GAME สูงสุดสี่ตัว"</string>
+    <string name="t_7596436a" formatted="false">"วิศวกรความปลอดภัยอาวุโสที่จบปริญญาตรีด้านความมั่นคงปลอดภัยไซเบอร์ หยุดการโจมตีด้วยการสร้างซอฟต์แวร์ที่ป้องกันมัน: บริการที่แข็งแรง แพตช์ และตัวกรองที่พร้อมก่อนการโจมตีจะมา ไม่ใช่หลังจากนั้น"</string>
+    <string name="t_75b191e4" formatted="false">"สร้างกำแพงขวางเส้นทางที่ใกล้ที่สุดในระยะ ภัยคุกคามหยุดที่กำแพงและต้องทำลายก่อนผ่านไปได้ บอสทำลายได้เร็วที่สุด เมื่อพัง ACE จะสร้างใหม่หลังผ่านไปไม่กี่วินาที แข็งแรงขึ้นทุกเลเวล กระสุนของมันเองสร้างดาเมจ {0}× ต่อบอสทุกตัวของห้าด่านแรก วางได้ไม่เกินสามตัว"</string>
+    <string name="t_75bd8866" formatted="false">"เลือกด่านและระดับความยาก"</string>
+    <string name="t_75e65d90" formatted="false">"แตะสองครั้งเพื่อวาง"</string>
+    <string name="t_75f24f6e" formatted="false">"ทุกไม่กี่วินาที ล็อกการอัปเกรดของเอเจนต์หนึ่งตัวนาน 8 วินาที อัปเกรดก่อนมันมาถึง"</string>
+    <string name="t_7682806a" formatted="false">"ขั้นที่ 2 — เลือก FIREWALL"</string>
+    <string name="t_77212b64" formatted="false">"นี่คือคลื่นโจมตีที่คุณเผชิญ มันเพิ่มขึ้นเรื่อย ๆ ตราบที่คุณยังรักษาเซิร์ฟเวอร์ไว้ — ทุกคลื่นที่ห้ามีบอส"</string>
+    <string name="t_772b21ba" formatted="false">"แนวป้องกันที่คุณวาง"</string>
+    <string name="t_77a2583e" formatted="false">"มีสองสิ่งที่ต่างกันที่ถูกเรียกว่า \"ควอนตัม\" ในวงการความปลอดภัย และควรแยกให้ออก การกระจายกุญแจเชิงควอนตัมใช้ฟิสิกส์ตรวจจับการดักฟังบนลิงก์ และใช้เฉพาะในสถานการณ์พิเศษที่หายาก วิทยาการเข้ารหัสหลังควอนตัมคือคณิตศาสตร์ซอฟต์แวร์ธรรมดาที่ออกแบบให้ทนคอมพิวเตอร์ควอนตัมในอนาคต และเป็นตัวที่กำลังถูกนำมาใช้จริง"</string>
+    <string name="t_77a6da9b" formatted="false">"วงแหวนที่แผ่ออกจากแกน"</string>
+    <string name="t_77d03aa5" formatted="false">"การฉีดแบบบอดไม่ได้รับข้อความแสดงข้อผิดพลาดกลับมา ผู้โจมตีจึงอนุมานคำตอบทีละคำถามจริง-เท็จ ช้ากว่าและอดทนกว่าการฉีดทั่วไปมาก และมาพร้อมการเสริมความแข็งต่อการป้องกันพื้นฐาน"</string>
+    <string name="t_77e5929c" formatted="false">"แตะครั้งแรกแสดงระยะของเอเจนต์ตรงจุดนั้น แตะอีกครั้งเพื่อวาง"</string>
+    <string name="t_77e8896f" formatted="false">"เส้นทางเดียวผ่ากระดานจากมุมถึงมุมห้าครั้ง"</string>
+    <string name="t_77f7e381" formatted="false">" · เกราะ {0}"</string>
+    <string name="t_782074f1" formatted="false">"  ·  อัตโนมัติ {0}"</string>
+    <string name="t_7841323b" formatted="false">"กวาดเชิงรับ"</string>
+    <string name="t_78526608" formatted="false">"คลื่นที่ไปถึง"</string>
+    <string name="t_78a52e3b" formatted="false">"ซ่อนอยู่"</string>
+    <string name="t_7922c8d5" formatted="false">"เสริมเอเจนต์ทุกตัวในระยะ: +30% ดาเมจ, +20% อัตรายิง"</string>
+    <string name="t_79a4baee" formatted="false">"&lt; กลับ"</string>
+    <string name="t_79fc7a80" formatted="false">"มีผลเฉพาะเมื่อเปิด เริ่มคลื่นอัตโนมัติ"</string>
+    <string name="t_7a1f56c4" formatted="false">"ซิงก์ตอนนี้"</string>
+    <string name="t_7aba529e" formatted="false">"ทำลายการเข้ารหัสของมัน: ดาเมจ ×{0}"</string>
+    <string name="t_7abfb3c7" formatted="false">"แยกเป็นสองเมื่อพลังชีวิตเหลือครึ่ง และครึ่งที่สองไปอีกเส้นทาง"</string>
+    <string name="t_7b3bb73f" formatted="false">"กำจัดภัยคุกคามแล้ว"</string>
+    <string name="t_7b84a6c4" formatted="false">"เชื่อมบัญชี Google ที่หน้าจอ GOOGLE PLAY เพื่อดูและโพสต์บนกระดานทั่วโลก รอบของคุณยังบันทึกบนอุปกรณ์นี้"</string>
+    <string name="t_7ba7f176" formatted="false">"+{0}% ดาเมจ"</string>
+    <string name="t_7be6fbad" formatted="false">"คลื่น {0} · หยุดการจำลอง"</string>
+    <string name="t_7bf2105b" formatted="false">"การปฏิเสธการให้บริการแบบกระจาย"</string>
+    <string name="t_7c4e4414" formatted="false">"สุดท้าย"</string>
+    <string name="t_7c6853de" formatted="false">"ทั่วโลก · {0}"</string>
+    <string name="t_7d5cc77f" formatted="false">"คริปโตที่ได้ทั้งหมด"</string>
+    <string name="t_7dc33bc2" formatted="false">"ถึงเลเวลสูงสุดแล้ว"</string>
+    <string name="t_7e1cf3a7" formatted="false">"ซ่อม"</string>
+    <string name="t_7e522f64" formatted="false">"เครดิต"</string>
+    <string name="t_7e72ed35" formatted="false">"บันทึกความคืบหน้าในบัญชีแล้ว"</string>
+    <string name="t_7e906966" formatted="false">"บันทึก {0} เพลงลง Music/CyOps TD แล้ว"</string>
+    <string name="t_7ea71dbe" formatted="false">"เปิด เอเจนต์ อีกครั้งแล้วเลือก TARPIT มันไม่สร้างดาเมจ — มันทำให้ภัยทุกตัวในออร่าช้าลง FIREWALL ของคุณจึงยิงใส่ได้มากขึ้น"</string>
+    <string name="t_7f11b512" formatted="false">"{0} · {1} ต่อรอบ {2}"</string>
+    <string name="t_7fd8e294" formatted="false">"&gt; แนวขอบออนไลน์"</string>
+    <string name="t_804ef7d5" formatted="false">"การโจมตีที่พบบ่อยที่สุดบนอินเทอร์เน็ต และเป็นภัยพื้นฐานที่นี่ ผู้โจมตีพิมพ์คำสั่งฐานข้อมูลลงในช่องที่ควรเป็นชื่อหรือรหัสผ่าน ถ้าแอปส่งต่อไปตรง ๆ ฐานข้อมูลก็จะทำตาม"</string>
+    <string name="t_80592dd9" formatted="false">"เวอร์ชัน"</string>
+    <string name="t_8175c5fc" formatted="false">"ความสมบูรณ์ CORE-SERVER"</string>
+    <string name="t_8198af01" formatted="false">"ซ่อนตัว 2 วินาทีในทุก 6 วินาที: ไม่มีอะไรเล็งมันได้ ดาเมจกระจายและโซ่ยังโดนมัน"</string>
+    <string name="t_81e23c68" formatted="false">"อื่น ๆ: เฉพาะหน่วยเล็กและอีลีท ไม่ยิงบอส"</string>
+    <string name="t_8230b283" formatted="false">"IDS สร้างดาเมจพิเศษ 45% ต่อการโจมตีที่เร็ว และเห็นมันมาก่อนใคร"</string>
+    <string name="t_82966ea3" formatted="false">"จำนวนคลื่น"</string>
+    <string name="t_829e8e06" formatted="false">"เอเจนต์ในระยะของมันถูกรบกวนไม่ได้ ดาเมจ {0}× ต่อ WHITE EYE และ BLACK EYE สูงสุดสองตัว"</string>
+    <string name="t_82a1fee3" formatted="false">"แน่ใจไหมว่าจะเริ่มรอบนี้ใหม่?"</string>
+    <string name="t_82a70835" formatted="false">"ถ้าไม่เชื่อม ความคืบหน้าอยู่บนอุปกรณ์นี้เท่านั้น การถอนการติดตั้งหรือรีเซ็ตเป็นค่าโรงงานจะลบมัน การซื้อรอดทั้งสองกรณี"</string>
+    <string name="t_830a30fd" formatted="false">"งบประมาณ"</string>
+    <string name="t_830b01d9" formatted="false">"เฟิร์มแวร์คูณดาเมจของเอเจนต์ทุกตัวที่คุณวาง ในทุกแมตช์นับจากนี้ มันถูกใช้ก่อนเกราะและก่อนตารางแพ้ทาง จึงช่วย Cryptographer ต่อการเข้ารหัสได้เท่ากับที่ช่วย Firewall ต่อทราฟฟิกธรรมดา"</string>
+    <string name="t_831712ed" formatted="false">"ปลดล็อกเอเจนต์ไซเบอร์ใหม่"</string>
+    <string name="t_83186dce" formatted="false">"อุปกรณ์นี้เท่านั้น"</string>
+    <string name="t_8340a76d" formatted="false">"ทำไมจึงสำคัญ"</string>
+    <string name="t_838b0928" formatted="false">"เรียกการโจมตีคุ้มกันขณะเคลื่อนเข้ามา"</string>
+    <string name="t_8478f19e" formatted="false">"สิ่งที่ออกจากอุปกรณ์นี้"</string>
+    <string name="t_848f3f46" formatted="false">"ลบความคืบหน้าทั้งหมด?"</string>
+    <string name="t_852bda75" formatted="false">"โคเด็กซ์"</string>
+    <string name="t_862b3f34" formatted="false">"วางเอเจนต์ไซเบอร์"</string>
+    <string name="t_869cf6b4" formatted="false">"ลงทะเบียนชื่อเรียก"</string>
+    <string name="t_86cce90c" formatted="false">"อ่อนที่สุด"</string>
+    <string name="t_87442b62" formatted="false">"คลื่นถัดไป · BREACH"</string>
+    <string name="t_87a9dd3e" formatted="false">"คลื่น € และเฟิร์มแวร์"</string>
+    <string name="t_87d92d69" formatted="false">"ระยะตรวจจับไกลมาก +45% ดาเมจต่อการโจมตีที่เร็ว"</string>
+    <string name="t_8806feca" formatted="false">"สกิน CORE-SERVER หกแบบ พร้อม €2,000 NEONGRID ขายแยก"</string>
+    <string name="t_882561c2" formatted="false">"ประเมินภัยคุกคาม"</string>
+    <string name="t_891fc63b" formatted="false">"การปลอมแปลงหลุด"</string>
+    <string name="t_8980d82b" formatted="false">"เลือก {0} แล้ว — แตะโหนดที่ไฮไลต์เพื่อวาง"</string>
+    <string name="t_899bae42" formatted="false">"ไม่บังคับ ทุกอย่างในเกมใช้งานได้โดยไม่ต้องเชื่อม และไม่มีอะไรถูกอัปโหลดนอกจากความคืบหน้าของคุณ"</string>
+    <string name="t_89a47932" formatted="false">"เล่นเพลง"</string>
+    <string name="t_89c7b011" formatted="false">"เปิดแบบฟอร์มความยินยอมของ Google อีกครั้งเพื่อเปลี่ยนสิ่งที่พาร์ทเนอร์โฆษณาทำได้กับข้อมูลจากอุปกรณ์นี้ ความคืบหน้าในเกมเก็บอยู่บนอุปกรณ์นี้และไม่เคยเป็นส่วนหนึ่งของมัน"</string>
+    <string name="t_89d7c51c" formatted="false">"ออกไป ย้อนกลับ แล้ววิ่งกลับร่วมกันยาวสู่แร็ก"</string>
+    <string name="t_89dd34f8" formatted="false">"ปล่อยการเคลียร์ฝูงให้ IPS เพื่อให้ตัวตีหนักอยู่กับบอส"</string>
+    <string name="t_89e1b0eb" formatted="false">"สนามของมันดึง GRADIENT กลับลงขณะมันเร่ง"</string>
+    <string name="t_89e450ea" formatted="false">"ลบแล้ว · โฆษณาชุบชีวิตแยกต่างหาก"</string>
+    <string name="t_8a058fa3" formatted="false">"เส้นโค้งมาตรฐาน"</string>
+    <string name="t_8a86921d" formatted="false">"ปุ่มทางขวาเลื่อนได้ ด้านล่างมี: ร้านค้า, อุปกรณ์สวมใส่ (ใส่สกินและพื้นหลัง), GOOGLE PLAY (การซื้อและเซฟบนคลาวด์), กระดานผู้นำ, โคเด็กซ์ (อธิบายภัยและเอเจนต์), สถิติ, การตั้งค่า และ เกี่ยวกับ"</string>
+    <string name="t_8a96f0aa" formatted="false">"ไม่พร้อมใช้งาน"</string>
+    <string name="t_8aa097b1" formatted="false">"  (ล็อก)"</string>
+    <string name="t_8aec13a9" formatted="false">"การปฏิเสธการให้บริการแบบกระจาย: ปริมาณคือการโจมตี แต่ละคำขอเล็กน้อย แต่มันมาเร็วกว่าสิ่งใดในเกมและมีมาเรื่อย ๆ"</string>
+    <string name="t_8af0e8d8" formatted="false">"ความพยายามเจาะระบบที่ประสานกัน ไม่มีลูกเล่น มีแต่น้ำหนัก"</string>
+    <string name="t_8b094c6c" formatted="false">"กำลังเชื่อมต่อ Google Play…"</string>
+    <string name="t_8c42a507" formatted="false">"เข็มน้ำแข็งแผ่ออกจากแกนที่แช่แข็ง"</string>
+    <string name="t_8c61de92" formatted="false">"เริ่มคลื่นอัตโนมัติ"</string>
+    <string name="t_8d56a5da" formatted="false">"รอยวงรีช้า ๆ ที่โคจรรอบแกน"</string>
+    <string name="t_8d91a14b" formatted="false">"GOOGLE PLAY"</string>
+    <string name="t_8d9dd637" formatted="false">"บอส: ยิงเฉพาะบอส นอกนั้นหยุดยิง"</string>
+    <string name="t_8e0413ab" formatted="false">"รุ่นนี้ไม่มีการซื้อในแอป"</string>
+    <string name="t_8e3787c1" formatted="false">"ล็อก · {0} (ดีที่สุด: {1})"</string>
+    <string name="t_8f0536a7" formatted="false">"ติดตั้งสูงสุด"</string>
+    <string name="t_8f37a712" formatted="false">"ดาเมจที่สร้าง"</string>
+    <string name="t_8f48da3c" formatted="false">"เครือข่ายถูกเจาะ"</string>
+    <string name="t_8f5d0f11" formatted="false">"เศรษฐกิจ"</string>
+    <string name="t_8f61abf9" formatted="false">"กำลังทำงาน…"</string>
+    <string name="t_8f68a3ab" formatted="false">"&gt; กำลังโหลดซิกเนเจอร์ภัยคุกคาม"</string>
+    <string name="t_8ff6e51c" formatted="false">"ยังไม่มีรอบที่บันทึกบน {0}"</string>
+    <string name="t_90391726" formatted="false">"เล่นต่อ"</string>
+    <string name="t_910b3ae9" formatted="false">"เงินที่ได้เพื่อซื้อเอเจนต์ป้องกันเซิร์ฟเวอร์ คริปโต◇ ได้จากทุกการฆ่าและทุกคลื่นที่ผ่าน"</string>
+    <string name="t_915c2f22" formatted="false">"บันทึก {0} เพลงแล้ว จากนั้นโทรศัพท์ปฏิเสธที่เหลือ เคลียร์พื้นที่แล้วลองใหม่"</string>
+    <string name="t_919816cc" formatted="false">"ติดต่อ Google Play ไม่ได้ ของที่ซื้อแล้วยังเป็นของคุณ — ลอง กู้คืน เมื่อกลับมาออนไลน์"</string>
+    <string name="t_91ae1cd3" formatted="false">"อภิธานศัพท์ภาษาง่าย"</string>
+    <string name="t_91d4d5fc" formatted="false">"พร้อมใช้ · ◇ {0}"</string>
+    <string name="t_9231c915" formatted="false">"วงแหวนกักกันสีอำพันรอบปฏิกิริยาที่กำลังดำเนิน"</string>
+    <string name="t_933bf2fb" formatted="false">"ลบโฆษณา ครอบคลุมโฆษณาระหว่างรอบ โฆษณาชุบชีวิตแยกต่างหาก"</string>
+    <string name="t_935cf7b5" formatted="false">"อัตรายิงแบบเดียวกับหมวก กระสุนหนักกว่า และดาเมจ {0}× ต่อ SYN-STORM และ GRADIENT สูงสุดสองตัว"</string>
+    <string name="t_93875a49" formatted="false">"ระยะ"</string>
+    <string name="t_93f1bd2f" formatted="false">"อัตรายิงสูงมาก เล็งบอสก่อนสิ่งอื่นในระยะเสมอ และสร้างดาเมจสองเท่าต่อ [GG] GOOD GAME ปลดล็อกที่คลื่น 30 และวางได้ไม่เกินสี่ตัว"</string>
+    <string name="t_94061f4f" formatted="false">"แทบไม่สร้างดาเมจ ทุกอย่างในรัศมีคลานช้า ทำให้ภัยอยู่ในระยะของตัวสร้างดาเมจนานขึ้นมาก ราคาถูก และไร้ประโยชน์ถ้าอยู่เดี่ยว — มันคือตัวทวีพลังให้ทุกอย่างที่ยิงอยู่ข้าง ๆ"</string>
+    <string name="t_941dea68" formatted="false">"ตัวเลขดาเมจ"</string>
+    <string name="t_9427590a" formatted="false">"แสดงค่าดาเมจลอยเมื่อโจมตีโดน"</string>
+    <string name="t_94bbec0b" formatted="false">"แตะ คลื่นถัดไป เอเจนต์ยิงอัตโนมัติ ทุกการโจมตีที่คุณหยุดได้ให้ ◇ คริปโต ซึ่งใช้ซื้อเอเจนต์และอัปเกรดเพิ่ม"</string>
+    <string name="t_94dc88d3" formatted="false">"เฟิร์มแวร์แต่ละเลเวลเพิ่ม +{0}% ดาเมจให้เอเจนต์ทุกตัว และ +{1}% ◇ คริปโตที่ได้ในรอบ (สูงสุดสองเท่า) ในทุกแมตช์ต่อไป ไม่มีวันหายไป"</string>
+    <string name="t_95051192" formatted="false">"ยังไม่ตั้ง"</string>
+    <string name="t_952dc0bb" formatted="false">"กระดานผู้นำ"</string>
+    <string name="t_959b6bbb" formatted="false">"วางได้สูงสุด {0}"</string>
+    <string name="t_9655a074" formatted="false">"กระแสข้อมูลช้า ๆ หลังเมนูและกระดาน"</string>
+    <string name="t_97e1363f" formatted="false">"ลดดาเมจคงที่จำนวนมากทุกครั้งที่โดน"</string>
+    <string name="t_98189a64" formatted="false">"ไม่มี นี่คือการต่อสู้ตรง ๆ"</string>
+    <string name="t_9873614b" formatted="false">"ระยะตรวจจับไกลที่สุดในทีม และ +45% ดาเมจต่อการโจมตีที่เร็ว อัตรายิงช้า — เป็นหน่วยสอดแนมที่บังเอิญยิงได้ วางไว้ตรงที่ครอบคลุมเลนได้มากดีที่สุด"</string>
+    <string name="t_98a9c7f2" formatted="false">"€ งบประมาณ"</string>
+    <string name="t_98b63553" formatted="false">"ไม่ต้องมีบัญชีหรือล็อกอินเพื่อเล่น"</string>
+    <string name="t_98cc567c" formatted="false">"ดาเมจดีที่สุด"</string>
+    <string name="t_98f4abc6" formatted="false">"◇ {0} · ปลดล็อกที่คลื่น {1} บน {2}"</string>
+    <string name="t_98fbe3ee" formatted="false">"ล็อกหลายเป้า"</string>
+    <string name="t_991bd4c3" formatted="false">"CRYPTOGRAPHER ตัวเดียวพลิกทั้งการต่อสู้"</string>
+    <string name="t_991c8ba8" formatted="false">"อัปเกรดเอเจนต์ทั้งหมด"</string>
+    <string name="t_996095bd" formatted="false">"ชื่อ คำศัพท์ และเครื่องหมายการค้าบางอย่างที่กล่าวถึงในเกมนี้อาจเป็นทรัพย์สินของเจ้าของแต่ละราย การอ้างถึงดังกล่าวใช้เพื่อการระบุ การวิจารณ์ บริบททางการศึกษา และการนำเสนอเชิงนิยายภายในเกมเท่านั้น\n\nเกมนี้พัฒนาอย่างอิสระ และไม่มีส่วนเกี่ยวข้อง ไม่ได้รับการสนับสนุน รับรอง หรืออนุมัติจาก Red Hat, Microsoft หรือเจ้าของเครื่องหมายการค้าบุคคลที่สามรายใด\n\nเครื่องหมายการค้า ชื่อผลิตภัณฑ์ ชื่อบริษัท และโลโก้ของบุคคลที่สามทั้งหมดยังคงเป็นทรัพย์สินของเจ้าของแต่ละราย"</string>
+    <string name="t_99ab6437" formatted="false">"แสดงทัวร์เมนูหลักและคำอธิบายเฟิร์มแวร์อีกครั้ง เมื่อคุณเปิดหน้าจอเหล่านั้นครั้งถัดไป"</string>
+    <string name="t_99cfdd6c" formatted="false">"ตัวอย่าง {0}"</string>
+    <string name="t_99d175d2" formatted="false">"วาง TARPIT ไว้บนเส้นทางเพื่อลดการเร่ง"</string>
+    <string name="t_99f43c9c" formatted="false">"คริปโตไม่พอ"</string>
+    <string name="t_9a8ee779" formatted="false">"ยิงเร็วเท่าใครในทีมและยิงบอสก่อนเสมอ ดาเมจสองเท่าต่อ [!!!] BREACH สูงสุดสี่ตัว"</string>
+    <string name="t_9a9bcdd3" formatted="false">"ช่อง"</string>
+    <string name="t_9aa5d01a" formatted="false">"ไม่มีโฆษณาคั่นหลังแพ้เลย พร้อม €5,000 โฆษณาชุบชีวิตเป็นแบบสมัครใจและแยกต่างหาก — ดู แพ็กชุบชีวิต"</string>
+    <string name="t_9adba547" formatted="false">"คุ้มค่าที่สุดต่อยูโร"</string>
+    <string name="t_9ae9f14f" formatted="false">"จุดไกล ๆ ล่องลอยช้า ๆ"</string>
+    <string name="t_9aed28a1" formatted="false">"ถึงขีดจำกัดการวางแล้ว"</string>
+    <string name="t_9b08be38" formatted="false">"กำลังถาม Google Play เกมส์…"</string>
+    <string name="t_9b1d7455" formatted="false">"คลื่น {0}"</string>
+    <string name="t_9b4c97a7" formatted="false">"ตั้งชื่อตามม้าไม้: ซอฟต์แวร์ที่ดูเหมือนสิ่งที่คุณต้องการ แต่บรรทุกสิ่งที่คุณไม่ต้องการอย่างยิ่ง"</string>
+    <string name="t_9b557f99" formatted="false">"ดีที่สุดของคุณ: คลื่น {0}"</string>
+    <string name="t_9b989bfb" formatted="false">"ดีที่สุด"</string>
+    <string name="t_9bcd1b03" formatted="false">"พื้นหลังมีชีวิตทั้งเจ็ดแบบ พร้อม €2,000"</string>
+    <string name="t_9bd1faf7" formatted="false">"การคืนเงิน วิธีการชำระเงิน และใบเสร็จจัดการโดย Google ไม่ใช่เกมนี้"</string>
+    <string name="t_9c2ade2b" formatted="false">"เลเวล {0}  ×{1}"</string>
+    <string name="t_9c6be09c" formatted="false">"ตัวปรับแต่ง"</string>
+    <string name="t_9d0c4ff1" formatted="false">"&gt; คลื่น {0} ดำเนินอยู่ — เหลือภัย {1}"</string>
+    <string name="t_9d29de23" formatted="false">"คลื่นดีที่สุดแต่ละด่าน"</string>
+    <string name="t_9d2c3eea" formatted="false">"ศัพท์เครือข่าย"</string>
+    <string name="t_9d36e329" formatted="false">"ถูกเรียกค่าไถ่"</string>
+    <string name="t_9d5ca8b9" formatted="false">"ต้องการชุบชีวิตไหม?"</string>
+    <string name="t_9df821c5" formatted="false">"ยินดีต้อนรับสู่ CyOps TD"</string>
+    <string name="t_9e30871d" formatted="false">"เครื่องที่ถูกเจาะเครื่องเดียวรับคำสั่งจากคนอื่น บอตตัวเดียวไม่มีพิษภัย บอตเน็ตนับพันไม่ใช่ — นี่คือเหตุที่พวกมันมาเป็นกลุ่มเสมอ"</string>
+    <string name="t_9e77c8cf" formatted="false">"เพิ่มความเร็วจำลองระดับที่ห้าเพื่อเคลียร์คลื่นให้เร็ว"</string>
+    <string name="t_9ef0ebe5" formatted="false">"การแบ่งส่วน"</string>
+    <string name="t_9f26f678" formatted="false">"  →"</string>
+    <string name="t_9f70f631" formatted="false">"อัตรายิง"</string>
+    <string name="t_9fb6c271" formatted="false">"รบกวนเอเจนต์ใกล้เคียงชั่วครู่ ทำให้อัตรายิงช้าลง"</string>
+    <string name="t_a12f7814" formatted="false">"+{0} (บอส)"</string>
+    <string name="t_a15faa1f" formatted="false">"โหมด"</string>
+    <string name="t_a19abbd4" formatted="false">"เอเจนต์ไซเบอร์ทุกตัว หน้าที่ของมัน และคลื่นที่ปลดล็อกมัน"</string>
+    <string name="t_a21dbf00" formatted="false">"สะสมงบ €{0} แล้ว"</string>
+    <string name="t_a24181ff" formatted="false">"อะไรกำลังโจมตี"</string>
+    <string name="t_a2517472" formatted="false">"ร้านค้าไม่พร้อมใช้งาน"</string>
+    <string name="t_a29c69ba" formatted="false">"ออก"</string>
+    <string name="t_a2b3bef5" formatted="false">"ไปถึงคลื่น {0}"</string>
+    <string name="t_a2dd8300" formatted="false">"บททดสอบ สองเส้นทางย้อนกลับ แล้ววนหนึ่งรอบก่อนถึงแร็ก"</string>
+    <string name="t_a2e2f704" formatted="false">"ทำลายรหัส"</string>
+    <string name="t_a32353a8" formatted="false">"งบ €9,000"</string>
+    <string name="t_a36e1b6d" formatted="false">"ไม่มีในรุ่นนี้"</string>
+    <string name="t_a3ebab03" formatted="false">"ช่องโหว่ที่ไม่รู้จักและยังไม่ได้แพตช์"</string>
+    <string name="t_a4a2cd90" formatted="false">"&gt;&gt; สถิติใหม่ &lt;&lt;"</string>
+    <string name="t_a4fd7522" formatted="false">" · สูงสุด {0}"</string>
+    <string name="t_a5460e4e" formatted="false">"การโจมตีเดี่ยวช้าและหนักพร้อม +80% ดาเมจต่ออีลีทและบอส อ่อนต่อฝูง เปิดตัวเลือกเป้าหมาย เพื่อเล็งไปยังสิ่งที่คุณอยากกำจัดจริง ๆ"</string>
+    <string name="t_a596b409" formatted="false">"ความเร็ว 5× อยู่ในร้านค้า"</string>
+    <string name="t_a599c90a" formatted="false">"เอเจนต์ทุกตัวในระยะของมัน รวมถึงตัวเอง ไม่โดนรบกวนจากบอสใด ๆ กระสุนเร็วและหนัก พร้อมดาเมจ {0}× ต่อ WHITE EYE และ BLACK EYE ระยะเท่า TARPIT วางได้ไม่เกินสองตัว"</string>
+    <string name="t_a5b1ffba" formatted="false">"การเข้าถึงระบบไม่จำกัด"</string>
+    <string name="t_a5da8eea" formatted="false">"ติดอยู่ที่คลื่นหนึ่ง? สะสมงบ ติดตั้งเฟิร์มแวร์ แล้วกระดานเดิมจะตีแรงขึ้นในรอบถัดไป"</string>
+    <string name="t_a6291e29" formatted="false">"งบ €5,000"</string>
+    <string name="t_a62c1133" formatted="false">"ไม่มีความสามารถแฮกจริง — ไม่มีอะไรที่นี่แตะต้องเครือข่ายจริง"</string>
+    <string name="t_a66c22f9" formatted="false">"เปลี่ยนภาษาได้จาก การตั้งค่า ในเมนูหลัก: การสลับจะเริ่มเกมใหม่ ซึ่งจะจบรอบนี้"</string>
+    <string name="t_a6cd2e07" formatted="false">"{0}-{1} ตัวอักษร A-Z, 0-9, ขีดกลาง และขีดล่าง"</string>
+    <string name="t_a6ee02f4" formatted="false">"ยกเลิก"</string>
+    <string name="t_a727a483" formatted="false">"ประกอบด้วย"</string>
+    <string name="t_a7c5a24a" formatted="false">"กำลังบันทึกลง Music/CyOps TD…"</string>
+    <string name="t_a7c97dfd" formatted="false">"รีเซ็ต"</string>
+    <string name="t_a7e02911" formatted="false">"บนแกน"</string>
+    <string name="t_a7e24bd6" formatted="false">"การเล็งเป้า"</string>
+    <string name="t_a8031bce" formatted="false">"เปิดหน้าร้านค้า"</string>
+    <string name="t_a8191219" formatted="false">"SPOOFER สร้างร่างล่อของตัวเองที่ดูดซับกระสุน ANALYST และ ROOT ADMIN มองทะลุได้"</string>
+    <string name="t_a8768bb2" formatted="false">"สกินเอเจนต์"</string>
+    <string name="t_a8935036" formatted="false">"คริปโตที่ได้"</string>
+    <string name="t_a92b98a8" formatted="false">"คริปโต ◇"</string>
+    <string name="t_a9a8f56c" formatted="false">"ภาพ"</string>
+    <string name="t_a9ad0741" formatted="false">"€ รอบนี้"</string>
+    <string name="t_a9cf50ec" formatted="false">"ทราฟฟิกจริงวิ่งตามเส้นทางผ่านสวิตช์และเราเตอร์เพื่อไปถึงปลายทาง สองเส้นทางคดเคี้ยวที่นี่คือเส้นทางนั้น ย้อนกลับไปมาเพื่อให้คุณเห็นทุกฮอปพร้อมกัน"</string>
+    <string name="t_a9d9e481" formatted="false">"CORE-SERVER คือสิ่งที่คุณปกป้อง และค่า ความสมบูรณ์ บนแถบด้านบนคือชีวิตเดียวที่คุณมี ทุกแพ็กเก็ตร้ายที่ถึงแร็กจะกัดมันไปส่วนหนึ่ง ที่ 0 เซิร์ฟเวอร์ถูกเจาะและรอบจบ — ไม่ปล่อยอะไรผ่านเลยคืองานทั้งหมด"</string>
+    <string name="t_aab511c4" formatted="false">"ROOTKIT ซ่อนตัว 2 วินาทีในทุก 6 วินาทีและไม่มีอะไรเล็งมันได้ ดาเมจกระจายและโซ่ยังโดนมัน"</string>
+    <string name="t_aac1d4da" formatted="false">"ยังไม่เชื่อม"</string>
+    <string name="t_aadac61a" formatted="false">"แอปถามฐานข้อมูลด้วย SQL ถ้าข้อมูลที่ผู้ใช้ป้อนถูกวางตรงลงในคำถามนั้น ผู้โจมตีก็เขียนตอนจบเองได้ — ดึงตารางผู้ใช้ ข้ามการล็อกอิน หรือลบทั้งหมด วิธีแก้เก่าและรู้กันดี (คิวรีแบบพารามิเตอร์) ซึ่งทำให้น่าหงุดหงิดที่มันยังเป็นการโจมตีที่คุณเจอบ่อยที่สุด"</string>
+    <string name="t_ab62d63d" formatted="false">"ระบบตรวจจับการบุกรุกเฝ้าดูกิจกรรมเครือข่ายหรือโฮสต์เพื่อหารูปแบบที่ดูเหมือนการโจมตีและส่งการแจ้งเตือน มันรายงาน ไม่บล็อก ยังต้องมีคนหรือสิ่งอื่นลงมือตามสิ่งที่มันพบ"</string>
+    <string name="t_aca3253a" formatted="false">"บนสนาม · แตะบอสเพื่อดู"</string>
+    <string name="t_ad03a515" formatted="false">"แบ่งเครือข่ายเป็นโซน"</string>
+    <string name="t_ad26a7c7" formatted="false">"ไม่ทราบ"</string>
+    <string name="t_ae00f867" formatted="false">"การวิเคราะห์"</string>
+    <string name="t_ae59bf94" formatted="false">"ขาย  ◇ {0}"</string>
+    <string name="t_b0147d1e" formatted="false">"พึ่งเอเจนต์ที่ไม่ใช่ FIREWALL ในคลื่นนี้"</string>
+    <string name="t_b0af39a6" formatted="false">"เปลี่ยน"</string>
+    <string name="t_b0d341a2" formatted="false">"นานกว่าหนึ่งเดือน"</string>
+    <string name="t_b0f472d0" formatted="false">"ความยาก"</string>
+    <string name="t_b16e2042" formatted="false">"ทุ่งดาวสีม่วงหลังแร็ก"</string>
+    <string name="t_b2029176" formatted="false">"เริ่มคลื่นถัดไปอัตโนมัติหลังพักสั้น ๆ"</string>
+    <string name="t_b253fa2b" formatted="false">"วิทยาการเข้ารหัสปกป้องข้อมูลระหว่างส่งและขณะจัดเก็บ ทำให้การดักจับไม่เท่ากับการอ่านได้ ผู้โจมตีก็ใช้มัน — ทราฟฟิกร้ายจำนวนมากถูกเข้ารหัส — ฝ่ายป้องกันจึงตรวจที่ปลายทางที่ตนควบคุม แทนที่จะพยายามทำลายการเข้ารหัสเอง"</string>
+    <string name="t_b28b05f8" formatted="false">"ระบบป้องกันการบุกรุก"</string>
+    <string name="t_b2dbc630" formatted="false">"ไฟร์วอลล์ทำงานอยู่"</string>
+    <string name="t_b32b1a1d" formatted="false">"ความสะดวก"</string>
+    <string name="t_b3735fe8" formatted="false">"โครงตาข่ายวงจรที่หายใจไปกับคลื่น"</string>
+    <string name="t_b3b53e34" formatted="false">"การซื้อผูกกับบัญชี Google ของคุณ ไม่ใช่อุปกรณ์นี้ ติดตั้งใหม่หรือเปลี่ยนโทรศัพท์ก็ไม่หาย"</string>
+    <string name="t_b3c34c67" formatted="false">"เมื่อสักครู่"</string>
+    <string name="t_b40b6d1c" formatted="false">"\"ทีมแดง\" โจมตีระบบโดยได้รับอนุญาต เพื่อหาสิ่งที่ผู้โจมตีจะพบก่อน \"หมวกแดง\" เป็นศัพท์ไม่เป็นทางการ ไม่ใช่ตำแหน่งหรือใบรับรอง และความหมายต่างกันไปตามผู้ใช้ ส่วนทีมแดงคือส่วนที่เป็นมาตรฐาน"</string>
+    <string name="t_b5ca7a98" formatted="false">"คลื่นดีที่สุดของผู้เล่นแต่ละคนทั่วโลก เรียงตามชื่อเรียก ลงทะเบียนชื่อทางขวา ไม่เช่นนั้น Google จะแสดงชื่อ Play เกมส์ของคุณ"</string>
+    <string name="t_b649891d" formatted="false">"หยุดชั่วคราว"</string>
+    <string name="t_b683e66d" formatted="false">"{0} ถูกล็อก: {1} เพื่อปลดล็อก"</string>
+    <string name="t_b6bcb68c" formatted="false">"ดาเมจเป้าเดี่ยวหนัก เท่ากันทุกนัด ไม่สนเกราะทั้งหมด"</string>
+    <string name="t_b7ba0ba1" formatted="false">"REGENERATION ซ่อมมันเมื่อไม่โดนครบ {0} วินาที ยิงใส่มันตลอดทาง"</string>
+    <string name="t_b7c4c2a3" formatted="false">"[{0}] {1} (ล็อก): {2}"</string>
+    <string name="t_b7cf2aab" formatted="false">"ไม่มีแอปที่เปิด GOOGLE PLAY ได้"</string>
+    <string name="t_b8201e22" formatted="false">"ถัดไป: คลื่น {0} · บอส"</string>
+    <string name="t_b82dfd13" formatted="false">"พาคุณไปที่"</string>
+    <string name="t_b835d746" formatted="false">"ขั้นที่ 5 — วาง TARPIT สองตัว"</string>
+    <string name="t_b8cbfe08" formatted="false">"ไกล CORE-SERVER ที่สุด"</string>
+    <string name="t_b8f9cbc8" formatted="false">"ดาเมจ {0}  อัตรา {1}/วิ"</string>
+    <string name="t_b8ffa95c" formatted="false">"มีชีวิต: แสงเหนือ"</string>
+    <string name="t_b9918647" formatted="false">"ได้ค่าจ้างให้มาอยู่ที่นี่ ไม่มีลูกเล่น ไม่มีการรบกวน — มากกว่าสิ่งอื่นบนกระดานยี่สิบเปอร์เซ็นต์"</string>
+    <string name="t_b9a3ada7" formatted="false">"EXFIL เร็ว ถ้าถึงแกนจะขโมยคริปโตครึ่งหนึ่งแทนความสมบูรณ์ ใช้ก่อน หรือหยุดมัน"</string>
+    <string name="t_b9c6b239" formatted="false">"วาดอยู่ใต้เลน และหลังทุกเมนู"</string>
+    <string name="t_badb0f4a" formatted="false">"เร่งความเร็วพุ่งเข้าหาเซิร์ฟเวอร์เป็นระยะ"</string>
+    <string name="t_bae2cee7" formatted="false">"ใช่ — ดูโฆษณา"</string>
+    <string name="t_bb0a2d46" formatted="false">"เลือก"</string>
+    <string name="t_bb621985" formatted="false">"แข็งแกร่ง"</string>
+    <string name="t_bb93827c" formatted="false">"ชุบชีวิตล้มเหลว — รอบจบไปแล้ว"</string>
+    <string name="t_bc855067" formatted="false">"ปฏิเสธการเข้าถึง"</string>
+    <string name="t_bcdf64b3" formatted="false">"SQL INJECTION"</string>
+    <string name="t_bceaf8ce" formatted="false">"!!! การโจมตีไซเบอร์กำลังมา !!!"</string>
+    <string name="t_bd0c6acd" formatted="false">"ถัดไป € {0} · +{1}% {2} ต่อเลเวล"</string>
+    <string name="t_bd1b1fc9" formatted="false">"ปิด"</string>
+    <string name="t_bd8215e6" formatted="false">"ใช่ อธิบายให้ฟัง"</string>
+    <string name="t_bd84c20a" formatted="false">"รักษาคลื่น {0} ได้"</string>
+    <string name="t_be1fc25b" formatted="false">"ดาเมจรอบด้านที่เชื่อถือได้ และถูกรบกวนไม่ได้"</string>
+    <string name="t_beb11f45" formatted="false">"ตัวปรับแต่งบอส"</string>
+    <string name="t_beb3cdc3" formatted="false">"สนามของมันทำให้บอสช้าลงสองเท่าของภัยอื่น"</string>
+    <string name="t_bec37550" formatted="false">"ซ่อมสด"</string>
+    <string name="t_bed8ffbb" formatted="false">"กู้คืน จะถาม Play อีกครั้งว่าบัญชี Google นี้มีอะไร กดได้อย่างปลอดภัยทุกเมื่อและไม่มีค่าใช้จ่าย"</string>
+    <string name="t_bf09fcca" formatted="false">"รุ่นนี้ไม่ได้ตั้งค่าโปรเจกต์ Play เกมส์ ความคืบหน้าจึงอยู่บนอุปกรณ์นี้ การสำรองข้อมูลของ Android เองยังกู้คืนให้เมื่อคุณติดตั้งใหม่บนโทรศัพท์ที่ลงชื่อบัญชี Google เดียวกัน"</string>
+    <string name="t_bf0c2eaa" formatted="false">"กำลังจำลองตัว"</string>
+    <string name="t_bf7cfb98" formatted="false">"รุ่นนี้ไม่มีโฆษณาให้ตั้งค่า"</string>
+    <string name="t_c1386132" formatted="false">"◇ คริปโต"</string>
+    <string name="t_c164d2e8" formatted="false">"ยิงเร็วเท่าหมวกและตีแรงกว่า พร้อมดาเมจ {0}× ต่อบอส DUCK-USB อย่าง SYN-STORM และ GRADIENT คงโหมดเล็งเป้าไว้ วางได้ไม่เกินสองตัว วาดเป็นโฮโลแกรมที่สกินเอเจนต์ไม่เปลี่ยน"</string>
+    <string name="t_c19b9c99" formatted="false">"ความสมบูรณ์ CORE-SERVER 0 · การเชื่อมต่อสิ้นสุด"</string>
+    <string name="t_c1b7bcc5" formatted="false">"รุ่นนี้ไม่แสดงโฆษณา"</string>
+    <string name="t_c2658f4d" formatted="false">"ดาเมจเป้าเดี่ยวมหาศาล ไม่สนเกราะทั้งหมด"</string>
+    <string name="t_c2c8c2f8" formatted="false">"แสดงระยะเอเจนต์"</string>
+    <string name="t_c2d127eb" formatted="false">"ข้าม ×"</string>
+    <string name="t_c31db047" formatted="false">"แพ็กชุบชีวิต — ไม่มีโฆษณา"</string>
+    <string name="t_c39850a1" formatted="false">"ขั้นที่ 3 — วาง FIREWALL สองตัว"</string>
+    <string name="t_c3e1a996" formatted="false">"◇ คริปโตและ € งบประมาณเป็นทรัพยากรสมมติในเกม ไม่มีมูลค่าเป็นเงิน แลกกับสิ่งใดนอกเกมไม่ได้ และออกจากอุปกรณ์ไม่ได้"</string>
+    <string name="t_c405af57" formatted="false">"เล่น เริ่มรอบในด่านและโหมดที่เลือกทางซ้าย เมื่อมีรอบที่บันทึก ต่อ จะเล่นต่อ และ รอบใหม่ จะเริ่มใหม่"</string>
+    <string name="t_c40bc4a4" formatted="false">"IDS เฝ้าติดตามกิจกรรมเครือข่ายเพื่อหาพฤติกรรมน่าสงสัยและภัยความปลอดภัย แล้วส่งการแจ้งเตือน มันเฝ้าดู ไม่บล็อก"</string>
+    <string name="t_c4a14a23" formatted="false">"เลือก FIREWALL ราคาถูก เชื่อถือได้ และถูกรบกวนไม่ได้"</string>
+    <string name="t_c4b7782d" formatted="false">"นักวิเคราะห์ความปลอดภัยเป็นอาชีพจริง มนุษย์ในวงจรรับสิ่งที่เครื่องมืออัตโนมัติแจ้ง หาว่าเกิดอะไรขึ้นจริง และตัดสินว่าจะทำอย่างไร ช้ากว่าเครื่อง แต่เก่งกว่ามากกับกรณีที่ไม่ตรงรูปแบบที่รู้จัก"</string>
+    <string name="t_c4d0dc6f" formatted="false">"เครื่องมือแมชชีนเลิร์นนิงแจ้งรูปแบบผิดปกติจากสัญญาณมากกว่าที่คนอ่านไหวมาก และใช้คัดกรองว่าอะไรควรสนใจ มันช่วยนักวิเคราะห์ ไม่ได้แทนที่ และมีการแจ้งเตือนผิดพลาด — การแจ้งคือเบาะแส ไม่ใช่คำตัดสิน"</string>
+    <string name="t_c51041e3" formatted="false">"  ·"</string>
+    <string name="t_c55cc938" formatted="false">"รอบใหม่"</string>
+    <string name="t_c55e934e" formatted="false">"เลื่อนเพื่อดูเพิ่ม"</string>
+    <string name="t_c570c6cd" formatted="false">"คอลัมน์โค้ดร่วงอยู่ในแร็ก"</string>
+    <string name="t_c5cb18f9" formatted="false">"ทุกด่าน"</string>
+    <string name="t_c81c4fa0" formatted="false">"1 เลเวล"</string>
+    <string name="t_c8a9aae9" formatted="false">"สามเส้นทางถักกันสองครั้ง: ทุกเลนสลับข้าง"</string>
+    <string name="t_c9301368" formatted="false">"แกน: REACTOR"</string>
+    <string name="t_c9402c75" formatted="false">"ไม่"</string>
+    <string name="t_c944e5aa" formatted="false">"มาตรการตอบโต้"</string>
+    <string name="t_c9a2aee9" formatted="false">"ปลดล็อกเอเจนต์นี้โดยไปถึงคลื่น {0} ในด่านใดก็ได้"</string>
+    <string name="t_ca02a8f8" formatted="false">"เอเจนต์แต่ละตัวสวมสีตามหน้าที่ของมัน"</string>
+    <string name="t_ca5ea88d" formatted="false">"คุ้มค่าที่สุด"</string>
+    <string name="t_cabf47fa" formatted="false">"สูงสุด +{0}"</string>
+    <string name="t_cb02b3da" formatted="false">"วงจรสีช้า ๆ ทั่วทั้งทีม"</string>
+    <string name="t_cb1fd3f1" formatted="false">"IPS คือ IDS ที่มีอำนาจลงมือ เมื่อรู้จักการโจมตี มันทิ้งทราฟฟิกเองแทนที่จะแค่บอกใคร"</string>
+    <string name="t_cb4ff573" formatted="false">"โฆษณาและการซื้อ"</string>
+    <string name="t_cbd3b516" formatted="false">"ไม่มีโฆษณา สกินเอเจนต์ SPECTRUM พื้นหลัง DRIFT และ €2,000"</string>
+    <string name="t_cbd47695" formatted="false">"บล็อกเพย์โหลด"</string>
+    <string name="t_cbf7d422" formatted="false">"SYN-STORM แยกเป็นสองเมื่อพลังชีวิตเหลือครึ่ง และครึ่งที่สองไปอีกเส้นทาง คุมทุกเส้นทาง"</string>
+    <string name="t_cc52e024" formatted="false">"ถัดไป: คลื่น {0} — บอส · แตะ บอสถัดไป เพื่อดูบรีฟ"</string>
+    <string name="t_cc5435ac" formatted="false">"อะไรกำลังมาตามเลน"</string>
+    <string name="t_cc5c44e8" formatted="false">"โฟกัส: หน่วยเล็กและอีลีทเท่านั้น"</string>
+    <string name="t_cc6791f1" formatted="false">"ต้านเอเจนต์ FIREWALL"</string>
+    <string name="t_cc7fe141" formatted="false">"เฝ้าดูเครื่องมือเชิงรุก รบกวนเอเจนต์ RED HAT ที่อยู่ใกล้ชั่วครู่ทุกไม่กี่วินาที"</string>
+    <string name="t_cc9e044b" formatted="false">"มีชีวิต: วงโคจร"</string>
+    <string name="t_ccb963f2" formatted="false">"แพ็กเก็ต"</string>
+    <string name="t_ccbd0815" formatted="false">"แร็กเริ่มต้น"</string>
+    <string name="t_ccbefbf5" formatted="false">"ระยะสแกน {0}"</string>
+    <string name="t_ccd3b8ff" formatted="false">"ตัวเลือกความเป็นส่วนตัวไม่พร้อมใช้งานในตอนนี้"</string>
+    <string name="t_cce0919d" formatted="false">"เป็นเจ้าของแล้ว"</string>
+    <string name="t_cd27794d" formatted="false">"ชื่อเรียกใช้เฉพาะในอุปกรณ์นี้และไม่ใช่บัญชี Google ใช้ตั้งชื่อรอบของคุณบนกระดานผู้นำ"</string>
+    <string name="t_cd7ef0df" formatted="false">"ประกาศเครื่องหมายการค้าและบุคคลที่สาม"</string>
+    <string name="t_cd8fc1d8" formatted="false">"มีการซื้อในแอปแบบเลือกได้ผ่าน Google Play ไม่มีอะไรในเกมถูกล็อกไว้หลังการซื้อ"</string>
+    <string name="t_cde6047e" formatted="false">"ระบบตรวจจับการบุกรุก"</string>
+    <string name="t_ce2cde0d" formatted="false">"ขั้นที่ 1 — เปิดทีม"</string>
+    <string name="t_ce56b8c8" formatted="false">"จัดการบน GOOGLE PLAY"</string>
+    <string name="t_ce8b48c9" formatted="false">"การเล่น"</string>
+    <string name="t_cec6cd66" formatted="false">"ยังไม่มีรอบที่บันทึก เล่นให้จบสักรอบแล้วจะแสดงที่นี่ เรียงตามคลื่นที่คุณไปถึง"</string>
+    <string name="t_cee3b8c9" formatted="false">"ข้าม"</string>
+    <string name="t_cfd886ad" formatted="false">"สองเส้นทางกวาดครึ่งของตัวเอง ป้อมในช่องกลางเอื้อมถึงทั้งสอง"</string>
+    <string name="t_d0112898" formatted="false">"ตัวล่อ"</string>
+    <string name="t_d07db54c" formatted="false">"ROOT / ADMIN"</string>
+    <string name="t_d08f5138" formatted="false">"สองเส้นทางคดเคี้ยวที่ย้อนผ่านปืนชุดเดิม"</string>
+    <string name="t_d10c0c39" formatted="false">"อัตรายิงสูงมากและทุกนัดกระจาย จึงเป็นคำตอบของฝูง ไม่ใช่เป้าหนักตัวเดียว แพงกว่า IDS และยิงได้ใกล้กว่า"</string>
+    <string name="t_d11351ac" formatted="false">"เปิด"</string>
+    <string name="t_d173b657" formatted="false">"บัญชีที่ทำได้ทุกอย่างบนระบบ ผู้โจมตีต้องการมัน ฝ่ายป้องกันเฝ้ามันอย่างระมัดระวัง งานความปลอดภัยส่วนใหญ่คือการจำกัดว่าใครได้มันและนานแค่ไหน"</string>
+    <string name="t_d19c7c8e" formatted="false">"◇ {0} · ปลดล็อกที่คลื่น {1}"</string>
+    <string name="t_d22f26dd" formatted="false">"โจมตีภัยแยกกันได้สูงสุด 3 ตัวในทุกชุดยิง"</string>
+    <string name="t_d2ee5fd2" formatted="false">"บันทึกความคืบหน้าอัตโนมัติ"</string>
+    <string name="t_d31b24bf" formatted="false">"{0} · {1}  ·  ดีที่สุด {2}"</string>
+    <string name="t_d35bc038" formatted="false">"{0} — {1} มันไม่สร้างดาเมจ มันซื้อเวลาให้เอเจนต์ตัวอื่น"</string>
+    <string name="t_d415f020" formatted="false">"ซีโร่เดย์คือช่องโหว่ที่ยังไม่มีทางแก้ — ฝ่ายป้องกันมีเวลาศูนย์วันในการแพตช์ นักวิจัยช่องโหว่ตามหามันเพื่อรายงานและแก้ไขก่อนที่คนอื่นจะเจอก่อน \"Zero-day hunter\" เป็นคำย่อไม่เป็นทางการ ไม่ใช่ใบรับรองหรือตำแหน่งทางการ"</string>
+    <string name="t_d477fdfb" formatted="false">"ติดตั้งเฟิร์มแวร์ครบแล้ว"</string>
+    <string name="t_d488d098" formatted="false">"การเล่นแบบนำทางต้องใช้ TARPIT ต่อไป"</string>
+    <string name="t_d48f1170" formatted="false">"▼  มีเพิ่มด้านล่าง"</string>
+    <string name="t_d4bb26ac" formatted="false">"แพ็กสกินแกน"</string>
+    <string name="t_d5acb32b" formatted="false">"สั่นเมื่อมีเตือนบอส เซิร์ฟเวอร์โดนโจมตี และเกมจบ"</string>
+    <string name="t_d5b86d2a" formatted="false">"ศูนย์ปฏิบัติการความปลอดภัย"</string>
+    <string name="t_d5d0b693" formatted="false">"ต่อ"</string>
+    <string name="t_d62907f6" formatted="false">"เฟิร์มแวร์ที่ติดตั้ง"</string>
+    <string name="t_d63b9487" formatted="false">"ติดต่อไม่ได้"</string>
+    <string name="t_d736d92d" formatted="false">"ตกลง"</string>
+    <string name="t_d8386755" formatted="false">"การเรียกเก็บเงิน GOOGLE PLAY"</string>
+    <string name="t_d84b41e9" formatted="false">"ดาเมจต่อเนื่องคือผู้ชนะ IPS หรือ FIREWALL ที่อัปเลเวลแล้ว"</string>
+    <string name="t_d8705eb7" formatted="false">"การโจมตีไซเบอร์รุกคืบตามเส้นทางเครือข่ายสู่ CORE-SERVER คุณวางเอเจนต์ไซเบอร์ข้างเลน พวกมันตรวจจับและทำลายสิ่งที่ผ่านมา ทุกการโจมตีที่คุณหยุดได้ให้ ◇ คริปโต ซึ่งใช้ซื้อเอเจนต์และอัปเกรดเพิ่ม ทุกคลื่นที่ห้าเป็นบอส ไม่มีคลื่นสุดท้าย — คำถามเดียวคือคุณไปได้ไกลแค่ไหน"</string>
+    <string name="t_d889d3ab" formatted="false">"+1, +10 และ +100 ซื้อจำนวนเลเวลนั้น ติดตั้งสูงสุด ใช้เท่าที่คุณจ่ายไหว แต่ละเลเวลแพงขึ้นเล็กน้อย"</string>
+    <string name="t_d8bcdc1d" formatted="false">"เริ่มใหม่"</string>
+    <string name="t_d8fec6d4" formatted="false">"เอเจนต์ที่วางทั้งหมด"</string>
+    <string name="t_d9074af5" formatted="false">"การเข้ารหัสสลับข้อมูลจนมีเพียงผู้ถือกุญแจที่ถูกต้องอ่านได้ มันปกป้องทราฟฟิกที่ถูกต้อง — และซ่อนเพย์โหลดของผู้โจมตีจากการตรวจได้ดีพอกัน"</string>
+    <string name="t_d92ad54a" formatted="false">"รุ่นนี้ไม่ได้ตั้งค่าการเรียกเก็บเงิน Google Play หรืออุปกรณ์นี้ไม่มี Play Store ซื้ออะไรไม่ได้ และไม่มีอะไรที่ต้องจ่ายเงินจำเป็นต่อการเล่น"</string>
+    <string name="t_d9694eb9" formatted="false">"ช่องโหว่เดิม ไม่มีการตอบกลับ แอปไม่คืนข้อผิดพลาดและไม่คืนข้อมูล ผู้โจมตีจึงถามคำถามใช่หรือไม่และดูว่าอะไรเปลี่ยน — เวลา ความยาวหน้า รหัสสถานะ — เพื่ออ่านฐานข้อมูลทีละบิต ช้า อดทน และจับได้ยากกว่ามากในล็อก"</string>
+    <string name="t_d9b49353" formatted="false">"ลองอีกครั้ง"</string>
+    <string name="t_d9b88563" formatted="false">"หน่วยของทราฟฟิกเครือข่าย"</string>
+    <string name="t_d9c57847" formatted="false">"แนวขอบพร้อม"</string>
+    <string name="t_da10b268" formatted="false">"ยังไม่มี"</string>
+    <string name="t_da169a1a" formatted="false">"ทั่วโลก"</string>
+    <string name="t_da3ae5ed" formatted="false">"ไม่สร้างดาเมจและไม่เล็งอะไร ซ่อมความสมบูรณ์ CORE-SERVER 1 แต้มทุก 30 วินาทีขณะคลื่นดำเนินอยู่ (ไม่ซ่อมช่วงพักหรือขณะหยุดชั่วคราว) วางได้บน CORE-SERVER เท่านั้น ซึ่งมีสองช่องสำหรับมัน และไม่มีที่อื่น เลเวลช่วยลดเวลา วางได้ไม่เกินสองตัว"</string>
+    <string name="t_dad4b11e" formatted="false">"กวาดเชิงรุก"</string>
+    <string name="t_db696c4d" formatted="false">"มหึมาและเกราะหนา แต่ช้า นำสิ่งที่ไม่สนเกราะมา"</string>
+    <string name="t_db971746" formatted="false">"เฝ้าดูเครื่องมือป้องกัน รบกวนเอเจนต์ BLUE HAT ที่อยู่ใกล้ชั่วครู่ทุกไม่กี่วินาที"</string>
+    <string name="t_dba0a883" formatted="false">"เครือข่ายของเครื่องที่ถูกยึด"</string>
+    <string name="t_dbc1a374" formatted="false">"ดูโฆษณาไม่จบ — ไม่เสียอะไร"</string>
+    <string name="t_dc09f8b7" formatted="false">"รบกวน — บอสก่อกวนเอเจนต์ได้ ทำให้อัตรายิงลดลงครึ่งหนึ่งระหว่างนั้น {0} ถูกสร้างมาให้ไม่สะทกสะท้าน"</string>
+    <string name="t_dc37fa05" formatted="false">"แถบแสงเย็นกว้าง ๆ เคลื่อนอยู่เบื้องหลังทุกสิ่ง"</string>
+    <string name="t_dc62badb" formatted="false">"ฉายา"</string>
+    <string name="t_dce01a82" formatted="false">"ใส่ชื่อเรียก"</string>
+    <string name="t_dd220c90" formatted="false">"โฆษณา"</string>
+    <string name="t_dd4083b5" formatted="false">"ยังไม่ได้ซื้ออะไร ทุกอย่างข้างบนหาได้ในเกม หรือเล่นโดยไม่มีก็ได้"</string>
+    <string name="t_dd55f56b" formatted="false">"สองเส้นทางสอดประสานกันสามครั้งก่อนถึงแร็ก เหมือนสาย DNA"</string>
+    <string name="t_ddb5514a" formatted="false">"เปิดใน GOOGLE PLAY เกมส์"</string>
+    <string name="t_ddcb2958" formatted="false">"ตั้งชื่อตามตัวแรกและเป็นนิยายวิทยาศาสตร์ล้วน ๆ: ทุกการโจมตีลามไปยังภัยใกล้เคียงสองตัวด้วยดาเมจ 55% แข็งแกร่งต่อคลื่นที่เกาะกลุ่ม สูญเปล่ากับเป้าเดี่ยว เปิดตัวเลือกเป้าหมาย"</string>
+    <string name="t_ddd374d9" formatted="false">"สรุปสั้น ๆ เกี่ยวกับการโจมตีที่คุณจะเจอ บอส และสิ่งที่เอเจนต์ของคุณทำเพื่อรับมือ ใช้เวลาประมาณยี่สิบวินาที"</string>
+    <string name="t_dee83e52" formatted="false">"ความทึบแผงในเกม"</string>
+    <string name="t_e00d9a42" formatted="false">"วางบนช่อง CORE-SERVER"</string>
+    <string name="t_e01007ce" formatted="false">"คุ้มค่าต่อยูโรกว่าแพ็กเล็ก"</string>
+    <string name="t_e07706fa" formatted="false">"อุปกรณ์นี้จนกว่าจะเชื่อม"</string>
+    <string name="t_e0a2aaa4" formatted="false">"เชื่อมบัญชี GOOGLE"</string>
+    <string name="t_e12d998f" formatted="false">"แพ็กเกจ"</string>
+    <string name="t_e13093ea" formatted="false">"ดาเมจ"</string>
+    <string name="t_e1892d25" formatted="false">"เฟิร์มแวร์แกน"</string>
+    <string name="t_e1df4ef7" formatted="false">"บอส"</string>
+    <string name="t_e3407723" formatted="false">"ใช่"</string>
+    <string name="t_e3a7e50c" formatted="false">"เก็บเซฟของฉัน"</string>
+    <string name="t_e3c4a9cc" formatted="false">"{0} รบกวนเอเจนต์ {1} ที่อยู่ใกล้ วางพวกมันไว้ด้านหลัง ที่ขอบระยะ"</string>
+    <string name="t_e4554374" formatted="false">"ปิด"</string>
+    <string name="t_e55f9c78" formatted="false">"สิ่งที่เกมนี้ไม่ทำ"</string>
+    <string name="t_e587f42b" formatted="false">"ค่าเริ่มต้นของระบบ (ภาษาโทรศัพท์)"</string>
+    <string name="t_e5e7e535" formatted="false">"SYN-STORM แยกตัว"</string>
+    <string name="t_e6694d9c" formatted="false">"ซ่อมความสมบูรณ์ CORE-SERVER 1 แต้มทุก 30 วินาทีของคลื่นที่ดำเนินอยู่ จากหนึ่งในสองช่องบน CORE-SERVER เร็วขึ้นตามเลเวล สูงสุดสองตัว"</string>
+    <string name="t_e807eff2" formatted="false">"กั้นกำแพงเส้นทางที่ใกล้ที่สุดในระยะ ภัยต้องทำลายมัน ตีบอสทุกตัวแรงมาก สูงสุดสามตัว"</string>
+    <string name="t_e8757749" formatted="false">"เคลียร์คลื่น {0} บน {1}"</string>
+    <string name="t_e8987cec" formatted="false">"รีเซ็ตความคืบหน้า"</string>
+    <string name="t_e94c961d" formatted="false">"สถิติ"</string>
+    <string name="t_e979d28d" formatted="false">"อัตรา"</string>
+    <string name="t_e99d5d17" formatted="false">"แพ็ก € ใช้แล้วหมด ไม่ใช่ของสะสม: จะเติมให้ครั้งเดียวและ กู้คืน จะไม่ให้อีก"</string>
+    <string name="t_e9caa97b" formatted="false">"ยังไม่มีการวางที่บันทึก เล่นสักรอบเพื่อให้มีข้อมูล"</string>
+    <string name="t_ea16b407" formatted="false">"ลายทองบนสีครามเข้ม"</string>
+    <string name="t_ea31efb2" formatted="false">"เคลียร์คลื่น {0}"</string>
+    <string name="t_eab5f205" formatted="false">"เปลี่ยนชื่อเรียก"</string>
+    <string name="t_eaf7396d" formatted="false">"ติดต่อ GOOGLE ไม่ได้ — เก็บเซฟไว้บนอุปกรณ์"</string>
+    <string name="t_eb2e832a" formatted="false">"เอเจนต์ {0}"</string>
+    <string name="t_ebdd4d5e" formatted="false">"ลบแล้ว · ไม่มี"</string>
+    <string name="t_ec91403d" formatted="false">"คลื่น"</string>
+    <string name="t_ed31a176" formatted="false">"โครงตาข่ายวงจรที่หายใจและตอบสนองต่อคลื่น"</string>
+    <string name="t_ed5c9d47" formatted="false">"ต่อเลเวล"</string>
+    <string name="t_ed7160a0" formatted="false">"ไม่เคย"</string>
+    <string name="t_ed7ecda7" formatted="false">"ล็อก"</string>
+    <string name="t_ee0803eb" formatted="false">"ทนทาน"</string>
+    <string name="t_ee094192" formatted="false">"รุ่นนี้ไม่ได้ตั้งค่าการเรียกเก็บเงิน Google Play จึงซื้ออะไรที่นี่ไม่ได้ ทุกส่วนของเกมที่ไม่ต้องใช้เงินทำงานตามปกติทุกประการ"</string>
+    <string name="t_ee5525d9" formatted="false">"KERNEL PANIC · {0} ถูกรบกวน"</string>
+    <string name="t_ee6595fd" formatted="false">"ทีมและห้องที่เฝ้าดูการแจ้งเตือน ถ้าเกมนี้มีฉาก ก็คือจอผนัง SOC ตอนตีสาม"</string>
+    <string name="t_eea62f11" formatted="false">"การซื้อ"</string>
+    <string name="t_eef967f2" formatted="false">"ซูมสนามรบ"</string>
+    <string name="t_ef29f425" formatted="false">"เสียง"</string>
+    <string name="t_efcf9890" formatted="false">"ดาเมจ {0} · อัตรา {1}/วิ · ระยะ {2}"</string>
+    <string name="t_f001b942" formatted="false">"เสริมป้อม"</string>
+    <string name="t_f03b01af" formatted="false">"ซ่อมตัวเองช้า ๆ หลังไม่โดนสักพัก"</string>
+    <string name="t_f100d10c" formatted="false">"ทุกอย่างที่มีป้าย ล็อก อยู่ในร้านค้า ไม่มีอะไรที่นี่เปลี่ยนวิธีเล่น — สกินคือรูปลักษณ์ ไม่ใช่ความได้เปรียบ"</string>
+    <string name="t_f16b76bc" formatted="false">"\"รับเบอร์ดั๊กกี้\" คือแฟลชไดรฟ์ USB ที่แกล้งเป็นคีย์บอร์ดและพิมพ์การโจมตีเร็วกว่าใคร การป้องกันคือตัวเฝ้า USB ที่ตรวจอุปกรณ์ใหม่ทุกตัวก่อนคอมพิวเตอร์จะเชื่อใจ และบล็อกคีย์บอร์ดที่พิมพ์เหมือนเครื่องจักร"</string>
+    <string name="t_f17dfdae" formatted="false">"เส้นทางยาวเส้นเดียวลงมาจากด้านบนและวนเป็นเกลียวออกไปสู่แร็ก"</string>
+    <string name="t_f25360a0" formatted="false">"การเปลี่ยนแปลงมีผลทันทีและเก็บไว้บนอุปกรณ์นี้"</string>
+    <string name="t_f293dfd1" formatted="false">"การตรวจสอบการซื้อ"</string>
+    <string name="t_f2e7479c" formatted="false">"เชื่อมบัญชี Google เพื่อเก็บความคืบหน้าบนโทรศัพท์หรือแท็บเล็ตใดก็ได้ Google จะขออนุญาตจัดการข้อมูลที่บันทึกของเกมนี้ในบัญชีของคุณ — นั่นคือพื้นที่เก็บเซฟเกม และเป็นทั้งหมดที่ใช้"</string>
+    <string name="t_f2ed0368" formatted="false">"เร็ว ถ้าถึงแกนจะขโมยคริปโตครึ่งหนึ่งแทนความสมบูรณ์"</string>
+    <string name="t_f2f63d9f" formatted="false">"บนอุปกรณ์นี้"</string>
+    <string name="t_f33c5b01" formatted="false">"ขั้นที่ 6 — เริ่มคลื่น"</string>
+    <string name="t_f38eb808" formatted="false">"ภัยแกร่งขึ้น ถี่ขึ้น ความสมบูรณ์น้อยลง รางวัลมากขึ้น"</string>
+    <string name="t_f3e23f71" formatted="false">"แกน: CASCADE"</string>
+    <string name="t_f49a4ff9" formatted="false">"เอเจนต์ถูกล็อก"</string>
+    <string name="t_f4f677dc" formatted="false">"รายได้ตลอดกาล"</string>
+    <string name="t_f5537783" formatted="false">"แกน: MAINFRAME"</string>
+    <string name="t_f590e2c9" formatted="false">"เส้นทาง"</string>
+    <string name="t_f5b866e4" formatted="false">"ความพยายามเจาะระบบที่ประสานกัน มีสำรองมากพอจะไม่สะทกสะท้านต่อเครือข่ายที่ไม่พร้อม ทุกคลื่นที่ห้ามาหนึ่งตัว และแต่ละตัวแกร่งกว่าตัวก่อน"</string>
+    <string name="t_f60f5840" formatted="false">"ยังไม่มีบัญชี CyOps และไม่มีรหัสผ่าน การซื้อติดตามบัญชี Google ที่ลงชื่อใน Play Store บนอุปกรณ์นี้ ความคืบหน้าติดตามบัญชี Google ที่คุณเชื่อมข้างบน — เป็นทางเลือกแยกต่างหาก: เกมสมบูรณ์โดยไม่ต้องมี"</string>
+    <string name="t_f692d3ce" formatted="false">"บอตเน็ต"</string>
+    <string name="t_f69a80a7" formatted="false">"เกมจะเริ่มใหม่เพื่อเปลี่ยนเป็น {0} ความคืบหน้าของคุณยังอยู่"</string>
+    <string name="t_f6f93110" formatted="false">"แกน: NEONGRID"</string>
+    <string name="t_f720bfa7" formatted="false">"เส้นสแกนฟอสเฟอร์ CRT"</string>
+    <string name="t_f76fff7f" formatted="false">"มัลแวร์: โค้ดที่เขียนขึ้นเพื่อทำลาย ก่อกวน หรือขโมย บรรทุกเพย์โหลดมากกว่าการฉีดธรรมดา จึงรับดาเมจได้มากกว่าก่อนแตกสลาย"</string>
+    <string name="t_f7a4fc70" formatted="false">"แตะอีกครั้งเพื่อวาง"</string>
+    <string name="t_f7a7b98a" formatted="false">"ดาเมจ {0} · อัตรา {1} · ระยะ {2}"</string>
+    <string name="t_f7eb1496" formatted="false">"อันดับตัดสินจากคลื่นที่ลึกที่สุดที่คุณไปถึง ดาเมจที่สร้างใช้ตัดสินเมื่อเสมอ"</string>
+    <string name="t_f803ec67" formatted="false">"ประวัติคำสั่งซื้อและการคืนเงิน"</string>
+    <string name="t_f85117ec" formatted="false">"ทั้ง {0} เพลงอยู่ใน Music/CyOps TD แล้ว"</string>
+    <string name="t_f8723c46" formatted="false">"ความเร็ว"</string>
+    <string name="t_f8d84db3" formatted="false">"ยังไม่ลงทะเบียน"</string>
+    <string name="t_f8e6e39f" formatted="false">"วิศวกรระบบดูแลให้เซิร์ฟเวอร์ทำงาน: แพตช์ เปลี่ยนชิ้นส่วนที่เสีย กู้คืนจากข้อมูลสำรอง และเฝ้าดูสุขภาพเครื่อง \"วิศวกรระบบเซิร์ฟเวอร์\" อธิบายงานลักษณะนั้น ชื่อตำแหน่งต่างกันไปตามองค์กร"</string>
+    <string name="t_f9807a9f" formatted="false">"&gt; สแตนด์บาย — วางเอเจนต์และเริ่มคลื่น 1"</string>
+    <string name="t_f9cec260" formatted="false">"การโจมตีใหญ่มากไม่กี่ครั้งแทบไม่ทำให้ GRADIENT เร็วขึ้น"</string>
+    <string name="t_f9d6b090" formatted="false">"ข้อมูล ASCII ล่องลอยหลังสนามรบและเมนู"</string>
+    <string name="t_fa1b4500" formatted="false">"สถิติสะสมจากทุกรอบ รวมถึงรอบที่คุณทิ้งจากเมนูหยุดชั่วคราว การรีเซ็ตความคืบหน้าใน การตั้งค่า จะลบทั้งหมด"</string>
+    <string name="t_fa60c2c6" formatted="false">"มีชีวิต: แผนที่ความร้อน"</string>
+    <string name="t_fb735826" formatted="false">"การสั่น"</string>
+    <string name="t_fb889492" formatted="false">"เกมทาวเวอร์ดีเฟนซ์ที่พัฒนาอย่างอิสระ เน้นออฟไลน์ ธีมความมั่นคงปลอดภัยไซเบอร์ สถานการณ์ เอเจนต์ และคำศัพท์ถูกแต่งขึ้นเพื่อการเล่น พร้อมคำอธิบายสั้น ๆ จากโลกจริงเพื่อให้เรียนรู้แนวคิดเบื้องหลังได้ ไม่สอนเทคนิคการโจมตีใด ๆ และไม่ทำหน้าที่ด้านความปลอดภัยจริง"</string>
+    <string name="t_fbca7f29" formatted="false">"มัลแวร์ในคราบที่ดูมีประโยชน์"</string>
+    <string name="t_fbd9e20c" formatted="false">"แอนิเมชันพื้นหลัง"</string>
+    <string name="t_fc778505" formatted="false">"แร็กสะอาด ไม่มีเครื่องหมาย"</string>
+    <string name="t_fcc1e712" formatted="false">"ความเป็นส่วนตัว"</string>
+    <string name="t_fd3cb488" formatted="false">"การลงชื่อเข้าใช้ทำงานอย่างไร"</string>
+    <string name="t_fdb0282f" formatted="false">"กำลังโหลดโฆษณา…"</string>
+    <string name="t_fde05efe" formatted="false">"ไปถึงคลื่น {0} บน {1}"</string>
+    <string name="t_fe26fa48" formatted="false">"คลื่นดีที่สุด"</string>
+    <string name="t_fe451d7a" formatted="false">"กู้คืนระบบแล้ว — ความสมบูรณ์ {0}"</string>
+    <string name="t_fe86390c" formatted="false">" · ความเร็ว {0}"</string>
+    <string name="t_feeee285" formatted="false">"สกินแกน {0} แบบ · พื้นหลัง {1} แบบ"</string>
+    <string name="t_feef9615" formatted="false">"บอสถัดไป"</string>
+    <string name="t_ff2d6a51" formatted="false">"สามเส้นทางสลับที่กันสองครั้ง ทุกจุดตัดคือที่ที่ยิงได้สองเส้น"</string>
+    <string name="t_ffa57dc1" formatted="false">"&gt; กำลังเมานต์โทโพโลยีเลน"</string>
+    <string name="t_ffc3db58" formatted="false">"ระยะ {0}"</string>
+    <string name="t_ffff9bd9" formatted="false">"เอเจนต์ค่อย ๆ ไล่ผ่านสเปกตรัมสี แต่ละหน่วยเหลื่อมจากหน่วยถัดไป"</string>
+</resources>
