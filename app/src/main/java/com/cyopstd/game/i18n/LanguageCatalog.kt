@@ -27,6 +27,8 @@ internal object LanguageCatalog {
         Language("vi", "Tiếng Việt", "Vietnamese"),
         Language("th", "ไทย", "Thai"),
         Language("uk", "Українська", "Ukrainian"),
-        Language("sv", "Svenska", "Swedish")
+        Language("sv", "Svenska", "Swedish"),
+        Language("da", "Dansk", "Danish"),
+        Language("nb", "Norsk bokmål", "Norwegian")
     )
 }
