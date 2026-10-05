@@ -1,0 +1,864 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Translation of values/strings_i18n.xml. Machine-quality (AI) translation; see FEATURE_BACKLOG.md. -->
+<resources>
+    <string name="t_0069698f" formatted="false">"予算 € {0}"</string>
+    <string name="t_00bdf050" formatted="false">"この端末"</string>
+    <string name="t_00c74b4a" formatted="false">"1回の斉射で最大3体の別々の脅威を攻撃する、広いウェーブへのチームの答え。ターゲットを選択可能。"</string>
+    <string name="t_00cb85ad" formatted="false">"ステップ4 — TARPITを選ぶ"</string>
+    <string name="t_00f316c1" formatted="false">"次のレベルのコスト"</string>
+    <string name="t_00fafa13" formatted="false">"このアカウントの所有物"</string>
+    <string name="t_01278423" formatted="false">"変わること"</string>
+    <string name="t_014c06bb" formatted="false">"{0}/{1} 解放 · 最高ウェーブ {2}"</string>
+    <string name="t_01b91dff" formatted="false">"RANSOMは数秒ごとに、エージェント1体のアップグレードを{0}秒間ロックする。到着前にアップグレードしておこう。"</string>
+    <string name="t_01ba7032" formatted="false">"0レベル"</string>
+    <string name="t_01f2a69d" formatted="false">"セッションメモ"</string>
+    <string name="t_0288b770" formatted="false">"下のコントロールバーにある「エージェント」ボタンをタップ。"</string>
+    <string name="t_02b88c49" formatted="false">"すべての音声は起動時に端末上で生成されます。サウンドファイルは同梱していません。"</string>
+    <string name="t_02f0f435" formatted="false">"root(管理者)はシステムで最も強い権限で、あらゆるプロセスを止め、何でも変更できる。だからこそ、できるだけ与えず、与えてもできるだけ短くするのが鉄則だ。「root admin」はこの権限レベルの略称で、職名ではない。"</string>
+    <string name="t_0306926d" formatted="false">"中央サーバーへ続く3本の攻撃レーン"</string>
+    <string name="t_0358799e" formatted="false">"これから先のすべての試合で、すべての{0}に適用。コアファームウェアに上乗せされる。序盤のレベルは安く、レベルごとに高くなり、最上位は数百万かかる。"</string>
+    <string name="t_0397b7d9" formatted="false">"ボスウェーブも自動開始"</string>
+    <string name="t_03d108e0" formatted="false">"連携済みだが、Googleに接続できません。何も失われていません。この端末のセーブで遊び、次の同期でアカウントに反映されます。"</string>
+    <string name="t_059b388a" formatted="false">"&gt; ウェーブ{0}突破 — ウェーブ{1}に備えよ"</string>
+    <string name="t_05ea5d0e" formatted="false">"最初から使用可能。"</string>
+    <string name="t_05f2ef1e" formatted="false">"次の曲"</string>
+    <string name="t_063d8618" formatted="false">"頼んだものに見せかけた敵性コード。動きは遅いが装甲が厚く、一撃ごとに威力を削るので、速くて弱い弾は無駄になる。"</string>
+    <string name="t_07269781" formatted="false">"難易度を選ぶと、その世界ランキングを表示します。"</string>
+    <string name="t_07a3d7ab" formatted="false">"リバイブを含め、所有しているものはすべて、どの端末でも「復元」でGoogle Playから戻ります。クラウドセーブには含まれないため、セーブファイルで購入を付与・削除することはできません。"</string>
+    <string name="t_07fbf4bd" formatted="false">"復活"</string>
+    <string name="t_08039ac7" formatted="false">"ストア"</string>
+    <string name="t_08175caa" formatted="false">"クラス別カラー"</string>
+    <string name="t_08218c08" formatted="false">"連携中…"</string>
+    <string name="t_08279524" formatted="false">"システムの特定の欠陥を突くコード。エクスプロイトは速く強烈で、迫ってきたら生の火力より探知範囲が物を言う。"</string>
+    <string name="t_086b8b8e" formatted="false">"ボス"</string>
+    <string name="t_08f0711d" formatted="false">"購入を復元"</string>
+    <string name="t_09653280" formatted="false">"コアまで"</string>
+    <string name="t_0a0bc63d" formatted="false">"前の曲"</string>
+    <string name="t_0a2301f4" formatted="false">"進行状況を保存しました"</string>
+    <string name="t_0a344034" formatted="false">"次: ウェーブ{0}"</string>
+    <string name="t_0ae74b3e" formatted="false">"ゼロデイ・ストライク"</string>
+    <string name="t_0b205685" formatted="false">"ネットワークを初期化中..."</string>
+    <string name="t_0b809aa5" formatted="false">"{0}の世界ランキングはまだありません。そこでのランはこの端末に記録されます。"</string>
+    <string name="t_0bc6e19b" formatted="false">"自身はダメージを与えない。範囲内の全エージェントのダメージを+30%、連射速度を+20%強化する。価値はすべて置き場所で決まる。"</string>
+    <string name="t_0bd16003" formatted="false">"最大"</string>
+    <string name="t_0bfbeb5b" formatted="false">"TARPITのフィールドで足止めし、IPSに渋滞を片付けさせよう。"</string>
+    <string name="t_0c121fb2" formatted="false">"進行状況を同期しました"</string>
+    <string name="t_0c147607" formatted="false">"ディープスキャン"</string>
+    <string name="t_0c16a4ef" formatted="false">"まだスコアがありません。ランを終えて一番乗りになろう。"</string>
+    <string name="t_0c997319" formatted="false">"WORM分裂"</string>
+    <string name="t_0cb4ce2b" formatted="false">"ウェーブ{0}防衛  ◇{1}"</string>
+    <string name="t_0cfa4a6e" formatted="false">"このレベルのボス"</string>
+    <string name="t_0d884b08" formatted="false">"侵入(ボス)"</string>
+    <string name="t_0d8c63a6" formatted="false">"各ヒットが近くの脅威2体に連鎖し、55%のダメージを与える。"</string>
+    <string name="t_0df4bfec" formatted="false">"弱点"</string>
+    <string name="t_0e69fc6c" formatted="false">"配置バーに各エージェントのアイコンとコストだけを表示"</string>
+    <string name="t_0eb480b6" formatted="false">"奥へ遠ざかる遠近グリッドと、その下を走る光の帯。"</string>
+    <string name="t_0f47943c" formatted="false">"フォーカス解除"</string>
+    <string name="t_0f5d5911" formatted="false">"省電力モード"</string>
+    <string name="t_0f80d304" formatted="false">"エージェントのダメージ"</string>
+    <string name="t_0f9a43d6" formatted="false">"すべてのリビング背景"</string>
+    <string name="t_0fa88218" formatted="false">"Google Playに接続できません。たいていは通信がないためです。購入済みのものはあなたのものです。オンラインに戻ったら「復元」を押せば再表示されます。"</string>
+    <string name="t_0fd40469" formatted="false">"パフォーマンス"</string>
+    <string name="t_0fd4c0f4" formatted="false">"CORE-SERVERのスロットは[S]専用"</string>
+    <string name="t_1046865f" formatted="false">"背後にBOTを生み出し続ける。素早く倒さないとボットネットに飲み込まれる。"</string>
+    <string name="t_107ea55b" formatted="false">"アップグレードが人質に"</string>
+    <string name="t_108f4363" formatted="false">"インストール"</string>
+    <string name="t_111611f9" formatted="false">"パッチウォール"</string>
+    <string name="t_1181f7e7" formatted="false">"エージェント妨害"</string>
+    <string name="t_11c0f105" formatted="false">"レベルの音楽(自動)"</string>
+    <string name="t_11c8546c" formatted="false">"ダメージ"</string>
+    <string name="t_11d858aa" formatted="false">"最高ウェーブ"</string>
+    <string name="t_1213b2b6" formatted="false">"{0}時間前"</string>
+    <string name="t_12193f21" formatted="false">"ネットワークアーキテクトは、ネットワークをどう区切るかを設計する。セグメント化により、ある区域が侵害されても隣へそのまま広がらず、単一の障害の被害を抑えられる。インシデントの最中に使う道具ではなく、事前に行う設計の仕事だ。"</string>
+    <string name="t_1248f6ec" formatted="false">"サウンドトラックの保存にはAndroid 10以降が必要です。"</string>
+    <string name="t_125ca8ca" formatted="false">"スターターパック"</string>
+    <string name="t_12a36ceb" formatted="false">"なりすまし"</string>
+    <string name="t_12e8edf9" formatted="false">"言語"</string>
+    <string name="t_1380e038" formatted="false">"身代金 · アップグレードロック {0}秒"</string>
+    <string name="t_138da392" formatted="false">"トラフィックに合わせてセルが温まり冷えるグリッド。"</string>
+    <string name="t_13df4b88" formatted="false">"ファームウェア"</string>
+    <string name="t_13ee9782" formatted="false">"配置完了"</string>
+    <string name="t_141ad814" formatted="false">"フィードバック"</string>
+    <string name="t_143628e2" formatted="false">"リバイブ広告のみ · 任意"</string>
+    <string name="t_1489b7f6" formatted="false">"{0}日前"</string>
+    <string name="t_14bdf6f2" formatted="false">"ガイド付きランはまずFIREWALLが必要"</string>
+    <string name="t_14c27ca9" formatted="false">"ANALYSTはエリートに80%増しのダメージ。装甲無視のエージェントが役立つ。"</string>
+    <string name="t_14cecaa5" formatted="false">"鍵がなければデータを読めなくする"</string>
+    <string name="t_14ecbe1d" formatted="false">"{0}/秒"</string>
+    <string name="t_1512aeac" formatted="false">"{0}レベル"</string>
+    <string name="t_154419d5" formatted="false">"暗号化扱い: ほとんどのエージェントのダメージが下がる。"</string>
+    <string name="t_154a5adf" formatted="false">"Lv"</string>
+    <string name="t_15680f7c" formatted="false">"コアファームウェアの永続ダメージに使おう。"</string>
+    <string name="t_1571a208" formatted="false">"2体のTARPITを、オーラがFIREWALLの射撃範囲を覆うように置こう。減速こそがダメージを当てる鍵だ。"</string>
+    <string name="t_15aa2838" formatted="false">"トラフィックに合わせてセルが温まり冷える粗いグリッド。"</string>
+    <string name="t_15ede35d" formatted="false">"◇ {0} · 最初から使用可能"</string>
+    <string name="t_167ae054" formatted="false">"保存したラン、解放済みの全エージェント、全統計、設定が消去されます。\n\n元に戻せません。"</string>
+    <string name="t_17a13ae4" formatted="false">"ボスは遅いが、CORE-SERVERの整合性を{0}削る。ゲーム中で最も多くのクリプトを落とし、サイクルごとに強くなる。"</string>
+    <string name="t_17e0e9f0" formatted="false">"連射速度が非常に高く、範囲内では常に他よりボスを優先し、[!!!] BREACHに2倍ダメージ。ウェーブ30で解放、配置は最大4体。"</string>
+    <string name="t_1877f7c0" formatted="false">"未インストール"</string>
+    <string name="t_197d534b" formatted="false">"€予算(ランの10ウェーブごとに獲得し、その後も保持)を使って、全エージェントのダメージを永続的に上げよう。"</string>
+    <string name="t_1991565e" formatted="false">"レート制限"</string>
+    <string name="t_19cbe369" formatted="false">"お気に入りのエージェント"</string>
+    <string name="t_1a155da6" formatted="false">"次のウェーブ"</string>
+    <string name="t_1a2a0f17" formatted="false">"ロック中"</string>
+    <string name="t_1a73c7da" formatted="false">"連射速度"</string>
+    <string name="t_1aba43b0" formatted="false">"コアの周りをゆっくり巡る楕円の軌跡。働くスケジューラのように。"</string>
+    <string name="t_1b0d8052" formatted="false">"CORE-SERVERが被弾したら戦場を揺らす"</string>
+    <string name="t_1ba327c9" formatted="false">"最もよくあるWeb攻撃"</string>
+    <string name="t_1ba41734" formatted="false">"ブロックした攻撃"</string>
+    <string name="t_1cc19733" formatted="false">"現実では"</string>
+    <string name="t_1d162704" formatted="false">"本当に新しいランを始めますか?保存中のセッションは上書きされます。"</string>
+    <string name="t_1d29935f" formatted="false">"{0}が妨害"</string>
+    <string name="t_1d8fe548" formatted="false">"最初からやり直す"</string>
+    <string name="t_1dea7837" formatted="false">"限界を超えたHACK:AI。整合性は半分、報酬は2倍。"</string>
+    <string name="t_1deb5c00" formatted="false">"連携済み · オフライン"</string>
+    <string name="t_1e09b492" formatted="false">"🔒 [{0}] {1} · ロック中"</string>
+    <string name="t_1e6ed1a9" formatted="false">"リビング背景"</string>
+    <string name="t_1ef7821b" formatted="false">"コアへと遠ざかるネオンブルーのグリッドと、青から緑へ移ろうホログラムのリング。"</string>
+    <string name="t_1f3159fc" formatted="false">"エージェントのカラー"</string>
+    <string name="t_1f5df304" formatted="false">"接続リセット"</string>
+    <string name="t_1ff44d56" formatted="false">"ライセンス執行"</string>
+    <string name="t_20ce505d" formatted="false">"一時停止"</string>
+    <string name="t_21399575" formatted="false">"開発者"</string>
+    <string name="t_2198b685" formatted="false">"選択中のエージェントのスキャン範囲を表示"</string>
+    <string name="t_21bb43e3" formatted="false">"{0} · 全レベル"</string>
+    <string name="t_22100250" formatted="false">"レベル{0} · 最大"</string>
+    <string name="t_224d65ed" formatted="false">"CORE-SERVERスキン"</string>
+    <string name="t_22686e59" formatted="false">"接続"</string>
+    <string name="t_227cde14" formatted="false">"{1}の{0}"</string>
+    <string name="t_2283d7ca" formatted="false">"ノード使用中"</string>
+    <string name="t_22b6479a" formatted="false">"サイバー作戦の専門家は、防御をライブの作戦として遂行する。妨害を見張り、誰かがチームの道具を止めようとする中でも稼働させ続け、発生源へまっすぐ向かう。"</string>
+    <string name="t_22c4ef22" formatted="false">"中身が暗号化されているため、多くの防御は何を撃っているか読めず、ダメージが一部しか通らない。CRYPTOGRAPHERエージェントなら暗号をまっすぐ切り裂く。"</string>
+    <string name="t_23020c53" formatted="false">" · {0}レベル購入可"</string>
+    <string name="t_236f5b12" formatted="false">"撃破したボス合計"</string>
+    <string name="t_23763c89" formatted="false">"設定"</string>
+    <string name="t_23961a76" formatted="false">"ボス {0}/{1} · ボスをタップして切り替え"</string>
+    <string name="t_24adcafc" formatted="false">"サーバーの被ダメージ合計"</string>
+    <string name="t_24bbb47b" formatted="false">"ロック中のアイテム"</string>
+    <string name="t_24d3a2ef" formatted="false">"壁崩壊"</string>
+    <string name="t_255b5911" formatted="false">"CRTの蛍光グリーン、走査線、リフレッシュの帯。"</string>
+    <string name="t_2570d23e" formatted="false">"火力を集中。ANALYSTとROOT ADMINがボスウェーブを支える。"</string>
+    <string name="t_25a6b96b" formatted="false">"安価で信頼できる中距離ダメージ。しかもボスの妨害を受けない唯一のエージェント。射程が短くレーンの近くに置く必要があり、だからこそその耐性が効く。"</string>
+    <string name="t_25bd1975" formatted="false">"ダメ"</string>
+    <string name="t_25efb9da" formatted="false">"爆発範囲"</string>
+    <string name="t_260d60b1" formatted="false">"敗北後に広告1回 · リバイブは任意"</string>
+    <string name="t_26b80d1f" formatted="false">"完了"</string>
+    <string name="t_27a68119" formatted="false">"ネットワーク状況"</string>
+    <string name="t_27d9802d" formatted="false">"敗北後に広告1回"</string>
+    <string name="t_27daad70" formatted="false">"縁から忍び寄る霜。"</string>
+    <string name="t_28c31125" formatted="false">"装甲が厚く粘り強い。重い単発で倒せ。連射は無駄になる。"</string>
+    <string name="t_28e339dd" formatted="false">"フィールドの奥でまばらに降る文字の列。"</string>
+    <string name="t_296fb456" formatted="false">"修復 +{0} HP · {1}秒ごと · CORE-SERVERスロット · 最大{2}"</string>
+    <string name="t_297ae895" formatted="false">"隔離"</string>
+    <string name="t_2a1bde6e" formatted="false">"侵入防止システムは通信経路上に置かれ、検知したものに対して行動できる。警告だけでなく、接続を破棄・リセットする。代償は現実的で、正当な通信を誤判定したIPSはそれを遮断してしまう。"</string>
+    <string name="t_2a934539" formatted="false">"攻撃の発生源"</string>
+    <string name="t_2a9b95e6" formatted="false">"全ボスに×{0}ダメージ。"</string>
+    <string name="t_2bb9a482" formatted="false">"ファイアウォールは通信をルール一覧と照合し、合わないものを破棄する。最古にして今も最も重要な境界防御だ。"</string>
+    <string name="t_2be00c84" formatted="false">"コールサインを編集"</string>
+    <string name="t_2c13b917" formatted="false">"{1}に×{0}ダメージ。"</string>
+    <string name="t_2ce4713d" formatted="false">"&gt; CORE-SERVERを同期中"</string>
+    <string name="t_2d14c154" formatted="false">"フィールドを斜めに横切るゆっくりしたデータの流れ。"</string>
+    <string name="t_2dcb788c" formatted="false">"このゲームは、プログラミングとソフトウェア開発を学ぶ過程で、学習・開発の補助として人工知能ツールの支援を受けて開発されました。\n\nAIツールは、コード開発、トラブルシューティング、ドキュメント作成、学習などの分野で支援しました。最終的なデザイン判断、ゲームプレイの方向性、テスト、公開の判断は開発者の責任です。\n\nこのゲームは、いかなる人工知能企業によっても生成、後援、推奨、所有、発行されたものではありません。"</string>
+    <string name="t_2df53561" formatted="false">"ルールベースの通信フィルター"</string>
+    <string name="t_2e0cf790" formatted="false">"その他"</string>
+    <string name="t_2e19cc63" formatted="false">"体力40%で一度だけ起き上がる。倒すことと、とどめを刺すことは別だ。"</string>
+    <string name="t_2ef9e2c6" formatted="false">"サイバー攻撃"</string>
+    <string name="t_2f3549f7" formatted="false">"クラウドセーブは利用できません"</string>
+    <string name="t_302a4f0a" formatted="false">"ベースライン"</string>
+    <string name="t_302eea27" formatted="false">"何が来るか知りたい?"</string>
+    <string name="t_3083c674" formatted="false">"リビング: DRIFT"</string>
+    <string name="t_30867b62" formatted="false">"完全オフラインで遊べます"</string>
+    <string name="t_30ed929d" formatted="false">"{1}でウェーブ{0}に到達すると、このエージェントが解放されます。"</string>
+    <string name="t_31359ec6" formatted="false">"{0}フォーカス オフ"</string>
+    <string name="t_313900e6" formatted="false">"アーキテクト・アップリンク"</string>
+    <string name="t_314d733e" formatted="false">"€ {0} 使用可能"</string>
+    <string name="t_317b7de0" formatted="false">"ラックの内部を流れ落ちるコード。"</string>
+    <string name="t_31d43b93" formatted="false">"リビング: RAINFALL"</string>
+    <string name="t_326bdc38" formatted="false">"エージェント未登録"</string>
+    <string name="t_32a3e9f3" formatted="false">"特殊 — {0}"</string>
+    <string name="t_32bafd88" formatted="false">"次へ"</string>
+    <string name="t_32e6f915" formatted="false">"今すぐ買える数"</string>
+    <string name="t_332ec80a" formatted="false">"何でも倒せる。過剰に建てないこと。"</string>
+    <string name="t_33cd995a" formatted="false">"侵入をブロック"</string>
+    <string name="t_3425c9d3" formatted="false">"レベル{0}"</string>
+    <string name="t_35350bff" formatted="false">"脈打つ封じ込めリング。"</string>
+    <string name="t_3595e52a" formatted="false">"ルート{0}"</string>
+    <string name="t_35c82960" formatted="false">"コア: GLACIER"</string>
+    <string name="t_35f74be9" formatted="false">"全装甲を無視する圧倒的な単体ダメージ。ゲームで最も高価で、解放もかなり遅い。ターゲットを選択可能。"</string>
+    <string name="t_36900a0f" formatted="false">"安くてほぼ無害。範囲内のものはすべて這うように遅くなる。"</string>
+    <string name="t_37447c3a" formatted="false">"連射速度が極めて高く、毎発が範囲に飛び散る。"</string>
+    <string name="t_376bc6d2" formatted="false">"これを開いている間もカウントダウンは進みます。"</string>
+    <string name="t_376c54b2" formatted="false">"広告を削除"</string>
+    <string name="t_379656ef" formatted="false">"コア: VOID"</string>
+    <string name="t_37bc9401" formatted="false">"このビルドはGoogle AdMobの広告を表示します。ランを続けるための広告視聴は常に任意で、プレイに必須ではありません。"</string>
+    <string name="t_384d3555" formatted="false">"{0}体出現中"</string>
+    <string name="t_384e5d9f" formatted="false">"クラウドセーブ"</string>
+    <string name="t_385b9a87" formatted="false">"ターピットは敵の接続を受け入れたうえで、許される限りゆっくり応答し、攻撃者をどこにも通じないソケットに縛り付ける。遮断ではなく遅延の戦術で、価値は相手に払わせる時間にある。"</string>
+    <string name="t_38695d86" formatted="false">"進行状況のバックアップ"</string>
+    <string name="t_38c1e7e0" formatted="false">"広告視聴で"</string>
+    <string name="t_38d9a5af" formatted="false">"&gt; ネットワーク侵害"</string>
+    <string name="t_38e03b91" formatted="false">"完全インストール済み"</string>
+    <string name="t_3950774a" formatted="false">"登録名"</string>
+    <string name="t_395af116" formatted="false">"匿名ハック"</string>
+    <string name="t_396e8daa" formatted="false">"スペクトラム"</string>
+    <string name="t_3a06e0fa" formatted="false">"音楽"</string>
+    <string name="t_3a7e7fe6" formatted="false">"ビルドの種類"</string>
+    <string name="t_3a8a0a59" formatted="false">"どんなに小さくても被弾するたびに加速し、放置すると減速する。小さな多数の攻撃より、大きな少数の攻撃が勝つ。"</string>
+    <string name="t_3aa6f2eb" formatted="false">"ZERO-DAY HUNTERとROOT ADMINは装甲を完全に無視する。"</string>
+    <string name="t_3aaad671" formatted="false">"タップで詳細"</string>
+    <string name="t_3b12a908" formatted="false">"GRADIENTは被弾するたびに(どんなに小さくても)加速し、放置すると減速する。小さな多数の攻撃より大きな少数の攻撃が勝つ。"</string>
+    <string name="t_3b53a59d" formatted="false">"ボスウェーブも自動で開始。オフ: ボスウェーブはあなたを待ちます"</string>
+    <string name="t_3bc78174" formatted="false">"AI支援による開発"</string>
+    <string name="t_3c66aec8" formatted="false">"ウェーブ、エージェント、€、ファームウェアはGoogleアカウントに保存されます。別の端末でログインすれば、そのまま続きができます。ゲームを離れたときとランの終了時に同期します。"</string>
+    <string name="t_3cef355d" formatted="false">"残り体力が最も多い"</string>
+    <string name="t_3d17c701" formatted="false">"急加速"</string>
+    <string name="t_3d331382" formatted="false">"通信がたどる経路"</string>
+    <string name="t_3d509ddc" formatted="false">"フレームレートを半分にし、装飾エフェクトを省く"</string>
+    <string name="t_3d83d177" formatted="false">"サイバーエージェント"</string>
+    <string name="t_3db03eca" formatted="false">"あなたの記録"</string>
+    <string name="t_3e12b118" formatted="false">"ヘルプ"</string>
+    <string name="t_3e27e12f" formatted="false">"残り体力が最も少ない"</string>
+    <string name="t_3ecdd82e" formatted="false">"ゼロデイとは、誰も存在を知らなかったため、防御側に修正の猶予がゼロ日だった脆弱性のこと。照合できるシグネチャがないことが、その危険性の理由だ。"</string>
+    <string name="t_3fa2aee2" formatted="false">"FIREWALLエージェントからのダメージを35%軽減。"</string>
+    <string name="t_401924c3" formatted="false">"CORE-SERVERスキン"</string>
+    <string name="t_4071c698" formatted="false">"Google Playが応答しました。購入と復元は通常どおり動作します。"</string>
+    <string name="t_40b15bdb" formatted="false">"10ウェーブごとに獲得。ランが深いほど多く支払われ、報酬は節目の2乗で増えるので、深いラン1回は浅いラン5回に勝る。"</string>
+    <string name="t_4104a0b2" formatted="false">"{0}での最高記録: ウェーブ{1}"</string>
+    <string name="t_4108bc91" formatted="false">"ハンドシェイク拒否"</string>
+    <string name="t_41203058" formatted="false">"装備"</string>
+    <string name="t_412ea11f" formatted="false">"ルート脇の光っている配置ノードを2か所タップ。2体は目安ではない。1体だけではレーンを守れない。"</string>
+    <string name="t_419c5ded" formatted="false">"プレイ回数合計"</string>
+    <string name="t_41a1b85e" formatted="false">"プライバシー設定"</string>
+    <string name="t_41ca8ef5" formatted="false">"この端末に保存 · アップロードはしません"</string>
+    <string name="t_41e88f52" formatted="false">"2本指でピンチして盤面を拡大しよう。近くからだとノードをタップしやすい。拡大中は1本指でドラッグして移動。最後までピンチアウトすると盤面全体に戻る。"</string>
+    <string name="t_4208e473" formatted="false">"広告なし"</string>
+    <string name="t_420bd000" formatted="false">"BOTMASTERは数秒ごとに背後へBOTを落とす。素早く倒し、群れ用の戦力も残しておこう。"</string>
+    <string name="t_4273a8be" formatted="false">"アカウント"</string>
+    <string name="t_42832744" formatted="false">"ギャンブル、ガチャ、ランダムな有料報酬は一切なし"</string>
+    <string name="t_42880e6f" formatted="false">"ロック中 · {0}"</string>
+    <string name="t_42a0e053" formatted="false">"情報"</string>
+    <string name="t_42addf6c" formatted="false">"ストアを開く"</string>
+    <string name="t_42afe7bc" formatted="false">"接続中"</string>
+    <string name="t_42ef8058" formatted="false">"防衛記録"</string>
+    <string name="t_4306ee12" formatted="false">"€1,500 予算"</string>
+    <string name="t_4333987a" formatted="false">"まばらに降る文字の列。"</string>
+    <string name="t_43a1c2e8" formatted="false">"アップグレード費用"</string>
+    <string name="t_441ec9a9" formatted="false">"メニューの簡単なツアーです。「次へ」で進み、「スキップ」で閉じます。「設定」からいつでも再生できます。"</string>
+    <string name="t_4427afab" formatted="false">"装甲は小さな攻撃を弾く。IPSではなくANALYSTかROOT ADMINを。"</string>
+    <string name="t_4439e789" formatted="false">"ロック中 · レベル5をクリア(DDoSでウェーブ100を突破)すると、ミュージックプレイヤーと曲リストが解放されます。"</string>
+    <string name="t_448177d3" formatted="false">"最終同期"</string>
+    <string name="t_4494c488" formatted="false">"{0}分前"</string>
+    <string name="t_44c51c30" formatted="false">"攻撃をブロック"</string>
+    <string name="t_44fbbc54" formatted="false">"&gt; !! サイバー攻撃接近中 — 大規模侵害が迫る !!"</string>
+    <string name="t_4538f2a7" formatted="false">"ファイアウォールは通信を一連のルールと照合し、ルールが許さないものをすべて破棄する。たいていは信頼できないネットワークと守るべきものの間に置かれる最初の制御で、賢さではなく与えられたルールで評価される。"</string>
+    <string name="t_45b17976" formatted="false">"毎回同じ重い単体ダメージで、運任せではなく、装甲も無視する。高価で遅く、1体ではレーンを守れない。"</string>
+    <string name="t_4631883a" formatted="false">"最大インストール  (+{0})"</string>
+    <string name="t_463cbc28" formatted="false">"体力 ×{0} · 装甲 +{1} · 速度 ×{2}"</string>
+    <string name="t_466578df" formatted="false">"整合性半分でこのウェーブを再開。"</string>
+    <string name="t_466b92a9" formatted="false">"セグメント・アップリンク"</string>
+    <string name="t_46984fe6" formatted="false">"プレイ · 続ける"</string>
+    <string name="t_46cc0ef8" formatted="false">"さらに、毎ランで得る◇クリプトもレベルごとに+{0}%(最大2倍)増える。敵の体力やウェーブ構成には影響しない。"</string>
+    <string name="t_4735c1ed" formatted="false">"サイバー攻撃がCORE-SERVERへ迫っている。ルート沿いにサイバーエージェントを配置し、着弾前に止めよう。"</string>
+    <string name="t_4747b424" formatted="false">"敵"</string>
+    <string name="t_477d52c6" formatted="false">"連携済み。別のスマートフォンやタブレットで同じGoogleアカウントにログインすれば、進行状況がそこにあります。"</string>
+    <string name="t_47c5c237" formatted="false">"無効なノード"</string>
+    <string name="t_485268f0" formatted="false">"&gt; サイバーエージェント起動中"</string>
+    <string name="t_4882e1dc" formatted="false">"KERNEL PANICは倒されると、範囲内の全エージェントを3秒間妨害する。FIREWALLはそれに耐える。"</string>
+    <string name="t_488d4b25" formatted="false">"何千台ものマシンが一斉に1つの標的へ通信を送る。個々のリクエストは攻撃ではなく、その洪水こそが攻撃だ。目的は侵入ではなく、サービスを使えなくすること。"</string>
+    <string name="t_4905ed7b" formatted="false">"なし"</string>
+    <string name="t_494c304d" formatted="false">"-◇{0} 持ち去られた"</string>
+    <string name="t_49848f53" formatted="false">"ブラインドSQLインジェクション"</string>
+    <string name="t_498754a7" formatted="false">"サウンドトラックを端末に保存"</string>
+    <string name="t_4af4306b" formatted="false">"ビルド"</string>
+    <string name="t_4c1012d3" formatted="false">"攻撃し続けよう。被弾しない時間が少し続いたときだけ回復するので、キルゾーン間の隙間を埋めること。"</string>
+    <string name="t_4c6d3272" formatted="false">"🔒 ロック中"</string>
+    <string name="t_4cc6f55a" formatted="false">"Google Play ゲームに接続できません。ランはこの端末に記録され、次にオンラインでランを終えたときに最高記録が投稿されます。"</string>
+    <string name="t_4d54c785" formatted="false">"{0}を配置中 — ノードをタップ"</string>
+    <string name="t_4d6e69d2" formatted="false">"ミュージックプレイヤー"</string>
+    <string name="t_4d7ab8a3" formatted="false">"コールサイン"</string>
+    <string name="t_4e2b3472" formatted="false">"保存されたセッションがありません"</string>
+    <string name="t_4ebbf8bd" formatted="false">"このランの残りリバイブ: {0}回。"</string>
+    <string name="t_4f0fcb18" formatted="false">"5ウェーブごとに出現"</string>
+    <string name="t_4f160176" formatted="false">"取り立て屋。小細工も妨害もなし。ただ盤上の他の何よりも2割増し。"</string>
+    <string name="t_5022c684" formatted="false">"暗号化"</string>
+    <string name="t_5067a989" formatted="false">"量子もつれチェーン"</string>
+    <string name="t_5079b771" formatted="false">"{1}の{2}モードでウェーブ{0}に到達すると、このエージェントが解放されます。"</string>
+    <string name="t_509d7851" formatted="false">" · 衝撃 {0}"</string>
+    <string name="t_513901c7" formatted="false">" · 広告なし"</string>
+    <string name="t_513dcdc9" formatted="false">"エージェント単位"</string>
+    <string name="t_520a6b88" formatted="false">"レベルごとにわずかに費用が上がるので、倍率は上がり続けるが暴走はしない。現実的に到達する上限はない。"</string>
+    <string name="t_5333e76e" formatted="false">"レンダリング"</string>
+    <string name="t_53e605b3" formatted="false">"要注意"</string>
+    <string name="t_543ce9f7" formatted="false">"間隔"</string>
+    <string name="t_54523d94" formatted="false">"コアが組み込まれたラック。戦場に表示される。"</string>
+    <string name="t_54743050" formatted="false">"ブロックした攻撃合計"</string>
+    <string name="t_54797d92" formatted="false">"表示の下を走る回路パターン。"</string>
+    <string name="t_549824f8" formatted="false">"ポート保護"</string>
+    <string name="t_5571a722" formatted="false">"オフラインで遊べる · ログイン不要"</string>
+    <string name="t_55f85167" formatted="false">"コンパクトなエージェントメニュー"</string>
+    <string name="t_565a738e" formatted="false">"いいえ、プレイさせて"</string>
+    <string name="t_56a9a004" formatted="false">"明かりを消したインジェクション"</string>
+    <string name="t_56bafb67" formatted="false">"1ランにつきリバイブ1回。"</string>
+    <string name="t_56c54890" formatted="false">"肥大化したモデル。体力が少し多く、少し遅い。"</string>
+    <string name="t_56c6b2ae" formatted="false">"明示したフィクション: このエージェントは「暗号化」特性で減速せずにそれを無視し、その特性を持つものに3倍のダメージを与える。現実の暗号はこうは動かず、ここで本物の暗号が破られることはない。"</string>
+    <string name="t_5749c8dc" formatted="false">"ウェーブ{0}と配置したものはすべて失われます。"</string>
+    <string name="t_5785b710" formatted="false">"エージェントを選び、光っている配置ノードをタップしてください。"</string>
+    <string name="t_57f88861" formatted="false">"フォーカス: ボスのみ"</string>
+    <string name="t_582ec4a0" formatted="false">"中央の司令塔からひそかに命令を受ける乗っ取られたコンピューター。持ち主はたいてい気づいていない。大規模なDDoS攻撃を可能にしているのがボットネットだ。"</string>
+    <string name="t_5840893d" formatted="false">"侵入を封じ込め"</string>
+    <string name="t_58a5f08a" formatted="false">"シンプルなグリッド。動きなし。"</string>
+    <string name="t_597ee3cb" formatted="false">"シグネチャ一致"</string>
+    <string name="t_5a02fc0a" formatted="false">"リバイブパック"</string>
+    <string name="t_5a3d8598" formatted="false">"CORE-SERVERに最も近い"</string>
+    <string name="t_5a911db6" formatted="false">"あなたのGoogleアカウント"</string>
+    <string name="t_5aa1d1dc" formatted="false">"{0}フォーカス オン"</string>
+    <string name="t_5b19a621" formatted="false">"まだ誰も修正していない欠陥を突く攻撃。防御側に準備の猶予はゼロ日。珍しく、しぶとく、止めれば多くのクリプトになる。"</string>
+    <string name="t_5c19fc6b" formatted="false">"CyOps TD SOUNDTRACKを購入 · {0}"</string>
+    <string name="t_5c3f86fb" formatted="false">"最も強い"</string>
+    <string name="t_5d1868fb" formatted="false">"コア"</string>
+    <string name="t_5d377851" formatted="false">"永続アップグレード · これからのすべての試合で"</string>
+    <string name="t_5d4d0273" formatted="false">"{0}はロック中: {1}。"</string>
+    <string name="t_5de47a9b" formatted="false">"すべての難易度"</string>
+    <string name="t_5de55828" formatted="false">"!! 整合性低下 !!"</string>
+    <string name="t_5e75065a" formatted="false">"接続済み"</string>
+    <string name="t_5f2258c9" formatted="false">"左のお金。ランの10ウェーブごとに獲得し、ラン終了後も保持される。深いランほど大きく稼げる。"</string>
+    <string name="t_5fd47bcf" formatted="false">"コア: MERIDIAN"</string>
+    <string name="t_602fffef" formatted="false">"ここではCRYPTOGRAPHER以外はダメージの半分以上を失う。"</string>
+    <string name="t_6049b1e7" formatted="false">"リビング背景"</string>
+    <string name="t_60a5a04c" formatted="false">"音楽を一時停止"</string>
+    <string name="t_60ecea1a" formatted="false">"アブソリュート"</string>
+    <string name="t_60f81814" formatted="false">"{0}秒ごとに、LICENSEは{1}秒間、攻撃し続けるエージェントの種類を受け流す。エージェントの種類を混ぜよう。"</string>
+    <string name="t_61919374" formatted="false">"復活 — もう戻ってこない"</string>
+    <string name="t_61ebe734" formatted="false">"画面の揺れ"</string>
+    <string name="t_625afb79" formatted="false">"購入済み。Music/CyOps TDに「CyOps TD - Level X (Y)」として保存されます。"</string>
+    <string name="t_628c7cd9" formatted="false">"配置エージェントの内訳"</string>
+    <string name="t_62f8af50" formatted="false">"+{0} HP / {1}秒"</string>
+    <string name="t_63374e04" formatted="false">"メインメニュー"</string>
+    <string name="t_633e8e1a" formatted="false">"倒されると小さなワーム3体に分かれ、それぞれがもう一度分裂する。範囲攻撃が味方だ。"</string>
+    <string name="t_6343926d" formatted="false">"妨害"</string>
+    <string name="t_638aaa93" formatted="false">"ここにも現れる"</string>
+    <string name="t_63b00a3c" formatted="false">"ネットワークで送られるデータはパケットに分けられる。宛先アドレスとペイロードを持つ小さな塊だ。パケットは攻撃ではなく、ほぼすべてが普通の通信。ここで撃つのは特定の攻撃を運ぶパケットなので、それぞれパケットではなく攻撃の名前で呼ばれる。"</string>
+    <string name="t_63b54927" formatted="false">"1ランにつきリバイブ3回、リバイブ広告は一切なし、さらに€5,000。"</string>
+    <string name="t_63bef594" formatted="false">"HP {0}"</string>
+    <string name="t_63f3d76a" formatted="false">"保存"</string>
+    <string name="t_63facb82" formatted="false">"リビング: PULSE"</string>
+    <string name="t_6480a147" formatted="false">"ウェーブ{0}  —  境界を守れ"</string>
+    <string name="t_648a945b" formatted="false">"誰も教えてくれない2つのこと"</string>
+    <string name="t_6490c689" formatted="false">"本物の暗号資産、ブロックチェーン、ウォレット、マイニング、NFTは一切なし"</string>
+    <string name="t_64d398f9" formatted="false">"射程"</string>
+    <string name="t_65155738" formatted="false">"5倍速"</string>
+    <string name="t_65252ce7" formatted="false">"先頭"</string>
+    <string name="t_6554cde7" formatted="false">"このアカウントの所有物をGoogle Playに確認しています。通常すぐ終わります。"</string>
+    <string name="t_655c9284" formatted="false">"リビング: LATTICE"</string>
+    <string name="t_656e6ce8" formatted="false">"エージェント"</string>
+    <string name="t_65c8fd90" formatted="false">"脅威ブリーフィング"</string>
+    <string name="t_6678bfdf" formatted="false">"倒されると、近くの全エージェントが3秒間妨害される。自陣から離れた場所か、次のウェーブがまだ遠いうちに倒そう。"</string>
+    <string name="t_66fa85d7" formatted="false">"エージェントを分散させ、1回の妨害で戦線全体が沈黙しないようにしよう。"</string>
+    <string name="t_6700226a" formatted="false">"連携済み"</string>
+    <string name="t_67043715" formatted="false">"装甲"</string>
+    <string name="t_67313d46" formatted="false">"壁を設置"</string>
+    <string name="t_6757b458" formatted="false">"阻止した攻撃"</string>
+    <string name="t_6813ef42" formatted="false">"匿名ハック — {0}体のBOTが倍速で接近"</string>
+    <string name="t_681745bd" formatted="false">"エージェントはロック中 — {0}"</string>
+    <string name="t_682d973f" formatted="false">"開始"</string>
+    <string name="t_68e88af7" formatted="false">"危険ゾーン"</string>
+    <string name="t_68e985d6" formatted="false">"それ以外はどこにも送信されません。ネットワークがなくても遊べます。"</string>
+    <string name="t_6904aeb4" formatted="false">"ゲーム"</string>
+    <string name="t_69698cdc" formatted="false">"WORMは倒されると小さなワーム3体に分かれ、それがもう一度分裂する。早めに、範囲攻撃を近くに置いて倒そう。"</string>
+    <string name="t_69a293c4" formatted="false">"SUDO TERMINATE"</string>
+    <string name="t_6ad356c5" formatted="false">"3本のルート: 中央を突っ切る直線と、その上下をジグザグに走る2本。"</string>
+    <string name="t_6b2d8165" formatted="false">"Lv {0}  {1} ダメ"</string>
+    <string name="t_6c161f51" formatted="false">"17秒ごとに2秒間、攻撃し続けるエージェントの種類を受け流す。多彩な編成ならダメージが通り続ける。"</string>
+    <string name="t_6c7aa396" formatted="false">"ボスが違えば弱点も違う。"</string>
+    <string name="t_6ca9de88" formatted="false">"スペクトラム・エージェント"</string>
+    <string name="t_6cb7e8e3" formatted="false">"遅く重い一撃。エリートとボスに+80%ダメージ。"</string>
+    <string name="t_6cbf7c76" formatted="false">"撃破したボス"</string>
+    <string name="t_6ccdc653" formatted="false">"暗号化を完全に無視し、3倍のダメージを与える。"</string>
+    <string name="t_6cedde69" formatted="false">"音楽の音量"</string>
+    <string name="t_6d2d6d6b" formatted="false">"その装甲を無視する。"</string>
+    <string name="t_6d907c0d" formatted="false">"「ブルーチーム」はシステムを守り、インシデントに対応する。レッドチームの対となる存在だ。「Blue hat」は業界で複数の意味で使われ、標準化された用語ではないため、ここではブルーチームの意味だけを説明する。"</string>
+    <string name="t_6dbe0ea3" formatted="false">"レベル"</string>
+    <string name="t_6f053419" formatted="false">"{0}の上限 — 最大{1}"</string>
+    <string name="t_6f21a684" formatted="false">"ボス — 5ウェーブごと"</string>
+    <string name="t_70d42172" formatted="false">"ある区域が侵害されても残りに届かないよう、ネットワークを分割すること。ノートPC1台が侵害されても会社全体が侵害されるべきではない理由がこれだ。"</string>
+    <string name="t_7191bf1d" formatted="false">"データ保存"</string>
+    <string name="t_71c5931f" formatted="false">"省電力モードは描画内容だけを変えます。ウェーブの難易度、ダメージ、タイミングは一切変わりません。"</string>
+    <string name="t_72102eb0" formatted="false">"購入、復元、端末から送信されるもの"</string>
+    <string name="t_722a0bad" formatted="false">"ガイドを再表示"</string>
+    <string name="t_73236391" formatted="false">"ゲーム自体は個人データを収集しません"</string>
+    <string name="t_735d4940" formatted="false">"効果音の音量"</string>
+    <string name="t_73907e76" formatted="false">"ゲームの全24曲を端末の「音楽」フォルダに保存し、どこでも聴けます。"</string>
+    <string name="t_7397fdaa" formatted="false">"すべての背後で動く冷たい光。"</string>
+    <string name="t_739a7f7a" formatted="false">"© {0} {1}. All rights reserved."</string>
+    <string name="t_73d812dc" formatted="false">"5ウェーブごとに来るもの"</string>
+    <string name="t_73e8cb50" formatted="false">"オリジナルのコード、オリジナルのアート、オリジナルの合成音声。Kotlin、Jetpack Compose、Android Canvas APIで制作。\n\nアイコン: creativeLabs の CoreUI Icons Free(coreui.io/icons)、CC BY 4.0 ライセンス。\n\nサードパーティ依存関係のライセンスは、プロジェクトリポジトリの LICENSES.md に記載しています。"</string>
+    <string name="t_74066c59" formatted="false">"ゲーム内"</string>
+    <string name="t_746ab6c3" formatted="false">"IPSは群れに35%増しのダメージ。ルートが合流する場所に置こう。"</string>
+    <string name="t_746d814e" formatted="false">"保存したラン、解放済みエージェント、統計、設定を削除します。元に戻せません。"</string>
+    <string name="t_74aa6c59" formatted="false">"€予算が足りません"</string>
+    <string name="t_74fff44e" formatted="false">"自分のおとりコピーを出し、攻撃を吸わせる。ANALYSTとROOT ADMINには見破れる。"</string>
+    <string name="t_750800eb" formatted="false">"チーム屈指の連射速度で、常にボスを最優先で撃つ。[GG] GOOD GAMEに2倍ダメージ。最大4体。"</string>
+    <string name="t_7596436a" formatted="false">"サイバーセキュリティの学士号を持つ上級セキュリティエンジニア。攻撃を防ぐソフトウェアを作って攻撃を止める。攻撃が来た後ではなく、来る前に整う堅牢なサービス、パッチ、フィルターだ。"</string>
+    <string name="t_75b191e4" formatted="false">"射程内で最も近いルートに壁を築く。脅威は壁で止まり、壊さないと通れない。ボスが最も速く壊す。壁が崩れると、ACEは数秒後に再建し、レベルごとに頑丈になる。自身の射撃は最初の5レベルの全ボスに{0}倍のダメージ。配置は最大3体。"</string>
+    <string name="t_75bd8866" formatted="false">"レベルと難易度を選ぶ"</string>
+    <string name="t_75e65d90" formatted="false">"2回タップで配置"</string>
+    <string name="t_75f24f6e" formatted="false">"数秒ごとにエージェント1体のアップグレードを8秒間ロックする。到着前にアップグレードしておこう。"</string>
+    <string name="t_7682806a" formatted="false">"ステップ2 — FIREWALLを選ぶ"</string>
+    <string name="t_77212b64" formatted="false">"今戦っている攻撃ウェーブです。サーバーを守る限り上がり続け、5ウェーブごとにボスが来ます。"</string>
+    <string name="t_772b21ba" formatted="false">"あなたが配置する防御"</string>
+    <string name="t_77a2583e" formatted="false">"セキュリティで「量子」と呼ばれるものは2つあり、区別しておく価値がある。量子鍵配送は物理を使って回線の盗聴を検知するもので、ごく限られた特殊な場面でしか使われない。耐量子暗号は将来の量子コンピューターに耐えるよう設計された普通のソフトウェア数学で、実際に導入が進んでいるのはこちらだ。"</string>
+    <string name="t_77a6da9b" formatted="false">"コアから外へ広がるリング。"</string>
+    <string name="t_77d03aa5" formatted="false">"ブラインドインジェクションはエラーメッセージを受け取れないため、攻撃者は真偽の質問を1つずつ重ねて答えを推測する。通常のインジェクションより遅く、はるかに辛抱強く、分かりやすい防御には強化された状態でやって来る。"</string>
+    <string name="t_77e5929c" formatted="false">"1回目のタップでその場所でのエージェントの射程を表示。もう一度タップで配置"</string>
+    <string name="t_77e8896f" formatted="false">"1本のルートが盤面を角から角へ5回横切る。"</string>
+    <string name="t_77f7e381" formatted="false">" · 装甲 {0}"</string>
+    <string name="t_782074f1" formatted="false">"  ·  自動 {0}"</string>
+    <string name="t_7841323b" formatted="false">"ディフェンシブ・スイープ"</string>
+    <string name="t_78526608" formatted="false">"到達ウェーブ"</string>
+    <string name="t_78a52e3b" formatted="false">"潜伏"</string>
+    <string name="t_7922c8d5" formatted="false">"範囲内の全エージェントを強化: ダメージ+30%、連射速度+20%。"</string>
+    <string name="t_79a4baee" formatted="false">"&lt; 戻る"</string>
+    <string name="t_79fc7a80" formatted="false">"「ウェーブを自動開始」がオンのときのみ有効"</string>
+    <string name="t_7a1f56c4" formatted="false">"今すぐ同期"</string>
+    <string name="t_7aba529e" formatted="false">"暗号を破る: ×{0}ダメージ。"</string>
+    <string name="t_7abfb3c7" formatted="false">"体力半分で2体に分かれ、片方は別のルートを進む。"</string>
+    <string name="t_7b3bb73f" formatted="false">"脅威を無力化"</string>
+    <string name="t_7b84a6c4" formatted="false">"「Google Play」画面でGoogleアカウントを連携すると、世界ランキングを見て投稿できます。ランは引き続きこの端末に記録されます。"</string>
+    <string name="t_7ba7f176" formatted="false">"+{0}% ダメ"</string>
+    <string name="t_7be6fbad" formatted="false">"ウェーブ{0} · シミュレーション停止"</string>
+    <string name="t_7bf2105b" formatted="false">"分散型サービス拒否"</string>
+    <string name="t_7c4e4414" formatted="false">"最後尾"</string>
+    <string name="t_7c6853de" formatted="false">"世界 · {0}"</string>
+    <string name="t_7d5cc77f" formatted="false">"獲得クリプト合計"</string>
+    <string name="t_7dc33bc2" formatted="false">"最大レベル到達"</string>
+    <string name="t_7e1cf3a7" formatted="false">"修復"</string>
+    <string name="t_7e522f64" formatted="false">"クレジット"</string>
+    <string name="t_7e72ed35" formatted="false">"進行状況をアカウントに保存しました"</string>
+    <string name="t_7e906966" formatted="false">"{0}曲をMusic/CyOps TDに保存しました。"</string>
+    <string name="t_7ea71dbe" formatted="false">"もう一度「エージェント」を開き、TARPITを選ぼう。ダメージはないが、オーラ内の脅威をすべて減速させ、FIREWALLがより多く撃てるようにする。"</string>
+    <string name="t_7f11b512" formatted="false">"{0} · 1ランあたり{1} {2}"</string>
+    <string name="t_7fd8e294" formatted="false">"&gt; 境界防御オンライン"</string>
+    <string name="t_804ef7d5" formatted="false">"インターネットで最もよくある攻撃で、ここでの基本の脅威。攻撃者は名前やパスワードを入力する欄にデータベース命令を打ち込む。アプリがそれをそのまま渡せば、データベースは従ってしまう。"</string>
+    <string name="t_80592dd9" formatted="false">"バージョン"</string>
+    <string name="t_8175c5fc" formatted="false">"CORE-SERVERの整合性"</string>
+    <string name="t_8198af01" formatted="false">"6秒のうち2秒隠れ、その間は誰も狙えない。範囲攻撃と連鎖は届く。"</string>
+    <string name="t_81e23c68" formatted="false">"その他: 小型ユニットとエリートのみ、ボスは撃たない"</string>
+    <string name="t_8230b283" formatted="false">"IDSは高速の攻撃に45%増しのダメージを与え、真っ先に見つける。"</string>
+    <string name="t_82966ea3" formatted="false">"ウェーブカウント"</string>
+    <string name="t_829e8e06" formatted="false">"範囲内のエージェントは妨害されない。WHITE EYEとBLACK EYEに{0}倍ダメージ。最大2体。"</string>
+    <string name="t_82a1fee3" formatted="false">"本当にランをやり直しますか?"</string>
+    <string name="t_82a70835" formatted="false">"連携しない場合、進行状況はこの端末にのみ存在します。アンインストールや初期化で消えますが、購入はどちらでも残ります。"</string>
+    <string name="t_830a30fd" formatted="false">"予算"</string>
+    <string name="t_830b01d9" formatted="false">"ファームウェアは、これから先のすべての試合で、配置する全エージェントのダメージに倍率をかける。装甲や相性表の前に適用されるので、暗号化に対するCryptographerも、普通の通信に対するFirewallも、まったく同じだけ恩恵を受ける。"</string>
+    <string name="t_831712ed" formatted="false">"新しいサイバーエージェントを解放"</string>
+    <string name="t_83186dce" formatted="false">"この端末のみ"</string>
+    <string name="t_8340a76d" formatted="false">"なぜ重要か"</string>
+    <string name="t_838b0928" formatted="false">"進みながら護衛の攻撃を生み出す。"</string>
+    <string name="t_8478f19e" formatted="false">"端末から送信されるもの"</string>
+    <string name="t_848f3f46" formatted="false">"すべての進行状況を削除しますか?"</string>
+    <string name="t_852bda75" formatted="false">"コーデックス"</string>
+    <string name="t_862b3f34" formatted="false">"サイバーエージェントを配置"</string>
+    <string name="t_869cf6b4" formatted="false">"コールサインを登録"</string>
+    <string name="t_86cce90c" formatted="false">"最も弱い"</string>
+    <string name="t_87442b62" formatted="false">"次のウェーブ · BREACH"</string>
+    <string name="t_87a9dd3e" formatted="false">"ウェーブ、€、ファームウェア"</string>
+    <string name="t_87d92d69" formatted="false">"非常に長い探知範囲。高速の攻撃に+45%ダメージ。"</string>
+    <string name="t_8806feca" formatted="false">"CORE-SERVERスキン6種と€2,000。NEONGRIDは別売り。"</string>
+    <string name="t_882561c2" formatted="false">"脅威評価"</string>
+    <string name="t_891fc63b" formatted="false">"なりすまし解除"</string>
+    <string name="t_8980d82b" formatted="false">"{0}を選択 — 光っているノードをタップして配置。"</string>
+    <string name="t_899bae42" formatted="false">"任意です。連携しなくてもゲームのすべてが動作し、アップロードされるのは進行状況だけです。"</string>
+    <string name="t_89a47932" formatted="false">"音楽を再生"</string>
+    <string name="t_89c7b011" formatted="false">"Googleの同意フォームを開き直して、広告パートナーがこの端末のデータで何をしてよいかを変更します。ゲームの進行状況はこの端末に保存され、これには含まれません。"</string>
+    <string name="t_89d7c51c" formatted="false">"行って、戻って、ラックまでの長い共通の帰り道。"</string>
+    <string name="t_89dd34f8" formatted="false">"群れの掃除はIPSに任せ、重い攻撃役はボスに張り付かせよう。"</string>
+    <string name="t_89e1b0eb" formatted="false">"そのフィールドは、加速するGRADIENTを再び減速させる。"</string>
+    <string name="t_89e450ea" formatted="false">"削除済み · リバイブ広告は別"</string>
+    <string name="t_8a058fa3" formatted="false">"標準の難易度曲線。"</string>
+    <string name="t_8a86921d" formatted="false">"右のボタンはスクロールします。下には: ストア、装備(スキンと背景)、Google Play(購入とクラウドセーブ)、ランキング、コーデックス(脅威とエージェントの解説)、統計、設定、情報。"</string>
+    <string name="t_8a96f0aa" formatted="false">"利用不可"</string>
+    <string name="t_8aa097b1" formatted="false">"  (ロック中)"</string>
+    <string name="t_8aec13a9" formatted="false">"分散型サービス拒否: 攻撃とは量そのもの。1つ1つのリクエストは些細だが、ゲーム中の何よりも速く押し寄せ、しかも尽きることがない。"</string>
+    <string name="t_8af0e8d8" formatted="false">"組織的な侵害の試み。小細工なし、ただの重量。"</string>
+    <string name="t_8b094c6c" formatted="false">"Google Playに接続中…"</string>
+    <string name="t_8c42a507" formatted="false">"凍った核から放たれる氷の針。"</string>
+    <string name="t_8c61de92" formatted="false">"ウェーブを自動開始"</string>
+    <string name="t_8d56a5da" formatted="false">"コアの周りを回るゆっくりした楕円の軌跡。"</string>
+    <string name="t_8d91a14b" formatted="false">"GOOGLE PLAY"</string>
+    <string name="t_8d9dd637" formatted="false">"ボス: ボスだけを撃ち、それ以外は撃たない"</string>
+    <string name="t_8e0413ab" formatted="false">"このビルドにはアプリ内課金がありません。"</string>
+    <string name="t_8e3787c1" formatted="false">"ロック中 · {0}(最高: {1})"</string>
+    <string name="t_8f0536a7" formatted="false">"最大インストール"</string>
+    <string name="t_8f37a712" formatted="false">"与えたダメージ"</string>
+    <string name="t_8f48da3c" formatted="false">"ネットワーク侵害"</string>
+    <string name="t_8f5d0f11" formatted="false">"経済"</string>
+    <string name="t_8f61abf9" formatted="false">"処理中…"</string>
+    <string name="t_8f68a3ab" formatted="false">"&gt; 脅威シグネチャを読み込み中"</string>
+    <string name="t_8ff6e51c" formatted="false">"{0}の記録されたランはまだありません。"</string>
+    <string name="t_90391726" formatted="false">"再開"</string>
+    <string name="t_910b3ae9" formatted="false">"サーバーを守るエージェントを買うためのお金。撃破するたびに、ウェーブを終えるたびにクリプト◇を獲得。"</string>
+    <string name="t_915c2f22" formatted="false">"{0}曲を保存したところで、端末が残りを拒否しました。空き容量を確保して再試行してください。"</string>
+    <string name="t_919816cc" formatted="false">"Google Playに接続できません。購入済みのものはあなたのものです。オンラインに戻ったら「復元」を試してください。"</string>
+    <string name="t_91ae1cd3" formatted="false">"やさしい用語集"</string>
+    <string name="t_91d4d5fc" formatted="false">"使用可能 · ◇ {0}"</string>
+    <string name="t_9231c915" formatted="false">"稼働中の反応を囲む琥珀色の封じ込めリング。"</string>
+    <string name="t_933bf2fb" formatted="false">"「広告を削除」はラン間の広告が対象です。リバイブ広告は別です。"</string>
+    <string name="t_935cf7b5" formatted="false">"ハット並みの連射速度、より重い弾、SYN-STORMとGRADIENTに{0}倍ダメージ。最大2体。"</string>
+    <string name="t_93875a49" formatted="false">"射程"</string>
+    <string name="t_93f1bd2f" formatted="false">"連射速度が非常に高く、範囲内では常に他よりボスを優先し、[GG] GOOD GAMEに2倍ダメージ。ウェーブ30で解放、配置は最大4体。"</string>
+    <string name="t_94061f4f" formatted="false">"ダメージはほぼない。範囲内のものはすべて這うように遅くなり、アタッカーの射程に脅威をずっと長く留める。安く、単体では役に立たない。隣で撃つものの力を何倍にもする存在だ。"</string>
+    <string name="t_941dea68" formatted="false">"ダメージ表示"</string>
+    <string name="t_9427590a" formatted="false">"ヒット時にダメージ値を表示"</string>
+    <string name="t_94bbec0b" formatted="false">"「次のウェーブ」をタップ。エージェントは自動で撃つ。攻撃を止めるたびに◇クリプトが入り、エージェントやアップグレードを買える。"</string>
+    <string name="t_94dc88d3" formatted="false">"ファームウェア1レベルごとに、全エージェントのダメージが+{0}%、ランで得る◇クリプトが+{1}%(最大2倍)、今後のすべての試合で上がる。決して消えない。"</string>
+    <string name="t_95051192" formatted="false">"未設定"</string>
+    <string name="t_952dc0bb" formatted="false">"ランキング"</string>
+    <string name="t_959b6bbb" formatted="false">"最大{0}体配置済み"</string>
+    <string name="t_9655a074" formatted="false">"メニューと盤面の背後を流れるゆっくりしたデータ。"</string>
+    <string name="t_97e1363f" formatted="false">"毎回の被弾ダメージを大きく固定値で軽減。"</string>
+    <string name="t_98189a64" formatted="false">"なし。これは真っ向勝負だ。"</string>
+    <string name="t_9873614b" formatted="false">"チーム最長の探知範囲と、高速の攻撃に+45%ダメージ。連射は遅い。撃つこともできる見張り役なので、レーンを広く見渡せる場所に置こう。"</string>
+    <string name="t_98a9c7f2" formatted="false">"€予算"</string>
+    <string name="t_98b63553" formatted="false">"プレイにアカウントもログインも不要"</string>
+    <string name="t_98cc567c" formatted="false">"最高ダメージ"</string>
+    <string name="t_98f4abc6" formatted="false">"◇ {0} · {2}のウェーブ{1}で解放"</string>
+    <string name="t_98fbe3ee" formatted="false">"マルチロック"</string>
+    <string name="t_991bd4c3" formatted="false">"CRYPTOGRAPHERが1体いるだけで戦況が一変する。"</string>
+    <string name="t_991c8ba8" formatted="false">"エージェントのアップグレード合計"</string>
+    <string name="t_996095bd" formatted="false">"このゲームで言及される一部の名称、用語、商標は、それぞれの所有者に帰属する場合があります。これらの言及は、識別、論評、教育的な文脈、ゲーム内の架空の表現のためだけに使用しています。\n\nこのゲームは独立して開発されており、Red Hat、Microsoft、その他いかなる商標所有者とも提携しておらず、後援、推奨、承認も受けていません。\n\nすべての第三者の商標、製品名、会社名、ロゴは、それぞれの所有者に帰属します。"</string>
+    <string name="t_99ab6437" formatted="false">"次にそれらの画面を開いたとき、メインメニューのツアーとファームウェアの説明をもう一度表示します。"</string>
+    <string name="t_99cfdd6c" formatted="false">"{0}のプレビュー"</string>
+    <string name="t_99d175d2" formatted="false">"ルート上にTARPITを置いて加速を削ごう。"</string>
+    <string name="t_99f43c9c" formatted="false">"クリプトが足りません"</string>
+    <string name="t_9a8ee779" formatted="false">"チーム屈指の連射速度で、常にボスを最優先で撃つ。[!!!] BREACHに2倍ダメージ。最大4体。"</string>
+    <string name="t_9a9bcdd3" formatted="false">"スロット"</string>
+    <string name="t_9aa5d01a" formatted="false">"負けたランの後に広告が出ることはもうありません。さらに€5,000。リバイブ広告は任意で別扱い(リバイブパックを参照)。"</string>
+    <string name="t_9adba547" formatted="false">"1ユーロあたりで最もお得。"</string>
+    <string name="t_9ae9f14f" formatted="false">"遠くの点がゆっくり漂う。"</string>
+    <string name="t_9aed28a1" formatted="false">"配置上限に達しました"</string>
+    <string name="t_9b08be38" formatted="false">"Google Play ゲームに確認中…"</string>
+    <string name="t_9b1d7455" formatted="false">"ウェーブ{0}"</string>
+    <string name="t_9b4c97a7" formatted="false">"木馬にちなんだ名前: 欲しいものに見えて、まったく欲しくないものを運んでくるソフトウェア。"</string>
+    <string name="t_9b557f99" formatted="false">"最高記録: ウェーブ{0}"</string>
+    <string name="t_9b989bfb" formatted="false">"最高"</string>
+    <string name="t_9bcd1b03" formatted="false">"リビング背景7種すべてと€2,000。"</string>
+    <string name="t_9bd1faf7" formatted="false">"返金、支払い方法、領収書はこのゲームではなくGoogleが扱います。"</string>
+    <string name="t_9c2ade2b" formatted="false">"Lv {0}  ×{1}"</string>
+    <string name="t_9c6be09c" formatted="false">"修飾子"</string>
+    <string name="t_9d0c4ff1" formatted="false">"&gt; ウェーブ{0}進行中 — 残り脅威{1}"</string>
+    <string name="t_9d29de23" formatted="false">"レベル別最高ウェーブ"</string>
+    <string name="t_9d2c3eea" formatted="false">"ネットワーク用語"</string>
+    <string name="t_9d36e329" formatted="false">"身代金"</string>
+    <string name="t_9d5ca8b9" formatted="false">"リバイブしますか?"</string>
+    <string name="t_9df821c5" formatted="false">"CyOps TDへようこそ"</string>
+    <string name="t_9e30871d" formatted="false">"他人の命令を受ける乗っ取られたマシン1台。ボット1体は無害だが、何千台ものボットネットは違う。だからいつも群れで来る。"</string>
+    <string name="t_9e77c8cf" formatted="false">"ウェーブを素早く片付けるための5段階目のシミュレーション速度を追加。"</string>
+    <string name="t_9ef0ebe5" formatted="false">"セグメント化"</string>
+    <string name="t_9f26f678" formatted="false">"  →"</string>
+    <string name="t_9f70f631" formatted="false">"連射速度"</string>
+    <string name="t_9fb6c271" formatted="false">"近くのエージェントを一時的に妨害し、連射速度を下げる。"</string>
+    <string name="t_a12f7814" formatted="false">"+{0}(ボス)"</string>
+    <string name="t_a15faa1f" formatted="false">"モード"</string>
+    <string name="t_a19abbd4" formatted="false">"すべてのサイバーエージェントと、その役割、解放されるウェーブ。"</string>
+    <string name="t_a21dbf00" formatted="false">"€{0}の予算を獲得"</string>
+    <string name="t_a24181ff" formatted="false">"何が攻めてくるか"</string>
+    <string name="t_a2517472" formatted="false">"ストアは利用できません"</string>
+    <string name="t_a29c69ba" formatted="false">"終了"</string>
+    <string name="t_a2b3bef5" formatted="false">"ウェーブ{0}に到達"</string>
+    <string name="t_a2dd8300" formatted="false">"試練のコース。折り返す2本のルートと、ラック前の周回路。"</string>
+    <string name="t_a2e2f704" formatted="false">"サイファーブレイク"</string>
+    <string name="t_a32353a8" formatted="false">"€9,000 予算"</string>
+    <string name="t_a36e1b6d" formatted="false">"このビルドにはありません"</string>
+    <string name="t_a3ebab03" formatted="false">"未知で未修正の欠陥"</string>
+    <string name="t_a4a2cd90" formatted="false">"&gt;&gt; 新記録 &lt;&lt;"</string>
+    <string name="t_a4fd7522" formatted="false">" · 最大{0}"</string>
+    <string name="t_a5460e4e" formatted="false">"エリートとボスに+80%ダメージの、遅く重い単発。群れには弱い。ターゲットを選べるので、本当に倒したい相手を狙える。"</string>
+    <string name="t_a596b409" formatted="false">"5倍速はストアにあります"</string>
+    <string name="t_a599c90a" formatted="false">"自身を含む範囲内の全エージェントは、どのボスの妨害も受けない。速く重い弾で、WHITE EYEとBLACK EYEに{0}倍ダメージ。射程はTARPITと同じ。配置は最大2体。"</string>
+    <string name="t_a5b1ffba" formatted="false">"無制限のシステムアクセス"</string>
+    <string name="t_a5da8eea" formatted="false">"ウェーブで詰まった?予算を貯めてファームウェアを入れれば、同じ布陣でも次のランはより強く撃てる。"</string>
+    <string name="t_a6291e29" formatted="false">"€5,000 予算"</string>
+    <string name="t_a62c1133" formatted="false">"本物のハッキング能力はなし — ここにあるものは本物のネットワークに一切触れない"</string>
+    <string name="t_a66c22f9" formatted="false">"言語はメインメニューの「設定」で変更してください。変更するとゲームが再起動し、このランが終わってしまいます。"</string>
+    <string name="t_a6cd2e07" formatted="false">"{0}〜{1}文字。A-Z、0-9、ハイフン、アンダースコア。"</string>
+    <string name="t_a6ee02f4" formatted="false">"キャンセル"</string>
+    <string name="t_a727a483" formatted="false">"内容"</string>
+    <string name="t_a7c5a24a" formatted="false">"Music/CyOps TDに保存中…"</string>
+    <string name="t_a7c97dfd" formatted="false">"リセット"</string>
+    <string name="t_a7e02911" formatted="false">"コアに設置"</string>
+    <string name="t_a7e24bd6" formatted="false">"ターゲット"</string>
+    <string name="t_a8031bce" formatted="false">"ストアのページを開く"</string>
+    <string name="t_a8191219" formatted="false">"SPOOFERは自分のおとりを出し、攻撃を吸わせる。ANALYSTとROOT ADMINには見破れる。"</string>
+    <string name="t_a8768bb2" formatted="false">"エージェントスキン"</string>
+    <string name="t_a8935036" formatted="false">"獲得クリプト"</string>
+    <string name="t_a92b98a8" formatted="false">"クリプト ◇"</string>
+    <string name="t_a9a8f56c" formatted="false">"表示"</string>
+    <string name="t_a9ad0741" formatted="false">"このランの€"</string>
+    <string name="t_a9cf50ec" formatted="false">"実際の通信は、スイッチやルーターを経由して宛先にたどり着く。ここで曲がりくねる2本のルートはその経路で、折り返しているので全ホップを一度に見渡せる。"</string>
+    <string name="t_a9d9e481" formatted="false">"CORE-SERVERがあなたの守るもので、上部の整合性表示が唯一のライフだ。ラックに届いた敵パケットはそのたびに削っていく。0になればサーバーは破られ、ランは終わる。何も通さないことが仕事のすべてだ。"</string>
+    <string name="t_aab511c4" formatted="false">"ROOTKITは6秒のうち2秒隠れ、その間は誰も狙えない。範囲攻撃と連鎖は届く。"</string>
+    <string name="t_aac1d4da" formatted="false">"未連携"</string>
+    <string name="t_aadac61a" formatted="false">"アプリはSQLでデータベースに問い合わせる。ユーザーの入力がそのまま問い合わせに貼り付けられると、攻撃者はその続きを自分で書ける。ユーザー表を丸ごと抜き出したり、ログインを回避したり、全部消したり。対策は古くから知られている(パラメーター化クエリ)のに、今でも最もよく出会う攻撃であることがもどかしい。"</string>
+    <string name="t_ab62d63d" formatted="false">"侵入検知システムは、ネットワークや端末の活動を監視して攻撃らしいパターンを探し、警報を出す。報告はするが遮断はしない。見つけたものへの対処は、誰か、あるいは何か別のものの役目だ。"</string>
+    <string name="t_aca3253a" formatted="false">"戦場 · ボスをタップで表示"</string>
+    <string name="t_ad03a515" formatted="false">"ネットワークをゾーンに分ける"</string>
+    <string name="t_ad26a7c7" formatted="false">"不明"</string>
+    <string name="t_ae00f867" formatted="false">"分析"</string>
+    <string name="t_ae59bf94" formatted="false">"売却  ◇ {0}"</string>
+    <string name="t_b0147d1e" formatted="false">"このウェーブはFIREWALL以外のエージェントに頼ろう。"</string>
+    <string name="t_b0af39a6" formatted="false">"変更"</string>
+    <string name="t_b0d341a2" formatted="false">"1か月以上前"</string>
+    <string name="t_b0f472d0" formatted="false">"難易度"</string>
+    <string name="t_b16e2042" formatted="false">"ラックの背後にある紫の星空。"</string>
+    <string name="t_b2029176" formatted="false">"短い休憩の後、次のウェーブを自動で開始"</string>
+    <string name="t_b253fa2b" formatted="false">"暗号は送信中や保存中のデータを守り、傍受しても読めないようにする。攻撃者も使う(敵の通信の多くは暗号化されている)ため、防御側は暗号そのものを破ろうとせず、自分が管理する端点で検査する。"</string>
+    <string name="t_b28b05f8" formatted="false">"侵入防止システム"</string>
+    <string name="t_b2dbc630" formatted="false">"FIREWALL稼働中"</string>
+    <string name="t_b32b1a1d" formatted="false">"便利機能"</string>
+    <string name="t_b3735fe8" formatted="false">"ウェーブとともに呼吸する回路の格子。"</string>
+    <string name="t_b3b53e34" formatted="false">"購入はこの端末ではなくGoogleアカウントに紐づきます。再インストールや機種変更でも失われません。"</string>
+    <string name="t_b3c34c67" formatted="false">"たった今"</string>
+    <string name="t_b40b6d1c" formatted="false">"「レッドチーム」は許可を得てシステムを攻撃し、攻撃者が最初に見つけるものを探す。「Red hat」は職名や資格ではなく非公式の俗語で、意味は使う人によって異なる。標準的なのはレッドチームの部分だけだ。"</string>
+    <string name="t_b5ca7a98" formatted="false">"世界中の各プレイヤーの最高ウェーブを、コールサインで表示。右で登録しない場合は、Googleが Play ゲームの名前を表示します。"</string>
+    <string name="t_b649891d" formatted="false">"一時停止中"</string>
+    <string name="t_b683e66d" formatted="false">"{0}はロック中: 解放するには{1}。"</string>
+    <string name="t_b6bcb68c" formatted="false">"毎回同じ重い単体ダメージ。全装甲を無視。"</string>
+    <string name="t_b7ba0ba1" formatted="false">"REGENERATIONは{0}秒間被弾しないと回復させる。最後まで攻撃し続けよう。"</string>
+    <string name="t_b7c4c2a3" formatted="false">"[{0}] {1}(ロック中): {2}"</string>
+    <string name="t_b7cf2aab" formatted="false">"Google Playを開けるアプリがありません"</string>
+    <string name="t_b8201e22" formatted="false">"次: ウェーブ{0} · ボス"</string>
+    <string name="t_b82dfd13" formatted="false">"移動先"</string>
+    <string name="t_b835d746" formatted="false">"ステップ5 — TARPITを2体配置"</string>
+    <string name="t_b8cbfe08" formatted="false">"CORE-SERVERから最も遠い"</string>
+    <string name="t_b8f9cbc8" formatted="false">"ダメ {0}  連射 {1}/秒"</string>
+    <string name="t_b8ffa95c" formatted="false">"リビング: AURORA"</string>
+    <string name="t_b9918647" formatted="false">"金で雇われてここにいる。小細工も妨害もなし。ただ盤上の他の何よりも2割増し。"</string>
+    <string name="t_b9a3ada7" formatted="false">"EXFILは速い。コアに到達すると、整合性の代わりにクリプトの半分を盗む。先に使い切るか、止めよう。"</string>
+    <string name="t_b9c6b239" formatted="false">"レーンの下と、すべてのメニューの背後に描かれる。"</string>
+    <string name="t_badb0f4a" formatted="false">"ときどきサーバーへ向けて加速する。"</string>
+    <string name="t_bae2cee7" formatted="false">"はい — 広告を見る"</string>
+    <string name="t_bb0a2d46" formatted="false">"選択"</string>
+    <string name="t_bb621985" formatted="false">"ハードニング"</string>
+    <string name="t_bb93827c" formatted="false">"リバイブ失敗 — ランはすでに終了しています"</string>
+    <string name="t_bc855067" formatted="false">"アクセス拒否"</string>
+    <string name="t_bcdf64b3" formatted="false">"SQLインジェクション"</string>
+    <string name="t_bceaf8ce" formatted="false">"!!! サイバー攻撃接近中 !!!"</string>
+    <string name="t_bd0c6acd" formatted="false">"次 €{0} · レベルごとに{2} +{1}%"</string>
+    <string name="t_bd1b1fc9" formatted="false">"OFF"</string>
+    <string name="t_bd8215e6" formatted="false">"はい、説明して"</string>
+    <string name="t_bd84c20a" formatted="false">"ウェーブ{0}防衛"</string>
+    <string name="t_be1fc25b" formatted="false">"何にでも頼れるダメージで、妨害も受けない。"</string>
+    <string name="t_beb11f45" formatted="false">"ボスの修飾子"</string>
+    <string name="t_beb3cdc3" formatted="false">"そのフィールドは、ボスを他の脅威の2倍減速させる。"</string>
+    <string name="t_bec37550" formatted="false">"ホットリペア"</string>
+    <string name="t_bed8ffbb" formatted="false">"「復元」はこのGoogleアカウントの所有物をPlayに再確認します。いつ押しても安全で、料金は発生しません。"</string>
+    <string name="t_bf09fcca" formatted="false">"このビルドにはPlay ゲームのプロジェクトが設定されていないため、進行状況はこの端末に残ります。同じGoogleアカウントの端末に再インストールすれば、Androidのバックアップで復元されます。"</string>
+    <string name="t_bf0c2eaa" formatted="false">"複製中"</string>
+    <string name="t_bf7cfb98" formatted="false">"このビルドには設定する広告がありません。"</string>
+    <string name="t_c1386132" formatted="false">"◇ クリプト"</string>
+    <string name="t_c164d2e8" formatted="false">"ハット並みの速さで撃ち、より強く当たる。DUCK-USBのボスSYN-STORMとGRADIENTに{0}倍ダメージ。ターゲットモードは維持。配置は最大2体。エージェントスキンで変わらないホログラムとして描かれる。"</string>
+    <string name="t_c19b9c99" formatted="false">"CORE-SERVER整合性 0 · 接続終了"</string>
+    <string name="t_c1b7bcc5" formatted="false">"このビルドは広告を表示しません。"</string>
+    <string name="t_c2658f4d" formatted="false">"圧倒的な単体ダメージ。全装甲を無視。"</string>
+    <string name="t_c2c8c2f8" formatted="false">"エージェントの射程を表示"</string>
+    <string name="t_c2d127eb" formatted="false">"スキップ ×"</string>
+    <string name="t_c31db047" formatted="false">"リバイブパック — 広告なし。"</string>
+    <string name="t_c39850a1" formatted="false">"ステップ3 — FIREWALLを2体配置"</string>
+    <string name="t_c3e1a996" formatted="false">"◇クリプトと€予算はゲーム内の架空の資源です。金銭的価値はなく、ゲーム外の何とも交換できず、端末の外へ持ち出せません。"</string>
+    <string name="t_c405af57" formatted="false">"「プレイ」は左で選んだレベルとモードでランを始めます。保存されたランがある場合、「続ける」で再開し、「新しいラン」で最初からやり直します。"</string>
+    <string name="t_c40bc4a4" formatted="false">"IDSはネットワークの活動を監視し、不審な振る舞いや脅威を見つけると警報を出す。監視はするが遮断はしない。"</string>
+    <string name="t_c4a14a23" formatted="false">"FIREWALLを選ぼう。安く、信頼でき、妨害も受けない。"</string>
+    <string name="t_c4b7782d" formatted="false">"セキュリティアナリストは実在の職業だ。自動ツールが検知したものを人間が受け取り、実際に何が起きたかを突き止め、どう対処するかを決める。機械より遅いが、既知のパターンに当てはまらない事例でははるかに優れている。"</string>
+    <string name="t_c4d0dc6f" formatted="false">"機械学習ツールは、人が読める量をはるかに超える信号から異常なパターンを拾い、注目すべきものを絞り込むのに使われる。アナリストを置き換えるのではなく支えるもので、誤検知も出す。検知は手がかりであって判決ではない。"</string>
+    <string name="t_c51041e3" formatted="false">"  ·"</string>
+    <string name="t_c55cc938" formatted="false">"新しいラン"</string>
+    <string name="t_c55e934e" formatted="false">"スクロールして続きを表示"</string>
+    <string name="t_c570c6cd" formatted="false">"ラック内を流れ落ちるコードの列。"</string>
+    <string name="t_c5cb18f9" formatted="false">"すべてのレベル"</string>
+    <string name="t_c81c4fa0" formatted="false">"1レベル"</string>
+    <string name="t_c8a9aae9" formatted="false">"3本のルートが2回編み合わさる。どのレーンも左右が入れ替わる。"</string>
+    <string name="t_c9301368" formatted="false">"コア: REACTOR"</string>
+    <string name="t_c9402c75" formatted="false">"いいえ"</string>
+    <string name="t_c944e5aa" formatted="false">"対抗手段"</string>
+    <string name="t_c9a2aee9" formatted="false">"いずれかのレベルでウェーブ{0}に到達すると、このエージェントが解放されます。"</string>
+    <string name="t_ca02a8f8" formatted="false">"各エージェントは役割の色をまとう。"</string>
+    <string name="t_ca5ea88d" formatted="false">"お得"</string>
+    <string name="t_cabf47fa" formatted="false">"最大 +{0}"</string>
+    <string name="t_cb02b3da" formatted="false">"ロスター全体にゆっくり巡る色のサイクル。"</string>
+    <string name="t_cb1fd3f1" formatted="false">"IPSは行動する権限を持つIDSだ。攻撃を認識すると、誰かに知らせるだけでなく自ら通信を破棄する。"</string>
+    <string name="t_cb4ff573" formatted="false">"広告と購入"</string>
+    <string name="t_cbd3b516" formatted="false">"広告なし、エージェントスキン「スペクトラム」、背景DRIFT、€2,000。"</string>
+    <string name="t_cbd47695" formatted="false">"ペイロードブロック"</string>
+    <string name="t_cbf7d422" formatted="false">"SYN-STORMは体力半分で2体に分かれ、片方は別のルートを進む。全ルートを守ろう。"</string>
+    <string name="t_cc52e024" formatted="false">"次: ウェーブ{0} — ボス · 「次のボス」をタップでブリーフィング"</string>
+    <string name="t_cc5435ac" formatted="false">"レーンを下ってくるもの"</string>
+    <string name="t_cc5c44e8" formatted="false">"フォーカス: 小型ユニットとエリートのみ"</string>
+    <string name="t_cc6791f1" formatted="false">"FIREWALLエージェントに耐性。"</string>
+    <string name="t_cc7fe141" formatted="false">"攻撃用ツールを監視し、数秒ごとに近くのRED HATエージェントを短時間妨害する。"</string>
+    <string name="t_cc9e044b" formatted="false">"リビング: ORBIT"</string>
+    <string name="t_ccb963f2" formatted="false">"パケット"</string>
+    <string name="t_ccbd0815" formatted="false">"標準のラック。"</string>
+    <string name="t_ccbefbf5" formatted="false">"スキャン範囲 {0}"</string>
+    <string name="t_ccd3b8ff" formatted="false">"現在プライバシー設定を利用できません。"</string>
+    <string name="t_cce0919d" formatted="false">"購入済み"</string>
+    <string name="t_cd27794d" formatted="false">"コールサインはこの端末だけのもので、Googleアカウントではありません。ランキングでのランの名前になります。"</string>
+    <string name="t_cd7ef0df" formatted="false">"商標および第三者に関する表示"</string>
+    <string name="t_cd8fc1d8" formatted="false">"Google Playで任意のアプリ内課金を利用できます。ゲーム内に課金しないと遊べない部分はありません。"</string>
+    <string name="t_cde6047e" formatted="false">"侵入検知システム"</string>
+    <string name="t_ce2cde0d" formatted="false">"ステップ1 — ロスターを開く"</string>
+    <string name="t_ce56b8c8" formatted="false">"Google Playで管理"</string>
+    <string name="t_ce8b48c9" formatted="false">"ゲームプレイ"</string>
+    <string name="t_cec6cd66" formatted="false">"記録されたランはまだありません。ランを終えるとここに表示され、到達したウェーブ順に並びます。"</string>
+    <string name="t_cee3b8c9" formatted="false">"スキップ"</string>
+    <string name="t_cfd886ad" formatted="false">"2本のルートがそれぞれ自分の半分を掃く。中央の隙間のタワーは両方に届く。"</string>
+    <string name="t_d0112898" formatted="false">"おとり"</string>
+    <string name="t_d07db54c" formatted="false">"ROOT / ADMIN"</string>
+    <string name="t_d08f5138" formatted="false">"同じ砲台の前を折り返して通る、蛇行する2本のルート。"</string>
+    <string name="t_d10c0c39" formatted="false">"連射速度が非常に高く、毎発が飛び散るので、重い単体ではなく群れへの答えだ。IDSより高く、射程は短い。"</string>
+    <string name="t_d11351ac" formatted="false">"ON"</string>
+    <string name="t_d173b657" formatted="false">"システム上で何でもできるアカウント。攻撃者はそれを狙い、防御側は厳重に守る。セキュリティの仕事の多くは、誰がそれをどのくらいの期間持てるかを制限することだ。"</string>
+    <string name="t_d19c7c8e" formatted="false">"◇ {0} · ウェーブ{1}で解放"</string>
+    <string name="t_d22f26dd" formatted="false">"1回の斉射で最大3体の別々の脅威を攻撃する。"</string>
+    <string name="t_d2ee5fd2" formatted="false">"進行状況は自動で保存されます"</string>
+    <string name="t_d31b24bf" formatted="false">"{0} · {1}  ·  最高 {2}"</string>
+    <string name="t_d35bc038" formatted="false">"{0} — {1} ダメージはない。他のエージェントのために時間を稼ぐ。"</string>
+    <string name="t_d415f020" formatted="false">"ゼロデイとは、まだ修正がない欠陥のこと。防御側に修正の猶予はゼロ日だった。脆弱性研究者はこうした欠陥を探し、他の誰かに見つかる前に報告・修正されるようにする。「Zero-day hunter」は非公式の言い方で、資格や正式な職名ではない。"</string>
+    <string name="t_d477fdfb" formatted="false">"ファームウェアを完全インストール済み"</string>
+    <string name="t_d488d098" formatted="false">"ガイド付きランには次にTARPITが必要"</string>
+    <string name="t_d48f1170" formatted="false">"▼  下にさらに"</string>
+    <string name="t_d4bb26ac" formatted="false">"コアスキンパック"</string>
+    <string name="t_d5acb32b" formatted="false">"ボス警告、サーバー被弾、ゲームオーバー時に振動"</string>
+    <string name="t_d5b86d2a" formatted="false">"セキュリティオペレーションセンター"</string>
+    <string name="t_d5d0b693" formatted="false">"続ける"</string>
+    <string name="t_d62907f6" formatted="false">"インストール済みファームウェア"</string>
+    <string name="t_d63b9487" formatted="false">"接続不可"</string>
+    <string name="t_d736d92d" formatted="false">"OK"</string>
+    <string name="t_d8386755" formatted="false">"GOOGLE PLAY 課金"</string>
+    <string name="t_d84b41e9" formatted="false">"継続ダメージが勝つ。IPSか、強化したFIREWALLを。"</string>
+    <string name="t_d8705eb7" formatted="false">"サイバー攻撃はネットワークのルートを通ってCORE-SERVERへ進む。あなたはレーン沿いにサイバーエージェントを配置し、通り過ぎるものを検知して破壊する。攻撃を止めるたびに◇クリプトが入り、エージェントやアップグレードを買える。5ウェーブごとにボスが出る。最終ウェーブはない。問題はどこまで行けるかだけだ。"</string>
+    <string name="t_d889d3ab" formatted="false">"+1、+10、+100でその数だけレベルを購入。「最大インストール」は払えるだけ使います。レベルごとに少しずつ高くなります。"</string>
+    <string name="t_d8bcdc1d" formatted="false">"やり直す"</string>
+    <string name="t_d8fec6d4" formatted="false">"配置したエージェント合計"</string>
+    <string name="t_d9074af5" formatted="false">"暗号化はデータをかき混ぜ、正しい鍵を持つ者だけが読めるようにする。正当な通信を守る一方で、攻撃者のペイロードも同じように検査から隠してしまう。"</string>
+    <string name="t_d92ad54a" formatted="false">"このビルドにはGoogle Play課金が設定されていないか、この端末にPlayストアがありません。何も購入できず、お金のかかるものはプレイに一切不要です。"</string>
+    <string name="t_d9694eb9" formatted="false">"同じ欠陥だが、反応がない。アプリはエラーもデータも返さないので、攻撃者ははい・いいえで答えられる質問をし、応答時間、ページの長さ、ステータスコードなどの変化を見て、データベースを1ビットずつ読む。遅く、辛抱強く、ログで気づくのははるかに難しい。"</string>
+    <string name="t_d9b49353" formatted="false">"リトライ"</string>
+    <string name="t_d9b88563" formatted="false">"ネットワーク通信の単位"</string>
+    <string name="t_d9c57847" formatted="false">"境界防御準備完了"</string>
+    <string name="t_da10b268" formatted="false">"未購入"</string>
+    <string name="t_da169a1a" formatted="false">"世界"</string>
+    <string name="t_da3ae5ed" formatted="false">"ダメージはなく、何も狙わない。ウェーブ進行中は30秒ごとにCORE-SERVERの整合性を1回復する(休憩中や一時停止中は除く)。CORE-SERVER自体にある専用の2スロットにのみ配置できる。レベルが上がるとタイマーが短くなる。配置は最大2体。"</string>
+    <string name="t_dad4b11e" formatted="false">"オフェンシブ・スイープ"</string>
+    <string name="t_db696c4d" formatted="false">"巨大で重装甲だが遅い。装甲を無視できるものを用意しよう。"</string>
+    <string name="t_db971746" formatted="false">"防御用ツールを監視し、数秒ごとに近くのBLUE HATエージェントを短時間妨害する。"</string>
+    <string name="t_dba0a883" formatted="false">"乗っ取られたマシンのネットワーク"</string>
+    <string name="t_dbc1a374" formatted="false">"広告が完了しませんでした — 何も消費していません"</string>
+    <string name="t_dc09f8b7" formatted="false">"妨害 — ボスはエージェントを妨害し、その間は連射速度を半減させる。{0}はそれを気にしない作りだ。"</string>
+    <string name="t_dc37fa05" formatted="false">"すべての背後で動く、冷たい光の広い帯。"</string>
+    <string name="t_dc62badb" formatted="false">"称号"</string>
+    <string name="t_dce01a82" formatted="false">"コールサインを入力"</string>
+    <string name="t_dd220c90" formatted="false">"広告"</string>
+    <string name="t_dd4083b5" formatted="false">"購入はありません。上記はすべてプレイで手に入れることも、なしで遊ぶこともできます。"</string>
+    <string name="t_dd55f56b" formatted="false">"2本のルートがDNAの鎖のように、ラックの前で3回絡み合う。"</string>
+    <string name="t_ddb5514a" formatted="false">"Google Play ゲームで開く"</string>
+    <string name="t_ddcb2958" formatted="false">"前者にちなんだ名前で、完全なSF: 各ヒットが近くの脅威2体に連鎖し55%のダメージ。密集したウェーブに強く、単独の標的には無駄。ターゲットを選択可能。"</string>
+    <string name="t_ddd374d9" formatted="false">"出会う攻撃、ボス、そしてエージェントがそれらにどう対処するかの簡単なまとめです。約20秒です。"</string>
+    <string name="t_dee83e52" formatted="false">"ゲーム内パネルの不透明度"</string>
+    <string name="t_e00d9a42" formatted="false">"CORE-SERVERのスロットに置いてください"</string>
+    <string name="t_e01007ce" formatted="false">"小さいパックより1ユーロあたりお得。"</string>
+    <string name="t_e07706fa" formatted="false">"連携するまでこの端末"</string>
+    <string name="t_e0a2aaa4" formatted="false">"Googleアカウントを連携"</string>
+    <string name="t_e12d998f" formatted="false">"パッケージ"</string>
+    <string name="t_e13093ea" formatted="false">"ダメージ"</string>
+    <string name="t_e1892d25" formatted="false">"コアファームウェア"</string>
+    <string name="t_e1df4ef7" formatted="false">"ボス"</string>
+    <string name="t_e3407723" formatted="false">"はい"</string>
+    <string name="t_e3a7e50c" formatted="false">"セーブを残す"</string>
+    <string name="t_e3c4a9cc" formatted="false">"{0}は近くの{1}エージェントを妨害する。射程の端まで下げて配置しよう。"</string>
+    <string name="t_e4554374" formatted="false">"閉じる"</string>
+    <string name="t_e55f9c78" formatted="false">"このゲームがしないこと"</string>
+    <string name="t_e587f42b" formatted="false">"システムのデフォルト(端末の言語)"</string>
+    <string name="t_e5e7e535" formatted="false">"SYN-STORM分裂"</string>
+    <string name="t_e6694d9c" formatted="false">"ウェーブ中、CORE-SERVERの2つのスロットのどちらかから、30秒ごとに整合性を1回復。レベルで速くなる。最大2体。"</string>
+    <string name="t_e807eff2" formatted="false">"射程内で最も近いルートを壁でふさぎ、脅威に壊させる。全ボスに非常に強く当たる。最大3体。"</string>
+    <string name="t_e8757749" formatted="false">"{1}でウェーブ{0}を突破"</string>
+    <string name="t_e8987cec" formatted="false">"進行状況をリセット"</string>
+    <string name="t_e94c961d" formatted="false">"統計"</string>
+    <string name="t_e979d28d" formatted="false">"連射"</string>
+    <string name="t_e99d5d17" formatted="false">"€パックは所有ではなく消費するものです。1回だけ付与され、「復元」で再付与されることはありません。"</string>
+    <string name="t_e9caa97b" formatted="false">"配置の記録はまだありません。ランをプレイすると表示されます。"</string>
+    <string name="t_ea16b407" formatted="false">"深い藍色に金の軌跡。"</string>
+    <string name="t_ea31efb2" formatted="false">"ウェーブ{0}を突破"</string>
+    <string name="t_eab5f205" formatted="false">"コールサインを変更"</string>
+    <string name="t_eaf7396d" formatted="false">"Googleに接続できません — セーブは端末に保持"</string>
+    <string name="t_eb2e832a" formatted="false">"エージェント {0}"</string>
+    <string name="t_ebdd4d5e" formatted="false">"削除済み · なし"</string>
+    <string name="t_ec91403d" formatted="false">"ウェーブ"</string>
+    <string name="t_ed31a176" formatted="false">"ウェーブに反応して呼吸する回路の格子。"</string>
+    <string name="t_ed5c9d47" formatted="false">"レベルごと"</string>
+    <string name="t_ed7160a0" formatted="false">"なし"</string>
+    <string name="t_ed7ecda7" formatted="false">"ロック中"</string>
+    <string name="t_ee0803eb" formatted="false">"レジリエント"</string>
+    <string name="t_ee094192" formatted="false">"このビルドにはGoogle Play課金が設定されていないため、ここでは何も購入できません。お金のかからない部分はすべて通常どおり動作します。"</string>
+    <string name="t_ee5525d9" formatted="false">"KERNEL PANIC · {0}体を妨害"</string>
+    <string name="t_ee6595fd" formatted="false">"警報を見張るチームと部屋。このゲームに舞台があるとすれば、午前3時のSOCの壁面ディスプレイだ。"</string>
+    <string name="t_eea62f11" formatted="false">"購入"</string>
+    <string name="t_eef967f2" formatted="false">"戦場をズーム"</string>
+    <string name="t_ef29f425" formatted="false">"オーディオ"</string>
+    <string name="t_efcf9890" formatted="false">"ダメ {0} · 連射 {1}/秒 · 射程 {2}"</string>
+    <string name="t_f001b942" formatted="false">"フォーティファイド"</string>
+    <string name="t_f03b01af" formatted="false">"しばらく被弾しないと、ゆっくり自己修復する。"</string>
+    <string name="t_f100d10c" formatted="false">"「ロック中」の表示があるものはストアにあります。ここにあるものはゲーム性を変えません。スキンは見た目であって、有利になるものではありません。"</string>
+    <string name="t_f16b76bc" formatted="false">"「ラバーダッキー」は、キーボードのふりをして誰よりも速く攻撃を打ち込むUSBメモリだ。対策は、コンピューターが信頼する前に新しいデバイスを検査し、機械のように打つキーボードを遮断するUSBガードだ。"</string>
+    <string name="t_f17dfdae" formatted="false">"1本の長いルートが上から入り、ラックへ向かって渦を巻きながら外へ広がる。"</string>
+    <string name="t_f25360a0" formatted="false">"変更はすぐに適用され、この端末に保存されます"</string>
+    <string name="t_f293dfd1" formatted="false">"購入の確認"</string>
+    <string name="t_f2e7479c" formatted="false">"Googleアカウントを連携すると、どのスマートフォンやタブレットでも進行状況を引き継げます。Googleは、このゲームの保存データをアカウント内で管理する許可を求めます。それはゲームのセーブ用の保存領域で、使うのはそれだけです。"</string>
+    <string name="t_f2ed0368" formatted="false">"速い。コアに到達すると、整合性の代わりにクリプトの半分を盗む。"</string>
+    <string name="t_f2f63d9f" formatted="false">"この端末"</string>
+    <string name="t_f33c5b01" formatted="false">"ステップ6 — ウェーブを開始"</string>
+    <string name="t_f38eb808" formatted="false">"より手強く、より密集した脅威、整合性は少なめ。報酬は豊富。"</string>
+    <string name="t_f3e23f71" formatted="false">"コア: CASCADE"</string>
+    <string name="t_f49a4ff9" formatted="false">"エージェントはロック中"</string>
+    <string name="t_f4f677dc" formatted="false">"生涯獲得額"</string>
+    <string name="t_f5537783" formatted="false">"コア: MAINFRAME"</string>
+    <string name="t_f590e2c9" formatted="false">"ルート"</string>
+    <string name="t_f5b866e4" formatted="false">"準備不足のネットワークを振り払えるだけの冗長性を備えた、組織的な侵害の試み。5ウェーブごとに1体来て、そのたびに強くなる。"</string>
+    <string name="t_f60f5840" formatted="false">"CyOpsのアカウントやパスワードは今もありません。購入は、この端末のPlayストアにログインしているGoogleアカウントに従います。進行状況は、上で連携するGoogleアカウントに従います。これは別の任意の選択で、なくてもゲームは完結しています。"</string>
+    <string name="t_f692d3ce" formatted="false">"ボットネット"</string>
+    <string name="t_f69a80a7" formatted="false">"{0}に切り替えるためゲームを再起動します。進行状況は保持されます。"</string>
+    <string name="t_f6f93110" formatted="false">"コア: NEONGRID"</string>
+    <string name="t_f720bfa7" formatted="false">"CRTの蛍光体の走査線。"</string>
+    <string name="t_f76fff7f" formatted="false">"悪意のあるソフトウェア: 損害、妨害、窃盗のために書かれたコード。単純なインジェクションより多くのペイロードを運ぶので、壊れるまでにより多くのダメージに耐える。"</string>
+    <string name="t_f7a4fc70" formatted="false">"もう一度タップして配置"</string>
+    <string name="t_f7a7b98a" formatted="false">"ダメ {0} · 連射 {1} · 射程 {2}"</string>
+    <string name="t_f7eb1496" formatted="false">"順位は到達した最深ウェーブで決まります。同点の場合は与えたダメージで決まります。"</string>
+    <string name="t_f803ec67" formatted="false">"注文履歴と払い戻し"</string>
+    <string name="t_f85117ec" formatted="false">"{0}曲はすべてMusic/CyOps TDにあります。"</string>
+    <string name="t_f8723c46" formatted="false">"速度"</string>
+    <string name="t_f8d84db3" formatted="false">"未登録"</string>
+    <string name="t_f8e6e39f" formatted="false">"システムエンジニアはサーバーを動かし続ける。パッチ適用、故障部品の交換、バックアップからの復元、マシンの健康状態の監視などだ。「Server systems engineer」はそうした仕事を表す言葉で、職名は組織によって異なる。"</string>
+    <string name="t_f9807a9f" formatted="false">"&gt; 待機中 — エージェントを配置してウェーブ1を開始"</string>
+    <string name="t_f9cec260" formatted="false">"少数の巨大な攻撃なら、GRADIENTはほとんど加速しない。"</string>
+    <string name="t_f9d6b090" formatted="false">"戦場とメニューの背後を漂うASCIIデータ"</string>
+    <string name="t_fa1b4500" formatted="false">"統計は、一時停止メニューから放棄したランを含むすべてのランで累積されます。「設定」で進行状況をリセットするとすべて消えます。"</string>
+    <string name="t_fa60c2c6" formatted="false">"リビング: HEATMAP"</string>
+    <string name="t_fb735826" formatted="false">"振動"</string>
+    <string name="t_fb889492" formatted="false">"独立開発の、オフラインファーストなサイバーセキュリティがテーマのタワーディフェンス。シナリオ、エージェント、用語はゲーム用に脚色されており、背後にある概念を学べるよう現実世界の短い解説を添えています。攻撃の手法は一切教えず、現実のセキュリティ機能も果たしません。"</string>
+    <string name="t_fbca7f29" formatted="false">"役立つふりをしたマルウェア"</string>
+    <string name="t_fbd9e20c" formatted="false">"背景アニメーション"</string>
+    <string name="t_fc778505" formatted="false">"何の印もない、まっさらなラック。"</string>
+    <string name="t_fcc1e712" formatted="false">"プライバシー"</string>
+    <string name="t_fd3cb488" formatted="false">"サインインのしくみ"</string>
+    <string name="t_fdb0282f" formatted="false">"広告を読み込み中…"</string>
+    <string name="t_fde05efe" formatted="false">"{1}でウェーブ{0}に到達"</string>
+    <string name="t_fe26fa48" formatted="false">"最高ウェーブ"</string>
+    <string name="t_fe451d7a" formatted="false">"システム復旧 — 整合性 {0}"</string>
+    <string name="t_fe86390c" formatted="false">" · 速度 {0}"</string>
+    <string name="t_feeee285" formatted="false">"コアスキン{0}種 · 背景{1}種が利用可能"</string>
+    <string name="t_feef9615" formatted="false">"次のボス"</string>
+    <string name="t_ff2d6a51" formatted="false">"3本のルートが2回入れ替わる。交差点はどれも2本に届くポイントだ。"</string>
+    <string name="t_ffa57dc1" formatted="false">"&gt; レーンのトポロジーを構築中"</string>
+    <string name="t_ffc3db58" formatted="false">"射程 {0}"</string>
+    <string name="t_ffff9bd9" formatted="false">"エージェントが色のスペクトラムをゆっくり巡り、ユニットごとに少しずつずれていく。"</string>
+</resources>

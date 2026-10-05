@@ -11,6 +11,9 @@ internal object LanguageCatalog {
         Language("es-419", "Español (Latinoamérica)", "Spanish (Latin America)"),
         Language("pt", "Português (Brasil)", "Portuguese (Brazil)"),
         Language("fr", "Français", "French"),
-        Language("de", "Deutsch", "German")
+        Language("de", "Deutsch", "German"),
+        Language("it", "Italiano", "Italian"),
+        Language("ru", "Русский", "Russian"),
+        Language("ja", "日本語", "Japanese")
     )
 }
