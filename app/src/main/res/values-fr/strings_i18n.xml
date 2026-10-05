@@ -614,6 +614,7 @@
     <string name="t_b253fa2b" formatted="false">"La cryptographie protège les données en transit et au repos, pour que les intercepter ne revienne pas à les lire. Les attaquants s'en servent aussi — beaucoup de trafic hostile est chiffré — c'est pourquoi les défenseurs inspectent aux extrémités qu'ils contrôlent plutôt que d'essayer de casser le chiffrement."</string>
     <string name="t_b28b05f8" formatted="false">"Système de prévention d'intrusion"</string>
     <string name="t_b2dbc630" formatted="false">"FIREWALL ACTIF"</string>
+    <string name="t_b2ef7c39" formatted="false">"Cyber-opérateurs : Tower Defense"</string>
     <string name="t_b32b1a1d" formatted="false">"CONFORT"</string>
     <string name="t_b3735fe8" formatted="false">"Un treillis de circuits qui respire avec la vague."</string>
     <string name="t_b3b53e34" formatted="false">"Les achats sont liés à ton compte Google, pas à cet appareil. Réinstaller ou changer de téléphone ne les fait pas perdre."</string>

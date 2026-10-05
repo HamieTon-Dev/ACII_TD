@@ -614,6 +614,7 @@
     <string name="t_b253fa2b" formatted="false">"La crittografia protegge i dati in transito e a riposo, così intercettarli non equivale a leggerli. La usano anche gli attaccanti — molto traffico ostile è cifrato — ed è per questo che i difensori ispezionano negli endpoint che controllano invece di provare a rompere la cifratura."</string>
     <string name="t_b28b05f8" formatted="false">"Sistema di prevenzione delle intrusioni"</string>
     <string name="t_b2dbc630" formatted="false">"FIREWALL ATTIVO"</string>
+    <string name="t_b2ef7c39" formatted="false">"Cyber Operativi: Tower Defense"</string>
     <string name="t_b32b1a1d" formatted="false">"COMODITÀ"</string>
     <string name="t_b3735fe8" formatted="false">"Un reticolo di circuiti che respira con l'ondata."</string>
     <string name="t_b3b53e34" formatted="false">"Gli acquisti sono legati al tuo account Google, non a questo dispositivo. Reinstallare o cambiare telefono non te li fa perdere."</string>

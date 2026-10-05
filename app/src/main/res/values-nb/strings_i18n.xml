@@ -614,6 +614,7 @@
     <string name="t_b253fa2b" formatted="false">"Kryptografi beskytter data under overføring og lagring, slik at det å avskjære dem ikke er det samme som å lese dem. Angripere bruker den også — mye fiendtlig trafikk er kryptert — og derfor inspiserer forsvarere ved endepunkter de selv kontrollerer i stedet for å prøve å knekke selve krypteringen."</string>
     <string name="t_b28b05f8" formatted="false">"Inntrengingsforebyggende system"</string>
     <string name="t_b2dbc630" formatted="false">"BRANNMUR AKTIV"</string>
+    <string name="t_b2ef7c39" formatted="false">"Cyberagenter: Tower Defense"</string>
     <string name="t_b32b1a1d" formatted="false">"BEKVEMMELIGHET"</string>
     <string name="t_b3735fe8" formatted="false">"Et kretsgitter som puster med bølgen."</string>
     <string name="t_b3b53e34" formatted="false">"Kjøp er knyttet til Google-kontoen din, ikke til denne enheten. Å installere på nytt eller bytte telefon gjør ikke at du mister dem."</string>

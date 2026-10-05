@@ -614,6 +614,7 @@
     <string name="t_b253fa2b" formatted="false">"Криптография защищает данные при передаче и хранении, так что перехватить их не значит прочитать. Атакующие тоже ею пользуются — много враждебного трафика зашифровано, — поэтому защитники проверяют данные на контролируемых ими конечных точках, а не пытаются взломать само шифрование."</string>
     <string name="t_b28b05f8" formatted="false">"Система предотвращения вторжений"</string>
     <string name="t_b2dbc630" formatted="false">"FIREWALL АКТИВЕН"</string>
+    <string name="t_b2ef7c39" formatted="false">"Кибероперативники: Защита башен"</string>
     <string name="t_b32b1a1d" formatted="false">"УДОБСТВО"</string>
     <string name="t_b3735fe8" formatted="false">"Решётка схем, дышащая вместе с волной."</string>
     <string name="t_b3b53e34" formatted="false">"Покупки привязаны к аккаунту Google, а не к этому устройству. Переустановка или смена телефона их не отнимет."</string>

@@ -614,6 +614,7 @@
     <string name="t_b253fa2b" formatted="false">"Kryptografia chroni dane w transmisji i w spoczynku, tak by przechwycenie ich nie oznaczało ich odczytania. Atakujący też jej używają — dużo wrogiego ruchu jest zaszyfrowane — dlatego obrońcy kontrolują ruch w punktach końcowych, które sami kontrolują, zamiast próbować łamać samo szyfrowanie."</string>
     <string name="t_b28b05f8" formatted="false">"System zapobiegania włamaniom"</string>
     <string name="t_b2dbc630" formatted="false">"ZAPORA AKTYWNA"</string>
+    <string name="t_b2ef7c39" formatted="false">"Cyberoperatorzy: Tower Defense"</string>
     <string name="t_b32b1a1d" formatted="false">"WYGODA"</string>
     <string name="t_b3735fe8" formatted="false">"Krata obwodów oddychająca z falą."</string>
     <string name="t_b3b53e34" formatted="false">"Zakupy są przypisane do konta Google, nie do tego urządzenia. Ponowna instalacja lub zmiana telefonu ich nie usuwa."</string>

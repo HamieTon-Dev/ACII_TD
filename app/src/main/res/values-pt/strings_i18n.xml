@@ -614,6 +614,7 @@
     <string name="t_b253fa2b" formatted="false">"A criptografia protege dados em trânsito e armazenados, para que interceptá-los não seja o mesmo que lê-los. Atacantes também a usam — muito tráfego hostil é criptografado — e por isso os defensores inspecionam nas pontas que controlam em vez de tentar quebrar a criptografia."</string>
     <string name="t_b28b05f8" formatted="false">"Sistema de prevenção de intrusão"</string>
     <string name="t_b2dbc630" formatted="false">"FIREWALL ATIVO"</string>
+    <string name="t_b2ef7c39" formatted="false">"Ciberoperativos: Defesa de Torres"</string>
     <string name="t_b32b1a1d" formatted="false">"CONVENIÊNCIA"</string>
     <string name="t_b3735fe8" formatted="false">"Uma malha de circuitos que respira com a onda."</string>
     <string name="t_b3b53e34" formatted="false">"As compras ficam ligadas à sua conta do Google, não a este aparelho. Reinstalar ou trocar de celular não faz você perdê-las."</string>

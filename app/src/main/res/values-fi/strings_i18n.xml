@@ -1,0 +1,865 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Translation of values/strings_i18n.xml. Machine-quality (AI) translation; see FEATURE_BACKLOG.md. -->
+<resources>
+    <string name="t_0069698f" formatted="false">"€ {0} budjetissa"</string>
+    <string name="t_00bdf050" formatted="false">"TÄMÄ LAITE"</string>
+    <string name="t_00c74b4a" formatted="false">"Hyökkää jopa kolmeen erilliseen uhkaan jokaisella sarjalla, mikä tekee siitä ryhmän vastauksen leveään aaltoon. Näyttää kohteen valitsimen."</string>
+    <string name="t_00cb85ad" formatted="false">"VAIHE 4 — VALITSE TARPIT"</string>
+    <string name="t_00f316c1" formatted="false">"SEURAAVAN TASON HINTA"</string>
+    <string name="t_00fafa13" formatted="false">"TÄMÄ TILI OMISTAA"</string>
+    <string name="t_01278423" formatted="false">"MITÄ TÄMÄ MUUTTAA"</string>
+    <string name="t_014c06bb" formatted="false">"{0}/{1} avattu · paras aalto {2}"</string>
+    <string name="t_01b91dff" formatted="false">"RANSOM lukitsee yhden agentin päivitykset {0} sekunniksi muutaman sekunnin välein. Päivitä ennen kuin se saapuu."</string>
+    <string name="t_01ba7032" formatted="false">"0 tasoa"</string>
+    <string name="t_01f2a69d" formatted="false">"ISTUNNON MUISTIINPANOT"</string>
+    <string name="t_0288b770" formatted="false">"Napauta AGENTIT-painiketta alla olevassa ohjauspalkissa."</string>
+    <string name="t_02b88c49" formatted="false">"Kaikki ääni luodaan laitteella käynnistyksen yhteydessä; pelissä ei ole yhtään äänitiedostoa."</string>
+    <string name="t_02f0f435" formatted="false">"Root eli pääkäyttäjä on järjestelmän korkein valtuustaso: se voi pysäyttää minkä tahansa prosessin ja muuttaa mitä tahansa. Juuri siksi hyvä käytäntö on antaa sitä mahdollisimman harvoin ja mahdollisimman lyhyeksi ajaksi. \"Root admin\" on lyhenne käyttöoikeustasolle, ei ammattinimike."</string>
+    <string name="t_0306926d" formatted="false">"Kolme hyökkäyskaistaa ydinpalvelimelle"</string>
+    <string name="t_0358799e" formatted="false">"Koskee jokaista {0}-agenttia jokaisessa ottelussa tästä eteenpäin, YDINFIRMWAREN päälle. Ensimmäiset tasot ovat halpoja; jokainen maksaa edellistä enemmän, ja ylimmät maksavat miljoonia."</string>
+    <string name="t_0397b7d9" formatted="false">"ALOITA POMOAALLOT AUTOMAATTISESTI"</string>
+    <string name="t_03d108e0" formatted="false">"Linkitetty, mutta Googleen ei saatu yhteyttä. Mitään ei menetetty — pelissä on tämän laitteen tallennus, ja seuraava synkronointi päivittää tilin."</string>
+    <string name="t_059b388a" formatted="false">"&gt; aalto {0} torjuttu — valmistaudu aaltoon {1}"</string>
+    <string name="t_05ea5d0e" formatted="false">"Saatavilla alusta asti."</string>
+    <string name="t_05f2ef1e" formatted="false">"Seuraava kappale"</string>
+    <string name="t_063d8618" formatted="false">"Vihamielistä koodia naamioituna joksikin, mitä pyysit. Hidas mutta paksusti kääritty — panssari tylsyttää jokaisen yksittäisen osuman, joten nopeat heikot laukaukset menevät hukkaan."</string>
+    <string name="t_07269781" formatted="false">"Valitse vaikeustaso nähdäksesi sen maailmanlaajuisen listan."</string>
+    <string name="t_07a3d7ab" formatted="false">"Kaikki omistamasi, elvytykset mukaan lukien, palaa Google Playsta PALAUTA-toiminnolla millä tahansa laitteella. Se ei ole koskaan osa pilvitallennusta, joten mikään tallennustiedosto ei voi antaa tai viedä ostosta."</string>
+    <string name="t_07fbf4bd" formatted="false">"ELVYTETTY"</string>
+    <string name="t_08039ac7" formatted="false">"KAUPPA"</string>
+    <string name="t_08175caa" formatted="false">"LUOKKAVÄRIT"</string>
+    <string name="t_08218c08" formatted="false">"LINKITETÄÄN…"</string>
+    <string name="t_08279524" formatted="false">"Koodia, joka hyödyntää tiettyä järjestelmän haavoittuvuutta. Hyökkäyskoodit liikkuvat nopeasti ja iskevät kovaa; havaintoetäisyys on tärkeämpi kuin raaka vahinko, kun niitä on tulossa."</string>
+    <string name="t_086b8b8e" formatted="false">"POMO"</string>
+    <string name="t_08f0711d" formatted="false">"PALAUTA OSTOT"</string>
+    <string name="t_09653280" formatted="false">"YTIMEEN"</string>
+    <string name="t_0a0bc63d" formatted="false">"Edellinen kappale"</string>
+    <string name="t_0a2301f4" formatted="false">"TALLENNETTU EDISTYMINEN"</string>
+    <string name="t_0a344034" formatted="false">"SEURAAVA: AALTO {0}"</string>
+    <string name="t_0ae74b3e" formatted="false">"NOLLAPÄIVÄISKU"</string>
+    <string name="t_0b205685" formatted="false">"Alustetaan verkkoa..."</string>
+    <string name="t_0b809aa5" formatted="false">"Kohteelle {0} ei ole vielä maailmanlaajuista listaa. Sen pelikerrat tallennetaan tälle laitteelle."</string>
+    <string name="t_0bc6e19b" formatted="false">"Ei tee itse vahinkoa. Antaa jokaiselle kantaman agentille +30 % vahinkoa ja +20 % tulinopeutta, joten koko sen arvo on siinä, mihin sen sijoitat."</string>
+    <string name="t_0bd16003" formatted="false">"MAKS"</string>
+    <string name="t_0bfbeb5b" formatted="false">"Pidä ne TARPIT-kentässä ja anna IPS:n raivata jono."</string>
+    <string name="t_0c121fb2" formatted="false">"EDISTYMINEN SYNKRONOITU"</string>
+    <string name="t_0c147607" formatted="false">"SYVÄSKANNAUS"</string>
+    <string name="t_0c16a4ef" formatted="false">"Ei vielä tuloksia. Pelaa kierros loppuun ollaksesi ensimmäinen."</string>
+    <string name="t_0c997319" formatted="false">"WORM-JAKAUTUMINEN"</string>
+    <string name="t_0cb4ce2b" formatted="false">"AALTO {0} TURVATTU  ◇{1}"</string>
+    <string name="t_0cfa4a6e" formatted="false">"TÄMÄN TASON POMOT"</string>
+    <string name="t_0d884b08" formatted="false">"TUNKEUTUMINEN (POMO)"</string>
+    <string name="t_0d8c63a6" formatted="false">"Jokainen osuma ketjuuntuu 2 lähellä olevaan uhkaan 55 % vahingolla."</string>
+    <string name="t_0df4bfec" formatted="false">"HEIKKO"</string>
+    <string name="t_0e69fc6c" formatted="false">"Sijoituspalkki näyttää vain kunkin agentin kuvakkeen ja hinnan"</string>
+    <string name="t_0eb480b6" formatted="false">"Pakeneva perspektiiviruudukko, jonka alla on takaa-ajokaista."</string>
+    <string name="t_0f47943c" formatted="false">"FOKUS POIS"</string>
+    <string name="t_0f5d5911" formatted="false">"VIRRANSÄÄSTÖ"</string>
+    <string name="t_0f80d304" formatted="false">"AGENTTIEN VAHINKO"</string>
+    <string name="t_0f9a43d6" formatted="false">"KAIKKI ELÄVÄT TAUSTAT"</string>
+    <string name="t_0fa88218" formatted="false">"Google Playhin ei saatu yhteyttä — yleensä verkkoa ei ole. Kaikki jo ostamasi on edelleen sinun; paina PALAUTA, kun olet taas verkossa, niin se tulee näkyviin."</string>
+    <string name="t_0fd40469" formatted="false">"SUORITUSKYKY"</string>
+    <string name="t_0fd4c0f4" formatted="false">"CORE-SERVER-PAIKAT VAIN [S]-AGENTEILLE"</string>
+    <string name="t_1046865f" formatted="false">"Synnyttää jatkuvasti BOT-yksiköitä taakseen. Tapa se nopeasti tai huku sen bottiverkkoon."</string>
+    <string name="t_107ea55b" formatted="false">"PÄIVITYKSET PANTTIVANKEINA"</string>
+    <string name="t_108f4363" formatted="false">"ASENNA"</string>
+    <string name="t_111611f9" formatted="false">"PAIKKAUSMUURI"</string>
+    <string name="t_1181f7e7" formatted="false">"AGENTIT HÄIRITTY"</string>
+    <string name="t_11c0f105" formatted="false">"TASON MUSIIKKI (AUTO)"</string>
+    <string name="t_11c8546c" formatted="false">"vahinko"</string>
+    <string name="t_11d858aa" formatted="false">"KORKEIN AALTO"</string>
+    <string name="t_1213b2b6" formatted="false">"{0} T SITTEN"</string>
+    <string name="t_12193f21" formatted="false">"Verkkoarkkitehdit suunnittelevat, miten verkko jaetaan. Segmentointi tarkoittaa, ettei yhden alueen murto voi vain kävellä seuraavaan, mikä rajaa minkä tahansa yksittäisen vian vahinkoa. Se on suunnittelutyötä ennen häiriötä, ei häiriön aikana käytettävä työkalu."</string>
+    <string name="t_1248f6ec" formatted="false">"Ääniraidan tallentaminen vaatii Android 10:n tai uudemman."</string>
+    <string name="t_125ca8ca" formatted="false">"ALOITUSPAKETTI"</string>
+    <string name="t_12a36ceb" formatted="false">"VÄÄRENNETTY"</string>
+    <string name="t_12e8edf9" formatted="false">"KIELI"</string>
+    <string name="t_1380e038" formatted="false">"PANTTINA · PÄIVITYKSET LUKITTU {0} s"</string>
+    <string name="t_138da392" formatted="false">"Ruudukko, jonka solut lämpenevät ja jäähtyvät liikenteen mukana."</string>
+    <string name="t_13df4b88" formatted="false">"FIRMWARE"</string>
+    <string name="t_13ee9782" formatted="false">"SIJOITETTU"</string>
+    <string name="t_141ad814" formatted="false">"PALAUTE"</string>
+    <string name="t_143628e2" formatted="false">"VAIN ELVYTYSMAINOKSET · VAPAAEHTOINEN"</string>
+    <string name="t_1489b7f6" formatted="false">"{0} PV SITTEN"</string>
+    <string name="t_14bdf6f2" formatted="false">"OPASTETTU KIERROS TARVITSEE ENSIN FIREWALLIN"</string>
+    <string name="t_14c27ca9" formatted="false">"ANALYST tekee eliiteille 80 % lisävahinkoa. Panssarin ohittavat agentit auttavat."</string>
+    <string name="t_14cecaa5" formatted="false">"Tietojen tekeminen lukukelvottomiksi ilman avainta"</string>
+    <string name="t_14ecbe1d" formatted="false">"{0}/s"</string>
+    <string name="t_1512aeac" formatted="false">"{0} tasoa"</string>
+    <string name="t_154419d5" formatted="false">"Lasketaan salatuksi: useimmat agentit tekevät vähennettyä vahinkoa."</string>
+    <string name="t_154a5adf" formatted="false">"TASO"</string>
+    <string name="t_15680f7c" formatted="false">"Käytä se pysyvään YDINFIRMWAREN vahinkoon."</string>
+    <string name="t_1571a208" formatted="false">"Sijoita kaksi TARPITia niin, että niiden aurat peittävät alueen, jota FIREWALLisi ampuvat. Hidastus saa vahingon osumaan."</string>
+    <string name="t_15aa2838" formatted="false">"Karkea ruudukko, jonka solut lämpenevät ja jäähtyvät liikenteen mukana."</string>
+    <string name="t_15ede35d" formatted="false">"◇ {0} · saatavilla alusta asti"</string>
+    <string name="t_167ae054" formatted="false">"Tämä poistaa tallennetun kierroksesi, kaikki avatut agentit, kaikki tilastot ja asetuksesi.\n\nTätä ei voi perua."</string>
+    <string name="t_17a13ae4" formatted="false">"Pomot liikkuvat hitaasti mutta iskevät CORE-SERVERiin {0} eheyden verran. Ne maksavat pelin eniten kryptoa ja vahvistuvat joka syklillä."</string>
+    <string name="t_17e0e9f0" formatted="false">"Erittäin suuri tulinopeus, tähtää aina pomoihin ennen mitään muuta kantamalla ja tekee kaksinkertaista vahinkoa [!!!] BREACH-pomolle. Avautuu aallolla 30, ja enintään neljä saa sijoittaa."</string>
+    <string name="t_1877f7c0" formatted="false">"EI ASENNETTU"</string>
+    <string name="t_197d534b" formatted="false">"Käytä € BUDJETTI — kertyy kierroksen joka kymmenennellä aallolla ja säilyy sen jälkeen — pysyvään vahinkobonukseen kaikille agenteille."</string>
+    <string name="t_1991565e" formatted="false">"NOPEUSRAJOITUS"</string>
+    <string name="t_19cbe369" formatted="false">"SUOSIKKIAGENTTI"</string>
+    <string name="t_1a155da6" formatted="false">"SEURAAVA AALTO"</string>
+    <string name="t_1a2a0f17" formatted="false">"LUKITTU"</string>
+    <string name="t_1a73c7da" formatted="false">"tulinopeus"</string>
+    <string name="t_1aba43b0" formatted="false">"Hitaat elliptiset jäljet ytimen ympärillä, kuin työssä oleva ajastin."</string>
+    <string name="t_1b0d8052" formatted="false">"Ravista taistelukenttää, kun CORE-SERVERiin osutaan"</string>
+    <string name="t_1ba327c9" formatted="false">"Yleisin verkkohyökkäys"</string>
+    <string name="t_1ba41734" formatted="false">"ESTETYT HYÖKKÄYKSET"</string>
+    <string name="t_1cc19733" formatted="false">"TODELLINEN MAAILMA"</string>
+    <string name="t_1d162704" formatted="false">"Haluatko varmasti aloittaa uuden kierroksen? Tallennettu istuntosi korvataan."</string>
+    <string name="t_1d29935f" formatted="false">"{0} HÄIRITTY"</string>
+    <string name="t_1d8fe548" formatted="false">"ALOITA ALUSTA"</string>
+    <string name="t_1dea7837" formatted="false">"HACK:AI ylitti rajansa. Puolet eheydestä, tuplapalkkiot."</string>
+    <string name="t_1deb5c00" formatted="false">"LINKITETTY · OFFLINE"</string>
+    <string name="t_1e09b492" formatted="false">"🔒 [{0}] {1} · LUKITTU"</string>
+    <string name="t_1e6ed1a9" formatted="false">"ELÄVÄT TAUSTAT"</string>
+    <string name="t_1ef7821b" formatted="false">"Neonsininen ruudukko, joka katoaa ytimeen, ja holografinen rengas, joka liukuu sinisestä vihreään."</string>
+    <string name="t_1f3159fc" formatted="false">"AGENTTIEN VÄRIT"</string>
+    <string name="t_1f5df304" formatted="false">"YHTEYS NOLLATTU"</string>
+    <string name="t_1ff44d56" formatted="false">"LISENSSI VALVOTTU"</string>
+    <string name="t_20ce505d" formatted="false">"TAUKO"</string>
+    <string name="t_21399575" formatted="false">"KEHITTÄJÄ"</string>
+    <string name="t_2198b685" formatted="false">"Piirrä valitun agentin skannaussäde"</string>
+    <string name="t_21bb43e3" formatted="false">"{0} · MIKÄ TAHANSA TASO"</string>
+    <string name="t_22100250" formatted="false">"TASO {0} · MAKS"</string>
+    <string name="t_224d65ed" formatted="false">"CORE-SERVER-ULKOASUT"</string>
+    <string name="t_22686e59" formatted="false">"YHTEYS"</string>
+    <string name="t_227cde14" formatted="false">"{0} – {1}"</string>
+    <string name="t_2283d7ca" formatted="false">"SOLMU VARATTU"</string>
+    <string name="t_22b6479a" formatted="false">"Kyberoperaatioiden asiantuntija hoitaa puolustusta kuin suoraa operaatiota: tarkkailee häirintää, pitää tiimin työkalut käynnissä, kun joku yrittää aktiivisesti sammuttaa ne, ja iskee suoraan lähteeseen."</string>
+    <string name="t_22c4ef22" formatted="false">"Sen sisältö on salattu, joten useimmat puolustukset eivät pysty lukemaan, mihin ne ampuvat, ja tekevät vain osittaista vahinkoa. CRYPTOGRAPHER-agentti leikkaa salauksen läpi suoraan."</string>
+    <string name="t_23020c53" formatted="false">" · {0} varaa ostaa"</string>
+    <string name="t_236f5b12" formatted="false">"VOITETUT POMOT YHTEENSÄ"</string>
+    <string name="t_23763c89" formatted="false">"ASETUKSET"</string>
+    <string name="t_23961a76" formatted="false">"POMO {0}/{1} · VAIHDA NAPAUTTAMALLA POMOA"</string>
+    <string name="t_24adcafc" formatted="false">"PALVELIMEN SAAMA VAHINKO YHTEENSÄ"</string>
+    <string name="t_24bbb47b" formatted="false">"LUKITUT KOHTEET"</string>
+    <string name="t_24d3a2ef" formatted="false">"MUURI KAATUI"</string>
+    <string name="t_255b5911" formatted="false">"CRT-fosforinvihreä, juovaviivat ja päivityspyyhkäisy."</string>
+    <string name="t_2570d23e" formatted="false">"Keskitä tuli. ANALYST ja ROOT ADMIN kantavat pomoaallot."</string>
+    <string name="t_25a6b96b" formatted="false">"Luotettavaa keskietäisyyden vahinkoa halvalla, ja ainoa agentti, joka on immuuni pomon JAM-häirinnälle. Lyhyt kantama, joten sen on seistävä lähellä kaistaa — ja juuri siksi immuniteetilla on merkitystä."</string>
+    <string name="t_25bd1975" formatted="false">"VHK"</string>
+    <string name="t_25efb9da" formatted="false">"RÄJÄHDYSSÄDE"</string>
+    <string name="t_260d60b1" formatted="false">"YKSI MAINOS HÄVITYN KIERROKSEN JÄLKEEN · ELVYTYS VAPAAEHTOINEN"</string>
+    <string name="t_26b80d1f" formatted="false">"VALMIS"</string>
+    <string name="t_27a68119" formatted="false">"VERKON TILA"</string>
+    <string name="t_27d9802d" formatted="false">"YKSI MAINOS HÄVITYN KIERROKSEN JÄLKEEN"</string>
+    <string name="t_27daad70" formatted="false">"Huurre hiipii reunoilta sisään."</string>
+    <string name="t_28c31125" formatted="false">"Panssaroitu ja kärsivällinen. Raskaat yksittäiset osumat voittavat sen; nopea tuli valuu hukkaan."</string>
+    <string name="t_28e339dd" formatted="false">"Harvoja putoavien merkkien sarakkeita kentän takana."</string>
+    <string name="t_296fb456" formatted="false">"KORJAUS +{0} HP · {1} s VÄLEIN · PAIKKA CORE-SERVER · MAKS {2}"</string>
+    <string name="t_297ae895" formatted="false">"KARANTEENISSA"</string>
+    <string name="t_2a1bde6e" formatted="false">"Tunkeutumisenestojärjestelmä istuu liikenteen reitillä ja saa toimia havaitsemansa perusteella katkaisemalla tai nollaamalla yhteyden sen sijaan, että vain hälyttäisi. Kompromissi on todellinen: IPS, joka arvioi oikeutetun liikenteen väärin, estää sen."</string>
+    <string name="t_2a934539" formatted="false">"HYÖKKÄYKSEN ALKUPERÄ"</string>
+    <string name="t_2a9b95e6" formatted="false">"Tekee ×{0} vahinkoa jokaiselle pomolle."</string>
+    <string name="t_2bb9a482" formatted="false">"Palomuuri tarkistaa liikenteen sääntöluetteloa vasten ja pudottaa kaiken, mikä ei täsmää. Se on vanhin ja yhä tärkein rajapuolustus."</string>
+    <string name="t_2be00c84" formatted="false">"MUOKKAA KUTSUMANIMEÄ"</string>
+    <string name="t_2c13b917" formatted="false">"Tekee ×{0} vahinkoa: {1}."</string>
+    <string name="t_2ce4713d" formatted="false">"&gt; synkronoidaan CORE-SERVER"</string>
+    <string name="t_2d14c154" formatted="false">"Hitaita vinoja datavirtoja kentän poikki."</string>
+    <string name="t_2dcb788c" formatted="false">"Tämä peli on kehitetty tekoälytyökalujen avulla, joita käytettiin opetus- ja kehitysapuna ohjelmointia ja ohjelmistokehitystä opeteltaessa.\n\nTekoälytyökalut auttoivat muun muassa koodin kehityksessä, vianmäärityksessä, dokumentoinnissa ja oppimisessa. Lopulliset suunnittelupäätökset, pelattavuuden suunta, testaus ja julkaisupäätökset ovat edelleen kehittäjän vastuulla.\n\nTätä peliä ei ole tuottanut, sponsoroinut, hyväksynyt, omista tai julkaissut mikään tekoälyyritys."</string>
+    <string name="t_2df53561" formatted="false">"Sääntöpohjainen liikennesuodatin"</string>
+    <string name="t_2e0cf790" formatted="false">"MUUT"</string>
+    <string name="t_2e19cc63" formatted="false">"Nousee kerran ylös 40 % terveydellä. Sen tappaminen ei ole sama kuin sen lopettaminen."</string>
+    <string name="t_2ef9e2c6" formatted="false">"KYBERHYÖKKÄYKSET"</string>
+    <string name="t_2f3549f7" formatted="false">"PILVITALLENNUS EI KÄYTETTÄVISSÄ"</string>
+    <string name="t_302a4f0a" formatted="false">"PERUSTASO"</string>
+    <string name="t_302eea27" formatted="false">"TIEDÄTKÖ, MITÄ ON TULOSSA?"</string>
+    <string name="t_3083c674" formatted="false">"ELÄVÄ: AJELEHTIMINEN"</string>
+    <string name="t_30867b62" formatted="false">"Pelattavissa täysin offline-tilassa"</string>
+    <string name="t_30ed929d" formatted="false">"Avaa tämä agentti saavuttamalla aalto {0} tasolla {1}."</string>
+    <string name="t_31359ec6" formatted="false">"{0} fokus pois"</string>
+    <string name="t_313900e6" formatted="false">"ARKKITEHDIN YHTEYS"</string>
+    <string name="t_314d733e" formatted="false">"€ {0} käytettävissä"</string>
+    <string name="t_317b7de0" formatted="false">"Koodia, joka putoaa itse räkin sisällä."</string>
+    <string name="t_31d43b93" formatted="false">"ELÄVÄ: SADE"</string>
+    <string name="t_326bdc38" formatted="false">"AGENTTIA EI REKISTERÖITY"</string>
+    <string name="t_32a3e9f3" formatted="false">"ERIKOINEN — {0}"</string>
+    <string name="t_32bafd88" formatted="false">"SEURAAVA"</string>
+    <string name="t_32e6f915" formatted="false">"VARAA NYT"</string>
+    <string name="t_332ec80a" formatted="false">"Mikä tahansa tappaa nämä. Älä rakenna niitä varten liikaa."</string>
+    <string name="t_33cd995a" formatted="false">"TUNKEUTUMINEN ESTETTY"</string>
+    <string name="t_3425c9d3" formatted="false">"TASO {0}"</string>
+    <string name="t_35350bff" formatted="false">"Sykkivä eristysrengas."</string>
+    <string name="t_3595e52a" formatted="false">"REITTI {0}"</string>
+    <string name="t_35c82960" formatted="false">"YDIN: GLACIER"</string>
+    <string name="t_35f74be9" formatted="false">"Murskaavaa yhden kohteen vahinkoa, joka ohittaa kaiken panssarin. Pelin kallein agentti, joka avautuu hyvin myöhään. Näyttää kohteen valitsimen."</string>
+    <string name="t_36900a0f" formatted="false">"Halpa ja lähes vaaraton. Kaikki sen säteellä matelee."</string>
+    <string name="t_37447c3a" formatted="false">"Äärimmäisen suuri tulinopeus, ja jokainen laukaus roiskuu."</string>
+    <string name="t_376bc6d2" formatted="false">"Lähtölaskenta jatkuu, kun tämä on auki."</string>
+    <string name="t_376c54b2" formatted="false">"POISTA MAINOKSET"</string>
+    <string name="t_379656ef" formatted="false">"YDIN: VOID"</string>
+    <string name="t_37bc9401" formatted="false">"Tämä versio näyttää Google AdMobin toimittamia mainoksia. Mainoksen katsominen kierroksen jatkamiseksi on aina vapaaehtoista eikä koskaan pakollista pelaamiseen."</string>
+    <string name="t_384d3555" formatted="false">"{0} elossa"</string>
+    <string name="t_384e5d9f" formatted="false">"PILVITALLENNUS"</string>
+    <string name="t_385b9a87" formatted="false">"Tarpit hyväksyy vihamielisen yhteyden ja vastaa sitten niin hitaasti kuin saa, pitäen hyökkääjän kiinni socketissa, joka ei johda mihinkään. Se on viivytystaktiikka, ei esto: arvo on aika, joka vastapuolelta kuluu."</string>
+    <string name="t_38695d86" formatted="false">"EDISTYMISEN VARMUUSKOPIO"</string>
+    <string name="t_38c1e7e0" formatted="false">"MAINOKSELLA"</string>
+    <string name="t_38d9a5af" formatted="false">"&gt; verkko murrettu"</string>
+    <string name="t_38e03b91" formatted="false">"TÄYSIN ASENNETTU"</string>
+    <string name="t_3950774a" formatted="false">"REKISTERÖITY NIMELLÄ"</string>
+    <string name="t_395af116" formatted="false">"NIMETÖN HAKKEROINTI"</string>
+    <string name="t_396e8daa" formatted="false">"SPEKTRI"</string>
+    <string name="t_3a06e0fa" formatted="false">"MUSIIKKI"</string>
+    <string name="t_3a7e7fe6" formatted="false">"VERSION TYYPPI"</string>
+    <string name="t_3a8a0a59" formatted="false">"Jokainen osuma nopeuttaa sitä, oli se miten pieni tahansa; se hidastuu, kun se jätetään rauhaan. Harvat suuret osumat voittavat monet pienet."</string>
+    <string name="t_3aa6f2eb" formatted="false">"ZERO-DAY HUNTER ja ROOT ADMIN ohittavat panssarin kokonaan."</string>
+    <string name="t_3aaad671" formatted="false">"NAPAUTA NÄHDÄKSESI TIEDOT"</string>
+    <string name="t_3b12a908" formatted="false">"GRADIENT nopeutuu jokaisesta osumasta, oli se miten pieni tahansa, ja hidastuu, kun se jätetään rauhaan. Harvat suuret osumat voittavat monet pienet."</string>
+    <string name="t_3b53a59d" formatted="false">"Aloita myös pomoaallot automaattisesti. Pois: pomoaallot odottavat sinua"</string>
+    <string name="t_3bc78174" formatted="false">"TEKOÄLYAVUSTEINEN KEHITYS"</string>
+    <string name="t_3c66aec8" formatted="false">"Aaltosi, agenttisi, € ja firmwaresi tallennetaan Google-tilillesi. Kirjaudu sille toisella laitteella, niin ne ovat siellä. Synkronoituu, kun poistut pelistä ja kun kierros päättyy."</string>
+    <string name="t_3cef355d" formatted="false">"Eniten terveyttä jäljellä"</string>
+    <string name="t_3d17c701" formatted="false">"NOPEUSPURKAUS"</string>
+    <string name="t_3d331382" formatted="false">"Polku, jota liikenne kulkee"</string>
+    <string name="t_3d509ddc" formatted="false">"Puolita kuvataajuus ja jätä koristetehosteet pois"</string>
+    <string name="t_3d83d177" formatted="false">"KYBERAGENTIT"</string>
+    <string name="t_3db03eca" formatted="false">"ENNÄTYKSESI"</string>
+    <string name="t_3e12b118" formatted="false">"OHJE"</string>
+    <string name="t_3e27e12f" formatted="false">"Vähiten terveyttä jäljellä"</string>
+    <string name="t_3ecdd82e" formatted="false">"Nollapäivä on haavoittuvuus, jonka korjaamiseen puolustajalla on ollut nolla päivää, koska kukaan ei tiennyt sen olemassaolosta. Vertailtavaa tunnistetta ei ole, ja juuri se tekee niistä niin vaarallisia."</string>
+    <string name="t_3fa2aee2" formatted="false">"Ottaa 35 % vähemmän vahinkoa FIREWALL-agenteilta."</string>
+    <string name="t_401924c3" formatted="false">"CORE-SERVER-ULKOASU"</string>
+    <string name="t_4071c698" formatted="false">"Google Play vastasi. Ostot ja palautukset toimivat normaalisti."</string>
+    <string name="t_40b15bdb" formatted="false">"Kertyy joka kymmenennellä aallolla. Mitä syvemmälle kierros menee, sitä enemmän se maksaa — palkkio kasvaa virstanpylvään neliönä, joten yksi syvä kierros voittaa viisi matalaa."</string>
+    <string name="t_4104a0b2" formatted="false">"Paras tuloksesi tasolla {0}: aalto {1}"</string>
+    <string name="t_4108bc91" formatted="false">"KÄTTELY HYLÄTTY"</string>
+    <string name="t_41203058" formatted="false">"VARUSTUS"</string>
+    <string name="t_412ea11f" formatted="false">"Napauta kahta korostettua sijoitussolmua reitin vieressä. Kaksi ei ole ehdotus: yksi agentti ei pysty kattamaan kaistaa yksin."</string>
+    <string name="t_419c5ded" formatted="false">"PELATUT PELIT YHTEENSÄ"</string>
+    <string name="t_41a1b85e" formatted="false">"TIETOSUOJAVALINNAT"</string>
+    <string name="t_41ca8ef5" formatted="false">"Tallennetaan paikallisesti tälle laitteelle · mitään ei lähetetä"</string>
+    <string name="t_41e88f52" formatted="false">"Nipistä kahdella sormella zoomataksesi pelilautaan — solmuja on helpompi napauttaa läheltä. Zoomattuna liiku vetämällä yhdellä sormella. Nipistä kokonaan ulos nähdäksesi koko laudan taas."</string>
+    <string name="t_4208e473" formatted="false">"EI MAINOSTA"</string>
+    <string name="t_420bd000" formatted="false">"BOTMASTER pudottaa BOT-yksiköitä taakseen muutaman sekunnin välein. Tapa se nopeasti ja säästä jotain parvelle."</string>
+    <string name="t_4273a8be" formatted="false">"TILI"</string>
+    <string name="t_42832744" formatted="false">"Ei uhkapelejä, aarrearkkuja tai satunnaisia maksullisia palkintoja"</string>
+    <string name="t_42880e6f" formatted="false">"LUKITTU · {0}"</string>
+    <string name="t_42a0e053" formatted="false">"TIETOJA"</string>
+    <string name="t_42addf6c" formatted="false">"AVAA KAUPPA"</string>
+    <string name="t_42afe7bc" formatted="false">"YHDISTETÄÄN"</string>
+    <string name="t_42ef8058" formatted="false">"PUOLUSTUSHISTORIA"</string>
+    <string name="t_4306ee12" formatted="false">"€1,500 BUDJETTI"</string>
+    <string name="t_4333987a" formatted="false">"Harvoja putoavien merkkien sarakkeita."</string>
+    <string name="t_43a1c2e8" formatted="false">"PÄIVITYKSEN HINTA"</string>
+    <string name="t_441ec9a9" formatted="false">"Nopea kierros valikossa. SEURAAVA jatkaa, OHITA sulkee. Voit katsoa sen uudelleen milloin tahansa ASETUKSISTA."</string>
+    <string name="t_4427afab" formatted="false">"Panssari tylsyttää pienet osumat: ota ANALYST tai ROOT ADMIN, älä IPS:ää."</string>
+    <string name="t_4439e789" formatted="false">"LUKITTU · Läpäise taso 5 (torju aalto 100 DDoS-tasolla) avataksesi musiikkisoittimen ja kappaleluettelon."</string>
+    <string name="t_448177d3" formatted="false">"VIIMEISIN SYNKRONOINTI"</string>
+    <string name="t_4494c488" formatted="false">"{0} MIN SITTEN"</string>
+    <string name="t_44c51c30" formatted="false">"HYÖKKÄYS ESTETTY"</string>
+    <string name="t_44fbbc54" formatted="false">"&gt; !! kyberhyökkäys tulossa — suuri murto lähestyy !!"</string>
+    <string name="t_4538f2a7" formatted="false">"Palomuuri tarkistaa liikenteen sääntöjoukkoa vasten ja pudottaa kaiken, mitä säännöt eivät salli. Se on yleensä ensimmäinen kontrolli epäluotettavan verkon ja suojelemisen arvoisen kohteen välissä, ja sitä arvioidaan sille annettujen sääntöjen, ei nokkeluuden perusteella."</string>
+    <string name="t_45b17976" formatted="false">"Raskasta yhden kohteen vahinkoa, joka laukauksella sama eikä arpapeliä, ja se ohittaa panssarin. Kallis ja hidas; yksi ei pidä kaistaa yksin."</string>
+    <string name="t_4631883a" formatted="false">"ASENNA MAKS  (+{0})"</string>
+    <string name="t_463cbc28" formatted="false">"TERVEYS ×{0} · PANSSARI +{1} · NOPEUS ×{2}"</string>
+    <string name="t_466578df" formatted="false">"Jatka tätä aaltoa puolikkaalla eheydellä."</string>
+    <string name="t_466b92a9" formatted="false">"SEGMENTTIYHTEYS"</string>
+    <string name="t_46984fe6" formatted="false">"PELAA · JATKA"</string>
+    <string name="t_46cc0ef8" formatted="false">"Se nostaa myös jokaisen kierroksen maksamaa ◇ kryptoa +{0} % tasoa kohden kaksinkertaiseen asti. Se ei vaikuta vihollisten terveyteen tai aaltojen kokoonpanoon."</string>
+    <string name="t_4735c1ed" formatted="false">"Kyberhyökkäyksiä on tulossa CORE-SERVERiin. Sijoita kyberagentteja reittien varrelle pysäyttääksesi ne ennen kuin ne saapuvat."</string>
+    <string name="t_4747b424" formatted="false">"VIHOLLISET"</string>
+    <string name="t_477d52c6" formatted="false">"Linkitetty. Kirjaudu samalle Google-tilille toisella puhelimella tai tabletilla, niin edistymisesi on siellä."</string>
+    <string name="t_47c5c237" formatted="false">"VIRHEELLINEN SOLMU"</string>
+    <string name="t_485268f0" formatted="false">"&gt; aseistetaan kyberagentteja"</string>
+    <string name="t_4882e1dc" formatted="false">"KERNEL PANIC häiritsee kuollessaan jokaista ulottuvillaan olevaa agenttia 3 sekunnin ajan. FIREWALL kestää sen."</string>
+    <string name="t_488d4b25" formatted="false">"Tuhannet koneet lähettävät liikennettä yhteen kohteeseen yhtä aikaa. Mikään yksittäinen pyyntö ei ole hyökkäys; tulva on. Tavoite ei ole murtautua sisään vaan tehdä palvelusta käyttökelvoton."</string>
+    <string name="t_4905ed7b" formatted="false">"EI MITÄÄN"</string>
+    <string name="t_494c304d" formatted="false">"-◇{0} VARASTETTU"</string>
+    <string name="t_49848f53" formatted="false">"SOKEA SQL-INJEKTIO"</string>
+    <string name="t_498754a7" formatted="false">"TALLENNA ÄÄNIRAITA PUHELIMEEN"</string>
+    <string name="t_4af4306b" formatted="false">"VERSIO"</string>
+    <string name="t_4c1012d3" formatted="false">"Pidä se tulen alla: se korjautuu vasta hetken osumattomuuden jälkeen, joten peitä tappoalueiden väliset aukot."</string>
+    <string name="t_4c6d3272" formatted="false">"🔒 LUKITTU"</string>
+    <string name="t_4cc6f55a" formatted="false">"Google Play Peleihin ei saatu yhteyttä. Kierroksesi tallennetaan tälle laitteelle, ja parhaasi lähetetään, kun seuraava kierros päättyy verkossa ollessasi."</string>
+    <string name="t_4d54c785" formatted="false">"SIJOITETAAN {0} — napauta solmua"</string>
+    <string name="t_4d6e69d2" formatted="false">"MUSIIKKISOITIN"</string>
+    <string name="t_4d7ab8a3" formatted="false">"KUTSUMANIMI"</string>
+    <string name="t_4e2b3472" formatted="false">"EI TALLENNETTUA ISTUNTOA"</string>
+    <string name="t_4ebbf8bd" formatted="false">"Elvytyksiä jäljellä tällä kierroksella: {0}."</string>
+    <string name="t_4f0fcb18" formatted="false">"Saapuu joka viidennellä aallolla"</string>
+    <string name="t_4f160176" formatted="false">"Sadonkorjuukierros. Ei temppuja, ei häirintää — kaksikymmentä prosenttia enemmän sitä kuin mitään muuta laudalla."</string>
+    <string name="t_5022c684" formatted="false">"SALAUS"</string>
+    <string name="t_5067a989" formatted="false">"LOMITTUNUT KETJU"</string>
+    <string name="t_5079b771" formatted="false">"Avaa tämä agentti saavuttamalla aalto {0} tasolla {1} tilassa {2}."</string>
+    <string name="t_509d7851" formatted="false">" · ISKU {0}"</string>
+    <string name="t_513901c7" formatted="false">" · MAINOKSETON"</string>
+    <string name="t_513dcdc9" formatted="false">"AGENTTIA KOHDEN"</string>
+    <string name="t_520a6b88" formatted="false">"Jokainen taso maksaa hieman edellistä enemmän, joten kerroin jatkaa nousuaan karkaamatta koskaan käsistä. Kattoa, johon realistisesti pääsisit, ei ole."</string>
+    <string name="t_5333e76e" formatted="false">"RENDERÖINTI"</string>
+    <string name="t_53e605b3" formatted="false">"VAROITUS"</string>
+    <string name="t_543ce9f7" formatted="false">"JOKA"</string>
+    <string name="t_54523d94" formatted="false">"Räkki, johon ytimesi on rakennettu. Näkyy taistelukentällä."</string>
+    <string name="t_54743050" formatted="false">"ESTETYT HYÖKKÄYKSET YHTEENSÄ"</string>
+    <string name="t_54797d92" formatted="false">"Piirijäljet lukemien alla."</string>
+    <string name="t_549824f8" formatted="false">"PORTTI SUOJATTU"</string>
+    <string name="t_5571a722" formatted="false">"PELATTAVISSA OFFLINE · EI KIRJAUTUMISTA"</string>
+    <string name="t_55f85167" formatted="false">"TIIVIS AGENTTIVALIKKO"</string>
+    <string name="t_565a738e" formatted="false">"EI, ANNA MINUN PELATA"</string>
+    <string name="t_56a9a004" formatted="false">"Injektio valot sammutettuina"</string>
+    <string name="t_56bafb67" formatted="false">"Yksi elvytys kierrosta kohden."</string>
+    <string name="t_56c54890" formatted="false">"Paisunut malli: vähän enemmän terveyttä, vähän hitaampi."</string>
+    <string name="t_56c6b2ae" formatted="false">"Fiktiivinen vapaus, selvästi merkitty: tämä agentti yksinkertaisesti ohittaa ENCRYPTED-ominaisuuden sen sijaan, että se hidastaisi sitä, ja tekee kolminkertaista vahinkoa kaikkeen, millä ominaisuus on. Oikea kryptografia ei toimi näin, eikä mikään tässä murra oikeaa salausta."</string>
+    <string name="t_5749c8dc" formatted="false">"Aalto {0} ja kaikki sijoitettu menetetään."</string>
+    <string name="t_5785b710" formatted="false">"Valitse agentti ja napauta sitten korostettua sijoitussolmua."</string>
+    <string name="t_57f88861" formatted="false">"FOKUS: VAIN POMOT"</string>
+    <string name="t_582ec4a0" formatted="false">"Kaapattuja tietokoneita, jotka ottavat hiljaa käskyjä keskitetyltä ohjaimelta. Niiden omistajilla ei yleensä ole aavistustakaan. Bottiverkot tekevät suurista DDoS-hyökkäyksistä mahdollisia."</string>
+    <string name="t_5840893d" formatted="false">"TUNKEUTUMINEN ERISTETTY"</string>
+    <string name="t_58a5f08a" formatted="false">"Tavallinen ruudukko. Ei liikettä."</string>
+    <string name="t_597ee3cb" formatted="false">"TUNNISTE TÄSMÄSI"</string>
+    <string name="t_5a02fc0a" formatted="false">"ELVYTYSPAKETTI"</string>
+    <string name="t_5a3d8598" formatted="false">"Lähimpänä CORE-SERVERiä"</string>
+    <string name="t_5a911db6" formatted="false">"GOOGLE-TILISI"</string>
+    <string name="t_5aa1d1dc" formatted="false">"{0} fokus päällä"</string>
+    <string name="t_5b19a621" formatted="false">"Hyökkäys haavoittuvuuteen, jota kukaan ei ole vielä paikannut — puolustajalla on ollut nolla päivää valmistautua. Harvinainen, sitkeä ja pysäyttämisen arvoinen oikealla kryptolla."</string>
+    <string name="t_5c19fc6b" formatted="false">"OSTA CyOps TD:n ÄÄNIRAITA · {0}"</string>
+    <string name="t_5c3f86fb" formatted="false">"VAHVIN"</string>
+    <string name="t_5d1868fb" formatted="false">"YDIN"</string>
+    <string name="t_5d377851" formatted="false">"Pysyvät päivitykset · jokainen ottelu tästä eteenpäin"</string>
+    <string name="t_5d4d0273" formatted="false">"{0} on lukittu: {1}."</string>
+    <string name="t_5de47a9b" formatted="false">"KAIKKI VAIKEUSTASOT"</string>
+    <string name="t_5de55828" formatted="false">"!! EHEYS ALHAINEN !!"</string>
+    <string name="t_5e75065a" formatted="false">"YHDISTETTY"</string>
+    <string name="t_5f2258c9" formatted="false">"Raha vasemmalla. Se kertyy kierroksen joka kymmenennellä aallolla ja säilyy kierroksen päätyttyä. Syvemmät kierrokset maksavat paljon enemmän."</string>
+    <string name="t_5fd47bcf" formatted="false">"YDIN: MERIDIAN"</string>
+    <string name="t_602fffef" formatted="false">"Kaikki paitsi CRYPTOGRAPHER menettävät täällä yli puolet vahingostaan."</string>
+    <string name="t_6049b1e7" formatted="false">"ELÄVÄ TAUSTA"</string>
+    <string name="t_60a5a04c" formatted="false">"Keskeytä musiikki"</string>
+    <string name="t_60ecea1a" formatted="false">"EHDOTON"</string>
+    <string name="t_60f81814" formatted="false">"Joka {0}. sekunti LICENSE käyttää {1} jättääkseen huomiotta jokaisen agenttityypin, joka jatkaa sen lyömistä. Sekoita agenttityyppejä."</string>
+    <string name="t_61919374" formatted="false">"ELVYTETTY — se ei palaa enää"</string>
+    <string name="t_61ebe734" formatted="false">"NÄYTÖN TÄRINÄ"</string>
+    <string name="t_625afb79" formatted="false">"Omistettu. Tallentuu kansioon Music/CyOps TD nimellä \"CyOps TD - Level X (Y)\"."</string>
+    <string name="t_628c7cd9" formatted="false">"AGENTTIEN SIJOITUSJAKAUMA"</string>
+    <string name="t_62f8af50" formatted="false">"+{0} HP / {1} s"</string>
+    <string name="t_63374e04" formatted="false">"PÄÄVALIKKO"</string>
+    <string name="t_633e8e1a" formatted="false">"Jakautuu kuollessaan kolmeksi pienemmäksi madoksi, ja jokainen niistä jakautuu vielä kerran. Roiskevahinko on ystäväsi."</string>
+    <string name="t_6343926d" formatted="false">"HÄIRINTÄ"</string>
+    <string name="t_638aaa93" formatted="false">"ESIINTYY MYÖS TÄÄLLÄ"</string>
+    <string name="t_63b00a3c" formatted="false">"Verkon yli lähetetty data pilkotaan paketeiksi: pieniksi paloiksi, joissa on kohdeosoite ja hyötykuorma. Paketti ei ole hyökkäys — lähes kaikki ovat tavallista liikennettä. Täällä ammut paketteja, jotka kantavat tiettyä hyökkäystä, ja siksi kukin on nimetty hyökkäyksen eikä paketin mukaan."</string>
+    <string name="t_63b54927" formatted="false">"3 elvytystä kierrosta kohden eikä koskaan elvytysmainoksia, lisäksi €5,000."</string>
+    <string name="t_63bef594" formatted="false">"HP {0}"</string>
+    <string name="t_63f3d76a" formatted="false">"TALLENNA"</string>
+    <string name="t_63facb82" formatted="false">"ELÄVÄ: SYKE"</string>
+    <string name="t_6480a147" formatted="false">"AALTO {0}  —  VAHVISTA RAJA"</string>
+    <string name="t_648a945b" formatted="false">"KAKSI ASIAA, JOITA KUKAAN EI KERRO"</string>
+    <string name="t_6490c689" formatted="false">"Ei oikeaa kryptovaluuttaa, lohkoketjua, lompakoita, louhintaa tai NFT:itä"</string>
+    <string name="t_64d398f9" formatted="false">"KANTAMA"</string>
+    <string name="t_65155738" formatted="false">"5× NOPEUS"</string>
+    <string name="t_65252ce7" formatted="false">"ENSIMMÄINEN"</string>
+    <string name="t_6554cde7" formatted="false">"Kysytään Google Playlta, mitä tämä tili omistaa. Tämä kestää yleensä hetken."</string>
+    <string name="t_655c9284" formatted="false">"ELÄVÄ: HILA"</string>
+    <string name="t_656e6ce8" formatted="false">"AGENTIT"</string>
+    <string name="t_65c8fd90" formatted="false">"UHKAKATSAUS"</string>
+    <string name="t_6678bfdf" formatted="false">"Kun se kuolee, jokainen lähellä oleva agentti häiriintyy 3 sekunniksi. Tapa se kaukana laudastasi tai kun seuraava aalto on vielä kaukana."</string>
+    <string name="t_66fa85d7" formatted="false">"Levitä agenttisi niin, ettei yksi häirintä hiljennä koko linjaa."</string>
+    <string name="t_6700226a" formatted="false">"LINKITETTY"</string>
+    <string name="t_67043715" formatted="false">"PANSSARI"</string>
+    <string name="t_67313d46" formatted="false">"MUURI PYSTYSSÄ"</string>
+    <string name="t_6757b458" formatted="false">"PYSÄYTETYT HYÖKKÄYKSET"</string>
+    <string name="t_6813ef42" formatted="false">"NIMETÖN HAKKEROINTI — {0} BOTTIA TULOSSA TUPLANOPEUDELLA"</string>
+    <string name="t_681745bd" formatted="false">"AGENTTI LUKITTU — {0}"</string>
+    <string name="t_682d973f" formatted="false">"ALOITA"</string>
+    <string name="t_68e88af7" formatted="false">"VAARA-ALUE"</string>
+    <string name="t_68e985d6" formatted="false">"Mitään muuta ei lähetetä minnekään. Peliä voi pelata täysin ilman verkkoa."</string>
+    <string name="t_6904aeb4" formatted="false">"PELI"</string>
+    <string name="t_69698cdc" formatted="false">"WORM jakautuu kuollessaan kolmeksi pienemmäksi madoksi, ja ne jakautuvat vielä kerran. Tapa se aikaisin, roiskevahinko lähellä."</string>
+    <string name="t_69a293c4" formatted="false">"SUDO LOPETA"</string>
+    <string name="t_6ad356c5" formatted="false">"Kolme reittiä: suora keskeltä ja kaksi, jotka siksakkaavat sen ylä- ja alapuolella."</string>
+    <string name="t_6b2d8165" formatted="false">"TASO {0}  {1} VHK"</string>
+    <string name="t_6c161f51" formatted="false">"2 sekuntia jokaisesta 17:stä se ei välitä agenttityypistä, joka jatkaa sen lyömistä. Monipuolinen lauta satuttaa sitä edelleen."</string>
+    <string name="t_6c7aa396" formatted="false">"Eri pomot, eri heikkoudet."</string>
+    <string name="t_6ca9de88" formatted="false">"SPEKTRIAGENTIT"</string>
+    <string name="t_6cb7e8e3" formatted="false">"Hitaat, raskaat osumat. +80 % vahinkoa eliiteille ja pomoille."</string>
+    <string name="t_6cbf7c76" formatted="false">"VOITETUT POMOT"</string>
+    <string name="t_6ccdc653" formatted="false">"Ohittaa salauksen kokonaan ja tekee sille kolminkertaista vahinkoa."</string>
+    <string name="t_6cedde69" formatted="false">"MUSIIKIN ÄÄNENVOIMAKKUUS"</string>
+    <string name="t_6d2d6d6b" formatted="false">"Ohittaa sen panssarin."</string>
+    <string name="t_6d907c0d" formatted="false">"\"Sininen tiimi\" puolustaa järjestelmää ja reagoi häiriöihin — punaisen tiimin vastinpari. \"Sininen hattu\" on alalla käytössä useammassa merkityksessä eikä ole vakiintunut termi, joten tässä kuvataan vain sinisen tiimin merkitys."</string>
+    <string name="t_6dbe0ea3" formatted="false">"TASO"</string>
+    <string name="t_6f053419" formatted="false">"{0}-RAJA — MAKS {1}"</string>
+    <string name="t_6f21a684" formatted="false">"POMOT — joka viides aalto"</string>
+    <string name="t_70d42172" formatted="false">"Verkon jakaminen niin, ettei yhden alueen murto ulotu muualle. Siksi yksi kaapattu kannettava ei saisi tarkoittaa kaapattua yritystä."</string>
+    <string name="t_7191bf1d" formatted="false">"PYSYVYYS"</string>
+    <string name="t_71c5931f" formatted="false">"Virransäästö muuttaa vain sitä, mitä piirretään. Aaltojen vaikeus, vahinko ja ajoitus pysyvät täysin ennallaan."</string>
+    <string name="t_72102eb0" formatted="false">"Ostot, palautukset ja se, mitä tältä laitteelta lähtee"</string>
+    <string name="t_722a0bad" formatted="false">"NÄYTÄ OPPAAT UUDELLEEN"</string>
+    <string name="t_73236391" formatted="false">"Peli itse ei kerää henkilötietoja"</string>
+    <string name="t_735d4940" formatted="false">"ÄÄNITEHOSTEIDEN VOIMAKKUUS"</string>
+    <string name="t_73907e76" formatted="false">"Kaikki pelin 24 kappaletta, tallennettuina puhelimesi Music-kansioon soitettaviksi missä tahansa."</string>
+    <string name="t_7397fdaa" formatted="false">"Kylmää valoa, joka liikkuu kaiken takana."</string>
+    <string name="t_739a7f7a" formatted="false">"© {0} {1}. Kaikki oikeudet pidätetään."</string>
+    <string name="t_73d812dc" formatted="false">"Joka viides aalto ja mitä se tuo"</string>
+    <string name="t_73e8cb50" formatted="false">"Alkuperäinen koodi, alkuperäinen grafiikka, alkuperäinen syntetisoitu ääni. Tehty Kotlinilla, Jetpack Composella ja Android Canvas API:lla.\n\nKuvakkeet: CoreUI Icons Free, tekijä creativeLabs (coreui.io/icons), lisenssi CC BY 4.0.\n\nKolmansien osapuolten riippuvuuksien lisenssit on lueteltu projektin tietovaraston tiedostossa LICENSES.md."</string>
+    <string name="t_74066c59" formatted="false">"PELISSÄ"</string>
+    <string name="t_746ab6c3" formatted="false">"IPS tekee parville 35 % lisävahinkoa. Sijoita se kohtaan, jossa kaistat yhtyvät."</string>
+    <string name="t_746d814e" formatted="false">"Poistaa tallennetun kierroksesi, avatut agentit, tilastot ja asetukset. Tätä ei voi perua."</string>
+    <string name="t_74aa6c59" formatted="false">"€ BUDJETTI EI RIITÄ"</string>
+    <string name="t_74fff44e" formatted="false">"Luo itsestään houkutuskopioita, jotka imevät tulta. ANALYST ja ROOT ADMIN näkevät niiden läpi."</string>
+    <string name="t_750800eb" formatted="false">"Ampuu yhtä nopeasti kuin mikä tahansa ryhmässä ja ampuu aina ensin pomoa. Kaksinkertainen vahinko [GG] GOOD GAME -pomolle. Enintään neljä."</string>
+    <string name="t_7596436a" formatted="false">"Kyberturvallisuuden kandidaatin tutkinnon suorittanut vanhempi tietoturvainsinööri, joka pysäyttää hyökkäykset rakentamalla niiltä suojaavaa ohjelmistoa: koventuja palveluja, paikkauksia ja suodattimia, jotka ovat paikallaan ennen hyökkäystä eivätkä sen jälkeen."</string>
+    <string name="t_75b191e4" formatted="false">"Rakentaa muurin kantamansa lähimmän reitin poikki. Uhat pysähtyvät muuriin ja niiden on murrettava se ennen kuin pääsevät ohi; pomot murtavat sen nopeimmin. Kun se kaatuu, ACE rakentaa sen uudelleen muutamassa sekunnissa, vahvempana joka tasolla. Sen omat laukaukset tekevät {0}× vahinkoa jokaiselle ensimmäisten viiden tason pomolle. Enintään kolme saa sijoittaa."</string>
+    <string name="t_75bd8866" formatted="false">"Valitse taso ja vaikeusaste"</string>
+    <string name="t_75e65d90" formatted="false">"SIJOITA NAPAUTTAMALLA KAHDESTI"</string>
+    <string name="t_75f24f6e" formatted="false">"Lukitsee muutaman sekunnin välein yhden agentin päivitykset 8 sekunniksi. Päivitä ennen kuin se saapuu."</string>
+    <string name="t_7682806a" formatted="false">"VAIHE 2 — VALITSE FIREWALL"</string>
+    <string name="t_77212b64" formatted="false">"Tämä on hyökkäysaalto, jota vastaan olet. Se nousee niin kauan kuin pidät palvelimen — joka viides aalto tuo pomon."</string>
+    <string name="t_772b21ba" formatted="false">"Sijoittamasi puolustus"</string>
+    <string name="t_77a2583e" formatted="false">"Tietoturvassa kahta eri asiaa kutsutaan \"kvantiksi\", ja ne kannattaa pitää erillään. Kvanttiavainjakelu käyttää fysiikkaa yhteyden salakuuntelun havaitsemiseen, ja sitä käytetään vain harvoissa erikoistapauksissa. Kvanttikestävä kryptografia on tavallista ohjelmistomatematiikkaa, joka on suunniteltu kestämään tulevia kvanttitietokoneita, ja juuri sitä todella otetaan käyttöön."</string>
+    <string name="t_77a6da9b" formatted="false">"Renkaita, jotka kulkevat ulospäin ytimestä."</string>
+    <string name="t_77d03aa5" formatted="false">"Sokea injektio ei saa takaisin virheilmoituksia, joten hyökkääjä päättelee vastauksen tosi-vai-epätosi-kysymys kerrallaan. Se on hitaampi ja paljon kärsivällisempi kuin tavallinen injektio, ja se saapuu kovennettuna ilmeisiä puolustuksia vastaan."</string>
+    <string name="t_77e5929c" formatted="false">"Ensimmäinen napautus näyttää agentin kantaman kyseisessä kohdassa; sijoita napauttamalla uudelleen"</string>
+    <string name="t_77e8896f" formatted="false">"Yksi reitti viiltää laudan nurkasta nurkkaan viisi kertaa."</string>
+    <string name="t_77f7e381" formatted="false">" · PANSSARI {0}"</string>
+    <string name="t_782074f1" formatted="false">"  ·  AUTO {0}"</string>
+    <string name="t_7841323b" formatted="false">"PUOLUSTUSPYYHKÄISY"</string>
+    <string name="t_78526608" formatted="false">"SAAVUTETTU AALTO"</string>
+    <string name="t_78a52e3b" formatted="false">"PIILOSSA"</string>
+    <string name="t_7922c8d5" formatted="false">"Vahvistaa jokaista kantaman agenttia: +30 % vahinkoa, +20 % tulinopeutta."</string>
+    <string name="t_79a4baee" formatted="false">"&lt; TAKAISIN"</string>
+    <string name="t_79fc7a80" formatted="false">"Koskee vain, kun ALOITA AALLOT AUTOMAATTISESTI on päällä"</string>
+    <string name="t_7a1f56c4" formatted="false">"SYNKRONOI NYT"</string>
+    <string name="t_7aba529e" formatted="false">"Murtaa sen salauksen: ×{0} vahinkoa."</string>
+    <string name="t_7abfb3c7" formatted="false">"Jakautuu kahtia puolikkaalla terveydellä, ja toinen puolisko kulkee toista reittiä."</string>
+    <string name="t_7b3bb73f" formatted="false">"UHKA NEUTRALOITU"</string>
+    <string name="t_7b84a6c4" formatted="false">"Linkitä Google-tilisi GOOGLE PLAY -näkymässä nähdäksesi maailmanlaajuisen listan ja lähettääksesi siihen. Kierroksesi tallennetaan edelleen tälle laitteelle."</string>
+    <string name="t_7ba7f176" formatted="false">"+{0} % VHK"</string>
+    <string name="t_7be6fbad" formatted="false">"AALTO {0} · SIMULAATIO PYSÄYTETTY"</string>
+    <string name="t_7bf2105b" formatted="false">"Hajautettu palvelunestohyökkäys"</string>
+    <string name="t_7c4e4414" formatted="false">"VIIMEINEN"</string>
+    <string name="t_7c6853de" formatted="false">"MAAILMA · {0}"</string>
+    <string name="t_7d5cc77f" formatted="false">"ANSAITTU KRYPTO YHTEENSÄ"</string>
+    <string name="t_7dc33bc2" formatted="false">"ENIMMÄISTASO SAAVUTETTU"</string>
+    <string name="t_7e1cf3a7" formatted="false">"KORJAA"</string>
+    <string name="t_7e522f64" formatted="false">"TEKIJÄT"</string>
+    <string name="t_7e72ed35" formatted="false">"EDISTYMINEN TALLENNETTU TILILLESI"</string>
+    <string name="t_7e906966" formatted="false">"Tallennettiin {0} kappaletta kansioon Music/CyOps TD."</string>
+    <string name="t_7ea71dbe" formatted="false">"Avaa AGENTIT uudelleen ja valitse TARPIT. Se ei tee vahinkoa — se hidastaa jokaista uhkaa auransa sisällä, joten FIREWALLisi saavat niihin enemmän laukauksia."</string>
+    <string name="t_7f11b512" formatted="false">"{0} · {1} KIERROSTA KOHDEN {2}"</string>
+    <string name="t_7fd8e294" formatted="false">"&gt; raja verkossa"</string>
+    <string name="t_804ef7d5" formatted="false">"Internetin yleisin hyökkäys ja täällä perusuhka. Hyökkääjä kirjoittaa tietokantakomentoja kenttään, joka odotti nimeä tai salasanaa; jos sovellus välittää sen suoraan, tietokanta tottelee."</string>
+    <string name="t_80592dd9" formatted="false">"VERSIO"</string>
+    <string name="t_8175c5fc" formatted="false">"CORE-SERVERIN EHEYS"</string>
+    <string name="t_8198af01" formatted="false">"Piiloutuu 2 sekunniksi joka 6:sta: mikään ei voi tähdätä siihen. Roiske ja ketjut yltävät siihen silti."</string>
+    <string name="t_81e23c68" formatted="false">"MUUT: vain pienet yksiköt ja eliitit, ei koskaan pomoja"</string>
+    <string name="t_8230b283" formatted="false">"IDS tekee nopeille hyökkäyksille 45 % lisävahinkoa ja näkee ne ensimmäisenä."</string>
+    <string name="t_82966ea3" formatted="false">"AALTOLASKURI"</string>
+    <string name="t_829e8e06" formatted="false">"Sen kantaman agentteja ei voi häiritä. {0}× vahinkoa WHITE EYE- ja BLACK EYE -pomoille. Enintään kaksi."</string>
+    <string name="t_82a1fee3" formatted="false">"Haluatko varmasti aloittaa kierroksesi alusta?"</string>
+    <string name="t_82a70835" formatted="false">"Ilman linkitystä kierroksen edistyminen on vain tällä laitteella. Asennuksen poisto tai tehdasasetusten palautus pyyhkii sen; ostot säilyvät kummastakin."</string>
+    <string name="t_830a30fd" formatted="false">"BUDJETTI"</string>
+    <string name="t_830b01d9" formatted="false">"Firmware kertoo jokaisen sijoittamasi agentin vahingon jokaisessa ottelussa tästä eteenpäin. Se lasketaan ennen panssaria ja ennen vastataulukkoa, joten se auttaa Cryptographeria salausta vastaan täsmälleen yhtä paljon kuin Firewallia tavallista liikennettä vastaan."</string>
+    <string name="t_831712ed" formatted="false">"UUSI KYBERAGENTTI AVATTU"</string>
+    <string name="t_83186dce" formatted="false">"VAIN TÄMÄ LAITE"</string>
+    <string name="t_8340a76d" formatted="false">"MIKSI SILLÄ ON MERKITYSTÄ"</string>
+    <string name="t_838b0928" formatted="false">"Synnyttää saattohyökkäyksiä edetessään."</string>
+    <string name="t_8478f19e" formatted="false">"MITÄ TÄLTÄ LAITTEELTA LÄHTEE"</string>
+    <string name="t_848f3f46" formatted="false">"POISTETAANKO KAIKKI EDISTYMINEN?"</string>
+    <string name="t_852bda75" formatted="false">"KOODEKSI"</string>
+    <string name="t_862b3f34" formatted="false">"SIJOITA KYBERAGENTTI"</string>
+    <string name="t_869cf6b4" formatted="false">"REKISTERÖI KUTSUMANIMI"</string>
+    <string name="t_86cce90c" formatted="false">"HEIKOIN"</string>
+    <string name="t_87442b62" formatted="false">"SEURAAVA AALTO · BREACH"</string>
+    <string name="t_87a9dd3e" formatted="false">"AALLOT, € JA FIRMWARE"</string>
+    <string name="t_87d92d69" formatted="false">"Erittäin pitkä havaintoetäisyys; +45 % vahinkoa nopeille hyökkäyksille."</string>
+    <string name="t_8806feca" formatted="false">"Kuusi CORE-SERVER-ulkoasua ja €2,000. NEONGRID myydään erikseen."</string>
+    <string name="t_882561c2" formatted="false">"UHKA-ARVIO"</string>
+    <string name="t_891fc63b" formatted="false">"VÄÄRENNYS PUDONNUT"</string>
+    <string name="t_8980d82b" formatted="false">"{0} valittu — sijoita napauttamalla korostettua solmua."</string>
+    <string name="t_899bae42" formatted="false">"Vapaaehtoinen. Kaikki pelissä toimii ilman linkitystä, eikä mitään muuta kuin edistymisesi lähetetä koskaan."</string>
+    <string name="t_89a47932" formatted="false">"Soita musiikkia"</string>
+    <string name="t_89c7b011" formatted="false">"Avaa Googlen suostumuslomake uudelleen muuttaaksesi, mitä mainoskumppanit saavat tehdä tämän laitteen tiedoilla. Peliedistymisesi on tallennettu tälle laitteelle eikä ole koskaan osa sitä."</string>
+    <string name="t_89d7c51c" formatted="false">"Ulos, takaisin ja pitkä yhteinen paluu räkille."</string>
+    <string name="t_89dd34f8" formatted="false">"Jätä parvien siivous IPS:lle, jotta raskaat ampujasi pysyvät pomossa."</string>
+    <string name="t_89e1b0eb" formatted="false">"Sen kenttä vetää GRADIENTia takaisin alas, kun se kiihtyy."</string>
+    <string name="t_89e450ea" formatted="false">"POISTETTU · ELVYTYSMAINOKSET ERIKSEEN"</string>
+    <string name="t_8a058fa3" formatted="false">"Vakiokäyrä."</string>
+    <string name="t_8a86921d" formatted="false">"Oikealla olevia painikkeita voi vierittää. Alempana: KAUPPA, VARUSTUS (ulkoasujen ja taustojen käyttöönotto), GOOGLE PLAY (ostot ja pilvitallennus), TULOSLISTA, KOODEKSI (uhat ja agentit selitettyinä), TILASTOT, ASETUKSET ja TIETOJA."</string>
+    <string name="t_8a96f0aa" formatted="false">"EI SAATAVILLA"</string>
+    <string name="t_8aa097b1" formatted="false">"  (LUKITTU)"</string>
+    <string name="t_8aec13a9" formatted="false">"Hajautettu palvelunestohyökkäys: hyökkäys on määrä. Jokainen pyyntö on vähäpätöinen, mutta niitä tulee nopeammin kuin mitään muuta pelissä, ja niitä on aina lisää."</string>
+    <string name="t_8af0e8d8" formatted="false">"Koordinoitu murtoyritys. Ei temppuja, pelkkää painoa."</string>
+    <string name="t_8b094c6c" formatted="false">"Yhdistetään Google Playhin…"</string>
+    <string name="t_8c42a507" formatted="false">"Jääneulasia, jotka säteilevät jäätyneestä ytimestä."</string>
+    <string name="t_8c61de92" formatted="false">"ALOITA AALLOT AUTOMAATTISESTI"</string>
+    <string name="t_8d56a5da" formatted="false">"Hitaat elliptiset jäljet, jotka kiertävät ydintä."</string>
+    <string name="t_8d91a14b" formatted="false">"GOOGLE PLAY"</string>
+    <string name="t_8d9dd637" formatted="false">"POMO: ampuu vain pomoja, muuten pidättää tulen"</string>
+    <string name="t_8e0413ab" formatted="false">"Tässä versiossa ei ole sovelluksen sisäisiä ostoja."</string>
+    <string name="t_8e3787c1" formatted="false">"LUKITTU · {0} (paras: {1})"</string>
+    <string name="t_8f0536a7" formatted="false">"ASENNA MAKS"</string>
+    <string name="t_8f37a712" formatted="false">"TEHTY VAHINKO"</string>
+    <string name="t_8f48da3c" formatted="false">"VERKKO MURRETTU"</string>
+    <string name="t_8f5d0f11" formatted="false">"TALOUS"</string>
+    <string name="t_8f61abf9" formatted="false">"TYÖSKENNELLÄÄN…"</string>
+    <string name="t_8f68a3ab" formatted="false">"&gt; ladataan uhkatunnisteita"</string>
+    <string name="t_8ff6e51c" formatted="false">"Tasolta {0} ei ole vielä tallennettuja kierroksia."</string>
+    <string name="t_90391726" formatted="false">"JATKA"</string>
+    <string name="t_910b3ae9" formatted="false">"Rahaa, jota ansaitaan palvelinta puolustavien agenttien ostamiseen. Kryptoa◇ saa jokaisesta tapon ja jokaisesta läpäistystä aallosta."</string>
+    <string name="t_915c2f22" formatted="false">"Tallennettiin {0} kappaletta, sitten puhelin kieltäytyi lopuista. Vapauta tilaa ja yritä uudelleen."</string>
+    <string name="t_919816cc" formatted="false">"Google Playhin ei saatu yhteyttä. Kaikki jo ostamasi on edelleen sinun — kokeile PALAUTA, kun olet taas verkossa."</string>
+    <string name="t_91ae1cd3" formatted="false">"Selkokielinen sanasto"</string>
+    <string name="t_91d4d5fc" formatted="false">"SAATAVILLA · ◇ {0}"</string>
+    <string name="t_9231c915" formatted="false">"Meripihkan väriset eristysrenkaat käynnissä olevan reaktion ympärillä."</string>
+    <string name="t_933bf2fb" formatted="false">"POISTA MAINOKSET kattaa kierrosten väliset mainokset; elvytysmainokset ovat erillisiä."</string>
+    <string name="t_935cf7b5" formatted="false">"Hattujen tulinopeus, raskaammat laukaukset ja {0}× vahinkoa SYN-STORM- ja GRADIENT-pomoille. Enintään kaksi."</string>
+    <string name="t_93875a49" formatted="false">"kantama"</string>
+    <string name="t_93f1bd2f" formatted="false">"Erittäin suuri tulinopeus, tähtää aina pomoihin ennen mitään muuta kantamalla ja tekee kaksinkertaista vahinkoa [GG] GOOD GAME -pomolle. Avautuu aallolla 30, ja enintään neljä saa sijoittaa."</string>
+    <string name="t_94061f4f" formatted="false">"Ei tee juuri lainkaan vahinkoa. Kaikki sen säteellä matelee, mikä pitää uhat vahingontekijöidesi kantamalla paljon pidempään. Halpa ja yksinään hyödytön — se on voimakerroin kaikelle, mikä ampuu sen vieressä."</string>
+    <string name="t_941dea68" formatted="false">"VAHINKOLUVUT"</string>
+    <string name="t_9427590a" formatted="false">"Näytä leijuvat vahinkoarvot osumissa"</string>
+    <string name="t_94bbec0b" formatted="false">"Napauta SEURAAVA AALTO. Agenttisi ampuvat automaattisesti. Jokainen pysäyttämäsi hyökkäys maksaa ◇ Kryptoa, jolla ostat lisää agentteja ja päivityksiä."</string>
+    <string name="t_94dc88d3" formatted="false">"Jokainen firmware-taso lisää +{0} % vahinkoa jokaiselle agentille ja +{1} % kierroksilla ansaittua ◇ kryptoa (kaksinkertaiseen asti) jokaisessa tulevassa ottelussa. Se ei koskaan katoa."</string>
+    <string name="t_95051192" formatted="false">"EI ASETETTU"</string>
+    <string name="t_952dc0bb" formatted="false">"TULOSLISTA"</string>
+    <string name="t_959b6bbb" formatted="false">"MAKS {0} SIJOITETTU"</string>
+    <string name="t_9655a074" formatted="false">"Hitaita datavirtoja valikon ja laudan takana."</string>
+    <string name="t_97e1363f" formatted="false">"Raskas kiinteä vahingonvähennys jokaisesta osumasta."</string>
+    <string name="t_98189a64" formatted="false">"Ei mitään. Tämä on suora taistelu."</string>
+    <string name="t_9873614b" formatted="false">"Ryhmän pisin havaintoetäisyys ja +45 % vahinkoa nopeita hyökkäyksiä vastaan. Hidas tulinopeus — se on tähystäjä, joka sattuu ampumaan, parhaiten sijoitettuna sinne, mistä se kattaa paljon kaistaa."</string>
+    <string name="t_98a9c7f2" formatted="false">"€ BUDJETTI"</string>
+    <string name="t_98b63553" formatted="false">"Pelaamiseen ei tarvita tiliä tai kirjautumista"</string>
+    <string name="t_98cc567c" formatted="false">"PARAS VAHINKO"</string>
+    <string name="t_98f4abc6" formatted="false">"◇ {0} · avautuu aallolla {1} tasolla {2}"</string>
+    <string name="t_98fbe3ee" formatted="false">"MONILUKITUS"</string>
+    <string name="t_991bd4c3" formatted="false">"Yksi CRYPTOGRAPHER kääntää koko taistelun."</string>
+    <string name="t_991c8ba8" formatted="false">"AGENTTIPÄIVITYKSET YHTEENSÄ"</string>
+    <string name="t_996095bd" formatted="false">"Jotkin tässä pelissä mainitut nimet, termit ja tavaramerkit voivat olla omistajiensa omaisuutta. Tällaisia viittauksia käytetään ainoastaan tunnistamiseen, kommentointiin, opetukselliseen yhteyteen ja fiktiiviseen esittämiseen pelissä.\n\nTämä peli on itsenäisesti kehitetty, eikä se ole sidoksissa Red Hatiin, Microsoftiin tai mihinkään muuhun kolmannen osapuolen tavaramerkin omistajaan, eikä niiden sponsoroima, tukema tai hyväksymä.\n\nKaikki kolmansien osapuolten tavaramerkit, tuotenimet, yritysnimet ja logot pysyvät omistajiensa omaisuutena."</string>
+    <string name="t_99ab6437" formatted="false">"Näytä päävalikon esittely ja FIRMWARE-selitys uudelleen, kun seuraavan kerran avaat ne näkymät."</string>
+    <string name="t_99cfdd6c" formatted="false">"Esikatsele {0}"</string>
+    <string name="t_99d175d2" formatted="false">"Pidä TARPIT reitillä vaimentamaan kiihdytystä."</string>
+    <string name="t_99f43c9c" formatted="false">"KRYPTO EI RIITÄ"</string>
+    <string name="t_9a8ee779" formatted="false">"Ampuu yhtä nopeasti kuin mikä tahansa ryhmässä ja ampuu aina ensin pomoa. Kaksinkertainen vahinko [!!!] BREACH-pomolle. Enintään neljä."</string>
+    <string name="t_9a9bcdd3" formatted="false">"PAIKKA"</string>
+    <string name="t_9aa5d01a" formatted="false">"Ei koskaan välimainosta epäonnistuneen kierroksen jälkeen, lisäksi €5,000. Elvytysmainokset ovat vapaaehtoisia ja erillisiä — katso ELVYTYSPAKETTI."</string>
+    <string name="t_9adba547" formatted="false">"Paras vastine eurolle."</string>
+    <string name="t_9ae9f14f" formatted="false">"Kaukaisten pisteiden hidas ajelehtiminen."</string>
+    <string name="t_9aed28a1" formatted="false">"SIJOITUSRAJA SAAVUTETTU"</string>
+    <string name="t_9b08be38" formatted="false">"Kysytään Google Play Peleiltä…"</string>
+    <string name="t_9b1d7455" formatted="false">"AALTO {0}"</string>
+    <string name="t_9b4c97a7" formatted="false">"Nimetty puuhevosen mukaan: ohjelmisto, joka näyttää joltain, mitä haluat, ja kantaa jotain, mitä et todellakaan halua."</string>
+    <string name="t_9b557f99" formatted="false">"Paras tuloksesi: aalto {0}"</string>
+    <string name="t_9b989bfb" formatted="false">"PARAS"</string>
+    <string name="t_9bcd1b03" formatted="false">"Kaikki seitsemän elävää taustaa ja €2,000."</string>
+    <string name="t_9bd1faf7" formatted="false">"Hyvitykset, maksutavat ja kuitit hoitaa Google, ei tämä peli."</string>
+    <string name="t_9c2ade2b" formatted="false">"TASO {0}  ×{1}"</string>
+    <string name="t_9c6be09c" formatted="false">"MUUNTAJAT"</string>
+    <string name="t_9d0c4ff1" formatted="false">"&gt; aalto {0} käynnissä — {1} uhkaa jäljellä"</string>
+    <string name="t_9d29de23" formatted="false">"PARAS AALTO TASOITTAIN"</string>
+    <string name="t_9d2c3eea" formatted="false">"VERKKOTERMIT"</string>
+    <string name="t_9d36e329" formatted="false">"PANTTINA"</string>
+    <string name="t_9d5ca8b9" formatted="false">"HALUATKO ELVYTTÄÄ?"</string>
+    <string name="t_9df821c5" formatted="false">"TERVETULOA CyOps TD:HEN"</string>
+    <string name="t_9e30871d" formatted="false">"Yksi kaapattu kone, joka ottaa käskyjä joltakulta muulta. Yksi botti on vaaraton. Tuhansien bottiverkko ei ole — siksi ne tulevat aina ryhmissä."</string>
+    <string name="t_9e77c8cf" formatted="false">"Lisää viidennen simulaationopeuden aaltojen nopeaan raivaamiseen."</string>
+    <string name="t_9ef0ebe5" formatted="false">"SEGMENTOINTI"</string>
+    <string name="t_9f26f678" formatted="false">"  →"</string>
+    <string name="t_9f70f631" formatted="false">"TULINOPEUS"</string>
+    <string name="t_9fb6c271" formatted="false">"Häiritsee hetken lähellä olevia agentteja ja hidastaa niiden tulinopeutta."</string>
+    <string name="t_a12f7814" formatted="false">"+{0} (POMO)"</string>
+    <string name="t_a15faa1f" formatted="false">"TILA"</string>
+    <string name="t_a19abbd4" formatted="false">"Jokainen kyberagentti, mitä se tekee ja mikä aalto sen avaa."</string>
+    <string name="t_a21dbf00" formatted="false">"€{0} BUDJETTIA KERTYI"</string>
+    <string name="t_a24181ff" formatted="false">"MIKÄ HYÖKKÄÄ"</string>
+    <string name="t_a2517472" formatted="false">"KAUPPA EI KÄYTETTÄVISSÄ"</string>
+    <string name="t_a29c69ba" formatted="false">"POISTU"</string>
+    <string name="t_a2b3bef5" formatted="false">"SAAVUTA AALTO {0}"</string>
+    <string name="t_a2dd8300" formatted="false">"Kujanjuoksu. Kaksi takaisin kääntyvää reittiä ja sitten kierros ennen räkkiä."</string>
+    <string name="t_a2e2f704" formatted="false">"SALAUKSEN MURTO"</string>
+    <string name="t_a32353a8" formatted="false">"€9,000 BUDJETTI"</string>
+    <string name="t_a36e1b6d" formatted="false">"EI TÄSSÄ VERSIOSSA"</string>
+    <string name="t_a3ebab03" formatted="false">"Paikkaamaton, tuntematon haavoittuvuus"</string>
+    <string name="t_a4a2cd90" formatted="false">"&gt;&gt; UUSI ENNÄTYS &lt;&lt;"</string>
+    <string name="t_a4fd7522" formatted="false">" · MAKS {0}"</string>
+    <string name="t_a5460e4e" formatted="false">"Hitaat, raskaat yksittäiset osumat +80 % vahingolla eliittejä ja pomoja vastaan. Heikko parvia vastaan. Näyttää kohteen valitsimen, joten voit suunnata sen siihen, minkä todella haluat tuhota."</string>
+    <string name="t_a596b409" formatted="false">"5× NOPEUS ON KAUPASSA"</string>
+    <string name="t_a599c90a" formatted="false">"Jokainen sen kantaman agentti, se itse mukaan lukien, on immuuni minkä tahansa pomon häirinnälle. Nopeat, raskaat laukaukset ja {0}× vahinkoa WHITE EYE- ja BLACK EYE -pomoille. TARPITin kantama. Enintään kaksi saa sijoittaa."</string>
+    <string name="t_a5b1ffba" formatted="false">"Rajoittamaton pääsy järjestelmään"</string>
+    <string name="t_a5da8eea" formatted="false">"Jumissa aallossa? Kerrytä budjettia, asenna firmwarea, niin sama lauta iskee kovempaa seuraavalla kierroksella."</string>
+    <string name="t_a6291e29" formatted="false">"€5,000 BUDJETTI"</string>
+    <string name="t_a62c1133" formatted="false">"Ei oikeita hakkerointikykyjä — mikään tässä ei kosketa oikeaa verkkoa"</string>
+    <string name="t_a66c22f9" formatted="false">"Vaihda kieli päävalikon ASETUKSISTA: vaihto käynnistää pelin uudelleen, mikä päättäisi tämän kierroksen."</string>
+    <string name="t_a6cd2e07" formatted="false">"{0}-{1} merkkiä. A-Z, 0-9, väliviiva ja alaviiva."</string>
+    <string name="t_a6ee02f4" formatted="false">"PERUUTA"</string>
+    <string name="t_a727a483" formatted="false">"SISÄLTÄÄ"</string>
+    <string name="t_a7c5a24a" formatted="false">"Tallennetaan kansioon Music/CyOps TD…"</string>
+    <string name="t_a7c97dfd" formatted="false">"NOLLAA"</string>
+    <string name="t_a7e02911" formatted="false">"YTIMESSÄ"</string>
+    <string name="t_a7e24bd6" formatted="false">"KOHDISTUS"</string>
+    <string name="t_a8031bce" formatted="false">"AVAA KAUPPASIVU"</string>
+    <string name="t_a8191219" formatted="false">"SPOOFER luo itsestään houkutuskopioita, jotka imevät tulta. ANALYST ja ROOT ADMIN näkevät niiden läpi."</string>
+    <string name="t_a8768bb2" formatted="false">"AGENTTIEN ULKOASUT"</string>
+    <string name="t_a8935036" formatted="false">"ANSAITTU KRYPTO"</string>
+    <string name="t_a92b98a8" formatted="false">"KRYPTO ◇"</string>
+    <string name="t_a9a8f56c" formatted="false">"ULKOASU"</string>
+    <string name="t_a9ad0741" formatted="false">"€ TÄLLÄ KIERROKSELLA"</string>
+    <string name="t_a9cf50ec" formatted="false">"Oikea liikenne kulkee reittiä kytkinten ja reitittimien kautta päästäkseen perille. Kaksi mutkittelevaa reittiä ovat se polku, joka kääntyy takaisin, jotta näet jokaisen hypyn kerralla."</string>
+    <string name="t_a9d9e481" formatted="false">"CORE-SERVER on se, mitä puolustat, ja yläpalkin EHEYS-lukema on ainoa elämäsi. Jokainen räkin saavuttava vihamielinen paketti haukkaa siitä palan. Nollassa palvelin on murrettu ja kierros päättyy — joten koko homma on, ettei mitään pääse läpi."</string>
+    <string name="t_aab511c4" formatted="false">"ROOTKIT piiloutuu 2 sekunniksi joka 6:sta, eikä mikään voi tähdätä siihen. Roiske ja ketjut yltävät siihen silti."</string>
+    <string name="t_aac1d4da" formatted="false">"EI LINKITETTY"</string>
+    <string name="t_aadac61a" formatted="false">"Sovellukset esittävät tietokannoille kysymyksiä SQL-kielellä. Jos käyttäjän syöte liitetään suoraan siihen kysymykseen, hyökkääjä voi kirjoittaa sille oman loppunsa — tyhjentää käyttäjätaulun, ohittaa kirjautumisen tai poistaa kaiken. Korjaus on vanha ja tunnettu (parametrisoidut kyselyt), ja juuri siksi on niin turhauttavaa, että se on yhä hyökkäys, jonka kohtaat useimmin."</string>
+    <string name="t_ab62d63d" formatted="false">"Tunkeutumisen havaitsemisjärjestelmä tarkkailee verkon tai isännän toimintaa hyökkäykseltä näyttävien kuvioiden varalta ja nostaa hälytyksen. Se raportoi; se ei estä. Jonkun tai jonkin muun on yhä toimittava sen löydösten perusteella."</string>
+    <string name="t_aca3253a" formatted="false">"KENTÄLLÄ · NAPAUTA POMOA NÄHDÄKSESI SEN"</string>
+    <string name="t_ad03a515" formatted="false">"Verkon jakaminen vyöhykkeisiin"</string>
+    <string name="t_ad26a7c7" formatted="false">"tuntematon"</string>
+    <string name="t_ae00f867" formatted="false">"ANALYTIIKKA"</string>
+    <string name="t_ae59bf94" formatted="false">"MYY  ◇ {0}"</string>
+    <string name="t_b0147d1e" formatted="false">"Nojaa tällä aallolla muihin kuin FIREWALL-agentteihin."</string>
+    <string name="t_b0af39a6" formatted="false">"MUUTA"</string>
+    <string name="t_b0d341a2" formatted="false">"YLI KUUKAUSI SITTEN"</string>
+    <string name="t_b0f472d0" formatted="false">"VAIKEUSTASO"</string>
+    <string name="t_b16e2042" formatted="false">"Violetti tähtikenttä räkin takana."</string>
+    <string name="t_b2029176" formatted="false">"Aloita seuraava aalto automaattisesti lyhyen tauon jälkeen"</string>
+    <string name="t_b253fa2b" formatted="false">"Kryptografia suojaa dataa siirrossa ja levossa, joten sen sieppaaminen ei ole sama kuin sen lukeminen. Hyökkääjätkin käyttävät sitä — paljon vihamielistä liikennettä on salattua — ja siksi puolustajat tarkastavat hallitsemissaan päätepisteissä sen sijaan, että yrittäisivät murtaa itse salauksen."</string>
+    <string name="t_b28b05f8" formatted="false">"Tunkeutumisenestojärjestelmä"</string>
+    <string name="t_b2dbc630" formatted="false">"PALOMUURI AKTIIVINEN"</string>
+    <string name="t_b2ef7c39" formatted="false">"Kyberoperaattorit: tornipuolustus"</string>
+    <string name="t_b32b1a1d" formatted="false">"MUKAVUUS"</string>
+    <string name="t_b3735fe8" formatted="false">"Piirihila, joka hengittää aallon mukana."</string>
+    <string name="t_b3b53e34" formatted="false">"Ostot on sidottu Google-tiliisi, ei tähän laitteeseen. Uudelleenasennus tai puhelimen vaihto ei hävitä niitä."</string>
+    <string name="t_b3c34c67" formatted="false">"JUURI NYT"</string>
+    <string name="t_b40b6d1c" formatted="false">"\"Punainen tiimi\" hyökkää järjestelmään luvan kanssa löytääkseen sen, minkä hyökkääjä löytäisi ensin. \"Punainen hattu\" on epävirallista slangia eikä ammattinimike tai sertifikaatti, ja sen merkitys vaihtelee käyttäjien kesken; punaisen tiimin osuus on se vakiintunut."</string>
+    <string name="t_b5ca7a98" formatted="false">"Jokaisen pelaajan paras aalto maailmanlaajuisesti kutsumanimen mukaan. Rekisteröi nimi oikealla, muuten Google näyttää Play Pelit -nimesi."</string>
+    <string name="t_b649891d" formatted="false">"KESKEYTETTY"</string>
+    <string name="t_b683e66d" formatted="false">"{0} on lukittu: {1} avataksesi sen."</string>
+    <string name="t_b6bcb68c" formatted="false">"Raskasta yhden kohteen vahinkoa, joka laukauksella sama. Ohittaa kaiken panssarin."</string>
+    <string name="t_b7ba0ba1" formatted="false">"REGENERATION korjaa sen, kun siihen ei ole osuttu {0} sekuntiin. Pidä se tulen alla koko matkan."</string>
+    <string name="t_b7c4c2a3" formatted="false">"[{0}] {1} (lukittu): {2}"</string>
+    <string name="t_b7cf2aab" formatted="false">"MIKÄÄN SOVELLUS EI VOI AVATA GOOGLE PLAYTA"</string>
+    <string name="t_b8201e22" formatted="false">"SEURAAVA: AALTO {0} · POMO"</string>
+    <string name="t_b82dfd13" formatted="false">"VIE SINUT"</string>
+    <string name="t_b835d746" formatted="false">"VAIHE 5 — SIJOITA KAKSI TARPITIA"</string>
+    <string name="t_b8cbfe08" formatted="false">"Kauimpana CORE-SERVERistä"</string>
+    <string name="t_b8f9cbc8" formatted="false">"VHK {0}  TAHTI {1}/s"</string>
+    <string name="t_b8ffa95c" formatted="false">"ELÄVÄ: REVONTULET"</string>
+    <string name="t_b9918647" formatted="false">"Maksettu olemaan täällä. Ei temppuja, ei häirintää — kaksikymmentä prosenttia enemmän sitä kuin mitään muuta laudalla."</string>
+    <string name="t_b9a3ada7" formatted="false">"EXFIL on nopea. Jos se saavuttaa ytimen, se varastaa puolet kryptostasi eheyden sijaan. Käytä ensin tai pysäytä se."</string>
+    <string name="t_b9c6b239" formatted="false">"Piirretään kaistojen alle ja jokaisen valikon taakse."</string>
+    <string name="t_badb0f4a" formatted="false">"Kiihdyttää ajoittain kohti palvelinta."</string>
+    <string name="t_bae2cee7" formatted="false">"KYLLÄ — KATSO MAINOS"</string>
+    <string name="t_bb0a2d46" formatted="false">"VALITSE"</string>
+    <string name="t_bb621985" formatted="false">"KOVENNETTU"</string>
+    <string name="t_bb93827c" formatted="false">"ELVYTYS EPÄONNISTUI — KIERROS ON JO PÄÄTTYNYT"</string>
+    <string name="t_bc855067" formatted="false">"PÄÄSY EVÄTTY"</string>
+    <string name="t_bcdf64b3" formatted="false">"SQL-INJEKTIO"</string>
+    <string name="t_bceaf8ce" formatted="false">"!!! KYBERHYÖKKÄYS TULOSSA !!!"</string>
+    <string name="t_bd0c6acd" formatted="false">"SEURAAVA € {0} · +{1} % {2} tasoa kohden"</string>
+    <string name="t_bd1b1fc9" formatted="false">"POIS"</string>
+    <string name="t_bd8215e6" formatted="false">"KYLLÄ, KERRO"</string>
+    <string name="t_bd84c20a" formatted="false">"AALTO {0} TURVATTU"</string>
+    <string name="t_be1fc25b" formatted="false">"Luotettavaa monipuolista vahinkoa, eikä sitä voi häiritä."</string>
+    <string name="t_beb11f45" formatted="false">"Pomon muuntaja"</string>
+    <string name="t_beb3cdc3" formatted="false">"Sen kenttä hidastaa pomoja kaksi kertaa enemmän kuin muita uhkia."</string>
+    <string name="t_bec37550" formatted="false">"KUUMAKORJAUS"</string>
+    <string name="t_bed8ffbb" formatted="false">"Palautus kysyy Playlta uudelleen, mitä tämä Google-tili omistaa. Sitä on aina turvallista painaa, eikä se koskaan veloita."</string>
+    <string name="t_bf09fcca" formatted="false">"Tähän versioon ei ole määritetty Play Pelit -projektia, joten edistyminen pysyy tällä laitteella. Androidin oma varmuuskopio palauttaa sen silti, kun asennat uudelleen puhelimeen, jossa on kirjauduttu samalle Google-tilille."</string>
+    <string name="t_bf0c2eaa" formatted="false">"MONISTUU"</string>
+    <string name="t_bf7cfb98" formatted="false">"Tässä versiossa ei ole mainoksia määritettäväksi."</string>
+    <string name="t_c1386132" formatted="false">"◇ KRYPTO"</string>
+    <string name="t_c164d2e8" formatted="false">"Ampuu yhtä nopeasti kuin hatut ja iskee kovempaa, {0}× vahingolla DUCK-USB-pomoille SYN-STORM ja GRADIENT. Säilyttää kohdistustilansa. Enintään kaksi saa sijoittaa. Piirretään hologrammina, jota agenttien ulkoasut eivät muuta."</string>
+    <string name="t_c19b9c99" formatted="false">"CORE-SERVERIN EHEYS 0 · YHTEYS KATKAISTU"</string>
+    <string name="t_c1b7bcc5" formatted="false">"Tämä versio ei näytä mainoksia."</string>
+    <string name="t_c2658f4d" formatted="false">"Murskaavaa yhden kohteen vahinkoa. Ohittaa kaiken panssarin."</string>
+    <string name="t_c2c8c2f8" formatted="false">"NÄYTÄ AGENTIN KANTAMA"</string>
+    <string name="t_c2d127eb" formatted="false">"OHITA ×"</string>
+    <string name="t_c31db047" formatted="false">"ELVYTYSPAKETTI — ei mainosta."</string>
+    <string name="t_c39850a1" formatted="false">"VAIHE 3 — SIJOITA KAKSI FIREWALLIA"</string>
+    <string name="t_c3e1a996" formatted="false">"◇ Krypto ja € Budjetti ovat fiktiivisiä pelin sisäisiä resursseja. Niillä ei ole rahallista arvoa, niitä ei voi vaihtaa mihinkään pelin ulkopuolella, eivätkä ne voi poistua laitteelta."</string>
+    <string name="t_c405af57" formatted="false">"PELAA aloittaa kierroksen vasemmalta valitulla tasolla ja tilassa. Kun kierros on tallennettu, JATKA jatkaa sitä ja UUSI KIERROS aloittaa alusta."</string>
+    <string name="t_c40bc4a4" formatted="false">"IDS valvoo verkon toimintaa epäilyttävän käytöksen ja tietoturvauhkien varalta ja nostaa sitten hälytyksen. Se tarkkailee; se ei estä."</string>
+    <string name="t_c4a14a23" formatted="false">"Valitse FIREWALL. Se on halpa, luotettava, eikä sitä voi häiritä."</string>
+    <string name="t_c4b7782d" formatted="false">"Tietoturva-analyytikko on oikea ammatti. Silmukassa oleva ihminen ottaa sen, minkä automaattiset työkalut liputtivat, selvittää, mitä todella tapahtui, ja päättää, mitä asialle tehdään. Hitaampi kuin kone ja paljon parempi tapauksissa, jotka eivät vastaa tunnettua kuviota."</string>
+    <string name="t_c4d0dc6f" formatted="false">"Koneoppimistyökalut liputtavat epätavallisia kuvioita paljon useammista signaaleista kuin ihminen ehtii lukea, ja niitä käytetään rajaamaan, mikä ansaitsee huomiota. Ne avustavat analyytikkoja eivätkä korvaa heitä, ja ne tuottavat vääriä hälytyksiä — liputus on johtolanka, ei tuomio."</string>
+    <string name="t_c51041e3" formatted="false">"  ·"</string>
+    <string name="t_c55cc938" formatted="false">"UUSI KIERROS"</string>
+    <string name="t_c55e934e" formatted="false">"VIERITÄ LISÄÄ"</string>
+    <string name="t_c570c6cd" formatted="false">"Putoavia koodisarakkeita räkin sisällä."</string>
+    <string name="t_c5cb18f9" formatted="false">"KAIKKI TASOT"</string>
+    <string name="t_c81c4fa0" formatted="false">"1 taso"</string>
+    <string name="t_c8a9aae9" formatted="false">"Kolme reittiä punoutuu kahdesti: jokainen kaista vaihtaa puolta."</string>
+    <string name="t_c9301368" formatted="false">"YDIN: REACTOR"</string>
+    <string name="t_c9402c75" formatted="false">"EI"</string>
+    <string name="t_c944e5aa" formatted="false">"VASTATOIMET"</string>
+    <string name="t_c9a2aee9" formatted="false">"Avaa tämä agentti saavuttamalla aalto {0} millä tahansa tasolla."</string>
+    <string name="t_ca02a8f8" formatted="false">"Jokainen agentti kantaa tehtävänsä väriä."</string>
+    <string name="t_ca5ea88d" formatted="false">"PARAS VASTINE"</string>
+    <string name="t_cabf47fa" formatted="false">"MAKS +{0}"</string>
+    <string name="t_cb02b3da" formatted="false">"Hidas värikierto koko ryhmän yli."</string>
+    <string name="t_cb1fd3f1" formatted="false">"IPS on IDS, jolla on valtuudet toimia. Kun se tunnistaa hyökkäyksen, se pudottaa liikenteen itse sen sijaan, että vain kertoisi jollekulle."</string>
+    <string name="t_cb4ff573" formatted="false">"MAINONTA JA OSTOT"</string>
+    <string name="t_cbd3b516" formatted="false">"Ei mainoksia, SPECTRUM-agenttiulkoasu, DRIFT-tausta ja €2,000."</string>
+    <string name="t_cbd47695" formatted="false">"HYÖTYKUORMAN ESTO"</string>
+    <string name="t_cbf7d422" formatted="false">"SYN-STORM jakautuu kahtia puolikkaalla terveydellä, ja toinen puolisko kulkee toista reittiä. Kata jokainen reitti."</string>
+    <string name="t_cc52e024" formatted="false">"SEURAAVA: AALTO {0} — POMO · NAPAUTA SEURAAVA POMO -PAINIKETTA KATSAUSTA VARTEN"</string>
+    <string name="t_cc5435ac" formatted="false">"Mitä kaistoja pitkin tulee"</string>
+    <string name="t_cc5c44e8" formatted="false">"FOKUS: VAIN PIENET YKSIKÖT JA ELIITIT"</string>
+    <string name="t_cc6791f1" formatted="false">"Kestää FIREWALL-agentteja."</string>
+    <string name="t_cc7fe141" formatted="false">"Tarkkailee hyökkäystyökaluja. Häiritsee hetken lähellä olevia RED HAT -agentteja muutaman sekunnin välein."</string>
+    <string name="t_cc9e044b" formatted="false">"ELÄVÄ: KIERTORATA"</string>
+    <string name="t_ccb963f2" formatted="false">"PAKETTI"</string>
+    <string name="t_ccbd0815" formatted="false">"Oletusräkki."</string>
+    <string name="t_ccbefbf5" formatted="false">"SKANNAUSKANTAMA {0}"</string>
+    <string name="t_ccd3b8ff" formatted="false">"Tietosuojavalinnat eivät ole juuri nyt saatavilla."</string>
+    <string name="t_cce0919d" formatted="false">"OMISTETTU"</string>
+    <string name="t_cd27794d" formatted="false">"Kutsumanimi on paikallinen tälle laitteelle eikä ole Google-tili. Se nimeää kierroksesi tuloslistalla."</string>
+    <string name="t_cd7ef0df" formatted="false">"TAVARAMERKIT JA KOLMANNET OSAPUOLET"</string>
+    <string name="t_cd8fc1d8" formatted="false">"Vapaaehtoisia sovelluksen sisäisiä ostoja on saatavilla Google Playn kautta. Mitään pelissä ei ole lukittu niiden taakse."</string>
+    <string name="t_cde6047e" formatted="false">"Tunkeutumisen havaitsemisjärjestelmä"</string>
+    <string name="t_ce2cde0d" formatted="false">"VAIHE 1 — AVAA RYHMÄ"</string>
+    <string name="t_ce56b8c8" formatted="false">"HALLINNOI GOOGLE PLAYSSA"</string>
+    <string name="t_ce8b48c9" formatted="false">"PELATTAVUUS"</string>
+    <string name="t_cec6cd66" formatted="false">"Ei vielä tallennettuja kierroksia. Pelaa kierros loppuun, niin se näkyy täällä saavuttamasi aallon mukaan järjestettynä."</string>
+    <string name="t_cee3b8c9" formatted="false">"OHITA"</string>
+    <string name="t_cfd886ad" formatted="false">"Kaksi reittiä kampaa omat puoliskonsa. Keskiraon tornit yltävät molempiin."</string>
+    <string name="t_d0112898" formatted="false">"HOUKUTIN"</string>
+    <string name="t_d07db54c" formatted="false">"ROOT / ADMIN"</string>
+    <string name="t_d08f5138" formatted="false">"Kaksi mutkittelevaa reittiä, jotka kääntyvät takaisin samojen tykkien ohi."</string>
+    <string name="t_d10c0c39" formatted="false">"Erittäin suuri tulinopeus ja jokainen laukaus roiskuu, joten se on vastaus parveen eikä yksittäiseen raskaaseen kohteeseen. Maksaa enemmän kuin IDS ja yltää lyhyemmälle."</string>
+    <string name="t_d11351ac" formatted="false">"PÄÄLLÄ"</string>
+    <string name="t_d173b657" formatted="false">"Tili, joka voi tehdä järjestelmässä mitä tahansa. Hyökkääjät haluavat sen; puolustajat vartioivat sitä tarkasti. Suurin osa tietoturvatyöstä on sen rajaamista, kuka sen saa ja kuinka pitkäksi aikaa."</string>
+    <string name="t_d19c7c8e" formatted="false">"◇ {0} · avautuu aallolla {1}"</string>
+    <string name="t_d22f26dd" formatted="false">"Hyökkää jopa 3 erilliseen uhkaan jokaisella sarjalla."</string>
+    <string name="t_d2ee5fd2" formatted="false">"Edistyminen tallennetaan automaattisesti"</string>
+    <string name="t_d31b24bf" formatted="false">"{0} · {1}  ·  paras {2}"</string>
+    <string name="t_d35bc038" formatted="false">"{0} — {1} Se ei tee vahinkoa; se ostaa aikaa muille agenteillesi."</string>
+    <string name="t_d415f020" formatted="false">"Nollapäivä on haavoittuvuus, johon ei vielä ole korjausta — puolustajalla on ollut nolla päivää sen paikkaamiseen. Haavoittuvuustutkijat etsivät niitä, jotta ne voidaan ilmoittaa ja korjata ennen kuin joku muu löytää ne ensin. \"Zero-day hunter\" on epävirallinen lyhenne, ei sertifikaatti tai virallinen ammattinimike."</string>
+    <string name="t_d477fdfb" formatted="false">"FIRMWARE TÄYSIN ASENNETTU"</string>
+    <string name="t_d488d098" formatted="false">"OPASTETTU KIERROS TARVITSEE SEURAAVAKSI TARPITIN"</string>
+    <string name="t_d48f1170" formatted="false">"▼  LISÄÄ ALEMPANA"</string>
+    <string name="t_d4bb26ac" formatted="false">"YTIMEN ULKOASUPAKETTI"</string>
+    <string name="t_d5acb32b" formatted="false">"Värinä pomohälytyksissä, palvelinosumissa ja pelin päättyessä"</string>
+    <string name="t_d5b86d2a" formatted="false">"Tietoturvavalvomo"</string>
+    <string name="t_d5d0b693" formatted="false">"JATKA"</string>
+    <string name="t_d62907f6" formatted="false">"ASENNETTU FIRMWARE"</string>
+    <string name="t_d63b9487" formatted="false">"EI TAVOITETTAVISSA"</string>
+    <string name="t_d736d92d" formatted="false">"OK"</string>
+    <string name="t_d8386755" formatted="false">"GOOGLE PLAY -LASKUTUS"</string>
+    <string name="t_d84b41e9" formatted="false">"Jatkuva vahinko voittaa. IPS tai päivitetty FIREWALL."</string>
+    <string name="t_d8705eb7" formatted="false">"Kyberhyökkäykset etenevät verkkoreittejä pitkin kohti CORE-SERVERiä. Sijoitat kyberagentteja kaistojen viereen; ne havaitsevat ja tuhoavat sen, mikä kulkee ohi. Jokainen pysäyttämäsi hyökkäys maksaa ◇ Kryptoa, jolla ostat lisää agentteja ja päivityksiä. Joka viides aalto on pomo. Viimeistä aaltoa ei ole — ainoa kysymys on, kuinka pitkälle pääset."</string>
+    <string name="t_d889d3ab" formatted="false">"+1, +10 ja +100 ostavat niin monta tasoa. ASENNA MAKS käyttää niin paljon kuin sinulla on varaa. Jokainen taso maksaa hieman enemmän."</string>
+    <string name="t_d8bcdc1d" formatted="false">"ALOITA UUDELLEEN"</string>
+    <string name="t_d8fec6d4" formatted="false">"SIJOITETUT AGENTIT YHTEENSÄ"</string>
+    <string name="t_d9074af5" formatted="false">"Salaus sekoittaa datan niin, että vain oikean avaimen haltija voi lukea sen. Se suojaa oikeutettua liikennettä — ja piilottaa yhtä hyvin hyökkääjän hyötykuorman tarkastukselta."</string>
+    <string name="t_d92ad54a" formatted="false">"Tähän versioon ei ole määritetty Google Play -laskutusta, tai laitteessa ei ole Play Kauppaa. Mitään ei voi ostaa, eikä mitään maksullista tarvita pelaamiseen."</string>
+    <string name="t_d9694eb9" formatted="false">"Sama haavoittuvuus, ei palautetta. Sovellus ei palauta virhettä eikä dataa, joten hyökkääjä esittää kyllä-vai-ei-kysymyksiä ja seuraa, mikä muuttuu — ajoitus, sivun pituus, tilakoodit — lukeakseen tietokantaa bitti kerrallaan. Hidas, kärsivällinen ja paljon vaikeampi havaita lokista."</string>
+    <string name="t_d9b49353" formatted="false">"YRITÄ UUDELLEEN"</string>
+    <string name="t_d9b88563" formatted="false">"Verkkoliikenteen yksikkö"</string>
+    <string name="t_d9c57847" formatted="false">"RAJA VALMIS"</string>
+    <string name="t_da10b268" formatted="false">"EI OMISTETTU"</string>
+    <string name="t_da169a1a" formatted="false">"MAAILMA"</string>
+    <string name="t_da3ae5ed" formatted="false">"Ei tee vahinkoa eikä tähtää mihinkään. Korjaa 1 pisteen CORE-SERVERin eheyttä 30 sekunnin välein aallon ollessa käynnissä (ei koskaan tauolla tai pelin ollessa keskeytettynä). Se sijoitetaan itse CORE-SERVERiin, jossa on sille kaksi paikkaa, eikä minnekään muualle. Tasot lyhentävät ajastinta. Enintään kaksi saa sijoittaa."</string>
+    <string name="t_dad4b11e" formatted="false">"HYÖKKÄYSPYYHKÄISY"</string>
+    <string name="t_db696c4d" formatted="false">"Valtava ja raskaasti panssaroitu, mutta hidas. Ota mukaan jotain, joka ohittaa panssarin."</string>
+    <string name="t_db971746" formatted="false">"Tarkkailee puolustustyökaluja. Häiritsee hetken lähellä olevia BLUE HAT -agentteja muutaman sekunnin välein."</string>
+    <string name="t_dba0a883" formatted="false">"Kaapattujen koneiden verkko"</string>
+    <string name="t_dbc1a374" formatted="false">"MAINOS KESKEN — MITÄÄN EI KULUNUT"</string>
+    <string name="t_dc09f8b7" formatted="false">"HÄIRINTÄ — pomo voi häiritä agenttia ja puolittaa sen tulinopeuden sen ajaksi. {0} on rakennettu olemaan välittämättä."</string>
+    <string name="t_dc37fa05" formatted="false">"Leveitä kylmän valon kaistaleita kaiken takana."</string>
+    <string name="t_dc62badb" formatted="false">"TITTELI"</string>
+    <string name="t_dce01a82" formatted="false">"SYÖTÄ KUTSUMANIMI"</string>
+    <string name="t_dd220c90" formatted="false">"MAINONTA"</string>
+    <string name="t_dd4083b5" formatted="false">"Mitään ei ostettu. Kaiken yllä olevan voi myös ansaita tai pelata ilman."</string>
+    <string name="t_dd55f56b" formatted="false">"Kaksi reittiä punoutuu toistensa läpi kolmesti ennen räkkiä, kuin DNA-juoste."</string>
+    <string name="t_ddb5514a" formatted="false">"AVAA GOOGLE PLAY PELEISSÄ"</string>
+    <string name="t_ddcb2958" formatted="false">"Nimetty ensimmäisen ja täysin tieteisfiktiivisen mukaan: jokainen osuma ketjuuntuu kahteen lähellä olevaan uhkaan 55 % vahingolla. Vahva rykelmäaaltoja vastaan, hukkaan heitetty yksinäiseen kohteeseen. Näyttää kohteen valitsimen."</string>
+    <string name="t_ddd374d9" formatted="false">"Nopea katsaus hyökkäyksiin, joita kohtaat, pomoihin ja siihen, mitä agenttisi tekevät niille. Kestää noin kaksikymmentä sekuntia."</string>
+    <string name="t_dee83e52" formatted="false">"PELIN PANEELIEN PEITTÄVYYS"</string>
+    <string name="t_e00d9a42" formatted="false">"SIJOITA CORE-SERVER-PAIKKAAN"</string>
+    <string name="t_e01007ce" formatted="false">"Parempi vastine eurolle kuin pieni paketti."</string>
+    <string name="t_e07706fa" formatted="false">"TÄMÄ LAITE LINKITYKSEEN ASTI"</string>
+    <string name="t_e0a2aaa4" formatted="false">"LINKITÄ GOOGLE-TILI"</string>
+    <string name="t_e12d998f" formatted="false">"PAKETTI"</string>
+    <string name="t_e13093ea" formatted="false">"VAHINKO"</string>
+    <string name="t_e1892d25" formatted="false">"YDINFIRMWARE"</string>
+    <string name="t_e1df4ef7" formatted="false">"POMOT"</string>
+    <string name="t_e3407723" formatted="false">"KYLLÄ"</string>
+    <string name="t_e3a7e50c" formatted="false">"PIDÄ TALLENNUKSENI"</string>
+    <string name="t_e3c4a9cc" formatted="false">"{0} häiritsee lähellään olevia {1}-agentteja. Sijoita ne taemmas, kantamansa reunalle."</string>
+    <string name="t_e4554374" formatted="false">"SULJE"</string>
+    <string name="t_e55f9c78" formatted="false">"MITÄ TÄMÄ PELI EI TEE"</string>
+    <string name="t_e587f42b" formatted="false">"JÄRJESTELMÄN OLETUS (puhelimen kieli)"</string>
+    <string name="t_e5e7e535" formatted="false">"SYN-STORM-JAKAUTUMINEN"</string>
+    <string name="t_e6694d9c" formatted="false">"Korjaa 1 CORE-SERVERin eheyttä käynnissä olevan aallon joka 30. sekunti toisesta CORE-SERVERin kahdesta paikasta. Nopeampi tasojen myötä. Enintään kaksi."</string>
+    <string name="t_e807eff2" formatted="false">"Muuraa kantaman lähimmän reitin umpeen; uhkien on murrettava se. Iskee jokaista pomoa erittäin kovaa. Enintään kolme."</string>
+    <string name="t_e8757749" formatted="false">"torju aalto {0} tasolla {1}"</string>
+    <string name="t_e8987cec" formatted="false">"NOLLAA EDISTYMINEN"</string>
+    <string name="t_e94c961d" formatted="false">"TILASTOT"</string>
+    <string name="t_e979d28d" formatted="false">"TAHTI"</string>
+    <string name="t_e99d5d17" formatted="false">"€-paketit kulutetaan, niitä ei omisteta: ne hyvitetään kerran, eikä PALAUTA anna niitä uudelleen."</string>
+    <string name="t_e9caa97b" formatted="false">"Ei vielä tallennettuja sijoituksia. Pelaa kierros täyttääksesi tämän."</string>
+    <string name="t_ea16b407" formatted="false">"Kultaiset jäljet syvällä indigolla."</string>
+    <string name="t_ea31efb2" formatted="false">"torju aalto {0}"</string>
+    <string name="t_eab5f205" formatted="false">"VAIHDA KUTSUMANIMI"</string>
+    <string name="t_eaf7396d" formatted="false">"GOOGLE EI TAVOITETTAVISSA — TALLENNUS SÄILYTETTY LAITTEELLA"</string>
+    <string name="t_eb2e832a" formatted="false">"AGENTTI {0}"</string>
+    <string name="t_ebdd4d5e" formatted="false">"POISTETTU · EI MITÄÄN"</string>
+    <string name="t_ec91403d" formatted="false">"AALTO"</string>
+    <string name="t_ed31a176" formatted="false">"Hengittävä piirihila, joka reagoi aaltoon."</string>
+    <string name="t_ed5c9d47" formatted="false">"TASOA KOHDEN"</string>
+    <string name="t_ed7160a0" formatted="false">"EI KOSKAAN"</string>
+    <string name="t_ed7ecda7" formatted="false">"Lukittu"</string>
+    <string name="t_ee0803eb" formatted="false">"SITKEÄ"</string>
+    <string name="t_ee094192" formatted="false">"Tähän versioon ei ole määritetty Google Play -laskutusta, joten täältä ei voi ostaa mitään. Jokainen pelin osa, joka ei maksa rahaa, toimii aivan normaalisti."</string>
+    <string name="t_ee5525d9" formatted="false">"KERNEL PANIC · {0} HÄIRITTY"</string>
+    <string name="t_ee6595fd" formatted="false">"Tiimi ja huone, jotka valvovat hälytyksiä. Jos tällä pelillä on tapahtumapaikka, se on SOC:n seinänäyttö kello kolmelta yöllä."</string>
+    <string name="t_eea62f11" formatted="false">"OSTOT"</string>
+    <string name="t_eef967f2" formatted="false">"ZOOMAA TAISTELUKENTTÄÄ"</string>
+    <string name="t_ef29f425" formatted="false">"ÄÄNI"</string>
+    <string name="t_efcf9890" formatted="false">"VHK {0} · TAHTI {1}/s · KNT {2}"</string>
+    <string name="t_f001b942" formatted="false">"LINNOITETTU"</string>
+    <string name="t_f03b01af" formatted="false">"Korjaa itseään hitaasti, kun siihen ei ole osuttu hetkeen."</string>
+    <string name="t_f100d10c" formatted="false">"Kaikki LUKITTU-merkityt ovat kaupassa. Mikään tässä ei muuta pelattavuutta — ulkoasut ovat ulkonäköä, eivät etuja."</string>
+    <string name="t_f16b76bc" formatted="false">"\"Rubber ducky\" on USB-tikku, joka teeskentelee olevansa näppäimistö ja kirjoittaa hyökkäyksen nopeammin kuin kukaan. Puolustus on USB-vahti, joka tarkistaa jokaisen uuden laitteen ennen kuin tietokone luottaa siihen, ja estää näppäimistön, joka kirjoittaa kuin kone."</string>
+    <string name="t_f17dfdae" formatted="false">"Yksi pitkä reitti putoaa ylhäältä ja kiertyy spiraalina ulospäin räkille."</string>
+    <string name="t_f25360a0" formatted="false">"Muutokset tulevat voimaan heti ja säilyvät tällä laitteella"</string>
+    <string name="t_f293dfd1" formatted="false">"OSTOJEN TARKISTUKSET"</string>
+    <string name="t_f2e7479c" formatted="false">"Linkitä Google-tilisi säilyttääksesi edistymisesi millä tahansa puhelimella tai tabletilla. Google pyytää lupaa hallita tämän pelin tallennettuja tietoja tililläsi — se on pelitallennusten tallennustila, ja vain sitä tämä käyttää."</string>
+    <string name="t_f2ed0368" formatted="false">"Nopea. Jos se saavuttaa ytimen, se varastaa puolet kryptostasi eheyden sijaan."</string>
+    <string name="t_f2f63d9f" formatted="false">"TÄLLÄ LAITTEELLA"</string>
+    <string name="t_f33c5b01" formatted="false">"VAIHE 6 — ALOITA AALTO"</string>
+    <string name="t_f38eb808" formatted="false">"Sitkeämmät uhat, tiheämmin, vähemmän eheyttä. Runsaammat palkkiot."</string>
+    <string name="t_f3e23f71" formatted="false">"YDIN: CASCADE"</string>
+    <string name="t_f49a4ff9" formatted="false">"AGENTTI LUKITTU"</string>
+    <string name="t_f4f677dc" formatted="false">"ANSAITTU KAIKKIAAN"</string>
+    <string name="t_f5537783" formatted="false">"YDIN: MAINFRAME"</string>
+    <string name="t_f590e2c9" formatted="false">"REITTI"</string>
+    <string name="t_f5b866e4" formatted="false">"Koordinoitu murtoyritys, jossa on tarpeeksi redundanssia ravistamaan valmistautumaton verkko irti. Joka viides aalto tuo yhden, ja jokainen on edellistä sitkeämpi."</string>
+    <string name="t_f60f5840" formatted="false">"CyOps-tiliä tai salasanaa ei edelleenkään ole. Ostot seuraavat Google-tiliä, jolla on kirjauduttu Play Kauppaan tällä laitteella. Edistyminen seuraa Google-tiliä, jonka linkität yllä — erillinen, vapaaehtoinen valinta: peli on täydellinen ilman sitä."</string>
+    <string name="t_f692d3ce" formatted="false">"BOTTIVERKKO"</string>
+    <string name="t_f69a80a7" formatted="false">"Peli käynnistyy uudelleen vaihtaakseen kieleen {0}. Edistymisesi säilyy."</string>
+    <string name="t_f6f93110" formatted="false">"YDIN: NEONGRID"</string>
+    <string name="t_f720bfa7" formatted="false">"CRT-fosforin juovaviivat."</string>
+    <string name="t_f76fff7f" formatted="false">"Haittaohjelma: koodia, joka on kirjoitettu vahingoittamaan, häiritsemään tai varastamaan. Se kantaa enemmän hyötykuormaa kuin yksinkertainen injektio, joten se imee enemmän vahinkoa ennen hajoamistaan."</string>
+    <string name="t_f7a4fc70" formatted="false">"SIJOITA NAPAUTTAMALLA UUDELLEEN"</string>
+    <string name="t_f7a7b98a" formatted="false">"VHK {0} · TAHTI {1} · KNT {2}"</string>
+    <string name="t_f7eb1496" formatted="false">"Sijoitus määräytyy syvimmän saavuttamasi aallon mukaan. Tehty vahinko ratkaisee tasatilanteen."</string>
+    <string name="t_f803ec67" formatted="false">"TILAUSHISTORIA JA HYVITYKSET"</string>
+    <string name="t_f85117ec" formatted="false">"Kaikki {0} kappaletta ovat jo kansiossa Music/CyOps TD."</string>
+    <string name="t_f8723c46" formatted="false">"NOPEUS"</string>
+    <string name="t_f8d84db3" formatted="false">"EI REKISTERÖITY"</string>
+    <string name="t_f8e6e39f" formatted="false">"Järjestelmäinsinöörit pitävät palvelimet käynnissä: paikkaavat, vaihtavat rikkinäisiä osia, palauttavat varmuuskopioista ja valvovat koneiden kuntoa. \"Palvelinjärjestelmäinsinööri\" kuvaa tällaista työtä; nimikkeet vaihtelevat organisaatioittain."</string>
+    <string name="t_f9807a9f" formatted="false">"&gt; valmiudessa — sijoita agentit ja aloita aalto 1"</string>
+    <string name="t_f9cec260" formatted="false">"Muutama valtava osuma tuskin nopeuttaa GRADIENTia."</string>
+    <string name="t_f9d6b090" formatted="false">"Ajelehtivaa ASCII-dataa taistelukentän ja valikoiden takana"</string>
+    <string name="t_fa1b4500" formatted="false">"Tilastot kertyvät jokaiselta kierrokselta, myös niiltä, jotka hylkäät taukovalikosta. Edistymisen nollaaminen ASETUKSISSA tyhjentää kaiken."</string>
+    <string name="t_fa60c2c6" formatted="false">"ELÄVÄ: LÄMPÖKARTTA"</string>
+    <string name="t_fb735826" formatted="false">"VÄRINÄ"</string>
+    <string name="t_fb889492" formatted="false">"Itsenäisesti kehitetty, ensisijaisesti offline-tilassa toimiva tornipuolustuspeli, jonka teemana on kyberturvallisuus. Skenaariot, agentit ja termistö on fiktionalisoitu pelattavuutta varten, ja mukana on lyhyitä tosielämän selityksiä, jotta niiden takana olevat käsitteet voi oppia. Peli ei opeta hyökkäystekniikoita eikä suorita mitään todellista tietoturvatehtävää."</string>
+    <string name="t_fbca7f29" formatted="false">"Haittaohjelma hyödyllisessä valepuvussa"</string>
+    <string name="t_fbd9e20c" formatted="false">"TAUSTA-ANIMAATIO"</string>
+    <string name="t_fc778505" formatted="false">"Puhdas räkki, ei merkkiä."</string>
+    <string name="t_fcc1e712" formatted="false">"TIETOSUOJA"</string>
+    <string name="t_fd3cb488" formatted="false">"MITEN KIRJAUTUMINEN TOIMII"</string>
+    <string name="t_fdb0282f" formatted="false">"LADATAAN MAINOSTA…"</string>
+    <string name="t_fde05efe" formatted="false">"SAAVUTA AALTO {0} TASOLLA {1}"</string>
+    <string name="t_fe26fa48" formatted="false">"PARAS AALTO"</string>
+    <string name="t_fe451d7a" formatted="false">"JÄRJESTELMÄT PALAUTETTU — EHEYS {0}"</string>
+    <string name="t_fe86390c" formatted="false">" · NOP {0}"</string>
+    <string name="t_feeee285" formatted="false">"{0} ytimen ulkoasua · {1} taustaa saatavilla"</string>
+    <string name="t_feef9615" formatted="false">"SEURAAVA POMO"</string>
+    <string name="t_ff2d6a51" formatted="false">"Kolme reittiä vaihtaa paikkaa kahdesti. Jokainen risteys on kohta, joka osuu kahteen."</string>
+    <string name="t_ffa57dc1" formatted="false">"&gt; liitetään kaistatopologiaa"</string>
+    <string name="t_ffc3db58" formatted="false">"KNT {0}"</string>
+    <string name="t_ffff9bd9" formatted="false">"Agentit ajelehtivat hitaasti värispektrin läpi, kukin yksikkö siirrettynä seuraavasta."</string>
+</resources>

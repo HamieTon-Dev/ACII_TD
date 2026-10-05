@@ -614,6 +614,7 @@
     <string name="t_b253fa2b" formatted="false">"密碼學保護傳輸中和儲存中的資料，使截獲它不等於讀懂它。攻擊者也在使用它——大量惡意流量是加密的——這就是為什麼防禦者在自己控制的端點上檢查，而不是試圖破解加密本身。"</string>
     <string name="t_b28b05f8" formatted="false">"入侵防禦系統"</string>
     <string name="t_b2dbc630" formatted="false">"防火牆已啟用"</string>
+    <string name="t_b2ef7c39" formatted="false">"網路特工：塔防"</string>
     <string name="t_b32b1a1d" formatted="false">"便利"</string>
     <string name="t_b3735fe8" formatted="false">"隨波次呼吸的電路晶格。"</string>
     <string name="t_b3b53e34" formatted="false">"購買與你的 Google 賬號繫結，而不是與本裝置繫結。重新安裝或更換手機不會丟失它們。"</string>

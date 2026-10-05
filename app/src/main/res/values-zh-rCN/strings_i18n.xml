@@ -614,6 +614,7 @@
     <string name="t_b253fa2b" formatted="false">"密码学保护传输中和存储中的数据，使截获它不等于读懂它。攻击者也在使用它——大量恶意流量是加密的——这就是为什么防御者在自己控制的端点上检查，而不是试图破解加密本身。"</string>
     <string name="t_b28b05f8" formatted="false">"入侵防御系统"</string>
     <string name="t_b2dbc630" formatted="false">"防火墙已启用"</string>
+    <string name="t_b2ef7c39" formatted="false">"网络特工：塔防"</string>
     <string name="t_b32b1a1d" formatted="false">"便利"</string>
     <string name="t_b3735fe8" formatted="false">"随波次呼吸的电路晶格。"</string>
     <string name="t_b3b53e34" formatted="false">"购买与你的 Google 账号绑定，而不是与本设备绑定。重新安装或更换手机不会丢失它们。"</string>

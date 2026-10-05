@@ -614,6 +614,7 @@
     <string name="t_b253fa2b" formatted="false">"Cryptography protects data in transit and at rest, so that intercepting it is not the same as reading it. Attackers use it too — a lot of hostile traffic is encrypted — which is why defenders inspect at endpoints they control rather than trying to break the encryption itself."</string>
     <string name="t_b28b05f8" formatted="false">"Intrusion Prevention System"</string>
     <string name="t_b2dbc630" formatted="false">"FIREWALL ACTIVE"</string>
+    <string name="t_b2ef7c39" formatted="false">"Cyber Operatives: Tower Defense"</string>
     <string name="t_b32b1a1d" formatted="false">"CONVENIENCE"</string>
     <string name="t_b3735fe8" formatted="false">"A circuit lattice that breathes with the wave."</string>
     <string name="t_b3b53e34" formatted="false">"Purchases are tied to your Google account, not to this device. Reinstalling or changing phone does not lose them."</string>

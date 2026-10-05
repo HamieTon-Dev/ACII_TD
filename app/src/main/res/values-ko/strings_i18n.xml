@@ -614,6 +614,7 @@
     <string name="t_b253fa2b" formatted="false">"암호학은 전송 중이거나 저장된 데이터를 보호해, 가로채도 읽을 수 없게 합니다. 공격자도 이것을 씁니다(적대 트래픽 상당수가 암호화됨). 그래서 방어자는 암호 자체를 깨려 하지 않고 자신이 통제하는 종단점에서 검사합니다."</string>
     <string name="t_b28b05f8" formatted="false">"침입 방지 시스템"</string>
     <string name="t_b2dbc630" formatted="false">"FIREWALL 작동 중"</string>
+    <string name="t_b2ef7c39" formatted="false">"사이버 요원: 타워 디펜스"</string>
     <string name="t_b32b1a1d" formatted="false">"편의"</string>
     <string name="t_b3735fe8" formatted="false">"웨이브와 함께 숨 쉬는 회로 격자."</string>
     <string name="t_b3b53e34" formatted="false">"구매는 이 기기가 아니라 Google 계정에 연결됩니다. 재설치하거나 휴대전화를 바꿔도 사라지지 않습니다."</string>

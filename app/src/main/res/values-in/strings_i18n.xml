@@ -614,6 +614,7 @@
     <string name="t_b253fa2b" formatted="false">"Kriptografi melindungi data saat dikirim dan saat disimpan, sehingga menyadapnya tidak sama dengan membacanya. Penyerang juga memakainya — banyak lalu lintas jahat terenkripsi — itulah sebabnya pembela memeriksa di titik akhir yang mereka kendalikan alih-alih mencoba membobol enkripsinya."</string>
     <string name="t_b28b05f8" formatted="false">"Sistem Pencegahan Intrusi"</string>
     <string name="t_b2dbc630" formatted="false">"FIREWALL AKTIF"</string>
+    <string name="t_b2ef7c39" formatted="false">"Operatif Siber: Tower Defense"</string>
     <string name="t_b32b1a1d" formatted="false">"KENYAMANAN"</string>
     <string name="t_b3735fe8" formatted="false">"Kisi sirkuit yang bernapas bersama gelombang."</string>
     <string name="t_b3b53e34" formatted="false">"Pembelian terikat pada akun Google-mu, bukan perangkat ini. Instal ulang atau ganti ponsel tidak menghilangkannya."</string>

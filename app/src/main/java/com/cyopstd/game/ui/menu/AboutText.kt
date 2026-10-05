@@ -1,7 +1,6 @@
 package com.cyopstd.game.ui.menu
 
 import com.cyopstd.game.i18n.tr
-
 import java.util.Calendar
 
 /**
@@ -29,9 +28,9 @@ object AboutText {
     /**
      * The subtitle under the title on the splash and the main menu, and on
      * ABOUT (owner, 2026-10-02: *"CyOps TD / Cyber Operatives: Tower defense"*;
-     * was "ASCII CYBER DEFENSE").
+     * was "ASCII CYBER DEFENSE"). Translated; the title itself stays English.
      */
-    const val GAME_SUBTITLE = "Cyber Operatives: Tower Defense"
+    val GAME_SUBTITLE: String get() = tr("Cyber Operatives: Tower Defense")
 
     /**
      * Copyright line.

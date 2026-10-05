@@ -614,6 +614,7 @@
     <string name="t_b253fa2b" formatted="false">"วิทยาการเข้ารหัสปกป้องข้อมูลระหว่างส่งและขณะจัดเก็บ ทำให้การดักจับไม่เท่ากับการอ่านได้ ผู้โจมตีก็ใช้มัน — ทราฟฟิกร้ายจำนวนมากถูกเข้ารหัส — ฝ่ายป้องกันจึงตรวจที่ปลายทางที่ตนควบคุม แทนที่จะพยายามทำลายการเข้ารหัสเอง"</string>
     <string name="t_b28b05f8" formatted="false">"ระบบป้องกันการบุกรุก"</string>
     <string name="t_b2dbc630" formatted="false">"ไฟร์วอลล์ทำงานอยู่"</string>
+    <string name="t_b2ef7c39" formatted="false">"ปฏิบัติการไซเบอร์: ทาวเวอร์ดีเฟนซ์"</string>
     <string name="t_b32b1a1d" formatted="false">"ความสะดวก"</string>
     <string name="t_b3735fe8" formatted="false">"โครงตาข่ายวงจรที่หายใจไปกับคลื่น"</string>
     <string name="t_b3b53e34" formatted="false">"การซื้อผูกกับบัญชี Google ของคุณ ไม่ใช่อุปกรณ์นี้ ติดตั้งใหม่หรือเปลี่ยนโทรศัพท์ก็ไม่หาย"</string>

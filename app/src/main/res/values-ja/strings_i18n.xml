@@ -614,6 +614,7 @@
     <string name="t_b253fa2b" formatted="false">"暗号は送信中や保存中のデータを守り、傍受しても読めないようにする。攻撃者も使う(敵の通信の多くは暗号化されている)ため、防御側は暗号そのものを破ろうとせず、自分が管理する端点で検査する。"</string>
     <string name="t_b28b05f8" formatted="false">"侵入防止システム"</string>
     <string name="t_b2dbc630" formatted="false">"FIREWALL稼働中"</string>
+    <string name="t_b2ef7c39" formatted="false">"サイバー・オペレーティブ：タワーディフェンス"</string>
     <string name="t_b32b1a1d" formatted="false">"便利機能"</string>
     <string name="t_b3735fe8" formatted="false">"ウェーブとともに呼吸する回路の格子。"</string>
     <string name="t_b3b53e34" formatted="false">"購入はこの端末ではなくGoogleアカウントに紐づきます。再インストールや機種変更でも失われません。"</string>

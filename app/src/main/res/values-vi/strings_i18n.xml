@@ -614,6 +614,7 @@
     <string name="t_b253fa2b" formatted="false">"Mật mã học bảo vệ dữ liệu khi truyền và khi lưu trữ, để chặn bắt được không có nghĩa là đọc được. Kẻ tấn công cũng dùng nó — nhiều lưu lượng thù địch được mã hóa — nên bên phòng thủ kiểm tra tại các điểm cuối họ kiểm soát thay vì cố phá chính mã hóa."</string>
     <string name="t_b28b05f8" formatted="false">"Hệ thống Ngăn chặn Xâm nhập"</string>
     <string name="t_b2dbc630" formatted="false">"TƯỜNG LỬA ĐANG BẬT"</string>
+    <string name="t_b2ef7c39" formatted="false">"Đặc vụ Mạng: Thủ thành"</string>
     <string name="t_b32b1a1d" formatted="false">"TIỆN LỢI"</string>
     <string name="t_b3735fe8" formatted="false">"Mạng lưới mạch thở theo đợt."</string>
     <string name="t_b3b53e34" formatted="false">"Giao dịch mua gắn với tài khoản Google của bạn, không phải thiết bị này. Cài lại hay đổi điện thoại cũng không mất."</string>
