@@ -683,7 +683,10 @@ suit: Material Symbols (Apache 2.0) or drawing the few icons in-house.
   of its cost on the compact bar and "MAX n DEPLOYED" on the full cards.
   Tapping it says "<NAME> LIMIT — n MAX" instead of selecting it. Selling one
   brings it back. `MaxedAgentsTest`.
-- 🟨 **100+ languages, with a selector (owner, 2026-10-05):** *"I need the game to be
+- 🟨 **100+ languages, with a selector (owner, 2026-10-05):** **1.56.0 ships the engine,
+  the selector and 25 translations + English** (owner, 2026-10-05: *"ship these 26
+  first"*); the other 85 languages planned in the list wait for the owner's go-ahead.
+  Original request: *"I need the game to be
   available in 100+ languages. Can this be done with a underlying engine with
   selector? Give me a full list once its done of all the languages or if it is
   avaliable in all 178 languages on google console"*. Plan: (1) engine — every
