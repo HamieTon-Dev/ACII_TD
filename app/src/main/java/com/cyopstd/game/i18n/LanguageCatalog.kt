@@ -25,6 +25,8 @@ internal object LanguageCatalog {
         Language("nl", "Nederlands", "Dutch"),
         Language("id", "Bahasa Indonesia", "Indonesian"),
         Language("vi", "Tiếng Việt", "Vietnamese"),
-        Language("th", "ไทย", "Thai")
+        Language("th", "ไทย", "Thai"),
+        Language("uk", "Українська", "Ukrainian"),
+        Language("sv", "Svenska", "Swedish")
     )
 }
