@@ -1,5 +1,7 @@
 package com.cyopstd.game.ui.theme
 
+import com.cyopstd.game.i18n.tr
+
 import androidx.compose.ui.graphics.Color
 
 /**
@@ -118,20 +120,20 @@ enum class CoreSkin(
      * appear on their board.
      */
     enum class Flourish(val blurb: String) {
-        NONE("A clean rack, no mark."),
-        RING("A pulsing containment ring."),
-        TRACES("Circuit traces running under the readouts."),
-        FROST("Frost creeping in from the edges."),
-        STARFIELD("A slow drift of distant points."),
+        NONE(tr("A clean rack, no mark.")),
+        RING(tr("A pulsing containment ring.")),
+        TRACES(tr("Circuit traces running under the readouts.")),
+        FROST(tr("Frost creeping in from the edges.")),
+        STARFIELD(tr("A slow drift of distant points.")),
 
         /** CRT phosphor scanlines. */
-        SCANLINES("CRT phosphor scanlines."),
+        SCANLINES(tr("CRT phosphor scanlines.")),
 
         /** Falling code columns inside the rack. */
-        CASCADE("Falling code columns inside the rack."),
+        CASCADE(tr("Falling code columns inside the rack.")),
 
         /** A receding perspective grid. */
-        GRID("A receding perspective grid, with a chase strip below.")
+        GRID(tr("A receding perspective grid, with a chase strip below."))
     }
 
     companion object {

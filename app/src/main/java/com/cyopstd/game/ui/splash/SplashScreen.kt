@@ -1,5 +1,7 @@
 package com.cyopstd.game.ui.splash
 
+import com.cyopstd.game.i18n.tr
+
 import com.cyopstd.game.ui.menu.AboutText
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -64,7 +66,7 @@ fun SplashScreen(onFinished: () -> Unit) {
             // it would be the same signature twice in four seconds -- and
             // this screen's job is the game, not the publisher.
             Text(
-                text = "CyOps TD",
+                text = tr("CyOps TD"),
                 style = MaterialTheme.typography.displayMedium,
                 color = Palette.Cyan,
                 textAlign = TextAlign.Center
@@ -79,7 +81,7 @@ fun SplashScreen(onFinished: () -> Unit) {
             Box(Modifier.height(36.dp))
 
             Text(
-                text = "Initializing Network...",
+                text = tr("Initializing Network..."),
                 style = MaterialTheme.typography.bodyMedium,
                 color = Palette.TextSecondary
             )
@@ -105,11 +107,11 @@ fun SplashScreen(onFinished: () -> Unit) {
 }
 
 private fun bootLineFor(progress: Float): String = when {
-    progress < 0.2f -> "> mounting lane topology"
-    progress < 0.4f -> "> loading threat signatures"
-    progress < 0.6f -> "> arming cyber agents"
-    progress < 0.8f -> "> syncing CORE-SERVER"
-    else -> "> perimeter online"
+    progress < 0.2f -> tr("> mounting lane topology")
+    progress < 0.4f -> tr("> loading threat signatures")
+    progress < 0.6f -> tr("> arming cyber agents")
+    progress < 0.8f -> tr("> syncing CORE-SERVER")
+    else -> tr("> perimeter online")
 }
 
 private const val SPLASH_SECONDS = 1.9f

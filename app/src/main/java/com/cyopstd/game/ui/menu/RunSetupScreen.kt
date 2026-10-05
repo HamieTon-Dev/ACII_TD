@@ -1,5 +1,7 @@
 package com.cyopstd.game.ui.menu
 
+import com.cyopstd.game.i18n.tr
+
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -78,8 +80,8 @@ fun RunSetupScreen(
         )
     }
     ScreenScaffold(
-        title = "NEW RUN",
-        subtitle = "Choose a level and a difficulty",
+        title = tr("NEW RUN"),
+        subtitle = tr("Choose a level and a difficulty"),
         onBack = onBack,
         backgroundAnimation = backgroundAnimation
     ) {
@@ -90,7 +92,7 @@ fun RunSetupScreen(
                     .fillMaxHeight()
                     .verticalScroll(rememberScrollState())
             ) {
-                TerminalPanel(title = "LEVEL", accent = Palette.Cyan) {
+                TerminalPanel(title = tr("LEVEL"), accent = Palette.Cyan) {
                     for ((index, map) in Maps.all.withIndex()) {
                         val unlocked = map in availableMaps
                         MapRow(
@@ -107,7 +109,7 @@ fun RunSetupScreen(
                                     lockedNote = null
                                     onSelectMap(map)
                                 } else {
-                                    lockedNote = "${map.displayName} is locked: ${map.unlockRequirement}."
+                                    lockedNote = tr("{0} is locked: {1}.", map.displayName, map.unlockRequirement)
                                 }
                             },
                             onPreview = { previewing = map }
@@ -121,7 +123,7 @@ fun RunSetupScreen(
                     .fillMaxHeight()
                     .verticalScroll(rememberScrollState())
             ) {
-                TerminalPanel(title = "DIFFICULTY", accent = Palette.Red) {
+                TerminalPanel(title = tr("DIFFICULTY"), accent = Palette.Red) {
                     DifficultyDropdown(
                         selected = selectedMode,
                         available = availableModes,
@@ -137,12 +139,12 @@ fun RunSetupScreen(
                     Spacer(Modifier.height(10.dp))
                 }
                 Caption(
-                    "${selectedMap.displayName} · ${selectedMode.runName}" +
-                        "  ·  best ${stats.bestWave(selectedMap.id, selectedMode.id)}"
+                    tr("{0} · {1}" +
+                        "  ·  best {2}", selectedMap.displayName, selectedMode.runName, stats.bestWave(selectedMap.id, selectedMode.id))
                 )
                 Spacer(Modifier.height(8.dp))
                 BastionButton(
-                    text = "START",
+                    text = tr("START"),
                     leadingGlyph = "▶",
                     accent = Palette.Green,
                     onClick = onStart
@@ -193,7 +195,7 @@ private fun DifficultyDropdown(
                             )
                             Text(
                                 if (unlocked) modeSummary(mode)
-                                else "LOCKED · ${mode.unlockRequirement} (best: ${bestToward(mode, stats)})",
+                                else tr("LOCKED · {0} (best: {1})", mode.unlockRequirement, bestToward(mode, stats)),
                                 style = MaterialTheme.typography.labelSmall,
                                 color = if (unlocked) Palette.TextSecondary else Palette.TextMuted
                             )
@@ -202,7 +204,7 @@ private fun DifficultyDropdown(
                     onClick = {
                         open = false
                         if (unlocked) onSelect(mode)
-                        else onLocked("${mode.runName} is locked: ${mode.unlockRequirement} to unlock it.")
+                        else onLocked(tr("{0} is locked: {1} to unlock it.", mode.runName, mode.unlockRequirement))
                     }
                 )
             }
@@ -214,9 +216,9 @@ private fun bestToward(mode: GameMode, stats: PlayerStats): Int =
     mode.bestTowardUnlock(stats.highestWave) { map, m -> stats.bestWave(map, m) }
 
 private fun modeSummary(mode: GameMode): String = when (mode) {
-    GameMode.STANDARD -> "The standard curve."
-    GameMode.HACK_AI -> "Tougher threats, closer together, less integrity. Richer rewards."
-    GameMode.KERNEL_MODE -> "HACK:AI pushed past its limits. Half the integrity, double the rewards."
+    GameMode.STANDARD -> tr("The standard curve.")
+    GameMode.HACK_AI -> tr("Tougher threats, closer together, less integrity. Richer rewards.")
+    GameMode.KERNEL_MODE -> tr("HACK:AI pushed past its limits. Half the integrity, double the rewards.")
 }
 
 /**
@@ -271,7 +273,7 @@ private fun MapRow(
             } else {
                 androidx.compose.material3.Icon(
                     painter = androidx.compose.ui.res.painterResource(R.drawable.ic_lock),
-                    contentDescription = "Locked",
+                    contentDescription = tr("Locked"),
                     // Brighter than the greyed row, so the lock still reads.
                     tint = Palette.TextPrimary,
                     modifier = Modifier
@@ -287,7 +289,7 @@ private fun MapRow(
                 style = MaterialTheme.typography.titleSmall,
                 color = if (unlocked) Palette.TextPrimary else Palette.TextMuted
             )
-            Caption(if (unlocked) map.tagline else "LOCKED · ${map.unlockRequirement} (best: $best)")
+            Caption(if (unlocked) map.tagline else tr("LOCKED · {0} (best: {1})", map.unlockRequirement, best))
         }
         Spacer(Modifier.width(8.dp))
         Box(
@@ -300,7 +302,7 @@ private fun MapRow(
         ) {
             androidx.compose.material3.Icon(
                 painter = androidx.compose.ui.res.painterResource(R.drawable.ic_menu_about),
-                contentDescription = "Preview ${map.displayName}",
+                contentDescription = tr("Preview {0}", map.displayName),
                 tint = Palette.Cyan,
                 modifier = Modifier.size(16.dp)
             )

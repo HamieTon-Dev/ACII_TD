@@ -1,13 +1,15 @@
 package com.cyopstd.game.model
 
+import com.cyopstd.game.i18n.tr
+
 import com.cyopstd.game.core.Balance
 import kotlinx.serialization.Serializable
 
 /** The three stats AGENT FIRMWARE can raise, each bought separately. */
 enum class FirmwareStat(val label: String, val unit: String) {
-    DAMAGE("DAMAGE", "damage"),
-    RATE("FIRE RATE", "fire rate"),
-    RANGE("RANGE", "range")
+    DAMAGE(tr("DAMAGE"), tr("damage")),
+    RATE(tr("FIRE RATE"), tr("fire rate")),
+    RANGE(tr("RANGE"), tr("range"))
 }
 
 /**

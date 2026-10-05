@@ -1,5 +1,7 @@
 package com.cyopstd.game.ui.menu
 
+import com.cyopstd.game.i18n.tr
+
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -73,9 +75,9 @@ fun LevelPreviewDialog(
                     color = Palette.Cyan,
                     modifier = Modifier.weight(1f)
                 )
-                CompactButton(text = "CLOSE", onClick = onClose, accent = Palette.TextSecondary)
+                CompactButton(text = tr("CLOSE"), onClick = onClose, accent = Palette.TextSecondary)
             }
-            Caption(if (unlocked) map.tagline else "LOCKED · ${map.unlockRequirement}")
+            Caption(if (unlocked) map.tagline else tr("LOCKED · {0}", map.unlockRequirement))
             Spacer(Modifier.height(10.dp))
             Row(horizontalArrangement = Arrangement.spacedBy(14.dp)) {
                 MapPicture(map, Modifier.weight(1.3f))
@@ -141,7 +143,7 @@ private fun BossList(map: GameMap, modifier: Modifier) {
             .testTag("level-preview-bosses")
     ) {
         if (own.isNotEmpty()) {
-            Text("THIS LEVEL'S BOSSES", style = MaterialTheme.typography.labelMedium, color = Palette.Red)
+            Text(tr("THIS LEVEL'S BOSSES"), style = MaterialTheme.typography.labelMedium, color = Palette.Red)
             Spacer(Modifier.height(4.dp))
             for (boss in own) {
                 Row(verticalAlignment = Alignment.CenterVertically) {
@@ -153,7 +155,7 @@ private fun BossList(map: GameMap, modifier: Modifier) {
                 Spacer(Modifier.height(6.dp))
             }
         }
-        Text("ALSO TURNING UP HERE", style = MaterialTheme.typography.labelMedium, color = Palette.TextSecondary)
+        Text(tr("ALSO TURNING UP HERE"), style = MaterialTheme.typography.labelMedium, color = Palette.TextSecondary)
         Spacer(Modifier.height(4.dp))
         for (boss in others) {
             Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.padding(vertical = 2.dp)) {

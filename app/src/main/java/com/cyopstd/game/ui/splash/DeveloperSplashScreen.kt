@@ -1,5 +1,7 @@
 package com.cyopstd.game.ui.splash
 
+import com.cyopstd.game.i18n.tr
+
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
@@ -119,7 +121,7 @@ fun DeveloperSplashScreen(onFinished: () -> Unit) {
             )
             Spacer(Modifier.height(18.dp))
             Text(
-                text = "P R E S E N T S",
+                text = tr("P R E S E N T S"),
                 color = Palette.GreenDim,
                 textAlign = TextAlign.Center,
                 style = MaterialTheme.typography.titleSmall

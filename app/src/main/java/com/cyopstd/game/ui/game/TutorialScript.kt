@@ -1,5 +1,7 @@
 package com.cyopstd.game.ui.game
 
+import com.cyopstd.game.i18n.tr
+
 import com.cyopstd.game.core.Balance
 import com.cyopstd.game.model.AgentType
 
@@ -71,9 +73,9 @@ object TutorialScript {
 
     val steps: List<TutorialStep> = listOf(
         TutorialStep(
-            title = "WELCOME TO CyOps TD",
-            body = "Cyberattacks are inbound on CORE-SERVER. Deploy Cyber Agents " +
-                "beside the routes to stop them before they land."
+            title = tr("WELCOME TO CyOps TD"),
+            body = tr("Cyberattacks are inbound on CORE-SERVER. Deploy Cyber Agents " +
+                "beside the routes to stop them before they land.")
         ),
         // The losing condition, taught second, before anything about how to
         // win. The tutorial had eleven steps and not one of them said what
@@ -82,25 +84,25 @@ object TutorialScript {
         // "for as long as you hold the server", both of which assume the
         // player already knows what is being held and what holding it means.
         TutorialStep(
-            title = "CORE-SERVER INTEGRITY",
-            body = "CORE-SERVER is what you are defending, and its INTEGRITY " +
+            title = tr("CORE-SERVER INTEGRITY"),
+            body = tr("CORE-SERVER is what you are defending, and its INTEGRITY " +
                 "readout in the top strip is the only life you have. Every " +
                 "hostile packet that reaches the rack takes a bite out of it. " +
                 "At 0 the server is breached and the run ends — so nothing " +
-                "gets through is the whole job."
+                "gets through is the whole job.")
         ),
         TutorialStep(
-            title = "THE WAVE COUNT",
-            body = "This is the attack wave you are facing. It climbs for as long " +
-                "as you hold the server — every fifth wave brings a boss.",
+            title = tr("THE WAVE COUNT"),
+            body = tr("This is the attack wave you are facing. It climbs for as long " +
+                "as you hold the server — every fifth wave brings a boss."),
             target = TutorialTarget.WAVE_READOUT
         ),
         TutorialStep(
-            title = "CRYPTO ◇",
+            title = tr("CRYPTO ◇"),
             // The owner's words, kept verbatim: this is the one line in the
             // tutorial that was specified rather than described.
-            body = "Money earned to buy agents to defend server. Crypto◇ earned " +
-                "for every kill and every wave completed.",
+            body = tr("Money earned to buy agents to defend server. Crypto◇ earned " +
+                "for every kill and every wave completed."),
             target = TutorialTarget.CRYPTO_READOUT
         ),
         // Pinch-to-zoom shipped in 1.34.0 and nothing in the game said so:
@@ -108,59 +110,59 @@ object TutorialScript {
         // 2026-09-26). Taught here, just before the first placements, because
         // zooming in is what makes a small phone's nodes easy to hit.
         TutorialStep(
-            title = "ZOOM THE BATTLEFIELD",
-            body = "Pinch with two fingers to zoom in on the board — nodes are " +
+            title = tr("ZOOM THE BATTLEFIELD"),
+            body = tr("Pinch with two fingers to zoom in on the board — nodes are " +
                 "easier to tap up close. While zoomed, drag with one finger to " +
-                "move around. Pinch all the way out to see the whole board again."
+                "move around. Pinch all the way out to see the whole board again.")
         ),
         TutorialStep(
-            title = "KNOW WHAT IS COMING?",
-            body = "A quick rundown of the attacks you will meet, the bosses, and " +
-                "what your agents do about them. Takes about twenty seconds.",
+            title = tr("KNOW WHAT IS COMING?"),
+            body = tr("A quick rundown of the attacks you will meet, the bosses, and " +
+                "what your agents do about them. Takes about twenty seconds."),
             gate = TutorialGate.ASK_BRIEFING
         ),
         TutorialStep(
-            title = "THREAT BRIEFING",
+            title = tr("THREAT BRIEFING"),
             // Filled from the catalog at render time; see TutorialBriefing.
             body = ""
         ),
         TutorialStep(
-            title = "STEP 1 — OPEN THE ROSTER",
-            body = "Tap the AGENTS button in the control bar below.",
+            title = tr("STEP 1 — OPEN THE ROSTER"),
+            body = tr("Tap the AGENTS button in the control bar below."),
             gate = TutorialGate.ACTION
         ),
         TutorialStep(
-            title = "STEP 2 — PICK FIREWALL",
-            body = "Select FIREWALL. It is cheap, reliable, and cannot be jammed.",
+            title = tr("STEP 2 — PICK FIREWALL"),
+            body = tr("Select FIREWALL. It is cheap, reliable, and cannot be jammed."),
             gate = TutorialGate.ACTION
         ),
         TutorialStep(
-            title = "STEP 3 — DEPLOY TWO FIREWALLS",
-            body = "Tap two highlighted deployment nodes beside a route. Two is " +
-                "not a suggestion: one agent cannot cover a lane on its own.",
+            title = tr("STEP 3 — DEPLOY TWO FIREWALLS"),
+            body = tr("Tap two highlighted deployment nodes beside a route. Two is " +
+                "not a suggestion: one agent cannot cover a lane on its own."),
             gate = TutorialGate.ACTION,
             requiresAgent = AgentType.FIREWALL,
             requiresCount = REQUIRED_FIREWALLS
         ),
         TutorialStep(
-            title = "STEP 4 — PICK TARPIT",
-            body = "Open AGENTS again and select TARPIT. It deals no damage — it " +
+            title = tr("STEP 4 — PICK TARPIT"),
+            body = tr("Open AGENTS again and select TARPIT. It deals no damage — it " +
                 "slows every threat inside its aura so your FIREWALLs get more " +
-                "shots at them.",
+                "shots at them."),
             gate = TutorialGate.ACTION
         ),
         TutorialStep(
-            title = "STEP 5 — DEPLOY TWO TARPITS",
-            body = "Place two TARPITs so their auras cover the ground your " +
-                "FIREWALLs are shooting at. Slowing is what makes the damage land.",
+            title = tr("STEP 5 — DEPLOY TWO TARPITS"),
+            body = tr("Place two TARPITs so their auras cover the ground your " +
+                "FIREWALLs are shooting at. Slowing is what makes the damage land."),
             gate = TutorialGate.ACTION,
             requiresAgent = AgentType.TARPIT,
             requiresCount = REQUIRED_TARPITS
         ),
         TutorialStep(
-            title = "STEP 6 — START THE WAVE",
-            body = "Tap NEXT WAVE. Your agents fire automatically. Every attack you " +
-                "stop pays out ◇ Crypto, which buys more agents and upgrades.",
+            title = tr("STEP 6 — START THE WAVE"),
+            body = tr("Tap NEXT WAVE. Your agents fire automatically. Every attack you " +
+                "stop pays out ◇ Crypto, which buys more agents and upgrades."),
             gate = TutorialGate.ACTION
         )
     )

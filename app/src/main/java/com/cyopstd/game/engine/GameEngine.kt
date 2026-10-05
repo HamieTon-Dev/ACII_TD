@@ -1,5 +1,7 @@
 package com.cyopstd.game.engine
 
+import com.cyopstd.game.i18n.tr
+
 import com.cyopstd.game.core.Balance
 import com.cyopstd.game.core.GameMode
 import com.cyopstd.game.core.GameMap
@@ -802,11 +804,11 @@ class GameEngine(
         val bossBonus = Balance.bossClearBonus(currentWave)
         val credited = economySystem.award(bonus + bossBonus)
 
-        val payout = if (bossBonus > 0) "+$credited (BOSS)" else "+$credited"
+        val payout = if (bossBonus > 0) tr("+{0} (BOSS)", credited) else "+$credited"
         effectSystem.spawnText(
             WorldGeometry.WIDTH * 0.5f,
             WorldGeometry.HEIGHT * 0.34f,
-            "WAVE $currentWave SECURED  \u25C7$payout",
+            tr("WAVE {0} SECURED  \u25C7{1}", currentWave, payout),
             COLOR_SUCCESS,
             1.6f,
             scale = 1.5f
@@ -819,7 +821,7 @@ class GameEngine(
             effectSystem.spawnText(
                 WorldGeometry.WIDTH * 0.5f,
                 WorldGeometry.HEIGHT * 0.44f,
-                "\u20AC$budget BUDGET BANKED",
+                tr("\u20AC{0} BUDGET BANKED", budget),
                 COLOR_BUDGET,
                 2.0f,
                 scale = 1.4f
@@ -1005,7 +1007,7 @@ class GameEngine(
 
         soundListener?.invoke(GameSound.AGENT_PLACED)
         hapticListener?.invoke(HapticCue.LIGHT)
-        effectSystem.spawnText(node.x, node.y - 40f, "DEPLOYED", COLOR_FRIENDLY, 0.8f)
+        effectSystem.spawnText(node.x, node.y - 40f, tr("DEPLOYED"), COLOR_FRIENDLY, 0.8f)
         return PlacementResult.SUCCESS
     }
 

@@ -1,5 +1,7 @@
 package com.cyopstd.game.ui.game
 
+import com.cyopstd.game.i18n.tr
+
 import com.cyopstd.game.model.AgentType
 import com.cyopstd.game.model.BossVariant
 import com.cyopstd.game.model.EnemyType
@@ -46,21 +48,26 @@ object TutorialBriefing {
      * their agents firing slower and the threats moving oddly.
      */
     fun mechanics(): List<String> = listOf(
-        "JAM — a boss can disrupt an agent, halving its fire rate while it " +
-            "lasts. ${AgentType.FIREWALL.displayName} is built not to care.",
-        "${AgentType.TARPIT.displayName} — ${AgentType.TARPIT.abilitySummary} " +
-            "It deals no damage; it buys your other agents time."
+        tr(
+            "JAM — a boss can disrupt an agent, halving its fire rate while it " +
+                "lasts. {0} is built not to care.",
+            AgentType.FIREWALL.displayName
+        ),
+        tr(
+            "{0} — {1} It deals no damage; it buys your other agents time.",
+            AgentType.TARPIT.displayName, AgentType.TARPIT.abilitySummary
+        )
     )
 
     /** The whole briefing as the card's body. */
     fun body(): String = buildString {
-        appendLine("WHAT IS ATTACKING")
+        appendLine(tr("WHAT IS ATTACKING"))
         threats().forEach { appendLine("  $it") }
         appendLine()
-        appendLine("BOSSES — every fifth wave")
+        appendLine(tr("BOSSES — every fifth wave"))
         bosses().forEach { appendLine("  $it") }
         appendLine()
-        appendLine("TWO THINGS NOBODY TELLS YOU")
+        appendLine(tr("TWO THINGS NOBODY TELLS YOU"))
         mechanics().forEach { appendLine("  $it") }
     }.trimEnd()
 

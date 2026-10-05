@@ -1,5 +1,7 @@
 package com.cyopstd.game.ui.theme
 
+import com.cyopstd.game.i18n.tr
+
 import androidx.compose.ui.graphics.Color
 
 /**
@@ -38,7 +40,7 @@ enum class LivingBackground(
     NONE(
         productId = null,
         displayName = "STATIC",
-        description = "The plain grid. No motion.",
+        description = tr("The plain grid. No motion."),
         tint = Color(0xFF12203A),
         intensity = 0,
         speed = 0f
@@ -47,7 +49,7 @@ enum class LivingBackground(
     DRIFT(
         productId = "bg_drift",
         displayName = "DRIFT",
-        description = "Slow diagonal data currents crossing the field.",
+        description = tr("Slow diagonal data currents crossing the field."),
         tint = Color(0xFF0D658C),
         intensity = 34,
         speed = 0.055f,
@@ -57,7 +59,7 @@ enum class LivingBackground(
     LATTICE(
         productId = "bg_lattice",
         displayName = "LATTICE",
-        description = "A circuit lattice that breathes with the wave.",
+        description = tr("A circuit lattice that breathes with the wave."),
         tint = Color(0xFF167D5B),
         intensity = 40,
         speed = 0.18f,
@@ -67,7 +69,7 @@ enum class LivingBackground(
     AURORA(
         productId = "bg_aurora",
         displayName = "AURORA",
-        description = "Broad bands of cold light moving behind everything.",
+        description = tr("Broad bands of cold light moving behind everything."),
         tint = Color(0xFF1C59A8),
         intensity = 30,
         speed = 0.04f,
@@ -77,7 +79,7 @@ enum class LivingBackground(
     RAINFALL(
         productId = "bg_rainfall",
         displayName = "RAINFALL",
-        description = "Sparse columns of falling characters.",
+        description = tr("Sparse columns of falling characters."),
         tint = Color(0xFF177F6E),
         intensity = 36,
         speed = 0.5f,
@@ -87,7 +89,7 @@ enum class LivingBackground(
     PULSE(
         productId = "bg_pulse",
         displayName = "PULSE",
-        description = "Rings travelling outward from the core.",
+        description = tr("Rings travelling outward from the core."),
         tint = Color(0xFF2E49A8),
         intensity = 32,
         speed = 0.22f,
@@ -97,7 +99,7 @@ enum class LivingBackground(
     ORBIT(
         productId = "bg_orbit",
         displayName = "ORBIT",
-        description = "Slow elliptical traces around the core, like a scheduler at work.",
+        description = tr("Slow elliptical traces around the core, like a scheduler at work."),
         tint = Color(0xFF3D53A6),
         intensity = 34,
         speed = 0.035f,
@@ -107,7 +109,7 @@ enum class LivingBackground(
     HEATMAP(
         productId = "bg_heatmap",
         displayName = "HEATMAP",
-        description = "A coarse grid whose cells warm and cool with the traffic.",
+        description = tr("A coarse grid whose cells warm and cool with the traffic."),
         tint = Color(0xFF217B8C),
         intensity = 30,
         speed = 0.12f,

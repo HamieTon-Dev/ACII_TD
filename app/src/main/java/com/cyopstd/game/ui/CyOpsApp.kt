@@ -1,5 +1,7 @@
 package com.cyopstd.game.ui
 
+import com.cyopstd.game.i18n.tr
+
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -142,7 +144,7 @@ fun CyOpsApp(
                         viewModel.playClick()
                         viewModel.continueGame(
                             onLoaded = { screen = Screen.Game },
-                            onFailed = { viewModel.showTransient("NO SAVED SESSION") }
+                            onFailed = { viewModel.showTransient(tr("NO SAVED SESSION")) }
                         )
                     },
                     onAgents = { viewModel.playClick(); screen = Screen.Agents },
@@ -257,14 +259,14 @@ fun CyOpsApp(
                     onOpenOrders = {
                         viewModel.playClick()
                         if (!PlayLinks.open(context, PlayLinks.orderHistoryUris())) {
-                            viewModel.showTransient("NO APP CAN OPEN GOOGLE PLAY")
+                            viewModel.showTransient(tr("NO APP CAN OPEN GOOGLE PLAY"))
                         }
                     },
                     onOpenListing = {
                         viewModel.playClick()
                         val uris = PlayLinks.listingUris(context.packageName)
                         if (!PlayLinks.open(context, uris)) {
-                            viewModel.showTransient("NO APP CAN OPEN GOOGLE PLAY")
+                            viewModel.showTransient(tr("NO APP CAN OPEN GOOGLE PLAY"))
                         }
                     },
                     onCallsign = {

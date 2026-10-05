@@ -1,5 +1,7 @@
 package com.cyopstd.game.ui.menu
 
+import com.cyopstd.game.i18n.tr
+
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -69,8 +71,8 @@ fun PlayAccountScreen(
     onBack: () -> Unit
 ) {
     ScreenScaffold(
-        title = "GOOGLE PLAY",
-        subtitle = "Purchases, restores and what leaves this device",
+        title = tr("GOOGLE PLAY"),
+        subtitle = tr("Purchases, restores and what leaves this device"),
         onBack = onBack,
         backgroundAnimation = backgroundAnimation
     ) {
@@ -95,9 +97,9 @@ fun PlayAccountScreen(
 
                 Spacer(Modifier.height(12.dp))
 
-                TerminalPanel(title = "CONNECTION", accent = statusAccent(status)) {
+                TerminalPanel(title = tr("CONNECTION"), accent = statusAccent(status)) {
                     StatRow(
-                        "GOOGLE PLAY BILLING",
+                        tr("GOOGLE PLAY BILLING"),
                         statusLabel(status),
                         valueColor = statusAccent(status)
                     )
@@ -109,7 +111,7 @@ fun PlayAccountScreen(
                     )
                     Spacer(Modifier.height(10.dp))
                     CompactButton(
-                        text = "RESTORE PURCHASES",
+                        text = tr("RESTORE PURCHASES"),
                         onClick = onRestore,
                         enabled = status != BillingStatus.UNAVAILABLE,
                         accent = Palette.Cyan,
@@ -117,20 +119,20 @@ fun PlayAccountScreen(
                     )
                     Spacer(Modifier.height(6.dp))
                     Caption(
-                        "Restore re-asks Play what this Google account owns. It " +
-                            "is safe to press at any time and never charges you."
+                        tr("Restore re-asks Play what this Google account owns. It " +
+                            "is safe to press at any time and never charges you.")
                     )
                 }
 
                 Spacer(Modifier.height(12.dp))
 
-                TerminalPanel(title = "HOW SIGN-IN WORKS", accent = Palette.Green) {
+                TerminalPanel(title = tr("HOW SIGN-IN WORKS"), accent = Palette.Green) {
                     Text(
-                        text = "There is still no CyOps account and no password. " +
+                        text = tr("There is still no CyOps account and no password. " +
                             "Purchases follow the Google account signed into the " +
                             "Play Store on this device. Progress follows the " +
                             "Google account you link above — a separate, optional " +
-                            "choice: the game is complete without it.",
+                            "choice: the game is complete without it."),
                         style = MaterialTheme.typography.bodyMedium,
                         color = Palette.TextSecondary
                     )
@@ -138,16 +140,16 @@ fun PlayAccountScreen(
                     AsciiRule(color = Palette.Divider)
                     Spacer(Modifier.height(8.dp))
                     StatRow(
-                        "PURCHASES",
-                        "YOUR GOOGLE ACCOUNT",
+                        tr("PURCHASES"),
+                        tr("YOUR GOOGLE ACCOUNT"),
                         valueColor = Palette.Green
                     )
                     StatRow(
-                        "WAVES, € AND FIRMWARE",
+                        tr("WAVES, € AND FIRMWARE"),
                         if (cloudStatus == CloudSaveStatus.LINKED) {
-                            "YOUR GOOGLE ACCOUNT"
+                            tr("YOUR GOOGLE ACCOUNT")
                         } else {
-                            "THIS DEVICE ONLY"
+                            tr("THIS DEVICE ONLY")
                         },
                         valueColor = if (cloudStatus == CloudSaveStatus.LINKED) {
                             Palette.Green
@@ -158,26 +160,26 @@ fun PlayAccountScreen(
                     Spacer(Modifier.height(6.dp))
                     Caption(
                         if (cloudStatus == CloudSaveStatus.LINKED) {
-                            "Linked. Sign into the same Google account on another " +
-                                "phone or tablet and your progress is there."
+                            tr("Linked. Sign into the same Google account on another " +
+                                "phone or tablet and your progress is there.")
                         } else {
-                            "Unlinked, run progress lives only on this device. An " +
+                            tr("Unlinked, run progress lives only on this device. An " +
                                 "uninstall or a factory reset clears it; purchases " +
-                                "survive both."
+                                "survive both.")
                         }
                     )
                 }
 
                 Spacer(Modifier.height(12.dp))
 
-                TerminalPanel(title = "WHAT LEAVES THIS DEVICE", accent = Palette.CyanDim) {
+                TerminalPanel(title = tr("WHAT LEAVES THIS DEVICE"), accent = Palette.CyanDim) {
                     StatRow(
-                        "PURCHASE CHECKS",
-                        "GOOGLE PLAY",
+                        tr("PURCHASE CHECKS"),
+                        tr("GOOGLE PLAY"),
                         valueColor = Palette.Cyan
                     )
                     StatRow(
-                        "ADVERTISING",
+                        tr("ADVERTISING"),
                         when {
                             // "REMOVED · NONE" would be a lie in a build that
                             // can offer a revive: REMOVE ADS buys freedom from
@@ -185,22 +187,22 @@ fun PlayAccountScreen(
                             // one they did. Saying so here is cheaper than a
                             // player finding out at the worst moment.
                             entitlements.adsRemoved && reviveAdsConfigured ->
-                                "REMOVED · REVIVE ADS SEPARATE"
-                            entitlements.adsRemoved -> "REMOVED · NONE"
+                                tr("REMOVED · REVIVE ADS SEPARATE")
+                            entitlements.adsRemoved -> tr("REMOVED · NONE")
                             adsConfigured && reviveAdsConfigured ->
-                                "ONE AD AFTER A LOST RUN · REVIVE OPT-IN"
-                            adsConfigured -> "ONE AD AFTER A LOST RUN"
-                            reviveAdsConfigured -> "REVIVE ADS ONLY · OPT-IN"
-                            else -> "NOT IN THIS BUILD"
+                                tr("ONE AD AFTER A LOST RUN · REVIVE OPT-IN")
+                            adsConfigured -> tr("ONE AD AFTER A LOST RUN")
+                            reviveAdsConfigured -> tr("REVIVE ADS ONLY · OPT-IN")
+                            else -> tr("NOT IN THIS BUILD")
                         },
                         valueColor = if (entitlements.adsRemoved) Palette.Green else Palette.TextPrimary
                     )
                     StatRow(
-                        "SAVED PROGRESS",
+                        tr("SAVED PROGRESS"),
                         when (cloudStatus) {
-                            CloudSaveStatus.LINKED -> "YOUR GOOGLE ACCOUNT"
-                            CloudSaveStatus.UNAVAILABLE -> "THIS DEVICE ONLY"
-                            else -> "THIS DEVICE UNTIL LINKED"
+                            CloudSaveStatus.LINKED -> tr("YOUR GOOGLE ACCOUNT")
+                            CloudSaveStatus.UNAVAILABLE -> tr("THIS DEVICE ONLY")
+                            else -> tr("THIS DEVICE UNTIL LINKED")
                         },
                         valueColor = if (cloudStatus == CloudSaveStatus.LINKED) {
                             Palette.Green
@@ -208,12 +210,12 @@ fun PlayAccountScreen(
                             Palette.TextPrimary
                         }
                     )
-                    StatRow("LEADERBOARD", "ON THIS DEVICE", valueColor = Palette.TextPrimary)
-                    StatRow("ANALYTICS", "NONE", valueColor = Palette.Green)
+                    StatRow(tr("LEADERBOARD"), tr("ON THIS DEVICE"), valueColor = Palette.TextPrimary)
+                    StatRow(tr("ANALYTICS"), tr("NONE"), valueColor = Palette.Green)
                     Spacer(Modifier.height(6.dp))
                     Caption(
-                        "Nothing else is sent anywhere. The game is playable with " +
-                            "no network at all."
+                        tr("Nothing else is sent anywhere. The game is playable with " +
+                            "no network at all.")
                     )
                 }
             }
@@ -224,9 +226,9 @@ fun PlayAccountScreen(
                     .weight(1f)
                     .verticalScroll(rememberScrollState())
             ) {
-                TerminalPanel(title = "THIS ACCOUNT OWNS", accent = Palette.Crypto) {
+                TerminalPanel(title = tr("THIS ACCOUNT OWNS"), accent = Palette.Crypto) {
                     StatRow(
-                        "REMOVE ADS",
+                        tr("REMOVE ADS"),
                         owningLabel(entitlements.adsRemoved),
                         valueColor = ownedColor(entitlements.adsRemoved)
                     )
@@ -234,72 +236,72 @@ fun PlayAccountScreen(
                     // a new phone, so the pack gets its own row and says what it
                     // is worth rather than just OWNED.
                     StatRow(
-                        "REVIVE PACK",
+                        tr("REVIVE PACK"),
                         reviveLabel(entitlements),
                         valueColor = ownedColor(entitlements.owns(Sku.REVIVE_PACK))
                     )
                     StatRow(
-                        "5× SPEED",
+                        tr("5× SPEED"),
                         owningLabel(entitlements.fifthSpeedUnlocked),
                         valueColor = ownedColor(entitlements.fifthSpeedUnlocked)
                     )
                     StatRow(
-                        "SPECTRUM AGENTS",
+                        tr("SPECTRUM AGENTS"),
                         owningLabel(entitlements.spectrumAgents),
                         valueColor = ownedColor(entitlements.spectrumAgents)
                     )
                     StatRow(
-                        "CORE-SERVER SKINS",
+                        tr("CORE-SERVER SKINS"),
                         "${entitlements.coreSkins.size} / ${Sku.coreSkins.size}",
                         valueColor = ownedColor(entitlements.coreSkins.isNotEmpty())
                     )
                     StatRow(
-                        "LIVING BACKGROUNDS",
+                        tr("LIVING BACKGROUNDS"),
                         "${entitlements.backgrounds.size} / ${Sku.backgrounds.size}",
                         valueColor = ownedColor(entitlements.backgrounds.isNotEmpty())
                     )
                     AsciiRule(color = Palette.Divider)
-                    StatRow("€ BUDGET", budget.toString(), valueColor = Palette.Cyan)
+                    StatRow(tr("€ BUDGET"), budget.toString(), valueColor = Palette.Cyan)
                     Spacer(Modifier.height(6.dp))
                     Caption(
                         if (entitlements.ownedIds.isEmpty()) {
-                            "Nothing purchased. Everything above can also be earned " +
-                                "or simply played without."
+                            tr("Nothing purchased. Everything above can also be earned " +
+                                "or simply played without.")
                         } else {
-                            "€ packs are spent, not owned: they are credited " +
-                                "once and RESTORE does not hand them out again."
+                            tr("€ packs are spent, not owned: they are credited " +
+                                "once and RESTORE does not hand them out again.")
                         }
                     )
                     Spacer(Modifier.height(4.dp))
                     Caption(
-                        "Everything owned, revives included, comes back from " +
+                        tr("Everything owned, revives included, comes back from " +
                             "Google Play with RESTORE on any device. It is never " +
                             "part of the cloud save, so no save file can grant " +
-                            "or take away a purchase."
+                            "or take away a purchase.")
                     )
                 }
 
                 Spacer(Modifier.height(12.dp))
 
-                TerminalPanel(title = "CALLSIGN", accent = Palette.Purple) {
+                TerminalPanel(title = tr("CALLSIGN"), accent = Palette.Purple) {
                     StatRow(
-                        "REGISTERED AS",
-                        if (identity.registered) identity.username else "UNREGISTERED",
+                        tr("REGISTERED AS"),
+                        if (identity.registered) identity.username else tr("UNREGISTERED"),
                         valueColor = if (identity.registered) Palette.Green else Palette.TextMuted
                     )
                     StatRow(
-                        "BEST WAVE",
+                        tr("BEST WAVE"),
                         identity.highestWave.toString(),
                         valueColor = Palette.Crypto
                     )
                     Spacer(Modifier.height(6.dp))
                     Caption(
-                        "The callsign is local to this device and is not a Google " +
-                            "account. It names your runs on the leaderboard."
+                        tr("The callsign is local to this device and is not a Google " +
+                            "account. It names your runs on the leaderboard.")
                     )
                     Spacer(Modifier.height(8.dp))
                     CompactButton(
-                        text = if (identity.registered) "CHANGE CALLSIGN" else "REGISTER CALLSIGN",
+                        text = if (identity.registered) tr("CHANGE CALLSIGN") else tr("REGISTER CALLSIGN"),
                         onClick = onCallsign,
                         accent = Palette.Purple,
                         modifier = Modifier.fillMaxWidth()
@@ -308,21 +310,21 @@ fun PlayAccountScreen(
 
                 Spacer(Modifier.height(12.dp))
 
-                TerminalPanel(title = "MANAGE ON GOOGLE PLAY", accent = Palette.Blue) {
+                TerminalPanel(title = tr("MANAGE ON GOOGLE PLAY"), accent = Palette.Blue) {
                     Caption(
-                        "Refunds, payment methods and receipts are handled by " +
-                            "Google, not by this game."
+                        tr("Refunds, payment methods and receipts are handled by " +
+                            "Google, not by this game.")
                     )
                     Spacer(Modifier.height(8.dp))
                     CompactButton(
-                        text = "ORDER HISTORY & REFUNDS",
+                        text = tr("ORDER HISTORY & REFUNDS"),
                         onClick = onOpenOrders,
                         accent = Palette.Blue,
                         modifier = Modifier.fillMaxWidth()
                     )
                     Spacer(Modifier.height(8.dp))
                     CompactButton(
-                        text = "OPEN STORE LISTING",
+                        text = tr("OPEN STORE LISTING"),
                         onClick = onOpenListing,
                         accent = Palette.CyanDim,
                         modifier = Modifier.fillMaxWidth()
@@ -358,18 +360,18 @@ private fun CloudSavePanel(
     // to try the sync again.
     val hasAccount = linked || cloudStatus == CloudSaveStatus.ERROR
     TerminalPanel(
-        title = "CLOUD SAVE",
+        title = tr("CLOUD SAVE"),
         accent = if (linked) Palette.Green else Palette.Crypto
     ) {
         StatRow(
-            "PROGRESS BACKUP",
+            tr("PROGRESS BACKUP"),
             when {
-                busy -> "WORKING…"
-                cloudStatus == CloudSaveStatus.LINKED -> "LINKED"
-                cloudStatus == CloudSaveStatus.CONNECTING -> "LINKING…"
-                cloudStatus == CloudSaveStatus.ERROR -> "LINKED · OFFLINE"
-                cloudStatus == CloudSaveStatus.UNAVAILABLE -> "NOT IN THIS BUILD"
-                else -> "NOT LINKED"
+                busy -> tr("WORKING…")
+                cloudStatus == CloudSaveStatus.LINKED -> tr("LINKED")
+                cloudStatus == CloudSaveStatus.CONNECTING -> tr("LINKING…")
+                cloudStatus == CloudSaveStatus.ERROR -> tr("LINKED · OFFLINE")
+                cloudStatus == CloudSaveStatus.UNAVAILABLE -> tr("NOT IN THIS BUILD")
+                else -> tr("NOT LINKED")
             },
             valueColor = when (cloudStatus) {
                 CloudSaveStatus.LINKED -> Palette.Green
@@ -379,11 +381,11 @@ private fun CloudSavePanel(
             }
         )
         if (hasAccount && account != null) {
-            StatRow("ACCOUNT", account, valueColor = Palette.Cyan)
+            StatRow(tr("ACCOUNT"), account, valueColor = Palette.Cyan)
         }
         StatRow(
-            "LAST SYNC",
-            lastSync?.let { relativeTime(it) } ?: "NEVER",
+            tr("LAST SYNC"),
+            lastSync?.let { relativeTime(it) } ?: tr("NEVER"),
             valueColor = if (lastSync == null) Palette.TextMuted else Palette.TextPrimary
         )
 
@@ -391,24 +393,24 @@ private fun CloudSavePanel(
         Text(
             text = when (cloudStatus) {
                 CloudSaveStatus.LINKED ->
-                    "Your waves, agents, € and firmware are saved to your " +
+                    tr("Your waves, agents, € and firmware are saved to your " +
                         "Google account. Sign into it on another device and they " +
                         "are there. It syncs when you leave the game and when a " +
-                        "run ends."
+                        "run ends.")
                 CloudSaveStatus.ERROR ->
-                    "Linked, but Google could not be reached. Nothing is lost — " +
+                    tr("Linked, but Google could not be reached. Nothing is lost — " +
                         "the save on this device is the one being played, and the " +
-                        "next sync catches the account up."
+                        "next sync catches the account up.")
                 CloudSaveStatus.UNAVAILABLE ->
-                    "This build has no Play Games project configured, so progress " +
+                    tr("This build has no Play Games project configured, so progress " +
                         "stays on this device. Android's own backup still restores " +
                         "it when you reinstall on a phone signed into the same " +
-                        "Google account."
+                        "Google account.")
                 else ->
-                    "Link your Google account to keep your progress on any phone " +
+                    tr("Link your Google account to keep your progress on any phone " +
                         "or tablet. Google will ask for permission to manage this " +
                         "game's saved data in your account — that is the " +
-                        "saved-game storage, and it is all this uses."
+                        "saved-game storage, and it is all this uses.")
             },
             style = MaterialTheme.typography.bodyMedium,
             color = Palette.TextSecondary
@@ -416,7 +418,7 @@ private fun CloudSavePanel(
 
         Spacer(Modifier.height(10.dp))
         CompactButton(
-            text = if (hasAccount) "SYNC NOW" else "LINK GOOGLE ACCOUNT",
+            text = if (hasAccount) tr("SYNC NOW") else tr("LINK GOOGLE ACCOUNT"),
             onClick = if (hasAccount) onSync else onLink,
             enabled = !busy && cloudStatus != CloudSaveStatus.UNAVAILABLE,
             accent = if (linked) Palette.Cyan else Palette.Green,
@@ -425,8 +427,8 @@ private fun CloudSavePanel(
         if (!hasAccount && cloudStatus != CloudSaveStatus.UNAVAILABLE) {
             Spacer(Modifier.height(6.dp))
             Caption(
-                "Optional. Everything in the game works without linking, and " +
-                    "nothing but your progress is ever uploaded."
+                tr("Optional. Everything in the game works without linking, and " +
+                    "nothing but your progress is ever uploaded.")
             )
         }
     }
@@ -439,19 +441,19 @@ internal fun relativeTime(
 ): String {
     val seconds = (now - millis) / 1000
     return when {
-        seconds < 90 -> "JUST NOW"
-        seconds < 3_600 -> "${seconds / 60} MIN AGO"
-        seconds < 86_400 -> "${seconds / 3_600} HR AGO"
-        seconds < 86_400 * 30 -> "${seconds / 86_400} DAYS AGO"
-        else -> "OVER A MONTH AGO"
+        seconds < 90 -> tr("JUST NOW")
+        seconds < 3_600 -> tr("{0} MIN AGO", seconds / 60)
+        seconds < 86_400 -> tr("{0} HR AGO", seconds / 3_600)
+        seconds < 86_400 * 30 -> tr("{0} DAYS AGO", seconds / 86_400)
+        else -> tr("OVER A MONTH AGO")
     }
 }
 
 private fun statusLabel(status: BillingStatus): String = when (status) {
-    BillingStatus.READY -> "CONNECTED"
-    BillingStatus.CONNECTING -> "CONNECTING"
-    BillingStatus.ERROR -> "UNREACHABLE"
-    BillingStatus.UNAVAILABLE -> "NOT AVAILABLE"
+    BillingStatus.READY -> tr("CONNECTED")
+    BillingStatus.CONNECTING -> tr("CONNECTING")
+    BillingStatus.ERROR -> tr("UNREACHABLE")
+    BillingStatus.UNAVAILABLE -> tr("NOT AVAILABLE")
 }
 
 private fun statusAccent(status: BillingStatus): Color = when (status) {
@@ -463,27 +465,27 @@ private fun statusAccent(status: BillingStatus): Color = when (status) {
 
 private fun statusExplanation(status: BillingStatus): String = when (status) {
     BillingStatus.READY ->
-        "Google Play answered. Purchases and restores work normally."
+        tr("Google Play answered. Purchases and restores work normally.")
     BillingStatus.CONNECTING ->
-        "Asking Google Play what this account owns. This usually takes a moment."
+        tr("Asking Google Play what this account owns. This usually takes a moment.")
     BillingStatus.ERROR ->
-        "Google Play could not be reached — usually no network. Anything " +
+        tr("Google Play could not be reached — usually no network. Anything " +
             "already bought is still yours; press RESTORE once you are back " +
-            "online and it will reappear."
+            "online and it will reappear.")
     BillingStatus.UNAVAILABLE ->
-        "This build has no Google Play billing configured, or this device has " +
+        tr("This build has no Google Play billing configured, or this device has " +
             "no Play Store. Nothing can be bought, and nothing that costs " +
-            "money is required to play."
+            "money is required to play.")
 }
 
-private fun owningLabel(owned: Boolean): String = if (owned) "OWNED" else "NOT OWNED"
+private fun owningLabel(owned: Boolean): String = if (owned) tr("OWNED") else tr("NOT OWNED")
 
 /** The revive allowance this account actually has, owned pack or not. */
 internal fun reviveLabel(entitlements: Entitlements): String {
     val perRun = entitlements.revivesPerRun ?: Balance.REVIVES_PER_RUN
-    val how = if (entitlements.reviveAdsRemoved) "NO AD" else "ON AN AD"
-    val owned = if (entitlements.owns(Sku.REVIVE_PACK)) "OWNED" else "NOT OWNED"
-    return "$owned · $perRun PER RUN $how"
+    val how = if (entitlements.reviveAdsRemoved) tr("NO AD") else tr("ON AN AD")
+    val owned = if (entitlements.owns(Sku.REVIVE_PACK)) tr("OWNED") else tr("NOT OWNED")
+    return tr("{0} · {1} PER RUN {2}", owned, perRun, how)
 }
 
 private fun ownedColor(owned: Boolean): Color =

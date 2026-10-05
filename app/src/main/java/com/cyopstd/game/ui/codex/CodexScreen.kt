@@ -1,5 +1,7 @@
 package com.cyopstd.game.ui.codex
 
+import com.cyopstd.game.i18n.tr
+
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
@@ -44,7 +46,7 @@ fun CodexScreen(
     val entries = remember(section) { CodexContent.entriesFor(section) }
 
     ScreenScaffold(
-        title = "CODEX",
+        title = tr("CODEX"),
         subtitle = section.description,
         onBack = onBack,
         backgroundAnimation = backgroundAnimation

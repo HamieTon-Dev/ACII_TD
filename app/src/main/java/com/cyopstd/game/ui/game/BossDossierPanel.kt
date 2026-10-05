@@ -1,5 +1,7 @@
 package com.cyopstd.game.ui.game
 
+import com.cyopstd.game.i18n.tr
+
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
@@ -121,10 +123,10 @@ fun BossDossierPanel(
                         )
                         Caption(
                             when {
-                                dossier.revived -> "REANIMATED — it will not come back again"
+                                dossier.revived -> tr("REANIMATED — it will not come back again")
                                 dossier.count > 1 ->
-                                    "BOSS ${dossier.index} OF ${dossier.count} · TAP A BOSS TO SWITCH"
-                                else -> "ON THE FIELD · TAP A BOSS TO SEE IT"
+                                    tr("BOSS {0} OF {1} · TAP A BOSS TO SWITCH", dossier.index, dossier.count)
+                                else -> tr("ON THE FIELD · TAP A BOSS TO SEE IT")
                             }
                         )
                     }
@@ -153,10 +155,10 @@ fun BossDossierPanel(
                     modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {
-                    StatCell("ARMOUR", dossier.armor.toInt().toString(), Palette.Orange)
-                    StatCell("SPEED", "${dossier.speed.toInt()} u/s", Palette.Cyan)
+                    StatCell(tr("ARMOUR"), dossier.armor.toInt().toString(), Palette.Orange)
+                    StatCell(tr("SPEED"), "${dossier.speed.toInt()} u/s", Palette.Cyan)
                     StatCell(
-                        "TO CORE",
+                        tr("TO CORE"),
                         "${dossier.distanceToCore.toInt()} u",
                         if (dossier.distanceToCore < 300f) Palette.Red else Palette.TextPrimary
                     )
@@ -164,11 +166,11 @@ fun BossDossierPanel(
 
                 if (dossier.weakTo.isNotEmpty()) {
                     Spacer(Modifier.height(6.dp))
-                    Text("WEAK TO", style = MaterialTheme.typography.labelMedium, color = Palette.Green)
+                    Text(tr("WEAK TO"), style = MaterialTheme.typography.labelMedium, color = Palette.Green)
                     for ((agent, why) in dossier.weakTo) {
                         val owned = unlockedAgents?.let { agent.name in it } ?: true
                         Text(
-                            text = "[${agent.glyph}] ${agent.displayName}${if (owned) "" else " (locked)"}: $why",
+                            text = if (owned) "[${agent.glyph}] ${agent.displayName}: $why" else tr("[{0}] {1} (locked): {2}", agent.glyph, agent.displayName, why),
                             style = MaterialTheme.typography.bodySmall,
                             color = if (owned) Palette.Green else Palette.TextMuted
                         )
@@ -176,7 +178,7 @@ fun BossDossierPanel(
                 }
                 if (dossier.warnings.isNotEmpty()) {
                     Spacer(Modifier.height(6.dp))
-                    Text("WATCH OUT", style = MaterialTheme.typography.labelMedium, color = Palette.Red)
+                    Text(tr("WATCH OUT"), style = MaterialTheme.typography.labelMedium, color = Palette.Red)
                     for (warning in dossier.warnings) {
                         Text(warning, style = MaterialTheme.typography.bodySmall, color = Palette.TextSecondary)
                     }
@@ -192,7 +194,7 @@ fun BossDossierPanel(
         // ---- what it is carrying -----------------------------------------
         Column(Modifier.weight(1f)) {
             Text(
-                text = "MODIFIERS",
+                text = tr("MODIFIERS"),
                 style = MaterialTheme.typography.titleSmall,
                 color = Palette.Crypto
             )
@@ -201,7 +203,7 @@ fun BossDossierPanel(
             Box(Modifier.weight(1f)) {
                 Column(Modifier.verticalScroll(rememberScrollState())) {
                     if (dossier.modifiers.isEmpty()) {
-                        Caption("None. This one is a straight fight.")
+                        Caption(tr("None. This one is a straight fight."))
                     }
                     for (modifier in dossier.modifiers) {
                         Text(
@@ -217,7 +219,7 @@ fun BossDossierPanel(
 
             if (onNext != null && dossier.count > 1) {
                 CompactButton(
-                    text = "NEXT BOSS",
+                    text = tr("NEXT BOSS"),
                     onClick = onNext,
                     accent = Palette.Red,
                     modifier = Modifier
@@ -228,7 +230,7 @@ fun BossDossierPanel(
                 Spacer(Modifier.height(4.dp))
             }
             CompactButton(
-                text = "CLOSE",
+                text = tr("CLOSE"),
                 onClick = onClose,
                 accent = Palette.TextSecondary,
                 modifier = Modifier.fillMaxWidth(),

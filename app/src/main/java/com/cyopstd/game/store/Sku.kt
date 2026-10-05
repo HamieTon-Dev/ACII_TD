@@ -1,5 +1,7 @@
 package com.cyopstd.game.store
 
+import com.cyopstd.game.i18n.tr
+
 /**
  * Everything the player can buy, in one table.
  *
@@ -46,12 +48,12 @@ enum class Sku(
     NO_ADS(
         id = "no_ads",
         kind = SkuKind.PERMANENT,
-        title = "REMOVE ADS",
+        title = tr("REMOVE ADS"),
         // Says what it does *not* cover, because "no ads" on two different
         // products is exactly the thing that generates refund requests when a
         // player assumes one covers the other.
-        summary = "No interstitial after a failed run, ever, plus \u20AC5,000. " +
-            "Revive ads are opt-in and separate — see REVIVE PACK.",
+        summary = tr("No interstitial after a failed run, ever, plus \u20AC5,000. " +
+            "Revive ads are opt-in and separate — see REVIVE PACK."),
         fallbackPrice = "$4.99",
         grantsBudget = 5_000
     ),
@@ -59,8 +61,8 @@ enum class Sku(
     REVIVE_PACK(
         id = "revive_pack",
         kind = SkuKind.PERMANENT,
-        title = "REVIVE PACK",
-        summary = "3 revives per run and no revive ads ever, plus \u20AC5,000.",
+        title = tr("REVIVE PACK"),
+        summary = tr("3 revives per run and no revive ads ever, plus \u20AC5,000."),
         fallbackPrice = "$4.99",
         grantsBudget = 5_000,
         grantsRevivesPerRun = 3,
@@ -70,8 +72,8 @@ enum class Sku(
     SPEED_5X(
         id = "speed_5x",
         kind = SkuKind.PERMANENT,
-        title = "5× SPEED",
-        summary = "Adds a fifth simulation speed for clearing waves fast.",
+        title = tr("5× SPEED"),
+        summary = tr("Adds a fifth simulation speed for clearing waves fast."),
         fallbackPrice = "$4.99"
     ),
 
@@ -79,8 +81,8 @@ enum class Sku(
     BUDGET_SMALL(
         id = "budget_small",
         kind = SkuKind.CONSUMABLE,
-        title = "€1,500 BUDGET",
-        summary = "Spend it on permanent CORE FIRMWARE damage.",
+        title = tr("€1,500 BUDGET"),
+        summary = tr("Spend it on permanent CORE FIRMWARE damage."),
         fallbackPrice = "$0.99",
         grantsBudget = 1_500
     ),
@@ -88,8 +90,8 @@ enum class Sku(
     BUDGET_MEDIUM(
         id = "budget_medium",
         kind = SkuKind.CONSUMABLE,
-        title = "€5,000 BUDGET",
-        summary = "Better value per euro than the small pack.",
+        title = tr("€5,000 BUDGET"),
+        summary = tr("Better value per euro than the small pack."),
         fallbackPrice = "$2.99",
         grantsBudget = 5_000
     ),
@@ -97,8 +99,8 @@ enum class Sku(
     BUDGET_LARGE(
         id = "budget_large",
         kind = SkuKind.CONSUMABLE,
-        title = "€9,000 BUDGET",
-        summary = "The best value per euro.",
+        title = tr("€9,000 BUDGET"),
+        summary = tr("The best value per euro."),
         fallbackPrice = "$4.99",
         grantsBudget = 9_000
     ),
@@ -107,9 +109,9 @@ enum class Sku(
     SKIN_AGENTS_SPECTRUM(
         id = "skin_agents_spectrum",
         kind = SkuKind.PERMANENT,
-        title = "SPECTRUM AGENTS",
-        summary = "Agents drift slowly through the colour spectrum, each unit " +
-            "offset from the next.",
+        title = tr("SPECTRUM AGENTS"),
+        summary = tr("Agents drift slowly through the colour spectrum, each unit " +
+            "offset from the next."),
         fallbackPrice = "$2.99"
     ),
 
@@ -117,57 +119,57 @@ enum class Sku(
     CORE_SKIN_REACTOR(
         id = "core_skin_reactor",
         kind = SkuKind.PERMANENT,
-        title = "CORE: REACTOR",
-        summary = "Amber containment rings around a running reaction.",
+        title = tr("CORE: REACTOR"),
+        summary = tr("Amber containment rings around a running reaction."),
         fallbackPrice = "$1.00"
     ),
 
     CORE_SKIN_MERIDIAN(
         id = "core_skin_meridian",
         kind = SkuKind.PERMANENT,
-        title = "CORE: MERIDIAN",
-        summary = "Gold traces over deep indigo.",
+        title = tr("CORE: MERIDIAN"),
+        summary = tr("Gold traces over deep indigo."),
         fallbackPrice = "$1.00"
     ),
 
     CORE_SKIN_GLACIER(
         id = "core_skin_glacier",
         kind = SkuKind.PERMANENT,
-        title = "CORE: GLACIER",
-        summary = "Ice needles radiating from a frozen core.",
+        title = tr("CORE: GLACIER"),
+        summary = tr("Ice needles radiating from a frozen core."),
         fallbackPrice = "$1.00"
     ),
 
     CORE_SKIN_VOID(
         id = "core_skin_void",
         kind = SkuKind.PERMANENT,
-        title = "CORE: VOID",
-        summary = "A violet starfield behind the rack.",
+        title = tr("CORE: VOID"),
+        summary = tr("A violet starfield behind the rack."),
         fallbackPrice = "$1.00"
     ),
 
     CORE_SKIN_MAINFRAME(
         id = "core_skin_mainframe",
         kind = SkuKind.PERMANENT,
-        title = "CORE: MAINFRAME",
-        summary = "CRT phosphor green, scanlines and a refresh sweep.",
+        title = tr("CORE: MAINFRAME"),
+        summary = tr("CRT phosphor green, scanlines and a refresh sweep."),
         fallbackPrice = "$1.00"
     ),
 
     CORE_SKIN_CASCADE(
         id = "core_skin_cascade",
         kind = SkuKind.PERMANENT,
-        title = "CORE: CASCADE",
-        summary = "Code falling inside the rack itself.",
+        title = tr("CORE: CASCADE"),
+        summary = tr("Code falling inside the rack itself."),
         fallbackPrice = "$1.00"
     ),
 
     CORE_SKIN_NEONGRID(
         id = "core_skin_neongrid",
         kind = SkuKind.PERMANENT,
-        title = "CORE: NEONGRID",
-        summary = "Neon-blue grid receding into the core, with a holographic " +
-            "ring that skims blue to green.",
+        title = tr("CORE: NEONGRID"),
+        summary = tr("Neon-blue grid receding into the core, with a holographic " +
+            "ring that skims blue to green."),
         fallbackPrice = "$1.00"
     ),
 
@@ -176,10 +178,10 @@ enum class Sku(
     CORE_SKIN_PACK(
         id = "core_skin_pack",
         kind = SkuKind.PERMANENT,
-        title = "CORE SKIN PACK",
+        title = tr("CORE SKIN PACK"),
         // NEONGRID is deliberately not in here. It is the premium skin, sold
         // on its own, and folding it into a 2.50 bundle would give it away.
-        summary = "Six CORE-SERVER skins, plus \u20AC2,000. NEONGRID sold separately.",
+        summary = tr("Six CORE-SERVER skins, plus \u20AC2,000. NEONGRID sold separately."),
         fallbackPrice = "$2.50",
         grantsBudget = 2_000,
         alsoUnlocks = listOf(
@@ -192,56 +194,56 @@ enum class Sku(
     BG_DRIFT(
         id = "bg_drift",
         kind = SkuKind.PERMANENT,
-        title = "LIVING: DRIFT",
-        summary = "Slow data currents behind the menu and the board.",
+        title = tr("LIVING: DRIFT"),
+        summary = tr("Slow data currents behind the menu and the board."),
         fallbackPrice = "$1.99"
     ),
 
     BG_LATTICE(
         id = "bg_lattice",
         kind = SkuKind.PERMANENT,
-        title = "LIVING: LATTICE",
-        summary = "A breathing circuit lattice that reacts to the wave.",
+        title = tr("LIVING: LATTICE"),
+        summary = tr("A breathing circuit lattice that reacts to the wave."),
         fallbackPrice = "$2.99"
     ),
 
     BG_AURORA(
         id = "bg_aurora",
         kind = SkuKind.PERMANENT,
-        title = "LIVING: AURORA",
-        summary = "Cold light moving behind everything.",
+        title = tr("LIVING: AURORA"),
+        summary = tr("Cold light moving behind everything."),
         fallbackPrice = "$4.99"
     ),
 
     BG_RAINFALL(
         id = "bg_rainfall",
         kind = SkuKind.PERMANENT,
-        title = "LIVING: RAINFALL",
-        summary = "Sparse columns of falling characters behind the field.",
+        title = tr("LIVING: RAINFALL"),
+        summary = tr("Sparse columns of falling characters behind the field."),
         fallbackPrice = "$1.99"
     ),
 
     BG_PULSE(
         id = "bg_pulse",
         kind = SkuKind.PERMANENT,
-        title = "LIVING: PULSE",
-        summary = "Rings travelling outward from the core.",
+        title = tr("LIVING: PULSE"),
+        summary = tr("Rings travelling outward from the core."),
         fallbackPrice = "$2.99"
     ),
 
     BG_ORBIT(
         id = "bg_orbit",
         kind = SkuKind.PERMANENT,
-        title = "LIVING: ORBIT",
-        summary = "Slow elliptical traces circling the core.",
+        title = tr("LIVING: ORBIT"),
+        summary = tr("Slow elliptical traces circling the core."),
         fallbackPrice = "$1.99"
     ),
 
     BG_HEATMAP(
         id = "bg_heatmap",
         kind = SkuKind.PERMANENT,
-        title = "LIVING: HEATMAP",
-        summary = "A grid whose cells warm and cool with the traffic.",
+        title = tr("LIVING: HEATMAP"),
+        summary = tr("A grid whose cells warm and cool with the traffic."),
         fallbackPrice = "$1.99"
     ),
 
@@ -251,12 +253,12 @@ enum class Sku(
     BG_PACK(
         id = "bg_pack",
         kind = SkuKind.PERMANENT,
-        title = "ALL LIVING BACKGROUNDS",
+        title = tr("ALL LIVING BACKGROUNDS"),
         // Every background, not most of them. RAINFALL and PULSE were added
         // after this pack was written and were not added to it, so a player
         // buying something called ALL LIVING BACKGROUNDS would have received
         // three of five.
-        summary = "All seven living backgrounds, plus \u20AC2,000.",
+        summary = tr("All seven living backgrounds, plus \u20AC2,000."),
         fallbackPrice = "$4.99",
         grantsBudget = 2_000,
         alsoUnlocks = listOf(
@@ -272,9 +274,9 @@ enum class Sku(
     SOUNDTRACK(
         id = "soundtrack",
         kind = SkuKind.PERMANENT,
-        title = "CyOps TD SOUNDTRACK",
-        summary = "All 24 tracks from the game, saved to your phone's Music " +
-            "folder to play anywhere.",
+        title = tr("CyOps TD SOUNDTRACK"),
+        summary = tr("All 24 tracks from the game, saved to your phone's Music " +
+            "folder to play anywhere."),
         fallbackPrice = "$4.99"
     ),
 
@@ -282,9 +284,9 @@ enum class Sku(
     STARTER_PACK(
         id = "starter_pack",
         kind = SkuKind.PERMANENT,
-        title = "STARTER PACK",
-        summary = "No ads, the SPECTRUM agent skin, the DRIFT background, " +
-            "and \u20AC2,000.",
+        title = tr("STARTER PACK"),
+        summary = tr("No ads, the SPECTRUM agent skin, the DRIFT background, " +
+            "and \u20AC2,000."),
         fallbackPrice = "$4.99",
         grantsBudget = 2_000,
         alsoUnlocks = listOf("no_ads", "skin_agents_spectrum", "bg_drift")

@@ -1,5 +1,7 @@
 package com.cyopstd.game.ui.menu
 
+import com.cyopstd.game.i18n.tr
+
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
@@ -62,21 +64,21 @@ fun FirmwareScreen(
 
     Box(Modifier.fillMaxSize()) {
     ScreenScaffold(
-        title = "CORE FIRMWARE",
-        subtitle = "Permanent upgrades · every match from now on",
+        title = tr("CORE FIRMWARE"),
+        subtitle = tr("Permanent upgrades · every match from now on"),
         onBack = onBack,
         backgroundAnimation = backgroundAnimation
     ) {
         Column(Modifier.fillMaxSize()) {
         Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
             CompactButton(
-                text = "CORE",
+                text = tr("CORE"),
                 onClick = { agentTab = false },
                 selected = !agentTab,
                 accent = Palette.Crypto
             )
             CompactButton(
-                text = "PER AGENT",
+                text = tr("PER AGENT"),
                 onClick = { agentTab = true },
                 selected = agentTab,
                 accent = Palette.Green,
@@ -103,7 +105,7 @@ fun FirmwareScreen(
                     .fillMaxHeight()
                     .verticalScroll(rememberScrollState())
             ) {
-                TerminalPanel(title = "€ BUDGET", accent = Palette.Cyan) {
+                TerminalPanel(title = tr("€ BUDGET"), accent = Palette.Cyan) {
                     Text(
                         text = "€ $budget",
                         style = MaterialTheme.typography.displayMedium,
@@ -111,13 +113,13 @@ fun FirmwareScreen(
                     )
                     Spacer(Modifier.height(4.dp))
                     Caption(
-                        "Banked at every tenth wave. The deeper a run goes, the " +
+                        tr("Banked at every tenth wave. The deeper a run goes, the " +
                             "more it pays — the award grows with the square of the " +
-                            "milestone, so one deep run beats five shallow ones."
+                            "milestone, so one deep run beats five shallow ones.")
                     )
                     Spacer(Modifier.height(8.dp))
                     StatRow(
-                        "LIFETIME EARNED",
+                        tr("LIFETIME EARNED"),
                         "€ $lifetimeBudgetEarned",
                         valueColor = Palette.TextSecondary
                     )
@@ -125,24 +127,24 @@ fun FirmwareScreen(
 
                 Spacer(Modifier.height(12.dp))
 
-                TerminalPanel(title = "INSTALLED FIRMWARE", accent = Palette.Green) {
+                TerminalPanel(title = tr("INSTALLED FIRMWARE"), accent = Palette.Green) {
                     StatRow(
-                        "LEVEL",
+                        tr("LEVEL"),
                         "$firmwareLevel / ${Balance.MAX_FIRMWARE_LEVEL}",
                         valueColor = Palette.Green
                     )
                     StatRow(
-                        "AGENT DAMAGE",
+                        tr("AGENT DAMAGE"),
                         FirmwareFormat.multiplier(firmwareLevel),
                         valueColor = Palette.Crypto
                     )
                     StatRow(
-                        "CRYPTO EARNED",
+                        tr("CRYPTO EARNED"),
                         "\u00D7%.2f".format(Balance.firmwareCryptoMultiplier(firmwareLevel)),
                         valueColor = Palette.Crypto
                     )
                     StatRow(
-                        "PER LEVEL",
+                        tr("PER LEVEL"),
                         FirmwareFormat.perLevel(),
                         valueColor = Palette.TextSecondary
                     )
@@ -159,31 +161,31 @@ fun FirmwareScreen(
                     .fillMaxHeight()
                     .verticalScroll(rememberScrollState())
             ) {
-                TerminalPanel(title = "INSTALL", accent = Palette.Crypto) {
+                TerminalPanel(title = tr("INSTALL"), accent = Palette.Crypto) {
                     if (maxed) {
                         Text(
-                            text = "FIRMWARE FULLY INSTALLED",
+                            text = tr("FIRMWARE FULLY INSTALLED"),
                             style = MaterialTheme.typography.titleMedium,
                             color = Palette.Crypto
                         )
                     } else {
                         StatRow(
-                            "NEXT LEVEL COSTS",
+                            tr("NEXT LEVEL COSTS"),
                             "€ $nextCost",
                             valueColor = if (canAffordOne) Palette.Crypto else Palette.Red
                         )
                         StatRow(
-                            "TAKES YOU TO",
+                            tr("TAKES YOU TO"),
                             FirmwareFormat.multiplier(firmwareLevel + 1),
                             valueColor = if (canAffordOne) Palette.Crypto else Palette.TextMuted
                         )
                         StatRow(
-                            "AFFORDABLE NOW",
+                            tr("AFFORDABLE NOW"),
                             if (affordable > 0) {
-                                "$affordable level${if (affordable == 1) "" else "s"}" +
+                                (if (affordable == 1) tr("1 level") else tr("{0} levels", affordable)) +
                                     "  ${FirmwareFormat.gain(affordable)}"
                             } else {
-                                "0 levels"
+                                tr("0 levels")
                             },
                             valueColor = if (affordable > 0) Palette.Green else Palette.TextMuted
                         )
@@ -217,7 +219,7 @@ fun FirmwareScreen(
                         Spacer(Modifier.height(8.dp))
 
                         CompactButton(
-                            text = if (affordable > 0) "INSTALL MAX  (+$affordable)" else "INSTALL MAX",
+                            text = if (affordable > 0) tr("INSTALL MAX  (+{0})", affordable) else tr("INSTALL MAX"),
                             onClick = { onBuy(affordable) },
                             enabled = affordable > 0,
                             accent = Palette.Crypto,
@@ -226,31 +228,33 @@ fun FirmwareScreen(
 
                         Spacer(Modifier.height(8.dp))
                         Caption(
-                            "Each level costs slightly more than the last, so the " +
+                            tr("Each level costs slightly more than the last, so the " +
                                 "multiplier keeps climbing but never runs away. " +
-                                "There is no cap you will realistically reach."
+                                "There is no cap you will realistically reach.")
                         )
                     }
                 }
 
                 Spacer(Modifier.height(12.dp))
 
-                TerminalPanel(title = "WHAT THIS CHANGES", accent = Palette.Purple) {
+                TerminalPanel(title = tr("WHAT THIS CHANGES"), accent = Palette.Purple) {
                     Text(
-                        text = "Firmware multiplies the damage of every agent you " +
+                        text = tr("Firmware multiplies the damage of every agent you " +
                             "deploy, in every match from now on. It is applied " +
                             "before armour and before the counter table, so it " +
                             "helps a Cryptographer against encryption exactly as " +
-                            "much as it helps a Firewall against plain traffic.",
+                            "much as it helps a Firewall against plain traffic."),
                         style = MaterialTheme.typography.bodyMedium,
                         color = Palette.TextSecondary
                     )
                     Spacer(Modifier.height(8.dp))
                     Caption(
-                        "It also raises the \u25C7 crypto every run pays out, " +
-                            "+${"%.2f".format(Balance.FIRMWARE_CRYPTO_PER_LEVEL * 100)}% per " +
-                            "level up to double. It does not affect enemy health " +
-                            "or wave composition."
+                        tr(
+                            "It also raises the \u25C7 crypto every run pays out, " +
+                                "+{0}% per level up to double. It does not affect enemy health " +
+                                "or wave composition.",
+                            "%.2f".format(Balance.FIRMWARE_CRYPTO_PER_LEVEL * 100)
+                        )
                     )
                 }
 
@@ -285,12 +289,12 @@ private fun FirmwareBar(level: Int) {
         else -> 0
     }
     val bandLabel = when (band) {
-        0 -> "UNINSTALLED"
-        1 -> "BASELINE"
-        2 -> "HARDENED"
-        3 -> "RESILIENT"
-        4 -> "FORTIFIED"
-        else -> "ABSOLUTE"
+        0 -> tr("UNINSTALLED")
+        1 -> tr("BASELINE")
+        2 -> tr("HARDENED")
+        3 -> tr("RESILIENT")
+        4 -> tr("FORTIFIED")
+        else -> tr("ABSOLUTE")
     }
     val cells = 5
     Text(

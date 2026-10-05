@@ -1,5 +1,7 @@
 package com.cyopstd.game.engine
 
+import com.cyopstd.game.i18n.tr
+
 import com.cyopstd.game.core.Balance
 import com.cyopstd.game.model.Effect
 import com.cyopstd.game.model.EffectKind
@@ -172,16 +174,16 @@ class EffectSystem(private val engine: GameEngine, private val random: Random) {
 
     companion object {
         val TERMINAL_MESSAGES = arrayOf(
-            "ATTACK BLOCKED",
-            "THREAT NEUTRALIZED",
-            "CONNECTION RESET",
-            "ACCESS DENIED",
-            "PORT SECURED",
-            "FIREWALL ACTIVE",
-            "INTRUSION BLOCKED",
-            "SIGNATURE MATCHED",
-            "QUARANTINED",
-            "HANDSHAKE REFUSED"
+            tr("ATTACK BLOCKED"),
+            tr("THREAT NEUTRALIZED"),
+            tr("CONNECTION RESET"),
+            tr("ACCESS DENIED"),
+            tr("PORT SECURED"),
+            tr("FIREWALL ACTIVE"),
+            tr("INTRUSION BLOCKED"),
+            tr("SIGNATURE MATCHED"),
+            tr("QUARANTINED"),
+            tr("HANDSHAKE REFUSED")
         )
     }
 }

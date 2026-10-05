@@ -1,5 +1,7 @@
 package com.cyopstd.game.engine
 
+import com.cyopstd.game.i18n.tr
+
 import com.cyopstd.game.core.Balance
 import com.cyopstd.game.model.Agent
 import com.cyopstd.game.model.AgentType
@@ -251,7 +253,7 @@ class ProjectileSystem(private val engine: GameEngine, private val random: Rando
                 engine.effectSystem().spawnText(
                     enemy.x,
                     enemy.y - 48f,
-                    "REANIMATED",
+                    tr("REANIMATED"),
                     GameEngine.COLOR_HOSTILE,
                     1.1f
                 )

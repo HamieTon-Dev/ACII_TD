@@ -1,5 +1,7 @@
 package com.cyopstd.game.ui.common
 
+import com.cyopstd.game.i18n.tr
+
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
@@ -340,7 +342,7 @@ fun ToggleRow(
         }
         // Text state alongside the switch: never rely on the switch colour alone.
         Text(
-            text = if (checked) "ON " else "OFF",
+            text = if (checked) tr("ON ") else tr("OFF"),
             color = if (checked) Palette.Green else Palette.TextMuted,
             style = MaterialTheme.typography.labelMedium
         )

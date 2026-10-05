@@ -1,5 +1,7 @@
 package com.cyopstd.game.ui.menu
 
+import com.cyopstd.game.i18n.tr
+
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -46,7 +48,7 @@ fun AboutScreen(
     onPrivacyOptions: () -> Unit = {}
 ) {
     ScreenScaffold(
-        title = "ABOUT",
+        title = tr("ABOUT"),
         subtitle = "${AboutText.GAME_TITLE} · ${AboutText.GAME_SUBTITLE}",
         onBack = onBack,
         backgroundAnimation = backgroundAnimation
@@ -62,35 +64,35 @@ fun AboutScreen(
                     .fillMaxHeight()
                     .verticalScroll(rememberScrollState())
             ) {
-                TerminalPanel(title = "BUILD", accent = Palette.Cyan) {
-                    StatRow("TITLE", AboutText.GAME_TITLE, valueColor = Palette.Green)
-                    StatRow("VERSION", BuildConfig.VERSION_NAME, valueColor = Palette.Green)
-                    StatRow("PACKAGE", BuildConfig.APPLICATION_ID)
-                    StatRow("BUILD TYPE", BuildConfig.BUILD_TYPE)
-                    StatRow("DEVELOPER", AboutText.DEVELOPER, valueColor = Palette.Cyan)
-                    StatRow("RENDERING", "Compose UI + native Canvas")
-                    StatRow("PERSISTENCE", "Jetpack DataStore")
+                TerminalPanel(title = tr("BUILD"), accent = Palette.Cyan) {
+                    StatRow(tr("TITLE"), AboutText.GAME_TITLE, valueColor = Palette.Green)
+                    StatRow(tr("VERSION"), BuildConfig.VERSION_NAME, valueColor = Palette.Green)
+                    StatRow(tr("PACKAGE"), BuildConfig.APPLICATION_ID)
+                    StatRow(tr("BUILD TYPE"), BuildConfig.BUILD_TYPE)
+                    StatRow(tr("DEVELOPER"), AboutText.DEVELOPER, valueColor = Palette.Cyan)
+                    StatRow(tr("RENDERING"), tr("Compose UI + native Canvas"))
+                    StatRow(tr("PERSISTENCE"), tr("Jetpack DataStore"))
                 }
 
                 Spacer(Modifier.height(12.dp))
 
-                TerminalPanel(title = "THE GAME", accent = Palette.Green) {
+                TerminalPanel(title = tr("THE GAME"), accent = Palette.Green) {
                     Body(AboutText.DEVELOPMENT_STATEMENT)
                     Spacer(Modifier.height(8.dp))
                     Body(
-                        "Cyberattacks advance along network routes toward " +
+                        tr("Cyberattacks advance along network routes toward " +
                             "CORE-SERVER. You deploy Cyber Agents beside the " +
                             "lanes; they detect and destroy what comes past. " +
                             "Every attack you stop pays ◇ Crypto, which buys " +
                             "more agents and upgrades. Every fifth wave is a " +
                             "boss. There is no final wave — the only question " +
-                            "is how far you get."
+                            "is how far you get.")
                     )
                 }
 
                 Spacer(Modifier.height(12.dp))
 
-                TerminalPanel(title = "WHAT THIS GAME DOES NOT DO", accent = Palette.Red) {
+                TerminalPanel(title = tr("WHAT THIS GAME DOES NOT DO"), accent = Palette.Red) {
                     for (line in AboutText.DOES_NOT_DO) {
                         Text(
                             text = "· $line",
@@ -113,7 +115,7 @@ fun AboutScreen(
                     .fillMaxHeight()
                     .verticalScroll(rememberScrollState())
             ) {
-                TerminalPanel(title = "ADVERTISING AND PURCHASES", accent = Palette.Orange) {
+                TerminalPanel(title = tr("ADVERTISING AND PURCHASES"), accent = Palette.Orange) {
                     Body(
                         AboutText.monetisationSummary(
                             adsConfigured = adsConfigured,
@@ -123,7 +125,7 @@ fun AboutScreen(
                     if (privacyOptionsRequired) {
                         Spacer(Modifier.height(10.dp))
                         BastionButton(
-                            text = "PRIVACY OPTIONS",
+                            text = tr("PRIVACY OPTIONS"),
                             accent = Palette.Crypto,
                             leadingGlyph = "[i]",
                             onClick = onPrivacyOptions,
@@ -146,15 +148,15 @@ fun AboutScreen(
 
                 Spacer(Modifier.height(12.dp))
 
-                TerminalPanel(title = "CREDITS", accent = Palette.Cyan) {
+                TerminalPanel(title = tr("CREDITS"), accent = Palette.Cyan) {
                     Caption(
-                        "Original code, original artwork, original synthesized " +
+                        tr("Original code, original artwork, original synthesized " +
                             "audio. Built with Kotlin, Jetpack Compose and the " +
                             "Android Canvas API.\n\n" +
                             "Icons: CoreUI Icons Free by creativeLabs " +
                             "(coreui.io/icons), licensed CC BY 4.0.\n\n" +
                             "Third-party dependency licenses are listed in " +
-                            "LICENSES.md in the project repository."
+                            "LICENSES.md in the project repository.")
                     )
                     Spacer(Modifier.height(10.dp))
                     Text(

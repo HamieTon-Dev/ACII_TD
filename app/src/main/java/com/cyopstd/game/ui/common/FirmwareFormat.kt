@@ -1,5 +1,7 @@
 package com.cyopstd.game.ui.common
 
+import com.cyopstd.game.i18n.tr
+
 import com.cyopstd.game.core.Balance
 
 /**

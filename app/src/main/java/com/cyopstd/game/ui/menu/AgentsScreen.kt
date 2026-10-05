@@ -1,5 +1,7 @@
 package com.cyopstd.game.ui.menu
 
+import com.cyopstd.game.i18n.tr
+
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
@@ -41,9 +43,9 @@ fun AgentsScreen(
     onBack: () -> Unit
 ) {
     ScreenScaffold(
-        title = "CYBER AGENTS",
-        subtitle = "${unlockedAgents.size} of ${AgentType.entries.size} unlocked · " +
-            "best wave $highestWave",
+        title = tr("CYBER AGENTS"),
+        subtitle = tr("{0} of {1} unlocked · " +
+            "best wave {2}", unlockedAgents.size, AgentType.entries.size, highestWave),
         onBack = onBack,
         backgroundAnimation = backgroundAnimation
     ) {
@@ -86,9 +88,9 @@ private fun AgentRosterCard(type: AgentType, unlocked: Boolean, highestWave: Int
                 )
                 Text(
                     text = if (unlocked) {
-                        "AVAILABLE · ◇ ${type.cost}"
+                        tr("AVAILABLE · ◇ {0}", type.cost)
                     } else {
-                        "LOCKED · ${type.lockedLabel}"
+                        tr("LOCKED · {0}", type.lockedLabel)
                     },
                     style = MaterialTheme.typography.labelSmall,
                     color = if (unlocked) Palette.Green else Palette.Orange
@@ -100,13 +102,13 @@ private fun AgentRosterCard(type: AgentType, unlocked: Boolean, highestWave: Int
 
         Row(horizontalArrangement = Arrangement.spacedBy(14.dp)) {
             if (type.healsServer) {
-                MiniStat("REPAIR", "+${com.cyopstd.game.core.Balance.ENGINEER_HEAL_AMOUNT} HP")
-                MiniStat("EVERY", "${com.cyopstd.game.core.Balance.ENGINEER_HEAL_INTERVAL.toInt()}s")
-                MiniStat("SLOT", "CORE")
+                MiniStat(tr("REPAIR"), "+${com.cyopstd.game.core.Balance.ENGINEER_HEAL_AMOUNT} HP")
+                MiniStat(tr("EVERY"), "${com.cyopstd.game.core.Balance.ENGINEER_HEAL_INTERVAL.toInt()}s")
+                MiniStat(tr("SLOT"), tr("CORE"))
             } else {
-                MiniStat("DMG", type.baseDamage.toInt().toString())
-                MiniStat("RATE", "${trim(type.baseFireRate)}/s")
-                MiniStat("RANGE", type.baseRange.toInt().toString())
+                MiniStat(tr("DMG"), type.baseDamage.toInt().toString())
+                MiniStat(tr("RATE"), "${trim(type.baseFireRate)}/s")
+                MiniStat(tr("RANGE"), type.baseRange.toInt().toString())
             }
         }
 
@@ -118,7 +120,7 @@ private fun AgentRosterCard(type: AgentType, unlocked: Boolean, highestWave: Int
         // tell which sentence was true of the world and which was true only
         // here. REAL-WORLD comes first: it is the part worth knowing.
         IndexSection(
-            label = "REAL-WORLD",
+            label = tr("REAL-WORLD"),
             accent = Palette.Cyan,
             body = type.realWorld
         )
@@ -126,7 +128,7 @@ private fun AgentRosterCard(type: AgentType, unlocked: Boolean, highestWave: Int
         Spacer(Modifier.height(8.dp))
 
         IndexSection(
-            label = "IN-GAME",
+            label = tr("IN-GAME"),
             accent = Palette.Green,
             body = type.inGame
         )

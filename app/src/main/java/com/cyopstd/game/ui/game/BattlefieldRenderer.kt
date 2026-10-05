@@ -1,5 +1,7 @@
 package com.cyopstd.game.ui.game
 
+import com.cyopstd.game.i18n.tr
+
 import android.graphics.Paint
 import android.graphics.Typeface
 import com.cyopstd.game.core.GameMode
@@ -373,7 +375,7 @@ class BattlefieldRenderer {
         // wave 1 is what is coming, which is what the HUD ("--") and the
         // preparation banner ("PERIMETER READY") already say in their own way.
         // The readout was the only thing claiming a wave zero existed.
-        val waveText = "WAVE ${engine.currentWave.coerceAtLeast(1)}"
+        val waveText = tr("WAVE {0}", engine.currentWave.coerceAtLeast(1))
         val cryptoText = "\u25C7 ${engine.crypto}"
 
         val anchors = fieldStatusAnchors
@@ -649,7 +651,7 @@ class BattlefieldRenderer {
         leftTextPaint.color = colRed
         leftTextPaint.alpha = 200
         canvas.drawText(
-            "ATTACK ORIGIN",
+            tr("ATTACK ORIGIN"),
             FIELD_STATUS_MARGIN,
             entry.y - WorldGeometry.LANE_HEIGHT * 0.5f - 12f,
             leftTextPaint
@@ -707,7 +709,7 @@ class BattlefieldRenderer {
         leftTextPaint.color = map.theme?.laneMarks ?: colCyanDim
         leftTextPaint.alpha = 165
         canvas.drawText(
-            "ROUTE ${'A' + lane}",
+            tr("ROUTE {0}", 'A' + lane),
             FIELD_STATUS_MARGIN + 2f,
             entry.y + 5f,
             leftTextPaint
@@ -872,7 +874,7 @@ class BattlefieldRenderer {
             textPaint.textSize = 17f
             textPaint.color = colRed
             textPaint.alpha = (120 + 135 * flash).toInt().coerceIn(0, 255)
-            canvas.drawText("!! INTEGRITY LOW !!", (left + right) * 0.5f, top - 14f, textPaint)
+            canvas.drawText(tr("!! INTEGRITY LOW !!"), (left + right) * 0.5f, top - 14f, textPaint)
             textPaint.alpha = 255
         }
     }
@@ -1389,7 +1391,7 @@ class BattlefieldRenderer {
             angle += 0.30f
         }
         thinTextPaint.textSize = 13f
-        canvas.drawText("SCAN RANGE ${radius.toInt()}", cx, cy - radius - 8f, thinTextPaint)
+        canvas.drawText(tr("SCAN RANGE {0}", radius.toInt()), cx, cy - radius - 8f, thinTextPaint)
         thinTextPaint.alpha = 255
     }
 
@@ -1500,7 +1502,7 @@ class BattlefieldRenderer {
             }
             if (agent.disruptedFor > 0f) {
                 thinTextPaint.color = colRed
-                canvas.drawText("JAM", agent.x, agent.y - WorldGeometry.NODE_RADIUS - 10f, thinTextPaint)
+                canvas.drawText(tr("JAM"), agent.x, agent.y - WorldGeometry.NODE_RADIUS - 10f, thinTextPaint)
             }
             thinTextPaint.alpha = 255
         }
@@ -2173,7 +2175,7 @@ class BattlefieldRenderer {
         textPaint.textSize = 46f
         textPaint.color = colRed
         textPaint.alpha = 255
-        canvas.drawText("!!! CYBERATTACK INCOMING !!!", cx, WorldGeometry.HEIGHT * 0.40f, textPaint)
+        canvas.drawText(tr("!!! CYBERATTACK INCOMING !!!"), cx, WorldGeometry.HEIGHT * 0.40f, textPaint)
 
         // Named, now that bosses have names. A player who has learned what
         // [GG] does should be told which one is coming while there is still
@@ -2195,7 +2197,7 @@ class BattlefieldRenderer {
         thinTextPaint.color = colSecondary
         thinTextPaint.alpha = 235
         canvas.drawText(
-            if (variants.size <= 1) variant.signature else "Different bosses, different weaknesses.",
+            if (variants.size <= 1) variant.signature else tr("Different bosses, different weaknesses."),
             cx,
             WorldGeometry.HEIGHT * 0.555f,
             thinTextPaint
@@ -2216,7 +2218,7 @@ class BattlefieldRenderer {
         thinTextPaint.textSize = 18f
         thinTextPaint.color = colSecondary
         canvas.drawText(
-            "WAVE ${engine.currentWave}  —  BRACE THE PERIMETER",
+            tr("WAVE {0}  —  BRACE THE PERIMETER", engine.currentWave),
             cx, WorldGeometry.HEIGHT * 0.66f, thinTextPaint
         )
     }
