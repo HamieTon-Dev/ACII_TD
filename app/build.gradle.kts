@@ -133,6 +133,15 @@ fun Project.uploadKeystore(): Pair<File, String>? {
 }
 
 android {
+    // Every language goes in every install. Play would otherwise split the
+    // bundle by language and deliver only the phone's own, and a language
+    // picked in the game's LANGUAGE setting would then fall back to English.
+    bundle {
+        language {
+            enableSplit = false
+        }
+    }
+
     namespace = "com.cyopstd.game"
     compileSdk = 36
 
@@ -187,8 +196,9 @@ android {
         // PlayGamesSdk.initialize().
         resValue("string", "games_app_id", gamesAppId.ifEmpty { "0" })
 
-        // Keep the APK small: the game ships no localized resources yet.
-        resourceConfigurations += listOf("en")
+        // No resourceConfigurations filter: the game ships in many languages
+        // (see i18n/Tr.kt) and the in-game LANGUAGE picker can switch to any
+        // of them, not only the phone's.
     }
 
     signingConfigs {

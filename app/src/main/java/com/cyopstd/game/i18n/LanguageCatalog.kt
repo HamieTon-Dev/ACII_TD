@@ -5,5 +5,7 @@ package com.cyopstd.game.i18n
  * language's `strings_i18n.xml` in its `res/values-` folder lands.
  */
 internal object LanguageCatalog {
-    val translated: List<Language> = listOf()
+    val translated: List<Language> = listOf(
+        Language("es", "Español (España)", "Spanish (Spain)")
+    )
 }

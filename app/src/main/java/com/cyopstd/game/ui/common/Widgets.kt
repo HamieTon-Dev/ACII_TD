@@ -374,10 +374,13 @@ fun SliderRow(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
+            // Weighted, so a long label (as some languages have) wraps
+            // instead of running into the meter.
             Text(
                 text = label,
                 color = Palette.TextPrimary,
-                style = MaterialTheme.typography.bodyLarge
+                style = MaterialTheme.typography.bodyLarge,
+                modifier = Modifier.weight(1f).padding(end = 8.dp)
             )
             Text(
                 text = asciiMeter(value),
