@@ -406,6 +406,7 @@
     <string name="t_7682806a" formatted="false">"الخطوة 2 — اختر FIREWALL"</string>
     <string name="t_77212b64" formatted="false">"هذه موجة الهجوم التي تواجهها. تستمر في الارتفاع ما دمت تصمد بالخادم — كل موجة خامسة تجلب زعيمًا."</string>
     <string name="t_772b21ba" formatted="false">"الدفاعات التي تنشرها"</string>
+    <string name="t_776f4222" formatted="false">"مستوى {0}"</string>
     <string name="t_77a2583e" formatted="false">"شيئان مختلفان يُسمَّيان «كمّيًا» في الأمن ويستحق الفصل بينهما. توزيع المفاتيح الكمّي يستخدم الفيزياء لكشف التنصت على وصلة، ولا يُنشر إلا في بيئات نادرة ومتخصصة. التشفير ما بعد الكمّي رياضيات برمجية عادية مصممة لمقاومة الحواسيب الكمّية المستقبلية، وهو الذي يُعمَّم فعلًا."</string>
     <string name="t_77a6da9b" formatted="false">"حلقات تنتقل للخارج من النواة."</string>
     <string name="t_77d03aa5" formatted="false">"الحقن الأعمى لا يتلقى أي رسائل خطأ، لذا يستنتج المهاجم الإجابة سؤال صح أو خطأ في كل مرة. إنه أبطأ وأكثر صبرًا بكثير من الحقن العادي، ويصل محصّنًا ضد الدفاعات الواضحة."</string>
@@ -709,6 +710,7 @@
     <string name="t_ce2cde0d" formatted="false">"الخطوة 1 — افتح الفريق"</string>
     <string name="t_ce56b8c8" formatted="false">"الإدارة على GOOGLE PLAY"</string>
     <string name="t_ce8b48c9" formatted="false">"أسلوب اللعب"</string>
+    <string name="t_ceb6dbab" formatted="false">"موسيقى CyOps TD التصويرية"</string>
     <string name="t_cec6cd66" formatted="false">"لا توجد جولات مسجلة بعد. أنهِ جولة وستُدرج هنا، مرتبة حسب الموجة التي بلغتها."</string>
     <string name="t_cee3b8c9" formatted="false">"تخطٍّ"</string>
     <string name="t_cfd886ad" formatted="false">"مساران يمشّطان نصفيهما. الأبراج في الفجوة الوسطى تصل إلى كليهما."</string>

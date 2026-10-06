@@ -406,6 +406,7 @@
     <string name="t_7682806a" formatted="false">"STAP 2 — KIES FIREWALL"</string>
     <string name="t_77212b64" formatted="false">"Dit is de aanvalsgolf waar je tegenover staat. Hij blijft stijgen zolang je de server houdt — elke vijfde golf brengt een baas."</string>
     <string name="t_772b21ba" formatted="false">"De verdediging die je inzet"</string>
+    <string name="t_776f4222" formatted="false">"NIV {0}"</string>
     <string name="t_77a2583e" formatted="false">"Twee verschillende dingen heten in beveiliging \"kwantum\" en het loont om ze uit elkaar te houden. Kwantumsleuteldistributie gebruikt natuurkunde om afluisteren op een verbinding te detecteren en wordt alleen in zeldzame, gespecialiseerde situaties ingezet. Post-kwantumcryptografie is gewone softwarewiskunde die bestand moet zijn tegen toekomstige kwantumcomputers, en dat is degene die echt wordt uitgerold."</string>
     <string name="t_77a6da9b" formatted="false">"Ringen die vanuit de kern naar buiten reizen."</string>
     <string name="t_77d03aa5" formatted="false">"Een blinde injectie krijgt geen foutmeldingen terug, dus de aanvaller leidt het antwoord af met één waar-of-onwaarvraag tegelijk. Het is trager en veel geduldiger dan een gewone injectie, en komt gehard tegen de voor de hand liggende verdedigingen."</string>
@@ -709,6 +710,7 @@
     <string name="t_ce2cde0d" formatted="false">"STAP 1 — OPEN DE PLOEG"</string>
     <string name="t_ce56b8c8" formatted="false">"BEHEREN OP GOOGLE PLAY"</string>
     <string name="t_ce8b48c9" formatted="false">"GAMEPLAY"</string>
+    <string name="t_ceb6dbab" formatted="false">"CyOps TD-SOUNDTRACK"</string>
     <string name="t_cec6cd66" formatted="false">"Nog geen runs bijgehouden. Voltooi een run en hij verschijnt hier, gerangschikt op de golf die je haalde."</string>
     <string name="t_cee3b8c9" formatted="false">"OVERSLAAN"</string>
     <string name="t_cfd886ad" formatted="false">"Twee routes kammen hun eigen helft. Torens in de middelste opening bereiken beide."</string>

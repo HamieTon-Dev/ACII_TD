@@ -406,6 +406,7 @@
     <string name="t_7682806a" formatted="false">"ÉTAPE 2 — CHOISIS FIREWALL"</string>
     <string name="t_77212b64" formatted="false">"C'est la vague d'attaque que tu affrontes. Elle monte tant que tu tiens le serveur — toutes les cinq vagues arrive un boss."</string>
     <string name="t_772b21ba" formatted="false">"Les défenses que tu déploies"</string>
+    <string name="t_776f4222" formatted="false">"NIV {0}"</string>
     <string name="t_77a2583e" formatted="false">"En sécurité, deux choses différentes sont qualifiées de « quantiques », et il vaut mieux les distinguer. La distribution quantique de clés utilise la physique pour détecter les écoutes sur une liaison et n'est déployée que dans de rares contextes spécialisés. La cryptographie post-quantique, ce sont des mathématiques logicielles ordinaires conçues pour résister aux futurs ordinateurs quantiques, et c'est elle qui est réellement déployée."</string>
     <string name="t_77a6da9b" formatted="false">"Des anneaux qui s'éloignent du noyau."</string>
     <string name="t_77d03aa5" formatted="false">"Une injection aveugle ne reçoit aucun message d'erreur, donc l'attaquant déduit la réponse question par question, vrai ou faux. Elle est plus lente et bien plus patiente qu'une injection normale, et arrive renforcée contre les défenses évidentes."</string>
@@ -709,6 +710,7 @@
     <string name="t_ce2cde0d" formatted="false">"ÉTAPE 1 — OUVRE L'ÉQUIPE"</string>
     <string name="t_ce56b8c8" formatted="false">"GÉRER SUR GOOGLE PLAY"</string>
     <string name="t_ce8b48c9" formatted="false">"JEU"</string>
+    <string name="t_ceb6dbab" formatted="false">"CyOps TD SOUNDTRACK"</string>
     <string name="t_cec6cd66" formatted="false">"Aucune partie enregistrée pour l'instant. Termine une partie et elle apparaîtra ici, classée selon la vague atteinte."</string>
     <string name="t_cee3b8c9" formatted="false">"PASSER"</string>
     <string name="t_cfd886ad" formatted="false">"Deux voies ratissent chacune leur moitié. Les tours dans l'espace central atteignent les deux."</string>

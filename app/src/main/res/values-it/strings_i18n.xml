@@ -406,6 +406,7 @@
     <string name="t_7682806a" formatted="false">"PASSO 2 — SCEGLI FIREWALL"</string>
     <string name="t_77212b64" formatted="false">"Questa è l'ondata d'attacco che stai affrontando. Sale finché tieni il server — ogni cinque ondate arriva un boss."</string>
     <string name="t_772b21ba" formatted="false">"Le difese che schieri"</string>
+    <string name="t_776f4222" formatted="false">"LIV {0}"</string>
     <string name="t_77a2583e" formatted="false">"In sicurezza si chiamano \"quantistiche\" due cose diverse, ed è bene tenerle distinte. La distribuzione quantistica delle chiavi usa la fisica per rilevare intercettazioni su un collegamento ed è impiegata solo in contesti rari e specializzati. La crittografia post-quantistica è normale matematica software pensata per resistere ai futuri computer quantistici, ed è quella che si sta davvero adottando."</string>
     <string name="t_77a6da9b" formatted="false">"Anelli che si allontanano dal nucleo."</string>
     <string name="t_77d03aa5" formatted="false">"Un'injection alla cieca non riceve messaggi di errore, quindi l'attaccante deduce la risposta una domanda vero/falso alla volta. È più lenta e molto più paziente di un'injection normale, e arriva rinforzata contro le difese ovvie."</string>
@@ -709,6 +710,7 @@
     <string name="t_ce2cde0d" formatted="false">"PASSO 1 — APRI LA SQUADRA"</string>
     <string name="t_ce56b8c8" formatted="false">"GESTISCI SU GOOGLE PLAY"</string>
     <string name="t_ce8b48c9" formatted="false">"GAMEPLAY"</string>
+    <string name="t_ceb6dbab" formatted="false">"CyOps TD SOUNDTRACK"</string>
     <string name="t_cec6cd66" formatted="false">"Ancora nessuna partita registrata. Finiscine una e comparirà qui, ordinata in base all'ondata raggiunta."</string>
     <string name="t_cee3b8c9" formatted="false">"SALTA"</string>
     <string name="t_cfd886ad" formatted="false">"Due corsie pettinano ciascuna la propria metà. Le torri nello spazio centrale le raggiungono entrambe."</string>

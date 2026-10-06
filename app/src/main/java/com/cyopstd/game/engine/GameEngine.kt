@@ -1052,7 +1052,7 @@ class GameEngine(
         hapticListener?.invoke(if (bought > 1) HapticCue.MEDIUM else HapticCue.LIGHT)
         effectSystem.spawnEffect(
             EffectKind.UPGRADE, agent.x, agent.y - 42f,
-            "LV ${agent.level}", COLOR_CRYPTO, 0.9f
+            tr("LV {0}", agent.level), COLOR_CRYPTO, 0.9f
         )
         return bought
     }

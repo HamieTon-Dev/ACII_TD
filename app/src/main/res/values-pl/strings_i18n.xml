@@ -406,6 +406,7 @@
     <string name="t_7682806a" formatted="false">"KROK 2 — WYBIERZ FIREWALL"</string>
     <string name="t_77212b64" formatted="false">"To fala ataku, z którą się mierzysz. Rośnie, dopóki utrzymujesz serwer — co piąta fala przynosi bossa."</string>
     <string name="t_772b21ba" formatted="false">"Obrona, którą rozmieszczasz"</string>
+    <string name="t_776f4222" formatted="false">"POZ. {0}"</string>
     <string name="t_77a2583e" formatted="false">"W bezpieczeństwie „kwantowe” nazywa się dwie różne rzeczy i warto je rozróżniać. Kwantowa dystrybucja klucza używa fizyki do wykrywania podsłuchu na łączu i jest stosowana tylko w rzadkich, wyspecjalizowanych warunkach. Kryptografia postkwantowa to zwykła matematyka programowa zaprojektowana, by oprzeć się przyszłym komputerom kwantowym, i to ona jest faktycznie wdrażana."</string>
     <string name="t_77a6da9b" formatted="false">"Pierścienie wędrujące na zewnątrz od rdzenia."</string>
     <string name="t_77d03aa5" formatted="false">"Ślepe wstrzyknięcie nie dostaje żadnych komunikatów o błędach, więc atakujący wnioskuje odpowiedź pytaniem prawda-fałsz po pytaniu. Jest wolniejsze i znacznie cierpliwsze niż zwykłe wstrzyknięcie i przychodzi utwardzone przeciw oczywistym obronom."</string>
@@ -709,6 +710,7 @@
     <string name="t_ce2cde0d" formatted="false">"KROK 1 — OTWÓRZ SKŁAD"</string>
     <string name="t_ce56b8c8" formatted="false">"ZARZĄDZAJ W GOOGLE PLAY"</string>
     <string name="t_ce8b48c9" formatted="false">"ROZGRYWKA"</string>
+    <string name="t_ceb6dbab" formatted="false">"ŚCIEŻKA DŹWIĘKOWA CyOps TD"</string>
     <string name="t_cec6cd66" formatted="false">"Brak zapisanych rozgrywek. Ukończ rozgrywkę, a pojawi się tutaj, uszeregowana według osiągniętej fali."</string>
     <string name="t_cee3b8c9" formatted="false">"POMIŃ"</string>
     <string name="t_cfd886ad" formatted="false">"Dwie trasy przeczesują swoje połowy. Wieże w środkowej szczelinie sięgają obu."</string>

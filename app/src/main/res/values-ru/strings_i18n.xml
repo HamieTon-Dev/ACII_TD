@@ -406,6 +406,7 @@
     <string name="t_7682806a" formatted="false">"ШАГ 2 — ВЫБЕРИ FIREWALL"</string>
     <string name="t_77212b64" formatted="false">"Это волна атаки, с которой ты сейчас сражаешься. Она растёт, пока ты удерживаешь сервер, — каждая пятая волна приносит босса."</string>
     <string name="t_772b21ba" formatted="false">"Защита, которую ты разворачиваешь"</string>
+    <string name="t_776f4222" formatted="false">"УР. {0}"</string>
     <string name="t_77a2583e" formatted="false">"В безопасности «квантовыми» называют две разные вещи, и их стоит различать. Квантовое распределение ключей использует физику, чтобы обнаружить прослушивание канала, и применяется лишь в редких специализированных случаях. Постквантовая криптография — обычная программная математика, рассчитанная на стойкость к будущим квантовым компьютерам, и именно её сейчас внедряют."</string>
     <string name="t_77a6da9b" formatted="false">"Кольца, расходящиеся от ядра."</string>
     <string name="t_77d03aa5" formatted="false">"Слепая инъекция не получает сообщений об ошибках, поэтому атакующий выясняет ответ по одному вопросу «да/нет» за раз. Она медленнее и гораздо терпеливее обычной инъекции и приходит укреплённой против очевидной защиты."</string>
@@ -709,6 +710,7 @@
     <string name="t_ce2cde0d" formatted="false">"ШАГ 1 — ОТКРОЙ СОСТАВ"</string>
     <string name="t_ce56b8c8" formatted="false">"УПРАВЛЯТЬ В GOOGLE PLAY"</string>
     <string name="t_ce8b48c9" formatted="false">"ИГРОВОЙ ПРОЦЕСС"</string>
+    <string name="t_ceb6dbab" formatted="false">"CyOps TD SOUNDTRACK"</string>
     <string name="t_cec6cd66" formatted="false">"Записанных забегов пока нет. Заверши забег, и он появится здесь в порядке достигнутой волны."</string>
     <string name="t_cee3b8c9" formatted="false">"ПРОПУСТИТЬ"</string>
     <string name="t_cfd886ad" formatted="false">"Две линии прочёсывают каждая свою половину. Башни в центральном промежутке достают до обеих."</string>

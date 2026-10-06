@@ -406,6 +406,7 @@
     <string name="t_7682806a" formatted="false">"PASO 2 — ELIGE FIREWALL"</string>
     <string name="t_77212b64" formatted="false">"Esta es la oleada de ataque a la que te enfrentas. Sube mientras resista el servidor; cada quinta oleada trae un jefe."</string>
     <string name="t_772b21ba" formatted="false">"Las defensas que despliegas"</string>
+    <string name="t_776f4222" formatted="false">"NV {0}"</string>
     <string name="t_77a2583e" formatted="false">"En seguridad se llama «cuántico» a dos cosas distintas que conviene separar. La distribución cuántica de claves usa la física para detectar escuchas en un enlace y solo se usa en entornos raros y especializados. La criptografía poscuántica son matemáticas de software corrientes diseñadas para resistir a futuros ordenadores cuánticos, y es la que de verdad se está implantando."</string>
     <string name="t_77a6da9b" formatted="false">"Anillos que se alejan del núcleo."</string>
     <string name="t_77d03aa5" formatted="false">"Una inyección ciega no recibe mensajes de error, así que el atacante deduce la respuesta pregunta a pregunta, de verdadero o falso. Es más lenta y mucho más paciente que una inyección normal, y llega reforzada contra las defensas obvias."</string>
@@ -709,6 +710,7 @@
     <string name="t_ce2cde0d" formatted="false">"PASO 1 — ABRE EL EQUIPO"</string>
     <string name="t_ce56b8c8" formatted="false">"GESTIONAR EN GOOGLE PLAY"</string>
     <string name="t_ce8b48c9" formatted="false">"JUGABILIDAD"</string>
+    <string name="t_ceb6dbab" formatted="false">"CyOps TD SOUNDTRACK"</string>
     <string name="t_cec6cd66" formatted="false">"Aún no hay partidas registradas. Termina una y aparecerá aquí, ordenada por la oleada a la que llegaste."</string>
     <string name="t_cee3b8c9" formatted="false">"OMITIR"</string>
     <string name="t_cfd886ad" formatted="false">"Dos rutas peinan cada una su mitad. Las torres del hueco central llegan a ambas."</string>

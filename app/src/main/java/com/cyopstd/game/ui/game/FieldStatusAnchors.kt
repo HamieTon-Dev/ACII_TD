@@ -3,6 +3,7 @@ package com.cyopstd.game.ui.game
 import android.graphics.Paint
 import android.graphics.Typeface
 import com.cyopstd.game.core.WorldGeometry
+import com.cyopstd.game.i18n.tr
 
 /**
  * Where the WAVE and ◇ readouts sit, in world units.
@@ -59,6 +60,8 @@ class FieldStatusAnchors(
             paint.textSize = BattlefieldRenderer.FIELD_STATUS_TEXT
             var widest = maxOf(
                 paint.measureText(BattlefieldRenderer.WAVE_PLATE_TEMPLATE),
+                // The plate is drawn with the translated word, which can be longer.
+                paint.measureText(tr("WAVE {0}", "000")),
                 paint.measureText(BattlefieldRenderer.CRYPTO_PLATE_TEMPLATE)
             )
             // The level and difficulty lines underneath (owner, 2026-10-01).

@@ -406,6 +406,7 @@
     <string name="t_7682806a" formatted="false">"LANGKAH 2 — PILIH FIREWALL"</string>
     <string name="t_77212b64" formatted="false">"Ini gelombang serangan yang kamu hadapi. Terus naik selama kamu menahan server — setiap gelombang kelima membawa bos."</string>
     <string name="t_772b21ba" formatted="false">"Pertahanan yang kamu tempatkan"</string>
+    <string name="t_776f4222" formatted="false">"LV {0}"</string>
     <string name="t_77a2583e" formatted="false">"Dua hal berbeda disebut \"kuantum\" di dunia keamanan dan perlu dibedakan. Distribusi kunci kuantum memakai fisika untuk mendeteksi penyadapan pada sebuah jalur, dan hanya dipakai di lingkungan khusus yang langka. Kriptografi pasca-kuantum adalah matematika perangkat lunak biasa yang dirancang tahan terhadap komputer kuantum masa depan, dan itulah yang benar-benar sedang diterapkan."</string>
     <string name="t_77a6da9b" formatted="false">"Cincin yang bergerak keluar dari inti."</string>
     <string name="t_77d03aa5" formatted="false">"Injeksi buta tidak mendapat pesan kesalahan apa pun, jadi penyerang menyimpulkan jawabannya satu pertanyaan benar-atau-salah sekaligus. Lebih lambat dan jauh lebih sabar dari injeksi biasa, dan datang sudah diperkuat terhadap pertahanan yang jelas."</string>
@@ -709,6 +710,7 @@
     <string name="t_ce2cde0d" formatted="false">"LANGKAH 1 — BUKA TIM"</string>
     <string name="t_ce56b8c8" formatted="false">"KELOLA DI GOOGLE PLAY"</string>
     <string name="t_ce8b48c9" formatted="false">"GAMEPLAY"</string>
+    <string name="t_ceb6dbab" formatted="false">"SOUNDTRACK CyOps TD"</string>
     <string name="t_cec6cd66" formatted="false">"Belum ada permainan tercatat. Selesaikan satu permainan dan akan tercantum di sini, diurutkan menurut gelombang yang kamu capai."</string>
     <string name="t_cee3b8c9" formatted="false">"LEWATI"</string>
     <string name="t_cfd886ad" formatted="false">"Dua rute menyisir separuhnya masing-masing. Menara di celah tengah menjangkau keduanya."</string>

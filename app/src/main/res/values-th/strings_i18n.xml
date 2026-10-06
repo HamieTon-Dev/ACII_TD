@@ -406,6 +406,7 @@
     <string name="t_7682806a" formatted="false">"ขั้นที่ 2 — เลือก FIREWALL"</string>
     <string name="t_77212b64" formatted="false">"นี่คือคลื่นโจมตีที่คุณเผชิญ มันเพิ่มขึ้นเรื่อย ๆ ตราบที่คุณยังรักษาเซิร์ฟเวอร์ไว้ — ทุกคลื่นที่ห้ามีบอส"</string>
     <string name="t_772b21ba" formatted="false">"แนวป้องกันที่คุณวาง"</string>
+    <string name="t_776f4222" formatted="false">"เลเวล {0}"</string>
     <string name="t_77a2583e" formatted="false">"มีสองสิ่งที่ต่างกันที่ถูกเรียกว่า \"ควอนตัม\" ในวงการความปลอดภัย และควรแยกให้ออก การกระจายกุญแจเชิงควอนตัมใช้ฟิสิกส์ตรวจจับการดักฟังบนลิงก์ และใช้เฉพาะในสถานการณ์พิเศษที่หายาก วิทยาการเข้ารหัสหลังควอนตัมคือคณิตศาสตร์ซอฟต์แวร์ธรรมดาที่ออกแบบให้ทนคอมพิวเตอร์ควอนตัมในอนาคต และเป็นตัวที่กำลังถูกนำมาใช้จริง"</string>
     <string name="t_77a6da9b" formatted="false">"วงแหวนที่แผ่ออกจากแกน"</string>
     <string name="t_77d03aa5" formatted="false">"การฉีดแบบบอดไม่ได้รับข้อความแสดงข้อผิดพลาดกลับมา ผู้โจมตีจึงอนุมานคำตอบทีละคำถามจริง-เท็จ ช้ากว่าและอดทนกว่าการฉีดทั่วไปมาก และมาพร้อมการเสริมความแข็งต่อการป้องกันพื้นฐาน"</string>
@@ -709,6 +710,7 @@
     <string name="t_ce2cde0d" formatted="false">"ขั้นที่ 1 — เปิดทีม"</string>
     <string name="t_ce56b8c8" formatted="false">"จัดการบน GOOGLE PLAY"</string>
     <string name="t_ce8b48c9" formatted="false">"การเล่น"</string>
+    <string name="t_ceb6dbab" formatted="false">"ซาวด์แทร็ก CyOps TD"</string>
     <string name="t_cec6cd66" formatted="false">"ยังไม่มีรอบที่บันทึก เล่นให้จบสักรอบแล้วจะแสดงที่นี่ เรียงตามคลื่นที่คุณไปถึง"</string>
     <string name="t_cee3b8c9" formatted="false">"ข้าม"</string>
     <string name="t_cfd886ad" formatted="false">"สองเส้นทางกวาดครึ่งของตัวเอง ป้อมในช่องกลางเอื้อมถึงทั้งสอง"</string>

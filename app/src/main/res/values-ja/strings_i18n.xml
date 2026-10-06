@@ -389,7 +389,7 @@
     <string name="t_735d4940" formatted="false">"効果音の音量"</string>
     <string name="t_73907e76" formatted="false">"ゲームの全24曲を端末の「音楽」フォルダに保存し、どこでも聴けます。"</string>
     <string name="t_7397fdaa" formatted="false">"すべての背後で動く冷たい光。"</string>
-    <string name="t_739a7f7a" formatted="false">"© {0} {1}. All rights reserved."</string>
+    <string name="t_739a7f7a" formatted="false">"© {0} {1}. 無断転載を禁じます。"</string>
     <string name="t_73d812dc" formatted="false">"5ウェーブごとに来るもの"</string>
     <string name="t_73e8cb50" formatted="false">"オリジナルのコード、オリジナルのアート、オリジナルの合成音声。Kotlin、Jetpack Compose、Android Canvas APIで制作。\n\nアイコン: creativeLabs の CoreUI Icons Free(coreui.io/icons)、CC BY 4.0 ライセンス。\n\nサードパーティ依存関係のライセンスは、プロジェクトリポジトリの LICENSES.md に記載しています。"</string>
     <string name="t_74066c59" formatted="false">"ゲーム内"</string>
@@ -406,6 +406,7 @@
     <string name="t_7682806a" formatted="false">"ステップ2 — FIREWALLを選ぶ"</string>
     <string name="t_77212b64" formatted="false">"今戦っている攻撃ウェーブです。サーバーを守る限り上がり続け、5ウェーブごとにボスが来ます。"</string>
     <string name="t_772b21ba" formatted="false">"あなたが配置する防御"</string>
+    <string name="t_776f4222" formatted="false">"Lv {0}"</string>
     <string name="t_77a2583e" formatted="false">"セキュリティで「量子」と呼ばれるものは2つあり、区別しておく価値がある。量子鍵配送は物理を使って回線の盗聴を検知するもので、ごく限られた特殊な場面でしか使われない。耐量子暗号は将来の量子コンピューターに耐えるよう設計された普通のソフトウェア数学で、実際に導入が進んでいるのはこちらだ。"</string>
     <string name="t_77a6da9b" formatted="false">"コアから外へ広がるリング。"</string>
     <string name="t_77d03aa5" formatted="false">"ブラインドインジェクションはエラーメッセージを受け取れないため、攻撃者は真偽の質問を1つずつ重ねて答えを推測する。通常のインジェクションより遅く、はるかに辛抱強く、分かりやすい防御には強化された状態でやって来る。"</string>
@@ -709,6 +710,7 @@
     <string name="t_ce2cde0d" formatted="false">"ステップ1 — ロスターを開く"</string>
     <string name="t_ce56b8c8" formatted="false">"Google Playで管理"</string>
     <string name="t_ce8b48c9" formatted="false">"ゲームプレイ"</string>
+    <string name="t_ceb6dbab" formatted="false">"CyOps TD SOUNDTRACK"</string>
     <string name="t_cec6cd66" formatted="false">"記録されたランはまだありません。ランを終えるとここに表示され、到達したウェーブ順に並びます。"</string>
     <string name="t_cee3b8c9" formatted="false">"スキップ"</string>
     <string name="t_cfd886ad" formatted="false">"2本のルートがそれぞれ自分の半分を掃く。中央の隙間のタワーは両方に届く。"</string>

@@ -406,6 +406,7 @@
     <string name="t_7682806a" formatted="false">"चरण 2 — FIREWALL चुनें"</string>
     <string name="t_77212b64" formatted="false">"यह वह हमले की लहर है जिसका आप सामना कर रहे हैं। जब तक आप सर्वर बचाए रखते हैं यह बढ़ती रहती है — हर पाँचवीं लहर एक बॉस लाती है।"</string>
     <string name="t_772b21ba" formatted="false">"आपकी तैनात की गई रक्षाएँ"</string>
+    <string name="t_776f4222" formatted="false">"स्तर {0}"</string>
     <string name="t_77a2583e" formatted="false">"सुरक्षा में दो अलग चीज़ों को \"क्वांटम\" कहा जाता है और उन्हें अलग रखना ज़रूरी है। क्वांटम कुंजी वितरण किसी लिंक पर जासूसी पकड़ने के लिए भौतिकी का इस्तेमाल करता है, और केवल दुर्लभ, विशेष स्थितियों में तैनात होता है। पोस्ट-क्वांटम क्रिप्टोग्राफ़ी सामान्य सॉफ़्टवेयर गणित है जो भविष्य के क्वांटम कंप्यूटरों का प्रतिरोध करने के लिए बना है, और वही असल में लागू हो रहा है।"</string>
     <string name="t_77a6da9b" formatted="false">"कोर से बाहर की ओर जाती रिंगें।"</string>
     <string name="t_77d03aa5" formatted="false">"ब्लाइंड इंजेक्शन को कोई त्रुटि संदेश वापस नहीं मिलता, इसलिए हमलावर एक बार में एक सही-या-गलत सवाल से जवाब का अनुमान लगाता है। यह सामान्य इंजेक्शन से धीमा और कहीं ज़्यादा धैर्यवान है, और स्पष्ट रक्षाओं के ख़िलाफ़ मज़बूत होकर आता है।"</string>
@@ -709,6 +710,7 @@
     <string name="t_ce2cde0d" formatted="false">"चरण 1 — रोस्टर खोलें"</string>
     <string name="t_ce56b8c8" formatted="false">"GOOGLE PLAY पर प्रबंधित करें"</string>
     <string name="t_ce8b48c9" formatted="false">"गेमप्ले"</string>
+    <string name="t_ceb6dbab" formatted="false">"CyOps TD साउंडट्रैक"</string>
     <string name="t_cec6cd66" formatted="false">"अभी कोई रन दर्ज नहीं। एक रन पूरा करें और वह यहाँ सूचीबद्ध होगा, आपकी पहुँची लहर के अनुसार क्रमबद्ध।"</string>
     <string name="t_cee3b8c9" formatted="false">"छोड़ें"</string>
     <string name="t_cfd886ad" formatted="false">"दो मार्ग अपने-अपने आधे हिस्से को छानते हैं। बीच की खाली जगह के टावर दोनों तक पहुँचते हैं।"</string>

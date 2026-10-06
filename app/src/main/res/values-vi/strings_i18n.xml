@@ -406,6 +406,7 @@
     <string name="t_7682806a" formatted="false">"BƯỚC 2 — CHỌN FIREWALL"</string>
     <string name="t_77212b64" formatted="false">"Đây là đợt tấn công bạn đang đối mặt. Nó cứ tăng lên chừng nào bạn còn giữ máy chủ — mỗi đợt thứ năm có một trùm."</string>
     <string name="t_772b21ba" formatted="false">"Hệ phòng thủ bạn triển khai"</string>
+    <string name="t_776f4222" formatted="false">"CẤP {0}"</string>
     <string name="t_77a2583e" formatted="false">"Có hai thứ khác nhau đều được gọi là \"lượng tử\" trong bảo mật, và nên phân biệt rõ. Phân phối khóa lượng tử dùng vật lý để phát hiện nghe lén trên một đường truyền, và chỉ được triển khai ở những nơi hiếm hoi, chuyên biệt. Mật mã hậu lượng tử là toán học phần mềm thông thường được thiết kế để chống lại máy tính lượng tử tương lai, và đó mới là thứ đang thực sự được triển khai."</string>
     <string name="t_77a6da9b" formatted="false">"Những vòng tròn lan ra từ lõi."</string>
     <string name="t_77d03aa5" formatted="false">"Blind injection không nhận được thông báo lỗi nào, nên kẻ tấn công suy ra câu trả lời qua từng câu hỏi đúng-sai một. Nó chậm hơn và kiên nhẫn hơn nhiều so với injection thông thường, và đến đã được gia cố trước các biện pháp phòng thủ hiển nhiên."</string>
@@ -709,6 +710,7 @@
     <string name="t_ce2cde0d" formatted="false">"BƯỚC 1 — MỞ ĐỘI HÌNH"</string>
     <string name="t_ce56b8c8" formatted="false">"QUẢN LÝ TRÊN GOOGLE PLAY"</string>
     <string name="t_ce8b48c9" formatted="false">"LỐI CHƠI"</string>
+    <string name="t_ceb6dbab" formatted="false">"NHẠC NỀN CyOps TD"</string>
     <string name="t_cec6cd66" formatted="false">"Chưa có lượt chơi nào được ghi. Hoàn thành một lượt và nó sẽ được liệt kê ở đây, xếp theo đợt bạn đạt được."</string>
     <string name="t_cee3b8c9" formatted="false">"BỎ QUA"</string>
     <string name="t_cfd886ad" formatted="false">"Hai tuyến rà soát nửa của mình. Tháp ở khe giữa với tới cả hai."</string>

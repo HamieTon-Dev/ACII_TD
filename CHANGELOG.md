@@ -25,6 +25,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
   English as the fallback. Agent, boss, threat, level, mode and cosmetic
   names, plus "CyOps TD", stay in English. The subtitle under the title is
   translated.
+- Every reachable screen (menu, ABOUT, FIRMWARE upgrades, AGENTS, STORE,
+  LOADOUT, GOOGLE PLAY, LEADERBOARD, CODEX, STATISTICS, SETTINGS, level
+  select, the match with its panels, PAUSE and GAME OVER) is rendered in
+  Japanese by `TranslationCoverageTest`, which fails if any translated line
+  still shows in English. The floating "LV n" on upgrade, the soundtrack's
+  store title and the battlefield WAVE plate's width now follow the language.
 - All languages ship in every install (Play's per-language split is off), so
   the in-game picker always works offline.
 

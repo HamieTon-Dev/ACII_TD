@@ -406,6 +406,7 @@
     <string name="t_7682806a" formatted="false">"TRIN 2 — VÆLG FIREWALL"</string>
     <string name="t_77212b64" formatted="false">"Dette er den angrebsbølge, du står over for. Den stiger, så længe du holder serveren — hver femte bølge bringer en boss."</string>
     <string name="t_772b21ba" formatted="false">"Det forsvar, du udsender"</string>
+    <string name="t_776f4222" formatted="false">"NIV {0}"</string>
     <string name="t_77a2583e" formatted="false">"To forskellige ting kaldes \"kvante\" inden for sikkerhed, og de er værd at holde adskilt. Kvantenøgledistribution bruger fysik til at opdage aflytning på en forbindelse og bruges kun i sjældne, specialiserede sammenhænge. Postkvantekryptografi er almindelig softwarematematik designet til at modstå fremtidige kvantecomputere, og det er den, der faktisk rulles ud."</string>
     <string name="t_77a6da9b" formatted="false">"Ringe, der bevæger sig udad fra kernen."</string>
     <string name="t_77d03aa5" formatted="false">"En blind injektion får ingen fejlmeddelelser tilbage, så angriberen udleder svaret ét sandt-eller-falsk-spørgsmål ad gangen. Den er langsommere og langt mere tålmodig end en normal injektion og kommer hærdet mod de oplagte forsvar."</string>
@@ -709,6 +710,7 @@
     <string name="t_ce2cde0d" formatted="false">"TRIN 1 — ÅBN HOLDET"</string>
     <string name="t_ce56b8c8" formatted="false">"ADMINISTRER PÅ GOOGLE PLAY"</string>
     <string name="t_ce8b48c9" formatted="false">"GAMEPLAY"</string>
+    <string name="t_ceb6dbab" formatted="false">"CyOps TD-SOUNDTRACK"</string>
     <string name="t_cec6cd66" formatted="false">"Ingen spil registreret endnu. Gennemfør et spil, så vises det her, rangeret efter den bølge, du nåede."</string>
     <string name="t_cee3b8c9" formatted="false">"SPRING OVER"</string>
     <string name="t_cfd886ad" formatted="false">"To ruter gennemsøger hver deres halvdel. Tårne i midtergabet når begge."</string>

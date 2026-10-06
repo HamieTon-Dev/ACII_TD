@@ -406,6 +406,7 @@
     <string name="t_7682806a" formatted="false">"KROK 2 — VYBERTE FIREWALL"</string>
     <string name="t_77212b64" formatted="false">"Toto je útočná vlna, které čelíte. Stoupá, dokud server držíte — každá pátá vlna přináší bosse."</string>
     <string name="t_772b21ba" formatted="false">"Obrana, kterou nasazujete"</string>
+    <string name="t_776f4222" formatted="false">"ÚR {0}"</string>
     <string name="t_77a2583e" formatted="false">"V bezpečnosti se „kvantovými“ nazývají dvě různé věci a stojí za to je rozlišovat. Kvantová distribuce klíčů využívá fyziku k odhalení odposlechu na lince a nasazuje se jen ve vzácných, specializovaných podmínkách. Postkvantová kryptografie je obyčejná softwarová matematika navržená tak, aby odolala budoucím kvantovým počítačům, a právě ta se skutečně zavádí."</string>
     <string name="t_77a6da9b" formatted="false">"Prstence putující od jádra ven."</string>
     <string name="t_77d03aa5" formatted="false">"Slepá injekce nedostává zpět žádná chybová hlášení, takže útočník odvozuje odpověď po jedné otázce ano-ne. Je pomalejší a mnohem trpělivější než běžná injekce a přichází odolná vůči zjevným obranám."</string>
@@ -709,6 +710,7 @@
     <string name="t_ce2cde0d" formatted="false">"KROK 1 — OTEVŘETE TÝM"</string>
     <string name="t_ce56b8c8" formatted="false">"SPRAVOVAT V GOOGLE PLAY"</string>
     <string name="t_ce8b48c9" formatted="false">"HRATELNOST"</string>
+    <string name="t_ceb6dbab" formatted="false">"SOUNDTRACK CyOps TD"</string>
     <string name="t_cec6cd66" formatted="false">"Zatím žádné zaznamenané hry. Dokončete hru a objeví se tady, seřazená podle dosažené vlny."</string>
     <string name="t_cee3b8c9" formatted="false">"PŘESKOČIT"</string>
     <string name="t_cfd886ad" formatted="false">"Dvě trasy pročesávají každá svou polovinu. Věže ve středové mezeře dosáhnou na obě."</string>

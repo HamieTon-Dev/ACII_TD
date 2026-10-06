@@ -72,7 +72,7 @@ fun LanguagePanel(
                     .padding(horizontal = 10.dp, vertical = 9.dp)
             ) {
                 Icon(
-                    painterResource(R.drawable.ic_language), contentDescription = "Language",
+                    painterResource(R.drawable.ic_language), contentDescription = tr("LANGUAGE"),
                     tint = Palette.Cyan, modifier = Modifier.size(18.dp)
                 )
                 Spacer(Modifier.width(8.dp))

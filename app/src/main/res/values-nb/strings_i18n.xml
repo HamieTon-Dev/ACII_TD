@@ -406,6 +406,7 @@
     <string name="t_7682806a" formatted="false">"TRINN 2 — VELG FIREWALL"</string>
     <string name="t_77212b64" formatted="false">"Dette er angrepsbølgen du står overfor. Den stiger så lenge du holder serveren — hver femte bølge kommer det en boss."</string>
     <string name="t_772b21ba" formatted="false">"Forsvaret du utplasserer"</string>
+    <string name="t_776f4222" formatted="false">"NIV {0}"</string>
     <string name="t_77a2583e" formatted="false">"To forskjellige ting kalles «kvante» innen sikkerhet, og det er verdt å holde dem fra hverandre. Kvantenøkkeldistribusjon bruker fysikk for å oppdage avlytting på en forbindelse og brukes bare i sjeldne, spesialiserte sammenhenger. Postkvantekryptografi er vanlig programvarematematikk laget for å motstå fremtidige kvantedatamaskiner, og det er den som faktisk rulles ut."</string>
     <string name="t_77a6da9b" formatted="false">"Ringer som beveger seg utover fra kjernen."</string>
     <string name="t_77d03aa5" formatted="false">"En blind injeksjon får ingen feilmeldinger tilbake, så angriperen slutter seg til svaret ett sant-eller-usant-spørsmål om gangen. Den er tregere og langt mer tålmodig enn en vanlig injeksjon, og kommer herdet mot de opplagte forsvarene."</string>
@@ -709,6 +710,7 @@
     <string name="t_ce2cde0d" formatted="false">"TRINN 1 — ÅPNE LAGET"</string>
     <string name="t_ce56b8c8" formatted="false">"ADMINISTRER PÅ GOOGLE PLAY"</string>
     <string name="t_ce8b48c9" formatted="false">"SPILLING"</string>
+    <string name="t_ceb6dbab" formatted="false">"CyOps TD-LYDSPOR"</string>
     <string name="t_cec6cd66" formatted="false">"Ingen runder registrert ennå. Fullfør en runde, så vises den her, rangert etter bølgen du nådde."</string>
     <string name="t_cee3b8c9" formatted="false">"HOPP OVER"</string>
     <string name="t_cfd886ad" formatted="false">"To ruter finkjemmer hver sin halvdel. Tårn i midtgapet når begge."</string>

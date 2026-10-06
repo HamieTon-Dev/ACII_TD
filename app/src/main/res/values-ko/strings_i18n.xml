@@ -389,7 +389,7 @@
     <string name="t_735d4940" formatted="false">"효과음 볼륨"</string>
     <string name="t_73907e76" formatted="false">"게임의 24곡 전부를 휴대전화의 음악 폴더에 저장해 어디서든 들을 수 있습니다."</string>
     <string name="t_7397fdaa" formatted="false">"모든 것 뒤에서 움직이는 차가운 빛."</string>
-    <string name="t_739a7f7a" formatted="false">"© {0} {1}. All rights reserved."</string>
+    <string name="t_739a7f7a" formatted="false">"© {0} {1}. 모든 권리 보유."</string>
     <string name="t_73d812dc" formatted="false">"다섯 번째 웨이브마다, 그리고 무엇을 가져오는지"</string>
     <string name="t_73e8cb50" formatted="false">"오리지널 코드, 오리지널 아트, 오리지널 합성 오디오. Kotlin, Jetpack Compose, Android Canvas API로 제작했습니다.\n\n아이콘: creativeLabs의 CoreUI Icons Free(coreui.io/icons), CC BY 4.0 라이선스.\n\n서드파티 의존성의 라이선스는 프로젝트 저장소의 LICENSES.md에 있습니다."</string>
     <string name="t_74066c59" formatted="false">"게임 내"</string>
@@ -406,6 +406,7 @@
     <string name="t_7682806a" formatted="false">"2단계 — FIREWALL 선택"</string>
     <string name="t_77212b64" formatted="false">"지금 맞서고 있는 공격 웨이브입니다. 서버를 지키는 동안 계속 올라가며, 다섯 번째 웨이브마다 보스가 옵니다."</string>
     <string name="t_772b21ba" formatted="false">"당신이 배치하는 방어"</string>
+    <string name="t_776f4222" formatted="false">"레벨 {0}"</string>
     <string name="t_77a2583e" formatted="false">"보안에서 \"양자\"라 불리는 것은 서로 다른 두 가지이며, 구분해 둘 가치가 있습니다. 양자 키 분배는 물리학을 이용해 회선의 도청을 탐지하며, 드물고 특수한 환경에서만 쓰입니다. 양자 내성 암호는 미래의 양자 컴퓨터에 버티도록 설계된 평범한 소프트웨어 수학이며, 실제로 도입되고 있는 쪽입니다."</string>
     <string name="t_77a6da9b" formatted="false">"코어에서 바깥으로 퍼지는 고리."</string>
     <string name="t_77d03aa5" formatted="false">"블라인드 인젝션은 오류 메시지를 받지 못하므로, 공격자는 참·거짓 질문을 하나씩 던지며 답을 추론합니다. 일반 인젝션보다 느리고 훨씬 끈기 있으며, 뻔한 방어에는 강화된 채 도착합니다."</string>
@@ -709,6 +710,7 @@
     <string name="t_ce2cde0d" formatted="false">"1단계 — 로스터 열기"</string>
     <string name="t_ce56b8c8" formatted="false">"GOOGLE PLAY에서 관리"</string>
     <string name="t_ce8b48c9" formatted="false">"게임플레이"</string>
+    <string name="t_ceb6dbab" formatted="false">"CyOps TD SOUNDTRACK"</string>
     <string name="t_cec6cd66" formatted="false">"기록된 플레이가 아직 없습니다. 플레이를 마치면 도달한 웨이브 순으로 여기에 표시됩니다."</string>
     <string name="t_cee3b8c9" formatted="false">"건너뛰기"</string>
     <string name="t_cfd886ad" formatted="false">"두 경로가 각자 자기 절반을 훑습니다. 가운데 틈의 타워는 양쪽 모두에 닿습니다."</string>

@@ -406,6 +406,7 @@
     <string name="t_7682806a" formatted="false">"STEP 2 — PICK FIREWALL"</string>
     <string name="t_77212b64" formatted="false">"This is the attack wave you are facing. It climbs for as long as you hold the server — every fifth wave brings a boss."</string>
     <string name="t_772b21ba" formatted="false">"The defences you deploy"</string>
+    <string name="t_776f4222" formatted="false">"LV {0}"</string>
     <string name="t_77a2583e" formatted="false">"Two different things get called \"quantum\" in security and they are worth keeping apart. Quantum key distribution uses physics to detect eavesdropping on a link, and is deployed only in rare, specialised settings. Post-quantum cryptography is ordinary software maths designed to resist future quantum computers, and is the one actually being rolled out."</string>
     <string name="t_77a6da9b" formatted="false">"Rings travelling outward from the core."</string>
     <string name="t_77d03aa5" formatted="false">"A blind injection gets no error messages back, so the attacker infers the answer one true-or-false question at a time. It is slower and far more patient than a normal injection, and it arrives hardened against the obvious defences."</string>
@@ -709,6 +710,7 @@
     <string name="t_ce2cde0d" formatted="false">"STEP 1 — OPEN THE ROSTER"</string>
     <string name="t_ce56b8c8" formatted="false">"MANAGE ON GOOGLE PLAY"</string>
     <string name="t_ce8b48c9" formatted="false">"GAMEPLAY"</string>
+    <string name="t_ceb6dbab" formatted="false">"CyOps TD SOUNDTRACK"</string>
     <string name="t_cec6cd66" formatted="false">"No runs recorded yet. Finish a run and it will be listed here, ranked by the wave you reached."</string>
     <string name="t_cee3b8c9" formatted="false">"SKIP"</string>
     <string name="t_cfd886ad" formatted="false">"Two routes comb their own halves. Towers in the middle gap reach both."</string>

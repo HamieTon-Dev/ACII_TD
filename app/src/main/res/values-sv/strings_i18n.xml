@@ -406,6 +406,7 @@
     <string name="t_7682806a" formatted="false">"STEG 2 — VÄLJ FIREWALL"</string>
     <string name="t_77212b64" formatted="false">"Det här är attackvågen du står inför. Den stiger så länge du håller servern — var femte våg kommer en boss."</string>
     <string name="t_772b21ba" formatted="false">"Försvaret du placerar ut"</string>
+    <string name="t_776f4222" formatted="false">"NIV {0}"</string>
     <string name="t_77a2583e" formatted="false">"Två olika saker kallas \"kvant\" inom säkerhet och de är värda att hålla isär. Kvantnyckeldistribution använder fysik för att upptäcka avlyssning på en länk och används bara i sällsynta, specialiserade miljöer. Postkvantkryptografi är vanlig mjukvarumatematik utformad för att stå emot framtida kvantdatorer, och det är den som faktiskt rullas ut."</string>
     <string name="t_77a6da9b" formatted="false">"Ringar som färdas utåt från kärnan."</string>
     <string name="t_77d03aa5" formatted="false">"En blind injektion får inga felmeddelanden tillbaka, så angriparen sluter sig till svaret en sant-eller-falskt-fråga i taget. Den är långsammare och mycket tålmodigare än en vanlig injektion och kommer härdad mot de uppenbara försvaren."</string>
@@ -709,6 +710,7 @@
     <string name="t_ce2cde0d" formatted="false">"STEG 1 — ÖPPNA TRUPPEN"</string>
     <string name="t_ce56b8c8" formatted="false">"HANTERA PÅ GOOGLE PLAY"</string>
     <string name="t_ce8b48c9" formatted="false">"SPELMEKANIK"</string>
+    <string name="t_ceb6dbab" formatted="false">"CyOps TD-SOUNDTRACK"</string>
     <string name="t_cec6cd66" formatted="false">"Inga omgångar sparade än. Avsluta en omgång så listas den här, rankad efter vågen du nådde."</string>
     <string name="t_cee3b8c9" formatted="false">"HOPPA ÖVER"</string>
     <string name="t_cfd886ad" formatted="false">"Två rutter kammar sina egna halvor. Torn i mittgapet når båda."</string>

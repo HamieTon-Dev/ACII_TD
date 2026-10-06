@@ -406,6 +406,7 @@
     <string name="t_7682806a" formatted="false">"VAIHE 2 — VALITSE FIREWALL"</string>
     <string name="t_77212b64" formatted="false">"Tämä on hyökkäysaalto, jota vastaan olet. Se nousee niin kauan kuin pidät palvelimen — joka viides aalto tuo pomon."</string>
     <string name="t_772b21ba" formatted="false">"Sijoittamasi puolustus"</string>
+    <string name="t_776f4222" formatted="false">"TASO {0}"</string>
     <string name="t_77a2583e" formatted="false">"Tietoturvassa kahta eri asiaa kutsutaan \"kvantiksi\", ja ne kannattaa pitää erillään. Kvanttiavainjakelu käyttää fysiikkaa yhteyden salakuuntelun havaitsemiseen, ja sitä käytetään vain harvoissa erikoistapauksissa. Kvanttikestävä kryptografia on tavallista ohjelmistomatematiikkaa, joka on suunniteltu kestämään tulevia kvanttitietokoneita, ja juuri sitä todella otetaan käyttöön."</string>
     <string name="t_77a6da9b" formatted="false">"Renkaita, jotka kulkevat ulospäin ytimestä."</string>
     <string name="t_77d03aa5" formatted="false">"Sokea injektio ei saa takaisin virheilmoituksia, joten hyökkääjä päättelee vastauksen tosi-vai-epätosi-kysymys kerrallaan. Se on hitaampi ja paljon kärsivällisempi kuin tavallinen injektio, ja se saapuu kovennettuna ilmeisiä puolustuksia vastaan."</string>
@@ -709,6 +710,7 @@
     <string name="t_ce2cde0d" formatted="false">"VAIHE 1 — AVAA RYHMÄ"</string>
     <string name="t_ce56b8c8" formatted="false">"HALLINNOI GOOGLE PLAYSSA"</string>
     <string name="t_ce8b48c9" formatted="false">"PELATTAVUUS"</string>
+    <string name="t_ceb6dbab" formatted="false">"CyOps TD:n ÄÄNIRAITA"</string>
     <string name="t_cec6cd66" formatted="false">"Ei vielä tallennettuja kierroksia. Pelaa kierros loppuun, niin se näkyy täällä saavuttamasi aallon mukaan järjestettynä."</string>
     <string name="t_cee3b8c9" formatted="false">"OHITA"</string>
     <string name="t_cfd886ad" formatted="false">"Kaksi reittiä kampaa omat puoliskonsa. Keskiraon tornit yltävät molempiin."</string>

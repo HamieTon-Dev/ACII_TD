@@ -406,6 +406,7 @@
     <string name="t_7682806a" formatted="false">"ADIM 2 — FIREWALL SEÇ"</string>
     <string name="t_77212b64" formatted="false">"Bu, karşılaştığın saldırı dalgasıdır. Sunucuyu tuttuğun sürece yükselir — her beşinci dalga bir boss getirir."</string>
     <string name="t_772b21ba" formatted="false">"Konuşlandırdığın savunmalar"</string>
+    <string name="t_776f4222" formatted="false">"SV {0}"</string>
     <string name="t_77a2583e" formatted="false">"Güvenlikte iki farklı şeye \"kuantum\" denir ve onları ayırmak gerekir. Kuantum anahtar dağıtımı bir bağlantıdaki dinlemeyi tespit etmek için fizik kullanır ve yalnızca nadir, özel ortamlarda kurulur. Kuantum sonrası kriptografi, gelecekteki kuantum bilgisayarlara direnmek için tasarlanmış sıradan yazılım matematiğidir ve gerçekten yaygınlaştırılan odur."</string>
     <string name="t_77a6da9b" formatted="false">"Çekirdekten dışarı yayılan halkalar."</string>
     <string name="t_77d03aa5" formatted="false">"Kör enjeksiyon hiçbir hata mesajı almaz, bu yüzden saldırgan cevabı her seferinde bir doğru-yanlış sorusuyla çıkarır. Normal bir enjeksiyondan daha yavaş ve çok daha sabırlıdır ve bariz savunmalara karşı sertleşmiş olarak gelir."</string>
@@ -709,6 +710,7 @@
     <string name="t_ce2cde0d" formatted="false">"ADIM 1 — KADROYU AÇ"</string>
     <string name="t_ce56b8c8" formatted="false">"GOOGLE PLAY'DE YÖNET"</string>
     <string name="t_ce8b48c9" formatted="false">"OYNANIŞ"</string>
+    <string name="t_ceb6dbab" formatted="false">"CyOps TD FİLM MÜZİĞİ"</string>
     <string name="t_cec6cd66" formatted="false">"Henüz kayıtlı oyun yok. Bir oyun bitir, ulaştığın dalgaya göre sıralanarak burada listelenecek."</string>
     <string name="t_cee3b8c9" formatted="false">"ATLA"</string>
     <string name="t_cfd886ad" formatted="false">"İki rota kendi yarılarını tarar. Ortadaki boşluktaki kuleler ikisine de ulaşır."</string>

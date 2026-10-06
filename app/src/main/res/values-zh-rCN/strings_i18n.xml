@@ -406,6 +406,7 @@
     <string name="t_7682806a" formatted="false">"第 2 步 — 选择 FIREWALL"</string>
     <string name="t_77212b64" formatted="false">"这是你正在面对的攻击波次。只要你守住服务器，它就会一直增加——每第五波会有一个首领。"</string>
     <string name="t_772b21ba" formatted="false">"你部署的防御"</string>
+    <string name="t_776f4222" formatted="false">"等级 {0}"</string>
     <string name="t_77a2583e" formatted="false">"安全领域中有两种不同的东西都被称为“量子”，值得分清。量子密钥分发利用物理学来检测链路上的窃听，只在少数专门场合部署。后量子密码学是普通的软件数学，旨在抵御未来的量子计算机，也是真正在推广的那一种。"</string>
     <string name="t_77a6da9b" formatted="false">"从核心向外扩散的环。"</string>
     <string name="t_77d03aa5" formatted="false">"盲注得不到任何错误信息，因此攻击者每次通过一个是非问题来推断答案。它比普通注入更慢、更有耐心，并且对显而易见的防御早有准备。"</string>
@@ -709,6 +710,7 @@
     <string name="t_ce2cde0d" formatted="false">"第 1 步 — 打开阵容"</string>
     <string name="t_ce56b8c8" formatted="false">"在 GOOGLE PLAY 上管理"</string>
     <string name="t_ce8b48c9" formatted="false">"玩法"</string>
+    <string name="t_ceb6dbab" formatted="false">"CyOps TD 原声音乐"</string>
     <string name="t_cec6cd66" formatted="false">"尚无对局记录。完成一局后它会列在这里，按你到达的波次排名。"</string>
     <string name="t_cee3b8c9" formatted="false">"跳过"</string>
     <string name="t_cfd886ad" formatted="false">"两条路线各自梳理一半区域。中间空隙的塔能同时覆盖两边。"</string>
