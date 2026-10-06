@@ -9,6 +9,37 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [1.56.0] — 2026-10-05
+
+### Added
+
+- **The game is translated into 25 languages besides English.** Pick one
+  under SETTINGS → LANGUAGE on the main menu (or SYSTEM DEFAULT to follow the
+  phone). Switching restarts the game; progress is kept. It cannot be changed
+  mid-run. Languages: Arabic, Chinese (Simplified), Chinese (Traditional),
+  Czech, Danish, Dutch, Finnish, French, German, Hindi, Indonesian, Italian,
+  Japanese, Korean, Norwegian Bokmål, Polish, Portuguese (Brazil; Portugal
+  uses it too), Russian, Spanish (Spain), Spanish (Latin America), Swedish,
+  Thai, Turkish, Ukrainian, Vietnamese.
+- Every on-screen line goes through one translation engine (`tr()`), with
+  English as the fallback. Agent, boss, threat, level, mode and cosmetic
+  names, plus "CyOps TD", stay in English. The subtitle under the title is
+  translated.
+- Every reachable screen (menu, ABOUT, FIRMWARE upgrades, AGENTS, STORE,
+  LOADOUT, GOOGLE PLAY, LEADERBOARD, CODEX, STATISTICS, SETTINGS, level
+  select, the match with its panels, PAUSE and GAME OVER) is rendered in
+  Japanese by `TranslationCoverageTest`, which fails if any translated line
+  still shows in English. The floating "LV n" on upgrade, the soundtrack's
+  store title and the battlefield WAVE plate's width now follow the language.
+- All languages ship in every install (Play's per-language split is off), so
+  the in-game picker always works offline.
+
+### Notes
+
+- Translations are AI-written; native review of the top markets is
+  recommended. Arabic text renders right to left but the layout is not
+  mirrored.
+
 ## [1.55.1] — 2026-10-02
 
 ### Changed

@@ -1,5 +1,7 @@
 package com.cyopstd.game.ui.menu
 
+import com.cyopstd.game.i18n.tr
+
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.size
 import com.cyopstd.game.R
@@ -131,7 +133,7 @@ fun MainMenuScreen(
                 // 2026-10-01: "make this element ... something that can scale").
                 androidx.compose.foundation.Image(
                     painter = androidx.compose.ui.res.painterResource(com.cyopstd.game.R.drawable.menu_title_art),
-                    contentDescription = "Three attack lanes feeding the core server",
+                    contentDescription = tr("Three attack lanes feeding the core server"),
                     contentScale = androidx.compose.ui.layout.ContentScale.Fit,
                     modifier = Modifier
                         .fillMaxWidth()
@@ -141,13 +143,13 @@ fun MainMenuScreen(
 
                 Spacer(Modifier.height(12.dp))
 
-                TerminalPanel(title = "NETWORK STATUS", accent = Palette.Green) {
-                    StatRow("BEST WAVE", stats.highestWave.toString(), valueColor = Palette.Crypto)
-                    StatRow("BOSSES DEFEATED", stats.totalBossesDefeated.toString(), valueColor = Palette.Red)
-                    StatRow("\u20AC BUDGET", budget.toString(), valueColor = Palette.Cyan)
+                TerminalPanel(title = tr("NETWORK STATUS"), accent = Palette.Green) {
+                    StatRow(tr("BEST WAVE"), stats.highestWave.toString(), valueColor = Palette.Crypto)
+                    StatRow(tr("BOSSES DEFEATED"), stats.totalBossesDefeated.toString(), valueColor = Palette.Red)
+                    StatRow(tr("\u20AC BUDGET"), budget.toString(), valueColor = Palette.Cyan)
                     StatRow(
-                        "CORE FIRMWARE",
-                        "LV $firmwareLevel  ${FirmwareFormat.multiplier(firmwareLevel)} DMG",
+                        tr("CORE FIRMWARE"),
+                        tr("LV {0}  {1} DMG", firmwareLevel, FirmwareFormat.multiplier(firmwareLevel)),
                         valueColor = Palette.Purple
                     )
                 }
@@ -175,7 +177,7 @@ fun MainMenuScreen(
                     Row(horizontalArrangement = Arrangement.spacedBy(gap)) {
                         MenuTile(
                             icon = R.drawable.ic_menu_continue,
-                            label = "CONTINUE",
+                            label = tr("CONTINUE"),
                             accent = Palette.Green,
                             enabled = hasSavedRun,
                             large = true,
@@ -184,7 +186,7 @@ fun MainMenuScreen(
                         )
                         MenuTile(
                             icon = R.drawable.ic_menu_new_run,
-                            label = "NEW RUN",
+                            label = tr("NEW RUN"),
                             accent = if (hasSavedRun) Palette.Cyan else Palette.Green,
                             large = true,
                             onClick = { if (hasSavedRun) confirmNewRun = true else onPlay() },
@@ -193,17 +195,17 @@ fun MainMenuScreen(
                     }
                     Spacer(Modifier.height(gap))
                     val tiles = listOf(
-                        MenuEntry(R.drawable.ic_menu_agents, "AGENTS", Palette.Cyan, onAgents),
-                        MenuEntry(R.drawable.ic_menu_firmware, "FIRMWARE", Palette.Crypto, onFirmware),
-                        MenuEntry(R.drawable.ic_menu_store, "STORE", Palette.Green, onStore),
-                        MenuEntry(R.drawable.ic_menu_loadout, "LOADOUT", Palette.Purple, onLoadout),
-                        MenuEntry(R.drawable.ic_menu_google_play, "GOOGLE PLAY", Palette.Blue, onPlayAccount),
-                        MenuEntry(R.drawable.ic_menu_leaderboard, "LEADERBOARD", Palette.Crypto, onLeaderboard),
-                        MenuEntry(R.drawable.ic_menu_codex, "CODEX", Palette.Purple, onCodex),
-                        MenuEntry(R.drawable.ic_menu_statistics, "STATISTICS", Palette.Cyan, onStatistics),
-                        MenuEntry(R.drawable.ic_menu_settings, "SETTINGS", Palette.Cyan, onSettings),
-                        MenuEntry(R.drawable.ic_menu_about, "ABOUT", Palette.Cyan, onAbout),
-                        MenuEntry(R.drawable.ic_menu_exit, "EXIT", Palette.Red, onExit)
+                        MenuEntry(R.drawable.ic_menu_agents, tr("AGENTS"), Palette.Cyan, onAgents),
+                        MenuEntry(R.drawable.ic_menu_firmware, tr("FIRMWARE"), Palette.Crypto, onFirmware),
+                        MenuEntry(R.drawable.ic_menu_store, tr("STORE"), Palette.Green, onStore),
+                        MenuEntry(R.drawable.ic_menu_loadout, tr("LOADOUT"), Palette.Purple, onLoadout),
+                        MenuEntry(R.drawable.ic_menu_google_play, tr("GOOGLE PLAY"), Palette.Blue, onPlayAccount),
+                        MenuEntry(R.drawable.ic_menu_leaderboard, tr("LEADERBOARD"), Palette.Crypto, onLeaderboard),
+                        MenuEntry(R.drawable.ic_menu_codex, tr("CODEX"), Palette.Purple, onCodex),
+                        MenuEntry(R.drawable.ic_menu_statistics, tr("STATISTICS"), Palette.Cyan, onStatistics),
+                        MenuEntry(R.drawable.ic_menu_settings, tr("SETTINGS"), Palette.Cyan, onSettings),
+                        MenuEntry(R.drawable.ic_menu_about, tr("ABOUT"), Palette.Cyan, onAbout),
+                        MenuEntry(R.drawable.ic_menu_exit, tr("EXIT"), Palette.Red, onExit)
                     )
                     for (row in tiles.chunked(columns)) {
                         Row(horizontalArrangement = Arrangement.spacedBy(gap)) {
@@ -228,25 +230,25 @@ fun MainMenuScreen(
                 onDismissRequest = { confirmNewRun = false },
                 containerColor = Palette.Surface,
                 title = {
-                    Text("NEW RUN", style = MaterialTheme.typography.titleMedium, color = Palette.Cyan)
+                    Text(tr("NEW RUN"), style = MaterialTheme.typography.titleMedium, color = Palette.Cyan)
                 },
                 text = {
                     Text(
-                        "Are you sure you would like to start a fresh run? Your saved session will be replaced.",
+                        tr("Are you sure you would like to start a fresh run? Your saved session will be replaced."),
                         style = MaterialTheme.typography.bodyMedium,
                         color = Palette.TextPrimary
                     )
                 },
                 confirmButton = {
                     com.cyopstd.game.ui.common.CompactButton(
-                        text = "START FRESH",
+                        text = tr("START FRESH"),
                         onClick = { confirmNewRun = false; onPlay() },
                         accent = Palette.Green
                     )
                 },
                 dismissButton = {
                     com.cyopstd.game.ui.common.CompactButton(
-                        text = "KEEP MY SAVE",
+                        text = tr("KEEP MY SAVE"),
                         onClick = { confirmNewRun = false },
                         accent = Palette.TextSecondary
                     )
@@ -327,7 +329,7 @@ private fun MenuTile(
  * when there are ads to mention.
  */
 private fun playsOfflineCaption(adsRemoved: Boolean): String = buildString {
-    append("PLAYS OFFLINE \u00B7 NO LOGIN REQUIRED")
-    if (adsRemoved) append(" \u00B7 AD-FREE")
+    append(tr("PLAYS OFFLINE \u00B7 NO LOGIN REQUIRED"))
+    if (adsRemoved) append(tr(" \u00B7 AD-FREE"))
 }
 

@@ -1,0 +1,867 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Translation of values/strings_i18n.xml. Machine-quality (AI) translation; see FEATURE_BACKLOG.md. -->
+<resources>
+    <string name="t_0069698f" formatted="false">"€ {0} i budgettet"</string>
+    <string name="t_00bdf050" formatted="false">"DENNE ENHED"</string>
+    <string name="t_00c74b4a" formatted="false">"Angriber op til tre separate trusler med hver salve, hvilket gør den til holdets svar på en bred bølge. Viser målvælgeren."</string>
+    <string name="t_00cb85ad" formatted="false">"TRIN 4 — VÆLG TARPIT"</string>
+    <string name="t_00f316c1" formatted="false">"PRIS FOR NÆSTE NIVEAU"</string>
+    <string name="t_00fafa13" formatted="false">"DENNE KONTO EJER"</string>
+    <string name="t_01278423" formatted="false">"HVAD DETTE ÆNDRER"</string>
+    <string name="t_014c06bb" formatted="false">"{0} af {1} låst op · bedste bølge {2}"</string>
+    <string name="t_01b91dff" formatted="false">"RANSOM låser én agents opgraderinger i {0} sekunder, med få sekunders mellemrum. Opgrader, før den ankommer."</string>
+    <string name="t_01ba7032" formatted="false">"0 niveauer"</string>
+    <string name="t_01f2a69d" formatted="false">"SESSIONSNOTER"</string>
+    <string name="t_0288b770" formatted="false">"Tryk på knappen AGENTER i kontrolbjælken nedenfor."</string>
+    <string name="t_02b88c49" formatted="false">"Al lyd genereres på enheden ved opstart; spillet indeholder ingen lydfiler."</string>
+    <string name="t_02f0f435" formatted="false">"Root, eller administrator, er det højeste niveau af autoritet på et system: den kan stoppe enhver proces og ændre alt. Netop derfor er god praksis at uddele den så sjældent og så kort tid som muligt. \"Root admin\" er en forkortelse for adgangsniveauet, ikke en jobtitel."</string>
+    <string name="t_0306926d" formatted="false">"Tre angrebsbaner, der fører til kerneserveren"</string>
+    <string name="t_0358799e" formatted="false">"Gælder for hver {0} i hver kamp fra nu af, oven i KERNEFIRMWARE. De første niveauer er billige; hvert koster mere end det forrige, og de øverste koster millioner."</string>
+    <string name="t_0397b7d9" formatted="false">"START BOSSBØLGER AUTOMATISK"</string>
+    <string name="t_03d108e0" formatted="false">"Tilknyttet, men Google kunne ikke nås. Intet er tabt — det er gemmet på denne enhed, der spilles, og næste synkronisering opdaterer kontoen."</string>
+    <string name="t_059b388a" formatted="false">"&gt; bølge {0} ryddet — gør klar til bølge {1}"</string>
+    <string name="t_05ea5d0e" formatted="false">"Tilgængelig fra start."</string>
+    <string name="t_05f2ef1e" formatted="false">"Næste nummer"</string>
+    <string name="t_063d8618" formatted="false">"Fjendtlig kode forklædt som noget, du bad om. Langsom, men tykt pakket ind — panser afstumper hvert enkelt slag, så hurtige svage skud spildes."</string>
+    <string name="t_07269781" formatted="false">"Vælg en sværhedsgrad for at se dens verdensrangliste."</string>
+    <string name="t_07a3d7ab" formatted="false">"Alt, hvad du ejer, genoplivninger inklusive, kommer tilbage fra Google Play med GENDAN på enhver enhed. Det er aldrig en del af skylagringen, så ingen gemmefil kan give eller tage et køb."</string>
+    <string name="t_07fbf4bd" formatted="false">"GENOPLIVET"</string>
+    <string name="t_08039ac7" formatted="false">"BUTIK"</string>
+    <string name="t_08175caa" formatted="false">"KLASSEFARVER"</string>
+    <string name="t_08218c08" formatted="false">"TILKNYTTER…"</string>
+    <string name="t_08279524" formatted="false">"Kode, der udnytter en bestemt fejl i et system. Exploits bevæger sig hurtigt og slår hårdt; registreringsrækkevidde betyder mere end rå skade, når de er på vej."</string>
+    <string name="t_086b8b8e" formatted="false">"BOSS"</string>
+    <string name="t_08f0711d" formatted="false">"GENDAN KØB"</string>
+    <string name="t_09653280" formatted="false">"TIL KERNEN"</string>
+    <string name="t_0a0bc63d" formatted="false">"Forrige nummer"</string>
+    <string name="t_0a2301f4" formatted="false">"GEMT FREMSKRIDT"</string>
+    <string name="t_0a344034" formatted="false">"NÆSTE: BØLGE {0}"</string>
+    <string name="t_0ae74b3e" formatted="false">"ZERO-DAY-ANGREB"</string>
+    <string name="t_0b205685" formatted="false">"Initialiserer netværk..."</string>
+    <string name="t_0b809aa5" formatted="false">"Ingen verdensrangliste for {0} endnu. Spil der registreres på denne enhed."</string>
+    <string name="t_0bc6e19b" formatted="false">"Gør ingen skade selv. Giver hver agent inden for rækkevidde +30 % skade og +20 % skudhastighed, så hele dens værdi ligger i, hvor du placerer den."</string>
+    <string name="t_0bd16003" formatted="false">"MAKS"</string>
+    <string name="t_0bfbeb5b" formatted="false">"Hold dem i et TARPIT-felt, og lad så IPS rydde køen."</string>
+    <string name="t_0c121fb2" formatted="false">"FREMSKRIDT SYNKRONISERET"</string>
+    <string name="t_0c147607" formatted="false">"DYBDESCANNING"</string>
+    <string name="t_0c16a4ef" formatted="false">"Ingen resultater endnu. Gennemfør et spil for at blive den første."</string>
+    <string name="t_0c997319" formatted="false">"WORM-DELING"</string>
+    <string name="t_0cb4ce2b" formatted="false">"BØLGE {0} SIKRET  ◇{1}"</string>
+    <string name="t_0cfa4a6e" formatted="false">"DETTE NIVEAUS BOSSER"</string>
+    <string name="t_0d884b08" formatted="false">"INDTRÆNGEN (BOSS)"</string>
+    <string name="t_0d8c63a6" formatted="false">"Hvert træf springer videre til 2 nærliggende trusler med 55 % skade."</string>
+    <string name="t_0df4bfec" formatted="false">"SVAG OVER FOR"</string>
+    <string name="t_0e69fc6c" formatted="false">"Udsendelseslinjen viser kun hver agents ikon og pris"</string>
+    <string name="t_0eb480b6" formatted="false">"Et vigende perspektivgitter med en jagtstribe nedenunder."</string>
+    <string name="t_0f47943c" formatted="false">"FOKUS FRA"</string>
+    <string name="t_0f5d5911" formatted="false">"STRØMSPARER"</string>
+    <string name="t_0f80d304" formatted="false">"AGENTSKADE"</string>
+    <string name="t_0f9a43d6" formatted="false">"ALLE LEVENDE BAGGRUNDE"</string>
+    <string name="t_0fa88218" formatted="false">"Google Play kunne ikke nås — som regel intet netværk. Alt, hvad du allerede har købt, er stadig dit; tryk GENDAN, når du er online igen, så dukker det op."</string>
+    <string name="t_0fd40469" formatted="false">"YDEEVNE"</string>
+    <string name="t_0fd4c0f4" formatted="false">"CORE-SERVER-PLADSER ER KUN TIL [S]"</string>
+    <string name="t_1046865f" formatted="false">"Bliver ved med at skabe BOT'er bag sig. Dræb den hurtigt, eller drukn i dens botnet."</string>
+    <string name="t_107ea55b" formatted="false">"OPGRADERINGER TAGET SOM GIDSLER"</string>
+    <string name="t_108f4363" formatted="false">"INSTALLER"</string>
+    <string name="t_111611f9" formatted="false">"PATCHMUR"</string>
+    <string name="t_1181f7e7" formatted="false">"AGENTER FORSTYRRET"</string>
+    <string name="t_11c0f105" formatted="false">"NIVEAUMUSIK (AUTO)"</string>
+    <string name="t_11c8546c" formatted="false">"skade"</string>
+    <string name="t_11d858aa" formatted="false">"HØJESTE BØLGE"</string>
+    <string name="t_1213b2b6" formatted="false">"{0} T SIDEN"</string>
+    <string name="t_12193f21" formatted="false">"Netværksarkitekter designer, hvordan et netværk opdeles. Segmentering betyder, at et brud i ét område ikke bare kan gå videre til det næste, hvilket begrænser skaden fra enhver enkelt fejl. Det er designarbejde før en hændelse, ikke et værktøj under en."</string>
+    <string name="t_1248f6ec" formatted="false">"At gemme soundtracket kræver Android 10 eller nyere."</string>
+    <string name="t_125ca8ca" formatted="false">"STARTPAKKE"</string>
+    <string name="t_12a36ceb" formatted="false">"FORFALSKET"</string>
+    <string name="t_12e8edf9" formatted="false">"SPROG"</string>
+    <string name="t_1380e038" formatted="false">"GIDSEL · OPGRADERINGER LÅST {0} s"</string>
+    <string name="t_138da392" formatted="false">"Et gitter, hvis celler varmes op og køles ned med trafikken."</string>
+    <string name="t_13df4b88" formatted="false">"FIRMWARE"</string>
+    <string name="t_13ee9782" formatted="false">"UDSENDT"</string>
+    <string name="t_141ad814" formatted="false">"FEEDBACK"</string>
+    <string name="t_143628e2" formatted="false">"KUN GENOPLIVNINGSANNONCER · FRIVILLIGT"</string>
+    <string name="t_1489b7f6" formatted="false">"{0} DAGE SIDEN"</string>
+    <string name="t_14bdf6f2" formatted="false">"DET GUIDEDE SPIL KRÆVER FIREWALL FØRST"</string>
+    <string name="t_14c27ca9" formatted="false">"ANALYST gør 80 % ekstra skade på eliter. Agenter, der ignorerer panser, hjælper."</string>
+    <string name="t_14cecaa5" formatted="false">"At gøre data ulæselige uden en nøgle"</string>
+    <string name="t_14ecbe1d" formatted="false">"{0}/s"</string>
+    <string name="t_1512aeac" formatted="false">"{0} niveauer"</string>
+    <string name="t_154419d5" formatted="false">"Tæller som krypteret: de fleste agenter gør reduceret skade."</string>
+    <string name="t_154a5adf" formatted="false">"NIV"</string>
+    <string name="t_15680f7c" formatted="false">"Brug det på permanent KERNEFIRMWARE-skade."</string>
+    <string name="t_1571a208" formatted="false">"Placer to TARPIT, så deres auraer dækker det område, dine FIREWALL skyder mod. Det er opbremsningen, der får skaden til at ramme."</string>
+    <string name="t_15aa2838" formatted="false">"Et groft gitter, hvis celler varmes op og køles ned med trafikken."</string>
+    <string name="t_15ede35d" formatted="false">"◇ {0} · tilgængelig fra start"</string>
+    <string name="t_167ae054" formatted="false">"Dette sletter dit gemte spil, alle oplåste agenter, al statistik og dine indstillinger.\n\nDet kan ikke fortrydes."</string>
+    <string name="t_17a13ae4" formatted="false">"Bosser bevæger sig langsomt, men rammer CORE-SERVER for {0} integritet. De giver mest krypto i spillet og bliver hårdere for hver cyklus."</string>
+    <string name="t_17e0e9f0" formatted="false">"Meget høj skudhastighed, sigter altid på bosser før alt andet inden for rækkevidde og gør dobbelt skade på [!!!] BREACH. Låses op ved bølge 30, og højst fire må udsendes."</string>
+    <string name="t_1877f7c0" formatted="false">"AFINSTALLERET"</string>
+    <string name="t_197d534b" formatted="false">"Brug € BUDGET — opspares ved hver tiende bølge i et spil og beholdes bagefter — på et permanent skadeløft til hver agent."</string>
+    <string name="t_1991565e" formatted="false">"HASTIGHEDSGRÆNSE"</string>
+    <string name="t_19cbe369" formatted="false">"YNDLINGSAGENT"</string>
+    <string name="t_1a155da6" formatted="false">"NÆSTE BØLGE"</string>
+    <string name="t_1a2a0f17" formatted="false">"LÅST"</string>
+    <string name="t_1a73c7da" formatted="false">"skudhastighed"</string>
+    <string name="t_1aba43b0" formatted="false">"Langsomme elliptiske spor om kernen, som en planlægger i arbejde."</string>
+    <string name="t_1b0d8052" formatted="false">"Ryst slagmarken, når CORE-SERVER bliver ramt"</string>
+    <string name="t_1ba327c9" formatted="false">"Det mest almindelige webangreb"</string>
+    <string name="t_1ba41734" formatted="false">"BLOKEREDE ANGREB"</string>
+    <string name="t_1cc19733" formatted="false">"DEN VIRKELIGE VERDEN"</string>
+    <string name="t_1d162704" formatted="false">"Er du sikker på, at du vil starte et nyt spil? Din gemte session bliver erstattet."</string>
+    <string name="t_1d29935f" formatted="false">"{0} FORSTYRRET"</string>
+    <string name="t_1d8fe548" formatted="false">"START FORFRA"</string>
+    <string name="t_1dea7837" formatted="false">"HACK:AI er gået ud over sine grænser. Halv integritet, dobbelte belønninger."</string>
+    <string name="t_1deb5c00" formatted="false">"TILKNYTTET · OFFLINE"</string>
+    <string name="t_1e09b492" formatted="false">"🔒 [{0}] {1} · LÅST"</string>
+    <string name="t_1e6ed1a9" formatted="false">"LEVENDE BAGGRUNDE"</string>
+    <string name="t_1ef7821b" formatted="false">"Neonblåt gitter, der forsvinder ind i kernen, med en holografisk ring, der glider fra blå til grøn."</string>
+    <string name="t_1f3159fc" formatted="false">"AGENTFARVER"</string>
+    <string name="t_1f5df304" formatted="false">"FORBINDELSE NULSTILLET"</string>
+    <string name="t_1ff44d56" formatted="false">"LICENS HÅNDHÆVET"</string>
+    <string name="t_20ce505d" formatted="false">"PAUSE"</string>
+    <string name="t_21399575" formatted="false">"UDVIKLER"</string>
+    <string name="t_2198b685" formatted="false">"Tegn den valgte agents scanningsradius"</string>
+    <string name="t_21bb43e3" formatted="false">"{0} · ETHVERT NIVEAU"</string>
+    <string name="t_22100250" formatted="false">"NIVEAU {0} · MAKS"</string>
+    <string name="t_224d65ed" formatted="false">"CORE-SERVER-SKINS"</string>
+    <string name="t_22686e59" formatted="false">"FORBINDELSE"</string>
+    <string name="t_227cde14" formatted="false">"{0} i {1}"</string>
+    <string name="t_2283d7ca" formatted="false">"KNUDEPUNKT OPTAGET"</string>
+    <string name="t_22b6479a" formatted="false">"En specialist i cyberoperationer driver forsvar som en live-operation: holder øje med forstyrrelser, holder holdets værktøjer kørende, mens nogen aktivt prøver at slukke dem, og går direkte efter kilden."</string>
+    <string name="t_22c4ef22" formatted="false">"Indholdet er krypteret, så de fleste forsvar kan ikke læse, hvad de skyder på, og gør kun delvis skade. En CRYPTOGRAPHER-agent skærer lige igennem chifferet."</string>
+    <string name="t_23020c53" formatted="false">" · {0} har du råd til"</string>
+    <string name="t_236f5b12" formatted="false">"BOSSER BESEJRET I ALT"</string>
+    <string name="t_23763c89" formatted="false">"INDSTILLINGER"</string>
+    <string name="t_23961a76" formatted="false">"BOSS {0} AF {1} · TRYK PÅ EN BOSS FOR AT SKIFTE"</string>
+    <string name="t_24adcafc" formatted="false">"SAMLET SKADE PÅ SERVEREN"</string>
+    <string name="t_24bbb47b" formatted="false">"LÅSTE GENSTANDE"</string>
+    <string name="t_24d3a2ef" formatted="false">"MUREN NEDE"</string>
+    <string name="t_255b5911" formatted="false">"CRT-fosforgrøn, scanlinjer og et opdateringsfej."</string>
+    <string name="t_2570d23e" formatted="false">"Fokuser ilden. ANALYST og ROOT ADMIN bærer bossbølgerne."</string>
+    <string name="t_25a6b96b" formatted="false">"Pålidelig skade på mellemdistance til lav pris, og den eneste agent, der er immun over for en boss-JAM. Kort rækkevidde, så den må stå tæt på banen — og det er netop derfor, immuniteten betyder noget."</string>
+    <string name="t_25bd1975" formatted="false">"SKD"</string>
+    <string name="t_25efb9da" formatted="false">"EKSPLOSIONSRADIUS"</string>
+    <string name="t_260d60b1" formatted="false">"ÉN ANNONCE EFTER ET TABT SPIL · GENOPLIVNING FRIVILLIG"</string>
+    <string name="t_26b80d1f" formatted="false">"FÆRDIG"</string>
+    <string name="t_27a68119" formatted="false">"NETVÆRKSSTATUS"</string>
+    <string name="t_27d9802d" formatted="false">"ÉN ANNONCE EFTER ET TABT SPIL"</string>
+    <string name="t_27daad70" formatted="false">"Frost, der kryber ind fra kanterne."</string>
+    <string name="t_28c31125" formatted="false">"Pansret og tålmodig. Tunge enkeltslag slår den; hurtig ild spildes."</string>
+    <string name="t_28e339dd" formatted="false">"Spredte kolonner af faldende tegn bag banen."</string>
+    <string name="t_296fb456" formatted="false">"REPARATION +{0} HP · HVERT {1}. s · PLADS CORE-SERVER · MAKS {2}"</string>
+    <string name="t_297ae895" formatted="false">"I KARANTÆNE"</string>
+    <string name="t_2a1bde6e" formatted="false">"Et indtrængningsforebyggelsessystem sidder i trafikkens vej og må handle på det, det opdager, ved at droppe eller nulstille en forbindelse i stedet for kun at alarmere. Afvejningen er reel: en IPS, der fejlbedømmer legitim trafik, blokerer den."</string>
+    <string name="t_2a934539" formatted="false">"ANGREBETS OPRINDELSE"</string>
+    <string name="t_2a9b95e6" formatted="false">"Gør ×{0} skade på hver boss."</string>
+    <string name="t_2bb9a482" formatted="false">"En firewall tjekker trafik mod en liste af regler og dropper alt, der ikke passer. Det er det ældste og stadig vigtigste perimeterforsvar, der findes."</string>
+    <string name="t_2be00c84" formatted="false">"REDIGER KALDENAVN"</string>
+    <string name="t_2c13b917" formatted="false">"Gør ×{0} skade på {1}."</string>
+    <string name="t_2ce4713d" formatted="false">"&gt; synkroniserer CORE-SERVER"</string>
+    <string name="t_2d14c154" formatted="false">"Langsomme diagonale datastrømme hen over banen."</string>
+    <string name="t_2dcb788c" formatted="false">"Dette spil er udviklet med hjælp fra værktøjer til kunstig intelligens, brugt som lærings- og udviklingshjælpemidler under indlæringen af programmering og softwareudvikling.\n\nAI-værktøjerne hjalp med bl.a. kodeudvikling, fejlfinding, dokumentation og læring. Endelige designbeslutninger, spillets retning, test og udgivelsesbeslutninger forbliver udviklerens ansvar.\n\nDette spil er ikke genereret, sponsoreret, godkendt, ejet eller udgivet af nogen virksomhed inden for kunstig intelligens."</string>
+    <string name="t_2df53561" formatted="false">"Regelbaseret trafikfilter"</string>
+    <string name="t_2e0cf790" formatted="false">"ANDET"</string>
+    <string name="t_2e19cc63" formatted="false">"Rejser sig én gang med 40 % liv. At dræbe den er ikke det samme som at gøre det af med den."</string>
+    <string name="t_2ef9e2c6" formatted="false">"CYBERANGREB"</string>
+    <string name="t_2f3549f7" formatted="false">"SKYLAGRING IKKE TILGÆNGELIG"</string>
+    <string name="t_302a4f0a" formatted="false">"BASIS"</string>
+    <string name="t_302eea27" formatted="false">"VED DU, HVAD DER KOMMER?"</string>
+    <string name="t_3083c674" formatted="false">"LEVENDE: DRIFT"</string>
+    <string name="t_30867b62" formatted="false">"Kan spilles helt offline"</string>
+    <string name="t_30ed929d" formatted="false">"Lås denne agent op ved at nå bølge {0} på {1}."</string>
+    <string name="t_31359ec6" formatted="false">"{0} fokus fra"</string>
+    <string name="t_313900e6" formatted="false">"ARKITEKTFORBINDELSE"</string>
+    <string name="t_314d733e" formatted="false">"€ {0} tilgængelig"</string>
+    <string name="t_317b7de0" formatted="false">"Kode, der falder inde i selve racket."</string>
+    <string name="t_31d43b93" formatted="false">"LEVENDE: REGN"</string>
+    <string name="t_326bdc38" formatted="false">"AGENT IKKE REGISTRERET"</string>
+    <string name="t_32a3e9f3" formatted="false">"SPECIAL — {0}"</string>
+    <string name="t_32bafd88" formatted="false">"NÆSTE"</string>
+    <string name="t_32e6f915" formatted="false">"RÅD TIL NU"</string>
+    <string name="t_332ec80a" formatted="false">"Alt dræber disse. Byg ikke for meget til dem."</string>
+    <string name="t_33cd995a" formatted="false">"INDTRÆNGEN BLOKERET"</string>
+    <string name="t_3425c9d3" formatted="false">"NIVEAU {0}"</string>
+    <string name="t_35350bff" formatted="false">"En pulserende indeslutningsring."</string>
+    <string name="t_3595e52a" formatted="false">"RUTE {0}"</string>
+    <string name="t_35c82960" formatted="false">"KERNE: GLACIER"</string>
+    <string name="t_35f74be9" formatted="false">"Overvældende skade på ét mål, der ignorerer al panser. Spillets dyreste agent og låses op meget sent. Viser målvælgeren."</string>
+    <string name="t_36900a0f" formatted="false">"Billig og næsten harmløs. Alt inden for dens radius kravler."</string>
+    <string name="t_37447c3a" formatted="false">"Ekstremt høj skudhastighed, og hvert skud sprøjter."</string>
+    <string name="t_376bc6d2" formatted="false">"Nedtællingen fortsætter, mens dette er åbent."</string>
+    <string name="t_376c54b2" formatted="false">"FJERN ANNONCER"</string>
+    <string name="t_379656ef" formatted="false">"KERNE: VOID"</string>
+    <string name="t_37bc9401" formatted="false">"Denne version viser annoncer leveret af Google AdMob. At se en annonce for at fortsætte et spil er altid valgfrit og aldrig nødvendigt for at spille."</string>
+    <string name="t_384d3555" formatted="false">"{0} aktive"</string>
+    <string name="t_384e5d9f" formatted="false">"SKYLAGRING"</string>
+    <string name="t_385b9a87" formatted="false">"En tarpit accepterer en fjendtlig forbindelse og svarer så så langsomt, som den har lov til, og holder angriberen fast på en socket, der ingen steder fører hen. Det er en forsinkelsestaktik, ikke en blokering: værdien er den tid, det koster modparten."</string>
+    <string name="t_38695d86" formatted="false">"SIKKERHEDSKOPI AF FREMSKRIDT"</string>
+    <string name="t_38c1e7e0" formatted="false">"MED ANNONCE"</string>
+    <string name="t_38d9a5af" formatted="false">"&gt; netværk kompromitteret"</string>
+    <string name="t_38e03b91" formatted="false">"FULDT INSTALLERET"</string>
+    <string name="t_3950774a" formatted="false">"REGISTRERET SOM"</string>
+    <string name="t_395af116" formatted="false">"ANONYMT HACK"</string>
+    <string name="t_396e8daa" formatted="false">"SPEKTRUM"</string>
+    <string name="t_3a06e0fa" formatted="false">"MUSIK"</string>
+    <string name="t_3a7e7fe6" formatted="false">"VERSIONSTYPE"</string>
+    <string name="t_3a8a0a59" formatted="false">"Hvert træf gør den hurtigere, uanset hvor lille; den sænker farten, når den lades være. Få store slag slår mange små."</string>
+    <string name="t_3aa6f2eb" formatted="false">"ZERO-DAY HUNTER og ROOT ADMIN ignorerer panser helt."</string>
+    <string name="t_3aaad671" formatted="false">"TRYK FOR DETALJER"</string>
+    <string name="t_3b12a908" formatted="false">"GRADIENT bliver hurtigere for hvert træf, uanset hvor lille, og sænker farten, når den lades være. Få store slag slår mange små."</string>
+    <string name="t_3b53a59d" formatted="false">"Start også bossbølger automatisk. Fra: bossbølger venter på dig"</string>
+    <string name="t_3bc78174" formatted="false">"AI-STØTTET UDVIKLING"</string>
+    <string name="t_3c66aec8" formatted="false">"Dine bølger, agenter, € og firmware gemmes på din Google-konto. Log ind på den på en anden enhed, så er de der. Synkroniserer, når du forlader spillet, og når et spil slutter."</string>
+    <string name="t_3cef355d" formatted="false">"Mest resterende liv"</string>
+    <string name="t_3d17c701" formatted="false">"FARTSTØD"</string>
+    <string name="t_3d331382" formatted="false">"Den vej, trafikken tager"</string>
+    <string name="t_3d509ddc" formatted="false">"Halver billedhastigheden og drop dekorative effekter"</string>
+    <string name="t_3d83d177" formatted="false">"CYBERAGENTER"</string>
+    <string name="t_3db03eca" formatted="false">"DIN REKORD"</string>
+    <string name="t_3e12b118" formatted="false">"HJÆLP"</string>
+    <string name="t_3e27e12f" formatted="false">"Mindst resterende liv"</string>
+    <string name="t_3ecdd82e" formatted="false">"En zero-day er en sårbarhed, som forsvareren har haft nul dage til at rette, fordi ingen vidste, at den fandtes. Der er ingen signatur at matche mod, og det er det, der gør dem så farlige."</string>
+    <string name="t_3fa2aee2" formatted="false">"Tager 35 % mindre skade fra FIREWALL-agenter."</string>
+    <string name="t_401924c3" formatted="false">"CORE-SERVER-SKIN"</string>
+    <string name="t_4071c698" formatted="false">"Google Play svarede. Køb og gendannelser virker normalt."</string>
+    <string name="t_40b15bdb" formatted="false">"Opspares ved hver tiende bølge. Jo dybere et spil går, jo mere betaler det — belønningen vokser med kvadratet af milepælen, så ét dybt spil slår fem lavvandede."</string>
+    <string name="t_4104a0b2" formatted="false">"Dit bedste på {0}: bølge {1}"</string>
+    <string name="t_4108bc91" formatted="false">"HÅNDTRYK AFVIST"</string>
+    <string name="t_41203058" formatted="false">"UDSTYR"</string>
+    <string name="t_412ea11f" formatted="false">"Tryk på to fremhævede udsendelsesknudepunkter ved siden af en rute. To er ikke et forslag: én agent kan ikke dække en bane alene."</string>
+    <string name="t_419c5ded" formatted="false">"SPIL I ALT"</string>
+    <string name="t_41a1b85e" formatted="false">"PRIVATLIVSINDSTILLINGER"</string>
+    <string name="t_41ca8ef5" formatted="false">"Gemmes lokalt på denne enhed · intet uploades"</string>
+    <string name="t_41e88f52" formatted="false">"Knib med to fingre for at zoome ind på banen — knudepunkter er lettere at ramme tæt på. Når du har zoomet, træk med én finger for at flytte rundt. Knib helt ud for at se hele banen igen."</string>
+    <string name="t_4208e473" formatted="false">"INGEN ANNONCE"</string>
+    <string name="t_420bd000" formatted="false">"BOTMASTER smider BOT'er bag sig med få sekunders mellemrum. Dræb den hurtigt, og gem noget til sværmen."</string>
+    <string name="t_4273a8be" formatted="false">"KONTO"</string>
+    <string name="t_42832744" formatted="false">"Intet hasardspil, ingen lootbokse eller tilfældige betalte belønninger"</string>
+    <string name="t_42880e6f" formatted="false">"LÅST · {0}"</string>
+    <string name="t_42a0e053" formatted="false">"OM"</string>
+    <string name="t_42addf6c" formatted="false">"ÅBN BUTIK"</string>
+    <string name="t_42afe7bc" formatted="false">"FORBINDER"</string>
+    <string name="t_42ef8058" formatted="false">"FORSVARSREKORD"</string>
+    <string name="t_4306ee12" formatted="false">"€1,500 BUDGET"</string>
+    <string name="t_4333987a" formatted="false">"Spredte kolonner af faldende tegn."</string>
+    <string name="t_43a1c2e8" formatted="false">"OPGRADERINGSPRIS"</string>
+    <string name="t_441ec9a9" formatted="false">"En hurtig rundtur i menuen. NÆSTE for at fortsætte, SPRING OVER for at lukke. Du kan afspille den igen når som helst fra INDSTILLINGER."</string>
+    <string name="t_4427afab" formatted="false">"Panser afstumper små slag: tag ANALYST eller ROOT ADMIN, ikke IPS."</string>
+    <string name="t_4439e789" formatted="false">"LÅST · Gennemfør niveau 5 (ryd bølge 100 på DDoS) for at låse musikafspilleren og nummerlisten op."</string>
+    <string name="t_448177d3" formatted="false">"SENESTE SYNKRONISERING"</string>
+    <string name="t_4494c488" formatted="false">"{0} MIN SIDEN"</string>
+    <string name="t_44c51c30" formatted="false">"ANGREB BLOKERET"</string>
+    <string name="t_44fbbc54" formatted="false">"&gt; !! cyberangreb på vej — stort brud nærmer sig !!"</string>
+    <string name="t_4538f2a7" formatted="false">"En firewall tjekker trafik mod et sæt regler og dropper alt, hvad reglerne ikke tillader. Den er som regel den første kontrol mellem et upålideligt netværk og noget, der er værd at beskytte, og den bedømmes på de regler, den får, ikke på hvor klog den er."</string>
+    <string name="t_45b17976" formatted="false">"Tung skade på ét mål, ens ved hvert skud i stedet for et lotteri, og ignorerer panser. Dyr og langsom; én af dem holder ikke en bane alene."</string>
+    <string name="t_4631883a" formatted="false">"INSTALLER MAKS  (+{0})"</string>
+    <string name="t_463cbc28" formatted="false">"LIV ×{0} · PANSER +{1} · FART ×{2}"</string>
+    <string name="t_466578df" formatted="false">"Genoptag denne bølge med halv integritet."</string>
+    <string name="t_466b92a9" formatted="false">"SEGMENTFORBINDELSE"</string>
+    <string name="t_46984fe6" formatted="false">"SPIL · FORTSÆT"</string>
+    <string name="t_46cc0ef8" formatted="false">"Den hæver også den ◇ krypto, hvert spil udbetaler, +{0} % pr. niveau op til det dobbelte. Den påvirker ikke fjendernes liv eller bølgernes sammensætning."</string>
+    <string name="t_4735c1ed" formatted="false">"Cyberangreb er på vej mod CORE-SERVER. Udsend Cyberagenter langs ruterne for at stoppe dem, før de ankommer."</string>
+    <string name="t_4747b424" formatted="false">"FJENDER"</string>
+    <string name="t_477d52c6" formatted="false">"Tilknyttet. Log ind på den samme Google-konto på en anden telefon eller tablet, så er dit fremskridt der."</string>
+    <string name="t_47c5c237" formatted="false">"UGYLDIGT KNUDEPUNKT"</string>
+    <string name="t_485268f0" formatted="false">"&gt; bevæbner cyberagenter"</string>
+    <string name="t_4882e1dc" formatted="false">"KERNEL PANIC forstyrrer hver agent inden for rækkevidde i 3 sekunder, når den dør. FIREWALL står imod."</string>
+    <string name="t_488d4b25" formatted="false">"Tusindvis af maskiner sender trafik mod ét mål på én gang. Ingen enkelt forespørgsel er et angreb; oversvømmelsen er. Målet er ikke at bryde ind, men at gøre tjenesten ubrugelig."</string>
+    <string name="t_4905ed7b" formatted="false">"INGEN"</string>
+    <string name="t_494c304d" formatted="false">"-◇{0} STJÅLET"</string>
+    <string name="t_49848f53" formatted="false">"BLIND SQL-INJEKTION"</string>
+    <string name="t_498754a7" formatted="false">"GEM SOUNDTRACKET PÅ TELEFONEN"</string>
+    <string name="t_4af4306b" formatted="false">"VERSION"</string>
+    <string name="t_4c1012d3" formatted="false">"Hold den under beskydning: den reparerer kun sig selv efter et øjeblik uden træf, så dæk hullerne mellem dræbezonerne."</string>
+    <string name="t_4c6d3272" formatted="false">"🔒 LÅST"</string>
+    <string name="t_4cc6f55a" formatted="false">"Google Play Spil kunne ikke nås. Dine spil registreres på denne enhed, og dit bedste offentliggøres, næste gang et spil slutter, mens du er online."</string>
+    <string name="t_4d54c785" formatted="false">"PLACERER {0} — tryk på et knudepunkt"</string>
+    <string name="t_4d6e69d2" formatted="false">"MUSIKAFSPILLER"</string>
+    <string name="t_4d7ab8a3" formatted="false">"KALDENAVN"</string>
+    <string name="t_4e2b3472" formatted="false">"INGEN GEMT SESSION"</string>
+    <string name="t_4ebbf8bd" formatted="false">"{0} genoplivninger tilbage i dette spil."</string>
+    <string name="t_4f0fcb18" formatted="false">"Kommer hver femte bølge"</string>
+    <string name="t_4f160176" formatted="false">"Høstspillet. Ingen tricks, ingen forstyrrelse — tyve procent mere af den end af noget andet på banen."</string>
+    <string name="t_5022c684" formatted="false">"KRYPTERING"</string>
+    <string name="t_5067a989" formatted="false">"SAMMENFILTRET KÆDE"</string>
+    <string name="t_5079b771" formatted="false">"Lås denne agent op ved at nå bølge {0} på {1} i tilstanden {2}."</string>
+    <string name="t_509d7851" formatted="false">" · NEDSLAG {0}"</string>
+    <string name="t_513901c7" formatted="false">" · ANNONCEFRI"</string>
+    <string name="t_513dcdc9" formatted="false">"PR. AGENT"</string>
+    <string name="t_520a6b88" formatted="false">"Hvert niveau koster lidt mere end det forrige, så multiplikatoren bliver ved med at stige, men løber aldrig løbsk. Der er intet loft, du realistisk når."</string>
+    <string name="t_5333e76e" formatted="false">"GENGIVELSE"</string>
+    <string name="t_53e605b3" formatted="false">"PAS PÅ"</string>
+    <string name="t_543ce9f7" formatted="false">"HVER"</string>
+    <string name="t_54523d94" formatted="false">"Racket, din kerne er bygget ind i. Ses på slagmarken."</string>
+    <string name="t_54743050" formatted="false">"BLOKEREDE ANGREB I ALT"</string>
+    <string name="t_54797d92" formatted="false">"Kredsløbsbaner, der løber under aflæsningerne."</string>
+    <string name="t_549824f8" formatted="false">"PORT SIKRET"</string>
+    <string name="t_5571a722" formatted="false">"SPILLES OFFLINE · INTET LOGIN NØDVENDIGT"</string>
+    <string name="t_55f85167" formatted="false">"KOMPAKT AGENTMENU"</string>
+    <string name="t_565a738e" formatted="false">"NEJ, LAD MIG SPILLE"</string>
+    <string name="t_56a9a004" formatted="false">"Injektion med lyset slukket"</string>
+    <string name="t_56bafb67" formatted="false">"Én genoplivning pr. spil."</string>
+    <string name="t_56c54890" formatted="false">"En oppustet model: lidt mere liv, lidt langsommere."</string>
+    <string name="t_56c6b2ae" formatted="false">"Fiktiv frihed, tydeligt markeret: denne agent ignorerer simpelthen egenskaben ENCRYPTED i stedet for at blive bremset af den og gør tredobbelt skade på alt, der har den. Rigtig kryptografi virker ikke sådan, og intet her knækker et rigtigt chiffer."</string>
+    <string name="t_5749c8dc" formatted="false">"Bølge {0} og alt udsendt går tabt."</string>
+    <string name="t_5785b710" formatted="false">"Vælg en agent, og tryk så på et fremhævet udsendelsesknudepunkt."</string>
+    <string name="t_57f88861" formatted="false">"FOKUS: KUN BOSSER"</string>
+    <string name="t_582ec4a0" formatted="false">"Kompromitterede computere, der stille tager imod ordrer fra en central styring. Ejerne aner som regel intet. Botnet er det, der gør store DDoS-angreb mulige."</string>
+    <string name="t_5840893d" formatted="false">"INDTRÆNGEN INDESLUTTET"</string>
+    <string name="t_58a5f08a" formatted="false">"Det almindelige gitter. Ingen bevægelse."</string>
+    <string name="t_597ee3cb" formatted="false">"SIGNATUR MATCHET"</string>
+    <string name="t_5a02fc0a" formatted="false">"GENOPLIVNINGSPAKKE"</string>
+    <string name="t_5a3d8598" formatted="false">"Tættest på CORE-SERVER"</string>
+    <string name="t_5a911db6" formatted="false">"DIN GOOGLE-KONTO"</string>
+    <string name="t_5aa1d1dc" formatted="false">"{0} fokus til"</string>
+    <string name="t_5b19a621" formatted="false">"Et angreb på en fejl, som ingen har patchet endnu — forsvareren har haft nul dage til at forberede sig. Sjælden, sej og værd at stoppe for rigtig krypto."</string>
+    <string name="t_5c19fc6b" formatted="false">"KØB CyOps TD-SOUNDTRACKET · {0}"</string>
+    <string name="t_5c3f86fb" formatted="false">"STÆRKESTE"</string>
+    <string name="t_5d1868fb" formatted="false">"KERNE"</string>
+    <string name="t_5d377851" formatted="false">"Permanente opgraderinger · hver kamp fra nu af"</string>
+    <string name="t_5d4d0273" formatted="false">"{0} er låst: {1}."</string>
+    <string name="t_5de47a9b" formatted="false">"ALLE SVÆRHEDSGRADER"</string>
+    <string name="t_5de55828" formatted="false">"!! LAV INTEGRITET !!"</string>
+    <string name="t_5e75065a" formatted="false">"FORBUNDET"</string>
+    <string name="t_5f2258c9" formatted="false">"Pengene til venstre. De opspares ved hver tiende bølge i et spil og beholdes, når spillet slutter. Dybere spil betaler langt mere."</string>
+    <string name="t_5fd47bcf" formatted="false">"KERNE: MERIDIAN"</string>
+    <string name="t_602fffef" formatted="false">"Alt undtagen CRYPTOGRAPHER mister over halvdelen af sin skade her."</string>
+    <string name="t_6049b1e7" formatted="false">"LEVENDE BAGGRUND"</string>
+    <string name="t_60a5a04c" formatted="false">"Sæt musik på pause"</string>
+    <string name="t_60ecea1a" formatted="false">"ABSOLUT"</string>
+    <string name="t_60f81814" formatted="false">"Hvert {0}. sekund bruger LICENSE {1} på at ignorere enhver agenttype, der bliver ved med at ramme den. Bland dine agenttyper."</string>
+    <string name="t_61919374" formatted="false">"GENOPLIVET — den kommer ikke tilbage igen"</string>
+    <string name="t_61ebe734" formatted="false">"SKÆRMRYSTEN"</string>
+    <string name="t_625afb79" formatted="false">"Ejet. Gemmes i Music/CyOps TD som \"CyOps TD - Level X (Y)\"."</string>
+    <string name="t_628c7cd9" formatted="false">"FORDELING AF AGENTUDSENDELSER"</string>
+    <string name="t_62f8af50" formatted="false">"+{0} HP / {1} s"</string>
+    <string name="t_63374e04" formatted="false">"HOVEDMENU"</string>
+    <string name="t_633e8e1a" formatted="false">"Deler sig i tre mindre orme, når den dræbes, og hver af dem deler sig én gang til. Stænkskade er din ven."</string>
+    <string name="t_6343926d" formatted="false">"FORSTYRRELSE"</string>
+    <string name="t_638aaa93" formatted="false">"DUKKER OGSÅ OP HER"</string>
+    <string name="t_63b00a3c" formatted="false">"Data, der sendes over et netværk, hakkes op i pakker: små stykker med en destinationsadresse og en nyttelast. En pakke er ikke et angreb — næsten alle er almindelig trafik. Det, du skyder på her, er pakker, der bærer et bestemt angreb, og derfor er hver opkaldt efter angrebet frem for pakken."</string>
+    <string name="t_63b54927" formatted="false">"3 genoplivninger pr. spil og aldrig genoplivningsannoncer, plus €5,000."</string>
+    <string name="t_63bef594" formatted="false">"HP {0}"</string>
+    <string name="t_63f3d76a" formatted="false">"GEM"</string>
+    <string name="t_63facb82" formatted="false">"LEVENDE: PULS"</string>
+    <string name="t_6480a147" formatted="false">"BØLGE {0}  —  FORSTÆRK PERIMETEREN"</string>
+    <string name="t_648a945b" formatted="false">"TO TING, INGEN FORTÆLLER DIG"</string>
+    <string name="t_6490c689" formatted="false">"Ingen rigtig kryptovaluta, blockchain, tegnebøger, mining eller NFT'er"</string>
+    <string name="t_64d398f9" formatted="false">"RÆKKEVIDDE"</string>
+    <string name="t_65155738" formatted="false">"5× FART"</string>
+    <string name="t_65252ce7" formatted="false">"FØRSTE"</string>
+    <string name="t_6554cde7" formatted="false">"Spørger Google Play, hvad denne konto ejer. Det tager som regel et øjeblik."</string>
+    <string name="t_655c9284" formatted="false">"LEVENDE: GITTER"</string>
+    <string name="t_656e6ce8" formatted="false">"AGENTER"</string>
+    <string name="t_65c8fd90" formatted="false">"TRUSSELSBRIEFING"</string>
+    <string name="t_6678bfdf" formatted="false">"Når den dør, forstyrres hver agent nær den i 3 sekunder. Dræb den langt fra din bane, eller når næste bølge er langt væk."</string>
+    <string name="t_66fa85d7" formatted="false">"Spred dine agenter, så én forstyrrelse ikke kan bringe hele linjen til tavshed."</string>
+    <string name="t_6700226a" formatted="false">"TILKNYTTET"</string>
+    <string name="t_67043715" formatted="false">"PANSER"</string>
+    <string name="t_67313d46" formatted="false">"MUREN OPPE"</string>
+    <string name="t_6757b458" formatted="false">"STOPPEDE ANGREB"</string>
+    <string name="t_6813ef42" formatted="false">"ANONYMT HACK — {0} BOT'ER PÅ VEJ MED DOBBELT FART"</string>
+    <string name="t_681745bd" formatted="false">"AGENT LÅST — {0}"</string>
+    <string name="t_682d973f" formatted="false">"START"</string>
+    <string name="t_68e88af7" formatted="false">"FAREZONE"</string>
+    <string name="t_68e985d6" formatted="false">"Intet andet sendes nogen steder hen. Spillet kan spilles helt uden netværk."</string>
+    <string name="t_6904aeb4" formatted="false">"SPILLET"</string>
+    <string name="t_69698cdc" formatted="false">"WORM deler sig i tre mindre orme, når den dræbes, og de deler sig én gang til. Dræb den tidligt, med stænkskade i nærheden."</string>
+    <string name="t_69a293c4" formatted="false">"SUDO AFSLUT"</string>
+    <string name="t_6ad356c5" formatted="false">"Tre ruter: en lige vej gennem midten og to, der zigzagger over og under den."</string>
+    <string name="t_6b2d8165" formatted="false">"NIV {0}  {1} SKD"</string>
+    <string name="t_6c161f51" formatted="false">"I 2 sekunder af hver 17 ignorerer den enhver agenttype, der bliver ved med at ramme den. En varieret bane bliver ved med at skade den."</string>
+    <string name="t_6c7aa396" formatted="false">"Forskellige bosser, forskellige svagheder."</string>
+    <string name="t_6ca9de88" formatted="false">"SPEKTRUMAGENTER"</string>
+    <string name="t_6cb7e8e3" formatted="false">"Langsomme, tunge slag. +80 % skade på eliter og bosser."</string>
+    <string name="t_6cbf7c76" formatted="false">"BESEJREDE BOSSER"</string>
+    <string name="t_6ccdc653" formatted="false">"Ignorerer kryptering helt og gør tredobbelt skade på den."</string>
+    <string name="t_6cedde69" formatted="false">"MUSIKLYDSTYRKE"</string>
+    <string name="t_6d2d6d6b" formatted="false">"Ignorerer dens panser."</string>
+    <string name="t_6d907c0d" formatted="false">"Et \"blåt hold\" forsvarer et system og reagerer på hændelser — modstykket til et rødt hold. \"Blå hat\" bruges på mere end én måde i branchen og er ikke et standardiseret begreb, så kun betydningen blåt hold beskrives her."</string>
+    <string name="t_6dbe0ea3" formatted="false">"NIVEAU"</string>
+    <string name="t_6f053419" formatted="false">"{0}-GRÆNSE — MAKS {1}"</string>
+    <string name="t_6f21a684" formatted="false">"BOSSER — hver femte bølge"</string>
+    <string name="t_70d42172" formatted="false">"At opdele et netværk, så et brud i ét område ikke kan nå resten. Det er derfor, én kompromitteret bærbar ikke bør betyde en kompromitteret virksomhed."</string>
+    <string name="t_7191bf1d" formatted="false">"VEDVARENDE ADGANG"</string>
+    <string name="t_71c5931f" formatted="false">"Strømsparer ændrer kun, hvad der tegnes. Bølgernes sværhedsgrad, skade og timing påvirkes slet ikke."</string>
+    <string name="t_72102eb0" formatted="false">"Køb, gendannelser og hvad der forlader denne enhed"</string>
+    <string name="t_722a0bad" formatted="false">"VIS GUIDERNE IGEN"</string>
+    <string name="t_73236391" formatted="false">"Spillet selv indsamler ingen personoplysninger"</string>
+    <string name="t_735d4940" formatted="false">"LYDSTYRKE FOR LYDEFFEKTER"</string>
+    <string name="t_73907e76" formatted="false">"Alle 24 numre fra spillet, gemt i telefonens Music-mappe, så de kan afspilles overalt."</string>
+    <string name="t_7397fdaa" formatted="false">"Koldt lys, der bevæger sig bag alting."</string>
+    <string name="t_739a7f7a" formatted="false">"© {0} {1}. Alle rettigheder forbeholdes."</string>
+    <string name="t_73d812dc" formatted="false">"Hver femte bølge, og hvad den bringer"</string>
+    <string name="t_73e8cb50" formatted="false">"Original kode, original grafik, original syntetiseret lyd. Bygget med Kotlin, Jetpack Compose og Android Canvas API.\n\nIkoner: CoreUI Icons Free af creativeLabs (coreui.io/icons), licenseret under CC BY 4.0.\n\nLicenser for tredjepartsafhængigheder står i LICENSES.md i projektets repository."</string>
+    <string name="t_74066c59" formatted="false">"I SPILLET"</string>
+    <string name="t_746ab6c3" formatted="false">"IPS gør 35 % ekstra skade på sværme. Placer den, hvor banerne mødes."</string>
+    <string name="t_746d814e" formatted="false">"Sletter dit gemte spil, oplåste agenter, statistik og indstillinger. Det kan ikke fortrydes."</string>
+    <string name="t_74aa6c59" formatted="false">"UTILSTRÆKKELIGT € BUDGET"</string>
+    <string name="t_74fff44e" formatted="false">"Kaster lokkekopier af sig selv, der opsuger ild. ANALYST og ROOT ADMIN ser igennem dem."</string>
+    <string name="t_750800eb" formatted="false">"Skyder lige så hurtigt som noget andet på holdet og skyder altid på en boss først. Dobbelt skade på [GG] GOOD GAME. Højst fire."</string>
+    <string name="t_7596436a" formatted="false">"En seniorsikkerhedsingeniør med en bachelorgrad i cybersikkerhed, der stopper angreb ved at bygge den software, der forsvarer mod dem: hærdede tjenester, patches og filtre, der er på plads, før angrebet kommer, ikke bagefter."</string>
+    <string name="t_75b191e4" formatted="false">"Bygger en mur på tværs af den nærmeste rute inden for rækkevidde. Trusler stopper ved muren og må rive den ned, før de kan passere; bosser river den hurtigst. Når den falder, genopbygger ACE den efter få sekunder, stærkere for hvert niveau. Dens egne skud gør {0}× skade på hver boss på de første fem niveauer. Højst tre må udsendes."</string>
+    <string name="t_75bd8866" formatted="false">"Vælg et niveau og en sværhedsgrad"</string>
+    <string name="t_75e65d90" formatted="false">"TRYK TO GANGE FOR AT UDSENDE"</string>
+    <string name="t_75f24f6e" formatted="false">"Låser med få sekunders mellemrum én agents opgraderinger i 8 sekunder. Opgrader, før den ankommer."</string>
+    <string name="t_7682806a" formatted="false">"TRIN 2 — VÆLG FIREWALL"</string>
+    <string name="t_77212b64" formatted="false">"Dette er den angrebsbølge, du står over for. Den stiger, så længe du holder serveren — hver femte bølge bringer en boss."</string>
+    <string name="t_772b21ba" formatted="false">"Det forsvar, du udsender"</string>
+    <string name="t_776f4222" formatted="false">"NIV {0}"</string>
+    <string name="t_77a2583e" formatted="false">"To forskellige ting kaldes \"kvante\" inden for sikkerhed, og de er værd at holde adskilt. Kvantenøgledistribution bruger fysik til at opdage aflytning på en forbindelse og bruges kun i sjældne, specialiserede sammenhænge. Postkvantekryptografi er almindelig softwarematematik designet til at modstå fremtidige kvantecomputere, og det er den, der faktisk rulles ud."</string>
+    <string name="t_77a6da9b" formatted="false">"Ringe, der bevæger sig udad fra kernen."</string>
+    <string name="t_77d03aa5" formatted="false">"En blind injektion får ingen fejlmeddelelser tilbage, så angriberen udleder svaret ét sandt-eller-falsk-spørgsmål ad gangen. Den er langsommere og langt mere tålmodig end en normal injektion og kommer hærdet mod de oplagte forsvar."</string>
+    <string name="t_77e5929c" formatted="false">"Første tryk viser agentens rækkevidde på det sted; tryk igen for at udsende"</string>
+    <string name="t_77e8896f" formatted="false">"Én rute skærer diagonalt fra hjørne til hjørne over banen fem gange."</string>
+    <string name="t_77f7e381" formatted="false">" · PANSER {0}"</string>
+    <string name="t_782074f1" formatted="false">"  ·  AUTO {0}"</string>
+    <string name="t_7841323b" formatted="false">"FORSVARSFEJ"</string>
+    <string name="t_78526608" formatted="false">"NÅET BØLGE"</string>
+    <string name="t_78a52e3b" formatted="false">"SKJULT"</string>
+    <string name="t_7922c8d5" formatted="false">"Forstærker hver agent inden for rækkevidde: +30 % skade, +20 % skudhastighed."</string>
+    <string name="t_79a4baee" formatted="false">"&lt; TILBAGE"</string>
+    <string name="t_79fc7a80" formatted="false">"Gælder kun, når START BØLGER AUTOMATISK er slået til"</string>
+    <string name="t_7a1f56c4" formatted="false">"SYNKRONISER NU"</string>
+    <string name="t_7aba529e" formatted="false">"Bryder dens kryptering: ×{0} skade."</string>
+    <string name="t_7abfb3c7" formatted="false">"Deler sig i to ved halvt liv, og den anden halvdel tager en anden rute."</string>
+    <string name="t_7b3bb73f" formatted="false">"TRUSSEL NEUTRALISERET"</string>
+    <string name="t_7b84a6c4" formatted="false">"Tilknyt din Google-konto på skærmen GOOGLE PLAY for at se verdensranglisten og poste på den. Dine spil registreres stadig på denne enhed."</string>
+    <string name="t_7ba7f176" formatted="false">"+{0} % SKD"</string>
+    <string name="t_7be6fbad" formatted="false">"BØLGE {0} · SIMULERING STANDSET"</string>
+    <string name="t_7bf2105b" formatted="false">"Distribueret tjenestenægtelse"</string>
+    <string name="t_7c4e4414" formatted="false">"SIDSTE"</string>
+    <string name="t_7c6853de" formatted="false">"VERDEN · {0}"</string>
+    <string name="t_7d5cc77f" formatted="false">"KRYPTO OPTJENT I ALT"</string>
+    <string name="t_7dc33bc2" formatted="false">"MAKSIMALT NIVEAU NÅET"</string>
+    <string name="t_7e1cf3a7" formatted="false">"REPARER"</string>
+    <string name="t_7e522f64" formatted="false">"MEDVIRKENDE"</string>
+    <string name="t_7e72ed35" formatted="false">"FREMSKRIDT GEMT PÅ DIN KONTO"</string>
+    <string name="t_7e906966" formatted="false">"Gemte {0} numre i Music/CyOps TD."</string>
+    <string name="t_7ea71dbe" formatted="false">"Åbn AGENTER igen, og vælg TARPIT. Den gør ingen skade — den bremser hver trussel i sin aura, så dine FIREWALL får flere skud på dem."</string>
+    <string name="t_7f11b512" formatted="false">"{0} · {1} PR. SPIL {2}"</string>
+    <string name="t_7fd8e294" formatted="false">"&gt; perimeter online"</string>
+    <string name="t_804ef7d5" formatted="false">"Det mest almindelige angreb på internettet og grundtruslen her. En angriber skriver databasekommandoer i et felt, der forventede et navn eller en adgangskode; hvis programmet sender det lige igennem, adlyder databasen."</string>
+    <string name="t_80592dd9" formatted="false">"VERSION"</string>
+    <string name="t_8175c5fc" formatted="false">"CORE-SERVER-INTEGRITET"</string>
+    <string name="t_8198af01" formatted="false">"Skjuler sig i 2 sekunder af hver 6.: intet kan sigte på den. Stænk og kæder når den stadig."</string>
+    <string name="t_81e23c68" formatted="false">"ANDET: kun små enheder og eliter, aldrig bosser"</string>
+    <string name="t_8230b283" formatted="false">"IDS gør 45 % ekstra skade på hurtige angreb og ser dem komme først."</string>
+    <string name="t_82966ea3" formatted="false">"BØLGETÆLLEREN"</string>
+    <string name="t_829e8e06" formatted="false">"Agenter inden for dens rækkevidde kan ikke forstyrres. {0}× skade på WHITE EYE og BLACK EYE. Højst to."</string>
+    <string name="t_82a1fee3" formatted="false">"Er du sikker på, at du vil genstarte dit spil?"</string>
+    <string name="t_82a70835" formatted="false">"Uden tilknytning lever spillets fremskridt kun på denne enhed. En afinstallation eller fabriksnulstilling sletter det; køb overlever begge."</string>
+    <string name="t_830a30fd" formatted="false">"BUDGET"</string>
+    <string name="t_830b01d9" formatted="false">"Firmware ganger skaden for hver agent, du udsender, i hver kamp fra nu af. Den anvendes før panser og før modtabellen, så den hjælper en Cryptographer mod kryptering nøjagtig lige så meget, som den hjælper en Firewall mod almindelig trafik."</string>
+    <string name="t_831712ed" formatted="false">"NY CYBERAGENT LÅST OP"</string>
+    <string name="t_83186dce" formatted="false">"KUN DENNE ENHED"</string>
+    <string name="t_8340a76d" formatted="false">"HVORFOR DET BETYDER NOGET"</string>
+    <string name="t_838b0928" formatted="false">"Skaber eskorteangreb, mens den rykker frem."</string>
+    <string name="t_8478f19e" formatted="false">"HVAD DER FORLADER DENNE ENHED"</string>
+    <string name="t_848f3f46" formatted="false">"SLET AL FREMSKRIDT?"</string>
+    <string name="t_852bda75" formatted="false">"CODEX"</string>
+    <string name="t_862b3f34" formatted="false">"UDSEND CYBERAGENT"</string>
+    <string name="t_869cf6b4" formatted="false">"REGISTRER KALDENAVN"</string>
+    <string name="t_86cce90c" formatted="false">"SVAGESTE"</string>
+    <string name="t_87442b62" formatted="false">"NÆSTE BØLGE · BREACH"</string>
+    <string name="t_87a9dd3e" formatted="false">"BØLGER, € OG FIRMWARE"</string>
+    <string name="t_87d92d69" formatted="false">"Meget lang registreringsrækkevidde; +45 % skade på hurtige angreb."</string>
+    <string name="t_8806feca" formatted="false">"Seks CORE-SERVER-skins plus €2,000. NEONGRID sælges separat."</string>
+    <string name="t_882561c2" formatted="false">"TRUSSELSVURDERING"</string>
+    <string name="t_891fc63b" formatted="false">"FORFALSKNING FALDET"</string>
+    <string name="t_8980d82b" formatted="false">"{0} valgt — tryk på et fremhævet knudepunkt for at udsende."</string>
+    <string name="t_899bae42" formatted="false">"Valgfrit. Alt i spillet virker uden tilknytning, og intet andet end dit fremskridt uploades nogensinde."</string>
+    <string name="t_89a47932" formatted="false">"Afspil musik"</string>
+    <string name="t_89c7b011" formatted="false">"Åbn Googles samtykkeformular igen for at ændre, hvad annoncepartnere må gøre med data fra denne enhed. Dit spilfremskridt gemmes på denne enhed og er aldrig en del af det."</string>
+    <string name="t_89d7c51c" formatted="false">"Ud, tilbage og en lang fælles vej hjem til racket."</string>
+    <string name="t_89dd34f8" formatted="false">"Overlad sværmrydning til IPS, så dine tunge skytter bliver på bossen."</string>
+    <string name="t_89e1b0eb" formatted="false">"Dens felt trækker GRADIENT ned igen, mens den accelererer."</string>
+    <string name="t_89e450ea" formatted="false">"FJERNET · GENOPLIVNINGSANNONCER SEPARAT"</string>
+    <string name="t_8a058fa3" formatted="false">"Standardkurven."</string>
+    <string name="t_8a86921d" formatted="false">"Knapperne til højre kan rulles. Længere nede: BUTIK, UDSTYR (tag skins og baggrunde på), GOOGLE PLAY (køb og skylagring), RANGLISTE, CODEX (trusler og agenter forklaret), STATISTIK, INDSTILLINGER og OM."</string>
+    <string name="t_8a96f0aa" formatted="false">"IKKE TILGÆNGELIG"</string>
+    <string name="t_8aa097b1" formatted="false">"  (LÅST)"</string>
+    <string name="t_8aec13a9" formatted="false">"Distribueret tjenestenægtelse: angrebet er mængden. Hver forespørgsel er ubetydelig, men de kommer hurtigere end noget andet i spillet, og der er altid flere."</string>
+    <string name="t_8af0e8d8" formatted="false">"Et koordineret indbrudsforsøg. Ingen tricks, bare vægt."</string>
+    <string name="t_8b094c6c" formatted="false">"Forbinder til Google Play…"</string>
+    <string name="t_8c42a507" formatted="false">"Isnåle, der stråler ud fra en frossen kerne."</string>
+    <string name="t_8c61de92" formatted="false">"START BØLGER AUTOMATISK"</string>
+    <string name="t_8d56a5da" formatted="false">"Langsomme elliptiske spor, der kredser om kernen."</string>
+    <string name="t_8d91a14b" formatted="false">"GOOGLE PLAY"</string>
+    <string name="t_8d9dd637" formatted="false">"BOSS: skyder kun på bosser, holder ellers ilden"</string>
+    <string name="t_8e0413ab" formatted="false">"Denne version har ingen køb i appen."</string>
+    <string name="t_8e3787c1" formatted="false">"LÅST · {0} (bedste: {1})"</string>
+    <string name="t_8f0536a7" formatted="false">"INSTALLER MAKS"</string>
+    <string name="t_8f37a712" formatted="false">"UDDELT SKADE"</string>
+    <string name="t_8f48da3c" formatted="false">"NETVÆRK KOMPROMITTERET"</string>
+    <string name="t_8f5d0f11" formatted="false">"ØKONOMI"</string>
+    <string name="t_8f61abf9" formatted="false">"ARBEJDER…"</string>
+    <string name="t_8f68a3ab" formatted="false">"&gt; indlæser trusselssignaturer"</string>
+    <string name="t_8ff6e51c" formatted="false">"Ingen spil registreret på {0} endnu."</string>
+    <string name="t_90391726" formatted="false">"GENOPTAG"</string>
+    <string name="t_910b3ae9" formatted="false">"Penge optjent til at købe agenter, der forsvarer serveren. Krypto◇ optjenes for hvert drab og hver gennemført bølge."</string>
+    <string name="t_915c2f22" formatted="false">"Gemte {0} numre, derefter afviste telefonen resten. Frigør lidt plads, og prøv igen."</string>
+    <string name="t_919816cc" formatted="false">"Google Play kunne ikke nås. Alt, hvad du allerede har købt, er stadig dit — prøv GENDAN, når du er online igen."</string>
+    <string name="t_91ae1cd3" formatted="false">"Ordliste i klart sprog"</string>
+    <string name="t_91d4d5fc" formatted="false">"TILGÆNGELIG · ◇ {0}"</string>
+    <string name="t_9231c915" formatted="false">"Ravfarvede indeslutningsringe om en igangværende reaktion."</string>
+    <string name="t_933bf2fb" formatted="false">"FJERN ANNONCER dækker annoncer mellem spil; genoplivningsannoncer er separate."</string>
+    <string name="t_935cf7b5" formatted="false">"Hattenes skudhastighed, tungere skud og {0}× skade på SYN-STORM og GRADIENT. Højst to."</string>
+    <string name="t_93875a49" formatted="false">"rækkevidde"</string>
+    <string name="t_93f1bd2f" formatted="false">"Meget høj skudhastighed, sigter altid på bosser før alt andet inden for rækkevidde og gør dobbelt skade på [GG] GOOD GAME. Låses op ved bølge 30, og højst fire må udsendes."</string>
+    <string name="t_94061f4f" formatted="false">"Gør næsten ingen skade. Alt inden for dens radius kravler, hvilket holder truslerne inden for dine skadegiveres rækkevidde langt længere. Billig og ubrugelig alene — den er en kraftmultiplikator for det, der skyder ved siden af den."</string>
+    <string name="t_941dea68" formatted="false">"SKADETAL"</string>
+    <string name="t_9427590a" formatted="false">"Vis svævende skadeværdier ved træf"</string>
+    <string name="t_94bbec0b" formatted="false">"Tryk på NÆSTE BØLGE. Dine agenter skyder automatisk. Hvert angreb, du stopper, udbetaler ◇ Krypto, som køber flere agenter og opgraderinger."</string>
+    <string name="t_94dc88d3" formatted="false">"Hvert firmwareniveau giver +{0} % skade til hver agent og +{1} % ◇ krypto optjent i spil (op til det dobbelte), i hver fremtidig kamp. Det forsvinder aldrig."</string>
+    <string name="t_95051192" formatted="false">"IKKE ANGIVET"</string>
+    <string name="t_952dc0bb" formatted="false">"RANGLISTE"</string>
+    <string name="t_959b6bbb" formatted="false">"MAKS {0} UDSENDT"</string>
+    <string name="t_9655a074" formatted="false">"Langsomme datastrømme bag menuen og banen."</string>
+    <string name="t_97e1363f" formatted="false">"Kraftig fast skadereduktion ved hvert træf."</string>
+    <string name="t_98189a64" formatted="false">"Ingen. Det her er en ærlig kamp."</string>
+    <string name="t_9873614b" formatted="false">"Holdets længste registreringsrækkevidde og +45 % skade mod hurtige angreb. Langsom skudhastighed — det er en spejder, der tilfældigvis skyder, og den placeres bedst, hvor den kan dække meget bane."</string>
+    <string name="t_98a9c7f2" formatted="false">"€ BUDGET"</string>
+    <string name="t_98b63553" formatted="false">"Ingen konto eller login kræves for at spille"</string>
+    <string name="t_98cc567c" formatted="false">"BEDSTE SKADE"</string>
+    <string name="t_98f4abc6" formatted="false">"◇ {0} · låses op ved bølge {1} på {2}"</string>
+    <string name="t_98fbe3ee" formatted="false">"MULTILÅS"</string>
+    <string name="t_991bd4c3" formatted="false">"Én enkelt CRYPTOGRAPHER vender hele kampen."</string>
+    <string name="t_991c8ba8" formatted="false">"AGENTOPGRADERINGER I ALT"</string>
+    <string name="t_996095bd" formatted="false">"Visse navne, begreber og varemærker nævnt i dette spil kan tilhøre deres respektive ejere. Sådanne henvisninger bruges udelukkende til identifikation, kommentar, pædagogisk kontekst og fiktiv fremstilling i spillet.\n\nDette spil er udviklet uafhængigt og er ikke tilknyttet, sponsoreret, godkendt eller anerkendt af Red Hat, Microsoft eller nogen anden tredjeparts varemærkeejer.\n\nAlle tredjepartsvaremærker, produktnavne, firmanavne og logoer forbliver deres respektive ejeres ejendom."</string>
+    <string name="t_99ab6437" formatted="false">"Vis hovedmenuens rundtur og FIRMWARE-forklaringen igen, næste gang du åbner de skærme."</string>
+    <string name="t_99cfdd6c" formatted="false">"Forhåndsvis {0}"</string>
+    <string name="t_99d175d2" formatted="false">"Hold en TARPIT på ruten for at dæmpe accelerationen."</string>
+    <string name="t_99f43c9c" formatted="false">"UTILSTRÆKKELIG KRYPTO"</string>
+    <string name="t_9a8ee779" formatted="false">"Skyder lige så hurtigt som noget andet på holdet og skyder altid på en boss først. Dobbelt skade på [!!!] BREACH. Højst fire."</string>
+    <string name="t_9a9bcdd3" formatted="false">"PLADS"</string>
+    <string name="t_9aa5d01a" formatted="false">"Aldrig en mellemliggende annonce efter et mislykket spil, plus €5,000. Genoplivningsannoncer er frivillige og separate — se GENOPLIVNINGSPAKKE."</string>
+    <string name="t_9adba547" formatted="false">"Den bedste værdi pr. euro."</string>
+    <string name="t_9ae9f14f" formatted="false">"En langsom drift af fjerne punkter."</string>
+    <string name="t_9aed28a1" formatted="false">"UDSENDELSESGRÆNSE NÅET"</string>
+    <string name="t_9b08be38" formatted="false">"Spørger Google Play Spil…"</string>
+    <string name="t_9b1d7455" formatted="false">"BØLGE {0}"</string>
+    <string name="t_9b4c97a7" formatted="false">"Opkaldt efter træhesten: software, der ligner noget, du vil have, og bærer på noget, du absolut ikke vil have."</string>
+    <string name="t_9b557f99" formatted="false">"Dit bedste: bølge {0}"</string>
+    <string name="t_9b989bfb" formatted="false">"BEDSTE"</string>
+    <string name="t_9bcd1b03" formatted="false">"Alle syv levende baggrunde plus €2,000."</string>
+    <string name="t_9bd1faf7" formatted="false">"Refusioner, betalingsmetoder og kvitteringer håndteres af Google, ikke af dette spil."</string>
+    <string name="t_9c2ade2b" formatted="false">"NIV {0}  ×{1}"</string>
+    <string name="t_9c6be09c" formatted="false">"MODIFIKATORER"</string>
+    <string name="t_9d0c4ff1" formatted="false">"&gt; bølge {0} aktiv — {1} trusler tilbage"</string>
+    <string name="t_9d29de23" formatted="false">"BEDSTE BØLGE PR. NIVEAU"</string>
+    <string name="t_9d2c3eea" formatted="false">"NETVÆRKSBEGREBER"</string>
+    <string name="t_9d36e329" formatted="false">"GIDSEL"</string>
+    <string name="t_9d5ca8b9" formatted="false">"VIL DU GENOPLIVE?"</string>
+    <string name="t_9df821c5" formatted="false">"VELKOMMEN TIL CyOps TD"</string>
+    <string name="t_9e30871d" formatted="false">"En enkelt kompromitteret maskine, der tager imod ordrer fra en anden. Én bot er harmløs. Et botnet på tusinder er ikke — derfor kommer de altid i grupper."</string>
+    <string name="t_9e77c8cf" formatted="false">"Tilføjer en femte simuleringshastighed til at rydde bølger hurtigt."</string>
+    <string name="t_9ef0ebe5" formatted="false">"SEGMENTERING"</string>
+    <string name="t_9f26f678" formatted="false">"  →"</string>
+    <string name="t_9f70f631" formatted="false">"SKUDHASTIGHED"</string>
+    <string name="t_9fb6c271" formatted="false">"Forstyrrer kortvarigt nærliggende agenter og sænker deres skudhastighed."</string>
+    <string name="t_a12f7814" formatted="false">"+{0} (BOSS)"</string>
+    <string name="t_a15faa1f" formatted="false">"TILSTAND"</string>
+    <string name="t_a19abbd4" formatted="false">"Hver cyberagent, hvad den gør, og bølgen, der låser den op."</string>
+    <string name="t_a21dbf00" formatted="false">"€{0} BUDGET OPSPARET"</string>
+    <string name="t_a24181ff" formatted="false">"HVAD DER ANGRIBER"</string>
+    <string name="t_a2517472" formatted="false">"BUTIK IKKE TILGÆNGELIG"</string>
+    <string name="t_a29c69ba" formatted="false">"AFSLUT"</string>
+    <string name="t_a2b3bef5" formatted="false">"NÅ BØLGE {0}"</string>
+    <string name="t_a2dd8300" formatted="false">"En spidsrod. To ruter, der vender tilbage, og så en runde før racket."</string>
+    <string name="t_a2e2f704" formatted="false">"CHIFFERBRUD"</string>
+    <string name="t_a32353a8" formatted="false">"€9,000 BUDGET"</string>
+    <string name="t_a36e1b6d" formatted="false">"IKKE I DENNE VERSION"</string>
+    <string name="t_a3ebab03" formatted="false">"En upatchet, ukendt fejl"</string>
+    <string name="t_a4a2cd90" formatted="false">"&gt;&gt; NY REKORD &lt;&lt;"</string>
+    <string name="t_a4fd7522" formatted="false">" · MAKS {0}"</string>
+    <string name="t_a5460e4e" formatted="false">"Langsomme, tunge enkeltslag med +80 % skade mod eliter og bosser. Svag mod sværme. Viser målvælgeren, så du kan rette den mod det, du faktisk vil have død."</string>
+    <string name="t_a596b409" formatted="false">"5× FART FINDES I BUTIKKEN"</string>
+    <string name="t_a599c90a" formatted="false">"Hver agent inden for dens rækkevidde, den selv inklusive, er immun over for forstyrrelse fra enhver boss. Hurtige, tunge skud med {0}× skade på WHITE EYE og BLACK EYE. TARPIT's rækkevidde. Højst to må udsendes."</string>
+    <string name="t_a5b1ffba" formatted="false">"Ubegrænset systemadgang"</string>
+    <string name="t_a5da8eea" formatted="false">"Sidder du fast på en bølge? Spar budget op, installer firmware, så slår den samme bane hårdere næste spil."</string>
+    <string name="t_a6291e29" formatted="false">"€5,000 BUDGET"</string>
+    <string name="t_a62c1133" formatted="false">"Ingen rigtig hackingevne — intet her rører et rigtigt netværk"</string>
+    <string name="t_a66c22f9" formatted="false">"Skift sprog i INDSTILLINGER på hovedmenuen: skiftet genstarter spillet, hvilket ville afslutte dette spil."</string>
+    <string name="t_a6cd2e07" formatted="false">"{0}-{1} tegn. A-Z, 0-9, bindestreg og understregning."</string>
+    <string name="t_a6ee02f4" formatted="false">"ANNULLER"</string>
+    <string name="t_a727a483" formatted="false">"INDEHOLDER"</string>
+    <string name="t_a7c5a24a" formatted="false">"Gemmer i Music/CyOps TD…"</string>
+    <string name="t_a7c97dfd" formatted="false">"NULSTIL"</string>
+    <string name="t_a7e02911" formatted="false">"PÅ KERNEN"</string>
+    <string name="t_a7e24bd6" formatted="false">"MÅLRETNING"</string>
+    <string name="t_a8031bce" formatted="false">"ÅBN BUTIKSSIDEN"</string>
+    <string name="t_a8191219" formatted="false">"SPOOFER kaster lokkekopier af sig selv, der opsuger ild. ANALYST og ROOT ADMIN ser igennem dem."</string>
+    <string name="t_a8768bb2" formatted="false">"AGENTSKINS"</string>
+    <string name="t_a8935036" formatted="false">"OPTJENT KRYPTO"</string>
+    <string name="t_a92b98a8" formatted="false">"KRYPTO ◇"</string>
+    <string name="t_a9a8f56c" formatted="false">"GRAFIK"</string>
+    <string name="t_a9ad0741" formatted="false">"€ DETTE SPIL"</string>
+    <string name="t_a9cf50ec" formatted="false">"Rigtig trafik følger en rute gennem switches og routere for at nå sin destination. De to slangeformede ruter her er den vej, der vender tilbage, så du kan se hvert hop på én gang."</string>
+    <string name="t_a9d9e481" formatted="false">"CORE-SERVER er det, du forsvarer, og INTEGRITET-aflæsningen i den øverste bjælke er det eneste liv, du har. Hver fjendtlig pakke, der når racket, tager en bid af den. Ved 0 er serveren brudt, og spillet slutter — så at intet slipper igennem er hele opgaven."</string>
+    <string name="t_aab511c4" formatted="false">"ROOTKIT skjuler sig i 2 sekunder af hver 6., og intet kan sigte på den. Stænk og kæder når den stadig."</string>
+    <string name="t_aac1d4da" formatted="false">"IKKE TILKNYTTET"</string>
+    <string name="t_aadac61a" formatted="false">"Programmer stiller databaser spørgsmål i SQL. Hvis brugerinput sættes direkte ind i det spørgsmål, kan en angriber skrive sin egen slutning på det — dumpe en brugertabel, omgå et login eller slette det hele. Løsningen er gammel og velkendt (parametriserede forespørgsler), og det er netop det, der gør det så frustrerende, at det stadig er det angreb, du møder oftest."</string>
+    <string name="t_ab62d63d" formatted="false">"Et indtrængningsdetektionssystem overvåger netværks- eller værtsaktivitet for mønstre, der ligner et angreb, og slår alarm. Det rapporterer; det blokerer ikke. Nogen, eller noget andet, må stadig handle på det, det finder."</string>
+    <string name="t_aca3253a" formatted="false">"PÅ BANEN · TRYK PÅ EN BOSS FOR AT SE DEN"</string>
+    <string name="t_ad03a515" formatted="false">"At opdele et netværk i zoner"</string>
+    <string name="t_ad26a7c7" formatted="false">"ukendt"</string>
+    <string name="t_ae00f867" formatted="false">"ANALYSE"</string>
+    <string name="t_ae59bf94" formatted="false">"SÆLG  ◇ {0}"</string>
+    <string name="t_b0147d1e" formatted="false">"Læn dig op ad agenter, der ikke er FIREWALL, i denne bølge."</string>
+    <string name="t_b0af39a6" formatted="false">"SKIFT"</string>
+    <string name="t_b0d341a2" formatted="false">"MERE END EN MÅNED SIDEN"</string>
+    <string name="t_b0f472d0" formatted="false">"SVÆRHEDSGRAD"</string>
+    <string name="t_b16e2042" formatted="false">"Et violet stjernefelt bag racket."</string>
+    <string name="t_b2029176" formatted="false">"Start næste bølge automatisk efter en kort pause"</string>
+    <string name="t_b253fa2b" formatted="false">"Kryptografi beskytter data under overførsel og i hvile, så det at opsnappe dem ikke er det samme som at læse dem. Angribere bruger den også — meget fjendtlig trafik er krypteret — og derfor inspicerer forsvarere ved endepunkter, de selv kontrollerer, i stedet for at forsøge at bryde selve krypteringen."</string>
+    <string name="t_b28b05f8" formatted="false">"Indtrængningsforebyggelsessystem"</string>
+    <string name="t_b2dbc630" formatted="false">"FIREWALL AKTIV"</string>
+    <string name="t_b2ef7c39" formatted="false">"Cyberagenter: Tower Defense"</string>
+    <string name="t_b32b1a1d" formatted="false">"BEKVEMMELIGHED"</string>
+    <string name="t_b3735fe8" formatted="false">"Et kredsløbsgitter, der ånder med bølgen."</string>
+    <string name="t_b3b53e34" formatted="false">"Køb er knyttet til din Google-konto, ikke til denne enhed. Geninstallation eller ny telefon mister dem ikke."</string>
+    <string name="t_b3c34c67" formatted="false">"LIGE NU"</string>
+    <string name="t_b40b6d1c" formatted="false">"Et \"rødt hold\" angriber et system med tilladelse for at finde det, en angriber ville finde først. \"Rød hat\" er uformel slang snarere end en jobtitel eller certificering, og betydningen varierer mellem dem, der bruger den; rødt hold-delen er det, der er standard."</string>
+    <string name="t_b5ca7a98" formatted="false">"Hver spillers bedste bølge på verdensplan, listet efter kaldenavn. Registrer et til højre, ellers viser Google dit navn fra Play Spil."</string>
+    <string name="t_b649891d" formatted="false">"PAUSE"</string>
+    <string name="t_b683e66d" formatted="false">"{0} er låst: {1} for at låse den op."</string>
+    <string name="t_b6bcb68c" formatted="false">"Tung skade på ét mål, ens ved hvert skud. Ignorerer al panser."</string>
+    <string name="t_b7ba0ba1" formatted="false">"REGENERATION reparerer den, når den har været {0} sekunder uden træf. Hold den under beskydning hele vejen."</string>
+    <string name="t_b7c4c2a3" formatted="false">"[{0}] {1} (låst): {2}"</string>
+    <string name="t_b7cf2aab" formatted="false">"INGEN APP KAN ÅBNE GOOGLE PLAY"</string>
+    <string name="t_b8201e22" formatted="false">"NÆSTE: BØLGE {0} · BOSS"</string>
+    <string name="t_b82dfd13" formatted="false">"FØRER DIG TIL"</string>
+    <string name="t_b835d746" formatted="false">"TRIN 5 — UDSEND TO TARPIT"</string>
+    <string name="t_b8cbfe08" formatted="false">"Længst fra CORE-SERVER"</string>
+    <string name="t_b8f9cbc8" formatted="false">"SKD {0}  TAKT {1}/s"</string>
+    <string name="t_b8ffa95c" formatted="false">"LEVENDE: NORDLYS"</string>
+    <string name="t_b9918647" formatted="false">"Betalt for at være her. Ingen tricks, ingen forstyrrelse — tyve procent mere af den end af noget andet på banen."</string>
+    <string name="t_b9a3ada7" formatted="false">"EXFIL er hurtig. Hvis den når kernen, stjæler den halvdelen af din krypto i stedet for integritet. Brug først, eller stop den."</string>
+    <string name="t_b9c6b239" formatted="false">"Tegnes under banerne og bag hver menu."</string>
+    <string name="t_badb0f4a" formatted="false">"Accelererer med jævne mellemrum mod serveren."</string>
+    <string name="t_bae2cee7" formatted="false">"JA — SE ANNONCE"</string>
+    <string name="t_bb0a2d46" formatted="false">"VÆLG"</string>
+    <string name="t_bb621985" formatted="false">"HÆRDET"</string>
+    <string name="t_bb93827c" formatted="false">"GENOPLIVNING MISLYKKEDES — SPILLET ER ALLEREDE SLUT"</string>
+    <string name="t_bc855067" formatted="false">"ADGANG NÆGTET"</string>
+    <string name="t_bcdf64b3" formatted="false">"SQL-INJEKTION"</string>
+    <string name="t_bceaf8ce" formatted="false">"!!! CYBERANGREB PÅ VEJ !!!"</string>
+    <string name="t_bd0c6acd" formatted="false">"NÆSTE € {0} · +{1} % {2} pr. niveau"</string>
+    <string name="t_bd1b1fc9" formatted="false">"FRA"</string>
+    <string name="t_bd8215e6" formatted="false">"JA, BRIEF MIG"</string>
+    <string name="t_bd84c20a" formatted="false">"BØLGE {0} SIKRET"</string>
+    <string name="t_be1fc25b" formatted="false">"Pålidelig alsidig skade, og den kan ikke forstyrres."</string>
+    <string name="t_beb11f45" formatted="false">"Bossmodifikator"</string>
+    <string name="t_beb3cdc3" formatted="false">"Dens felt bremser bosser dobbelt så hårdt som andre trusler."</string>
+    <string name="t_bec37550" formatted="false">"VARM REPARATION"</string>
+    <string name="t_bed8ffbb" formatted="false">"Gendan spørger Play igen, hvad denne Google-konto ejer. Det er altid sikkert at trykke, og det opkræver dig aldrig."</string>
+    <string name="t_bf09fcca" formatted="false">"Denne version har intet Play Spil-projekt konfigureret, så fremskridtet bliver på denne enhed. Androids egen sikkerhedskopi gendanner det alligevel, når du geninstallerer på en telefon, der er logget ind på den samme Google-konto."</string>
+    <string name="t_bf0c2eaa" formatted="false">"REPLIKERER"</string>
+    <string name="t_bf7cfb98" formatted="false">"Denne version har ingen annoncer at konfigurere."</string>
+    <string name="t_c1386132" formatted="false">"◇ KRYPTO"</string>
+    <string name="t_c164d2e8" formatted="false">"Skyder lige så hurtigt som hattene og rammer hårdere, med {0}× skade på DUCK-USB-bosserne SYN-STORM og GRADIENT. Beholder sine måltilstande. Højst to må udsendes. Tegnes som et hologram, som agentskins ikke ændrer."</string>
+    <string name="t_c19b9c99" formatted="false">"CORE-SERVER-INTEGRITET 0 · FORBINDELSE AFBRUDT"</string>
+    <string name="t_c1b7bcc5" formatted="false">"Denne version viser ingen annoncer."</string>
+    <string name="t_c2658f4d" formatted="false">"Overvældende skade på ét mål. Ignorerer al panser."</string>
+    <string name="t_c2c8c2f8" formatted="false">"VIS AGENTENS RÆKKEVIDDE"</string>
+    <string name="t_c2d127eb" formatted="false">"SPRING OVER ×"</string>
+    <string name="t_c31db047" formatted="false">"GENOPLIVNINGSPAKKE — ingen annonce."</string>
+    <string name="t_c39850a1" formatted="false">"TRIN 3 — UDSEND TO FIREWALL"</string>
+    <string name="t_c3e1a996" formatted="false">"◇ Krypto og € Budget er fiktive ressourcer i spillet. De har ingen pengeværdi, kan ikke byttes til noget uden for spillet og kan ikke forlade enheden."</string>
+    <string name="t_c405af57" formatted="false">"SPIL starter et spil på det niveau og den spiltilstand, der er valgt til venstre. Når et spil er gemt, tager FORTSÆT det op, og NYT SPIL starter forfra."</string>
+    <string name="t_c40bc4a4" formatted="false">"En IDS overvåger netværksaktivitet for mistænkelig adfærd og sikkerhedstrusler og slår derefter alarm. Den holder øje; den blokerer ikke."</string>
+    <string name="t_c4a14a23" formatted="false">"Vælg FIREWALL. Den er billig, pålidelig og kan ikke forstyrres."</string>
+    <string name="t_c4b7782d" formatted="false">"Sikkerhedsanalytiker er et rigtigt job. Mennesket i løkken tager det, de automatiske værktøjer har markeret, finder ud af, hvad der faktisk skete, og beslutter, hvad der skal gøres. Langsommere end en maskine og langt bedre til sager, der ikke passer til et kendt mønster."</string>
+    <string name="t_c4d0dc6f" formatted="false">"Maskinlæringsværktøjer markerer usædvanlige mønstre på tværs af langt flere signaler, end et menneske kan læse, og bruges til at indsnævre, hvad der fortjener opmærksomhed. De hjælper analytikere i stedet for at erstatte dem, og de giver falske positiver — en markering er et spor, ikke en dom."</string>
+    <string name="t_c51041e3" formatted="false">"  ·"</string>
+    <string name="t_c55cc938" formatted="false">"NYT SPIL"</string>
+    <string name="t_c55e934e" formatted="false">"RUL FOR AT SE MERE"</string>
+    <string name="t_c570c6cd" formatted="false">"Faldende kodekolonner inde i racket."</string>
+    <string name="t_c5cb18f9" formatted="false">"ALLE NIVEAUER"</string>
+    <string name="t_c81c4fa0" formatted="false">"1 niveau"</string>
+    <string name="t_c8a9aae9" formatted="false">"Tre ruter fletter sig to gange: hver bane skifter side."</string>
+    <string name="t_c9301368" formatted="false">"KERNE: REACTOR"</string>
+    <string name="t_c9402c75" formatted="false">"NEJ"</string>
+    <string name="t_c944e5aa" formatted="false">"MODFORANSTALTNINGER"</string>
+    <string name="t_c9a2aee9" formatted="false">"Lås denne agent op ved at nå bølge {0} på et hvilket som helst niveau."</string>
+    <string name="t_ca02a8f8" formatted="false">"Hver agent bærer farven for det, den gør."</string>
+    <string name="t_ca5ea88d" formatted="false">"BEDSTE VÆRDI"</string>
+    <string name="t_cabf47fa" formatted="false">"MAKS +{0}"</string>
+    <string name="t_cb02b3da" formatted="false">"En langsom farvecyklus over hele holdet."</string>
+    <string name="t_cb1fd3f1" formatted="false">"En IPS er en IDS med bemyndigelse til at handle. Når den genkender et angreb, dropper den selv trafikken i stedet for blot at fortælle nogen om det."</string>
+    <string name="t_cb4ff573" formatted="false">"ANNONCER OG KØB"</string>
+    <string name="t_cbd3b516" formatted="false">"Ingen annoncer, agentskinnet SPECTRUM, baggrunden DRIFT og €2,000."</string>
+    <string name="t_cbd47695" formatted="false">"NYTTELASTBLOKERING"</string>
+    <string name="t_cbf7d422" formatted="false">"SYN-STORM deler sig i to ved halvt liv, og den anden halvdel tager en anden rute. Dæk hver rute."</string>
+    <string name="t_cc52e024" formatted="false">"NÆSTE: BØLGE {0} — BOSS · TRYK PÅ NÆSTE BOSS FOR BRIEFINGEN"</string>
+    <string name="t_cc5435ac" formatted="false">"Hvad der kommer ned ad banerne"</string>
+    <string name="t_cc5c44e8" formatted="false">"FOKUS: KUN SMÅ ENHEDER OG ELITER"</string>
+    <string name="t_cc6791f1" formatted="false">"Modstandsdygtig over for FIREWALL-agenter."</string>
+    <string name="t_cc7fe141" formatted="false">"Holder øje med offensive værktøjer. Forstyrrer kortvarigt RED HAT-agenter tæt på den med få sekunders mellemrum."</string>
+    <string name="t_cc9e044b" formatted="false">"LEVENDE: KREDSLØB"</string>
+    <string name="t_ccb963f2" formatted="false">"PAKKE"</string>
+    <string name="t_ccbd0815" formatted="false">"Standardracket."</string>
+    <string name="t_ccbefbf5" formatted="false">"SCANNINGSRÆKKEVIDDE {0}"</string>
+    <string name="t_ccd3b8ff" formatted="false">"Privatlivsindstillinger er ikke tilgængelige lige nu."</string>
+    <string name="t_cce0919d" formatted="false">"EJET"</string>
+    <string name="t_cd27794d" formatted="false">"Kaldenavnet er lokalt for denne enhed og er ikke en Google-konto. Det navngiver dine spil på ranglisten."</string>
+    <string name="t_cd7ef0df" formatted="false">"MEDDELELSE OM VAREMÆRKER OG TREDJEPARTER"</string>
+    <string name="t_cd8fc1d8" formatted="false">"Valgfrie køb i appen er tilgængelige via Google Play. Intet i spillet er låst bag et."</string>
+    <string name="t_cde6047e" formatted="false">"Indtrængningsdetektionssystem"</string>
+    <string name="t_ce2cde0d" formatted="false">"TRIN 1 — ÅBN HOLDET"</string>
+    <string name="t_ce56b8c8" formatted="false">"ADMINISTRER PÅ GOOGLE PLAY"</string>
+    <string name="t_ce8b48c9" formatted="false">"GAMEPLAY"</string>
+    <string name="t_ceb6dbab" formatted="false">"CyOps TD-SOUNDTRACK"</string>
+    <string name="t_cec6cd66" formatted="false">"Ingen spil registreret endnu. Gennemfør et spil, så vises det her, rangeret efter den bølge, du nåede."</string>
+    <string name="t_cee3b8c9" formatted="false">"SPRING OVER"</string>
+    <string name="t_cfd886ad" formatted="false">"To ruter gennemsøger hver deres halvdel. Tårne i midtergabet når begge."</string>
+    <string name="t_d0112898" formatted="false">"LOKKEDUE"</string>
+    <string name="t_d07db54c" formatted="false">"ROOT / ADMIN"</string>
+    <string name="t_d08f5138" formatted="false">"To slangeformede ruter, der vender tilbage forbi de samme kanoner."</string>
+    <string name="t_d10c0c39" formatted="false">"Meget høj skudhastighed, og hvert skud sprøjter, så den er svaret på en sværm snarere end på et enkelt tungt mål. Koster mere end en IDS og når kortere."</string>
+    <string name="t_d11351ac" formatted="false">"TIL"</string>
+    <string name="t_d173b657" formatted="false">"Kontoen, der kan alt på et system. Angribere vil have den; forsvarere vogter den omhyggeligt. Det meste sikkerhedsarbejde handler om at begrænse, hvem der får den, og hvor længe."</string>
+    <string name="t_d19c7c8e" formatted="false">"◇ {0} · låses op ved bølge {1}"</string>
+    <string name="t_d22f26dd" formatted="false">"Angriber op til 3 separate trusler med hver salve."</string>
+    <string name="t_d2ee5fd2" formatted="false">"Fremskridt gemmes automatisk"</string>
+    <string name="t_d31b24bf" formatted="false">"{0} · {1}  ·  bedste {2}"</string>
+    <string name="t_d35bc038" formatted="false">"{0} — {1} Den gør ingen skade; den køber tid til dine andre agenter."</string>
+    <string name="t_d415f020" formatted="false">"En zero-day er en fejl, der endnu ikke findes en rettelse til — forsvareren har haft nul dage til at patche den. Sårbarhedsforskere leder efter dem, så de kan rapporteres og rettes, før en anden finder dem først. \"Zero-day hunter\" er uformel kortform, ikke en certificering eller formel jobtitel."</string>
+    <string name="t_d477fdfb" formatted="false">"FIRMWARE FULDT INSTALLERET"</string>
+    <string name="t_d488d098" formatted="false">"DET GUIDEDE SPIL KRÆVER TARPIT NU"</string>
+    <string name="t_d48f1170" formatted="false">"▼  MERE NEDENFOR"</string>
+    <string name="t_d4bb26ac" formatted="false">"KERNESKINPAKKE"</string>
+    <string name="t_d5acb32b" formatted="false">"Vibration ved bossalarmer, servertræf og game over"</string>
+    <string name="t_d5b86d2a" formatted="false">"Security Operations Centre"</string>
+    <string name="t_d5d0b693" formatted="false">"FORTSÆT"</string>
+    <string name="t_d62907f6" formatted="false">"INSTALLERET FIRMWARE"</string>
+    <string name="t_d63b9487" formatted="false">"UTILGÆNGELIG"</string>
+    <string name="t_d736d92d" formatted="false">"OK"</string>
+    <string name="t_d8386755" formatted="false">"GOOGLE PLAY-FAKTURERING"</string>
+    <string name="t_d84b41e9" formatted="false">"Vedvarende skade vinder. IPS eller en opgraderet FIREWALL."</string>
+    <string name="t_d8705eb7" formatted="false">"Cyberangreb rykker frem ad netværksruter mod CORE-SERVER. Du udsender Cyberagenter ved banerne; de opdager og ødelægger det, der kommer forbi. Hvert angreb, du stopper, udbetaler ◇ Krypto, som køber flere agenter og opgraderinger. Hver femte bølge er en boss. Der er ingen sidste bølge — det eneste spørgsmål er, hvor langt du når."</string>
+    <string name="t_d889d3ab" formatted="false">"+1, +10 og +100 køber så mange niveauer. INSTALLER MAKS bruger så meget, du har råd til. Hvert niveau koster lidt mere."</string>
+    <string name="t_d8bcdc1d" formatted="false">"GENSTART"</string>
+    <string name="t_d8fec6d4" formatted="false">"AGENTER UDSENDT I ALT"</string>
+    <string name="t_d9074af5" formatted="false">"Kryptering forvansker data, så kun den med den rigtige nøgle kan læse dem. Den beskytter legitim trafik — og skjuler lige så godt en angribers nyttelast for inspektion."</string>
+    <string name="t_d92ad54a" formatted="false">"Denne version har ingen Google Play-fakturering konfigureret, eller enheden har ingen Play Butik. Intet kan købes, og intet, der koster penge, kræves for at spille."</string>
+    <string name="t_d9694eb9" formatted="false">"Samme fejl, ingen feedback. Programmet returnerer hverken fejl eller data, så angriberen stiller ja-eller-nej-spørgsmål og ser, hvad der ændrer sig — timing, sidelængde, statuskoder — for at læse databasen én bit ad gangen. Langsomt, tålmodigt og langt sværere at få øje på i en log."</string>
+    <string name="t_d9b49353" formatted="false">"PRØV IGEN"</string>
+    <string name="t_d9b88563" formatted="false">"Enheden for netværkstrafik"</string>
+    <string name="t_d9c57847" formatted="false">"PERIMETER KLAR"</string>
+    <string name="t_da10b268" formatted="false">"IKKE EJET"</string>
+    <string name="t_da169a1a" formatted="false">"VERDEN"</string>
+    <string name="t_da3ae5ed" formatted="false">"Gør ingen skade og sigter ikke på noget. Reparerer 1 point CORE-SERVER-integritet hvert 30. sekund, mens en bølge kører (aldrig i pausen eller når spillet er sat på pause). Den udsendes på selve CORE-SERVER, som har to pladser til den, og ingen andre steder. Niveauer forkorter timeren. Højst to må udsendes."</string>
+    <string name="t_dad4b11e" formatted="false">"ANGREBSFEJ"</string>
+    <string name="t_db696c4d" formatted="false">"Enorm og tungt pansret, men langsom. Tag noget med, der ignorerer panser."</string>
+    <string name="t_db971746" formatted="false">"Holder øje med defensive værktøjer. Forstyrrer kortvarigt BLUE HAT-agenter tæt på den med få sekunders mellemrum."</string>
+    <string name="t_dba0a883" formatted="false">"Et netværk af kaprede maskiner"</string>
+    <string name="t_dbc1a374" formatted="false">"ANNONCE IKKE FÆRDIG — INTET BRUGT"</string>
+    <string name="t_dc09f8b7" formatted="false">"FORSTYRRELSE — en boss kan forstyrre en agent og halvere dens skudhastighed, så længe det varer. {0} er bygget til at være ligeglad."</string>
+    <string name="t_dc37fa05" formatted="false">"Brede bånd af koldt lys, der bevæger sig bag alting."</string>
+    <string name="t_dc62badb" formatted="false">"TITEL"</string>
+    <string name="t_dce01a82" formatted="false">"INDTAST KALDENAVN"</string>
+    <string name="t_dd220c90" formatted="false">"ANNONCERING"</string>
+    <string name="t_dd4083b5" formatted="false">"Intet købt. Alt ovenfor kan også optjenes eller blot spilles uden."</string>
+    <string name="t_dd55f56b" formatted="false">"To ruter væver sig gennem hinanden tre gange før racket, som en DNA-streng."</string>
+    <string name="t_ddb5514a" formatted="false">"ÅBN I GOOGLE PLAY SPIL"</string>
+    <string name="t_ddcb2958" formatted="false">"Opkaldt efter den første og rendyrket science fiction: hvert træf springer videre til to nærliggende trusler med 55 % skade. Stærk mod klumpede bølger, spildt på et ensomt mål. Viser målvælgeren."</string>
+    <string name="t_ddd374d9" formatted="false">"En hurtig gennemgang af de angreb, du møder, bosserne, og hvad dine agenter gør ved dem. Tager omkring tyve sekunder."</string>
+    <string name="t_dee83e52" formatted="false">"PANELERNES OPACITET I SPILLET"</string>
+    <string name="t_e00d9a42" formatted="false">"PLACER PÅ EN CORE-SERVER-PLADS"</string>
+    <string name="t_e01007ce" formatted="false">"Bedre værdi pr. euro end den lille pakke."</string>
+    <string name="t_e07706fa" formatted="false">"DENNE ENHED INDTIL TILKNYTNING"</string>
+    <string name="t_e0a2aaa4" formatted="false">"TILKNYT GOOGLE-KONTO"</string>
+    <string name="t_e12d998f" formatted="false">"PAKKE"</string>
+    <string name="t_e13093ea" formatted="false">"SKADE"</string>
+    <string name="t_e1892d25" formatted="false">"KERNEFIRMWARE"</string>
+    <string name="t_e1df4ef7" formatted="false">"BOSSER"</string>
+    <string name="t_e3407723" formatted="false">"JA"</string>
+    <string name="t_e3a7e50c" formatted="false">"BEHOLD MIT GEMTE SPIL"</string>
+    <string name="t_e3c4a9cc" formatted="false">"{0} forstyrrer {1}-agenter tæt på sig. Placer dem længere tilbage, i kanten af deres rækkevidde."</string>
+    <string name="t_e4554374" formatted="false">"LUK"</string>
+    <string name="t_e55f9c78" formatted="false">"HVAD DETTE SPIL IKKE GØR"</string>
+    <string name="t_e587f42b" formatted="false">"SYSTEMSTANDARD (telefonens sprog)"</string>
+    <string name="t_e5e7e535" formatted="false">"SYN-STORM-DELING"</string>
+    <string name="t_e6694d9c" formatted="false">"Reparerer 1 CORE-SERVER-integritet hvert 30. sekund af en kørende bølge, fra en af de to pladser på CORE-SERVER. Hurtigere med niveauer. Højst to."</string>
+    <string name="t_e807eff2" formatted="false">"Murer den nærmeste rute inden for rækkevidde til; trusler må rive den ned. Rammer hver boss meget hårdt. Højst tre."</string>
+    <string name="t_e8757749" formatted="false">"ryd bølge {0} på {1}"</string>
+    <string name="t_e8987cec" formatted="false">"NULSTIL FREMSKRIDT"</string>
+    <string name="t_e94c961d" formatted="false">"STATISTIK"</string>
+    <string name="t_e979d28d" formatted="false">"TAKT"</string>
+    <string name="t_e99d5d17" formatted="false">"€-pakker bruges, de ejes ikke: de krediteres én gang, og GENDAN udleverer dem ikke igen."</string>
+    <string name="t_e9caa97b" formatted="false">"Ingen udsendelser registreret endnu. Spil et spil for at udfylde dette."</string>
+    <string name="t_ea16b407" formatted="false">"Guldbaner på dyb indigo."</string>
+    <string name="t_ea31efb2" formatted="false">"ryd bølge {0}"</string>
+    <string name="t_eab5f205" formatted="false">"SKIFT KALDENAVN"</string>
+    <string name="t_eaf7396d" formatted="false">"GOOGLE UTILGÆNGELIG — GEMT SPIL BEHOLDT PÅ ENHEDEN"</string>
+    <string name="t_eb2e832a" formatted="false">"AGENT {0}"</string>
+    <string name="t_ebdd4d5e" formatted="false">"FJERNET · INGEN"</string>
+    <string name="t_ec91403d" formatted="false">"BØLGE"</string>
+    <string name="t_ed31a176" formatted="false">"Et åndende kredsløbsgitter, der reagerer på bølgen."</string>
+    <string name="t_ed5c9d47" formatted="false">"PR. NIVEAU"</string>
+    <string name="t_ed7160a0" formatted="false">"ALDRIG"</string>
+    <string name="t_ed7ecda7" formatted="false">"Låst"</string>
+    <string name="t_ee0803eb" formatted="false">"MODSTANDSDYGTIG"</string>
+    <string name="t_ee094192" formatted="false">"Denne version har ingen Google Play-fakturering konfigureret, så intet kan købes her. Hver del af spillet, der ikke koster penge, virker præcis som normalt."</string>
+    <string name="t_ee5525d9" formatted="false">"KERNEL PANIC · {0} FORSTYRRET"</string>
+    <string name="t_ee6595fd" formatted="false">"Holdet og rummet, der overvåger alarmerne. Hvis dette spil har en kulisse, er det en SOC-vægskærm klokken 3 om natten."</string>
+    <string name="t_eea62f11" formatted="false">"KØB"</string>
+    <string name="t_eef967f2" formatted="false">"ZOOM PÅ SLAGMARKEN"</string>
+    <string name="t_ef29f425" formatted="false">"LYD"</string>
+    <string name="t_efcf9890" formatted="false">"SKD {0} · TAKT {1}/s · RV {2}"</string>
+    <string name="t_f001b942" formatted="false">"BEFÆSTET"</string>
+    <string name="t_f03b01af" formatted="false">"Reparerer langsomt sig selv, når den har været et øjeblik uden at blive ramt."</string>
+    <string name="t_f100d10c" formatted="false">"Alt markeret LÅST er i butikken. Intet her ændrer, hvordan spillet spilles — skins er udseende, ikke fordele."</string>
+    <string name="t_f16b76bc" formatted="false">"En \"rubber ducky\" er en USB-stick, der udgiver sig for at være et tastatur og skriver et angreb hurtigere end nogen. Forsvaret er en USB-vagt, der tjekker hver ny enhed, før computeren stoler på den, og blokerer et tastatur, der skriver som en maskine."</string>
+    <string name="t_f17dfdae" formatted="false">"Én lang rute falder ind fra toppen og spiraler udad til racket."</string>
+    <string name="t_f25360a0" formatted="false">"Ændringer gælder med det samme og gemmes på denne enhed"</string>
+    <string name="t_f293dfd1" formatted="false">"KØBSKONTROL"</string>
+    <string name="t_f2e7479c" formatted="false">"Tilknyt din Google-konto for at beholde dit fremskridt på enhver telefon eller tablet. Google beder om tilladelse til at administrere spillets gemte data på din konto — det er lageret til gemte spil, og det er alt, dette bruger."</string>
+    <string name="t_f2ed0368" formatted="false">"Hurtig. Hvis den når kernen, stjæler den halvdelen af din krypto i stedet for integritet."</string>
+    <string name="t_f2f63d9f" formatted="false">"PÅ DENNE ENHED"</string>
+    <string name="t_f33c5b01" formatted="false">"TRIN 6 — START BØLGEN"</string>
+    <string name="t_f38eb808" formatted="false">"Hårdere trusler, tættere på hinanden, mindre integritet. Rigere belønninger."</string>
+    <string name="t_f3e23f71" formatted="false">"KERNE: CASCADE"</string>
+    <string name="t_f49a4ff9" formatted="false">"AGENT LÅST"</string>
+    <string name="t_f4f677dc" formatted="false">"OPTJENT I ALT"</string>
+    <string name="t_f5537783" formatted="false">"KERNE: MAINFRAME"</string>
+    <string name="t_f590e2c9" formatted="false">"RUTE"</string>
+    <string name="t_f5b866e4" formatted="false">"Et koordineret indbrudsforsøg med nok redundans til at ryste et uforberedt netværk af sig. Hver femte bølge bringer ét, og hvert er hårdere end det forrige."</string>
+    <string name="t_f60f5840" formatted="false">"Der er stadig ingen CyOps-konto og ingen adgangskode. Køb følger den Google-konto, der er logget ind i Play Butik på denne enhed. Fremskridt følger den Google-konto, du tilknytter ovenfor — et separat, valgfrit valg: spillet er komplet uden det."</string>
+    <string name="t_f692d3ce" formatted="false">"BOTNET"</string>
+    <string name="t_f69a80a7" formatted="false">"Spillet genstarter for at skifte til {0}. Dit fremskridt bevares."</string>
+    <string name="t_f6f93110" formatted="false">"KERNE: NEONGRID"</string>
+    <string name="t_f720bfa7" formatted="false">"CRT-fosforscanlinjer."</string>
+    <string name="t_f76fff7f" formatted="false">"Ondsindet software: kode skrevet for at skade, forstyrre eller stjæle. Den bærer mere nyttelast end en simpel injektion, så den tåler mere skade, før den går i stykker."</string>
+    <string name="t_f7a4fc70" formatted="false">"TRYK IGEN FOR AT UDSENDE"</string>
+    <string name="t_f7a7b98a" formatted="false">"SKD {0} · TAKT {1} · RV {2}"</string>
+    <string name="t_f7eb1496" formatted="false">"Placeringen afgøres af den dybeste bølge, du har nået. Uddelt skade afgør ved lighed."</string>
+    <string name="t_f803ec67" formatted="false">"ORDREHISTORIK OG REFUSIONER"</string>
+    <string name="t_f85117ec" formatted="false">"Alle {0} numre er allerede i Music/CyOps TD."</string>
+    <string name="t_f8723c46" formatted="false">"FART"</string>
+    <string name="t_f8d84db3" formatted="false">"IKKE REGISTRERET"</string>
+    <string name="t_f8e6e39f" formatted="false">"Systemingeniører holder servere kørende: patching, udskiftning af defekte dele, gendannelse fra sikkerhedskopier og overvågning af maskinernes helbred. \"Server systems engineer\" beskriver den slags arbejde; titlerne varierer mellem organisationer."</string>
+    <string name="t_f9807a9f" formatted="false">"&gt; i beredskab — udsend agenter, og start bølge 1"</string>
+    <string name="t_f9cec260" formatted="false">"Få enorme træf gør næppe GRADIENT hurtigere."</string>
+    <string name="t_f9d6b090" formatted="false">"Drivende ASCII-data bag slagmarken og menuerne"</string>
+    <string name="t_fa1b4500" formatted="false">"Statistik opsamles på tværs af hvert spil, også spil, du opgiver fra pausemenuen. Nulstilling af fremskridt i INDSTILLINGER sletter det hele."</string>
+    <string name="t_fa60c2c6" formatted="false">"LEVENDE: VARMEKORT"</string>
+    <string name="t_fb735826" formatted="false">"VIBRATION"</string>
+    <string name="t_fb889492" formatted="false">"Et uafhængigt udviklet, offline-først tower defense-spil med cybersikkerhedstema. Scenarier, agenter og terminologi er fiktionaliseret til spillets formål, med korte forklaringer fra virkeligheden, så begreberne bag dem kan læres. Det lærer ingen offensive teknikker og udfører ingen rigtig sikkerhedsfunktion."</string>
+    <string name="t_fbca7f29" formatted="false">"Malware i en nyttig forklædning"</string>
+    <string name="t_fbd9e20c" formatted="false">"BAGGRUNDSANIMATION"</string>
+    <string name="t_fc778505" formatted="false">"Et rent rack, intet mærke."</string>
+    <string name="t_fcc1e712" formatted="false">"PRIVATLIV"</string>
+    <string name="t_fd3cb488" formatted="false">"SÅDAN VIRKER LOGIN"</string>
+    <string name="t_fdb0282f" formatted="false">"INDLÆSER ANNONCE…"</string>
+    <string name="t_fde05efe" formatted="false">"NÅ BØLGE {0} PÅ {1}"</string>
+    <string name="t_fe26fa48" formatted="false">"BEDSTE BØLGE"</string>
+    <string name="t_fe451d7a" formatted="false">"SYSTEMER GENDANNET — INTEGRITET {0}"</string>
+    <string name="t_fe86390c" formatted="false">" · FART {0}"</string>
+    <string name="t_feeee285" formatted="false">"{0} kerneskins · {1} baggrunde tilgængelige"</string>
+    <string name="t_feef9615" formatted="false">"NÆSTE BOSS"</string>
+    <string name="t_ff2d6a51" formatted="false">"Tre ruter bytter plads to gange. Hvert kryds er et sted, der rammer to."</string>
+    <string name="t_ffa57dc1" formatted="false">"&gt; monterer banetopologi"</string>
+    <string name="t_ffc3db58" formatted="false">"RV {0}"</string>
+    <string name="t_ffff9bd9" formatted="false">"Agenter driver langsomt gennem farvespektret, hver enhed forskudt fra den næste."</string>
+</resources>

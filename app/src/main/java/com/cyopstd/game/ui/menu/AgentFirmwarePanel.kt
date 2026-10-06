@@ -1,5 +1,7 @@
 package com.cyopstd.game.ui.menu
 
+import com.cyopstd.game.i18n.tr
+
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -83,13 +85,13 @@ fun AgentFirmwarePanel(
                     Spacer(Modifier.width(8.dp))
                     Column(Modifier.weight(1f)) {
                         Text(
-                            text = type.displayName + if (type.name in unlockedAgents) "" else "  (LOCKED)",
+                            text = type.displayName + if (type.name in unlockedAgents) "" else tr("  (LOCKED)"),
                             style = MaterialTheme.typography.labelMedium,
                             color = Palette.TextPrimary,
                             maxLines = 1
                         )
                         Text(
-                            text = "DMG ${firmware.damage} · RATE ${firmware.rate} · RNG ${firmware.range}",
+                            text = tr("DMG {0} · RATE {1} · RNG {2}", firmware.damage, firmware.rate, firmware.range),
                             style = MaterialTheme.typography.labelSmall,
                             color = if (firmware.isEmpty) Palette.TextMuted else Palette.Crypto,
                             maxLines = 1
@@ -108,7 +110,7 @@ fun AgentFirmwarePanel(
             val firmware = agentFirmware[chosen] ?: AgentFirmware.NONE
             TerminalPanel(title = "[${chosen.glyph}] ${chosen.displayName}", accent = agentClassColor(chosen)) {
                 Text(
-                    text = "€ $budget available",
+                    text = tr("€ {0} available", budget),
                     style = MaterialTheme.typography.titleMedium,
                     color = Palette.Cyan
                 )
@@ -124,9 +126,9 @@ fun AgentFirmwarePanel(
                 }
                 Spacer(Modifier.height(8.dp))
                 Caption(
-                    "Applies to every ${chosen.displayName} in every match from now on, " +
+                    tr("Applies to every {0} in every match from now on, " +
                         "on top of CORE FIRMWARE. Early levels are cheap; each one costs " +
-                        "more than the last, and the top levels cost millions."
+                        "more than the last, and the top levels cost millions.", chosen.displayName)
                 )
             }
         }
@@ -155,15 +157,15 @@ private fun StatTrack(
             modifier = Modifier.weight(1f)
         )
         Text(
-            text = "LV $level  ×${"%.3f".format(now)}",
+            text = tr("LV {0}  ×{1}", level, "%.3f".format(now)),
             style = MaterialTheme.typography.labelMedium,
             color = Palette.Crypto
         )
     }
     Text(
-        text = if (maxed) "FULLY INSTALLED" else
-            "NEXT € $next · +${"%.2f".format(perLevel * 100)}% ${stat.unit} a level" +
-                if (affordable > 0) " · $affordable affordable" else "",
+        text = if (maxed) tr("FULLY INSTALLED") else
+            tr("NEXT € {0} · +{1}% {2} a level", next, "%.2f".format(perLevel * 100), stat.unit) +
+                if (affordable > 0) tr(" · {0} affordable", affordable) else "",
         style = MaterialTheme.typography.labelSmall,
         color = if (!maxed && budget >= next) Palette.TextSecondary else Palette.TextMuted
     )
@@ -179,7 +181,7 @@ private fun StatTrack(
             )
         }
         CompactButton(
-            text = "MAX",
+            text = tr("MAX"),
             onClick = { onBuy(type, stat, affordable) },
             enabled = affordable >= 1,
             accent = Palette.Crypto,

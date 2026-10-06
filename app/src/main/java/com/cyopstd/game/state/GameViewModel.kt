@@ -1,5 +1,7 @@
 package com.cyopstd.game.state
 
+import com.cyopstd.game.i18n.tr
+
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
@@ -735,16 +737,16 @@ class GameViewModel @JvmOverloads constructor(
             CloudSyncResult.MERGED -> {
                 lastCloudSync = System.currentTimeMillis()
                 repository.setLastCloudSync(lastCloudSync!!)
-                showTransient("PROGRESS SYNCED")
+                showTransient(tr("PROGRESS SYNCED"))
             }
             CloudSyncResult.UPLOADED -> {
                 lastCloudSync = System.currentTimeMillis()
                 repository.setLastCloudSync(lastCloudSync!!)
-                showTransient("PROGRESS SAVED TO YOUR ACCOUNT")
+                showTransient(tr("PROGRESS SAVED TO YOUR ACCOUNT"))
             }
-            CloudSyncResult.DECLINED -> showTransient("NOT LINKED")
-            CloudSyncResult.FAILED -> showTransient("GOOGLE UNREACHABLE \u2014 SAVE KEPT ON DEVICE")
-            CloudSyncResult.UNAVAILABLE -> showTransient("CLOUD SAVE NOT AVAILABLE")
+            CloudSyncResult.DECLINED -> showTransient(tr("NOT LINKED"))
+            CloudSyncResult.FAILED -> showTransient(tr("GOOGLE UNREACHABLE \u2014 SAVE KEPT ON DEVICE"))
+            CloudSyncResult.UNAVAILABLE -> showTransient(tr("CLOUD SAVE NOT AVAILABLE"))
         }
     }
 
@@ -951,18 +953,18 @@ class GameViewModel @JvmOverloads constructor(
     fun saveSoundtrack() {
         playClick()
         if (!entitlements.ownsSoundtrack) return
-        soundtrackStatus = "Saving to Music/CyOps TD\u2026"
+        soundtrackStatus = tr("Saving to Music/CyOps TD\u2026")
         val exporter = com.cyopstd.game.audio.SoundtrackExporter(getApplication())
         viewModelScope.launch {
             val result = kotlinx.coroutines.withContext(kotlinx.coroutines.Dispatchers.IO) { exporter.saveAll() }
             soundtrackStatus = when (result) {
                 is com.cyopstd.game.audio.SoundtrackExporter.Result.Done ->
-                    if (result.saved == 0) "All ${result.alreadyThere} tracks are already in Music/CyOps TD."
-                    else "Saved ${result.saved} tracks to Music/CyOps TD."
+                    if (result.saved == 0) tr("All {0} tracks are already in Music/CyOps TD.", result.alreadyThere)
+                    else tr("Saved {0} tracks to Music/CyOps TD.", result.saved)
                 com.cyopstd.game.audio.SoundtrackExporter.Result.NeedsNewerAndroid ->
-                    "Saving the soundtrack needs Android 10 or newer."
+                    tr("Saving the soundtrack needs Android 10 or newer.")
                 is com.cyopstd.game.audio.SoundtrackExporter.Result.Failed ->
-                    "Saved ${result.saved} tracks, then the phone refused the rest. Free some space and try again."
+                    tr("Saved {0} tracks, then the phone refused the rest. Free some space and try again.", result.saved)
             }
         }
     }
@@ -1005,9 +1007,9 @@ class GameViewModel @JvmOverloads constructor(
             repository.identity.collectLatest { identity ->
                 this@GameViewModel.identity = identity
                 playerTag = if (identity.registered) {
-                    "AGENT ${identity.username}"
+                    tr("AGENT {0}", identity.username)
                 } else {
-                    "AGENT UNREGISTERED"
+                    tr("AGENT UNREGISTERED")
                 }
                 // The stats collector owns the mode list (KERNEL MODE needs
                 // per-level records); this keeps a lifetime best that
@@ -1335,7 +1337,7 @@ class GameViewModel @JvmOverloads constructor(
         // than a button that does nothing, because it also lies about what
         // speed the match is running at.
         if (index >= Balance.speedCount(fifthSpeedUnlocked)) {
-            showTransient("5\u00D7 SPEED IS IN THE STORE")
+            showTransient(tr("5\u00D7 SPEED IS IN THE STORE"))
             return
         }
         speedIndex = index.coerceIn(0, Balance.speedCount(fifthSpeedUnlocked) - 1)
@@ -1382,11 +1384,11 @@ class GameViewModel @JvmOverloads constructor(
 
     fun choosePendingAgent(type: AgentType) {
         if (type.name !in unlockedAgents) {
-            showTransient("AGENT LOCKED — ${type.lockedLabel}")
+            showTransient(tr("AGENT LOCKED — {0}", type.lockedLabel))
             return
         }
         if (type.maxDeployed > 0 && engine.activeCountOf(type) >= type.maxDeployed) {
-            showTransient("${type.displayName} LIMIT — ${type.maxDeployed} MAX")
+            showTransient(tr("{0} LIMIT — {1} MAX", type.displayName, type.maxDeployed))
             return
         }
         selection = selection.copy(pendingAgent = type, selectedNodeId = null, previewNodeId = null)
@@ -1403,14 +1405,14 @@ class GameViewModel @JvmOverloads constructor(
                 if (type == AgentType.FIREWALL) {
                     tutorialStep = TutorialScript.PLACE_FIREWALLS
                 } else {
-                    showTransient("THE GUIDED RUN NEEDS FIREWALL FIRST")
+                    showTransient(tr("THE GUIDED RUN NEEDS FIREWALL FIRST"))
                 }
 
             tutorialStep == TutorialScript.PICK_TARPIT ->
                 if (type == AgentType.TARPIT) {
                     tutorialStep = TutorialScript.PLACE_TARPITS
                 } else {
-                    showTransient("THE GUIDED RUN NEEDS TARPIT NEXT")
+                    showTransient(tr("THE GUIDED RUN NEEDS TARPIT NEXT"))
                 }
         }
     }
@@ -1456,13 +1458,13 @@ class GameViewModel @JvmOverloads constructor(
             if (settings.confirmPlacement && selection.previewNodeId != node.id) {
                 if (node.serverSlot != pending.healsServer) {
                     showTransient(
-                        if (pending.healsServer) "PLACE ON A CORE-SERVER SLOT"
-                        else "CORE-SERVER SLOTS ARE FOR [S] ONLY"
+                        if (pending.healsServer) tr("PLACE ON A CORE-SERVER SLOT")
+                        else tr("CORE-SERVER SLOTS ARE FOR [S] ONLY")
                     )
                     return
                 }
                 selection = selection.copy(previewNodeId = node.id)
-                showTransient("TAP AGAIN TO DEPLOY")
+                showTransient(tr("TAP AGAIN TO DEPLOY"))
                 audio.play(GameSound.UI_CLICK)
                 return
             }
@@ -1471,16 +1473,16 @@ class GameViewModel @JvmOverloads constructor(
                     selection = BattlefieldSelection()
                     advanceTutorialOnPlacement()
                 }
-                PlacementResult.INSUFFICIENT_CRYPTO -> showTransient("INSUFFICIENT CRYPTO")
-                PlacementResult.NODE_OCCUPIED -> showTransient("NODE OCCUPIED")
-                PlacementResult.AGENT_LOCKED -> showTransient("AGENT LOCKED")
-                PlacementResult.NODE_INVALID -> showTransient("INVALID NODE")
-                PlacementResult.NO_CAPACITY -> showTransient("DEPLOYMENT LIMIT REACHED")
+                PlacementResult.INSUFFICIENT_CRYPTO -> showTransient(tr("INSUFFICIENT CRYPTO"))
+                PlacementResult.NODE_OCCUPIED -> showTransient(tr("NODE OCCUPIED"))
+                PlacementResult.AGENT_LOCKED -> showTransient(tr("AGENT LOCKED"))
+                PlacementResult.NODE_INVALID -> showTransient(tr("INVALID NODE"))
+                PlacementResult.NO_CAPACITY -> showTransient(tr("DEPLOYMENT LIMIT REACHED"))
                 PlacementResult.TYPE_LIMIT_REACHED ->
-                    showTransient("${pending.displayName} LIMIT — ${pending.maxDeployed} MAX")
+                    showTransient(tr("{0} LIMIT — {1} MAX", pending.displayName, pending.maxDeployed))
                 PlacementResult.WRONG_SLOT -> showTransient(
-                    if (pending.healsServer) "PLACE ON A CORE-SERVER SLOT"
-                    else "CORE-SERVER SLOTS ARE FOR [S] ONLY"
+                    if (pending.healsServer) tr("PLACE ON A CORE-SERVER SLOT")
+                    else tr("CORE-SERVER SLOTS ARE FOR [S] ONLY")
                 )
             }
             pushHud()
@@ -1557,8 +1559,8 @@ class GameViewModel @JvmOverloads constructor(
         val nodeId = selection.selectedNodeId ?: return
         if (engine.upgradeAgent(nodeId, times) == 0) {
             showTransient(
-                if (engine.isUpgradeLocked(nodeId)) "UPGRADES HELD FOR RANSOM"
-                else "INSUFFICIENT CRYPTO"
+                if (engine.isUpgradeLocked(nodeId)) tr("UPGRADES HELD FOR RANSOM")
+                else tr("INSUFFICIENT CRYPTO")
             )
         }
         pushHud()
@@ -1574,7 +1576,7 @@ class GameViewModel @JvmOverloads constructor(
     fun buyAgentFirmware(type: AgentType, stat: com.cyopstd.game.model.FirmwareStat, levels: Int) {
         viewModelScope.launch {
             val bought = repository.buyAgentFirmware(type, stat, levels)
-            if (bought == 0) showTransient("INSUFFICIENT \u20AC BUDGET") else playClick()
+            if (bought == 0) showTransient(tr("INSUFFICIENT \u20AC BUDGET")) else playClick()
         }
     }
 
@@ -1582,7 +1584,7 @@ class GameViewModel @JvmOverloads constructor(
     fun buyFirmware(levels: Int) {
         viewModelScope.launch {
             val bought = repository.buyFirmware(levels)
-            if (bought == 0) showTransient("INSUFFICIENT \u20AC BUDGET")
+            if (bought == 0) showTransient(tr("INSUFFICIENT \u20AC BUDGET"))
         }
     }
 
@@ -1614,9 +1616,9 @@ class GameViewModel @JvmOverloads constructor(
         engine.setFocus(nodeId, next)
         showTransient(
             when (next) {
-                com.cyopstd.game.model.TargetFocus.BOSSES -> "FOCUS: BOSSES ONLY"
-                com.cyopstd.game.model.TargetFocus.OTHERS -> "FOCUS: SMALL UNITS AND ELITES ONLY"
-                com.cyopstd.game.model.TargetFocus.ALL -> "FOCUS OFF"
+                com.cyopstd.game.model.TargetFocus.BOSSES -> tr("FOCUS: BOSSES ONLY")
+                com.cyopstd.game.model.TargetFocus.OTHERS -> tr("FOCUS: SMALL UNITS AND ELITES ONLY")
+                com.cyopstd.game.model.TargetFocus.ALL -> tr("FOCUS OFF")
             }
         )
         audio.play(GameSound.UI_CLICK)
@@ -1837,7 +1839,7 @@ class GameViewModel @JvmOverloads constructor(
                 // Nothing spent, nothing granted, and the button is still
                 // there. Saying so matters: silence here reads as the game
                 // having taken the ad and given nothing back.
-                showTransient("AD NOT COMPLETED — NOTHING SPENT")
+                showTransient(tr("AD NOT COMPLETED — NOTHING SPENT"))
                 return@showRewarded
             }
             grantRevive(spentAnAd = true)
@@ -1854,7 +1856,7 @@ class GameViewModel @JvmOverloads constructor(
      */
     private fun grantRevive(spentAnAd: Boolean = false) {
         if (!engine.reviveRun()) {
-            showTransient("REVIVE FAILED — RUN ALREADY ENDED")
+            showTransient(tr("REVIVE FAILED — RUN ALREADY ENDED"))
             return
         }
         revivesUsed += 1
@@ -1874,7 +1876,7 @@ class GameViewModel @JvmOverloads constructor(
         // willing to kill it.
         viewModelScope.launch { persistRun() }
         android.util.Log.d("CyOpsAds", "REVIVE_GRANTED wave=${engine.currentWave} paidWithAd=$spentAnAd")
-        showTransient("SYSTEMS RESTORED — INTEGRITY ${engine.serverHp}")
+        showTransient(tr("SYSTEMS RESTORED — INTEGRITY {0}", engine.serverHp))
     }
 
     /**

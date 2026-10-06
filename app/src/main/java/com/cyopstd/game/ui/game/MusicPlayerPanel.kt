@@ -1,5 +1,7 @@
 package com.cyopstd.game.ui.game
 
+import com.cyopstd.game.i18n.tr
+
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -51,12 +53,12 @@ data class MusicPlayerState(
 )
 
 /** Shown when a locked music player is touched. */
-const val MUSIC_PLAYER_LOCKED_NOTE =
-    "LOCKED · Complete level 5 (clear wave 100 on DDoS) to unlock the music player " +
-        "and the track list."
+val MUSIC_PLAYER_LOCKED_NOTE =
+    tr("LOCKED · Complete level 5 (clear wave 100 on DDoS) to unlock the music player " +
+        "and the track list.")
 
 /** The label for following the level's own music. */
-const val LEVEL_MUSIC_LABEL = "LEVEL MUSIC (AUTO)"
+val LEVEL_MUSIC_LABEL = tr("LEVEL MUSIC (AUTO)")
 
 /**
  * The pause menu's music player (owner, 2026-10-01): previous, play/pause and
@@ -100,13 +102,13 @@ fun MusicPlayerPanel(
             )
             Spacer(Modifier.width(8.dp))
             Text(
-                "MUSIC PLAYER", style = MaterialTheme.typography.titleSmall,
+                tr("MUSIC PLAYER"), style = MaterialTheme.typography.titleSmall,
                 color = if (state.unlocked) Palette.TextPrimary else Palette.TextMuted,
                 modifier = Modifier.weight(1f)
             )
             if (!state.unlocked) {
                 Icon(
-                    painterResource(R.drawable.ic_lock), contentDescription = "Locked",
+                    painterResource(R.drawable.ic_lock), contentDescription = tr("Locked"),
                     tint = Palette.TextPrimary,
                     modifier = Modifier
                         .size(16.dp)
@@ -186,14 +188,14 @@ fun MusicPlayerPanel(
                 .fillMaxWidth()
                 .alpha(dim)
         ) {
-            TransportButton(R.drawable.ic_media_previous, "Previous track", "music-previous", accent,
+            TransportButton(R.drawable.ic_media_previous, tr("Previous track"), "music-previous", accent,
                 Modifier.weight(1f)) { guarded(onPrevious) }
             TransportButton(
                 if (state.paused) R.drawable.ic_media_play else R.drawable.ic_media_pause,
-                if (state.paused) "Play music" else "Pause music", "music-play-pause",
+                if (state.paused) tr("Play music") else tr("Pause music"), "music-play-pause",
                 if (state.unlocked) Palette.Green else Palette.TextMuted, Modifier.weight(1f)
             ) { guarded(onPlayPause) }
-            TransportButton(R.drawable.ic_media_next, "Next track", "music-next", accent,
+            TransportButton(R.drawable.ic_media_next, tr("Next track"), "music-next", accent,
                 Modifier.weight(1f)) { guarded(onNext) }
         }
 

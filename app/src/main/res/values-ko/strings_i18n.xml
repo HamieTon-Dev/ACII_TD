@@ -1,0 +1,867 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Translation of values/strings_i18n.xml. Machine-quality (AI) translation; see FEATURE_BACKLOG.md. -->
+<resources>
+    <string name="t_0069698f" formatted="false">"예산 € {0}"</string>
+    <string name="t_00bdf050" formatted="false">"이 기기"</string>
+    <string name="t_00c74b4a" formatted="false">"한 번의 일제 사격으로 서로 다른 위협을 최대 3개까지 공격합니다. 넓게 퍼진 웨이브에 대한 팀의 해답입니다. 대상 지정 가능."</string>
+    <string name="t_00cb85ad" formatted="false">"4단계 — TARPIT 선택"</string>
+    <string name="t_00f316c1" formatted="false">"다음 레벨 비용"</string>
+    <string name="t_00fafa13" formatted="false">"이 계정이 보유한 항목"</string>
+    <string name="t_01278423" formatted="false">"달라지는 점"</string>
+    <string name="t_014c06bb" formatted="false">"{1}개 중 {0}개 해금 · 최고 웨이브 {2}"</string>
+    <string name="t_01b91dff" formatted="false">"RANSOM은 몇 초마다 에이전트 하나의 업그레이드를 {0}초 동안 잠급니다. 도착하기 전에 업그레이드하세요."</string>
+    <string name="t_01ba7032" formatted="false">"0레벨"</string>
+    <string name="t_01f2a69d" formatted="false">"세션 노트"</string>
+    <string name="t_0288b770" formatted="false">"아래 컨트롤 바의 에이전트 버튼을 탭하세요."</string>
+    <string name="t_02b88c49" formatted="false">"모든 오디오는 시작할 때 기기에서 생성됩니다. 게임에는 사운드 파일이 없습니다."</string>
+    <string name="t_02f0f435" formatted="false">"루트(관리자)는 시스템에서 가장 높은 권한으로, 어떤 프로세스든 멈추고 무엇이든 바꿀 수 있습니다. 바로 그 때문에 최대한 드물게, 최대한 짧게만 부여하는 것이 원칙입니다. \"Root admin\"은 이 접근 권한 수준을 줄여 부르는 말이지 직함이 아닙니다."</string>
+    <string name="t_0306926d" formatted="false">"코어 서버로 이어지는 공격 레인 3개"</string>
+    <string name="t_0358799e" formatted="false">"지금부터 모든 매치의 모든 {0}에 적용되며, 코어 펌웨어에 더해집니다. 초반 레벨은 저렴하지만 레벨마다 비싸지고, 최상위 레벨은 수백만이 듭니다."</string>
+    <string name="t_0397b7d9" formatted="false">"보스 웨이브 자동 시작"</string>
+    <string name="t_03d108e0" formatted="false">"연결되었지만 Google에 접속할 수 없습니다. 잃은 것은 없습니다. 이 기기의 저장 데이터로 플레이하며, 다음 동기화 때 계정에 반영됩니다."</string>
+    <string name="t_059b388a" formatted="false">"&gt; 웨이브 {0} 방어 — 웨이브 {1}에 대비하세요"</string>
+    <string name="t_05ea5d0e" formatted="false">"처음부터 사용 가능."</string>
+    <string name="t_05f2ef1e" formatted="false">"다음 곡"</string>
+    <string name="t_063d8618" formatted="false">"당신이 요청한 것처럼 위장한 적대 코드. 느리지만 단단히 감싸여 있어 장갑이 모든 타격을 약화시키므로, 빠르고 약한 공격은 헛수고가 됩니다."</string>
+    <string name="t_07269781" formatted="false">"난이도를 고르면 세계 순위를 볼 수 있습니다."</string>
+    <string name="t_07a3d7ab" formatted="false">"부활을 포함해 보유한 모든 항목은 어느 기기에서든 복원으로 Google Play에서 되돌아옵니다. 클라우드 저장에는 절대 포함되지 않으므로 어떤 저장 파일도 구매를 주거나 빼앗을 수 없습니다."</string>
+    <string name="t_07fbf4bd" formatted="false">"부활"</string>
+    <string name="t_08039ac7" formatted="false">"상점"</string>
+    <string name="t_08175caa" formatted="false">"클래스 색상"</string>
+    <string name="t_08218c08" formatted="false">"연결 중…"</string>
+    <string name="t_08279524" formatted="false">"시스템의 특정 결함을 악용하는 코드. 익스플로잇은 빠르고 강하게 칩니다. 다가올 때는 순수 피해량보다 탐지 범위가 더 중요합니다."</string>
+    <string name="t_086b8b8e" formatted="false">"보스"</string>
+    <string name="t_08f0711d" formatted="false">"구매 복원"</string>
+    <string name="t_09653280" formatted="false">"코어까지"</string>
+    <string name="t_0a0bc63d" formatted="false">"이전 곡"</string>
+    <string name="t_0a2301f4" formatted="false">"진행 상황 저장됨"</string>
+    <string name="t_0a344034" formatted="false">"다음: 웨이브 {0}"</string>
+    <string name="t_0ae74b3e" formatted="false">"제로데이 스트라이크"</string>
+    <string name="t_0b205685" formatted="false">"네트워크 초기화 중..."</string>
+    <string name="t_0b809aa5" formatted="false">"{0}의 세계 순위가 아직 없습니다. 그곳의 플레이 기록은 이 기기에 저장됩니다."</string>
+    <string name="t_0bc6e19b" formatted="false">"스스로 피해를 주지 않습니다. 범위 안의 모든 에이전트에게 피해 +30%, 연사 속도 +20%를 주므로 가치는 오로지 어디에 두느냐에 달려 있습니다."</string>
+    <string name="t_0bd16003" formatted="false">"최대"</string>
+    <string name="t_0bfbeb5b" formatted="false">"TARPIT 필드에 붙잡아 두고 IPS가 밀린 것을 정리하게 하세요."</string>
+    <string name="t_0c121fb2" formatted="false">"진행 상황 동기화됨"</string>
+    <string name="t_0c147607" formatted="false">"딥 스캔"</string>
+    <string name="t_0c16a4ef" formatted="false">"아직 기록된 점수가 없습니다. 첫 번째 주인공이 되어 보세요."</string>
+    <string name="t_0c997319" formatted="false">"WORM 분열"</string>
+    <string name="t_0cb4ce2b" formatted="false">"웨이브 {0} 방어 완료  ◇{1}"</string>
+    <string name="t_0cfa4a6e" formatted="false">"이 레벨의 보스"</string>
+    <string name="t_0d884b08" formatted="false">"침입 (보스)"</string>
+    <string name="t_0d8c63a6" formatted="false">"각 공격이 가까운 위협 2개로 연쇄되어 55%의 피해를 줍니다."</string>
+    <string name="t_0df4bfec" formatted="false">"약점"</string>
+    <string name="t_0e69fc6c" formatted="false">"배치 바에 각 에이전트의 아이콘과 비용만 표시"</string>
+    <string name="t_0eb480b6" formatted="false">"멀어지는 원근 격자와 그 아래를 흐르는 빛줄기."</string>
+    <string name="t_0f47943c" formatted="false">"집중 해제"</string>
+    <string name="t_0f5d5911" formatted="false">"배터리 절약"</string>
+    <string name="t_0f80d304" formatted="false">"에이전트 피해"</string>
+    <string name="t_0f9a43d6" formatted="false">"모든 리빙 배경"</string>
+    <string name="t_0fa88218" formatted="false">"Google Play에 접속할 수 없습니다. 보통 네트워크가 없어서입니다. 이미 구매한 것은 그대로 당신의 것입니다. 다시 온라인이 되면 복원을 누르세요. 다시 나타납니다."</string>
+    <string name="t_0fd40469" formatted="false">"성능"</string>
+    <string name="t_0fd4c0f4" formatted="false">"CORE-SERVER 슬롯은 [S] 전용입니다"</string>
+    <string name="t_1046865f" formatted="false">"뒤에서 계속 BOT을 만들어 냅니다. 빨리 처치하지 않으면 봇넷에 휩쓸립니다."</string>
+    <string name="t_107ea55b" formatted="false">"업그레이드가 인질로 잡힘"</string>
+    <string name="t_108f4363" formatted="false">"설치"</string>
+    <string name="t_111611f9" formatted="false">"패치 장벽"</string>
+    <string name="t_1181f7e7" formatted="false">"에이전트 교란됨"</string>
+    <string name="t_11c0f105" formatted="false">"레벨 음악 (자동)"</string>
+    <string name="t_11c8546c" formatted="false">"피해"</string>
+    <string name="t_11d858aa" formatted="false">"최고 웨이브"</string>
+    <string name="t_1213b2b6" formatted="false">"{0}시간 전"</string>
+    <string name="t_12193f21" formatted="false">"네트워크 아키텍트는 네트워크를 어떻게 나눌지 설계합니다. 세분화 덕분에 한 구역이 뚫려도 다음 구역으로 그냥 넘어가지 못해, 단일 장애의 피해가 제한됩니다. 사고 중에 쓰는 도구가 아니라 사고 전에 하는 설계 작업입니다."</string>
+    <string name="t_1248f6ec" formatted="false">"사운드트랙을 저장하려면 Android 10 이상이 필요합니다."</string>
+    <string name="t_125ca8ca" formatted="false">"스타터 팩"</string>
+    <string name="t_12a36ceb" formatted="false">"위장됨"</string>
+    <string name="t_12e8edf9" formatted="false">"언어"</string>
+    <string name="t_1380e038" formatted="false">"랜섬 · 업그레이드 잠김 {0}초"</string>
+    <string name="t_138da392" formatted="false">"트래픽에 따라 칸이 달아올랐다 식는 격자."</string>
+    <string name="t_13df4b88" formatted="false">"펌웨어"</string>
+    <string name="t_13ee9782" formatted="false">"배치됨"</string>
+    <string name="t_141ad814" formatted="false">"피드백"</string>
+    <string name="t_143628e2" formatted="false">"부활 광고만 · 선택"</string>
+    <string name="t_1489b7f6" formatted="false">"{0}일 전"</string>
+    <string name="t_14bdf6f2" formatted="false">"가이드 플레이에는 FIREWALL이 먼저 필요합니다"</string>
+    <string name="t_14c27ca9" formatted="false">"ANALYST는 정예에게 80% 추가 피해. 장갑을 무시하는 에이전트가 도움이 됩니다."</string>
+    <string name="t_14cecaa5" formatted="false">"키 없이는 데이터를 읽을 수 없게 만들기"</string>
+    <string name="t_14ecbe1d" formatted="false">"{0}/초"</string>
+    <string name="t_1512aeac" formatted="false">"{0}레벨"</string>
+    <string name="t_154419d5" formatted="false">"암호화된 것으로 간주: 대부분의 에이전트가 피해를 덜 줍니다."</string>
+    <string name="t_154a5adf" formatted="false">"레벨"</string>
+    <string name="t_15680f7c" formatted="false">"영구적인 코어 펌웨어 피해에 사용하세요."</string>
+    <string name="t_1571a208" formatted="false">"TARPIT 두 개를 두어 그 오라가 FIREWALL이 쏘는 구역을 덮게 하세요. 감속이 바로 피해를 꽂아 넣는 비결입니다."</string>
+    <string name="t_15aa2838" formatted="false">"트래픽에 따라 칸이 달아올랐다 식는 거친 격자."</string>
+    <string name="t_15ede35d" formatted="false">"◇ {0} · 처음부터 사용 가능"</string>
+    <string name="t_167ae054" formatted="false">"저장된 플레이, 해금한 모든 에이전트, 모든 통계와 설정이 삭제됩니다.\n\n되돌릴 수 없습니다."</string>
+    <string name="t_17a13ae4" formatted="false">"보스는 느리게 움직이지만 CORE-SERVER의 무결성을 {0} 깎습니다. 게임에서 가장 많은 크립토를 주며, 주기마다 더 강해집니다."</string>
+    <string name="t_17e0e9f0" formatted="false">"연사 속도가 매우 높고, 범위 안에서는 항상 다른 무엇보다 보스를 먼저 노리며, [!!!] BREACH에 2배 피해. 웨이브 30에 해금되며 최대 4개까지 배치할 수 있습니다."</string>
+    <string name="t_1877f7c0" formatted="false">"미설치"</string>
+    <string name="t_197d534b" formatted="false">"€ 예산(한 플레이의 10웨이브마다 적립되고 이후에도 유지)을 모든 에이전트의 영구 피해 증가에 쓰세요."</string>
+    <string name="t_1991565e" formatted="false">"속도 제한"</string>
+    <string name="t_19cbe369" formatted="false">"선호 에이전트"</string>
+    <string name="t_1a155da6" formatted="false">"다음 웨이브"</string>
+    <string name="t_1a2a0f17" formatted="false">"잠김"</string>
+    <string name="t_1a73c7da" formatted="false">"연사 속도"</string>
+    <string name="t_1aba43b0" formatted="false">"코어 주위를 천천히 도는 타원 궤적. 일하는 스케줄러처럼."</string>
+    <string name="t_1b0d8052" formatted="false">"CORE-SERVER가 맞으면 전장 흔들기"</string>
+    <string name="t_1ba327c9" formatted="false">"가장 흔한 웹 공격"</string>
+    <string name="t_1ba41734" formatted="false">"차단한 공격"</string>
+    <string name="t_1cc19733" formatted="false">"현실에서는"</string>
+    <string name="t_1d162704" formatted="false">"정말 새 플레이를 시작할까요? 저장된 세션이 대체됩니다."</string>
+    <string name="t_1d29935f" formatted="false">"{0} 교란됨"</string>
+    <string name="t_1d8fe548" formatted="false">"처음부터 시작"</string>
+    <string name="t_1dea7837" formatted="false">"한계를 넘어선 HACK:AI. 무결성은 절반, 보상은 2배."</string>
+    <string name="t_1deb5c00" formatted="false">"연결됨 · 오프라인"</string>
+    <string name="t_1e09b492" formatted="false">"🔒 [{0}] {1} · 잠김"</string>
+    <string name="t_1e6ed1a9" formatted="false">"리빙 배경"</string>
+    <string name="t_1ef7821b" formatted="false">"코어 쪽으로 멀어지는 네온 블루 격자와, 파랑에서 초록으로 흐르는 홀로그램 고리."</string>
+    <string name="t_1f3159fc" formatted="false">"에이전트 색상"</string>
+    <string name="t_1f5df304" formatted="false">"연결 재설정"</string>
+    <string name="t_1ff44d56" formatted="false">"라이선스 집행"</string>
+    <string name="t_20ce505d" formatted="false">"일시정지"</string>
+    <string name="t_21399575" formatted="false">"개발자"</string>
+    <string name="t_2198b685" formatted="false">"선택한 에이전트의 스캔 범위 표시"</string>
+    <string name="t_21bb43e3" formatted="false">"{0} · 모든 레벨"</string>
+    <string name="t_22100250" formatted="false">"레벨 {0} · 최대"</string>
+    <string name="t_224d65ed" formatted="false">"CORE-SERVER 스킨"</string>
+    <string name="t_22686e59" formatted="false">"연결"</string>
+    <string name="t_227cde14" formatted="false">"{1}의 {0}"</string>
+    <string name="t_2283d7ca" formatted="false">"노드 사용 중"</string>
+    <string name="t_22b6479a" formatted="false">"사이버 작전 전문가는 방어를 실시간 작전처럼 운영합니다. 간섭을 감시하고, 누군가 팀의 도구를 끄려 할 때도 계속 돌아가게 하며, 곧장 근원을 칩니다."</string>
+    <string name="t_22c4ef22" formatted="false">"내용이 암호화되어 있어 대부분의 방어는 무엇을 쏘는지 읽지 못해 일부 피해만 줍니다. CRYPTOGRAPHER 에이전트는 암호를 곧장 꿰뚫습니다."</string>
+    <string name="t_23020c53" formatted="false">" · {0}레벨 구매 가능"</string>
+    <string name="t_236f5b12" formatted="false">"처치한 보스 합계"</string>
+    <string name="t_23763c89" formatted="false">"설정"</string>
+    <string name="t_23961a76" formatted="false">"보스 {0}/{1} · 보스를 탭해 전환"</string>
+    <string name="t_24adcafc" formatted="false">"서버가 받은 피해 합계"</string>
+    <string name="t_24bbb47b" formatted="false">"잠긴 아이템"</string>
+    <string name="t_24d3a2ef" formatted="false">"장벽 붕괴"</string>
+    <string name="t_255b5911" formatted="false">"CRT 형광 초록, 주사선, 화면 갱신 줄무늬."</string>
+    <string name="t_2570d23e" formatted="false">"화력을 집중하세요. ANALYST와 ROOT ADMIN이 보스 웨이브를 책임집니다."</string>
+    <string name="t_25a6b96b" formatted="false">"저렴한 가격에 믿음직한 중거리 피해, 그리고 보스의 교란에 면역인 유일한 에이전트. 사거리가 짧아 레인 가까이 서야 하는데, 바로 그래서 이 면역이 중요합니다."</string>
+    <string name="t_25bd1975" formatted="false">"피해"</string>
+    <string name="t_25efb9da" formatted="false">"폭발 범위"</string>
+    <string name="t_260d60b1" formatted="false">"패배 후 광고 1회 · 부활 선택"</string>
+    <string name="t_26b80d1f" formatted="false">"완료"</string>
+    <string name="t_27a68119" formatted="false">"네트워크 상태"</string>
+    <string name="t_27d9802d" formatted="false">"패배 후 광고 1회"</string>
+    <string name="t_27daad70" formatted="false">"가장자리부터 번지는 서리."</string>
+    <string name="t_28c31125" formatted="false">"장갑이 두껍고 끈질깁니다. 무거운 단발 공격이 통하고, 빠른 연사는 낭비됩니다."</string>
+    <string name="t_28e339dd" formatted="false">"필드 뒤로 드문드문 떨어지는 문자 열."</string>
+    <string name="t_296fb456" formatted="false">"수리 +{0} HP · {1}초마다 · CORE-SERVER 슬롯 · 최대 {2}"</string>
+    <string name="t_297ae895" formatted="false">"격리됨"</string>
+    <string name="t_2a1bde6e" formatted="false">"침입 방지 시스템은 트래픽 경로에 위치하며, 탐지한 것에 대해 경고만 하는 대신 연결을 버리거나 재설정하는 조치를 취할 수 있습니다. 대가도 분명합니다. 정상 트래픽을 잘못 판단한 IPS는 그것을 차단해 버립니다."</string>
+    <string name="t_2a934539" formatted="false">"공격 발원지"</string>
+    <string name="t_2a9b95e6" formatted="false">"모든 보스에게 ×{0} 피해."</string>
+    <string name="t_2bb9a482" formatted="false">"방화벽은 트래픽을 규칙 목록과 대조해 맞지 않는 것은 모두 버립니다. 가장 오래되었고 지금도 가장 중요한 경계 방어입니다."</string>
+    <string name="t_2be00c84" formatted="false">"콜사인 수정"</string>
+    <string name="t_2c13b917" formatted="false">"{1}에게 ×{0} 피해."</string>
+    <string name="t_2ce4713d" formatted="false">"&gt; CORE-SERVER 동기화 중"</string>
+    <string name="t_2d14c154" formatted="false">"필드를 가로지르는 느린 대각선 데이터 흐름."</string>
+    <string name="t_2dcb788c" formatted="false">"이 게임은 프로그래밍과 소프트웨어 개발을 배우는 과정에서 교육 및 개발 보조 도구로 사용된 인공지능 도구의 도움을 받아 개발되었습니다.\n\nAI 도구는 코드 개발, 문제 해결, 문서 작성, 학습 등의 분야에서 도움을 주었습니다. 최종 디자인 결정, 게임플레이 방향, 테스트, 출시 결정은 개발자의 책임입니다.\n\n이 게임은 어떤 인공지능 기업에 의해서도 생성, 후원, 보증, 소유, 배급되지 않았습니다."</string>
+    <string name="t_2df53561" formatted="false">"규칙 기반 트래픽 필터"</string>
+    <string name="t_2e0cf790" formatted="false">"기타"</string>
+    <string name="t_2e19cc63" formatted="false">"체력 40%로 한 번 다시 일어납니다. 죽이는 것과 끝장내는 것은 다릅니다."</string>
+    <string name="t_2ef9e2c6" formatted="false">"사이버 공격"</string>
+    <string name="t_2f3549f7" formatted="false">"클라우드 저장을 사용할 수 없음"</string>
+    <string name="t_302a4f0a" formatted="false">"기본"</string>
+    <string name="t_302eea27" formatted="false">"무엇이 오는지 알고 싶나요?"</string>
+    <string name="t_3083c674" formatted="false">"리빙: DRIFT"</string>
+    <string name="t_30867b62" formatted="false">"완전히 오프라인으로 플레이"</string>
+    <string name="t_30ed929d" formatted="false">"{1}에서 웨이브 {0}에 도달하면 이 에이전트가 해금됩니다."</string>
+    <string name="t_31359ec6" formatted="false">"{0} 집중 끔"</string>
+    <string name="t_313900e6" formatted="false">"아키텍트 업링크"</string>
+    <string name="t_314d733e" formatted="false">"€ {0} 사용 가능"</string>
+    <string name="t_317b7de0" formatted="false">"랙 내부로 떨어지는 코드."</string>
+    <string name="t_31d43b93" formatted="false">"리빙: RAINFALL"</string>
+    <string name="t_326bdc38" formatted="false">"에이전트 미등록"</string>
+    <string name="t_32a3e9f3" formatted="false">"특수 — {0}"</string>
+    <string name="t_32bafd88" formatted="false">"다음"</string>
+    <string name="t_32e6f915" formatted="false">"지금 구매 가능"</string>
+    <string name="t_332ec80a" formatted="false">"무엇이든 이들을 처치합니다. 이들 때문에 과하게 짓지 마세요."</string>
+    <string name="t_33cd995a" formatted="false">"침입 차단"</string>
+    <string name="t_3425c9d3" formatted="false">"레벨 {0}"</string>
+    <string name="t_35350bff" formatted="false">"맥동하는 봉쇄 고리."</string>
+    <string name="t_3595e52a" formatted="false">"경로 {0}"</string>
+    <string name="t_35c82960" formatted="false">"코어: GLACIER"</string>
+    <string name="t_35f74be9" formatted="false">"모든 장갑을 무시하는 압도적인 단일 대상 피해. 게임에서 가장 비싼 에이전트이며 아주 늦게 해금됩니다. 대상 지정 가능."</string>
+    <string name="t_36900a0f" formatted="false">"싸고 거의 무해합니다. 범위 안의 모든 것이 기어갑니다."</string>
+    <string name="t_37447c3a" formatted="false">"연사 속도가 극도로 높고, 모든 탄이 범위로 튑니다."</string>
+    <string name="t_376bc6d2" formatted="false">"이 창이 열려 있어도 카운트다운은 계속됩니다."</string>
+    <string name="t_376c54b2" formatted="false">"광고 제거"</string>
+    <string name="t_379656ef" formatted="false">"코어: VOID"</string>
+    <string name="t_37bc9401" formatted="false">"이 빌드는 Google AdMob 광고를 표시합니다. 플레이를 이어 가기 위한 광고 시청은 언제나 선택이며 플레이에 필수가 아닙니다."</string>
+    <string name="t_384d3555" formatted="false">"{0}개 활동 중"</string>
+    <string name="t_384e5d9f" formatted="false">"클라우드 저장"</string>
+    <string name="t_385b9a87" formatted="false">"타르핏은 적대적인 연결을 받아들인 뒤 허용되는 한 가장 느리게 응답해, 공격자를 어디로도 이어지지 않는 소켓에 붙잡아 둡니다. 차단이 아닌 지연 전술이며, 가치는 상대가 치르는 시간에 있습니다."</string>
+    <string name="t_38695d86" formatted="false">"진행 상황 백업"</string>
+    <string name="t_38c1e7e0" formatted="false">"광고 시청 시"</string>
+    <string name="t_38d9a5af" formatted="false">"&gt; 네트워크 침해됨"</string>
+    <string name="t_38e03b91" formatted="false">"완전히 설치됨"</string>
+    <string name="t_3950774a" formatted="false">"등록 이름"</string>
+    <string name="t_395af116" formatted="false">"익명 해킹"</string>
+    <string name="t_396e8daa" formatted="false">"스펙트럼"</string>
+    <string name="t_3a06e0fa" formatted="false">"음악"</string>
+    <string name="t_3a7e7fe6" formatted="false">"빌드 유형"</string>
+    <string name="t_3a8a0a59" formatted="false">"아무리 작은 공격이라도 맞을 때마다 빨라지고, 내버려 두면 느려집니다. 작은 공격 여러 번보다 큰 공격 몇 번이 낫습니다."</string>
+    <string name="t_3aa6f2eb" formatted="false">"ZERO-DAY HUNTER와 ROOT ADMIN은 장갑을 완전히 무시합니다."</string>
+    <string name="t_3aaad671" formatted="false">"탭하여 자세히 보기"</string>
+    <string name="t_3b12a908" formatted="false">"GRADIENT는 아무리 작은 공격이라도 맞을 때마다 빨라지고, 내버려 두면 느려집니다. 작은 공격 여러 번보다 큰 공격 몇 번이 낫습니다."</string>
+    <string name="t_3b53a59d" formatted="false">"보스 웨이브도 자동으로 시작. 끔: 보스 웨이브는 당신을 기다립니다"</string>
+    <string name="t_3bc78174" formatted="false">"AI 지원 개발"</string>
+    <string name="t_3c66aec8" formatted="false">"웨이브, 에이전트, €, 펌웨어는 Google 계정에 저장됩니다. 다른 기기에서 로그인하면 그대로 있습니다. 게임을 나갈 때와 플레이가 끝날 때 동기화됩니다."</string>
+    <string name="t_3cef355d" formatted="false">"남은 체력이 가장 많음"</string>
+    <string name="t_3d17c701" formatted="false">"돌진"</string>
+    <string name="t_3d331382" formatted="false">"트래픽이 지나가는 경로"</string>
+    <string name="t_3d509ddc" formatted="false">"프레임률을 절반으로 줄이고 장식 효과 생략"</string>
+    <string name="t_3d83d177" formatted="false">"사이버 에이전트"</string>
+    <string name="t_3db03eca" formatted="false">"내 기록"</string>
+    <string name="t_3e12b118" formatted="false">"도움말"</string>
+    <string name="t_3e27e12f" formatted="false">"남은 체력이 가장 적음"</string>
+    <string name="t_3ecdd82e" formatted="false">"제로데이는 아무도 존재를 몰랐기 때문에 방어자가 고칠 시간이 0일이었던 취약점입니다. 대조할 시그니처가 없다는 점이 그토록 위험한 이유입니다."</string>
+    <string name="t_3fa2aee2" formatted="false">"FIREWALL 에이전트에게 받는 피해 35% 감소."</string>
+    <string name="t_401924c3" formatted="false">"CORE-SERVER 스킨"</string>
+    <string name="t_4071c698" formatted="false">"Google Play가 응답했습니다. 구매와 복원이 정상 작동합니다."</string>
+    <string name="t_40b15bdb" formatted="false">"10웨이브마다 적립됩니다. 플레이가 깊어질수록 더 많이 주며, 보상은 마일스톤의 제곱에 비례해 커지므로 깊은 플레이 한 번이 얕은 플레이 다섯 번보다 낫습니다."</string>
+    <string name="t_4104a0b2" formatted="false">"{0} 최고 기록: 웨이브 {1}"</string>
+    <string name="t_4108bc91" formatted="false">"핸드셰이크 거부됨"</string>
+    <string name="t_41203058" formatted="false">"장비"</string>
+    <string name="t_412ea11f" formatted="false">"경로 옆의 강조된 배치 노드 두 곳을 탭하세요. 둘은 권장이 아닙니다. 에이전트 하나로는 레인을 지킬 수 없습니다."</string>
+    <string name="t_419c5ded" formatted="false">"플레이한 게임 합계"</string>
+    <string name="t_41a1b85e" formatted="false">"개인정보 보호 옵션"</string>
+    <string name="t_41ca8ef5" formatted="false">"이 기기에 로컬로 저장 · 업로드되는 것 없음"</string>
+    <string name="t_41e88f52" formatted="false">"두 손가락으로 벌려 보드를 확대하세요. 가까이서 보면 노드를 탭하기 쉽습니다. 확대 중에는 한 손가락으로 끌어 이동하세요. 끝까지 오므리면 보드 전체가 다시 보입니다."</string>
+    <string name="t_4208e473" formatted="false">"광고 없음"</string>
+    <string name="t_420bd000" formatted="false">"BOTMASTER는 몇 초마다 뒤에 BOT을 떨굽니다. 빨리 처치하고, 무리를 처리할 전력도 남겨 두세요."</string>
+    <string name="t_4273a8be" formatted="false">"계정"</string>
+    <string name="t_42832744" formatted="false">"도박, 확률형 아이템, 무작위 유료 보상 없음"</string>
+    <string name="t_42880e6f" formatted="false">"잠김 · {0}"</string>
+    <string name="t_42a0e053" formatted="false">"정보"</string>
+    <string name="t_42addf6c" formatted="false">"상점 열기"</string>
+    <string name="t_42afe7bc" formatted="false">"연결 중"</string>
+    <string name="t_42ef8058" formatted="false">"방어 기록"</string>
+    <string name="t_4306ee12" formatted="false">"€1,500 예산"</string>
+    <string name="t_4333987a" formatted="false">"드문드문 떨어지는 문자 열."</string>
+    <string name="t_43a1c2e8" formatted="false">"업그레이드 비용"</string>
+    <string name="t_441ec9a9" formatted="false">"메뉴를 짧게 둘러봅니다. 다음으로 넘어가고, 건너뛰기로 닫습니다. 설정에서 언제든 다시 볼 수 있습니다."</string>
+    <string name="t_4427afab" formatted="false">"장갑은 작은 공격을 무디게 합니다. IPS가 아니라 ANALYST나 ROOT ADMIN을 쓰세요."</string>
+    <string name="t_4439e789" formatted="false">"잠김 · 레벨 5를 완료하면(DDoS에서 웨이브 100 돌파) 음악 플레이어와 곡 목록이 해금됩니다."</string>
+    <string name="t_448177d3" formatted="false">"마지막 동기화"</string>
+    <string name="t_4494c488" formatted="false">"{0}분 전"</string>
+    <string name="t_44c51c30" formatted="false">"공격 차단"</string>
+    <string name="t_44fbbc54" formatted="false">"&gt; !! 사이버 공격 접근 중 — 대규모 침해 임박 !!"</string>
+    <string name="t_4538f2a7" formatted="false">"방화벽은 트래픽을 일련의 규칙과 대조해 규칙이 허용하지 않는 것은 모두 버립니다. 보통 신뢰할 수 없는 네트워크와 지킬 가치가 있는 것 사이에 놓이는 첫 번째 통제이며, 영리함이 아니라 받은 규칙으로 평가됩니다."</string>
+    <string name="t_45b17976" formatted="false">"운에 맡기지 않고 매번 똑같은 큰 단일 대상 피해를 주며 장갑을 무시합니다. 비싸고 느리며, 혼자서는 레인을 지키지 못합니다."</string>
+    <string name="t_4631883a" formatted="false">"최대 설치  (+{0})"</string>
+    <string name="t_463cbc28" formatted="false">"체력 ×{0} · 장갑 +{1} · 속도 ×{2}"</string>
+    <string name="t_466578df" formatted="false">"무결성 절반으로 이 웨이브를 재개합니다."</string>
+    <string name="t_466b92a9" formatted="false">"세그먼트 업링크"</string>
+    <string name="t_46984fe6" formatted="false">"플레이 · 계속"</string>
+    <string name="t_46cc0ef8" formatted="false">"매 플레이에서 받는 ◇ 크립토도 레벨당 +{0}%(최대 2배)씩 늘어납니다. 적의 체력이나 웨이브 구성에는 영향을 주지 않습니다."</string>
+    <string name="t_4735c1ed" formatted="false">"사이버 공격이 CORE-SERVER로 다가오고 있습니다. 경로 옆에 사이버 에이전트를 배치해 닿기 전에 막으세요."</string>
+    <string name="t_4747b424" formatted="false">"적"</string>
+    <string name="t_477d52c6" formatted="false">"연결됨. 다른 휴대전화나 태블릿에서 같은 Google 계정으로 로그인하면 진행 상황이 그대로 있습니다."</string>
+    <string name="t_47c5c237" formatted="false">"잘못된 노드"</string>
+    <string name="t_485268f0" formatted="false">"&gt; 사이버 에이전트 무장 중"</string>
+    <string name="t_4882e1dc" formatted="false">"KERNEL PANIC은 죽을 때 범위 안의 모든 에이전트를 3초 동안 교란합니다. FIREWALL은 버팁니다."</string>
+    <string name="t_488d4b25" formatted="false">"수천 대의 기계가 한꺼번에 한 대상에 트래픽을 보냅니다. 요청 하나하나는 공격이 아니고, 그 홍수가 공격입니다. 목적은 침입이 아니라 서비스를 쓸 수 없게 만드는 것입니다."</string>
+    <string name="t_4905ed7b" formatted="false">"없음"</string>
+    <string name="t_494c304d" formatted="false">"-◇{0} 유출됨"</string>
+    <string name="t_49848f53" formatted="false">"블라인드 SQL 인젝션"</string>
+    <string name="t_498754a7" formatted="false">"사운드트랙을 휴대전화에 저장"</string>
+    <string name="t_4af4306b" formatted="false">"빌드"</string>
+    <string name="t_4c1012d3" formatted="false">"계속 공격하세요. 한동안 맞지 않아야만 회복하므로, 킬존 사이의 틈을 메우세요."</string>
+    <string name="t_4c6d3272" formatted="false">"🔒 잠김"</string>
+    <string name="t_4cc6f55a" formatted="false">"Google Play 게임즈에 접속할 수 없습니다. 플레이 기록은 이 기기에 저장되며, 다음에 온라인 상태로 플레이를 마치면 최고 기록이 게시됩니다."</string>
+    <string name="t_4d54c785" formatted="false">"{0} 배치 중 — 노드를 탭하세요"</string>
+    <string name="t_4d6e69d2" formatted="false">"음악 플레이어"</string>
+    <string name="t_4d7ab8a3" formatted="false">"콜사인"</string>
+    <string name="t_4e2b3472" formatted="false">"저장된 세션 없음"</string>
+    <string name="t_4ebbf8bd" formatted="false">"이번 플레이에 남은 부활: {0}회."</string>
+    <string name="t_4f0fcb18" formatted="false">"다섯 번째 웨이브마다 등장"</string>
+    <string name="t_4f160176" formatted="false">"수금하러 온 녀석. 속임수도 교란도 없이, 보드의 다른 무엇보다 20% 더 많을 뿐입니다."</string>
+    <string name="t_5022c684" formatted="false">"암호화"</string>
+    <string name="t_5067a989" formatted="false">"얽힘 체인"</string>
+    <string name="t_5079b771" formatted="false">"{1}에서 {2} 모드로 웨이브 {0}에 도달하면 이 에이전트가 해금됩니다."</string>
+    <string name="t_509d7851" formatted="false">" · 충격 {0}"</string>
+    <string name="t_513901c7" formatted="false">" · 광고 없음"</string>
+    <string name="t_513dcdc9" formatted="false">"에이전트별"</string>
+    <string name="t_520a6b88" formatted="false">"레벨마다 비용이 조금씩 오르므로 배율은 계속 오르되 폭주하지 않습니다. 현실적으로 닿을 상한은 없습니다."</string>
+    <string name="t_5333e76e" formatted="false">"렌더링"</string>
+    <string name="t_53e605b3" formatted="false">"주의"</string>
+    <string name="t_543ce9f7" formatted="false">"주기"</string>
+    <string name="t_54523d94" formatted="false">"코어가 들어 있는 랙. 전장에서 보입니다."</string>
+    <string name="t_54743050" formatted="false">"차단한 공격 합계"</string>
+    <string name="t_54797d92" formatted="false">"표시 아래를 지나는 회로 배선."</string>
+    <string name="t_549824f8" formatted="false">"포트 보호됨"</string>
+    <string name="t_5571a722" formatted="false">"오프라인 플레이 · 로그인 불필요"</string>
+    <string name="t_55f85167" formatted="false">"간단한 에이전트 메뉴"</string>
+    <string name="t_565a738e" formatted="false">"아니요, 플레이할래요"</string>
+    <string name="t_56a9a004" formatted="false">"불 꺼진 인젝션"</string>
+    <string name="t_56bafb67" formatted="false">"플레이당 부활 1회."</string>
+    <string name="t_56c54890" formatted="false">"부풀어 오른 모델: 체력이 조금 더 많고, 조금 더 느립니다."</string>
+    <string name="t_56c6b2ae" formatted="false">"명시적인 허구 설정: 이 에이전트는 암호화 특성 때문에 느려지는 대신 그것을 그냥 무시하고, 그 특성을 가진 모든 것에 3배 피해를 줍니다. 실제 암호학은 이렇게 작동하지 않으며, 여기서 진짜 암호가 깨지는 일은 없습니다."</string>
+    <string name="t_5749c8dc" formatted="false">"웨이브 {0}와 배치한 모든 것이 사라집니다."</string>
+    <string name="t_5785b710" formatted="false">"에이전트를 고른 뒤 강조된 배치 노드를 탭하세요."</string>
+    <string name="t_57f88861" formatted="false">"집중: 보스만"</string>
+    <string name="t_582ec4a0" formatted="false">"중앙 통제 장치의 명령을 조용히 따르는 감염된 컴퓨터들. 주인은 대개 모릅니다. 대규모 DDoS 공격을 가능하게 하는 것이 바로 봇넷입니다."</string>
+    <string name="t_5840893d" formatted="false">"침입 봉쇄"</string>
+    <string name="t_58a5f08a" formatted="false">"단순한 격자. 움직임 없음."</string>
+    <string name="t_597ee3cb" formatted="false">"시그니처 일치"</string>
+    <string name="t_5a02fc0a" formatted="false">"부활 팩"</string>
+    <string name="t_5a3d8598" formatted="false">"CORE-SERVER에 가장 가까움"</string>
+    <string name="t_5a911db6" formatted="false">"내 Google 계정"</string>
+    <string name="t_5aa1d1dc" formatted="false">"{0} 집중 켬"</string>
+    <string name="t_5b19a621" formatted="false">"아직 아무도 패치하지 않은 결함을 노린 공격. 방어자에게 준비 기간은 0일이었습니다. 드물고 질기며, 막으면 큰 크립토가 됩니다."</string>
+    <string name="t_5c19fc6b" formatted="false">"CyOps TD SOUNDTRACK 구매 · {0}"</string>
+    <string name="t_5c3f86fb" formatted="false">"가장 강함"</string>
+    <string name="t_5d1868fb" formatted="false">"코어"</string>
+    <string name="t_5d377851" formatted="false">"영구 업그레이드 · 이제부터 모든 매치에서"</string>
+    <string name="t_5d4d0273" formatted="false">"{0} 잠김: {1}."</string>
+    <string name="t_5de47a9b" formatted="false">"모든 난이도"</string>
+    <string name="t_5de55828" formatted="false">"!! 무결성 낮음 !!"</string>
+    <string name="t_5e75065a" formatted="false">"연결됨"</string>
+    <string name="t_5f2258c9" formatted="false">"왼쪽의 돈. 한 플레이의 10웨이브마다 적립되고 플레이가 끝나도 유지됩니다. 깊은 플레이일수록 훨씬 많이 줍니다."</string>
+    <string name="t_5fd47bcf" formatted="false">"코어: MERIDIAN"</string>
+    <string name="t_602fffef" formatted="false">"여기서는 CRYPTOGRAPHER를 제외한 모든 것이 피해의 절반 이상을 잃습니다."</string>
+    <string name="t_6049b1e7" formatted="false">"리빙 배경"</string>
+    <string name="t_60a5a04c" formatted="false">"음악 일시정지"</string>
+    <string name="t_60ecea1a" formatted="false">"절대"</string>
+    <string name="t_60f81814" formatted="false">"{0}초마다 LICENSE는 {1}초 동안 계속 때리는 에이전트 유형을 흘려보냅니다. 에이전트 유형을 섞으세요."</string>
+    <string name="t_61919374" formatted="false">"부활 — 다시는 돌아오지 않음"</string>
+    <string name="t_61ebe734" formatted="false">"화면 흔들림"</string>
+    <string name="t_625afb79" formatted="false">"구매함. Music/CyOps TD에 \"CyOps TD - Level X (Y)\"로 저장됩니다."</string>
+    <string name="t_628c7cd9" formatted="false">"배치한 에이전트 내역"</string>
+    <string name="t_62f8af50" formatted="false">"+{0} HP / {1}초"</string>
+    <string name="t_63374e04" formatted="false">"메인 메뉴"</string>
+    <string name="t_633e8e1a" formatted="false">"죽으면 작은 웜 셋으로 갈라지고, 각각이 한 번 더 갈라집니다. 범위 피해가 친구입니다."</string>
+    <string name="t_6343926d" formatted="false">"교란"</string>
+    <string name="t_638aaa93" formatted="false">"여기에도 등장"</string>
+    <string name="t_63b00a3c" formatted="false">"네트워크로 보내는 데이터는 패킷으로 잘립니다. 목적지 주소와 페이로드를 담은 작은 조각입니다. 패킷은 공격이 아니며, 거의 모두가 평범한 트래픽입니다. 여기서 쏘는 것은 특정 공격을 실은 패킷이라, 각각 패킷이 아니라 공격의 이름으로 불립니다."</string>
+    <string name="t_63b54927" formatted="false">"플레이당 부활 3회, 부활 광고 영원히 없음, 그리고 €5,000."</string>
+    <string name="t_63bef594" formatted="false">"HP {0}"</string>
+    <string name="t_63f3d76a" formatted="false">"저장"</string>
+    <string name="t_63facb82" formatted="false">"리빙: PULSE"</string>
+    <string name="t_6480a147" formatted="false">"웨이브 {0}  —  경계를 지켜라"</string>
+    <string name="t_648a945b" formatted="false">"아무도 알려 주지 않는 두 가지"</string>
+    <string name="t_6490c689" formatted="false">"진짜 암호화폐, 블록체인, 지갑, 채굴, NFT 없음"</string>
+    <string name="t_64d398f9" formatted="false">"사거리"</string>
+    <string name="t_65155738" formatted="false">"5배속"</string>
+    <string name="t_65252ce7" formatted="false">"선두"</string>
+    <string name="t_6554cde7" formatted="false">"이 계정이 보유한 항목을 Google Play에 확인하는 중입니다. 보통 금방 끝납니다."</string>
+    <string name="t_655c9284" formatted="false">"리빙: LATTICE"</string>
+    <string name="t_656e6ce8" formatted="false">"에이전트"</string>
+    <string name="t_65c8fd90" formatted="false">"위협 브리핑"</string>
+    <string name="t_6678bfdf" formatted="false">"죽으면 근처의 모든 에이전트가 3초 동안 교란됩니다. 진지에서 먼 곳에서, 또는 다음 웨이브가 아직 멀 때 처치하세요."</string>
+    <string name="t_66fa85d7" formatted="false">"에이전트를 분산시켜 한 번의 교란으로 전선 전체가 침묵하지 않게 하세요."</string>
+    <string name="t_6700226a" formatted="false">"연결됨"</string>
+    <string name="t_67043715" formatted="false">"장갑"</string>
+    <string name="t_67313d46" formatted="false">"장벽 세움"</string>
+    <string name="t_6757b458" formatted="false">"막아 낸 공격"</string>
+    <string name="t_6813ef42" formatted="false">"익명 해킹 — BOT {0}개가 2배속으로 접근"</string>
+    <string name="t_681745bd" formatted="false">"에이전트 잠김 — {0}"</string>
+    <string name="t_682d973f" formatted="false">"시작"</string>
+    <string name="t_68e88af7" formatted="false">"위험 구역"</string>
+    <string name="t_68e985d6" formatted="false">"그 밖에는 아무것도 어디로도 보내지 않습니다. 네트워크가 전혀 없어도 플레이할 수 있습니다."</string>
+    <string name="t_6904aeb4" formatted="false">"게임"</string>
+    <string name="t_69698cdc" formatted="false">"WORM은 죽으면 작은 웜 셋으로 갈라지고, 그것들이 한 번 더 갈라집니다. 범위 피해를 가까이 두고 일찍 처치하세요."</string>
+    <string name="t_69a293c4" formatted="false">"SUDO TERMINATE"</string>
+    <string name="t_6ad356c5" formatted="false">"경로 3개: 가운데를 곧장 가로지르는 하나와, 그 위아래로 지그재그하는 둘."</string>
+    <string name="t_6b2d8165" formatted="false">"레벨 {0}  {1} 피해"</string>
+    <string name="t_6c161f51" formatted="false">"17초마다 2초 동안, 계속 때리는 에이전트 유형을 흘려보냅니다. 다양한 조합이면 계속 피해를 줍니다."</string>
+    <string name="t_6c7aa396" formatted="false">"보스가 다르면 약점도 다릅니다."</string>
+    <string name="t_6ca9de88" formatted="false">"스펙트럼 에이전트"</string>
+    <string name="t_6cb7e8e3" formatted="false">"느리고 묵직한 공격. 정예와 보스에게 피해 +80%."</string>
+    <string name="t_6cbf7c76" formatted="false">"처치한 보스"</string>
+    <string name="t_6ccdc653" formatted="false">"암호화를 완전히 무시하고 3배 피해를 줍니다."</string>
+    <string name="t_6cedde69" formatted="false">"음악 볼륨"</string>
+    <string name="t_6d2d6d6b" formatted="false">"장갑을 무시합니다."</string>
+    <string name="t_6d907c0d" formatted="false">"\"블루 팀\"은 시스템을 지키고 사고에 대응합니다. 레드 팀의 상대역입니다. \"Blue hat\"은 업계에서 여러 의미로 쓰이는 비표준 용어라, 여기서는 블루 팀의 의미만 설명합니다."</string>
+    <string name="t_6dbe0ea3" formatted="false">"레벨"</string>
+    <string name="t_6f053419" formatted="false">"{0} 제한 — 최대 {1}"</string>
+    <string name="t_6f21a684" formatted="false">"보스 — 다섯 번째 웨이브마다"</string>
+    <string name="t_70d42172" formatted="false">"한 구역이 뚫려도 나머지에 닿지 못하도록 네트워크를 나누는 것. 노트북 한 대가 감염되었다고 회사 전체가 감염되어서는 안 되는 이유입니다."</string>
+    <string name="t_7191bf1d" formatted="false">"데이터 저장"</string>
+    <string name="t_71c5931f" formatted="false">"배터리 절약은 그려지는 것만 바꿉니다. 웨이브 난이도, 피해, 타이밍은 전혀 바뀌지 않습니다."</string>
+    <string name="t_72102eb0" formatted="false">"구매, 복원, 그리고 이 기기를 떠나는 것"</string>
+    <string name="t_722a0bad" formatted="false">"가이드 다시 보기"</string>
+    <string name="t_73236391" formatted="false">"게임 자체는 개인 데이터를 수집하지 않습니다"</string>
+    <string name="t_735d4940" formatted="false">"효과음 볼륨"</string>
+    <string name="t_73907e76" formatted="false">"게임의 24곡 전부를 휴대전화의 음악 폴더에 저장해 어디서든 들을 수 있습니다."</string>
+    <string name="t_7397fdaa" formatted="false">"모든 것 뒤에서 움직이는 차가운 빛."</string>
+    <string name="t_739a7f7a" formatted="false">"© {0} {1}. 모든 권리 보유."</string>
+    <string name="t_73d812dc" formatted="false">"다섯 번째 웨이브마다, 그리고 무엇을 가져오는지"</string>
+    <string name="t_73e8cb50" formatted="false">"오리지널 코드, 오리지널 아트, 오리지널 합성 오디오. Kotlin, Jetpack Compose, Android Canvas API로 제작했습니다.\n\n아이콘: creativeLabs의 CoreUI Icons Free(coreui.io/icons), CC BY 4.0 라이선스.\n\n서드파티 의존성의 라이선스는 프로젝트 저장소의 LICENSES.md에 있습니다."</string>
+    <string name="t_74066c59" formatted="false">"게임 내"</string>
+    <string name="t_746ab6c3" formatted="false">"IPS는 무리에게 35% 추가 피해. 경로가 합쳐지는 곳에 두세요."</string>
+    <string name="t_746d814e" formatted="false">"저장된 플레이, 해금한 에이전트, 통계, 설정을 삭제합니다. 되돌릴 수 없습니다."</string>
+    <string name="t_74aa6c59" formatted="false">"€ 예산 부족"</string>
+    <string name="t_74fff44e" formatted="false">"자신의 미끼 복제본을 만들어 공격을 흡수하게 합니다. ANALYST와 ROOT ADMIN은 꿰뚫어 봅니다."</string>
+    <string name="t_750800eb" formatted="false">"로스터의 누구 못지않게 빠르게 쏘며 항상 보스를 먼저 노립니다. [GG] GOOD GAME에 2배 피해. 최대 4개."</string>
+    <string name="t_7596436a" formatted="false">"사이버 보안 학사 학위를 가진 선임 보안 엔지니어로, 공격을 막는 소프트웨어를 만들어 공격을 멈춥니다. 공격이 온 뒤가 아니라 오기 전에 갖춰진 강화된 서비스, 패치, 필터입니다."</string>
+    <string name="t_75b191e4" formatted="false">"사거리 안의 가장 가까운 경로에 장벽을 세웁니다. 위협은 장벽 앞에서 멈추고 부숴야 지나갈 수 있으며, 보스가 가장 빨리 부숩니다. 무너지면 ACE가 몇 초 뒤 다시 세우고, 레벨마다 더 튼튼해집니다. 자신의 공격은 첫 다섯 레벨의 모든 보스에게 {0}배 피해를 줍니다. 최대 3개까지 배치할 수 있습니다."</string>
+    <string name="t_75bd8866" formatted="false">"레벨과 난이도를 고르세요"</string>
+    <string name="t_75e65d90" formatted="false">"두 번 탭해서 배치"</string>
+    <string name="t_75f24f6e" formatted="false">"몇 초마다 에이전트 하나의 업그레이드를 8초 동안 잠급니다. 도착하기 전에 업그레이드하세요."</string>
+    <string name="t_7682806a" formatted="false">"2단계 — FIREWALL 선택"</string>
+    <string name="t_77212b64" formatted="false">"지금 맞서고 있는 공격 웨이브입니다. 서버를 지키는 동안 계속 올라가며, 다섯 번째 웨이브마다 보스가 옵니다."</string>
+    <string name="t_772b21ba" formatted="false">"당신이 배치하는 방어"</string>
+    <string name="t_776f4222" formatted="false">"레벨 {0}"</string>
+    <string name="t_77a2583e" formatted="false">"보안에서 \"양자\"라 불리는 것은 서로 다른 두 가지이며, 구분해 둘 가치가 있습니다. 양자 키 분배는 물리학을 이용해 회선의 도청을 탐지하며, 드물고 특수한 환경에서만 쓰입니다. 양자 내성 암호는 미래의 양자 컴퓨터에 버티도록 설계된 평범한 소프트웨어 수학이며, 실제로 도입되고 있는 쪽입니다."</string>
+    <string name="t_77a6da9b" formatted="false">"코어에서 바깥으로 퍼지는 고리."</string>
+    <string name="t_77d03aa5" formatted="false">"블라인드 인젝션은 오류 메시지를 받지 못하므로, 공격자는 참·거짓 질문을 하나씩 던지며 답을 추론합니다. 일반 인젝션보다 느리고 훨씬 끈기 있으며, 뻔한 방어에는 강화된 채 도착합니다."</string>
+    <string name="t_77e5929c" formatted="false">"첫 탭은 그 자리에서의 에이전트 사거리를 보여 줍니다. 다시 탭하면 배치합니다"</string>
+    <string name="t_77e8896f" formatted="false">"경로 하나가 보드를 모서리에서 모서리로 다섯 번 가로지릅니다."</string>
+    <string name="t_77f7e381" formatted="false">" · 장갑 {0}"</string>
+    <string name="t_782074f1" formatted="false">"  ·  자동 {0}"</string>
+    <string name="t_7841323b" formatted="false">"방어적 소탕"</string>
+    <string name="t_78526608" formatted="false">"도달한 웨이브"</string>
+    <string name="t_78a52e3b" formatted="false">"숨음"</string>
+    <string name="t_7922c8d5" formatted="false">"범위 안의 모든 에이전트 강화: 피해 +30%, 연사 속도 +20%."</string>
+    <string name="t_79a4baee" formatted="false">"&lt; 뒤로"</string>
+    <string name="t_79fc7a80" formatted="false">"웨이브 자동 시작이 켜져 있을 때만 적용"</string>
+    <string name="t_7a1f56c4" formatted="false">"지금 동기화"</string>
+    <string name="t_7aba529e" formatted="false">"암호를 깹니다: ×{0} 피해."</string>
+    <string name="t_7abfb3c7" formatted="false">"체력이 절반이 되면 둘로 갈라지고, 나머지 절반은 다른 경로로 갑니다."</string>
+    <string name="t_7b3bb73f" formatted="false">"위협 무력화"</string>
+    <string name="t_7b84a6c4" formatted="false">"GOOGLE PLAY 화면에서 Google 계정을 연결하면 세계 순위를 보고 기록을 올릴 수 있습니다. 플레이 기록은 계속 이 기기에 저장됩니다."</string>
+    <string name="t_7ba7f176" formatted="false">"+{0}% 피해"</string>
+    <string name="t_7be6fbad" formatted="false">"웨이브 {0} · 시뮬레이션 중단"</string>
+    <string name="t_7bf2105b" formatted="false">"분산 서비스 거부"</string>
+    <string name="t_7c4e4414" formatted="false">"후미"</string>
+    <string name="t_7c6853de" formatted="false">"세계 · {0}"</string>
+    <string name="t_7d5cc77f" formatted="false">"획득한 크립토 합계"</string>
+    <string name="t_7dc33bc2" formatted="false">"최대 레벨 도달"</string>
+    <string name="t_7e1cf3a7" formatted="false">"수리"</string>
+    <string name="t_7e522f64" formatted="false">"제작진"</string>
+    <string name="t_7e72ed35" formatted="false">"진행 상황을 계정에 저장함"</string>
+    <string name="t_7e906966" formatted="false">"{0}곡을 Music/CyOps TD에 저장했습니다."</string>
+    <string name="t_7ea71dbe" formatted="false">"에이전트를 다시 열고 TARPIT을 고르세요. 피해는 없지만 오라 안의 모든 위협을 늦춰 FIREWALL이 더 많이 쏠 수 있게 합니다."</string>
+    <string name="t_7f11b512" formatted="false">"{0} · 플레이당 {1} {2}"</string>
+    <string name="t_7fd8e294" formatted="false">"&gt; 경계 방어 온라인"</string>
+    <string name="t_804ef7d5" formatted="false">"인터넷에서 가장 흔한 공격이자 여기서의 기본 위협. 공격자는 이름이나 비밀번호를 받을 칸에 데이터베이스 명령을 입력합니다. 애플리케이션이 그것을 그대로 넘기면 데이터베이스는 그대로 따릅니다."</string>
+    <string name="t_80592dd9" formatted="false">"버전"</string>
+    <string name="t_8175c5fc" formatted="false">"CORE-SERVER 무결성"</string>
+    <string name="t_8198af01" formatted="false">"6초 중 2초 동안 숨어 아무도 노릴 수 없습니다. 범위 피해와 연쇄는 여전히 닿습니다."</string>
+    <string name="t_81e23c68" formatted="false">"기타: 소형 유닛과 정예만, 보스는 절대 아님"</string>
+    <string name="t_8230b283" formatted="false">"IDS는 빠른 공격에 45% 추가 피해를 주며 가장 먼저 발견합니다."</string>
+    <string name="t_82966ea3" formatted="false">"웨이브 카운터"</string>
+    <string name="t_829e8e06" formatted="false">"범위 안의 에이전트는 교란되지 않습니다. WHITE EYE와 BLACK EYE에 {0}배 피해. 최대 2개."</string>
+    <string name="t_82a1fee3" formatted="false">"정말 플레이를 다시 시작할까요?"</string>
+    <string name="t_82a70835" formatted="false">"연결하지 않으면 진행 상황은 이 기기에만 있습니다. 앱 삭제나 초기화로 지워지지만, 구매는 둘 다 견딥니다."</string>
+    <string name="t_830a30fd" formatted="false">"예산"</string>
+    <string name="t_830b01d9" formatted="false">"펌웨어는 이제부터 모든 매치에서 배치하는 모든 에이전트의 피해에 배율을 곱합니다. 장갑과 상성표보다 먼저 적용되므로, 암호화에 맞선 Cryptographer와 평범한 트래픽에 맞선 Firewall을 똑같이 돕습니다."</string>
+    <string name="t_831712ed" formatted="false">"새 사이버 에이전트 해금"</string>
+    <string name="t_83186dce" formatted="false">"이 기기만"</string>
+    <string name="t_8340a76d" formatted="false">"왜 중요한가"</string>
+    <string name="t_838b0928" formatted="false">"전진하면서 호위 공격을 만들어 냅니다."</string>
+    <string name="t_8478f19e" formatted="false">"이 기기를 떠나는 것"</string>
+    <string name="t_848f3f46" formatted="false">"모든 진행 상황을 삭제할까요?"</string>
+    <string name="t_852bda75" formatted="false">"코덱스"</string>
+    <string name="t_862b3f34" formatted="false">"사이버 에이전트 배치"</string>
+    <string name="t_869cf6b4" formatted="false">"콜사인 등록"</string>
+    <string name="t_86cce90c" formatted="false">"가장 약함"</string>
+    <string name="t_87442b62" formatted="false">"다음 웨이브 · BREACH"</string>
+    <string name="t_87a9dd3e" formatted="false">"웨이브, €, 펌웨어"</string>
+    <string name="t_87d92d69" formatted="false">"매우 긴 탐지 범위. 빠른 공격에 피해 +45%."</string>
+    <string name="t_8806feca" formatted="false">"CORE-SERVER 스킨 6종과 €2,000. NEONGRID는 별도 판매."</string>
+    <string name="t_882561c2" formatted="false">"위협 평가"</string>
+    <string name="t_891fc63b" formatted="false">"위장 해제"</string>
+    <string name="t_8980d82b" formatted="false">"{0} 선택됨 — 강조된 노드를 탭해 배치하세요."</string>
+    <string name="t_899bae42" formatted="false">"선택 사항입니다. 연결하지 않아도 게임의 모든 것이 작동하며, 진행 상황 외에는 아무것도 업로드되지 않습니다."</string>
+    <string name="t_89a47932" formatted="false">"음악 재생"</string>
+    <string name="t_89c7b011" formatted="false">"Google의 동의 양식을 다시 열어 광고 파트너가 이 기기의 데이터로 할 수 있는 일을 바꿉니다. 게임 진행 상황은 이 기기에 저장되며 여기에 포함되지 않습니다."</string>
+    <string name="t_89d7c51c" formatted="false">"갔다가, 돌아와서, 랙까지 이어지는 긴 공용 귀환로."</string>
+    <string name="t_89dd34f8" formatted="false">"무리 정리는 IPS에 맡겨 강한 공격수가 보스에 집중하게 하세요."</string>
+    <string name="t_89e1b0eb" formatted="false">"그 필드는 빨라지는 GRADIENT를 다시 늦춥니다."</string>
+    <string name="t_89e450ea" formatted="false">"제거됨 · 부활 광고는 별도"</string>
+    <string name="t_8a058fa3" formatted="false">"표준 곡선."</string>
+    <string name="t_8a86921d" formatted="false">"오른쪽 버튼은 스크롤됩니다. 아래에는: 상점, 장비(스킨과 배경), GOOGLE PLAY(구매와 클라우드 저장), 순위표, 코덱스(위협과 에이전트 설명), 통계, 설정, 정보."</string>
+    <string name="t_8a96f0aa" formatted="false">"사용 불가"</string>
+    <string name="t_8aa097b1" formatted="false">"  (잠김)"</string>
+    <string name="t_8aec13a9" formatted="false">"분산 서비스 거부: 공격은 양 그 자체입니다. 요청 하나하나는 사소하지만 게임의 다른 무엇보다 빠르게 몰려오고, 끝없이 더 옵니다."</string>
+    <string name="t_8af0e8d8" formatted="false">"조직적인 침해 시도. 속임수 없이 무게로만 밀어붙입니다."</string>
+    <string name="t_8b094c6c" formatted="false">"Google Play에 연결 중…"</string>
+    <string name="t_8c42a507" formatted="false">"얼어붙은 코어에서 뻗어 나오는 얼음 바늘."</string>
+    <string name="t_8c61de92" formatted="false">"웨이브 자동 시작"</string>
+    <string name="t_8d56a5da" formatted="false">"코어 주위를 도는 느린 타원 궤적."</string>
+    <string name="t_8d91a14b" formatted="false">"GOOGLE PLAY"</string>
+    <string name="t_8d9dd637" formatted="false">"보스: 보스만 쏘고, 그 외에는 쏘지 않음"</string>
+    <string name="t_8e0413ab" formatted="false">"이 빌드에는 인앱 구매가 없습니다."</string>
+    <string name="t_8e3787c1" formatted="false">"잠김 · {0} (최고: {1})"</string>
+    <string name="t_8f0536a7" formatted="false">"최대 설치"</string>
+    <string name="t_8f37a712" formatted="false">"준 피해"</string>
+    <string name="t_8f48da3c" formatted="false">"네트워크 침해됨"</string>
+    <string name="t_8f5d0f11" formatted="false">"경제"</string>
+    <string name="t_8f61abf9" formatted="false">"처리 중…"</string>
+    <string name="t_8f68a3ab" formatted="false">"&gt; 위협 시그니처 불러오는 중"</string>
+    <string name="t_8ff6e51c" formatted="false">"{0}에 기록된 플레이가 아직 없습니다."</string>
+    <string name="t_90391726" formatted="false">"재개"</string>
+    <string name="t_910b3ae9" formatted="false">"서버를 지킬 에이전트를 사는 데 쓰는 돈. 처치할 때마다, 웨이브를 마칠 때마다 크립토◇를 얻습니다."</string>
+    <string name="t_915c2f22" formatted="false">"{0}곡을 저장한 뒤 휴대전화가 나머지를 거부했습니다. 공간을 확보한 뒤 다시 시도하세요."</string>
+    <string name="t_919816cc" formatted="false">"Google Play에 접속할 수 없습니다. 이미 구매한 것은 그대로 당신의 것입니다. 다시 온라인이 되면 복원을 시도하세요."</string>
+    <string name="t_91ae1cd3" formatted="false">"쉬운 용어 사전"</string>
+    <string name="t_91d4d5fc" formatted="false">"사용 가능 · ◇ {0}"</string>
+    <string name="t_9231c915" formatted="false">"진행 중인 반응을 둘러싼 호박색 봉쇄 고리."</string>
+    <string name="t_933bf2fb" formatted="false">"광고 제거는 플레이 사이의 광고에 적용됩니다. 부활 광고는 별도입니다."</string>
+    <string name="t_935cf7b5" formatted="false">"햇 수준의 연사 속도, 더 묵직한 탄, SYN-STORM과 GRADIENT에 {0}배 피해. 최대 2개."</string>
+    <string name="t_93875a49" formatted="false">"사거리"</string>
+    <string name="t_93f1bd2f" formatted="false">"연사 속도가 매우 높고, 범위 안에서는 항상 다른 무엇보다 보스를 먼저 노리며, [GG] GOOD GAME에 2배 피해. 웨이브 30에 해금되며 최대 4개까지 배치할 수 있습니다."</string>
+    <string name="t_94061f4f" formatted="false">"피해는 거의 없습니다. 범위 안의 모든 것이 기어가므로, 위협이 공격 담당의 사거리에 훨씬 오래 머뭅니다. 싸고 혼자서는 쓸모없지만, 옆에서 쏘는 것의 힘을 몇 배로 늘립니다."</string>
+    <string name="t_941dea68" formatted="false">"피해 숫자"</string>
+    <string name="t_9427590a" formatted="false">"명중 시 떠오르는 피해 수치 표시"</string>
+    <string name="t_94bbec0b" formatted="false">"다음 웨이브를 탭하세요. 에이전트는 자동으로 쏩니다. 막아 낸 공격마다 ◇ 크립토가 들어오고, 그것으로 에이전트와 업그레이드를 더 삽니다."</string>
+    <string name="t_94dc88d3" formatted="false">"펌웨어 레벨마다 앞으로의 모든 매치에서 모든 에이전트의 피해 +{0}%, 플레이에서 얻는 ◇ 크립토 +{1}%(최대 2배)가 붙습니다. 절대 사라지지 않습니다."</string>
+    <string name="t_95051192" formatted="false">"설정 안 됨"</string>
+    <string name="t_952dc0bb" formatted="false">"순위표"</string>
+    <string name="t_959b6bbb" formatted="false">"최대 {0}개 배치됨"</string>
+    <string name="t_9655a074" formatted="false">"메뉴와 보드 뒤를 흐르는 느린 데이터."</string>
+    <string name="t_97e1363f" formatted="false">"매 타격마다 큰 고정 피해 감소."</string>
+    <string name="t_98189a64" formatted="false">"없음. 이번엔 정면 승부입니다."</string>
+    <string name="t_9873614b" formatted="false">"로스터에서 가장 긴 탐지 범위, 빠른 공격에 피해 +45%. 연사가 느린, 쏠 줄도 아는 정찰병이므로 레인을 넓게 보는 곳에 두는 게 좋습니다."</string>
+    <string name="t_98a9c7f2" formatted="false">"€ 예산"</string>
+    <string name="t_98b63553" formatted="false">"플레이에 계정이나 로그인이 필요 없음"</string>
+    <string name="t_98cc567c" formatted="false">"최고 피해"</string>
+    <string name="t_98f4abc6" formatted="false">"◇ {0} · {2}에서 웨이브 {1}에 해금"</string>
+    <string name="t_98fbe3ee" formatted="false">"멀티 록온"</string>
+    <string name="t_991bd4c3" formatted="false">"CRYPTOGRAPHER 하나가 판 전체를 뒤집습니다."</string>
+    <string name="t_991c8ba8" formatted="false">"에이전트 업그레이드 합계"</string>
+    <string name="t_996095bd" formatted="false">"이 게임에서 언급되는 일부 이름, 용어, 상표는 각 소유자의 재산일 수 있습니다. 이러한 언급은 식별, 논평, 교육적 맥락, 게임 내 허구적 표현 목적으로만 사용됩니다.\n\n이 게임은 독립적으로 개발되었으며 Red Hat, Microsoft 또는 다른 어떤 상표 소유자와도 제휴하거나 후원, 보증, 승인을 받지 않았습니다.\n\n모든 제3자 상표, 제품명, 회사명, 로고는 각 소유자의 재산입니다."</string>
+    <string name="t_99ab6437" formatted="false">"다음에 그 화면을 열 때 메인 메뉴 둘러보기와 펌웨어 설명을 다시 표시합니다."</string>
+    <string name="t_99cfdd6c" formatted="false">"{0} 미리 보기"</string>
+    <string name="t_99d175d2" formatted="false">"경로에 TARPIT을 두어 가속을 깎아 내세요."</string>
+    <string name="t_99f43c9c" formatted="false">"크립토 부족"</string>
+    <string name="t_9a8ee779" formatted="false">"로스터의 누구 못지않게 빠르게 쏘며 항상 보스를 먼저 노립니다. [!!!] BREACH에 2배 피해. 최대 4개."</string>
+    <string name="t_9a9bcdd3" formatted="false">"슬롯"</string>
+    <string name="t_9aa5d01a" formatted="false">"진 플레이 뒤의 광고는 이제 영원히 없고, €5,000도 드립니다. 부활 광고는 선택이며 별도입니다. 부활 팩을 참고하세요."</string>
+    <string name="t_9adba547" formatted="false">"유로당 최고의 가성비."</string>
+    <string name="t_9ae9f14f" formatted="false">"먼 점들이 천천히 떠다닙니다."</string>
+    <string name="t_9aed28a1" formatted="false">"배치 한도 도달"</string>
+    <string name="t_9b08be38" formatted="false">"Google Play 게임즈에 확인 중…"</string>
+    <string name="t_9b1d7455" formatted="false">"웨이브 {0}"</string>
+    <string name="t_9b4c97a7" formatted="false">"목마에서 따온 이름: 원하는 것처럼 보이지만, 전혀 원하지 않는 것을 싣고 오는 소프트웨어."</string>
+    <string name="t_9b557f99" formatted="false">"최고 기록: 웨이브 {0}"</string>
+    <string name="t_9b989bfb" formatted="false">"최고"</string>
+    <string name="t_9bcd1b03" formatted="false">"리빙 배경 7종 전부와 €2,000."</string>
+    <string name="t_9bd1faf7" formatted="false">"환불, 결제 수단, 영수증은 이 게임이 아니라 Google이 처리합니다."</string>
+    <string name="t_9c2ade2b" formatted="false">"레벨 {0}  ×{1}"</string>
+    <string name="t_9c6be09c" formatted="false">"수식어"</string>
+    <string name="t_9d0c4ff1" formatted="false">"&gt; 웨이브 {0} 진행 중 — 남은 위협 {1}"</string>
+    <string name="t_9d29de23" formatted="false">"레벨별 최고 웨이브"</string>
+    <string name="t_9d2c3eea" formatted="false">"네트워크 용어"</string>
+    <string name="t_9d36e329" formatted="false">"랜섬"</string>
+    <string name="t_9d5ca8b9" formatted="false">"부활하시겠습니까?"</string>
+    <string name="t_9df821c5" formatted="false">"CyOps TD에 오신 것을 환영합니다"</string>
+    <string name="t_9e30871d" formatted="false">"다른 누군가의 명령을 받는 감염된 기계 한 대. 봇 하나는 무해하지만, 수천 대의 봇넷은 다릅니다. 그래서 항상 떼로 옵니다."</string>
+    <string name="t_9e77c8cf" formatted="false">"웨이브를 빠르게 정리할 다섯 번째 시뮬레이션 속도를 추가합니다."</string>
+    <string name="t_9ef0ebe5" formatted="false">"세분화"</string>
+    <string name="t_9f26f678" formatted="false">"  →"</string>
+    <string name="t_9f70f631" formatted="false">"연사 속도"</string>
+    <string name="t_9fb6c271" formatted="false">"가까운 에이전트를 잠시 교란해 연사 속도를 늦춥니다."</string>
+    <string name="t_a12f7814" formatted="false">"+{0} (보스)"</string>
+    <string name="t_a15faa1f" formatted="false">"모드"</string>
+    <string name="t_a19abbd4" formatted="false">"모든 사이버 에이전트, 그 역할, 해금되는 웨이브."</string>
+    <string name="t_a21dbf00" formatted="false">"€{0} 예산 적립"</string>
+    <string name="t_a24181ff" formatted="false">"무엇이 공격하는가"</string>
+    <string name="t_a2517472" formatted="false">"상점을 사용할 수 없음"</string>
+    <string name="t_a29c69ba" formatted="false">"종료"</string>
+    <string name="t_a2b3bef5" formatted="false">"웨이브 {0} 도달"</string>
+    <string name="t_a2dd8300" formatted="false">"시련의 길. 접혀 되돌아가는 경로 둘, 그리고 랙 앞의 순환로."</string>
+    <string name="t_a2e2f704" formatted="false">"암호 파괴"</string>
+    <string name="t_a32353a8" formatted="false">"€9,000 예산"</string>
+    <string name="t_a36e1b6d" formatted="false">"이 빌드에는 없음"</string>
+    <string name="t_a3ebab03" formatted="false">"알려지지 않은 미패치 결함"</string>
+    <string name="t_a4a2cd90" formatted="false">"&gt;&gt; 신기록 &lt;&lt;"</string>
+    <string name="t_a4fd7522" formatted="false">" · 최대 {0}"</string>
+    <string name="t_a5460e4e" formatted="false">"정예와 보스에게 피해 +80%인 느리고 묵직한 단발. 무리에는 약합니다. 대상 지정이 가능해 정말 없애고 싶은 것을 겨눌 수 있습니다."</string>
+    <string name="t_a596b409" formatted="false">"5배속은 상점에 있습니다"</string>
+    <string name="t_a599c90a" formatted="false">"자신을 포함해 범위 안의 모든 에이전트가 어떤 보스의 교란에도 면역입니다. 빠르고 묵직한 탄으로 WHITE EYE와 BLACK EYE에 {0}배 피해. 사거리는 TARPIT과 같습니다. 최대 2개까지 배치할 수 있습니다."</string>
+    <string name="t_a5b1ffba" formatted="false">"무제한 시스템 접근"</string>
+    <string name="t_a5da8eea" formatted="false">"웨이브에서 막혔나요? 예산을 모으고 펌웨어를 설치하면, 같은 배치로도 다음 플레이에서 더 세게 칩니다."</string>
+    <string name="t_a6291e29" formatted="false">"€5,000 예산"</string>
+    <string name="t_a62c1133" formatted="false">"실제 해킹 능력 없음 — 여기 있는 어떤 것도 실제 네트워크에 닿지 않습니다"</string>
+    <string name="t_a66c22f9" formatted="false">"언어는 메인 메뉴의 설정에서 바꾸세요. 바꾸면 게임이 다시 시작되어 이번 플레이가 끝나 버립니다."</string>
+    <string name="t_a6cd2e07" formatted="false">"{0}~{1}자. A-Z, 0-9, 하이픈, 밑줄."</string>
+    <string name="t_a6ee02f4" formatted="false">"취소"</string>
+    <string name="t_a727a483" formatted="false">"포함"</string>
+    <string name="t_a7c5a24a" formatted="false">"Music/CyOps TD에 저장 중…"</string>
+    <string name="t_a7c97dfd" formatted="false">"초기화"</string>
+    <string name="t_a7e02911" formatted="false">"코어에"</string>
+    <string name="t_a7e24bd6" formatted="false">"대상 지정"</string>
+    <string name="t_a8031bce" formatted="false">"상점 페이지 열기"</string>
+    <string name="t_a8191219" formatted="false">"SPOOFER는 자신의 미끼를 만들어 공격을 흡수하게 합니다. ANALYST와 ROOT ADMIN은 꿰뚫어 봅니다."</string>
+    <string name="t_a8768bb2" formatted="false">"에이전트 스킨"</string>
+    <string name="t_a8935036" formatted="false">"획득한 크립토"</string>
+    <string name="t_a92b98a8" formatted="false">"크립토 ◇"</string>
+    <string name="t_a9a8f56c" formatted="false">"비주얼"</string>
+    <string name="t_a9ad0741" formatted="false">"이번 플레이의 €"</string>
+    <string name="t_a9cf50ec" formatted="false">"실제 트래픽은 스위치와 라우터를 거쳐 목적지에 닿습니다. 여기서 구불구불한 두 경로가 바로 그 길이며, 되접혀 있어 모든 홉을 한눈에 볼 수 있습니다."</string>
+    <string name="t_a9d9e481" formatted="false">"CORE-SERVER가 당신이 지키는 것이며, 위쪽 띠의 무결성 표시가 당신의 유일한 생명입니다. 랙에 닿은 적대 패킷마다 한 입씩 떼어 갑니다. 0이 되면 서버가 뚫리고 플레이가 끝납니다. 아무것도 통과시키지 않는 것이 일의 전부입니다."</string>
+    <string name="t_aab511c4" formatted="false">"ROOTKIT은 6초 중 2초 동안 숨어 아무도 노릴 수 없습니다. 범위 피해와 연쇄는 여전히 닿습니다."</string>
+    <string name="t_aac1d4da" formatted="false">"연결 안 됨"</string>
+    <string name="t_aadac61a" formatted="false">"애플리케이션은 SQL로 데이터베이스에 질문합니다. 사용자 입력이 그 질문에 그대로 붙여지면, 공격자는 그 끝을 직접 써넣을 수 있습니다. 사용자 테이블을 통째로 빼내거나, 로그인을 우회하거나, 전부 지우는 식으로요. 해결책은 오래되고 잘 알려져 있는데(매개변수화된 쿼리), 그래서 여전히 가장 자주 만나는 공격이라는 점이 답답합니다."</string>
+    <string name="t_ab62d63d" formatted="false">"침입 탐지 시스템은 네트워크나 호스트 활동에서 공격처럼 보이는 패턴을 감시하고 경보를 울립니다. 보고할 뿐 차단하지는 않습니다. 발견한 것에 대해서는 누군가, 혹은 다른 무언가가 조치해야 합니다."</string>
+    <string name="t_aca3253a" formatted="false">"필드에 있음 · 보스를 탭해 보기"</string>
+    <string name="t_ad03a515" formatted="false">"네트워크를 구역으로 나누기"</string>
+    <string name="t_ad26a7c7" formatted="false">"알 수 없음"</string>
+    <string name="t_ae00f867" formatted="false">"분석"</string>
+    <string name="t_ae59bf94" formatted="false">"판매  ◇ {0}"</string>
+    <string name="t_b0147d1e" formatted="false">"이번 웨이브에는 FIREWALL이 아닌 에이전트에 기대세요."</string>
+    <string name="t_b0af39a6" formatted="false">"변경"</string>
+    <string name="t_b0d341a2" formatted="false">"한 달 이상 전"</string>
+    <string name="t_b0f472d0" formatted="false">"난이도"</string>
+    <string name="t_b16e2042" formatted="false">"랙 뒤의 보랏빛 별밭."</string>
+    <string name="t_b2029176" formatted="false">"짧은 휴식 후 다음 웨이브를 자동으로 시작"</string>
+    <string name="t_b253fa2b" formatted="false">"암호학은 전송 중이거나 저장된 데이터를 보호해, 가로채도 읽을 수 없게 합니다. 공격자도 이것을 씁니다(적대 트래픽 상당수가 암호화됨). 그래서 방어자는 암호 자체를 깨려 하지 않고 자신이 통제하는 종단점에서 검사합니다."</string>
+    <string name="t_b28b05f8" formatted="false">"침입 방지 시스템"</string>
+    <string name="t_b2dbc630" formatted="false">"FIREWALL 작동 중"</string>
+    <string name="t_b2ef7c39" formatted="false">"사이버 요원: 타워 디펜스"</string>
+    <string name="t_b32b1a1d" formatted="false">"편의"</string>
+    <string name="t_b3735fe8" formatted="false">"웨이브와 함께 숨 쉬는 회로 격자."</string>
+    <string name="t_b3b53e34" formatted="false">"구매는 이 기기가 아니라 Google 계정에 연결됩니다. 재설치하거나 휴대전화를 바꿔도 사라지지 않습니다."</string>
+    <string name="t_b3c34c67" formatted="false">"방금"</string>
+    <string name="t_b40b6d1c" formatted="false">"\"레드 팀\"은 허가를 받아 시스템을 공격해, 공격자가 가장 먼저 찾아낼 것을 찾습니다. \"Red hat\"은 직함이나 자격증이 아닌 비공식 은어이며, 쓰는 사람마다 뜻이 다릅니다. 표준적인 것은 레드 팀 부분뿐입니다."</string>
+    <string name="t_b5ca7a98" formatted="false">"전 세계 각 플레이어의 최고 웨이브를 콜사인별로 보여 줍니다. 오른쪽에서 등록하지 않으면 Google이 Play 게임즈 이름을 표시합니다."</string>
+    <string name="t_b649891d" formatted="false">"일시정지됨"</string>
+    <string name="t_b683e66d" formatted="false">"{0} 잠김: 해금하려면 {1}."</string>
+    <string name="t_b6bcb68c" formatted="false">"매번 똑같은 큰 단일 대상 피해. 모든 장갑을 무시합니다."</string>
+    <string name="t_b7ba0ba1" formatted="false">"REGENERATION은 {0}초 동안 맞지 않으면 회복시킵니다. 끝까지 계속 공격하세요."</string>
+    <string name="t_b7c4c2a3" formatted="false">"[{0}] {1} (잠김): {2}"</string>
+    <string name="t_b7cf2aab" formatted="false">"GOOGLE PLAY를 열 수 있는 앱이 없습니다"</string>
+    <string name="t_b8201e22" formatted="false">"다음: 웨이브 {0} · 보스"</string>
+    <string name="t_b82dfd13" formatted="false">"이동"</string>
+    <string name="t_b835d746" formatted="false">"5단계 — TARPIT 두 개 배치"</string>
+    <string name="t_b8cbfe08" formatted="false">"CORE-SERVER에서 가장 멂"</string>
+    <string name="t_b8f9cbc8" formatted="false">"피해 {0}  연사 {1}/초"</string>
+    <string name="t_b8ffa95c" formatted="false">"리빙: AURORA"</string>
+    <string name="t_b9918647" formatted="false">"돈 받고 온 녀석. 속임수도 교란도 없이, 보드의 다른 무엇보다 20% 더 많을 뿐입니다."</string>
+    <string name="t_b9a3ada7" formatted="false">"EXFIL은 빠릅니다. 코어에 닿으면 무결성 대신 크립토의 절반을 훔칩니다. 미리 쓰거나 막으세요."</string>
+    <string name="t_b9c6b239" formatted="false">"레인 아래와 모든 메뉴 뒤에 그려집니다."</string>
+    <string name="t_badb0f4a" formatted="false">"가끔 서버를 향해 가속합니다."</string>
+    <string name="t_bae2cee7" formatted="false">"예 — 광고 보기"</string>
+    <string name="t_bb0a2d46" formatted="false">"선택"</string>
+    <string name="t_bb621985" formatted="false">"강화"</string>
+    <string name="t_bb93827c" formatted="false">"부활 실패 — 플레이가 이미 끝났습니다"</string>
+    <string name="t_bc855067" formatted="false">"접근 거부"</string>
+    <string name="t_bcdf64b3" formatted="false">"SQL 인젝션"</string>
+    <string name="t_bceaf8ce" formatted="false">"!!! 사이버 공격 접근 중 !!!"</string>
+    <string name="t_bd0c6acd" formatted="false">"다음 €{0} · 레벨당 {2} +{1}%"</string>
+    <string name="t_bd1b1fc9" formatted="false">"끔"</string>
+    <string name="t_bd8215e6" formatted="false">"예, 브리핑해 주세요"</string>
+    <string name="t_bd84c20a" formatted="false">"웨이브 {0} 방어 완료"</string>
+    <string name="t_be1fc25b" formatted="false">"무엇에든 믿음직한 피해, 그리고 교란되지 않습니다."</string>
+    <string name="t_beb11f45" formatted="false">"보스 수식어"</string>
+    <string name="t_beb3cdc3" formatted="false">"그 필드는 보스를 다른 위협보다 두 배 더 늦춥니다."</string>
+    <string name="t_bec37550" formatted="false">"핫 리페어"</string>
+    <string name="t_bed8ffbb" formatted="false">"복원은 이 Google 계정이 보유한 항목을 Play에 다시 확인합니다. 언제 눌러도 안전하며 요금이 청구되지 않습니다."</string>
+    <string name="t_bf09fcca" formatted="false">"이 빌드에는 Play 게임즈 프로젝트가 설정되어 있지 않아 진행 상황이 이 기기에 남습니다. 같은 Google 계정의 휴대전화에 재설치하면 Android 자체 백업이 여전히 복원해 줍니다."</string>
+    <string name="t_bf0c2eaa" formatted="false">"복제 중"</string>
+    <string name="t_bf7cfb98" formatted="false">"이 빌드에는 설정할 광고가 없습니다."</string>
+    <string name="t_c1386132" formatted="false">"◇ 크립토"</string>
+    <string name="t_c164d2e8" formatted="false">"햇만큼 빠르게 쏘고 더 세게 맞히며, DUCK-USB의 보스 SYN-STORM과 GRADIENT에 {0}배 피해. 대상 지정 모드를 유지합니다. 최대 2개까지 배치할 수 있습니다. 에이전트 스킨이 바꾸지 않는 홀로그램으로 그려집니다."</string>
+    <string name="t_c19b9c99" formatted="false">"CORE-SERVER 무결성 0 · 연결 종료"</string>
+    <string name="t_c1b7bcc5" formatted="false">"이 빌드는 광고를 표시하지 않습니다."</string>
+    <string name="t_c2658f4d" formatted="false">"압도적인 단일 대상 피해. 모든 장갑을 무시합니다."</string>
+    <string name="t_c2c8c2f8" formatted="false">"에이전트 사거리 표시"</string>
+    <string name="t_c2d127eb" formatted="false">"건너뛰기 ×"</string>
+    <string name="t_c31db047" formatted="false">"부활 팩 — 광고 없음."</string>
+    <string name="t_c39850a1" formatted="false">"3단계 — FIREWALL 두 개 배치"</string>
+    <string name="t_c3e1a996" formatted="false">"◇ 크립토와 € 예산은 가상의 게임 내 자원입니다. 금전적 가치가 없고, 게임 밖의 어떤 것과도 교환할 수 없으며, 기기를 떠날 수 없습니다."</string>
+    <string name="t_c405af57" formatted="false">"플레이는 왼쪽에서 고른 레벨과 모드로 플레이를 시작합니다. 저장된 플레이가 있으면 계속으로 이어 가고, 새 플레이로 처음부터 시작합니다."</string>
+    <string name="t_c40bc4a4" formatted="false">"IDS는 네트워크 활동을 감시해 의심스러운 행동과 위협을 찾고 경보를 울립니다. 지켜볼 뿐 차단하지는 않습니다."</string>
+    <string name="t_c4a14a23" formatted="false">"FIREWALL을 고르세요. 싸고, 믿음직하며, 교란되지 않습니다."</string>
+    <string name="t_c4b7782d" formatted="false">"보안 분석가는 실제 직업입니다. 사람이 자동 도구가 표시한 것을 받아 실제로 무슨 일이 있었는지 밝혀내고 어떻게 할지 결정합니다. 기계보다 느리지만, 알려진 패턴에 맞지 않는 경우에는 훨씬 낫습니다."</string>
+    <string name="t_c4d0dc6f" formatted="false">"머신러닝 도구는 사람이 읽을 수 있는 것보다 훨씬 많은 신호에서 이상한 패턴을 찾아내, 주목할 것을 좁히는 데 쓰입니다. 분석가를 대체하기보다 돕고, 오탐도 냅니다. 탐지는 단서이지 판결이 아닙니다."</string>
+    <string name="t_c51041e3" formatted="false">"  ·"</string>
+    <string name="t_c55cc938" formatted="false">"새 플레이"</string>
+    <string name="t_c55e934e" formatted="false">"스크롤해서 더 보기"</string>
+    <string name="t_c570c6cd" formatted="false">"랙 안에서 떨어지는 코드 열."</string>
+    <string name="t_c5cb18f9" formatted="false">"모든 레벨"</string>
+    <string name="t_c81c4fa0" formatted="false">"1레벨"</string>
+    <string name="t_c8a9aae9" formatted="false">"경로 셋이 두 번 엮입니다. 모든 레인이 좌우를 바꿉니다."</string>
+    <string name="t_c9301368" formatted="false">"코어: REACTOR"</string>
+    <string name="t_c9402c75" formatted="false">"아니요"</string>
+    <string name="t_c944e5aa" formatted="false">"대응책"</string>
+    <string name="t_c9a2aee9" formatted="false">"아무 레벨에서나 웨이브 {0}에 도달하면 이 에이전트가 해금됩니다."</string>
+    <string name="t_ca02a8f8" formatted="false">"각 에이전트는 자기 역할의 색을 입습니다."</string>
+    <string name="t_ca5ea88d" formatted="false">"최고 가성비"</string>
+    <string name="t_cabf47fa" formatted="false">"최대 +{0}"</string>
+    <string name="t_cb02b3da" formatted="false">"로스터 전체에 걸친 느린 색상 순환."</string>
+    <string name="t_cb1fd3f1" formatted="false">"IPS는 행동할 권한을 가진 IDS입니다. 공격을 알아채면 누군가에게 알리기만 하지 않고 스스로 트래픽을 버립니다."</string>
+    <string name="t_cb4ff573" formatted="false">"광고와 구매"</string>
+    <string name="t_cbd3b516" formatted="false">"광고 없음, 에이전트 스킨 스펙트럼, 배경 DRIFT, 그리고 €2,000."</string>
+    <string name="t_cbd47695" formatted="false">"페이로드 차단"</string>
+    <string name="t_cbf7d422" formatted="false">"SYN-STORM은 체력이 절반이 되면 둘로 갈라지고, 나머지 절반은 다른 경로로 갑니다. 모든 경로를 지키세요."</string>
+    <string name="t_cc52e024" formatted="false">"다음: 웨이브 {0} — 보스 · 다음 보스를 탭해 브리핑 보기"</string>
+    <string name="t_cc5435ac" formatted="false">"레인을 따라 내려오는 것"</string>
+    <string name="t_cc5c44e8" formatted="false">"집중: 소형 유닛과 정예만"</string>
+    <string name="t_cc6791f1" formatted="false">"FIREWALL 에이전트에 저항합니다."</string>
+    <string name="t_cc7fe141" formatted="false">"공격용 도구를 감시합니다. 몇 초마다 가까운 RED HAT 에이전트를 잠깐 교란합니다."</string>
+    <string name="t_cc9e044b" formatted="false">"리빙: ORBIT"</string>
+    <string name="t_ccb963f2" formatted="false">"패킷"</string>
+    <string name="t_ccbd0815" formatted="false">"기본 랙."</string>
+    <string name="t_ccbefbf5" formatted="false">"스캔 범위 {0}"</string>
+    <string name="t_ccd3b8ff" formatted="false">"지금은 개인정보 보호 옵션을 사용할 수 없습니다."</string>
+    <string name="t_cce0919d" formatted="false">"보유 중"</string>
+    <string name="t_cd27794d" formatted="false">"콜사인은 이 기기에만 있는 것이며 Google 계정이 아닙니다. 순위표에서 플레이 기록의 이름이 됩니다."</string>
+    <string name="t_cd7ef0df" formatted="false">"상표 및 제3자 고지"</string>
+    <string name="t_cd8fc1d8" formatted="false">"Google Play를 통해 선택적 인앱 구매를 이용할 수 있습니다. 게임의 어떤 것도 구매 뒤에 막혀 있지 않습니다."</string>
+    <string name="t_cde6047e" formatted="false">"침입 탐지 시스템"</string>
+    <string name="t_ce2cde0d" formatted="false">"1단계 — 로스터 열기"</string>
+    <string name="t_ce56b8c8" formatted="false">"GOOGLE PLAY에서 관리"</string>
+    <string name="t_ce8b48c9" formatted="false">"게임플레이"</string>
+    <string name="t_ceb6dbab" formatted="false">"CyOps TD SOUNDTRACK"</string>
+    <string name="t_cec6cd66" formatted="false">"기록된 플레이가 아직 없습니다. 플레이를 마치면 도달한 웨이브 순으로 여기에 표시됩니다."</string>
+    <string name="t_cee3b8c9" formatted="false">"건너뛰기"</string>
+    <string name="t_cfd886ad" formatted="false">"두 경로가 각자 자기 절반을 훑습니다. 가운데 틈의 타워는 양쪽 모두에 닿습니다."</string>
+    <string name="t_d0112898" formatted="false">"미끼"</string>
+    <string name="t_d07db54c" formatted="false">"ROOT / ADMIN"</string>
+    <string name="t_d08f5138" formatted="false">"같은 포대 앞을 되돌아 지나가는 구불구불한 경로 둘."</string>
+    <string name="t_d10c0c39" formatted="false">"연사 속도가 매우 높고 모든 탄이 범위로 튀므로, 단일 중장갑 대상이 아니라 무리에 대한 해답입니다. IDS보다 비싸고 사거리는 짧습니다."</string>
+    <string name="t_d11351ac" formatted="false">"켬"</string>
+    <string name="t_d173b657" formatted="false">"시스템에서 무엇이든 할 수 있는 계정. 공격자는 그것을 노리고, 방어자는 신중히 지킵니다. 보안 업무의 상당 부분은 누가 그것을 얼마 동안 가질지 제한하는 일입니다."</string>
+    <string name="t_d19c7c8e" formatted="false">"◇ {0} · 웨이브 {1}에 해금"</string>
+    <string name="t_d22f26dd" formatted="false">"한 번의 일제 사격으로 서로 다른 위협을 최대 3개까지 공격합니다."</string>
+    <string name="t_d2ee5fd2" formatted="false">"진행 상황이 자동으로 저장됩니다"</string>
+    <string name="t_d31b24bf" formatted="false">"{0} · {1}  ·  최고 {2}"</string>
+    <string name="t_d35bc038" formatted="false">"{0} — {1} 피해는 없지만, 다른 에이전트를 위해 시간을 벌어 줍니다."</string>
+    <string name="t_d415f020" formatted="false">"제로데이는 아직 수정 패치가 없는 결함입니다. 방어자에게 패치할 시간이 0일이었다는 뜻입니다. 취약점 연구자들은 다른 누군가가 찾기 전에 보고되고 수정되도록 이런 결함을 찾습니다. \"Zero-day hunter\"는 비공식 표현이며 자격증이나 정식 직함이 아닙니다."</string>
+    <string name="t_d477fdfb" formatted="false">"펌웨어 완전 설치됨"</string>
+    <string name="t_d488d098" formatted="false">"가이드 플레이에 이제 TARPIT이 필요합니다"</string>
+    <string name="t_d48f1170" formatted="false">"▼  아래에 더 있음"</string>
+    <string name="t_d4bb26ac" formatted="false">"코어 스킨 팩"</string>
+    <string name="t_d5acb32b" formatted="false">"보스 경보, 서버 피격, 게임 오버 시 진동"</string>
+    <string name="t_d5b86d2a" formatted="false">"보안 관제 센터"</string>
+    <string name="t_d5d0b693" formatted="false">"계속"</string>
+    <string name="t_d62907f6" formatted="false">"설치된 펌웨어"</string>
+    <string name="t_d63b9487" formatted="false">"접속 불가"</string>
+    <string name="t_d736d92d" formatted="false">"확인"</string>
+    <string name="t_d8386755" formatted="false">"GOOGLE PLAY 결제"</string>
+    <string name="t_d84b41e9" formatted="false">"지속 피해가 이깁니다. IPS나 레벨을 올린 FIREWALL."</string>
+    <string name="t_d8705eb7" formatted="false">"사이버 공격이 네트워크 경로를 따라 CORE-SERVER로 진격합니다. 당신은 레인 옆에 사이버 에이전트를 배치하고, 에이전트는 지나가는 것을 탐지해 파괴합니다. 막아 낸 공격마다 ◇ 크립토가 들어오고, 그것으로 에이전트와 업그레이드를 더 삽니다. 다섯 번째 웨이브마다 보스가 나옵니다. 마지막 웨이브는 없습니다. 문제는 오직 얼마나 멀리 가느냐입니다."</string>
+    <string name="t_d889d3ab" formatted="false">"+1, +10, +100은 그만큼 레벨을 삽니다. 최대 설치는 감당할 수 있는 만큼 씁니다. 레벨마다 조금씩 비싸집니다."</string>
+    <string name="t_d8bcdc1d" formatted="false">"다시 시작"</string>
+    <string name="t_d8fec6d4" formatted="false">"배치한 에이전트 합계"</string>
+    <string name="t_d9074af5" formatted="false">"암호화는 데이터를 뒤섞어 올바른 키를 가진 사람만 읽을 수 있게 합니다. 정상 트래픽을 보호하는 한편, 공격자의 페이로드도 똑같이 검사로부터 숨겨 줍니다."</string>
+    <string name="t_d92ad54a" formatted="false">"이 빌드에는 Google Play 결제가 설정되어 있지 않거나, 이 기기에 Play 스토어가 없습니다. 아무것도 살 수 없으며, 돈이 드는 것은 플레이에 전혀 필요하지 않습니다."</string>
+    <string name="t_d9694eb9" formatted="false">"같은 결함, 하지만 피드백이 없습니다. 애플리케이션이 오류도 데이터도 돌려주지 않으므로, 공격자는 예/아니요 질문을 던지고 무엇이 바뀌는지(응답 시간, 페이지 길이, 상태 코드)를 보며 데이터베이스를 한 비트씩 읽습니다. 느리고 끈질기며 로그에서 알아채기가 훨씬 어렵습니다."</string>
+    <string name="t_d9b49353" formatted="false">"재시도"</string>
+    <string name="t_d9b88563" formatted="false">"네트워크 트래픽의 단위"</string>
+    <string name="t_d9c57847" formatted="false">"경계 방어 준비 완료"</string>
+    <string name="t_da10b268" formatted="false">"미보유"</string>
+    <string name="t_da169a1a" formatted="false">"세계"</string>
+    <string name="t_da3ae5ed" formatted="false">"피해도 주지 않고 아무것도 노리지 않습니다. 웨이브가 진행 중일 때 30초마다 CORE-SERVER 무결성을 1 회복합니다(휴식 중이나 일시정지 중에는 안 함). CORE-SERVER 자체에 있는 전용 슬롯 두 곳에만 배치할 수 있습니다. 레벨이 오르면 타이머가 짧아집니다. 최대 2개까지 배치할 수 있습니다."</string>
+    <string name="t_dad4b11e" formatted="false">"공격적 소탕"</string>
+    <string name="t_db696c4d" formatted="false">"거대하고 장갑이 두껍지만 느립니다. 장갑을 무시하는 것을 데려오세요."</string>
+    <string name="t_db971746" formatted="false">"방어용 도구를 감시합니다. 몇 초마다 가까운 BLUE HAT 에이전트를 잠깐 교란합니다."</string>
+    <string name="t_dba0a883" formatted="false">"장악된 기계들의 네트워크"</string>
+    <string name="t_dbc1a374" formatted="false">"광고를 끝까지 보지 않음 — 소모된 것 없음"</string>
+    <string name="t_dc09f8b7" formatted="false">"교란 — 보스는 에이전트를 교란해 지속되는 동안 연사 속도를 절반으로 줄일 수 있습니다. {0}은(는) 개의치 않도록 만들어졌습니다."</string>
+    <string name="t_dc37fa05" formatted="false">"모든 것 뒤에서 움직이는 차가운 빛의 넓은 띠."</string>
+    <string name="t_dc62badb" formatted="false">"칭호"</string>
+    <string name="t_dce01a82" formatted="false">"콜사인 입력"</string>
+    <string name="t_dd220c90" formatted="false">"광고"</string>
+    <string name="t_dd4083b5" formatted="false">"구매한 것 없음. 위의 모든 것은 플레이로 얻거나, 그냥 없이 플레이할 수도 있습니다."</string>
+    <string name="t_dd55f56b" formatted="false">"두 경로가 DNA 가닥처럼 랙에 닿기 전 세 번 얽힙니다."</string>
+    <string name="t_ddb5514a" formatted="false">"GOOGLE PLAY 게임즈에서 열기"</string>
+    <string name="t_ddcb2958" formatted="false">"앞의 것에서 이름을 따온 완전한 SF: 각 공격이 가까운 위협 2개로 연쇄되어 55% 피해를 줍니다. 뭉친 웨이브에 강하고, 홀로 있는 대상에는 낭비입니다. 대상 지정 가능."</string>
+    <string name="t_ddd374d9" formatted="false">"만나게 될 공격, 보스, 그리고 에이전트가 그들에게 하는 일을 빠르게 정리합니다. 약 20초 걸립니다."</string>
+    <string name="t_dee83e52" formatted="false">"게임 내 패널 불투명도"</string>
+    <string name="t_e00d9a42" formatted="false">"CORE-SERVER 슬롯에 배치하세요"</string>
+    <string name="t_e01007ce" formatted="false">"작은 팩보다 유로당 가성비가 좋습니다."</string>
+    <string name="t_e07706fa" formatted="false">"연결 전까지 이 기기"</string>
+    <string name="t_e0a2aaa4" formatted="false">"GOOGLE 계정 연결"</string>
+    <string name="t_e12d998f" formatted="false">"패키지"</string>
+    <string name="t_e13093ea" formatted="false">"피해"</string>
+    <string name="t_e1892d25" formatted="false">"코어 펌웨어"</string>
+    <string name="t_e1df4ef7" formatted="false">"보스"</string>
+    <string name="t_e3407723" formatted="false">"예"</string>
+    <string name="t_e3a7e50c" formatted="false">"내 저장 유지"</string>
+    <string name="t_e3c4a9cc" formatted="false">"{0}은(는) 가까운 {1} 에이전트를 교란합니다. 사거리 끝까지 뒤로 물려 배치하세요."</string>
+    <string name="t_e4554374" formatted="false">"닫기"</string>
+    <string name="t_e55f9c78" formatted="false">"이 게임이 하지 않는 것"</string>
+    <string name="t_e587f42b" formatted="false">"시스템 기본값 (휴대전화 언어)"</string>
+    <string name="t_e5e7e535" formatted="false">"SYN-STORM 분열"</string>
+    <string name="t_e6694d9c" formatted="false">"웨이브 진행 중 30초마다 CORE-SERVER의 두 슬롯 중 하나에서 무결성을 1 회복합니다. 레벨이 오르면 빨라집니다. 최대 2개."</string>
+    <string name="t_e807eff2" formatted="false">"사거리 안의 가장 가까운 경로를 장벽으로 막고, 위협이 그것을 부숴야 합니다. 모든 보스에게 매우 강하게 맞힙니다. 최대 3개."</string>
+    <string name="t_e8757749" formatted="false">"{1}에서 웨이브 {0} 돌파"</string>
+    <string name="t_e8987cec" formatted="false">"진행 상황 초기화"</string>
+    <string name="t_e94c961d" formatted="false">"통계"</string>
+    <string name="t_e979d28d" formatted="false">"연사"</string>
+    <string name="t_e99d5d17" formatted="false">"€ 팩은 보유하는 것이 아니라 쓰는 것입니다. 한 번 지급되며 복원으로 다시 지급되지 않습니다."</string>
+    <string name="t_e9caa97b" formatted="false">"아직 배치 기록이 없습니다. 플레이하면 여기가 채워집니다."</string>
+    <string name="t_ea16b407" formatted="false">"깊은 남색 위의 금빛 궤적."</string>
+    <string name="t_ea31efb2" formatted="false">"웨이브 {0} 돌파"</string>
+    <string name="t_eab5f205" formatted="false">"콜사인 변경"</string>
+    <string name="t_eaf7396d" formatted="false">"GOOGLE 접속 불가 — 저장은 기기에 유지"</string>
+    <string name="t_eb2e832a" formatted="false">"에이전트 {0}"</string>
+    <string name="t_ebdd4d5e" formatted="false">"제거됨 · 없음"</string>
+    <string name="t_ec91403d" formatted="false">"웨이브"</string>
+    <string name="t_ed31a176" formatted="false">"웨이브에 반응해 숨 쉬는 회로 격자."</string>
+    <string name="t_ed5c9d47" formatted="false">"레벨당"</string>
+    <string name="t_ed7160a0" formatted="false">"없음"</string>
+    <string name="t_ed7ecda7" formatted="false">"잠김"</string>
+    <string name="t_ee0803eb" formatted="false">"회복력"</string>
+    <string name="t_ee094192" formatted="false">"이 빌드에는 Google Play 결제가 설정되어 있지 않아 여기서는 아무것도 살 수 없습니다. 돈이 들지 않는 게임의 모든 부분은 정상적으로 작동합니다."</string>
+    <string name="t_ee5525d9" formatted="false">"KERNEL PANIC · {0}개 교란됨"</string>
+    <string name="t_ee6595fd" formatted="false">"경보를 지켜보는 팀과 그 방. 이 게임에 배경이 있다면, 새벽 3시의 SOC 벽면 디스플레이입니다."</string>
+    <string name="t_eea62f11" formatted="false">"구매"</string>
+    <string name="t_eef967f2" formatted="false">"전장 확대"</string>
+    <string name="t_ef29f425" formatted="false">"오디오"</string>
+    <string name="t_efcf9890" formatted="false">"피해 {0} · 연사 {1}/초 · 사거리 {2}"</string>
+    <string name="t_f001b942" formatted="false">"요새화"</string>
+    <string name="t_f03b01af" formatted="false">"한동안 맞지 않으면 천천히 스스로 수리합니다."</string>
+    <string name="t_f100d10c" formatted="false">"잠김 표시가 있는 것은 상점에 있습니다. 여기 있는 것은 게임 방식을 바꾸지 않습니다. 스킨은 외형일 뿐 이점이 아닙니다."</string>
+    <string name="t_f16b76bc" formatted="false">"\"러버 덕키\"는 키보드인 척하며 누구보다 빠르게 공격을 입력하는 USB 메모리입니다. 방어책은 컴퓨터가 새 장치를 신뢰하기 전에 검사하고, 기계처럼 타이핑하는 키보드를 차단하는 USB 가드입니다."</string>
+    <string name="t_f17dfdae" formatted="false">"긴 경로 하나가 위에서 들어와 랙을 향해 바깥쪽으로 나선을 그립니다."</string>
+    <string name="t_f25360a0" formatted="false">"변경 사항은 즉시 적용되며 이 기기에 저장됩니다"</string>
+    <string name="t_f293dfd1" formatted="false">"구매 확인"</string>
+    <string name="t_f2e7479c" formatted="false">"Google 계정을 연결하면 어떤 휴대전화나 태블릿에서도 진행 상황을 유지할 수 있습니다. Google은 계정에서 이 게임의 저장 데이터를 관리할 권한을 요청합니다. 그것은 게임 저장 공간이며, 사용하는 것은 그것뿐입니다."</string>
+    <string name="t_f2ed0368" formatted="false">"빠릅니다. 코어에 닿으면 무결성 대신 크립토의 절반을 훔칩니다."</string>
+    <string name="t_f2f63d9f" formatted="false">"이 기기에서"</string>
+    <string name="t_f33c5b01" formatted="false">"6단계 — 웨이브 시작"</string>
+    <string name="t_f38eb808" formatted="false">"더 강하고, 더 촘촘한 위협, 더 적은 무결성. 더 풍부한 보상."</string>
+    <string name="t_f3e23f71" formatted="false">"코어: CASCADE"</string>
+    <string name="t_f49a4ff9" formatted="false">"에이전트 잠김"</string>
+    <string name="t_f4f677dc" formatted="false">"누적 획득"</string>
+    <string name="t_f5537783" formatted="false">"코어: MAINFRAME"</string>
+    <string name="t_f590e2c9" formatted="false">"경로"</string>
+    <string name="t_f5b866e4" formatted="false">"준비되지 않은 네트워크를 떨쳐 낼 만큼 이중화된 조직적 침해 시도. 다섯 번째 웨이브마다 하나씩 오며, 매번 이전보다 강합니다."</string>
+    <string name="t_f60f5840" formatted="false">"CyOps 계정도 비밀번호도 여전히 없습니다. 구매는 이 기기의 Play 스토어에 로그인한 Google 계정을 따릅니다. 진행 상황은 위에서 연결하는 Google 계정을 따릅니다. 이는 별개의 선택 사항이며, 없어도 게임은 완전합니다."</string>
+    <string name="t_f692d3ce" formatted="false">"봇넷"</string>
+    <string name="t_f69a80a7" formatted="false">"{0}(으)로 바꾸기 위해 게임이 다시 시작됩니다. 진행 상황은 유지됩니다."</string>
+    <string name="t_f6f93110" formatted="false">"코어: NEONGRID"</string>
+    <string name="t_f720bfa7" formatted="false">"CRT 형광체 주사선."</string>
+    <string name="t_f76fff7f" formatted="false">"악성 소프트웨어: 손상, 방해, 탈취를 위해 작성된 코드. 단순한 인젝션보다 페이로드가 많아, 부서지기 전까지 더 많은 피해를 버팁니다."</string>
+    <string name="t_f7a4fc70" formatted="false">"다시 탭해서 배치"</string>
+    <string name="t_f7a7b98a" formatted="false">"피해 {0} · 연사 {1} · 사거리 {2}"</string>
+    <string name="t_f7eb1496" formatted="false">"순위는 도달한 가장 깊은 웨이브로 정해집니다. 동점이면 준 피해로 가립니다."</string>
+    <string name="t_f803ec67" formatted="false">"주문 내역 및 환불"</string>
+    <string name="t_f85117ec" formatted="false">"{0}곡 모두 이미 Music/CyOps TD에 있습니다."</string>
+    <string name="t_f8723c46" formatted="false">"속도"</string>
+    <string name="t_f8d84db3" formatted="false">"미등록"</string>
+    <string name="t_f8e6e39f" formatted="false">"시스템 엔지니어는 서버를 계속 돌아가게 합니다. 패치, 고장 부품 교체, 백업 복원, 기계 상태 감시 같은 일입니다. \"Server systems engineer\"는 그런 종류의 일을 가리키며, 직함은 조직마다 다릅니다."</string>
+    <string name="t_f9807a9f" formatted="false">"&gt; 대기 중 — 에이전트를 배치하고 웨이브 1을 시작하세요"</string>
+    <string name="t_f9cec260" formatted="false">"몇 번의 거대한 공격은 GRADIENT를 거의 빠르게 하지 못합니다."</string>
+    <string name="t_f9d6b090" formatted="false">"전장과 메뉴 뒤를 떠도는 ASCII 데이터"</string>
+    <string name="t_fa1b4500" formatted="false">"통계는 일시정지 메뉴에서 포기한 플레이를 포함해 모든 플레이에 걸쳐 누적됩니다. 설정에서 진행 상황을 초기화하면 모두 지워집니다."</string>
+    <string name="t_fa60c2c6" formatted="false">"리빙: HEATMAP"</string>
+    <string name="t_fb735826" formatted="false">"진동"</string>
+    <string name="t_fb889492" formatted="false">"독립적으로 개발된, 오프라인 우선의 사이버 보안 테마 타워 디펜스 게임입니다. 시나리오, 에이전트, 용어는 게임에 맞게 각색되었고, 그 뒤의 개념을 배울 수 있도록 짧은 현실 설명을 곁들였습니다. 어떤 공격 기법도 가르치지 않으며 실제 보안 기능도 수행하지 않습니다."</string>
+    <string name="t_fbca7f29" formatted="false">"쓸모 있는 척하는 악성코드"</string>
+    <string name="t_fbd9e20c" formatted="false">"배경 애니메이션"</string>
+    <string name="t_fc778505" formatted="false">"아무 표시 없는 깨끗한 랙."</string>
+    <string name="t_fcc1e712" formatted="false">"개인정보 보호"</string>
+    <string name="t_fd3cb488" formatted="false">"로그인 방식"</string>
+    <string name="t_fdb0282f" formatted="false">"광고 불러오는 중…"</string>
+    <string name="t_fde05efe" formatted="false">"{1}에서 웨이브 {0} 도달"</string>
+    <string name="t_fe26fa48" formatted="false">"최고 웨이브"</string>
+    <string name="t_fe451d7a" formatted="false">"시스템 복구됨 — 무결성 {0}"</string>
+    <string name="t_fe86390c" formatted="false">" · 속도 {0}"</string>
+    <string name="t_feeee285" formatted="false">"코어 스킨 {0}종 · 배경 {1}종 사용 가능"</string>
+    <string name="t_feef9615" formatted="false">"다음 보스"</string>
+    <string name="t_ff2d6a51" formatted="false">"경로 셋이 두 번 자리를 바꿉니다. 교차점마다 두 경로에 닿는 지점입니다."</string>
+    <string name="t_ffa57dc1" formatted="false">"&gt; 레인 토폴로지 구성 중"</string>
+    <string name="t_ffc3db58" formatted="false">"사거리 {0}"</string>
+    <string name="t_ffff9bd9" formatted="false">"에이전트가 색 스펙트럼을 천천히 지나가며, 유닛마다 조금씩 어긋납니다."</string>
+</resources>

@@ -1,5 +1,7 @@
 package com.cyopstd.game.ads
 
+import com.cyopstd.game.i18n.tr
+
 import android.app.Activity
 import android.content.Context
 import android.util.Log
@@ -160,12 +162,12 @@ class UmpConsentGateway(
                     onError(null)
                 } else {
                     Log.w(TAG, "PRIVACY_FORM_FAILED ${formError.errorCode}")
-                    onError("Privacy options are unavailable right now.")
+                    onError(tr("Privacy options are unavailable right now."))
                 }
             }
         } catch (error: Throwable) {
             Log.w(TAG, "Privacy options threw", error)
-            onError("Privacy options are unavailable right now.")
+            onError(tr("Privacy options are unavailable right now."))
         }
     }
 

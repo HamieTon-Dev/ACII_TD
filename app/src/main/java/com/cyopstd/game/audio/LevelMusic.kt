@@ -1,5 +1,7 @@
 package com.cyopstd.game.audio
 
+import com.cyopstd.game.i18n.tr
+
 import com.cyopstd.game.R
 import com.cyopstd.game.core.GameMap
 import com.cyopstd.game.core.Maps
@@ -118,7 +120,7 @@ data class MusicTrack(
     /** "CyOps TD - Level 4 (1) · 🦆 DUCK-USB": the title, and which level it belongs to. */
     val label: String
         get() = when {
-            name != null -> "$title \u00B7 ANY LEVEL"
+            name != null -> tr("{0} \u00B7 ANY LEVEL", title)
             level == 0 -> title
             else -> "$title \u00B7 $levelName"
         }
@@ -131,7 +133,7 @@ data class MusicTrack(
 object MusicLibrary {
     /** The main menu's two tracks (owner, 2026-10-01), first in the album. */
     val menuTracks: List<MusicTrack> = listOf(R.raw.menu, R.raw.menu_2).mapIndexed { part, res ->
-        MusicTrack(res, MENU_ID, 0, "MAIN MENU", part + 1)
+        MusicTrack(res, MENU_ID, 0, tr("MAIN MENU"), part + 1)
     }
 
     const val MENU_ID = "menu"

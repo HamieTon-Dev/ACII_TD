@@ -1,5 +1,7 @@
 package com.cyopstd.game.ui.game
 
+import com.cyopstd.game.i18n.tr
+
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
@@ -58,16 +60,16 @@ fun GameHud(
         verticalAlignment = Alignment.CenterVertically
     ) {
         HudCell(
-            label = "WAVE",
+            label = tr("WAVE"),
             value = if (hud.wave == 0) "--" else hud.wave.toString(),
             accent = if (hud.nextWaveIsBoss || alert) Palette.Red else Palette.Cyan,
-            trailing = if (hud.wave > 0 && hud.wave % 5 == 0) "BOSS" else null
+            trailing = if (hud.wave > 0 && hud.wave % 5 == 0) tr("BOSS") else null
         )
 
         HudDivider()
 
         HudCell(
-            label = "BEST",
+            label = tr("BEST"),
             value = hud.bestWave.toString(),
             accent = Palette.Purple
         )
@@ -99,7 +101,7 @@ fun GameHud(
         HudDivider()
 
         HudCell(
-            label = "\u25C7 CRYPTO",
+            label = tr("\u25C7 CRYPTO"),
             value = hud.crypto.toString(),
             accent = Palette.Crypto
         )
@@ -107,7 +109,7 @@ fun GameHud(
         HudDivider()
 
         HudCell(
-            label = "\u20AC THIS RUN",
+            label = tr("\u20AC THIS RUN"),
             value = "\u20AC${hud.budgetEarned}",
             accent = Palette.Cyan,
             tag = "hud-run-budget"
@@ -116,10 +118,10 @@ fun GameHud(
         HudDivider()
 
         HudCell(
-            label = "ENEMIES",
+            label = tr("ENEMIES"),
             value = if (hud.phase == RunPhase.PREPARING) "0" else hud.enemiesRemaining.toString(),
             accent = if (hud.enemiesRemaining > 0) Palette.Orange else Palette.TextMuted,
-            trailing = if (hud.enemiesOnField > 0) "${hud.enemiesOnField} live" else null
+            trailing = if (hud.enemiesOnField > 0) tr("{0} live", hud.enemiesOnField) else null
         )
     }
 }

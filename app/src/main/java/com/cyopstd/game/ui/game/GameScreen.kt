@@ -1,5 +1,7 @@
 package com.cyopstd.game.ui.game
 
+import com.cyopstd.game.i18n.tr
+
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
@@ -312,7 +314,7 @@ private fun GameScreenBody(
                 // worse than no control.
                 val skipIsInTheWay = target != null
                 CompactButton(
-                    text = "SKIP \u00D7",
+                    text = tr("SKIP \u00D7"),
                     onClick = viewModel::skipTutorial,
                     accent = Palette.TextSecondary,
                     modifier = Modifier
@@ -561,7 +563,7 @@ private fun ControlBar(viewModel: GameViewModel) {
         horizontalArrangement = Arrangement.spacedBy(6.dp)
     ) {
         CompactButton(
-            text = "AGENTS",
+            text = tr("AGENTS"),
             onClick = viewModel::toggleDeployPanel,
             selected = viewModel.showDeployPanel,
             accent = Palette.Cyan,
@@ -572,7 +574,7 @@ private fun ControlBar(viewModel: GameViewModel) {
         // BOSS when there is no boss teaches the player to ignore it.
         if (hud.bossOnField) {
             CompactButton(
-                text = "BOSS",
+                text = tr("BOSS"),
                 onClick = viewModel::toggleBossPanel,
                 selected = viewModel.showBossPanel,
                 accent = Palette.Red,
@@ -581,7 +583,7 @@ private fun ControlBar(viewModel: GameViewModel) {
         } else if (hud.phase == RunPhase.PREPARING && hud.nextWaveIsBoss) {
             // One break earlier: who is coming and what beats them.
             CompactButton(
-                text = "NEXT BOSS",
+                text = tr("NEXT BOSS"),
                 onClick = viewModel::toggleBossBriefing,
                 selected = viewModel.showBossBriefing,
                 accent = Palette.Red,
@@ -590,7 +592,7 @@ private fun ControlBar(viewModel: GameViewModel) {
         }
 
         CompactButton(
-            text = if (viewModel.paused) "RESUME" else "PAUSE",
+            text = if (viewModel.paused) tr("RESUME") else tr("PAUSE"),
             onClick = viewModel::togglePause,
             accent = Palette.Orange,
             dense = true
@@ -627,7 +629,7 @@ private fun ControlBar(viewModel: GameViewModel) {
             )
             if (viewModel.selection.pendingAgent != null) {
                 Text(
-                    text = "PLACING ${viewModel.selection.pendingAgent?.displayName} — tap a node",
+                    text = tr("PLACING {0} — tap a node", viewModel.selection.pendingAgent?.displayName),
                     style = MaterialTheme.typography.labelSmall,
                     color = Palette.Green,
                     maxLines = 1,
@@ -656,7 +658,7 @@ private fun ControlBar(viewModel: GameViewModel) {
 
         if (viewModel.selection.pendingAgent != null) {
             CompactButton(
-                text = "CANCEL",
+                text = tr("CANCEL"),
                 onClick = viewModel::clearPendingAgent,
                 accent = Palette.Red,
                 dense = true
@@ -667,7 +669,7 @@ private fun ControlBar(viewModel: GameViewModel) {
             // One line now: a two-line label is what set the bar's height in
             // the first place, and the boss warning is already shouted by the
             // banner, the HUD border and the colour of this button.
-            text = if (hud.nextWaveIsBoss) "NEXT WAVE \u00B7 BREACH" else "NEXT WAVE",
+            text = if (hud.nextWaveIsBoss) tr("NEXT WAVE \u00B7 BREACH") else tr("NEXT WAVE"),
             onClick = viewModel::startNextWave,
             enabled = canStart,
             accent = if (hud.nextWaveIsBoss) Palette.Red else Palette.Green,
@@ -680,10 +682,10 @@ private fun statusLineFor(viewModel: GameViewModel): String {
     val hud = viewModel.hud
     return when (hud.phase) {
         RunPhase.PREPARING ->
-            if (hud.wave == 0) "> standing by — deploy agents and start wave 1"
-            else "> wave ${hud.wave} cleared — prepare for wave ${hud.wave + 1}"
-        RunPhase.BOSS_WARNING -> "> !! cyberattack incoming — major breach inbound !!"
-        RunPhase.IN_WAVE -> "> wave ${hud.wave} active — ${hud.enemiesRemaining} threats remaining"
-        RunPhase.GAME_OVER -> "> network compromised"
+            if (hud.wave == 0) tr("> standing by — deploy agents and start wave 1")
+            else tr("> wave {0} cleared — prepare for wave {1}", hud.wave, hud.wave + 1)
+        RunPhase.BOSS_WARNING -> tr("> !! cyberattack incoming — major breach inbound !!")
+        RunPhase.IN_WAVE -> tr("> wave {0} active — {1} threats remaining", hud.wave, hud.enemiesRemaining)
+        RunPhase.GAME_OVER -> tr("> network compromised")
     }
 }

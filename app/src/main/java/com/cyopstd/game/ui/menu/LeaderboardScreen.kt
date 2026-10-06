@@ -1,5 +1,7 @@
 package com.cyopstd.game.ui.menu
 
+import com.cyopstd.game.i18n.tr
+
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.foundation.layout.widthIn
@@ -93,8 +95,8 @@ fun LeaderboardScreen(
         if (worldwide && hasGlobalBoard(current)) onShowGlobal(current)
     }
     ScreenScaffold(
-        title = "LEADERBOARD",
-        subtitle = if (identity.registered) "AGENT ${identity.username}" else "UNREGISTERED",
+        title = tr("LEADERBOARD"),
+        subtitle = if (identity.registered) tr("AGENT {0}", identity.username) else tr("UNREGISTERED"),
         onBack = onBack,
         backgroundAnimation = backgroundAnimation
     ) {
@@ -108,17 +110,17 @@ fun LeaderboardScreen(
                     horizontalArrangement = Arrangement.spacedBy(8.dp)
                 ) {
                     Picker(
-                        label = level?.displayName ?: "ALL LEVELS",
+                        label = level?.displayName ?: tr("ALL LEVELS"),
                         options = listOf<GameMap?>(null) + Maps.all,
-                        text = { it?.let { m -> "L${Maps.all.indexOf(m) + 1} \u00B7 ${m.displayName}" } ?: "ALL LEVELS" },
+                        text = { it?.let { m -> "L${Maps.all.indexOf(m) + 1} \u00B7 ${m.displayName}" } ?: tr("ALL LEVELS") },
                         tag = "board-level",
                         onPick = { level = it; refresh() },
                         modifier = Modifier.weight(1f)
                     )
                     Picker(
-                        label = mode?.runName ?: "ALL DIFFICULTIES",
+                        label = mode?.runName ?: tr("ALL DIFFICULTIES"),
                         options = listOf<GameMode?>(null) + GameMode.entries,
-                        text = { it?.runName ?: "ALL DIFFICULTIES" },
+                        text = { it?.runName ?: tr("ALL DIFFICULTIES") },
                         tag = "board-difficulty",
                         onPick = { mode = it; refresh() },
                         modifier = Modifier.weight(1f)
@@ -131,13 +133,13 @@ fun LeaderboardScreen(
                         horizontalArrangement = Arrangement.spacedBy(8.dp)
                     ) {
                         CompactButton(
-                            text = "THIS DEVICE",
+                            text = tr("THIS DEVICE"),
                             onClick = { worldwide = false },
                             accent = if (!worldwide) Palette.Crypto else Palette.TextMuted,
                             modifier = Modifier.weight(1f)
                         )
                         CompactButton(
-                            text = "WORLDWIDE",
+                            text = tr("WORLDWIDE"),
                             onClick = { worldwide = true; refresh() },
                             accent = if (worldwide) Palette.Green else Palette.TextMuted,
                             modifier = Modifier.weight(1f)
@@ -145,14 +147,14 @@ fun LeaderboardScreen(
                     }
                     Spacer(Modifier.height(8.dp))
                 }
-                val boardName = (level?.displayName ?: "ALL LEVELS") + " \u00B7 " + (mode?.runName ?: "ALL DIFFICULTIES")
+                val boardName = (level?.displayName ?: tr("ALL LEVELS")) + " \u00B7 " + (mode?.runName ?: tr("ALL DIFFICULTIES"))
                 if (worldwide) {
                     when {
-                        key == null -> TerminalPanel(title = "WORLDWIDE", accent = Palette.Green) {
-                            Caption("Pick a difficulty to see its worldwide board.")
+                        key == null -> TerminalPanel(title = tr("WORLDWIDE"), accent = Palette.Green) {
+                            Caption(tr("Pick a difficulty to see its worldwide board."))
                         }
-                        !hasGlobalBoard(key) -> TerminalPanel(title = "WORLDWIDE", accent = Palette.Green) {
-                            Caption("No worldwide board for $boardName yet. Runs there are recorded on this device.")
+                        !hasGlobalBoard(key) -> TerminalPanel(title = tr("WORLDWIDE"), accent = Palette.Green) {
+                            Caption(tr("No worldwide board for {0} yet. Runs there are recorded on this device.", boardName))
                         }
                         else -> GlobalPanel(
                             title = boardName,
@@ -169,9 +171,9 @@ fun LeaderboardScreen(
                         .take(LeaderboardGateway.MAX_ENTRIES)
                     if (shown.isEmpty()) {
                         Caption(
-                            if (entries.isEmpty()) "No runs recorded yet. Finish a run and it will be " +
-                                "listed here, ranked by the wave you reached."
-                            else "No runs recorded on $boardName yet."
+                            if (entries.isEmpty()) tr("No runs recorded yet. Finish a run and it will be " +
+                                "listed here, ranked by the wave you reached.")
+                            else tr("No runs recorded on {0} yet.", boardName)
                         )
                     } else {
                         HeaderRow()
@@ -192,17 +194,17 @@ fun LeaderboardScreen(
             Column(Modifier.weight(1f)) {
                 RegistrationPanel(identity, onRegister)
                 Spacer(Modifier.height(12.dp))
-                TerminalPanel(title = "YOUR RECORD", accent = Palette.Cyan) {
-                    StatRow("BEST WAVE", identity.highestWave.toString(), valueColor = Palette.Green)
+                TerminalPanel(title = tr("YOUR RECORD"), accent = Palette.Cyan) {
+                    StatRow(tr("BEST WAVE"), identity.highestWave.toString(), valueColor = Palette.Green)
                     StatRow(
-                        "BEST DAMAGE",
+                        tr("BEST DAMAGE"),
                         identity.bestDamage.toString(),
                         valueColor = Palette.Crypto
                     )
                     AsciiRule(color = Palette.Divider)
                     Caption(
-                        "Rank is set by the deepest wave you have reached. " +
-                            "Damage dealt breaks a tie."
+                        tr("Rank is set by the deepest wave you have reached. " +
+                            "Damage dealt breaks a tie.")
                     )
                 }
             }
@@ -219,20 +221,20 @@ private fun GlobalPanel(
     signedIn: Boolean,
     onOpenNative: () -> Unit
 ) {
-    TerminalPanel(title = "WORLDWIDE \u00B7 $title", accent = Palette.Green) {
+    TerminalPanel(title = tr("WORLDWIDE \u00B7 {0}", title), accent = Palette.Green) {
         when {
             !signedIn -> Caption(
-                "Link your Google account on the GOOGLE PLAY screen to see the " +
+                tr("Link your Google account on the GOOGLE PLAY screen to see the " +
                     "global board and post to it. Your runs are still recorded " +
-                    "on this device."
+                    "on this device.")
             )
-            loading -> Caption("Asking Google Play Games…")
+            loading -> Caption(tr("Asking Google Play Games…"))
             entries == null -> Caption(
-                "Google Play Games could not be reached. Your runs are recorded " +
+                tr("Google Play Games could not be reached. Your runs are recorded " +
                     "on this device and your best is posted next time a run ends " +
-                    "while you are online."
+                    "while you are online.")
             )
-            entries.isEmpty() -> Caption("No scores posted yet. Finish a run to be first.")
+            entries.isEmpty() -> Caption(tr("No scores posted yet. Finish a run to be first."))
             else -> {
                 HeaderRow()
                 AsciiRule(color = Palette.Divider)
@@ -250,12 +252,12 @@ private fun GlobalPanel(
         Spacer(Modifier.height(8.dp))
         AsciiRule(color = Palette.Divider)
         Caption(
-            "Each player's best wave, worldwide, listed by callsign. Register one " +
-                "on the right, or Google shows your Play Games name instead."
+            tr("Each player's best wave, worldwide, listed by callsign. Register one " +
+                "on the right, or Google shows your Play Games name instead.")
         )
         Spacer(Modifier.height(8.dp))
         CompactButton(
-            text = "OPEN IN GOOGLE PLAY GAMES",
+            text = tr("OPEN IN GOOGLE PLAY GAMES"),
             onClick = onOpenNative,
             enabled = signedIn,
             accent = Palette.Green,
@@ -269,11 +271,11 @@ private fun RegistrationPanel(identity: PlayerIdentity, onRegister: (String) -> 
     var editing by remember { mutableStateOf(false) }
 
     TerminalPanel(
-        title = if (identity.registered) "CHANGE CALLSIGN" else "REGISTER CALLSIGN",
+        title = if (identity.registered) tr("CHANGE CALLSIGN") else tr("REGISTER CALLSIGN"),
         accent = Palette.Green
     ) {
         Text(
-            text = if (identity.registered) identity.username else "NOT SET",
+            text = if (identity.registered) identity.username else tr("NOT SET"),
             style = TextStyle(
                 color = if (identity.registered) Palette.TextPrimary else Palette.TextMuted,
                 fontFamily = FontFamily.Monospace,
@@ -284,12 +286,12 @@ private fun RegistrationPanel(identity: PlayerIdentity, onRegister: (String) -> 
         )
         AsciiRule(color = Palette.Divider)
         Caption(
-            "${PlayerIdentity.MIN_LENGTH}-${PlayerIdentity.MAX_LENGTH} characters. " +
-                "A-Z, 0-9, dash and underscore."
+            tr("{0}-{1} characters. " +
+                "A-Z, 0-9, dash and underscore.", PlayerIdentity.MIN_LENGTH, PlayerIdentity.MAX_LENGTH)
         )
         Spacer(Modifier.height(8.dp))
         CompactButton(
-            text = if (identity.registered) "EDIT CALLSIGN" else "ENTER CALLSIGN",
+            text = if (identity.registered) tr("EDIT CALLSIGN") else tr("ENTER CALLSIGN"),
             onClick = { editing = true },
             accent = Palette.Green,
             modifier = Modifier.fillMaxWidth()
@@ -343,7 +345,7 @@ internal fun CallsignEntry(
                     .padding(12.dp)
             ) {
                 Text(
-                    text = if (identity.registered) "CHANGE CALLSIGN" else "REGISTER CALLSIGN",
+                    text = if (identity.registered) tr("CHANGE CALLSIGN") else tr("REGISTER CALLSIGN"),
                     style = MaterialTheme.typography.titleSmall,
                     color = Palette.Green
                 )
@@ -384,13 +386,13 @@ internal fun CallsignEntry(
                 Spacer(Modifier.height(6.dp))
                 Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                     CompactButton(
-                        text = "CANCEL",
+                        text = tr("CANCEL"),
                         onClick = onCancel,
                         accent = Palette.TextSecondary,
                         modifier = Modifier.weight(1f)
                     )
                     CompactButton(
-                        text = "SAVE",
+                        text = tr("SAVE"),
                         onClick = { onSave(cleaned) },
                         enabled = valid,
                         accent = Palette.Green,
@@ -406,11 +408,11 @@ internal fun CallsignEntry(
 private fun HeaderRow() {
     Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
         Cell("#", 44.dp, Palette.TextMuted)
-        Cell("CALLSIGN", 170.dp, Palette.TextMuted)
-        Cell("LVL", 52.dp, Palette.TextMuted)
-        Cell("WAVE", 78.dp, Palette.TextMuted)
-        Cell("DAMAGE", 120.dp, Palette.TextMuted)
-        Cell("MODE", 120.dp, Palette.TextMuted)
+        Cell(tr("CALLSIGN"), 170.dp, Palette.TextMuted)
+        Cell(tr("LVL"), 52.dp, Palette.TextMuted)
+        Cell(tr("WAVE"), 78.dp, Palette.TextMuted)
+        Cell(tr("DAMAGE"), 120.dp, Palette.TextMuted)
+        Cell(tr("MODE"), 120.dp, Palette.TextMuted)
     }
 }
 
@@ -428,7 +430,7 @@ private fun EntryRow(rank: Int, entry: LeaderboardEntry, isYou: Boolean) {
         verticalAlignment = Alignment.CenterVertically
     ) {
         Cell(rank.toString(), 44.dp, if (rank <= 3) Palette.Crypto else Palette.TextMuted)
-        Cell(entry.username.ifBlank { "UNREGISTERED" }, 170.dp, accent)
+        Cell(entry.username.ifBlank { tr("UNREGISTERED") }, 170.dp, accent)
         Cell(
             entry.mapId?.let { id -> Maps.all.indexOfFirst { it.id == id }.takeIf { it >= 0 }?.let { "L${it + 1}" } } ?: "\u2014",
             52.dp, Palette.TextSecondary

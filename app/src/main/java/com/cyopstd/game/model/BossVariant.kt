@@ -1,5 +1,7 @@
 package com.cyopstd.game.model
 
+import com.cyopstd.game.i18n.tr
+
 /**
  * Which kind of boss this is.
  *
@@ -160,7 +162,7 @@ enum class BossVariant(
         healthScale = 1f,
         armorBonus = 0f,
         speedScale = 1f,
-        signature = "A coordinated breach attempt. No tricks, just weight.",
+        signature = tr("A coordinated breach attempt. No tricks, just weight."),
         firstCycle = 1,
         // BLUE HAT is the defensive counter: a breach is what a blue team is
         // for.
@@ -180,8 +182,8 @@ enum class BossVariant(
         healthScale = 1.6f,
         armorBonus = 7f,
         speedScale = 0.78f,
-        signature = "Enormous and heavily armoured, but slow. Bring something " +
-            "that ignores armour.",
+        signature = tr("Enormous and heavily armoured, but slow. Bring something " +
+            "that ignores armour."),
         firstCycle = 2,
         // RED HAT is the offensive counter: GOOD GAME is a wall, and the way
         // past a wall is to go at it rather than wait it out.
@@ -202,8 +204,8 @@ enum class BossVariant(
         healthScale = 0.85f,
         armorBonus = 0f,
         speedScale = 1.12f,
-        signature = "Gets back up once, at 40% health. Killing it is not the " +
-            "same as finishing it.",
+        signature = tr("Gets back up once, at 40% health. Killing it is not the " +
+            "same as finishing it."),
         firstCycle = 3
     ),
 
@@ -233,8 +235,8 @@ enum class BossVariant(
         healthScale = 1f,
         armorBonus = 0f,
         speedScale = 1f,
-        signature = "Watches for offensive tooling. Jams RED HAT agents close " +
-            "to it, briefly, every few seconds.",
+        signature = tr("Watches for offensive tooling. Jams RED HAT agents close " +
+            "to it, briefly, every few seconds."),
         firstCycle = 6,
         mapId = HUGGING_FACE_MAP_ID,
         bonusDamageFrom = mapOf("CYBER_OPERATIVE" to CYBER_OPERATIVE_COUNTER),
@@ -250,8 +252,8 @@ enum class BossVariant(
         healthScale = 1f,
         armorBonus = 0f,
         speedScale = 1f,
-        signature = "Watches for defensive tooling. Jams BLUE HAT agents close " +
-            "to it, briefly, every few seconds.",
+        signature = tr("Watches for defensive tooling. Jams BLUE HAT agents close " +
+            "to it, briefly, every few seconds."),
         firstCycle = 6,
         mapId = HUGGING_FACE_MAP_ID,
         bonusDamageFrom = mapOf("CYBER_OPERATIVE" to CYBER_OPERATIVE_COUNTER),
@@ -276,8 +278,8 @@ enum class BossVariant(
         healthScale = HEAVY_HEALTH_SCALE,
         armorBonus = 0f,
         speedScale = 0.95f,
-        signature = "Paid to be here. No tricks, no jamming \u2014 twenty per " +
-            "cent more of it than anything else on the board.",
+        signature = tr("Paid to be here. No tricks, no jamming \u2014 twenty per " +
+            "cent more of it than anything else on the board."),
         firstCycle = 2,
         mapId = HUGGING_FACE_MAP_ID,
         palette = BossPalette.ICE
@@ -291,8 +293,8 @@ enum class BossVariant(
         healthScale = HEAVY_HEALTH_SCALE,
         armorBonus = 0f,
         speedScale = 0.95f,
-        signature = "The collection run. No tricks, no jamming \u2014 twenty " +
-            "per cent more of it than anything else on the board.",
+        signature = tr("The collection run. No tricks, no jamming \u2014 twenty " +
+            "per cent more of it than anything else on the board."),
         firstCycle = 2,
         mapId = HUGGING_FACE_MAP_ID,
         palette = BossPalette.VIOLET
@@ -312,8 +314,7 @@ enum class BossVariant(
         healthScale = 1.1f,
         armorBonus = 0f,
         speedScale = 0.95f,
-        signature = "A bloated model: a little more health, a little slower. " +
-            "Its crowd-feeding heal was removed (owner, 2026-10-02).",
+        signature = tr("A bloated model: a little more health, a little slower."),
         firstCycle = 3,
         mapId = NEURAL_MESH_MAP_ID,
         palette = BossPalette.SPECTRUM
@@ -333,8 +334,8 @@ enum class BossVariant(
         healthScale = 1f,
         armorBonus = 2f,
         speedScale = 1f,
-        signature = "For 2 seconds in every 17 it shrugs off any agent type " +
-            "that keeps hitting it. A varied board keeps hurting it.",
+        signature = tr("For 2 seconds in every 17 it shrugs off any agent type " +
+            "that keeps hitting it. A varied board keeps hurting it."),
         firstCycle = 4,
         mapId = NEURAL_MESH_MAP_ID,
         palette = BossPalette.ICE
@@ -356,8 +357,8 @@ enum class BossVariant(
         healthScale = 1f,
         armorBonus = 0f,
         speedScale = 1.05f,
-        signature = "Splits in two at half health, and the second half takes " +
-            "another route.",
+        signature = tr("Splits in two at half health, and the second half takes " +
+            "another route."),
         firstCycle = 3,
         mapId = DUCK_USB_MAP_ID,
         bonusDamageFrom = mapOf("ANTI_DUCK" to ANTI_DUCK_COUNTER),
@@ -380,8 +381,8 @@ enum class BossVariant(
         healthScale = 1.1f,
         armorBonus = 0f,
         speedScale = 1f,
-        signature = "Every hit speeds it up, however small; it slows when left " +
-            "alone. Few big hits beat many small ones.",
+        signature = tr("Every hit speeds it up, however small; it slows when left " +
+            "alone. Few big hits beat many small ones."),
         firstCycle = 4,
         mapId = DUCK_USB_MAP_ID,
         bonusDamageFrom = mapOf("ANTI_DUCK" to ANTI_DUCK_COUNTER),
@@ -404,8 +405,8 @@ enum class BossVariant(
         healthScale = 1.1f,
         armorBonus = 1f,
         speedScale = 1f,
-        signature = "Every few seconds, locks one agent's upgrades for 8 " +
-            "seconds. Upgrade before it arrives.",
+        signature = tr("Every few seconds, locks one agent's upgrades for 8 " +
+            "seconds. Upgrade before it arrives."),
         firstCycle = 3,
         mapId = DDOS_MAP_ID,
         palette = BossPalette.HOSTILE
@@ -424,8 +425,8 @@ enum class BossVariant(
         healthScale = 0.9f,
         armorBonus = 0f,
         speedScale = 1.25f,
-        signature = "Fast. If it reaches the core it steals half your crypto " +
-            "instead of integrity.",
+        signature = tr("Fast. If it reaches the core it steals half your crypto " +
+            "instead of integrity."),
         firstCycle = 4,
         mapId = DDOS_MAP_ID,
         palette = BossPalette.SPECTRUM
@@ -444,8 +445,8 @@ enum class BossVariant(
         healthScale = 1f,
         armorBonus = 0f,
         speedScale = 0.85f,
-        signature = "Keeps spawning BOTs behind itself. Kill it fast or " +
-            "drown in its botnet.",
+        signature = tr("Keeps spawning BOTs behind itself. Kill it fast or " +
+            "drown in its botnet."),
         firstCycle = 2,
         mapId = TRIDENT_MAP_ID,
         palette = BossPalette.VIOLET
@@ -465,8 +466,8 @@ enum class BossVariant(
         healthScale = 0.85f,
         armorBonus = 0f,
         speedScale = 0.85f,
-        signature = "Hides for 2 seconds of every 6: nothing can target it. " +
-            "Splash and chains still reach it.",
+        signature = tr("Hides for 2 seconds of every 6: nothing can target it. " +
+            "Splash and chains still reach it."),
         firstCycle = 2,
         mapId = SPIRAL_MAP_ID,
         palette = BossPalette.ICE
@@ -485,8 +486,8 @@ enum class BossVariant(
         healthScale = 0.6f,
         armorBonus = 0f,
         speedScale = 1.05f,
-        signature = "Breaks into three smaller worms when killed, and each of " +
-            "those breaks once more. Splash is your friend.",
+        signature = tr("Breaks into three smaller worms when killed, and each of " +
+            "those breaks once more. Splash is your friend."),
         firstCycle = 2,
         mapId = ZIGZAG_MAP_ID,
         palette = BossPalette.SPECTRUM
@@ -506,8 +507,8 @@ enum class BossVariant(
         healthScale = 1f,
         armorBonus = 0f,
         speedScale = 1f,
-        signature = "Casts decoy copies of itself that soak up fire. ANALYST " +
-            "and ROOT ADMIN see through them.",
+        signature = tr("Casts decoy copies of itself that soak up fire. ANALYST " +
+            "and ROOT ADMIN see through them."),
         firstCycle = 2,
         mapId = HELIX_MAP_ID,
         palette = BossPalette.SPECTRUM
@@ -525,8 +526,8 @@ enum class BossVariant(
         healthScale = 1.2f,
         armorBonus = 2f,
         speedScale = 0.95f,
-        signature = "When it dies, every agent near it is jammed for 3 " +
-            "seconds. Kill it far from your board, or with the next wave far off.",
+        signature = tr("When it dies, every agent near it is jammed for 3 " +
+            "seconds. Kill it far from your board, or with the next wave far off."),
         firstCycle = 2,
         mapId = BRAID_MAP_ID,
         palette = BossPalette.HOSTILE

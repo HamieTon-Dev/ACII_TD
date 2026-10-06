@@ -1,5 +1,7 @@
 package com.cyopstd.game.ui.menu
 
+import com.cyopstd.game.i18n.tr
+
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -70,8 +72,8 @@ fun LoadoutScreen(
         LivingBackground.entries.count { it.productId == null || entitlements.owns(it.productId) }
 
     ScreenScaffold(
-        title = "LOADOUT",
-        subtitle = "$ownedSkins core skins · $ownedBackgrounds backgrounds available",
+        title = tr("LOADOUT"),
+        subtitle = tr("{0} core skins · {1} backgrounds available", ownedSkins, ownedBackgrounds),
         onBack = onBack,
         backgroundAnimation = backgroundAnimation
     ) {
@@ -84,15 +86,15 @@ fun LoadoutScreen(
                     .weight(1f)
                     .verticalScroll(rememberScrollState())
             ) {
-                TerminalPanel(title = "CORE-SERVER SKIN", accent = Palette.Purple) {
-                    Caption("The rack your core is built into. Seen on the battlefield.")
+                TerminalPanel(title = tr("CORE-SERVER SKIN"), accent = Palette.Purple) {
+                    Caption(tr("The rack your core is built into. Seen on the battlefield."))
                     Spacer(Modifier.height(6.dp))
                     for (skin in CoreSkin.entries) {
                         val owned = skin.productId == null || entitlements.owns(skin.productId)
                         LoadoutRow(
                             title = skin.displayName,
                             subtitle = if (skin.productId == null) {
-                                "The default rack."
+                                tr("The default rack.")
                             } else {
                                 skin.flourish.blurb
                             },
@@ -110,8 +112,8 @@ fun LoadoutScreen(
                     .weight(1f)
                     .verticalScroll(rememberScrollState())
             ) {
-                TerminalPanel(title = "LIVING BACKGROUND", accent = Palette.Blue) {
-                    Caption("Drawn under the lanes, and behind every menu.")
+                TerminalPanel(title = tr("LIVING BACKGROUND"), accent = Palette.Blue) {
+                    Caption(tr("Drawn under the lanes, and behind every menu."))
                     Spacer(Modifier.height(6.dp))
                     for (background in LivingBackground.entries) {
                         val owned = background.productId == null ||
@@ -129,18 +131,18 @@ fun LoadoutScreen(
 
                 Spacer(Modifier.height(12.dp))
 
-                TerminalPanel(title = "AGENT COLOURS", accent = Palette.Magenta) {
+                TerminalPanel(title = tr("AGENT COLOURS"), accent = Palette.Magenta) {
                     LoadoutRow(
-                        title = "CLASS COLOURS",
-                        subtitle = "Each agent wears the colour of what it does.",
+                        title = tr("CLASS COLOURS"),
+                        subtitle = tr("Each agent wears the colour of what it does."),
                         selected = !cosmetics.spectrumAgents,
                         owned = true,
                         swatch = listOf(Palette.Cyan, Palette.Green, Palette.Purple),
                         onClick = { onSpectrumAgents(false) }
                     )
                     LoadoutRow(
-                        title = "SPECTRUM",
-                        subtitle = "A slow colour cycle across the whole roster.",
+                        title = tr("SPECTRUM"),
+                        subtitle = tr("A slow colour cycle across the whole roster."),
                         selected = cosmetics.spectrumAgents && entitlements.spectrumAgents,
                         owned = entitlements.spectrumAgents,
                         swatch = listOf(Palette.Magenta, Palette.Crypto, Palette.Cyan),
@@ -150,15 +152,15 @@ fun LoadoutScreen(
 
                 Spacer(Modifier.height(12.dp))
 
-                TerminalPanel(title = "LOCKED ITEMS", accent = Palette.CyanDim) {
+                TerminalPanel(title = tr("LOCKED ITEMS"), accent = Palette.CyanDim) {
                     Caption(
-                        "Anything marked LOCKED is in the store. Nothing here " +
+                        tr("Anything marked LOCKED is in the store. Nothing here " +
                             "changes how the game plays — skins are looks, not " +
-                            "advantages."
+                            "advantages.")
                     )
                     Spacer(Modifier.height(8.dp))
                     com.cyopstd.game.ui.common.CompactButton(
-                        text = "OPEN STORE",
+                        text = tr("OPEN STORE"),
                         onClick = onOpenStore,
                         accent = Palette.Crypto,
                         modifier = Modifier.fillMaxWidth()
@@ -219,7 +221,7 @@ private fun LoadoutRow(
                 style = MaterialTheme.typography.titleSmall,
                 color = if (owned) Palette.TextPrimary else Palette.TextMuted
             )
-            Caption(if (owned) subtitle else "LOCKED · $subtitle")
+            Caption(if (owned) subtitle else tr("LOCKED · {0}", subtitle))
         }
         for (colour in swatch.take(3)) {
             Spacer(Modifier.width(4.dp))

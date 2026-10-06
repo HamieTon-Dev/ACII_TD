@@ -1,5 +1,6 @@
 package com.cyopstd.game.ui.menu
 
+import com.cyopstd.game.i18n.tr
 import java.util.Calendar
 
 /**
@@ -27,9 +28,9 @@ object AboutText {
     /**
      * The subtitle under the title on the splash and the main menu, and on
      * ABOUT (owner, 2026-10-02: *"CyOps TD / Cyber Operatives: Tower defense"*;
-     * was "ASCII CYBER DEFENSE").
+     * was "ASCII CYBER DEFENSE"). Translated; the title itself stays English.
      */
-    const val GAME_SUBTITLE = "Cyber Operatives: Tower Defense"
+    val GAME_SUBTITLE: String get() = tr("Cyber Operatives: Tower Defense")
 
     /**
      * Copyright line.
@@ -43,15 +44,15 @@ object AboutText {
      * line has to change with it.
      */
     fun copyright(year: Int = Calendar.getInstance().get(Calendar.YEAR)): String =
-        "© $year $DEVELOPER. All rights reserved."
+        tr("© {0} {1}. All rights reserved.", year, DEVELOPER)
 
     /** What the game is, in two sentences, for someone who has not played it. */
-    const val DEVELOPMENT_STATEMENT =
-        "An independently developed, offline-first tower defence game with a " +
+    val DEVELOPMENT_STATEMENT =
+        tr("An independently developed, offline-first tower defence game with a " +
             "cybersecurity theme. The scenarios, agents and terminology are " +
             "fictionalised for gameplay, with short real-world explanations " +
             "included so the concepts behind them are learnable. It teaches no " +
-            "offensive technique and performs no real security function."
+            "offensive technique and performs no real security function.")
 
     /**
      * AI assistance disclosure.
@@ -69,10 +70,10 @@ object AboutText {
      * and software development" instead. Easily changed if the owner prefers
      * their original.
      */
-    const val AI_DISCLOSURE_TITLE = "AI-ASSISTED DEVELOPMENT"
+    val AI_DISCLOSURE_TITLE = tr("AI-ASSISTED DEVELOPMENT")
 
-    const val AI_DISCLOSURE =
-        "This game was developed with assistance from artificial intelligence " +
+    val AI_DISCLOSURE =
+        tr("This game was developed with assistance from artificial intelligence " +
             "tools, used as educational and development aids while learning " +
             "programming and software development.\n\n" +
             "AI tools assisted with areas such as code development, " +
@@ -80,7 +81,7 @@ object AboutText {
             "decisions, gameplay direction, testing and publication decisions " +
             "remain the responsibility of the developer.\n\n" +
             "This game is not generated, sponsored, endorsed, owned or " +
-            "published by any artificial intelligence company."
+            "published by any artificial intelligence company.")
 
     /**
      * Trademark and third-party terminology notice.
@@ -98,10 +99,10 @@ object AboutText {
      * - It names Red Hat and Microsoft only in the negative — as parties the
      *   game is *not* affiliated with — which is disclaiming, not invoking.
      */
-    const val TRADEMARK_TITLE = "TRADEMARK AND THIRD-PARTY NOTICE"
+    val TRADEMARK_TITLE = tr("TRADEMARK AND THIRD-PARTY NOTICE")
 
-    const val TRADEMARK_NOTICE =
-        "Certain names, terms and trademarks referenced in this game may be " +
+    val TRADEMARK_NOTICE =
+        tr("Certain names, terms and trademarks referenced in this game may be " +
             "the property of their respective owners. Such references are used " +
             "solely for identification, commentary, educational context and " +
             "fictional representation within the game.\n\n" +
@@ -109,7 +110,7 @@ object AboutText {
             "sponsored by, endorsed by or approved by Red Hat, Microsoft or any " +
             "other third-party trademark owner.\n\n" +
             "All third-party trademarks, product names, company names and logos " +
-            "remain the property of their respective owners."
+            "remain the property of their respective owners.")
 
     /**
      * What the game genuinely does not do, after the monetisation work.
@@ -120,18 +121,18 @@ object AboutText {
      * could quietly falsify.
      */
     val DOES_NOT_DO: List<String> = listOf(
-        "No real cryptocurrency, blockchain, wallet, mining or NFTs",
-        "No gambling, loot boxes or randomised paid rewards",
-        "No real hacking capability — nothing here touches a real network",
-        "No personal data is collected by the game itself",
-        "No account or login is required to play",
-        "Plays fully offline"
+        tr("No real cryptocurrency, blockchain, wallet, mining or NFTs"),
+        tr("No gambling, loot boxes or randomised paid rewards"),
+        tr("No real hacking capability — nothing here touches a real network"),
+        tr("No personal data is collected by the game itself"),
+        tr("No account or login is required to play"),
+        tr("Plays fully offline")
     )
 
-    const val CRYPTO_DISCLAIMER =
-        "◇ Crypto and € Budget are fictional in-game resources. They have no " +
+    val CRYPTO_DISCLAIMER =
+        tr("◇ Crypto and € Budget are fictional in-game resources. They have no " +
             "monetary value, cannot be exchanged for anything outside the game, " +
-            "and cannot leave the device."
+            "and cannot leave the device.")
 
     /**
      * The honest version of the advertising and purchases disclosure.
@@ -144,20 +145,20 @@ object AboutText {
         val parts = buildList {
             if (adsConfigured) {
                 add(
-                    "This build shows advertisements supplied by Google AdMob. " +
+                    tr("This build shows advertisements supplied by Google AdMob. " +
                         "Watching an ad to continue a run is always optional and " +
-                        "is never required to play."
+                        "is never required to play.")
                 )
             } else {
-                add("This build shows no advertisements.")
+                add(tr("This build shows no advertisements."))
             }
             if (purchasesAvailable) {
                 add(
-                    "Optional in-app purchases are available through Google Play. " +
-                        "Nothing in the game is gated behind one."
+                    tr("Optional in-app purchases are available through Google Play. " +
+                        "Nothing in the game is gated behind one.")
                 )
             } else {
-                add("This build has no in-app purchases.")
+                add(tr("This build has no in-app purchases."))
             }
         }
         return parts.joinToString("\n\n")

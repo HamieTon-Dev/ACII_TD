@@ -1,5 +1,7 @@
 package com.cyopstd.game.ui.game
 
+import com.cyopstd.game.i18n.tr
+
 import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -106,13 +108,13 @@ fun AgentManagementPanel(
                     color = Palette.TextPrimary
                 )
                 Text(
-                    text = if (maxed) "LEVEL ${agent.level} · MAX" else "LEVEL ${agent.level}",
+                    text = if (maxed) tr("LEVEL {0} · MAX", agent.level) else tr("LEVEL {0}", agent.level),
                     style = MaterialTheme.typography.labelMedium,
                     color = if (maxed) Palette.Crypto else Palette.Green
                 )
                 if (ransomed) {
                     Text(
-                        text = "RANSOMED \u00B7 UPGRADES LOCKED ${kotlin.math.ceil(agent.ransomedFor).toInt()}s",
+                        text = tr("RANSOMED \u00B7 UPGRADES LOCKED {0}s", kotlin.math.ceil(agent.ransomedFor).toInt()),
                         style = MaterialTheme.typography.labelSmall,
                         color = Palette.Red
                     )
@@ -131,13 +133,13 @@ fun AgentManagementPanel(
             val interval = com.cyopstd.game.core.Balance.engineerHealInterval(agent.level)
             val nextInterval = if (maxed) null
             else com.cyopstd.game.core.Balance.engineerHealInterval(agent.level + 1)
-            UpgradeStatRow("REPAIR", "+${com.cyopstd.game.core.Balance.ENGINEER_HEAL_AMOUNT} HP", null)
-            UpgradeStatRow("EVERY", "${format(interval)}s", nextInterval?.let { "${format(it)}s" })
-            UpgradeStatRow("SLOT", "CORE-SERVER", null)
+            UpgradeStatRow(tr("REPAIR"), "+${com.cyopstd.game.core.Balance.ENGINEER_HEAL_AMOUNT} HP", null)
+            UpgradeStatRow(tr("EVERY"), "${format(interval)}s", nextInterval?.let { "${format(it)}s" })
+            UpgradeStatRow(tr("SLOT"), "CORE-SERVER", null)
         } else {
-            UpgradeStatRow("DAMAGE", format(current.damage), next?.let { format(it.damage) })
-            UpgradeStatRow("RATE", "${format(current.fireRate)}/sec", next?.let { "${format(it.fireRate)}/sec" })
-            UpgradeStatRow("RANGE", current.range.toInt().toString(), next?.let { it.range.toInt().toString() })
+            UpgradeStatRow(tr("DAMAGE"), format(current.damage), next?.let { format(it.damage) })
+            UpgradeStatRow(tr("RATE"), tr("{0}/sec", format(current.fireRate)), next?.let { tr("{0}/sec", format(it.fireRate)) })
+            UpgradeStatRow(tr("RANGE"), current.range.toInt().toString(), next?.let { it.range.toInt().toString() })
         }
 
         Spacer(Modifier.height(6.dp))
@@ -145,7 +147,7 @@ fun AgentManagementPanel(
         Spacer(Modifier.height(6.dp))
 
         Text(
-            text = "SPECIAL — ${type.abilityName}",
+            text = tr("SPECIAL — {0}", type.abilityName),
             style = MaterialTheme.typography.labelMedium,
             color = Palette.Green
         )
@@ -164,7 +166,7 @@ fun AgentManagementPanel(
             ) {
                 Column {
                     Text(
-                        text = "TARGETING",
+                        text = tr("TARGETING"),
                         style = MaterialTheme.typography.labelSmall,
                         color = Palette.TextMuted
                     )
@@ -176,19 +178,19 @@ fun AgentManagementPanel(
                 }
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     FocusButton(
-                        icon = com.cyopstd.game.R.drawable.ic_boss_focus, label = "BOSS",
+                        icon = com.cyopstd.game.R.drawable.ic_boss_focus, label = tr("BOSS"),
                         on = agent.focus == com.cyopstd.game.model.TargetFocus.BOSSES, onTint = Palette.Red,
                         tag = "focus-boss"
                     ) { onToggleFocus(com.cyopstd.game.model.TargetFocus.BOSSES) }
                     Spacer(Modifier.width(4.dp))
                     FocusButton(
-                        icon = com.cyopstd.game.R.drawable.ic_focus_other, label = "OTHER",
+                        icon = com.cyopstd.game.R.drawable.ic_focus_other, label = tr("OTHER"),
                         on = agent.focus == com.cyopstd.game.model.TargetFocus.OTHERS, onTint = Palette.Orange,
                         tag = "focus-other"
                     ) { onToggleFocus(com.cyopstd.game.model.TargetFocus.OTHERS) }
                     Spacer(Modifier.width(6.dp))
                     CompactButton(
-                        text = "CHANGE",
+                        text = tr("CHANGE"),
                         onClick = onCycleTargeting,
                         accent = Palette.Purple
                     )
@@ -196,8 +198,8 @@ fun AgentManagementPanel(
             }
             Text(
                 text = when (agent.focus) {
-                    com.cyopstd.game.model.TargetFocus.BOSSES -> "BOSS: shoots bosses only, holds fire otherwise"
-                    com.cyopstd.game.model.TargetFocus.OTHERS -> "OTHER: small units and elites only, never bosses"
+                    com.cyopstd.game.model.TargetFocus.BOSSES -> tr("BOSS: shoots bosses only, holds fire otherwise")
+                    com.cyopstd.game.model.TargetFocus.OTHERS -> tr("OTHER: small units and elites only, never bosses")
                     com.cyopstd.game.model.TargetFocus.ALL -> agent.targetingMode.description
                 },
                 style = MaterialTheme.typography.labelSmall,
@@ -213,13 +215,13 @@ fun AgentManagementPanel(
         AsciiRule(color = Palette.Divider)
         Spacer(Modifier.height(6.dp))
 
-        StatRow("ATTACKS STOPPED", agent.lifetimeKills.toString(), valueColor = Palette.Cyan)
-        StatRow("DAMAGE DEALT", agent.lifetimeDamage.toInt().toString(), valueColor = Palette.Cyan)
+        StatRow(tr("ATTACKS STOPPED"), agent.lifetimeKills.toString(), valueColor = Palette.Cyan)
+        StatRow(tr("DAMAGE DEALT"), agent.lifetimeDamage.toInt().toString(), valueColor = Palette.Cyan)
 
         if (agent.damageBuff > 1f) {
             StatRow(
-                "ARCHITECT UPLINK",
-                "+${((agent.damageBuff - 1f) * 100).toInt()}% DMG",
+                tr("ARCHITECT UPLINK"),
+                tr("+{0}% DMG", ((agent.damageBuff - 1f) * 100).toInt()),
                 valueColor = Palette.Purple
             )
         }
@@ -239,7 +241,7 @@ fun AgentManagementPanel(
     ) {
         if (maxed) {
             Text(
-                text = "MAXIMUM LEVEL REACHED",
+                text = tr("MAXIMUM LEVEL REACHED"),
                 style = MaterialTheme.typography.labelMedium,
                 color = Palette.Crypto
             )
@@ -249,7 +251,7 @@ fun AgentManagementPanel(
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
                 Text(
-                    text = "UPGRADE COST",
+                    text = tr("UPGRADE COST"),
                     style = MaterialTheme.typography.bodyMedium,
                     color = Palette.TextSecondary
                 )
@@ -286,7 +288,7 @@ fun AgentManagementPanel(
                     modifier = Modifier.weight(1f)
                 )
                 CompactButton(
-                    text = if (affordableLevels > 1) "MAX +$affordableLevels" else "MAX",
+                    text = if (affordableLevels > 1) tr("MAX +{0}", affordableLevels) else tr("MAX"),
                     onClick = { onUpgrade(Balance.MAX_AGENT_LEVEL) },
                     enabled = canAfford,
                     accent = Palette.Crypto,
@@ -297,7 +299,7 @@ fun AgentManagementPanel(
         }
 
         CompactButton(
-            text = "SELL  ◇ ${type.sellValue(agent.level)}",
+            text = tr("SELL  ◇ {0}", type.sellValue(agent.level)),
             onClick = onSell,
             accent = Palette.Orange,
             modifier = Modifier.fillMaxWidth()
@@ -306,7 +308,7 @@ fun AgentManagementPanel(
         Spacer(Modifier.height(8.dp))
 
         CompactButton(
-            text = "CLOSE",
+            text = tr("CLOSE"),
             onClick = onClose,
             accent = Palette.TextSecondary,
             modifier = Modifier.fillMaxWidth()
@@ -338,7 +340,7 @@ internal fun ScrollHint(scroll: ScrollState, modifier: Modifier = Modifier) {
         contentAlignment = Alignment.Center
     ) {
         Text(
-            text = "\u25BC  MORE BELOW",
+            text = tr("\u25BC  MORE BELOW"),
             style = MaterialTheme.typography.labelSmall,
             color = Palette.Cyan
         )
@@ -389,7 +391,7 @@ private fun UpgradeStatRow(label: String, current: String, next: String?) {
             )
             if (next != null && next != current) {
                 Text(
-                    text = "  →  ",
+                    text = tr("  →  "),
                     style = MaterialTheme.typography.bodySmall,
                     color = Palette.TextMuted
                 )
@@ -438,7 +440,7 @@ private fun FocusButton(
     ) {
         androidx.compose.material3.Icon(
             androidx.compose.ui.res.painterResource(icon),
-            contentDescription = "$label focus ${if (on) "on" else "off"}",
+            contentDescription = if (on) tr("{0} focus on", label) else tr("{0} focus off", label),
             tint = tint,
             modifier = Modifier.size(20.dp)
         )

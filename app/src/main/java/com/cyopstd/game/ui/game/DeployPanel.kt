@@ -1,5 +1,7 @@
 package com.cyopstd.game.ui.game
 
+import com.cyopstd.game.i18n.tr
+
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -96,7 +98,7 @@ fun DeployPanel(
             verticalAlignment = Alignment.CenterVertically
         ) {
             Text(
-                text = "DEPLOY CYBER AGENT",
+                text = tr("DEPLOY CYBER AGENT"),
                 style = MaterialTheme.typography.titleMedium,
                 color = Palette.Cyan
             )
@@ -107,7 +109,7 @@ fun DeployPanel(
                     color = Palette.Crypto
                 )
                 Spacer(Modifier.width(12.dp))
-                CompactButton(text = "CLOSE", onClick = onClose, accent = Palette.TextSecondary)
+                CompactButton(text = tr("CLOSE"), onClick = onClose, accent = Palette.TextSecondary)
             }
         }
 
@@ -166,9 +168,9 @@ fun DeployPanel(
         Spacer(Modifier.height(6.dp))
         Text(
             text = if (selected == null) {
-                "Select an agent, then tap a highlighted deployment node."
+                tr("Select an agent, then tap a highlighted deployment node.")
             } else {
-                "${selected.displayName} selected — tap a highlighted node to deploy."
+                tr("{0} selected — tap a highlighted node to deploy.", selected.displayName)
             },
             style = MaterialTheme.typography.bodySmall,
             color = Palette.TextSecondary
@@ -235,8 +237,8 @@ private fun AgentCard(
                 )
                 Text(
                     text = when {
-                        !unlocked -> "LOCKED"
-                        maxed -> "MAX ${type.maxDeployed} DEPLOYED"
+                        !unlocked -> tr("LOCKED")
+                        maxed -> tr("MAX {0} DEPLOYED", type.maxDeployed)
                         else -> "◇ ${type.cost}"
                     },
                     style = MaterialTheme.typography.labelSmall,
@@ -255,17 +257,17 @@ private fun AgentCard(
         if (unlocked) {
             Text(
                 text = if (type.healsServer) {
-                    "+${com.cyopstd.game.core.Balance.ENGINEER_HEAL_AMOUNT} HP / " +
-                        "${com.cyopstd.game.core.Balance.ENGINEER_HEAL_INTERVAL.toInt()}s"
+                    tr("+{0} HP / " +
+                        "{1}s", com.cyopstd.game.core.Balance.ENGINEER_HEAL_AMOUNT, com.cyopstd.game.core.Balance.ENGINEER_HEAL_INTERVAL.toInt())
                 } else {
-                    "DMG ${type.baseDamage.toInt()}  RATE ${format(type.baseFireRate)}/s"
+                    tr("DMG {0}  RATE {1}/s", type.baseDamage.toInt(), format(type.baseFireRate))
                 },
                 style = MaterialTheme.typography.labelSmall,
                 color = Palette.TextSecondary,
                 maxLines = 1
             )
             Text(
-                text = if (type.healsServer) "ON CORE" else "RNG ${type.baseRange.toInt()}",
+                text = if (type.healsServer) tr("ON CORE") else tr("RNG {0}", type.baseRange.toInt()),
                 style = MaterialTheme.typography.labelSmall,
                 color = Palette.TextSecondary,
                 maxLines = 1
@@ -279,12 +281,12 @@ private fun AgentCard(
             )
         } else {
             Text(
-                text = "\uD83D\uDD12 LOCKED",
+                text = tr("\uD83D\uDD12 LOCKED"),
                 style = MaterialTheme.typography.labelMedium,
                 color = Palette.Purple
             )
             Text(
-                text = "TAP FOR DETAILS",
+                text = tr("TAP FOR DETAILS"),
                 style = MaterialTheme.typography.labelSmall,
                 color = Palette.TextMuted
             )
@@ -336,10 +338,10 @@ private fun AgentInfoNote(
                 modifier = Modifier.weight(1f)
             )
             if (unlocked) {
-                CompactButton(text = "SELECT", onClick = onSelect, accent = Palette.Green)
+                CompactButton(text = tr("SELECT"), onClick = onSelect, accent = Palette.Green)
                 Spacer(Modifier.width(6.dp))
             }
-            CompactButton(text = "CLOSE", onClick = onDismiss, accent = Palette.TextSecondary)
+            CompactButton(text = tr("CLOSE"), onClick = onDismiss, accent = Palette.TextSecondary)
         }
         Column(
             Modifier
@@ -348,13 +350,13 @@ private fun AgentInfoNote(
         ) {
             Text(
                 text = if (type.healsServer) {
-                    "REPAIR +${com.cyopstd.game.core.Balance.ENGINEER_HEAL_AMOUNT} HP " +
-                        "\u00B7 EVERY ${com.cyopstd.game.core.Balance.ENGINEER_HEAL_INTERVAL.toInt()}s " +
-                        "\u00B7 SLOT CORE-SERVER \u00B7 MAX ${type.maxDeployed}"
+                    tr("REPAIR +{0} HP " +
+                        "\u00B7 EVERY {1}s " +
+                        "\u00B7 SLOT CORE-SERVER \u00B7 MAX {2}", com.cyopstd.game.core.Balance.ENGINEER_HEAL_AMOUNT, com.cyopstd.game.core.Balance.ENGINEER_HEAL_INTERVAL.toInt(), type.maxDeployed)
                 } else {
-                    "DMG ${type.baseDamage.toInt()} \u00B7 RATE ${format(type.baseFireRate)}/s " +
-                        "\u00B7 RANGE ${type.baseRange.toInt()}" +
-                        if (type.maxDeployed > 0) " \u00B7 MAX ${type.maxDeployed}" else ""
+                    tr("DMG {0} \u00B7 RATE {1}/s " +
+                        "\u00B7 RANGE {2}", type.baseDamage.toInt(), format(type.baseFireRate), type.baseRange.toInt()) +
+                        if (type.maxDeployed > 0) tr(" \u00B7 MAX {0}", type.maxDeployed) else ""
                 },
                 style = MaterialTheme.typography.labelMedium,
                 color = Palette.Cyan
@@ -366,10 +368,10 @@ private fun AgentInfoNote(
                 color = Palette.Crypto
             )
             Spacer(Modifier.height(4.dp))
-            Text(text = "IN-GAME", style = MaterialTheme.typography.labelSmall, color = Palette.Green)
+            Text(text = tr("IN-GAME"), style = MaterialTheme.typography.labelSmall, color = Palette.Green)
             Text(text = type.inGame, style = MaterialTheme.typography.bodySmall, color = Palette.TextSecondary)
             Spacer(Modifier.height(4.dp))
-            Text(text = "REAL-WORLD", style = MaterialTheme.typography.labelSmall, color = Palette.Cyan)
+            Text(text = tr("REAL-WORLD"), style = MaterialTheme.typography.labelSmall, color = Palette.Cyan)
             Text(text = type.realWorld, style = MaterialTheme.typography.bodySmall, color = Palette.TextSecondary)
         }
     }
@@ -478,7 +480,7 @@ private fun CompactAgentIcon(
         Text(
             text = when {
                 !unlocked -> "\uD83D\uDD12"
-                maxed -> "MAX"
+                maxed -> tr("MAX")
                 else -> "${type.cost}"
             },
             style = MaterialTheme.typography.labelSmall,
@@ -508,7 +510,7 @@ private fun LockNote(type: AgentType, bestWave: Int, onDismiss: () -> Unit) {
     ) {
         Column(Modifier.weight(1f)) {
             Text(
-                text = "\uD83D\uDD12 [${type.glyph}] ${type.displayName} \u00B7 LOCKED",
+                text = tr("\uD83D\uDD12 [{0}] {1} \u00B7 LOCKED", type.glyph, type.displayName),
                 style = MaterialTheme.typography.labelMedium,
                 color = Palette.Purple
             )
@@ -519,16 +521,16 @@ private fun LockNote(type: AgentType, bestWave: Int, onDismiss: () -> Unit) {
             )
             Text(
                 text = if (type.beginnerLevelOnly) {
-                    "Your best on ${AgentType.BEGINNER_LEVEL_NAME}: wave $bestWave"
+                    tr("Your best on {0}: wave {1}", AgentType.BEGINNER_LEVEL_NAME, bestWave)
                 } else {
-                    "Your best: wave $bestWave"
+                    tr("Your best: wave {0}", bestWave)
                 },
                 style = MaterialTheme.typography.labelSmall,
                 color = Palette.TextMuted
             )
         }
         Spacer(Modifier.width(10.dp))
-        CompactButton(text = "OK", onClick = onDismiss, accent = Palette.Purple)
+        CompactButton(text = tr("OK"), onClick = onDismiss, accent = Palette.Purple)
     }
 }
 

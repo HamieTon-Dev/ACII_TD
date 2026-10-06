@@ -1,5 +1,7 @@
 package com.cyopstd.game.engine
 
+import com.cyopstd.game.i18n.tr
+
 import com.cyopstd.game.core.Balance
 import com.cyopstd.game.model.Agent
 import com.cyopstd.game.model.Enemy
@@ -68,7 +70,7 @@ class WallSystem(private val engine: GameEngine) {
         wall.maxHealth = Balance.aceWallHealth(agent.level, engine.currentWave)
         wall.health = wall.maxHealth
         wall.progressByLane = FloatArray(map.laneCount) { lane -> nearestProgress(lane, bestX, bestY) }
-        engine.effectSystem().spawnText(bestX, bestY - 34f, "WALL UP", GameEngine.COLOR_FRIENDLY, 0.7f)
+        engine.effectSystem().spawnText(bestX, bestY - 34f, tr("WALL UP"), GameEngine.COLOR_FRIENDLY, 0.7f)
     }
 
     /** Where on [lane] the point (x, y) lies, or NaN if the lane does not pass it. */
@@ -121,7 +123,7 @@ class WallSystem(private val engine: GameEngine) {
         if (wall.health <= 0f) {
             engine.agents.items.firstOrNull { it.active && it.nodeId == wall.ownerNodeId }
                 ?.wallCooldown = Balance.ACE_WALL_REBUILD_SECONDS
-            engine.effectSystem().spawnText(wall.x, wall.y - 34f, "WALL DOWN", GameEngine.COLOR_HOSTILE, 0.8f)
+            engine.effectSystem().spawnText(wall.x, wall.y - 34f, tr("WALL DOWN"), GameEngine.COLOR_HOSTILE, 0.8f)
             wall.reset()
         }
     }

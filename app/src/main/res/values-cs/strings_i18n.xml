@@ -1,0 +1,867 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Translation of values/strings_i18n.xml. Machine-quality (AI) translation; see FEATURE_BACKLOG.md. -->
+<resources>
+    <string name="t_0069698f" formatted="false">"€ {0} v rozpočtu"</string>
+    <string name="t_00bdf050" formatted="false">"TOTO ZAŘÍZENÍ"</string>
+    <string name="t_00c74b4a" formatted="false">"Útočí až na tři samostatné hrozby každou salvou, což z něj dělá odpověď týmu na širokou vlnu. Zpřístupňuje volbu cíle."</string>
+    <string name="t_00cb85ad" formatted="false">"KROK 4 — VYBERTE TARPIT"</string>
+    <string name="t_00f316c1" formatted="false">"CENA DALŠÍ ÚROVNĚ"</string>
+    <string name="t_00fafa13" formatted="false">"TENTO ÚČET VLASTNÍ"</string>
+    <string name="t_01278423" formatted="false">"CO TO MĚNÍ"</string>
+    <string name="t_014c06bb" formatted="false">"Odemčeno {0} z {1} · nejlepší vlna {2}"</string>
+    <string name="t_01b91dff" formatted="false">"RANSOM každých pár sekund zamkne vylepšení jednoho agenta na {0} sekund. Vylepšete dřív, než dorazí."</string>
+    <string name="t_01ba7032" formatted="false">"0 úrovní"</string>
+    <string name="t_01f2a69d" formatted="false">"POZNÁMKY K RELACI"</string>
+    <string name="t_0288b770" formatted="false">"Klepněte na tlačítko AGENTI na ovládacím panelu dole."</string>
+    <string name="t_02b88c49" formatted="false">"Veškerý zvuk se generuje v zařízení při spuštění; hra neobsahuje žádné zvukové soubory."</string>
+    <string name="t_02f0f435" formatted="false">"Root, neboli správce, je nejvyšší úroveň oprávnění v systému: může zastavit jakýkoli proces a změnit cokoli. Právě proto je dobrou praxí přidělovat ho co nejméně často a na co nejkratší dobu. „Root admin“ je zkratka pro úroveň přístupu, ne pracovní pozice."</string>
+    <string name="t_0306926d" formatted="false">"Tři útočné pruhy vedoucí k hlavnímu serveru"</string>
+    <string name="t_0358799e" formatted="false">"Platí pro každého agenta {0} v každém zápase od teď, navíc k FIRMWARU JÁDRA. První úrovně jsou levné; každá stojí víc než předchozí a nejvyšší stojí miliony."</string>
+    <string name="t_0397b7d9" formatted="false">"AUTOMATICKY SPOUŠTĚT VLNY S BOSSEM"</string>
+    <string name="t_03d108e0" formatted="false">"Propojeno, ale Google není dostupný. Nic se neztratilo — hraje se uložená pozice z tohoto zařízení a příští synchronizace účet aktualizuje."</string>
+    <string name="t_059b388a" formatted="false">"&gt; vlna {0} odražena — připravte se na vlnu {1}"</string>
+    <string name="t_05ea5d0e" formatted="false">"Dostupné od začátku."</string>
+    <string name="t_05f2ef1e" formatted="false">"Další skladba"</string>
+    <string name="t_063d8618" formatted="false">"Nepřátelský kód převlečený za něco, o co jste žádali. Pomalý, ale silně zabalený — brnění otupí každý jednotlivý zásah, takže rychlé slabé střely se na něm promrhají."</string>
+    <string name="t_07269781" formatted="false">"Vyberte obtížnost a zobrazte její světový žebříček."</string>
+    <string name="t_07a3d7ab" formatted="false">"Vše, co vlastníte, včetně oživení, se vrací z Google Play tlačítkem OBNOVIT na libovolném zařízení. Nikdy to není součástí cloudového uložení, takže žádný uložený soubor nemůže nákup dát ani vzít."</string>
+    <string name="t_07fbf4bd" formatted="false">"OŽIVEN"</string>
+    <string name="t_08039ac7" formatted="false">"OBCHOD"</string>
+    <string name="t_08175caa" formatted="false">"BARVY TŘÍD"</string>
+    <string name="t_08218c08" formatted="false">"PROPOJOVÁNÍ…"</string>
+    <string name="t_08279524" formatted="false">"Kód, který zneužívá konkrétní chybu v systému. Exploity se pohybují rychle a tvrdě udeří; když se blíží, dosah detekce je důležitější než hrubé poškození."</string>
+    <string name="t_086b8b8e" formatted="false">"BOSS"</string>
+    <string name="t_08f0711d" formatted="false">"OBNOVIT NÁKUPY"</string>
+    <string name="t_09653280" formatted="false">"K JÁDRU"</string>
+    <string name="t_0a0bc63d" formatted="false">"Předchozí skladba"</string>
+    <string name="t_0a2301f4" formatted="false">"ULOŽENÝ POSTUP"</string>
+    <string name="t_0a344034" formatted="false">"DALŠÍ: VLNA {0}"</string>
+    <string name="t_0ae74b3e" formatted="false">"ÚDER ZERO-DAY"</string>
+    <string name="t_0b205685" formatted="false">"Inicializace sítě..."</string>
+    <string name="t_0b809aa5" formatted="false">"Pro {0} zatím neexistuje světový žebříček. Hry tam se zaznamenávají v tomto zařízení."</string>
+    <string name="t_0bc6e19b" formatted="false">"Sám nezpůsobuje poškození. Posiluje každého agenta v dosahu o +30 % poškození a +20 % rychlosti palby, takže celá jeho hodnota spočívá v tom, kam ho umístíte."</string>
+    <string name="t_0bd16003" formatted="false">"MAX"</string>
+    <string name="t_0bfbeb5b" formatted="false">"Zdržte je v poli TARPIT a pak nechte IPS vyčistit nahromaděné."</string>
+    <string name="t_0c121fb2" formatted="false">"POSTUP SYNCHRONIZOVÁN"</string>
+    <string name="t_0c147607" formatted="false">"HLOUBKOVÝ SKEN"</string>
+    <string name="t_0c16a4ef" formatted="false">"Zatím žádné výsledky. Dokončete hru a buďte první."</string>
+    <string name="t_0c997319" formatted="false">"DĚLENÍ WORM"</string>
+    <string name="t_0cb4ce2b" formatted="false">"VLNA {0} ZAJIŠTĚNA  ◇{1}"</string>
+    <string name="t_0cfa4a6e" formatted="false">"BOSSOVÉ TÉTO ÚROVNĚ"</string>
+    <string name="t_0d884b08" formatted="false">"PRŮNIK (BOSS)"</string>
+    <string name="t_0d8c63a6" formatted="false">"Každý zásah přeskočí na 2 blízké hrozby s 55 % poškození."</string>
+    <string name="t_0df4bfec" formatted="false">"SLABÝ PROTI"</string>
+    <string name="t_0e69fc6c" formatted="false">"Lišta nasazení ukazuje jen ikonu a cenu každého agenta"</string>
+    <string name="t_0eb480b6" formatted="false">"Ustupující perspektivní mřížka s honicím pruhem dole."</string>
+    <string name="t_0f47943c" formatted="false">"ZAMĚŘENÍ VYP."</string>
+    <string name="t_0f5d5911" formatted="false">"ÚSPORA BATERIE"</string>
+    <string name="t_0f80d304" formatted="false">"POŠKOZENÍ AGENTŮ"</string>
+    <string name="t_0f9a43d6" formatted="false">"VŠECHNA ŽIVÁ POZADÍ"</string>
+    <string name="t_0fa88218" formatted="false">"Google Play není dostupný — obvykle chybí síť. Vše, co jste už koupili, je stále vaše; až budete znovu online, stiskněte OBNOVIT a znovu se to objeví."</string>
+    <string name="t_0fd40469" formatted="false">"VÝKON"</string>
+    <string name="t_0fd4c0f4" formatted="false">"SLOTY CORE-SERVER JSOU JEN PRO [S]"</string>
+    <string name="t_1046865f" formatted="false">"Neustále za sebou vytváří BOTY. Zabijte ho rychle, nebo se utopíte v jeho botnetu."</string>
+    <string name="t_107ea55b" formatted="false">"VYLEPŠENÍ DRŽENA JAKO RUKOJMÍ"</string>
+    <string name="t_108f4363" formatted="false">"INSTALOVAT"</string>
+    <string name="t_111611f9" formatted="false">"ZÁPLATOVÁ ZEĎ"</string>
+    <string name="t_1181f7e7" formatted="false">"AGENTI RUŠENI"</string>
+    <string name="t_11c0f105" formatted="false">"HUDBA ÚROVNĚ (AUTO)"</string>
+    <string name="t_11c8546c" formatted="false">"poškození"</string>
+    <string name="t_11d858aa" formatted="false">"NEJVYŠŠÍ VLNA"</string>
+    <string name="t_1213b2b6" formatted="false">"PŘED {0} H"</string>
+    <string name="t_12193f21" formatted="false">"Síťoví architekti navrhují, jak se síť rozdělí. Segmentace znamená, že průnik v jedné zóně nemůže jen tak přejít do další, což omezuje škody jakéhokoli jednotlivého selhání. Je to návrhová práce před incidentem, ne nástroj používaný během něj."</string>
+    <string name="t_1248f6ec" formatted="false">"Uložení soundtracku vyžaduje Android 10 nebo novější."</string>
+    <string name="t_125ca8ca" formatted="false">"STARTOVNÍ BALÍČEK"</string>
+    <string name="t_12a36ceb" formatted="false">"PODVRŽENO"</string>
+    <string name="t_12e8edf9" formatted="false">"JAZYK"</string>
+    <string name="t_1380e038" formatted="false">"VÝKUPNÉ · VYLEPŠENÍ ZAMČENA {0} s"</string>
+    <string name="t_138da392" formatted="false">"Mřížka, jejíž buňky se ohřívají a chladnou s provozem."</string>
+    <string name="t_13df4b88" formatted="false">"FIRMWARE"</string>
+    <string name="t_13ee9782" formatted="false">"NASAZENO"</string>
+    <string name="t_141ad814" formatted="false">"ZPĚTNÁ VAZBA"</string>
+    <string name="t_143628e2" formatted="false">"JEN REKLAMY NA OŽIVENÍ · DOBROVOLNÉ"</string>
+    <string name="t_1489b7f6" formatted="false">"PŘED {0} DNY"</string>
+    <string name="t_14bdf6f2" formatted="false">"ŘÍZENÁ HRA POTŘEBUJE NEJDŘÍV FIREWALL"</string>
+    <string name="t_14c27ca9" formatted="false">"ANALYST dává elitám o 80 % vyšší poškození. Pomáhají agenti ignorující brnění."</string>
+    <string name="t_14cecaa5" formatted="false">"Učinit data nečitelnými bez klíče"</string>
+    <string name="t_14ecbe1d" formatted="false">"{0}/s"</string>
+    <string name="t_1512aeac" formatted="false">"{0} úrovní"</string>
+    <string name="t_154419d5" formatted="false">"Počítá se jako šifrovaný: většina agentů způsobuje snížené poškození."</string>
+    <string name="t_154a5adf" formatted="false">"ÚR"</string>
+    <string name="t_15680f7c" formatted="false">"Utraťte ho za trvalé poškození FIRMWARU JÁDRA."</string>
+    <string name="t_1571a208" formatted="false">"Umístěte dva TARPIT tak, aby jejich aury pokryly prostor, do kterého střílí vaše FIREWALL. Zpomalení zajistí, že poškození zasáhne."</string>
+    <string name="t_15aa2838" formatted="false">"Hrubá mřížka, jejíž buňky se ohřívají a chladnou s provozem."</string>
+    <string name="t_15ede35d" formatted="false">"◇ {0} · dostupné od začátku"</string>
+    <string name="t_167ae054" formatted="false">"Tím smažete uloženou hru, všechny odemčené agenty, veškeré statistiky a nastavení.\n\nTuto akci nelze vrátit."</string>
+    <string name="t_17a13ae4" formatted="false">"Bossové se pohybují pomalu, ale zasáhnou CORE-SERVER za {0} integrity. Dávají nejvíc krypta ve hře a s každým cyklem jsou odolnější."</string>
+    <string name="t_17e0e9f0" formatted="false">"Velmi vysoká rychlost palby, vždy míří na bosse dřív než na cokoli jiného v dosahu a dává dvojnásobné poškození [!!!] BREACH. Odemyká se na vlně 30 a nasadit lze nejvýše čtyři."</string>
+    <string name="t_1877f7c0" formatted="false">"NEINSTALOVÁNO"</string>
+    <string name="t_197d534b" formatted="false">"Utraťte € ROZPOČET — ukládá se na každé desáté vlně hry a zůstává i potom — za trvalé zvýšení poškození pro každého agenta."</string>
+    <string name="t_1991565e" formatted="false">"OMEZENÍ RYCHLOSTI"</string>
+    <string name="t_19cbe369" formatted="false">"OBLÍBENÝ AGENT"</string>
+    <string name="t_1a155da6" formatted="false">"DALŠÍ VLNA"</string>
+    <string name="t_1a2a0f17" formatted="false">"ZAMČENO"</string>
+    <string name="t_1a73c7da" formatted="false">"rychlost palby"</string>
+    <string name="t_1aba43b0" formatted="false">"Pomalé eliptické stopy kolem jádra, jako plánovač při práci."</string>
+    <string name="t_1b0d8052" formatted="false">"Třást bojištěm při zásahu CORE-SERVER"</string>
+    <string name="t_1ba327c9" formatted="false">"Nejběžnější webový útok"</string>
+    <string name="t_1ba41734" formatted="false">"ZABLOKOVANÉ ÚTOKY"</string>
+    <string name="t_1cc19733" formatted="false">"SKUTEČNÝ SVĚT"</string>
+    <string name="t_1d162704" formatted="false">"Opravdu chcete začít novou hru? Uložená relace bude nahrazena."</string>
+    <string name="t_1d29935f" formatted="false">"{0} RUŠENO"</string>
+    <string name="t_1d8fe548" formatted="false">"ZAČÍT ZNOVU"</string>
+    <string name="t_1dea7837" formatted="false">"HACK:AI překročil své limity. Poloviční integrita, dvojnásobné odměny."</string>
+    <string name="t_1deb5c00" formatted="false">"PROPOJENO · OFFLINE"</string>
+    <string name="t_1e09b492" formatted="false">"🔒 [{0}] {1} · ZAMČENO"</string>
+    <string name="t_1e6ed1a9" formatted="false">"ŽIVÁ POZADÍ"</string>
+    <string name="t_1ef7821b" formatted="false">"Neonově modrá mřížka mizející do jádra s holografickým prstencem, který přechází z modré do zelené."</string>
+    <string name="t_1f3159fc" formatted="false">"BARVY AGENTŮ"</string>
+    <string name="t_1f5df304" formatted="false">"PŘIPOJENÍ RESETOVÁNO"</string>
+    <string name="t_1ff44d56" formatted="false">"LICENCE VYMÁHÁNA"</string>
+    <string name="t_20ce505d" formatted="false">"POZASTAVIT"</string>
+    <string name="t_21399575" formatted="false">"VÝVOJÁŘ"</string>
+    <string name="t_2198b685" formatted="false">"Kreslit poloměr skenu vybraného agenta"</string>
+    <string name="t_21bb43e3" formatted="false">"{0} · LIBOVOLNÁ ÚROVEŇ"</string>
+    <string name="t_22100250" formatted="false">"ÚROVEŇ {0} · MAX"</string>
+    <string name="t_224d65ed" formatted="false">"SKINY CORE-SERVER"</string>
+    <string name="t_22686e59" formatted="false">"PŘIPOJENÍ"</string>
+    <string name="t_227cde14" formatted="false">"{0} v {1}"</string>
+    <string name="t_2283d7ca" formatted="false">"UZEL OBSAZEN"</string>
+    <string name="t_22b6479a" formatted="false">"Specialista kybernetických operací vede obranu jako živou operaci: hlídá rušení, udržuje nástroje týmu v chodu, zatímco se je někdo aktivně snaží vypnout, a jde přímo po zdroji."</string>
+    <string name="t_22c4ef22" formatted="false">"Jeho obsah je zašifrovaný, takže většina obran nevidí, na co střílí, a způsobuje jen částečné poškození. Agent CRYPTOGRAPHER prořízne šifru napřímo."</string>
+    <string name="t_23020c53" formatted="false">" · dostupných {0}"</string>
+    <string name="t_236f5b12" formatted="false">"CELKEM PORAŽENÝCH BOSSŮ"</string>
+    <string name="t_23763c89" formatted="false">"NASTAVENÍ"</string>
+    <string name="t_23961a76" formatted="false">"BOSS {0} Z {1} · KLEPNUTÍM NA BOSSE PŘEPNETE"</string>
+    <string name="t_24adcafc" formatted="false">"CELKOVÉ POŠKOZENÍ SERVERU"</string>
+    <string name="t_24bbb47b" formatted="false">"ZAMČENÉ POLOŽKY"</string>
+    <string name="t_24d3a2ef" formatted="false">"ZEĎ PADLA"</string>
+    <string name="t_255b5911" formatted="false">"Zelený luminofor CRT, řádkování a obnovovací přejezd."</string>
+    <string name="t_2570d23e" formatted="false">"Soustřeďte palbu. ANALYST a ROOT ADMIN táhnou vlny s bossy."</string>
+    <string name="t_25a6b96b" formatted="false">"Spolehlivé poškození na střední vzdálenost za nízkou cenu a jediný agent imunní vůči JAM bosse. Krátký dosah, takže musí stát blízko pruhu — a právě proto na té imunitě záleží."</string>
+    <string name="t_25bd1975" formatted="false">"POŠK"</string>
+    <string name="t_25efb9da" formatted="false">"POLOMĚR VÝBUCHU"</string>
+    <string name="t_260d60b1" formatted="false">"JEDNA REKLAMA PO PROHRANÉ HŘE · OŽIVENÍ DOBROVOLNÉ"</string>
+    <string name="t_26b80d1f" formatted="false">"HOTOVO"</string>
+    <string name="t_27a68119" formatted="false">"STAV SÍTĚ"</string>
+    <string name="t_27d9802d" formatted="false">"JEDNA REKLAMA PO PROHRANÉ HŘE"</string>
+    <string name="t_27daad70" formatted="false">"Mráz plížící se od okrajů."</string>
+    <string name="t_28c31125" formatted="false">"Obrněný a trpělivý. Těžké jednotlivé zásahy ho porazí; rychlá palba se promrhá."</string>
+    <string name="t_28e339dd" formatted="false">"Řídké sloupce padajících znaků za hracím polem."</string>
+    <string name="t_296fb456" formatted="false">"OPRAVA +{0} HP · KAŽDÝCH {1} s · SLOT CORE-SERVER · MAX {2}"</string>
+    <string name="t_297ae895" formatted="false">"V KARANTÉNĚ"</string>
+    <string name="t_2a1bde6e" formatted="false">"Systém prevence průniků sedí v cestě provozu a smí jednat podle toho, co zjistí, tedy zahodit nebo resetovat spojení místo pouhého upozornění. Kompromis je skutečný: IPS, který špatně vyhodnotí legitimní provoz, ho zablokuje."</string>
+    <string name="t_2a934539" formatted="false">"PŮVOD ÚTOKU"</string>
+    <string name="t_2a9b95e6" formatted="false">"Způsobuje ×{0} poškození každému bossovi."</string>
+    <string name="t_2bb9a482" formatted="false">"Firewall kontroluje provoz podle seznamu pravidel a zahodí vše, co neodpovídá. Je to nejstarší a dodnes nejdůležitější obrana perimetru."</string>
+    <string name="t_2be00c84" formatted="false">"UPRAVIT VOLACÍ ZNAK"</string>
+    <string name="t_2c13b917" formatted="false">"Způsobuje ×{0} poškození: {1}."</string>
+    <string name="t_2ce4713d" formatted="false">"&gt; synchronizace CORE-SERVER"</string>
+    <string name="t_2d14c154" formatted="false">"Pomalé diagonální datové proudy přes hrací pole."</string>
+    <string name="t_2dcb788c" formatted="false">"Tato hra byla vyvinuta s pomocí nástrojů umělé inteligence, které sloužily jako vzdělávací a vývojové pomůcky při učení programování a vývoje softwaru.\n\nNástroje AI pomáhaly mimo jiné s vývojem kódu, řešením problémů, dokumentací a učením. Konečná rozhodnutí o designu, směřování hratelnosti, testování a vydání zůstávají odpovědností vývojáře.\n\nTato hra nebyla vygenerována, sponzorována, schválena, vlastněna ani vydána žádnou společností zabývající se umělou inteligencí."</string>
+    <string name="t_2df53561" formatted="false">"Filtr provozu založený na pravidlech"</string>
+    <string name="t_2e0cf790" formatted="false">"OSTATNÍ"</string>
+    <string name="t_2e19cc63" formatted="false">"Jednou znovu vstane se 40 % zdraví. Zabít ho není totéž co ho dorazit."</string>
+    <string name="t_2ef9e2c6" formatted="false">"KYBERNETICKÉ ÚTOKY"</string>
+    <string name="t_2f3549f7" formatted="false">"CLOUDOVÉ UKLÁDÁNÍ NENÍ K DISPOZICI"</string>
+    <string name="t_302a4f0a" formatted="false">"ZÁKLAD"</string>
+    <string name="t_302eea27" formatted="false">"VÍTE, CO PŘICHÁZÍ?"</string>
+    <string name="t_3083c674" formatted="false">"ŽIVÉ: UNÁŠENÍ"</string>
+    <string name="t_30867b62" formatted="false">"Hratelné zcela offline"</string>
+    <string name="t_30ed929d" formatted="false">"Odemkněte tohoto agenta dosažením vlny {0} na {1}."</string>
+    <string name="t_31359ec6" formatted="false">"{0}: zaměření vyp."</string>
+    <string name="t_313900e6" formatted="false">"SPOJENÍ ARCHITEKTA"</string>
+    <string name="t_314d733e" formatted="false">"K dispozici € {0}"</string>
+    <string name="t_317b7de0" formatted="false">"Kód padající uvnitř samotného racku."</string>
+    <string name="t_31d43b93" formatted="false">"ŽIVÉ: DÉŠŤ"</string>
+    <string name="t_326bdc38" formatted="false">"AGENT NEREGISTROVÁN"</string>
+    <string name="t_32a3e9f3" formatted="false">"SPECIÁLNÍ — {0}"</string>
+    <string name="t_32bafd88" formatted="false">"DALŠÍ"</string>
+    <string name="t_32e6f915" formatted="false">"DOSTUPNÉ HNED"</string>
+    <string name="t_332ec80a" formatted="false">"Tyhle zabije cokoli. Nestavte kvůli nim příliš."</string>
+    <string name="t_33cd995a" formatted="false">"PRŮNIK ZABLOKOVÁN"</string>
+    <string name="t_3425c9d3" formatted="false">"ÚROVEŇ {0}"</string>
+    <string name="t_35350bff" formatted="false">"Pulzující zadržovací prstenec."</string>
+    <string name="t_3595e52a" formatted="false">"TRASA {0}"</string>
+    <string name="t_35c82960" formatted="false">"JÁDRO: GLACIER"</string>
+    <string name="t_35f74be9" formatted="false">"Drtivé poškození jednoho cíle ignorující veškeré brnění. Nejdražší agent ve hře, odemyká se velmi pozdě. Zpřístupňuje volbu cíle."</string>
+    <string name="t_36900a0f" formatted="false">"Levný a téměř neškodný. Všechno v jeho poloměru se plazí."</string>
+    <string name="t_37447c3a" formatted="false">"Extrémně vysoká rychlost palby a každá střela stříká."</string>
+    <string name="t_376bc6d2" formatted="false">"Odpočet běží, dokud je toto otevřené."</string>
+    <string name="t_376c54b2" formatted="false">"ODSTRANIT REKLAMY"</string>
+    <string name="t_379656ef" formatted="false">"JÁDRO: VOID"</string>
+    <string name="t_37bc9401" formatted="false">"Tato verze zobrazuje reklamy dodávané službou Google AdMob. Sledování reklamy kvůli pokračování hry je vždy volitelné a nikdy není ke hraní potřeba."</string>
+    <string name="t_384d3555" formatted="false">"{0} živých"</string>
+    <string name="t_384e5d9f" formatted="false">"CLOUDOVÉ UKLÁDÁNÍ"</string>
+    <string name="t_385b9a87" formatted="false">"Tarpit přijme nepřátelské spojení a pak odpovídá tak pomalu, jak smí, a drží útočníka na socketu, který nikam nevede. Je to zdržovací taktika, ne blokování: hodnotou je čas, který to druhou stranu stojí."</string>
+    <string name="t_38695d86" formatted="false">"ZÁLOHA POSTUPU"</string>
+    <string name="t_38c1e7e0" formatted="false">"ZA REKLAMU"</string>
+    <string name="t_38d9a5af" formatted="false">"&gt; síť kompromitována"</string>
+    <string name="t_38e03b91" formatted="false">"PLNĚ NAINSTALOVÁNO"</string>
+    <string name="t_3950774a" formatted="false">"REGISTROVÁN JAKO"</string>
+    <string name="t_395af116" formatted="false">"ANONYMNÍ HACK"</string>
+    <string name="t_396e8daa" formatted="false">"SPEKTRUM"</string>
+    <string name="t_3a06e0fa" formatted="false">"HUDBA"</string>
+    <string name="t_3a7e7fe6" formatted="false">"TYP SESTAVENÍ"</string>
+    <string name="t_3a8a0a59" formatted="false">"Každý zásah ho zrychlí, ať je jakkoli malý; zpomalí, když se nechá být. Pár velkých zásahů porazí mnoho malých."</string>
+    <string name="t_3aa6f2eb" formatted="false">"ZERO-DAY HUNTER a ROOT ADMIN úplně ignorují brnění."</string>
+    <string name="t_3aaad671" formatted="false">"KLEPNĚTE PRO PODROBNOSTI"</string>
+    <string name="t_3b12a908" formatted="false">"GRADIENT se s každým zásahem zrychluje, ať je jakkoli malý, a zpomalí, když se nechá být. Pár velkých zásahů porazí mnoho malých."</string>
+    <string name="t_3b53a59d" formatted="false">"Automaticky spouštět i vlny s bossem. Vyp.: vlny s bossem čekají na vás"</string>
+    <string name="t_3bc78174" formatted="false">"VÝVOJ S POMOCÍ AI"</string>
+    <string name="t_3c66aec8" formatted="false">"Vaše vlny, agenti, € a firmware se ukládají do vašeho účtu Google. Přihlaste se k němu na jiném zařízení a budou tam. Synchronizuje se při odchodu ze hry a na konci hry."</string>
+    <string name="t_3cef355d" formatted="false">"Nejvíce zbývajícího zdraví"</string>
+    <string name="t_3d17c701" formatted="false">"NÁPOR RYCHLOSTI"</string>
+    <string name="t_3d331382" formatted="false">"Cesta, kudy jde provoz"</string>
+    <string name="t_3d509ddc" formatted="false">"Snížit snímkovou frekvenci na polovinu a vypustit ozdobné efekty"</string>
+    <string name="t_3d83d177" formatted="false">"KYBERAGENTI"</string>
+    <string name="t_3db03eca" formatted="false">"VÁŠ REKORD"</string>
+    <string name="t_3e12b118" formatted="false">"NÁPOVĚDA"</string>
+    <string name="t_3e27e12f" formatted="false">"Nejméně zbývajícího zdraví"</string>
+    <string name="t_3ecdd82e" formatted="false">"Zero-day je zranitelnost, na jejíž opravu měl obránce nula dní, protože nikdo nevěděl, že existuje. Neexistuje signatura k porovnání, a to je činí tak nebezpečnými."</string>
+    <string name="t_3fa2aee2" formatted="false">"Dostává o 35 % menší poškození od agentů FIREWALL."</string>
+    <string name="t_401924c3" formatted="false">"SKIN CORE-SERVER"</string>
+    <string name="t_4071c698" formatted="false">"Google Play odpověděl. Nákupy a obnovení fungují normálně."</string>
+    <string name="t_40b15bdb" formatted="false">"Ukládá se na každé desáté vlně. Čím hlouběji hra jde, tím víc vyplácí — odměna roste s druhou mocninou milníku, takže jedna hluboká hra porazí pět mělkých."</string>
+    <string name="t_4104a0b2" formatted="false">"Váš nejlepší výsledek na {0}: vlna {1}"</string>
+    <string name="t_4108bc91" formatted="false">"HANDSHAKE ODMÍTNUT"</string>
+    <string name="t_41203058" formatted="false">"VYBAVENÍ"</string>
+    <string name="t_412ea11f" formatted="false">"Klepněte na dva zvýrazněné uzly nasazení vedle trasy. Dva nejsou návrh: jeden agent pruh sám neudrží."</string>
+    <string name="t_419c5ded" formatted="false">"CELKEM ODEHRANÝCH HER"</string>
+    <string name="t_41a1b85e" formatted="false">"MOŽNOSTI SOUKROMÍ"</string>
+    <string name="t_41ca8ef5" formatted="false">"Uloženo lokálně v tomto zařízení · nic se neodesílá"</string>
+    <string name="t_41e88f52" formatted="false">"Roztažením dvou prstů hrací plochu přiblížíte — zblízka se na uzly klepe snáz. Po přiblížení se pohybujte tažením jedním prstem. Úplným stažením prstů znovu uvidíte celou plochu."</string>
+    <string name="t_4208e473" formatted="false">"BEZ REKLAMY"</string>
+    <string name="t_420bd000" formatted="false">"BOTMASTER každých pár sekund za sebou pouští BOTY. Zabijte ho rychle a nechte si něco na roj."</string>
+    <string name="t_4273a8be" formatted="false">"ÚČET"</string>
+    <string name="t_42832744" formatted="false">"Žádné hazardní hry, lootboxy ani náhodné placené odměny"</string>
+    <string name="t_42880e6f" formatted="false">"ZAMČENO · {0}"</string>
+    <string name="t_42a0e053" formatted="false">"O HŘE"</string>
+    <string name="t_42addf6c" formatted="false">"OTEVŘÍT OBCHOD"</string>
+    <string name="t_42afe7bc" formatted="false">"PŘIPOJOVÁNÍ"</string>
+    <string name="t_42ef8058" formatted="false">"ZÁZNAM OBRANY"</string>
+    <string name="t_4306ee12" formatted="false">"ROZPOČET €1,500"</string>
+    <string name="t_4333987a" formatted="false">"Řídké sloupce padajících znaků."</string>
+    <string name="t_43a1c2e8" formatted="false">"CENA VYLEPŠENÍ"</string>
+    <string name="t_441ec9a9" formatted="false">"Krátká prohlídka nabídky. DALŠÍ pokračuje, PŘESKOČIT zavře. Kdykoli ji můžete znovu spustit v NASTAVENÍ."</string>
+    <string name="t_4427afab" formatted="false">"Brnění otupí malé zásahy: vezměte ANALYST nebo ROOT ADMIN, ne IPS."</string>
+    <string name="t_4439e789" formatted="false">"ZAMČENO · Dokončete úroveň 5 (odražte vlnu 100 na DDoS) a odemkněte hudební přehrávač a seznam skladeb."</string>
+    <string name="t_448177d3" formatted="false">"POSLEDNÍ SYNCHRONIZACE"</string>
+    <string name="t_4494c488" formatted="false">"PŘED {0} MIN"</string>
+    <string name="t_44c51c30" formatted="false">"ÚTOK ZABLOKOVÁN"</string>
+    <string name="t_44fbbc54" formatted="false">"&gt; !! blíží se kybernetický útok — velký průnik na cestě !!"</string>
+    <string name="t_4538f2a7" formatted="false">"Firewall kontroluje provoz podle sady pravidel a zahodí vše, co pravidla nepovolují. Obvykle je první kontrolou mezi nedůvěryhodnou sítí a něčím, co stojí za ochranu, a posuzuje se podle pravidel, která dostane, ne podle chytrosti."</string>
+    <string name="t_45b17976" formatted="false">"Těžké poškození jednoho cíle, stejné u každé střely místo loterie, a ignoruje brnění. Drahý a pomalý; jeden sám pruh neudrží."</string>
+    <string name="t_4631883a" formatted="false">"INSTALOVAT MAX  (+{0})"</string>
+    <string name="t_463cbc28" formatted="false">"ZDRAVÍ ×{0} · BRNĚNÍ +{1} · RYCHLOST ×{2}"</string>
+    <string name="t_466578df" formatted="false">"Pokračovat v této vlně s poloviční integritou."</string>
+    <string name="t_466b92a9" formatted="false">"SPOJENÍ SEGMENTU"</string>
+    <string name="t_46984fe6" formatted="false">"HRÁT · POKRAČOVAT"</string>
+    <string name="t_46cc0ef8" formatted="false">"Zvyšuje také ◇ krypto vyplácené každou hrou, +{0} % za úroveň až na dvojnásobek. Neovlivňuje zdraví nepřátel ani složení vln."</string>
+    <string name="t_4735c1ed" formatted="false">"Na CORE-SERVER se valí kybernetické útoky. Nasaďte kyberagenty podél tras, aby je zastavili dřív, než dorazí."</string>
+    <string name="t_4747b424" formatted="false">"NEPŘÁTELÉ"</string>
+    <string name="t_477d52c6" formatted="false">"Propojeno. Přihlaste se ke stejnému účtu Google na jiném telefonu nebo tabletu a váš postup tam bude."</string>
+    <string name="t_47c5c237" formatted="false">"NEPLATNÝ UZEL"</string>
+    <string name="t_485268f0" formatted="false">"&gt; vyzbrojování kyberagentů"</string>
+    <string name="t_4882e1dc" formatted="false">"KERNEL PANIC při smrti na 3 sekundy zaruší každého agenta v dosahu. FIREWALL to vydrží."</string>
+    <string name="t_488d4b25" formatted="false">"Tisíce strojů posílají provoz na jeden cíl naráz. Žádný jednotlivý požadavek není útok; útokem je záplava. Cílem není proniknout, ale učinit službu nepoužitelnou."</string>
+    <string name="t_4905ed7b" formatted="false">"ŽÁDNÉ"</string>
+    <string name="t_494c304d" formatted="false">"-◇{0} UKRADENO"</string>
+    <string name="t_49848f53" formatted="false">"SLEPÁ SQL INJEKCE"</string>
+    <string name="t_498754a7" formatted="false">"ULOŽIT SOUNDTRACK DO TELEFONU"</string>
+    <string name="t_4af4306b" formatted="false">"SESTAVENÍ"</string>
+    <string name="t_4c1012d3" formatted="false">"Držte ho pod palbou: opravuje se jen po chvíli bez zásahu, takže pokryjte mezery mezi zabijáckými zónami."</string>
+    <string name="t_4c6d3272" formatted="false">"🔒 ZAMČENO"</string>
+    <string name="t_4cc6f55a" formatted="false">"Hry Google Play nejsou dostupné. Vaše hry se zaznamenávají v tomto zařízení a nejlepší výsledek se zveřejní, až příště skončí hra, když budete online."</string>
+    <string name="t_4d54c785" formatted="false">"UMÍSŤOVÁNÍ {0} — klepněte na uzel"</string>
+    <string name="t_4d6e69d2" formatted="false">"HUDEBNÍ PŘEHRÁVAČ"</string>
+    <string name="t_4d7ab8a3" formatted="false">"VOLACÍ ZNAK"</string>
+    <string name="t_4e2b3472" formatted="false">"ŽÁDNÁ ULOŽENÁ RELACE"</string>
+    <string name="t_4ebbf8bd" formatted="false">"V této hře zbývá oživení: {0}."</string>
+    <string name="t_4f0fcb18" formatted="false">"Přichází každou pátou vlnu"</string>
+    <string name="t_4f160176" formatted="false">"Sklizňová hra. Žádné triky, žádné rušení — o dvacet procent víc než čehokoli jiného na ploše."</string>
+    <string name="t_5022c684" formatted="false">"ŠIFROVÁNÍ"</string>
+    <string name="t_5067a989" formatted="false">"PROVÁZANÝ ŘETĚZ"</string>
+    <string name="t_5079b771" formatted="false">"Odemkněte tohoto agenta dosažením vlny {0} na {1} v režimu {2}."</string>
+    <string name="t_509d7851" formatted="false">" · DOPAD {0}"</string>
+    <string name="t_513901c7" formatted="false">" · BEZ REKLAM"</string>
+    <string name="t_513dcdc9" formatted="false">"NA AGENTA"</string>
+    <string name="t_520a6b88" formatted="false">"Každá úroveň stojí o něco víc než předchozí, takže násobič stále roste, ale nikdy se nevymkne. Neexistuje strop, kterého byste reálně dosáhli."</string>
+    <string name="t_5333e76e" formatted="false">"VYKRESLOVÁNÍ"</string>
+    <string name="t_53e605b3" formatted="false">"POZOR"</string>
+    <string name="t_543ce9f7" formatted="false">"KAŽDÝCH"</string>
+    <string name="t_54523d94" formatted="false">"Rack, do kterého je vestavěno vaše jádro. Viditelný na bojišti."</string>
+    <string name="t_54743050" formatted="false">"CELKEM ZABLOKOVANÝCH ÚTOKŮ"</string>
+    <string name="t_54797d92" formatted="false">"Obvodové spoje vedoucí pod údaji."</string>
+    <string name="t_549824f8" formatted="false">"PORT ZABEZPEČEN"</string>
+    <string name="t_5571a722" formatted="false">"HRATELNÉ OFFLINE · BEZ PŘIHLÁŠENÍ"</string>
+    <string name="t_55f85167" formatted="false">"KOMPAKTNÍ NABÍDKA AGENTŮ"</string>
+    <string name="t_565a738e" formatted="false">"NE, NECHTE MĚ HRÁT"</string>
+    <string name="t_56a9a004" formatted="false">"Injekce se zhasnutým světlem"</string>
+    <string name="t_56bafb67" formatted="false">"Jedno oživení na hru."</string>
+    <string name="t_56c54890" formatted="false">"Nafouknutý model: trochu víc zdraví, trochu pomalejší."</string>
+    <string name="t_56c6b2ae" formatted="false">"Fiktivní licence, jasně označená: tento agent vlastnost ENCRYPTED prostě ignoruje, místo aby ho zpomalovala, a dává trojnásobné poškození všemu, co ji má. Skutečná kryptografie takto nefunguje a nic tady neprolomí žádnou skutečnou šifru."</string>
+    <string name="t_5749c8dc" formatted="false">"Vlna {0} a vše nasazené bude ztraceno."</string>
+    <string name="t_5785b710" formatted="false">"Vyberte agenta a pak klepněte na zvýrazněný uzel nasazení."</string>
+    <string name="t_57f88861" formatted="false">"ZAMĚŘENÍ: JEN BOSSOVÉ"</string>
+    <string name="t_582ec4a0" formatted="false">"Kompromitované počítače, které potichu přijímají příkazy od centrálního řadiče. Jejich majitelé obvykle nic netuší. Botnety umožňují velké útoky DDoS."</string>
+    <string name="t_5840893d" formatted="false">"PRŮNIK ZADRŽEN"</string>
+    <string name="t_58a5f08a" formatted="false">"Obyčejná mřížka. Bez pohybu."</string>
+    <string name="t_597ee3cb" formatted="false">"SIGNATURA SHODNÁ"</string>
+    <string name="t_5a02fc0a" formatted="false">"BALÍČEK OŽIVENÍ"</string>
+    <string name="t_5a3d8598" formatted="false">"Nejblíže k CORE-SERVER"</string>
+    <string name="t_5a911db6" formatted="false">"VÁŠ ÚČET GOOGLE"</string>
+    <string name="t_5aa1d1dc" formatted="false">"{0}: zaměření zap."</string>
+    <string name="t_5b19a621" formatted="false">"Útok na chybu, kterou ještě nikdo nezáplatoval — obránce měl na přípravu nula dní. Vzácný, odolný a zastavit ho stojí za pořádné krypto."</string>
+    <string name="t_5c19fc6b" formatted="false">"KOUPIT SOUNDTRACK CyOps TD · {0}"</string>
+    <string name="t_5c3f86fb" formatted="false">"NEJSILNĚJŠÍ"</string>
+    <string name="t_5d1868fb" formatted="false">"JÁDRO"</string>
+    <string name="t_5d377851" formatted="false">"Trvalá vylepšení · každý zápas od teď"</string>
+    <string name="t_5d4d0273" formatted="false">"{0} je zamčeno: {1}."</string>
+    <string name="t_5de47a9b" formatted="false">"VŠECHNY OBTÍŽNOSTI"</string>
+    <string name="t_5de55828" formatted="false">"!! NÍZKÁ INTEGRITA !!"</string>
+    <string name="t_5e75065a" formatted="false">"PŘIPOJENO"</string>
+    <string name="t_5f2258c9" formatted="false">"Peníze vlevo. Ukládají se na každé desáté vlně hry a zůstávají i po jejím skončení. Hlubší hry vyplácejí mnohem víc."</string>
+    <string name="t_5fd47bcf" formatted="false">"JÁDRO: MERIDIAN"</string>
+    <string name="t_602fffef" formatted="false">"Vše kromě CRYPTOGRAPHER tu ztrácí přes polovinu poškození."</string>
+    <string name="t_6049b1e7" formatted="false">"ŽIVÉ POZADÍ"</string>
+    <string name="t_60a5a04c" formatted="false">"Pozastavit hudbu"</string>
+    <string name="t_60ecea1a" formatted="false">"ABSOLUTNÍ"</string>
+    <string name="t_60f81814" formatted="false">"Každých {0} s LICENSE po dobu {1} ignoruje jakýkoli typ agenta, který do něj stále bije. Kombinujte typy agentů."</string>
+    <string name="t_61919374" formatted="false">"OŽIVEN — znovu se už nevrátí"</string>
+    <string name="t_61ebe734" formatted="false">"TŘESENÍ OBRAZOVKY"</string>
+    <string name="t_625afb79" formatted="false">"Vlastněno. Ukládá se do Music/CyOps TD jako „CyOps TD - Level X (Y)“."</string>
+    <string name="t_628c7cd9" formatted="false">"ROZLOŽENÍ NASAZENÍ AGENTŮ"</string>
+    <string name="t_62f8af50" formatted="false">"+{0} HP / {1} s"</string>
+    <string name="t_63374e04" formatted="false">"HLAVNÍ NABÍDKA"</string>
+    <string name="t_633e8e1a" formatted="false">"Po zabití se rozpadne na tři menší červy a každý z nich se rozdělí ještě jednou. Plošné poškození je váš přítel."</string>
+    <string name="t_6343926d" formatted="false">"RUŠENÍ"</string>
+    <string name="t_638aaa93" formatted="false">"OBJEVUJE SE TAKÉ ZDE"</string>
+    <string name="t_63b00a3c" formatted="false">"Data posílaná sítí se sekají na pakety: malé kousky s cílovou adresou a nákladem. Paket není útok — téměř všechny jsou běžný provoz. Tady střílíte na pakety nesoucí konkrétní útok, a proto je každý pojmenovaný podle útoku, ne podle paketu."</string>
+    <string name="t_63b54927" formatted="false">"3 oživení na hru a nikdy žádné reklamy na oživení, plus €5,000."</string>
+    <string name="t_63bef594" formatted="false">"HP {0}"</string>
+    <string name="t_63f3d76a" formatted="false">"ULOŽIT"</string>
+    <string name="t_63facb82" formatted="false">"ŽIVÉ: PULZ"</string>
+    <string name="t_6480a147" formatted="false">"VLNA {0}  —  ZPEVNĚTE PERIMETR"</string>
+    <string name="t_648a945b" formatted="false">"DVĚ VĚCI, KTERÉ VÁM NIKDO NEŘEKNE"</string>
+    <string name="t_6490c689" formatted="false">"Žádné skutečné kryptoměny, blockchain, peněženky, těžba ani NFT"</string>
+    <string name="t_64d398f9" formatted="false">"DOSAH"</string>
+    <string name="t_65155738" formatted="false">"RYCHLOST 5×"</string>
+    <string name="t_65252ce7" formatted="false">"PRVNÍ"</string>
+    <string name="t_6554cde7" formatted="false">"Ptáme se Google Play, co tento účet vlastní. Obvykle to chvíli trvá."</string>
+    <string name="t_655c9284" formatted="false">"ŽIVÉ: MŘÍŽ"</string>
+    <string name="t_656e6ce8" formatted="false">"AGENTI"</string>
+    <string name="t_65c8fd90" formatted="false">"BRIEFING O HROZBĚ"</string>
+    <string name="t_6678bfdf" formatted="false">"Když zemře, každý agent v jeho blízkosti je na 3 sekundy rušen. Zabijte ho daleko od své plochy, nebo když je další vlna daleko."</string>
+    <string name="t_66fa85d7" formatted="false">"Rozmístěte agenty, aby jedno rušení neumlčelo celou linii."</string>
+    <string name="t_6700226a" formatted="false">"PROPOJENO"</string>
+    <string name="t_67043715" formatted="false">"BRNĚNÍ"</string>
+    <string name="t_67313d46" formatted="false">"ZEĎ STOJÍ"</string>
+    <string name="t_6757b458" formatted="false">"ZASTAVENÉ ÚTOKY"</string>
+    <string name="t_6813ef42" formatted="false">"ANONYMNÍ HACK — {0} BOTŮ SE ŽENE DVOJNÁSOBNOU RYCHLOSTÍ"</string>
+    <string name="t_681745bd" formatted="false">"AGENT ZAMČEN — {0}"</string>
+    <string name="t_682d973f" formatted="false">"START"</string>
+    <string name="t_68e88af7" formatted="false">"NEBEZPEČNÁ ZÓNA"</string>
+    <string name="t_68e985d6" formatted="false">"Nic jiného se nikam neposílá. Hru lze hrát úplně bez sítě."</string>
+    <string name="t_6904aeb4" formatted="false">"HRA"</string>
+    <string name="t_69698cdc" formatted="false">"WORM se po zabití rozpadne na tři menší červy a ty se rozdělí ještě jednou. Zabijte ho brzy, s plošným poškozením poblíž."</string>
+    <string name="t_69a293c4" formatted="false">"SUDO UKONČIT"</string>
+    <string name="t_6ad356c5" formatted="false">"Tři trasy: rovná středem a dvě klikaté nad ní a pod ní."</string>
+    <string name="t_6b2d8165" formatted="false">"ÚR {0}  {1} POŠK"</string>
+    <string name="t_6c161f51" formatted="false">"Po 2 sekundy z každých 17 ignoruje jakýkoli typ agenta, který do něj stále bije. Pestrá plocha ho dál zraňuje."</string>
+    <string name="t_6c7aa396" formatted="false">"Různí bossové, různé slabiny."</string>
+    <string name="t_6ca9de88" formatted="false">"AGENTI SPEKTRA"</string>
+    <string name="t_6cb7e8e3" formatted="false">"Pomalé, těžké zásahy. +80 % poškození elitám a bossům."</string>
+    <string name="t_6cbf7c76" formatted="false">"PORAŽENÍ BOSSOVÉ"</string>
+    <string name="t_6ccdc653" formatted="false">"Úplně ignoruje šifrování a dává mu trojnásobné poškození."</string>
+    <string name="t_6cedde69" formatted="false">"HLASITOST HUDBY"</string>
+    <string name="t_6d2d6d6b" formatted="false">"Ignoruje jeho brnění."</string>
+    <string name="t_6d907c0d" formatted="false">"„Modrý tým“ brání systém a reaguje na incidenty — protějšek červeného týmu. „Modrý klobouk“ se v oboru používá více způsoby a není standardizovaný pojem, takže je zde popsán jen význam modrého týmu."</string>
+    <string name="t_6dbe0ea3" formatted="false">"ÚROVEŇ"</string>
+    <string name="t_6f053419" formatted="false">"LIMIT {0} — MAX {1}"</string>
+    <string name="t_6f21a684" formatted="false">"BOSSOVÉ — každá pátá vlna"</string>
+    <string name="t_70d42172" formatted="false">"Rozdělení sítě tak, aby průnik v jedné zóně nedosáhl na zbytek. Proto by jeden kompromitovaný notebook neměl znamenat kompromitovanou firmu."</string>
+    <string name="t_7191bf1d" formatted="false">"PERZISTENCE"</string>
+    <string name="t_71c5931f" formatted="false">"Úspora baterie mění jen to, co se vykresluje. Obtížnost vln, poškození a časování nejsou nijak ovlivněny."</string>
+    <string name="t_72102eb0" formatted="false">"Nákupy, obnovení a co opouští toto zařízení"</string>
+    <string name="t_722a0bad" formatted="false">"ZNOVU ZOBRAZIT PRŮVODCE"</string>
+    <string name="t_73236391" formatted="false">"Hra sama neshromažďuje žádné osobní údaje"</string>
+    <string name="t_735d4940" formatted="false">"HLASITOST ZVUKOVÝCH EFEKTŮ"</string>
+    <string name="t_73907e76" formatted="false">"Všech 24 skladeb ze hry, uložených do složky Music v telefonu, abyste je mohli přehrávat kdekoli."</string>
+    <string name="t_7397fdaa" formatted="false">"Chladné světlo pohybující se za vším."</string>
+    <string name="t_739a7f7a" formatted="false">"© {0} {1}. Všechna práva vyhrazena."</string>
+    <string name="t_73d812dc" formatted="false">"Každá pátá vlna a co přináší"</string>
+    <string name="t_73e8cb50" formatted="false">"Původní kód, původní grafika, původní syntetizovaný zvuk. Vytvořeno v Kotlinu, Jetpack Compose a Android Canvas API.\n\nIkony: CoreUI Icons Free od creativeLabs (coreui.io/icons), licence CC BY 4.0.\n\nLicence závislostí třetích stran jsou uvedeny v souboru LICENSES.md v repozitáři projektu."</string>
+    <string name="t_74066c59" formatted="false">"VE HŘE"</string>
+    <string name="t_746ab6c3" formatted="false">"IPS dává rojům o 35 % vyšší poškození. Umístěte ho tam, kde se pruhy sbíhají."</string>
+    <string name="t_746d814e" formatted="false">"Smaže uloženou hru, odemčené agenty, statistiky a nastavení. Tuto akci nelze vrátit."</string>
+    <string name="t_74aa6c59" formatted="false">"NEDOSTATEČNÝ € ROZPOČET"</string>
+    <string name="t_74fff44e" formatted="false">"Vytváří své klamné kopie, které pohlcují palbu. ANALYST a ROOT ADMIN je prohlédnou."</string>
+    <string name="t_750800eb" formatted="false">"Střílí stejně rychle jako cokoli v týmu a vždy nejdřív na bosse. Dvojnásobné poškození [GG] GOOD GAME. Nejvýše čtyři."</string>
+    <string name="t_7596436a" formatted="false">"Senior bezpečnostní inženýr s bakalářským titulem v kybernetické bezpečnosti, který zastavuje útoky tím, že staví software, jenž se jim brání: zesílené služby, záplaty a filtry, které jsou na místě dřív, než útok dorazí, ne až potom."</string>
+    <string name="t_75b191e4" formatted="false">"Postaví zeď napříč nejbližší trasou v dosahu. Hrozby se u zdi zastaví a musí ji zbourat, než projdou; bossové ji bourají nejrychleji. Když padne, ACE ji po pár sekundách znovu postaví, s každou úrovní silnější. Jeho vlastní střely dávají {0}× poškození každému bossovi prvních pěti úrovní. Nasadit lze nejvýše tři."</string>
+    <string name="t_75bd8866" formatted="false">"Vyberte úroveň a obtížnost"</string>
+    <string name="t_75e65d90" formatted="false">"PRO NASAZENÍ KLEPNĚTE DVAKRÁT"</string>
+    <string name="t_75f24f6e" formatted="false">"Každých pár sekund zamkne vylepšení jednoho agenta na 8 sekund. Vylepšete dřív, než dorazí."</string>
+    <string name="t_7682806a" formatted="false">"KROK 2 — VYBERTE FIREWALL"</string>
+    <string name="t_77212b64" formatted="false">"Toto je útočná vlna, které čelíte. Stoupá, dokud server držíte — každá pátá vlna přináší bosse."</string>
+    <string name="t_772b21ba" formatted="false">"Obrana, kterou nasazujete"</string>
+    <string name="t_776f4222" formatted="false">"ÚR {0}"</string>
+    <string name="t_77a2583e" formatted="false">"V bezpečnosti se „kvantovými“ nazývají dvě různé věci a stojí za to je rozlišovat. Kvantová distribuce klíčů využívá fyziku k odhalení odposlechu na lince a nasazuje se jen ve vzácných, specializovaných podmínkách. Postkvantová kryptografie je obyčejná softwarová matematika navržená tak, aby odolala budoucím kvantovým počítačům, a právě ta se skutečně zavádí."</string>
+    <string name="t_77a6da9b" formatted="false">"Prstence putující od jádra ven."</string>
+    <string name="t_77d03aa5" formatted="false">"Slepá injekce nedostává zpět žádná chybová hlášení, takže útočník odvozuje odpověď po jedné otázce ano-ne. Je pomalejší a mnohem trpělivější než běžná injekce a přichází odolná vůči zjevným obranám."</string>
+    <string name="t_77e5929c" formatted="false">"První klepnutí ukáže dosah agenta na tom místě; dalším klepnutím ho nasadíte"</string>
+    <string name="t_77e8896f" formatted="false">"Jedna trasa pětkrát protne plochu z rohu do rohu."</string>
+    <string name="t_77f7e381" formatted="false">" · BRNĚNÍ {0}"</string>
+    <string name="t_782074f1" formatted="false">"  ·  AUTO {0}"</string>
+    <string name="t_7841323b" formatted="false">"OBRANNÁ ČISTKA"</string>
+    <string name="t_78526608" formatted="false">"DOSAŽENÁ VLNA"</string>
+    <string name="t_78a52e3b" formatted="false">"SKRYTÝ"</string>
+    <string name="t_7922c8d5" formatted="false">"Posiluje každého agenta v dosahu: +30 % poškození, +20 % rychlosti palby."</string>
+    <string name="t_79a4baee" formatted="false">"&lt; ZPĚT"</string>
+    <string name="t_79fc7a80" formatted="false">"Platí jen při zapnutém AUTOMATICKY SPOUŠTĚT VLNY"</string>
+    <string name="t_7a1f56c4" formatted="false">"SYNCHRONIZOVAT"</string>
+    <string name="t_7aba529e" formatted="false">"Prolomí jeho šifrování: ×{0} poškození."</string>
+    <string name="t_7abfb3c7" formatted="false">"Při polovině zdraví se rozdělí na dva a druhá polovina jde jinou trasou."</string>
+    <string name="t_7b3bb73f" formatted="false">"HROZBA NEUTRALIZOVÁNA"</string>
+    <string name="t_7b84a6c4" formatted="false">"Propojte svůj účet Google na obrazovce GOOGLE PLAY, abyste viděli světový žebříček a mohli do něj přispívat. Vaše hry se stále zaznamenávají v tomto zařízení."</string>
+    <string name="t_7ba7f176" formatted="false">"+{0} % POŠK"</string>
+    <string name="t_7be6fbad" formatted="false">"VLNA {0} · SIMULACE ZASTAVENA"</string>
+    <string name="t_7bf2105b" formatted="false">"Distribuované odepření služby"</string>
+    <string name="t_7c4e4414" formatted="false">"POSLEDNÍ"</string>
+    <string name="t_7c6853de" formatted="false">"SVĚT · {0}"</string>
+    <string name="t_7d5cc77f" formatted="false">"CELKEM ZÍSKANÉHO KRYPTA"</string>
+    <string name="t_7dc33bc2" formatted="false">"DOSAŽENA MAXIMÁLNÍ ÚROVEŇ"</string>
+    <string name="t_7e1cf3a7" formatted="false">"OPRAVA"</string>
+    <string name="t_7e522f64" formatted="false">"TITULKY"</string>
+    <string name="t_7e72ed35" formatted="false">"POSTUP ULOŽEN DO VAŠEHO ÚČTU"</string>
+    <string name="t_7e906966" formatted="false">"Uloženo {0} skladeb do Music/CyOps TD."</string>
+    <string name="t_7ea71dbe" formatted="false">"Znovu otevřete AGENTI a vyberte TARPIT. Nezpůsobuje poškození — zpomaluje každou hrozbu ve své auře, takže vaše FIREWALL na ně vystřelí víckrát."</string>
+    <string name="t_7f11b512" formatted="false">"{0} · {1} NA HRU {2}"</string>
+    <string name="t_7fd8e294" formatted="false">"&gt; perimetr online"</string>
+    <string name="t_804ef7d5" formatted="false">"Nejběžnější útok na internetu a základní hrozba tady. Útočník napíše databázové příkazy do pole, které očekávalo jméno nebo heslo; pokud je aplikace pošle rovnou dál, databáze poslechne."</string>
+    <string name="t_80592dd9" formatted="false">"VERZE"</string>
+    <string name="t_8175c5fc" formatted="false">"INTEGRITA CORE-SERVER"</string>
+    <string name="t_8198af01" formatted="false">"Na 2 sekundy z každých 6 se skryje: nic na něj nemůže zamířit. Plošné poškození a řetězy ho přesto zasáhnou."</string>
+    <string name="t_81e23c68" formatted="false">"OSTATNÍ: jen malé jednotky a elity, nikdy bossové"</string>
+    <string name="t_8230b283" formatted="false">"IDS dává rychlým útokům o 45 % vyšší poškození a vidí je přicházet jako první."</string>
+    <string name="t_82966ea3" formatted="false">"POČÍTADLO VLN"</string>
+    <string name="t_829e8e06" formatted="false">"Agenti v jeho dosahu nemohou být rušeni. {0}× poškození WHITE EYE a BLACK EYE. Nejvýše dva."</string>
+    <string name="t_82a1fee3" formatted="false">"Opravdu chcete restartovat hru?"</string>
+    <string name="t_82a70835" formatted="false">"Bez propojení je postup hry jen v tomto zařízení. Odinstalace nebo obnovení továrního nastavení ho smaže; nákupy přežijí obojí."</string>
+    <string name="t_830a30fd" formatted="false">"ROZPOČET"</string>
+    <string name="t_830b01d9" formatted="false">"Firmware násobí poškození každého nasazeného agenta v každém zápase od teď. Uplatňuje se před brněním a před tabulkou protiopatření, takže pomáhá Cryptographerovi proti šifrování přesně stejně jako Firewallu proti běžnému provozu."</string>
+    <string name="t_831712ed" formatted="false">"ODEMČEN NOVÝ KYBERAGENT"</string>
+    <string name="t_83186dce" formatted="false">"JEN TOTO ZAŘÍZENÍ"</string>
+    <string name="t_8340a76d" formatted="false">"PROČ NA TOM ZÁLEŽÍ"</string>
+    <string name="t_838b0928" formatted="false">"Při postupu vytváří doprovodné útoky."</string>
+    <string name="t_8478f19e" formatted="false">"CO OPOUŠTÍ TOTO ZAŘÍZENÍ"</string>
+    <string name="t_848f3f46" formatted="false">"SMAZAT VEŠKERÝ POSTUP?"</string>
+    <string name="t_852bda75" formatted="false">"KODEX"</string>
+    <string name="t_862b3f34" formatted="false">"NASADIT KYBERAGENTA"</string>
+    <string name="t_869cf6b4" formatted="false">"ZAREGISTROVAT VOLACÍ ZNAK"</string>
+    <string name="t_86cce90c" formatted="false">"NEJSLABŠÍ"</string>
+    <string name="t_87442b62" formatted="false">"DALŠÍ VLNA · BREACH"</string>
+    <string name="t_87a9dd3e" formatted="false">"VLNY, € A FIRMWARE"</string>
+    <string name="t_87d92d69" formatted="false">"Velmi dlouhý dosah detekce; +45 % poškození rychlým útokům."</string>
+    <string name="t_8806feca" formatted="false">"Šest skinů CORE-SERVER plus €2,000. NEONGRID se prodává zvlášť."</string>
+    <string name="t_882561c2" formatted="false">"HODNOCENÍ HROZBY"</string>
+    <string name="t_891fc63b" formatted="false">"PODVRH ODHALEN"</string>
+    <string name="t_8980d82b" formatted="false">"Vybráno {0} — klepnutím na zvýrazněný uzel nasadíte."</string>
+    <string name="t_899bae42" formatted="false">"Volitelné. Vše ve hře funguje bez propojení a nikdy se neodesílá nic kromě vašeho postupu."</string>
+    <string name="t_89a47932" formatted="false">"Přehrát hudbu"</string>
+    <string name="t_89c7b011" formatted="false">"Znovu otevřete formulář souhlasu Google a změňte, co smějí reklamní partneři dělat s daty z tohoto zařízení. Váš herní postup je uložen v tomto zařízení a nikdy není jeho součástí."</string>
+    <string name="t_89d7c51c" formatted="false">"Tam, zpět a dlouhý společný návrat k racku."</string>
+    <string name="t_89dd34f8" formatted="false">"Čištění rojů nechte na IPS, aby vaši těžcí střelci zůstali u bosse."</string>
+    <string name="t_89e1b0eb" formatted="false">"Jeho pole stahuje GRADIENT zpět dolů, když zrychluje."</string>
+    <string name="t_89e450ea" formatted="false">"ODSTRANĚNO · REKLAMY NA OŽIVENÍ ZVLÁŠŤ"</string>
+    <string name="t_8a058fa3" formatted="false">"Standardní křivka."</string>
+    <string name="t_8a86921d" formatted="false">"Tlačítka vpravo lze posouvat. Níže: OBCHOD, VYBAVENÍ (nasazení skinů a pozadí), GOOGLE PLAY (nákupy a cloudové ukládání), ŽEBŘÍČEK, KODEX (hrozby a agenti vysvětleni), STATISTIKY, NASTAVENÍ a O HŘE."</string>
+    <string name="t_8a96f0aa" formatted="false">"NEDOSTUPNÉ"</string>
+    <string name="t_8aa097b1" formatted="false">"  (ZAMČENO)"</string>
+    <string name="t_8aec13a9" formatted="false">"Distribuované odepření služby: útokem je objem. Každý požadavek je nepatrný, ale přicházejí rychleji než cokoli jiného ve hře a vždy jich je víc."</string>
+    <string name="t_8af0e8d8" formatted="false">"Koordinovaný pokus o průnik. Žádné triky, jen váha."</string>
+    <string name="t_8b094c6c" formatted="false">"Připojování ke Google Play…"</string>
+    <string name="t_8c42a507" formatted="false">"Ledové jehly vyzařující ze zmrzlého jádra."</string>
+    <string name="t_8c61de92" formatted="false">"AUTOMATICKY SPOUŠTĚT VLNY"</string>
+    <string name="t_8d56a5da" formatted="false">"Pomalé eliptické stopy kroužící kolem jádra."</string>
+    <string name="t_8d91a14b" formatted="false">"GOOGLE PLAY"</string>
+    <string name="t_8d9dd637" formatted="false">"BOSS: střílí jen na bosse, jinak drží palbu"</string>
+    <string name="t_8e0413ab" formatted="false">"Tato verze nemá nákupy v aplikaci."</string>
+    <string name="t_8e3787c1" formatted="false">"ZAMČENO · {0} (nejlepší: {1})"</string>
+    <string name="t_8f0536a7" formatted="false">"INSTALOVAT MAX"</string>
+    <string name="t_8f37a712" formatted="false">"ZPŮSOBENÉ POŠKOZENÍ"</string>
+    <string name="t_8f48da3c" formatted="false">"SÍŤ KOMPROMITOVÁNA"</string>
+    <string name="t_8f5d0f11" formatted="false">"EKONOMIKA"</string>
+    <string name="t_8f61abf9" formatted="false">"ZPRACOVÁNÍ…"</string>
+    <string name="t_8f68a3ab" formatted="false">"&gt; načítání signatur hrozeb"</string>
+    <string name="t_8ff6e51c" formatted="false">"Na {0} zatím nejsou zaznamenány žádné hry."</string>
+    <string name="t_90391726" formatted="false">"POKRAČOVAT"</string>
+    <string name="t_910b3ae9" formatted="false">"Peníze vydělané na nákup agentů bránících server. Krypto◇ získáte za každé zabití a každou dokončenou vlnu."</string>
+    <string name="t_915c2f22" formatted="false">"Uloženo {0} skladeb, pak telefon zbytek odmítl. Uvolněte trochu místa a zkuste to znovu."</string>
+    <string name="t_919816cc" formatted="false">"Google Play není dostupný. Vše, co jste už koupili, je stále vaše — až budete online, zkuste OBNOVIT."</string>
+    <string name="t_91ae1cd3" formatted="false">"Slovníček srozumitelně"</string>
+    <string name="t_91d4d5fc" formatted="false">"K DISPOZICI · ◇ {0}"</string>
+    <string name="t_9231c915" formatted="false">"Jantarové zadržovací prstence kolem běžící reakce."</string>
+    <string name="t_933bf2fb" formatted="false">"ODSTRANIT REKLAMY se týká reklam mezi hrami; reklamy na oživení jsou zvlášť."</string>
+    <string name="t_935cf7b5" formatted="false">"Rychlost palby klobouků, těžší střely a {0}× poškození SYN-STORM a GRADIENT. Nejvýše dva."</string>
+    <string name="t_93875a49" formatted="false">"dosah"</string>
+    <string name="t_93f1bd2f" formatted="false">"Velmi vysoká rychlost palby, vždy míří na bosse dřív než na cokoli jiného v dosahu a dává dvojnásobné poškození [GG] GOOD GAME. Odemyká se na vlně 30 a nasadit lze nejvýše čtyři."</string>
+    <string name="t_94061f4f" formatted="false">"Nezpůsobuje téměř žádné poškození. Vše v jeho poloměru se plazí, což drží hrozby v dosahu vašich střelců mnohem déle. Levný a sám o sobě k ničemu — je to násobič síly pro cokoli, co střílí vedle něj."</string>
+    <string name="t_941dea68" formatted="false">"ČÍSLA POŠKOZENÍ"</string>
+    <string name="t_9427590a" formatted="false">"Zobrazovat plovoucí hodnoty poškození při zásazích"</string>
+    <string name="t_94bbec0b" formatted="false">"Klepněte na DALŠÍ VLNA. Vaši agenti střílí automaticky. Každý zastavený útok vyplácí ◇ Krypto, za které koupíte další agenty a vylepšení."</string>
+    <string name="t_94dc88d3" formatted="false">"Každá úroveň firmwaru přidává +{0} % poškození každému agentovi a +{1} % ◇ krypta získaného ve hrách (až na dvojnásobek) v každém budoucím zápase. Nikdy nezmizí."</string>
+    <string name="t_95051192" formatted="false">"NENASTAVENO"</string>
+    <string name="t_952dc0bb" formatted="false">"ŽEBŘÍČEK"</string>
+    <string name="t_959b6bbb" formatted="false">"MAX {0} NASAZENO"</string>
+    <string name="t_9655a074" formatted="false">"Pomalé datové proudy za nabídkou a plochou."</string>
+    <string name="t_97e1363f" formatted="false">"Silné pevné snížení poškození při každém zásahu."</string>
+    <string name="t_98189a64" formatted="false">"Žádné. Tohle je férový boj."</string>
+    <string name="t_9873614b" formatted="false">"Nejdelší dosah detekce v týmu a +45 % poškození proti rychlým útokům. Pomalá palba — je to zvěd, který shodou okolností střílí, nejlépe umístěný tam, kde pokryje velký kus pruhu."</string>
+    <string name="t_98a9c7f2" formatted="false">"€ ROZPOČET"</string>
+    <string name="t_98b63553" formatted="false">"Ke hraní není potřeba účet ani přihlášení"</string>
+    <string name="t_98cc567c" formatted="false">"NEJLEPŠÍ POŠKOZENÍ"</string>
+    <string name="t_98f4abc6" formatted="false">"◇ {0} · odemkne se na vlně {1} na {2}"</string>
+    <string name="t_98fbe3ee" formatted="false">"VÍCENÁSOBNÉ ZAMĚŘENÍ"</string>
+    <string name="t_991bd4c3" formatted="false">"Jediný CRYPTOGRAPHER zvrátí celý boj."</string>
+    <string name="t_991c8ba8" formatted="false">"CELKEM VYLEPŠENÍ AGENTŮ"</string>
+    <string name="t_996095bd" formatted="false">"Některé názvy, pojmy a ochranné známky zmíněné v této hře mohou být majetkem příslušných vlastníků. Takové odkazy se používají výhradně k identifikaci, komentáři, vzdělávacímu kontextu a fiktivnímu ztvárnění ve hře.\n\nTato hra je vyvíjena nezávisle a není přidružena ke společnostem Red Hat, Microsoft ani k žádnému jinému vlastníkovi ochranných známek třetí strany, ani jimi sponzorována, podporována či schválena.\n\nVšechny ochranné známky, názvy produktů, názvy společností a loga třetích stran zůstávají majetkem příslušných vlastníků."</string>
+    <string name="t_99ab6437" formatted="false">"Při příštím otevření těchto obrazovek znovu zobrazit prohlídku hlavní nabídky a vysvětlení FIRMWARU."</string>
+    <string name="t_99cfdd6c" formatted="false">"Náhled: {0}"</string>
+    <string name="t_99d175d2" formatted="false">"Držte na trase TARPIT, aby tlumil zrychlení."</string>
+    <string name="t_99f43c9c" formatted="false">"NEDOSTATEK KRYPTA"</string>
+    <string name="t_9a8ee779" formatted="false">"Střílí stejně rychle jako cokoli v týmu a vždy nejdřív na bosse. Dvojnásobné poškození [!!!] BREACH. Nejvýše čtyři."</string>
+    <string name="t_9a9bcdd3" formatted="false">"SLOT"</string>
+    <string name="t_9aa5d01a" formatted="false">"Nikdy žádná vsunutá reklama po neúspěšné hře, plus €5,000. Reklamy na oživení jsou dobrovolné a zvlášť — viz BALÍČEK OŽIVENÍ."</string>
+    <string name="t_9adba547" formatted="false">"Nejlepší hodnota za euro."</string>
+    <string name="t_9ae9f14f" formatted="false">"Pomalý unášený pohyb vzdálených bodů."</string>
+    <string name="t_9aed28a1" formatted="false">"DOSAŽEN LIMIT NASAZENÍ"</string>
+    <string name="t_9b08be38" formatted="false">"Dotaz na Hry Google Play…"</string>
+    <string name="t_9b1d7455" formatted="false">"VLNA {0}"</string>
+    <string name="t_9b4c97a7" formatted="false">"Pojmenováno po dřevěném koni: software, který vypadá jako něco, co chcete, a nese něco, co rozhodně nechcete."</string>
+    <string name="t_9b557f99" formatted="false">"Váš nejlepší výsledek: vlna {0}"</string>
+    <string name="t_9b989bfb" formatted="false">"NEJLEPŠÍ"</string>
+    <string name="t_9bcd1b03" formatted="false">"Všech sedm živých pozadí plus €2,000."</string>
+    <string name="t_9bd1faf7" formatted="false">"Vrácení peněz, platební metody a účtenky řeší Google, ne tato hra."</string>
+    <string name="t_9c2ade2b" formatted="false">"ÚR {0}  ×{1}"</string>
+    <string name="t_9c6be09c" formatted="false">"MODIFIKÁTORY"</string>
+    <string name="t_9d0c4ff1" formatted="false">"&gt; vlna {0} aktivní — zbývá hrozeb: {1}"</string>
+    <string name="t_9d29de23" formatted="false">"NEJLEPŠÍ VLNA PODLE ÚROVNĚ"</string>
+    <string name="t_9d2c3eea" formatted="false">"SÍŤOVÉ POJMY"</string>
+    <string name="t_9d36e329" formatted="false">"VÝKUPNÉ"</string>
+    <string name="t_9d5ca8b9" formatted="false">"CHCETE OŽIVIT?"</string>
+    <string name="t_9df821c5" formatted="false">"VÍTEJTE V CyOps TD"</string>
+    <string name="t_9e30871d" formatted="false">"Jediný kompromitovaný stroj, který přijímá příkazy od někoho jiného. Jeden bot je neškodný. Botnet tisíců není — proto vždy přicházejí ve skupinách."</string>
+    <string name="t_9e77c8cf" formatted="false">"Přidává pátou rychlost simulace pro rychlé čištění vln."</string>
+    <string name="t_9ef0ebe5" formatted="false">"SEGMENTACE"</string>
+    <string name="t_9f26f678" formatted="false">"  →"</string>
+    <string name="t_9f70f631" formatted="false">"RYCHLOST PALBY"</string>
+    <string name="t_9fb6c271" formatted="false">"Krátce ruší blízké agenty a zpomaluje jejich palbu."</string>
+    <string name="t_a12f7814" formatted="false">"+{0} (BOSS)"</string>
+    <string name="t_a15faa1f" formatted="false">"REŽIM"</string>
+    <string name="t_a19abbd4" formatted="false">"Každý kyberagent, co dělá a která vlna ho odemyká."</string>
+    <string name="t_a21dbf00" formatted="false">"ULOŽENO €{0} ROZPOČTU"</string>
+    <string name="t_a24181ff" formatted="false">"CO ÚTOČÍ"</string>
+    <string name="t_a2517472" formatted="false">"OBCHOD NEDOSTUPNÝ"</string>
+    <string name="t_a29c69ba" formatted="false">"KONEC"</string>
+    <string name="t_a2b3bef5" formatted="false">"DOSÁHNĚTE VLNY {0}"</string>
+    <string name="t_a2dd8300" formatted="false">"Ulička hanby. Dvě trasy, které se vracejí, a pak okruh před rackem."</string>
+    <string name="t_a2e2f704" formatted="false">"PROLOMENÍ ŠIFRY"</string>
+    <string name="t_a32353a8" formatted="false">"ROZPOČET €9,000"</string>
+    <string name="t_a36e1b6d" formatted="false">"NENÍ V TÉTO VERZI"</string>
+    <string name="t_a3ebab03" formatted="false">"Nezáplatovaná neznámá chyba"</string>
+    <string name="t_a4a2cd90" formatted="false">"&gt;&gt; NOVÝ REKORD &lt;&lt;"</string>
+    <string name="t_a4fd7522" formatted="false">" · MAX {0}"</string>
+    <string name="t_a5460e4e" formatted="false">"Pomalé, těžké jednotlivé zásahy s +80 % poškození proti elitám a bossům. Slabý proti rojům. Zpřístupňuje volbu cíle, takže ho můžete namířit na to, co opravdu chcete mít mrtvé."</string>
+    <string name="t_a596b409" formatted="false">"RYCHLOST 5× JE V OBCHODĚ"</string>
+    <string name="t_a599c90a" formatted="false">"Každý agent v jeho dosahu, včetně něj samého, je imunní vůči rušení od jakéhokoli bosse. Rychlé, těžké střely s {0}× poškozením WHITE EYE a BLACK EYE. Dosah TARPIT. Nasadit lze nejvýše dva."</string>
+    <string name="t_a5b1ffba" formatted="false">"Neomezený přístup do systému"</string>
+    <string name="t_a5da8eea" formatted="false">"Zasekli jste se na vlně? Uložte rozpočet, nainstalujte firmware a stejná plocha bude příště udeřit silněji."</string>
+    <string name="t_a6291e29" formatted="false">"ROZPOČET €5,000"</string>
+    <string name="t_a62c1133" formatted="false">"Žádné skutečné hackerské schopnosti — nic tady se nedotkne skutečné sítě"</string>
+    <string name="t_a66c22f9" formatted="false">"Jazyk změňte v NASTAVENÍ v hlavní nabídce: přepnutí restartuje hru, čímž by tato hra skončila."</string>
+    <string name="t_a6cd2e07" formatted="false">"{0}-{1} znaků. A-Z, 0-9, pomlčka a podtržítko."</string>
+    <string name="t_a6ee02f4" formatted="false">"ZRUŠIT"</string>
+    <string name="t_a727a483" formatted="false">"OBSAHUJE"</string>
+    <string name="t_a7c5a24a" formatted="false">"Ukládání do Music/CyOps TD…"</string>
+    <string name="t_a7c97dfd" formatted="false">"RESETOVAT"</string>
+    <string name="t_a7e02911" formatted="false">"NA JÁDRU"</string>
+    <string name="t_a7e24bd6" formatted="false">"ZAMĚŘOVÁNÍ"</string>
+    <string name="t_a8031bce" formatted="false">"OTEVŘÍT STRÁNKU V OBCHODĚ"</string>
+    <string name="t_a8191219" formatted="false">"SPOOFER vytváří své klamné kopie, které pohlcují palbu. ANALYST a ROOT ADMIN je prohlédnou."</string>
+    <string name="t_a8768bb2" formatted="false">"SKINY AGENTŮ"</string>
+    <string name="t_a8935036" formatted="false">"ZÍSKANÉ KRYPTO"</string>
+    <string name="t_a92b98a8" formatted="false">"KRYPTO ◇"</string>
+    <string name="t_a9a8f56c" formatted="false">"VIZUÁLY"</string>
+    <string name="t_a9ad0741" formatted="false">"€ V TÉTO HŘE"</string>
+    <string name="t_a9cf50ec" formatted="false">"Skutečný provoz jde po trase přes přepínače a směrovače do svého cíle. Dvě hadovité trasy tady jsou ta cesta, vracející se, abyste viděli každý skok naráz."</string>
+    <string name="t_a9d9e481" formatted="false">"CORE-SERVER je to, co bráníte, a údaj INTEGRITA v horním pruhu je váš jediný život. Každý nepřátelský paket, který dorazí k racku, z něj ukousne kus. Na 0 je server prolomen a hra končí — takže celá práce je nic nepustit."</string>
+    <string name="t_aab511c4" formatted="false">"ROOTKIT se na 2 sekundy z každých 6 skryje a nic na něj nemůže zamířit. Plošné poškození a řetězy ho přesto zasáhnou."</string>
+    <string name="t_aac1d4da" formatted="false">"NEPROPOJENO"</string>
+    <string name="t_aadac61a" formatted="false">"Aplikace se databází ptají v jazyce SQL. Pokud se vstup uživatele vloží přímo do té otázky, útočník jí může napsat vlastní konec — vypsat tabulku uživatelů, obejít přihlášení nebo všechno smazat. Oprava je stará a dobře známá (parametrizované dotazy), a právě proto je tak frustrující, že je to stále útok, se kterým se setkáte nejčastěji."</string>
+    <string name="t_ab62d63d" formatted="false">"Systém detekce průniků sleduje aktivitu sítě nebo hostitele a hledá vzorce podobné útoku a spustí upozornění. Hlásí; neblokuje. Někdo nebo něco jiného musí podle jeho zjištění stále jednat."</string>
+    <string name="t_aca3253a" formatted="false">"NA POLI · KLEPNĚTE NA BOSSE PRO ZOBRAZENÍ"</string>
+    <string name="t_ad03a515" formatted="false">"Rozdělení sítě na zóny"</string>
+    <string name="t_ad26a7c7" formatted="false">"neznámé"</string>
+    <string name="t_ae00f867" formatted="false">"ANALYTIKA"</string>
+    <string name="t_ae59bf94" formatted="false">"PRODAT  ◇ {0}"</string>
+    <string name="t_b0147d1e" formatted="false">"V této vlně se opřete o agenty jiné než FIREWALL."</string>
+    <string name="t_b0af39a6" formatted="false">"ZMĚNIT"</string>
+    <string name="t_b0d341a2" formatted="false">"PŘED VÍCE NEŽ MĚSÍCEM"</string>
+    <string name="t_b0f472d0" formatted="false">"OBTÍŽNOST"</string>
+    <string name="t_b16e2042" formatted="false">"Fialové hvězdné pole za rackem."</string>
+    <string name="t_b2029176" formatted="false">"Po krátké pauze automaticky spustit další vlnu"</string>
+    <string name="t_b253fa2b" formatted="false">"Kryptografie chrání data při přenosu i v klidu, takže jejich zachycení není totéž co jejich přečtení. Útočníci ji používají také — spousta nepřátelského provozu je šifrovaná — a proto obránci kontrolují provoz na koncových bodech, které sami ovládají, místo aby se snažili prolomit samotné šifrování."</string>
+    <string name="t_b28b05f8" formatted="false">"Systém prevence průniků"</string>
+    <string name="t_b2dbc630" formatted="false">"FIREWALL AKTIVNÍ"</string>
+    <string name="t_b2ef7c39" formatted="false">"Kyberoperativci: Tower Defense"</string>
+    <string name="t_b32b1a1d" formatted="false">"POHODLÍ"</string>
+    <string name="t_b3735fe8" formatted="false">"Obvodová mříž, která dýchá s vlnou."</string>
+    <string name="t_b3b53e34" formatted="false">"Nákupy jsou vázány na váš účet Google, ne na toto zařízení. Přeinstalace nebo výměna telefonu o ně nepřijde."</string>
+    <string name="t_b3c34c67" formatted="false">"PRÁVĚ TEĎ"</string>
+    <string name="t_b40b6d1c" formatted="false">"„Červený tým“ útočí na systém se svolením, aby našel to, co by útočník našel jako první. „Červený klobouk“ je neformální slang, ne pracovní pozice ani certifikace, a jeho význam se mezi uživateli liší; standardní je část o červeném týmu."</string>
+    <string name="t_b5ca7a98" formatted="false">"Nejlepší vlna každého hráče na světě podle volacího znaku. Zaregistrujte si ho vpravo, jinak Google zobrazí vaše jméno ze služby Hry Play."</string>
+    <string name="t_b649891d" formatted="false">"POZASTAVENO"</string>
+    <string name="t_b683e66d" formatted="false">"{0} je zamčeno: pro odemčení {1}."</string>
+    <string name="t_b6bcb68c" formatted="false">"Těžké poškození jednoho cíle, stejné u každé střely. Ignoruje veškeré brnění."</string>
+    <string name="t_b7ba0ba1" formatted="false">"REGENERATION ho opraví, jakmile {0} sekund nedostane zásah. Držte ho pod palbou celou cestu."</string>
+    <string name="t_b7c4c2a3" formatted="false">"[{0}] {1} (zamčeno): {2}"</string>
+    <string name="t_b7cf2aab" formatted="false">"ŽÁDNÁ APLIKACE NEUMÍ OTEVŘÍT GOOGLE PLAY"</string>
+    <string name="t_b8201e22" formatted="false">"DALŠÍ: VLNA {0} · BOSS"</string>
+    <string name="t_b82dfd13" formatted="false">"VEDE NA"</string>
+    <string name="t_b835d746" formatted="false">"KROK 5 — NASAĎTE DVA TARPIT"</string>
+    <string name="t_b8cbfe08" formatted="false">"Nejdále od CORE-SERVER"</string>
+    <string name="t_b8f9cbc8" formatted="false">"POŠK {0}  TEMPO {1}/s"</string>
+    <string name="t_b8ffa95c" formatted="false">"ŽIVÉ: POLÁRNÍ ZÁŘE"</string>
+    <string name="t_b9918647" formatted="false">"Zaplacený, aby tu byl. Žádné triky, žádné rušení — o dvacet procent víc než čehokoli jiného na ploše."</string>
+    <string name="t_b9a3ada7" formatted="false">"EXFIL je rychlý. Pokud dosáhne jádra, ukradne místo integrity polovinu vašeho krypta. Utraťte dřív, nebo ho zastavte."</string>
+    <string name="t_b9c6b239" formatted="false">"Vykreslováno pod pruhy a za každou nabídkou."</string>
+    <string name="t_badb0f4a" formatted="false">"Pravidelně zrychluje k serveru."</string>
+    <string name="t_bae2cee7" formatted="false">"ANO — SLEDOVAT REKLAMU"</string>
+    <string name="t_bb0a2d46" formatted="false">"VYBRAT"</string>
+    <string name="t_bb621985" formatted="false">"ZOCELENÝ"</string>
+    <string name="t_bb93827c" formatted="false">"OŽIVENÍ SELHALO — HRA UŽ SKONČILA"</string>
+    <string name="t_bc855067" formatted="false">"PŘÍSTUP ODEPŘEN"</string>
+    <string name="t_bcdf64b3" formatted="false">"SQL INJEKCE"</string>
+    <string name="t_bceaf8ce" formatted="false">"!!! BLÍŽÍ SE KYBERNETICKÝ ÚTOK !!!"</string>
+    <string name="t_bd0c6acd" formatted="false">"DALŠÍ € {0} · +{1} % {2} za úroveň"</string>
+    <string name="t_bd1b1fc9" formatted="false">"VYP."</string>
+    <string name="t_bd8215e6" formatted="false">"ANO, ZASVĚŤTE MĚ"</string>
+    <string name="t_bd84c20a" formatted="false">"VLNA {0} ZAJIŠTĚNA"</string>
+    <string name="t_be1fc25b" formatted="false">"Spolehlivé univerzální poškození a nedá se rušit."</string>
+    <string name="t_beb11f45" formatted="false">"Modifikátor bosse"</string>
+    <string name="t_beb3cdc3" formatted="false">"Jeho pole zpomaluje bosse dvakrát víc než ostatní hrozby."</string>
+    <string name="t_bec37550" formatted="false">"HORKÁ OPRAVA"</string>
+    <string name="t_bed8ffbb" formatted="false">"Obnovení se znovu zeptá Play, co tento účet Google vlastní. Stisknout ho je kdykoli bezpečné a nikdy vám nic neúčtuje."</string>
+    <string name="t_bf09fcca" formatted="false">"Tato verze nemá nakonfigurovaný projekt Hry Play, takže postup zůstává v tomto zařízení. Vlastní záloha Androidu ho přesto obnoví, když hru přeinstalujete na telefonu přihlášeném ke stejnému účtu Google."</string>
+    <string name="t_bf0c2eaa" formatted="false">"REPLIKUJE SE"</string>
+    <string name="t_bf7cfb98" formatted="false">"Tato verze nemá žádné reklamy ke konfiguraci."</string>
+    <string name="t_c1386132" formatted="false">"◇ KRYPTO"</string>
+    <string name="t_c164d2e8" formatted="false">"Střílí stejně rychle jako klobouky a udeří silněji, s {0}× poškozením bossům DUCK-USB SYN-STORM a GRADIENT. Zachovává si režimy zaměřování. Nasadit lze nejvýše dva. Vykreslován jako hologram, který skiny agentů nemění."</string>
+    <string name="t_c19b9c99" formatted="false">"INTEGRITA CORE-SERVER 0 · SPOJENÍ UKONČENO"</string>
+    <string name="t_c1b7bcc5" formatted="false">"Tato verze nezobrazuje reklamy."</string>
+    <string name="t_c2658f4d" formatted="false">"Drtivé poškození jednoho cíle. Ignoruje veškeré brnění."</string>
+    <string name="t_c2c8c2f8" formatted="false">"ZOBRAZIT DOSAH AGENTA"</string>
+    <string name="t_c2d127eb" formatted="false">"PŘESKOČIT ×"</string>
+    <string name="t_c31db047" formatted="false">"BALÍČEK OŽIVENÍ — bez reklamy."</string>
+    <string name="t_c39850a1" formatted="false">"KROK 3 — NASAĎTE DVA FIREWALL"</string>
+    <string name="t_c3e1a996" formatted="false">"◇ Krypto a € Rozpočet jsou fiktivní herní zdroje. Nemají peněžní hodnotu, nelze je vyměnit za nic mimo hru a nemohou opustit zařízení."</string>
+    <string name="t_c405af57" formatted="false">"HRÁT spustí hru na úrovni a v režimu vybraném vlevo. Když je hra uložená, POKRAČOVAT v ní pokračuje a NOVÁ HRA začne znovu."</string>
+    <string name="t_c40bc4a4" formatted="false">"IDS sleduje síťovou aktivitu kvůli podezřelému chování a bezpečnostním hrozbám a pak spustí upozornění. Sleduje; neblokuje."</string>
+    <string name="t_c4a14a23" formatted="false">"Vyberte FIREWALL. Je levný, spolehlivý a nedá se rušit."</string>
+    <string name="t_c4b7782d" formatted="false">"Bezpečnostní analytik je skutečné povolání. Člověk ve smyčce vezme to, co automatické nástroje označily, zjistí, co se skutečně stalo, a rozhodne, co s tím dělat. Pomalejší než stroj a mnohem lepší u případů, které neodpovídají známému vzorci."</string>
+    <string name="t_c4d0dc6f" formatted="false">"Nástroje strojového učení označují neobvyklé vzorce ve více signálech, než člověk dokáže přečíst, a slouží k zúžení toho, co si zaslouží pozornost. Pomáhají analytikům, nenahrazují je, a produkují falešné poplachy — označení je stopa, ne verdikt."</string>
+    <string name="t_c51041e3" formatted="false">"  ·"</string>
+    <string name="t_c55cc938" formatted="false">"NOVÁ HRA"</string>
+    <string name="t_c55e934e" formatted="false">"POSUŇTE PRO VÍCE"</string>
+    <string name="t_c570c6cd" formatted="false">"Padající sloupce kódu uvnitř racku."</string>
+    <string name="t_c5cb18f9" formatted="false">"VŠECHNY ÚROVNĚ"</string>
+    <string name="t_c81c4fa0" formatted="false">"1 úroveň"</string>
+    <string name="t_c8a9aae9" formatted="false">"Tři trasy se dvakrát proplétají: každý pruh mění stranu."</string>
+    <string name="t_c9301368" formatted="false">"JÁDRO: REACTOR"</string>
+    <string name="t_c9402c75" formatted="false">"NE"</string>
+    <string name="t_c944e5aa" formatted="false">"PROTIOPATŘENÍ"</string>
+    <string name="t_c9a2aee9" formatted="false">"Odemkněte tohoto agenta dosažením vlny {0} na libovolné úrovni."</string>
+    <string name="t_ca02a8f8" formatted="false">"Každý agent nosí barvu toho, co dělá."</string>
+    <string name="t_ca5ea88d" formatted="false">"NEJLEPŠÍ HODNOTA"</string>
+    <string name="t_cabf47fa" formatted="false">"MAX +{0}"</string>
+    <string name="t_cb02b3da" formatted="false">"Pomalý barevný cyklus přes celý tým."</string>
+    <string name="t_cb1fd3f1" formatted="false">"IPS je IDS s oprávněním jednat. Když rozpozná útok, sám provoz zahodí, místo aby o tom jen někomu řekl."</string>
+    <string name="t_cb4ff573" formatted="false">"REKLAMY A NÁKUPY"</string>
+    <string name="t_cbd3b516" formatted="false">"Bez reklam, skin agenta SPECTRUM, pozadí DRIFT a €2,000."</string>
+    <string name="t_cbd47695" formatted="false">"BLOKACE NÁKLADU"</string>
+    <string name="t_cbf7d422" formatted="false">"SYN-STORM se při polovině zdraví rozdělí na dva a druhá polovina jde jinou trasou. Pokryjte každou trasu."</string>
+    <string name="t_cc52e024" formatted="false">"DALŠÍ: VLNA {0} — BOSS · PRO BRIEFING KLEPNĚTE NA DALŠÍ BOSS"</string>
+    <string name="t_cc5435ac" formatted="false">"Co přichází po pruzích"</string>
+    <string name="t_cc5c44e8" formatted="false">"ZAMĚŘENÍ: JEN MALÉ JEDNOTKY A ELITY"</string>
+    <string name="t_cc6791f1" formatted="false">"Odolný vůči agentům FIREWALL."</string>
+    <string name="t_cc7fe141" formatted="false">"Hlídá útočné nástroje. Každých pár sekund krátce ruší agenty RED HAT poblíž."</string>
+    <string name="t_cc9e044b" formatted="false">"ŽIVÉ: OBĚŽNÁ DRÁHA"</string>
+    <string name="t_ccb963f2" formatted="false">"PAKET"</string>
+    <string name="t_ccbd0815" formatted="false">"Výchozí rack."</string>
+    <string name="t_ccbefbf5" formatted="false">"DOSAH SKENU {0}"</string>
+    <string name="t_ccd3b8ff" formatted="false">"Možnosti soukromí teď nejsou k dispozici."</string>
+    <string name="t_cce0919d" formatted="false">"VLASTNĚNO"</string>
+    <string name="t_cd27794d" formatted="false">"Volací znak je místní pro toto zařízení a není to účet Google. Pojmenovává vaše hry v žebříčku."</string>
+    <string name="t_cd7ef0df" formatted="false">"OCHRANNÉ ZNÁMKY A TŘETÍ STRANY"</string>
+    <string name="t_cd8fc1d8" formatted="false">"Přes Google Play jsou k dispozici volitelné nákupy v aplikaci. Nic ve hře není za nimi zamčené."</string>
+    <string name="t_cde6047e" formatted="false">"Systém detekce průniků"</string>
+    <string name="t_ce2cde0d" formatted="false">"KROK 1 — OTEVŘETE TÝM"</string>
+    <string name="t_ce56b8c8" formatted="false">"SPRAVOVAT V GOOGLE PLAY"</string>
+    <string name="t_ce8b48c9" formatted="false">"HRATELNOST"</string>
+    <string name="t_ceb6dbab" formatted="false">"SOUNDTRACK CyOps TD"</string>
+    <string name="t_cec6cd66" formatted="false">"Zatím žádné zaznamenané hry. Dokončete hru a objeví se tady, seřazená podle dosažené vlny."</string>
+    <string name="t_cee3b8c9" formatted="false">"PŘESKOČIT"</string>
+    <string name="t_cfd886ad" formatted="false">"Dvě trasy pročesávají každá svou polovinu. Věže ve středové mezeře dosáhnou na obě."</string>
+    <string name="t_d0112898" formatted="false">"NÁVNADA"</string>
+    <string name="t_d07db54c" formatted="false">"ROOT / ADMIN"</string>
+    <string name="t_d08f5138" formatted="false">"Dvě hadovité trasy, které se vracejí kolem stejných děl."</string>
+    <string name="t_d10c0c39" formatted="false">"Velmi vysoká rychlost palby a každá střela stříká, takže je to odpověď na roj, ne na jeden těžký cíl. Stojí víc než IDS a dostřelí kratší vzdálenost."</string>
+    <string name="t_d11351ac" formatted="false">"ZAP."</string>
+    <string name="t_d173b657" formatted="false">"Účet, který v systému může cokoli. Útočníci ho chtějí; obránci ho pečlivě střeží. Většina bezpečnostní práce spočívá v omezování toho, kdo ho dostane a na jak dlouho."</string>
+    <string name="t_d19c7c8e" formatted="false">"◇ {0} · odemkne se na vlně {1}"</string>
+    <string name="t_d22f26dd" formatted="false">"Útočí až na 3 samostatné hrozby každou salvou."</string>
+    <string name="t_d2ee5fd2" formatted="false">"Postup se ukládá automaticky"</string>
+    <string name="t_d31b24bf" formatted="false">"{0} · {1}  ·  nejlepší {2}"</string>
+    <string name="t_d35bc038" formatted="false">"{0} — {1} Nezpůsobuje poškození; kupuje čas vašim ostatním agentům."</string>
+    <string name="t_d415f020" formatted="false">"Zero-day je chyba, pro kterou zatím neexistuje oprava — obránce měl na záplatování nula dní. Výzkumníci zranitelností je hledají, aby mohly být nahlášeny a opraveny dřív, než je najde někdo jiný. „Zero-day hunter“ je neformální zkratka, ne certifikace ani oficiální pozice."</string>
+    <string name="t_d477fdfb" formatted="false">"FIRMWARE PLNĚ NAINSTALOVÁN"</string>
+    <string name="t_d488d098" formatted="false">"ŘÍZENÁ HRA TEĎ POTŘEBUJE TARPIT"</string>
+    <string name="t_d48f1170" formatted="false">"▼  VÍCE NÍŽE"</string>
+    <string name="t_d4bb26ac" formatted="false">"BALÍČEK SKINŮ JÁDRA"</string>
+    <string name="t_d5acb32b" formatted="false">"Vibrace při upozorněních na bosse, zásazích serveru a konci hry"</string>
+    <string name="t_d5b86d2a" formatted="false">"Bezpečnostní operační centrum"</string>
+    <string name="t_d5d0b693" formatted="false">"POKRAČOVAT"</string>
+    <string name="t_d62907f6" formatted="false">"NAINSTALOVANÝ FIRMWARE"</string>
+    <string name="t_d63b9487" formatted="false">"NEDOSTUPNÉ"</string>
+    <string name="t_d736d92d" formatted="false">"OK"</string>
+    <string name="t_d8386755" formatted="false">"FAKTURACE GOOGLE PLAY"</string>
+    <string name="t_d84b41e9" formatted="false">"Vyhrává trvalé poškození. IPS nebo vylepšený FIREWALL."</string>
+    <string name="t_d8705eb7" formatted="false">"Kybernetické útoky postupují síťovými trasami k CORE-SERVER. Vy nasazujete kyberagenty vedle pruhů; ti odhalují a ničí, co projde. Každý zastavený útok vyplácí ◇ Krypto, za které koupíte další agenty a vylepšení. Každá pátá vlna je boss. Poslední vlna neexistuje — jediná otázka je, jak daleko se dostanete."</string>
+    <string name="t_d889d3ab" formatted="false">"+1, +10 a +100 koupí tolik úrovní. INSTALOVAT MAX utratí tolik, kolik si můžete dovolit. Každá úroveň stojí trochu víc."</string>
+    <string name="t_d8bcdc1d" formatted="false">"RESTARTOVAT"</string>
+    <string name="t_d8fec6d4" formatted="false">"CELKEM NASAZENÝCH AGENTŮ"</string>
+    <string name="t_d9074af5" formatted="false">"Šifrování promíchá data tak, aby je mohl přečíst jen ten, kdo má správný klíč. Chrání legitimní provoz — a stejně dobře skrývá útočníkův náklad před kontrolou."</string>
+    <string name="t_d92ad54a" formatted="false">"Tato verze nemá nakonfigurovanou fakturaci Google Play, nebo toto zařízení nemá Obchod Play. Nic nelze koupit a nic placeného není ke hraní potřeba."</string>
+    <string name="t_d9694eb9" formatted="false">"Stejná chyba, žádná zpětná vazba. Aplikace nevrací chybu ani data, takže útočník klade otázky ano-ne a sleduje, co se změní — časování, délka stránky, stavové kódy — aby databázi četl bit po bitu. Pomalé, trpělivé a v protokolu mnohem hůř odhalitelné."</string>
+    <string name="t_d9b49353" formatted="false">"ZKUSIT ZNOVU"</string>
+    <string name="t_d9b88563" formatted="false">"Jednotka síťového provozu"</string>
+    <string name="t_d9c57847" formatted="false">"PERIMETR PŘIPRAVEN"</string>
+    <string name="t_da10b268" formatted="false">"NEVLASTNĚNO"</string>
+    <string name="t_da169a1a" formatted="false">"SVĚT"</string>
+    <string name="t_da3ae5ed" formatted="false">"Nezpůsobuje poškození a na nic nemíří. Opravuje 1 bod integrity CORE-SERVER každých 30 sekund, dokud běží vlna (nikdy během přestávky ani při pozastavení). Nasazuje se na samotný CORE-SERVER, který pro něj má dva sloty, a nikam jinam. Úrovně zkracují časovač. Nasadit lze nejvýše dva."</string>
+    <string name="t_dad4b11e" formatted="false">"ÚTOČNÁ ČISTKA"</string>
+    <string name="t_db696c4d" formatted="false">"Obrovský a silně obrněný, ale pomalý. Vezměte něco, co ignoruje brnění."</string>
+    <string name="t_db971746" formatted="false">"Hlídá obranné nástroje. Každých pár sekund krátce ruší agenty BLUE HAT poblíž."</string>
+    <string name="t_dba0a883" formatted="false">"Síť unesených strojů"</string>
+    <string name="t_dbc1a374" formatted="false">"REKLAMA NEDOKONČENA — NIC NEUTRACENO"</string>
+    <string name="t_dc09f8b7" formatted="false">"RUŠENÍ — boss může narušit agenta a po dobu trvání mu snížit rychlost palby na polovinu. {0} je postaven tak, aby ho to nezajímalo."</string>
+    <string name="t_dc37fa05" formatted="false">"Široké pásy chladného světla pohybující se za vším."</string>
+    <string name="t_dc62badb" formatted="false">"TITUL"</string>
+    <string name="t_dce01a82" formatted="false">"ZADEJTE VOLACÍ ZNAK"</string>
+    <string name="t_dd220c90" formatted="false">"REKLAMA"</string>
+    <string name="t_dd4083b5" formatted="false">"Nic nekoupeno. Vše výše lze také získat, nebo prostě hrát bez toho."</string>
+    <string name="t_dd55f56b" formatted="false">"Dvě trasy se před rackem třikrát proplétají, jako vlákno DNA."</string>
+    <string name="t_ddb5514a" formatted="false">"OTEVŘÍT V HRÁCH GOOGLE PLAY"</string>
+    <string name="t_ddcb2958" formatted="false">"Pojmenováno po prvním a čistě vědeckofantastickém: každý zásah přeskočí na dvě blízké hrozby s 55 % poškození. Silný proti nahloučeným vlnám, promarněný na osamělém cíli. Zpřístupňuje volbu cíle."</string>
+    <string name="t_ddd374d9" formatted="false">"Krátký přehled útoků, se kterými se setkáte, bossů a toho, co s nimi dělají vaši agenti. Trvá asi dvacet sekund."</string>
+    <string name="t_dee83e52" formatted="false">"PRŮHLEDNOST PANELŮ VE HŘE"</string>
+    <string name="t_e00d9a42" formatted="false">"UMÍSTIT DO SLOTU CORE-SERVER"</string>
+    <string name="t_e01007ce" formatted="false">"Lepší hodnota za euro než malý balíček."</string>
+    <string name="t_e07706fa" formatted="false">"TOTO ZAŘÍZENÍ DO PROPOJENÍ"</string>
+    <string name="t_e0a2aaa4" formatted="false">"PROPOJIT ÚČET GOOGLE"</string>
+    <string name="t_e12d998f" formatted="false">"BALÍČEK"</string>
+    <string name="t_e13093ea" formatted="false">"POŠKOZENÍ"</string>
+    <string name="t_e1892d25" formatted="false">"FIRMWARE JÁDRA"</string>
+    <string name="t_e1df4ef7" formatted="false">"BOSSOVÉ"</string>
+    <string name="t_e3407723" formatted="false">"ANO"</string>
+    <string name="t_e3a7e50c" formatted="false">"PONECHAT MOJE ULOŽENÍ"</string>
+    <string name="t_e3c4a9cc" formatted="false">"{0} ruší agenty {1} ve své blízkosti. Umístěte je dozadu, na okraj jejich dosahu."</string>
+    <string name="t_e4554374" formatted="false">"ZAVŘÍT"</string>
+    <string name="t_e55f9c78" formatted="false">"CO TATO HRA NEDĚLÁ"</string>
+    <string name="t_e587f42b" formatted="false">"VÝCHOZÍ SYSTÉMOVÝ (jazyk telefonu)"</string>
+    <string name="t_e5e7e535" formatted="false">"DĚLENÍ SYN-STORM"</string>
+    <string name="t_e6694d9c" formatted="false">"Opravuje 1 integrity CORE-SERVER každých 30 sekund běžící vlny z jednoho ze dvou slotů na CORE-SERVER. S úrovněmi rychleji. Nejvýše dva."</string>
+    <string name="t_e807eff2" formatted="false">"Zazdí nejbližší trasu v dosahu; hrozby ji musí zbourat. Velmi tvrdě zasahuje každého bosse. Nejvýše tři."</string>
+    <string name="t_e8757749" formatted="false">"odražte vlnu {0} na {1}"</string>
+    <string name="t_e8987cec" formatted="false">"RESETOVAT POSTUP"</string>
+    <string name="t_e94c961d" formatted="false">"STATISTIKY"</string>
+    <string name="t_e979d28d" formatted="false">"TEMPO"</string>
+    <string name="t_e99d5d17" formatted="false">"Balíčky € se utrácejí, nevlastní: připíšou se jednou a OBNOVIT je znovu nevydá."</string>
+    <string name="t_e9caa97b" formatted="false">"Zatím žádná zaznamenaná nasazení. Zahrajte si hru, abyste to vyplnili."</string>
+    <string name="t_ea16b407" formatted="false">"Zlaté spoje na sytě indigové."</string>
+    <string name="t_ea31efb2" formatted="false">"odražte vlnu {0}"</string>
+    <string name="t_eab5f205" formatted="false">"ZMĚNIT VOLACÍ ZNAK"</string>
+    <string name="t_eaf7396d" formatted="false">"GOOGLE NEDOSTUPNÝ — ULOŽENÍ ZACHOVÁNO V ZAŘÍZENÍ"</string>
+    <string name="t_eb2e832a" formatted="false">"AGENT {0}"</string>
+    <string name="t_ebdd4d5e" formatted="false">"ODSTRANĚNO · ŽÁDNÉ"</string>
+    <string name="t_ec91403d" formatted="false">"VLNA"</string>
+    <string name="t_ed31a176" formatted="false">"Dýchající obvodová mříž reagující na vlnu."</string>
+    <string name="t_ed5c9d47" formatted="false">"ZA ÚROVEŇ"</string>
+    <string name="t_ed7160a0" formatted="false">"NIKDY"</string>
+    <string name="t_ed7ecda7" formatted="false">"Zamčeno"</string>
+    <string name="t_ee0803eb" formatted="false">"ODOLNÝ"</string>
+    <string name="t_ee094192" formatted="false">"Tato verze nemá nakonfigurovanou fakturaci Google Play, takže tu nelze nic koupit. Každá část hry, která nestojí peníze, funguje úplně normálně."</string>
+    <string name="t_ee5525d9" formatted="false">"KERNEL PANIC · {0} RUŠENO"</string>
+    <string name="t_ee6595fd" formatted="false">"Tým a místnost, které sledují upozornění. Pokud má tato hra nějaké prostředí, je to nástěnná obrazovka SOC ve 3 ráno."</string>
+    <string name="t_eea62f11" formatted="false">"NÁKUPY"</string>
+    <string name="t_eef967f2" formatted="false">"PŘIBLÍŽENÍ BOJIŠTĚ"</string>
+    <string name="t_ef29f425" formatted="false">"ZVUK"</string>
+    <string name="t_efcf9890" formatted="false">"POŠK {0} · TEMPO {1}/s · DOS {2}"</string>
+    <string name="t_f001b942" formatted="false">"OPEVNĚNÝ"</string>
+    <string name="t_f03b01af" formatted="false">"Pomalu se sám opravuje, když chvíli nedostane zásah."</string>
+    <string name="t_f100d10c" formatted="false">"Vše označené ZAMČENO je v obchodě. Nic tady nemění způsob hraní — skiny jsou vzhled, ne výhody."</string>
+    <string name="t_f16b76bc" formatted="false">"„Rubber ducky“ je USB flashka, která předstírá, že je klávesnice, a napíše útok rychleji než kdokoli. Obranou je USB strážce, který kontroluje každé nové zařízení dřív, než mu počítač uvěří, a blokuje klávesnici, která píše jako stroj."</string>
+    <string name="t_f17dfdae" formatted="false">"Jedna dlouhá trasa vpadne shora a spirálovitě se rozvíjí ven k racku."</string>
+    <string name="t_f25360a0" formatted="false">"Změny platí okamžitě a zůstávají v tomto zařízení"</string>
+    <string name="t_f293dfd1" formatted="false">"KONTROLY NÁKUPŮ"</string>
+    <string name="t_f2e7479c" formatted="false">"Propojte svůj účet Google, abyste si postup zachovali na jakémkoli telefonu či tabletu. Google požádá o oprávnění spravovat uložená data této hry ve vašem účtu — to je úložiště herních uložení a nic jiného se nepoužívá."</string>
+    <string name="t_f2ed0368" formatted="false">"Rychlý. Pokud dosáhne jádra, ukradne místo integrity polovinu vašeho krypta."</string>
+    <string name="t_f2f63d9f" formatted="false">"V TOMTO ZAŘÍZENÍ"</string>
+    <string name="t_f33c5b01" formatted="false">"KROK 6 — SPUSŤTE VLNU"</string>
+    <string name="t_f38eb808" formatted="false">"Tvrdší hrozby, hustěji, méně integrity. Bohatší odměny."</string>
+    <string name="t_f3e23f71" formatted="false">"JÁDRO: CASCADE"</string>
+    <string name="t_f49a4ff9" formatted="false">"AGENT ZAMČEN"</string>
+    <string name="t_f4f677dc" formatted="false">"VYDĚLÁNO CELKEM"</string>
+    <string name="t_f5537783" formatted="false">"JÁDRO: MAINFRAME"</string>
+    <string name="t_f590e2c9" formatted="false">"TRASA"</string>
+    <string name="t_f5b866e4" formatted="false">"Koordinovaný pokus o průnik s dostatečnou redundancí, aby setřásl nepřipravenou síť. Každá pátá vlna jeden přináší a každý je tvrdší než předchozí."</string>
+    <string name="t_f60f5840" formatted="false">"Stále neexistuje žádný účet CyOps ani heslo. Nákupy se řídí účtem Google přihlášeným v Obchodě Play na tomto zařízení. Postup se řídí účtem Google, který propojíte výše — samostatná, volitelná volba: hra je kompletní i bez něj."</string>
+    <string name="t_f692d3ce" formatted="false">"BOTNET"</string>
+    <string name="t_f69a80a7" formatted="false">"Hra se restartuje, aby přepnula na {0}. Váš postup zůstane zachován."</string>
+    <string name="t_f6f93110" formatted="false">"JÁDRO: NEONGRID"</string>
+    <string name="t_f720bfa7" formatted="false">"Řádkování luminoforu CRT."</string>
+    <string name="t_f76fff7f" formatted="false">"Malware: kód napsaný, aby škodil, narušoval nebo kradl. Nese víc nákladu než jednoduchá injekce, takže než se rozpadne, pohltí víc poškození."</string>
+    <string name="t_f7a4fc70" formatted="false">"KLEPNĚTE ZNOVU PRO NASAZENÍ"</string>
+    <string name="t_f7a7b98a" formatted="false">"POŠK {0} · TEMPO {1} · DOS {2}"</string>
+    <string name="t_f7eb1496" formatted="false">"Pořadí určuje nejhlubší dosažená vlna. Při rovnosti rozhoduje způsobené poškození."</string>
+    <string name="t_f803ec67" formatted="false">"HISTORIE OBJEDNÁVEK A VRÁCENÍ PENĚZ"</string>
+    <string name="t_f85117ec" formatted="false">"Všech {0} skladeb už je v Music/CyOps TD."</string>
+    <string name="t_f8723c46" formatted="false">"RYCHLOST"</string>
+    <string name="t_f8d84db3" formatted="false">"NEREGISTROVÁNO"</string>
+    <string name="t_f8e6e39f" formatted="false">"Systémoví inženýři udržují servery v chodu: záplatují, vyměňují vadné díly, obnovují ze záloh a hlídají stav strojů. „Inženýr serverových systémů“ popisuje tento druh práce; názvy pozic se mezi organizacemi liší."</string>
+    <string name="t_f9807a9f" formatted="false">"&gt; v pohotovosti — nasaďte agenty a spusťte vlnu 1"</string>
+    <string name="t_f9cec260" formatted="false">"Pár obrovských zásahů GRADIENT sotva zrychlí."</string>
+    <string name="t_f9d6b090" formatted="false">"Unášená data ASCII za bojištěm a nabídkami"</string>
+    <string name="t_fa1b4500" formatted="false">"Statistiky se sčítají ze všech her, včetně těch, které opustíte z nabídky pauzy. Resetování postupu v NASTAVENÍ je všechny vymaže."</string>
+    <string name="t_fa60c2c6" formatted="false">"ŽIVÉ: TEPELNÁ MAPA"</string>
+    <string name="t_fb735826" formatted="false">"VIBRACE"</string>
+    <string name="t_fb889492" formatted="false">"Nezávisle vyvinutá hra žánru tower defense s důrazem na offline hraní a s tématem kybernetické bezpečnosti. Scénáře, agenti a terminologie jsou pro účely hry smyšlené, s krátkými vysvětleními ze skutečného světa, aby se dalo naučit koncepty za nimi. Neučí žádnou útočnou techniku a neplní žádnou skutečnou bezpečnostní funkci."</string>
+    <string name="t_fbca7f29" formatted="false">"Malware v užitečném přestrojení"</string>
+    <string name="t_fbd9e20c" formatted="false">"ANIMACE POZADÍ"</string>
+    <string name="t_fc778505" formatted="false">"Čistý rack, bez značky."</string>
+    <string name="t_fcc1e712" formatted="false">"SOUKROMÍ"</string>
+    <string name="t_fd3cb488" formatted="false">"JAK FUNGUJE PŘIHLÁŠENÍ"</string>
+    <string name="t_fdb0282f" formatted="false">"NAČÍTÁNÍ REKLAMY…"</string>
+    <string name="t_fde05efe" formatted="false">"DOSÁHNĚTE VLNY {0} NA {1}"</string>
+    <string name="t_fe26fa48" formatted="false">"NEJLEPŠÍ VLNA"</string>
+    <string name="t_fe451d7a" formatted="false">"SYSTÉMY OBNOVENY — INTEGRITA {0}"</string>
+    <string name="t_fe86390c" formatted="false">" · RYCH {0}"</string>
+    <string name="t_feeee285" formatted="false">"{0} skinů jádra · {1} pozadí k dispozici"</string>
+    <string name="t_feef9615" formatted="false">"DALŠÍ BOSS"</string>
+    <string name="t_ff2d6a51" formatted="false">"Tři trasy si dvakrát vymění místa. Každé křížení je místo, které zasáhne dvě."</string>
+    <string name="t_ffa57dc1" formatted="false">"&gt; připojování topologie pruhů"</string>
+    <string name="t_ffc3db58" formatted="false">"DOS {0}"</string>
+    <string name="t_ffff9bd9" formatted="false">"Agenti pomalu plují barevným spektrem, každá jednotka posunutá vůči další."</string>
+</resources>

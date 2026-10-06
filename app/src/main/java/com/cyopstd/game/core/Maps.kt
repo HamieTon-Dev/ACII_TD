@@ -1,5 +1,7 @@
 package com.cyopstd.game.core
 
+import com.cyopstd.game.i18n.tr
+
 /**
  * The levels.
  *
@@ -77,7 +79,7 @@ object Maps {
     val PERIMETER = GameMap(
         id = "perimeter",
         displayName = "NETWORK PERIMETER",
-        tagline = "Two serpentine routes that double back past the same guns.",
+        tagline = tr("Two serpentine routes that double back past the same guns."),
         laneWaypoints = arrayOf(
             // Upper route: right, down, back left, down, long run right, up,
             // right, down into the convergence.
@@ -236,7 +238,7 @@ object Maps {
     val HUGGING_FACE = GameMap(
         id = "hugging_face",
         displayName = "HUGGING-FACE",
-        tagline = "A gauntlet. Two routes, doubled back, then a circuit before the rack.",
+        tagline = tr("A gauntlet. Two routes, doubled back, then a circuit before the rack."),
         laneWaypoints = arrayOf(
             arrayOf(
                 Waypoint(WorldGeometry.SPAWN_X, G_TOP),
@@ -320,7 +322,7 @@ object Maps {
     val NEURAL_MESH = GameMap(
         id = "neural_mesh",
         displayName = "NEURAL-MESH",
-        tagline = "Out, back, and a long shared return to the rack.",
+        tagline = tr("Out, back, and a long shared return to the rack."),
         laneWaypoints = arrayOf(
             arrayOf(
                 Waypoint(WorldGeometry.SPAWN_X, NM_TOP),
@@ -368,7 +370,7 @@ object Maps {
     val DUCK_USB = GameMap(
         id = "duck_usb",
         displayName = "\uD83E\uDD86 DUCK-USB",
-        tagline = "Three routes swap places twice. Every crossing is a spot that hits two.",
+        tagline = tr("Three routes swap places twice. Every crossing is a spot that hits two."),
         laneWaypoints = arrayOf(
             arrayOf(
                 Waypoint(WorldGeometry.SPAWN_X, DU_TOP), Waypoint(DU_X1, DU_TOP),
@@ -425,7 +427,7 @@ object Maps {
     val DDOS = GameMap(
         id = "ddos",
         displayName = "DDoS",
-        tagline = "Two routes comb their own halves. Towers in the middle gap reach both.",
+        tagline = tr("Two routes comb their own halves. Towers in the middle gap reach both."),
         laneWaypoints = arrayOf(ddosComb(top = true), ddosComb(top = false)),
         candidateRows = floatArrayOf(DD_GAP_Y),
         extraNodes = DD_POCKET_X.flatMap { x -> DD_POCKET_Y.map { y -> Waypoint(x, y) } } +
@@ -490,7 +492,7 @@ object Maps {
     val TRIDENT = GameMap(
         id = "trident",
         displayName = "MIRAI",
-        tagline = "Three routes: a straight shot down the middle, two that zigzag above and below it.",
+        tagline = tr("Three routes: a straight shot down the middle, two that zigzag above and below it."),
         laneWaypoints = arrayOf(
             arrayOf(w(S, 90f), w(480f, 90f), w(480f, 230f), w(880f, 230f), w(880f, 90f), w(1190f, 90f), w(1190f, C), w(R, C)),
             arrayOf(w(S, C), w(R, C)),
@@ -511,7 +513,7 @@ object Maps {
     val SPIRAL = GameMap(
         id = "spiral",
         displayName = "RING-ZERO",
-        tagline = "One long route drops in from the top and spirals outward to the rack.",
+        tagline = tr("One long route drops in from the top and spirals outward to the rack."),
         laneWaypoints = arrayOf(
             arrayOf(w(560f, -60f), w(560f, C), w(840f, C), w(840f, 220f), w(290f, 220f), w(290f, 550f),
                 w(1060f, 550f), w(1060f, 80f), w(1190f, 80f), w(1190f, C), w(R, C))
@@ -529,7 +531,7 @@ object Maps {
     val ZIGZAG = GameMap(
         id = "zigzag",
         displayName = "WANNACRY",
-        tagline = "One route slashes corner to corner across the board five times.",
+        tagline = tr("One route slashes corner to corner across the board five times."),
         laneWaypoints = arrayOf(
             arrayOf(w(S, 90f), w(100f, 90f), w(320f, 670f), w(540f, 90f), w(760f, 670f), w(980f, 90f),
                 w(1190f, 670f), w(1190f, C), w(R, C))
@@ -547,7 +549,7 @@ object Maps {
     val HELIX = GameMap(
         id = "helix",
         displayName = "HONEYPOT",
-        tagline = "Two routes weave through each other three times before the rack, like a strand of DNA.",
+        tagline = tr("Two routes weave through each other three times before the rack, like a strand of DNA."),
         laneWaypoints = arrayOf(
             arrayOf(w(S, 150f), w(150f, 150f), w(330f, 610f), w(510f, 610f), w(690f, 150f),
                 w(870f, 150f), w(1050f, 610f), w(1190f, 610f), w(1190f, C), w(R, C)),
@@ -567,7 +569,7 @@ object Maps {
     val BRAID = GameMap(
         id = "braid",
         displayName = "HEARTBLEED",
-        tagline = "Three routes braid through each other twice: every lane changes side.",
+        tagline = tr("Three routes braid through each other twice: every lane changes side."),
         laneWaypoints = arrayOf(
             arrayOf(w(S, 120f), w(300f, 120f), w(500f, C), w(700f, C), w(900f, 640f), w(1150f, 640f), w(1190f, C), w(R, C)),
             arrayOf(w(S, C), w(300f, C), w(500f, 640f), w(700f, 640f), w(900f, 120f), w(1150f, 120f), w(1190f, C), w(R, C)),

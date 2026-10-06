@@ -1,0 +1,867 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Translation of values/strings_i18n.xml. Machine-quality (AI) translation; see FEATURE_BACKLOG.md. -->
+<resources>
+    <string name="t_0069698f" formatted="false">"€ {0} у бюджеті"</string>
+    <string name="t_00bdf050" formatted="false">"ЦЕЙ ПРИСТРІЙ"</string>
+    <string name="t_00c74b4a" formatted="false">"Атакує до трьох окремих загроз кожним залпом, що робить його відповіддю загону на широку хвилю. Відкриває вибір цілі."</string>
+    <string name="t_00cb85ad" formatted="false">"КРОК 4 — ОБЕРІТЬ TARPIT"</string>
+    <string name="t_00f316c1" formatted="false">"ВАРТІСТЬ НАСТУПНОГО РІВНЯ"</string>
+    <string name="t_00fafa13" formatted="false">"ЦЕЙ АКАУНТ МАЄ"</string>
+    <string name="t_01278423" formatted="false">"ЩО ЦЕ ЗМІНЮЄ"</string>
+    <string name="t_014c06bb" formatted="false">"Відкрито {0} з {1} · найкраща хвиля {2}"</string>
+    <string name="t_01b91dff" formatted="false">"RANSOM кожні кілька секунд блокує покращення одного агента на {0} с. Покращуйте до його появи."</string>
+    <string name="t_01ba7032" formatted="false">"0 рівнів"</string>
+    <string name="t_01f2a69d" formatted="false">"НОТАТКИ СЕСІЇ"</string>
+    <string name="t_0288b770" formatted="false">"Торкніться кнопки АГЕНТИ на панелі керування внизу."</string>
+    <string name="t_02b88c49" formatted="false">"Увесь звук генерується на пристрої під час запуску; у грі немає жодного звукового файлу."</string>
+    <string name="t_02f0f435" formatted="false">"Root, або адміністратор, — найвищий рівень повноважень у системі: він може зупинити будь-який процес і змінити що завгодно. Саме тому добра практика — надавати його якомога рідше і на якомога коротший час. «Root admin» — скорочена назва рівня доступу, а не посада."</string>
+    <string name="t_0306926d" formatted="false">"Три лінії атаки до центрального сервера"</string>
+    <string name="t_0358799e" formatted="false">"Діє на кожного {0} у кожному матчі відтепер, понад ПРОШИВКУ ЯДРА. Перші рівні дешеві; кожен дорожчий за попередній, а найвищі коштують мільйони."</string>
+    <string name="t_0397b7d9" formatted="false">"АВТОСТАРТ ХВИЛЬ БОСІВ"</string>
+    <string name="t_03d108e0" formatted="false">"Прив'язано, але Google недоступний. Нічого не втрачено — гра йде на збереженні цього пристрою, а наступна синхронізація оновить акаунт."</string>
+    <string name="t_059b388a" formatted="false">"&gt; хвилю {0} відбито — готуйтеся до хвилі {1}"</string>
+    <string name="t_05ea5d0e" formatted="false">"Доступно з початку."</string>
+    <string name="t_05f2ef1e" formatted="false">"Наступний трек"</string>
+    <string name="t_063d8618" formatted="false">"Ворожий код, замаскований під те, що ви просили. Повільний, але щільно запакований — броня притуплює кожен окремий удар, тож швидкі слабкі постріли марнуються."</string>
+    <string name="t_07269781" formatted="false">"Оберіть складність, щоб побачити світову таблицю."</string>
+    <string name="t_07a3d7ab" formatted="false">"Усе придбане, включно з відродженнями, повертається з Google Play кнопкою ВІДНОВИТИ на будь-якому пристрої. Воно ніколи не є частиною хмарного збереження, тож жоден файл збереження не може дати чи забрати покупку."</string>
+    <string name="t_07fbf4bd" formatted="false">"ВІДРОДЖЕНО"</string>
+    <string name="t_08039ac7" formatted="false">"МАГАЗИН"</string>
+    <string name="t_08175caa" formatted="false">"КОЛЬОРИ КЛАСІВ"</string>
+    <string name="t_08218c08" formatted="false">"ПРИВ'ЯЗКА…"</string>
+    <string name="t_08279524" formatted="false">"Код, що зловживає конкретною вразливістю системи. Експлойти швидкі й б'ють сильно; коли вони йдуть, дальність виявлення важливіша за чисту шкоду."</string>
+    <string name="t_086b8b8e" formatted="false">"БОС"</string>
+    <string name="t_08f0711d" formatted="false">"ВІДНОВИТИ ПОКУПКИ"</string>
+    <string name="t_09653280" formatted="false">"ДО ЯДРА"</string>
+    <string name="t_0a0bc63d" formatted="false">"Попередній трек"</string>
+    <string name="t_0a2301f4" formatted="false">"ЗБЕРЕЖЕНИЙ ПРОГРЕС"</string>
+    <string name="t_0a344034" formatted="false">"ДАЛІ: ХВИЛЯ {0}"</string>
+    <string name="t_0ae74b3e" formatted="false">"УДАР НУЛЬОВОГО ДНЯ"</string>
+    <string name="t_0b205685" formatted="false">"Ініціалізація мережі..."</string>
+    <string name="t_0b809aa5" formatted="false">"Для {0} ще немає світової таблиці. Забіги там записуються на цьому пристрої."</string>
+    <string name="t_0bc6e19b" formatted="false">"Сам не завдає шкоди. Посилює кожного агента в радіусі на +30% шкоди та +20% швидкострільності, тож уся його цінність — у тому, куди ви його поставите."</string>
+    <string name="t_0bd16003" formatted="false">"МАКС"</string>
+    <string name="t_0bfbeb5b" formatted="false">"Затримайте їх у полі TARPIT, а потім нехай IPS розчистить чергу."</string>
+    <string name="t_0c121fb2" formatted="false">"ПРОГРЕС СИНХРОНІЗОВАНО"</string>
+    <string name="t_0c147607" formatted="false">"ГЛИБОКЕ СКАНУВАННЯ"</string>
+    <string name="t_0c16a4ef" formatted="false">"Результатів ще немає. Завершіть забіг, щоб стати першим."</string>
+    <string name="t_0c997319" formatted="false">"ПОДІЛ WORM"</string>
+    <string name="t_0cb4ce2b" formatted="false">"ХВИЛЮ {0} УТРИМАНО  ◇{1}"</string>
+    <string name="t_0cfa4a6e" formatted="false">"БОСИ ЦЬОГО РІВНЯ"</string>
+    <string name="t_0d884b08" formatted="false">"ВТОРГНЕННЯ (БОС)"</string>
+    <string name="t_0d8c63a6" formatted="false">"Кожне влучання перескакує на 2 найближчі загрози з 55% шкоди."</string>
+    <string name="t_0df4bfec" formatted="false">"ВРАЗЛИВИЙ ДО"</string>
+    <string name="t_0e69fc6c" formatted="false">"Панель розгортання показує лише іконку й ціну кожного агента"</string>
+    <string name="t_0eb480b6" formatted="false">"Сітка перспективи, що віддаляється, зі смугою погоні внизу."</string>
+    <string name="t_0f47943c" formatted="false">"ФОКУС ВИМК."</string>
+    <string name="t_0f5d5911" formatted="false">"ЕНЕРГОЗБЕРЕЖЕННЯ"</string>
+    <string name="t_0f80d304" formatted="false">"ШКОДА АГЕНТІВ"</string>
+    <string name="t_0f9a43d6" formatted="false">"УСІ ЖИВІ ФОНИ"</string>
+    <string name="t_0fa88218" formatted="false">"Google Play недоступний — зазвичай немає мережі. Усе придбане й надалі ваше; натисніть ВІДНОВИТИ, коли знову будете онлайн, і воно з'явиться."</string>
+    <string name="t_0fd40469" formatted="false">"ПРОДУКТИВНІСТЬ"</string>
+    <string name="t_0fd4c0f4" formatted="false">"СЛОТИ CORE-SERVER ЛИШЕ ДЛЯ [S]"</string>
+    <string name="t_1046865f" formatted="false">"Безперервно створює BOT позаду себе. Убийте його швидко або потоніть у його ботнеті."</string>
+    <string name="t_107ea55b" formatted="false">"ПОКРАЩЕННЯ ВЗЯТО В ЗАРУЧНИКИ"</string>
+    <string name="t_108f4363" formatted="false">"ВСТАНОВИТИ"</string>
+    <string name="t_111611f9" formatted="false">"СТІНА ПАТЧІВ"</string>
+    <string name="t_1181f7e7" formatted="false">"АГЕНТИ ЗАГЛУШЕНІ"</string>
+    <string name="t_11c0f105" formatted="false">"МУЗИКА РІВНЯ (АВТО)"</string>
+    <string name="t_11c8546c" formatted="false">"шкода"</string>
+    <string name="t_11d858aa" formatted="false">"НАЙВИЩА ХВИЛЯ"</string>
+    <string name="t_1213b2b6" formatted="false">"{0} ГОД ТОМУ"</string>
+    <string name="t_12193f21" formatted="false">"Мережеві архітектори проєктують, як ділиться мережа. Сегментація означає, що злам в одній зоні не може просто перейти в наступну, а це обмежує шкоду від будь-якого окремого збою. Це проєктна робота до інциденту, а не інструмент під час нього."</string>
+    <string name="t_1248f6ec" formatted="false">"Збереження саундтреку потребує Android 10 або новішої версії."</string>
+    <string name="t_125ca8ca" formatted="false">"СТАРТОВИЙ НАБІР"</string>
+    <string name="t_12a36ceb" formatted="false">"ПІДРОБЛЕНО"</string>
+    <string name="t_12e8edf9" formatted="false">"МОВА"</string>
+    <string name="t_1380e038" formatted="false">"ВИКУП · ПОКРАЩЕННЯ ЗАБЛОКОВАНО {0} с"</string>
+    <string name="t_138da392" formatted="false">"Сітка, клітинки якої нагріваються й охолоджуються разом із трафіком."</string>
+    <string name="t_13df4b88" formatted="false">"ПРОШИВКА"</string>
+    <string name="t_13ee9782" formatted="false">"РОЗГОРНУТО"</string>
+    <string name="t_141ad814" formatted="false">"ВІДГУК"</string>
+    <string name="t_143628e2" formatted="false">"ЛИШЕ РЕКЛАМА ВІДРОДЖЕННЯ · ДОБРОВІЛЬНО"</string>
+    <string name="t_1489b7f6" formatted="false">"{0} ДН. ТОМУ"</string>
+    <string name="t_14bdf6f2" formatted="false">"НАВЧАЛЬНОМУ ЗАБІГУ СПЕРШУ ПОТРІБЕН FIREWALL"</string>
+    <string name="t_14c27ca9" formatted="false">"ANALYST завдає елітним на 80% більше шкоди. Допомагають агенти, що ігнорують броню."</string>
+    <string name="t_14cecaa5" formatted="false">"Робить дані нечитабельними без ключа"</string>
+    <string name="t_14ecbe1d" formatted="false">"{0}/с"</string>
+    <string name="t_1512aeac" formatted="false">"{0} рівнів"</string>
+    <string name="t_154419d5" formatted="false">"Вважається зашифрованим: більшість агентів завдає зменшеної шкоди."</string>
+    <string name="t_154a5adf" formatted="false">"РІВ"</string>
+    <string name="t_15680f7c" formatted="false">"Витратьте на постійну шкоду ПРОШИВКИ ЯДРА."</string>
+    <string name="t_1571a208" formatted="false">"Поставте два TARPIT так, щоб їхні аури покривали ділянку, по якій стріляють ваші FIREWALL. Саме сповільнення робить шкоду влучною."</string>
+    <string name="t_15aa2838" formatted="false">"Груба сітка, клітинки якої нагріваються й охолоджуються разом із трафіком."</string>
+    <string name="t_15ede35d" formatted="false">"◇ {0} · доступно з початку"</string>
+    <string name="t_167ae054" formatted="false">"Це видалить ваш збережений забіг, усіх відкритих агентів, усю статистику та налаштування.\n\nЦю дію не можна скасувати."</string>
+    <string name="t_17a13ae4" formatted="false">"Боси рухаються повільно, але б'ють по CORE-SERVER на {0} цілісності. Вони дають найбільше крипти в грі та міцнішають з кожним циклом."</string>
+    <string name="t_17e0e9f0" formatted="false">"Дуже висока швидкострільність, завжди цілиться в босів раніше за все інше в радіусі та завдає подвійної шкоди [!!!] BREACH. Відкривається на 30-й хвилі, можна розгорнути не більше чотирьох."</string>
+    <string name="t_1877f7c0" formatted="false">"НЕ ВСТАНОВЛЕНО"</string>
+    <string name="t_197d534b" formatted="false">"Витрачайте € БЮДЖЕТ — накопичується на кожній десятій хвилі забігу й зберігається потім — на постійне посилення шкоди для кожного агента."</string>
+    <string name="t_1991565e" formatted="false">"ОБМЕЖЕННЯ ЧАСТОТИ"</string>
+    <string name="t_19cbe369" formatted="false">"УЛЮБЛЕНИЙ АГЕНТ"</string>
+    <string name="t_1a155da6" formatted="false">"НАСТУПНА ХВИЛЯ"</string>
+    <string name="t_1a2a0f17" formatted="false">"ЗАБЛОКОВАНО"</string>
+    <string name="t_1a73c7da" formatted="false">"швидкострільність"</string>
+    <string name="t_1aba43b0" formatted="false">"Повільні еліптичні траси навколо ядра, наче планувальник за роботою."</string>
+    <string name="t_1b0d8052" formatted="false">"Трусити поле бою, коли влучають у CORE-SERVER"</string>
+    <string name="t_1ba327c9" formatted="false">"Найпоширеніша вебатака"</string>
+    <string name="t_1ba41734" formatted="false">"ЗАБЛОКОВАНІ АТАКИ"</string>
+    <string name="t_1cc19733" formatted="false">"РЕАЛЬНИЙ СВІТ"</string>
+    <string name="t_1d162704" formatted="false">"Справді почати новий забіг? Ваша збережена сесія буде замінена."</string>
+    <string name="t_1d29935f" formatted="false">"{0} ЗАГЛУШЕНО"</string>
+    <string name="t_1d8fe548" formatted="false">"ПОЧАТИ ЗАНОВО"</string>
+    <string name="t_1dea7837" formatted="false">"HACK:AI вийшов за свої межі. Половина цілісності, подвійні нагороди."</string>
+    <string name="t_1deb5c00" formatted="false">"ПРИВ'ЯЗАНО · ОФЛАЙН"</string>
+    <string name="t_1e09b492" formatted="false">"🔒 [{0}] {1} · ЗАБЛОКОВАНО"</string>
+    <string name="t_1e6ed1a9" formatted="false">"ЖИВІ ФОНИ"</string>
+    <string name="t_1ef7821b" formatted="false">"Неоново-синя сітка, що йде в ядро, з голографічним кільцем, яке переходить із синього в зелений."</string>
+    <string name="t_1f3159fc" formatted="false">"КОЛЬОРИ АГЕНТІВ"</string>
+    <string name="t_1f5df304" formatted="false">"З'ЄДНАННЯ СКИНУТО"</string>
+    <string name="t_1ff44d56" formatted="false">"ЛІЦЕНЗІЮ ЗАСТОСОВАНО"</string>
+    <string name="t_20ce505d" formatted="false">"ПАУЗА"</string>
+    <string name="t_21399575" formatted="false">"РОЗРОБНИК"</string>
+    <string name="t_2198b685" formatted="false">"Показувати радіус сканування вибраного агента"</string>
+    <string name="t_21bb43e3" formatted="false">"{0} · БУДЬ-ЯКИЙ РІВЕНЬ"</string>
+    <string name="t_22100250" formatted="false">"РІВЕНЬ {0} · МАКС"</string>
+    <string name="t_224d65ed" formatted="false">"СКІНИ CORE-SERVER"</string>
+    <string name="t_22686e59" formatted="false">"З'ЄДНАННЯ"</string>
+    <string name="t_227cde14" formatted="false">"{0} у {1}"</string>
+    <string name="t_2283d7ca" formatted="false">"ВУЗОЛ ЗАЙНЯТО"</string>
+    <string name="t_22b6479a" formatted="false">"Фахівець із кібероперацій веде оборону як живу операцію: стежить за втручанням, підтримує інструменти команди в роботі, поки хтось активно намагається їх вимкнути, і б'є просто по джерелу."</string>
+    <string name="t_22c4ef22" formatted="false">"Його вміст зашифровано, тож більшість захисту не бачить, у що стріляє, і завдає лише часткової шкоди. Агент CRYPTOGRAPHER пробиває шифр навпростець."</string>
+    <string name="t_23020c53" formatted="false">" · доступно {0}"</string>
+    <string name="t_236f5b12" formatted="false">"ВСЬОГО ПЕРЕМОЖЕНО БОСІВ"</string>
+    <string name="t_23763c89" formatted="false">"НАЛАШТУВАННЯ"</string>
+    <string name="t_23961a76" formatted="false">"БОС {0} З {1} · ТОРКНІТЬСЯ БОСА, ЩОБ ПЕРЕМКНУТИ"</string>
+    <string name="t_24adcafc" formatted="false">"ВСЬОГО ШКОДИ СЕРВЕРУ"</string>
+    <string name="t_24bbb47b" formatted="false">"ЗАБЛОКОВАНІ ПРЕДМЕТИ"</string>
+    <string name="t_24d3a2ef" formatted="false">"СТІНУ ЗРУЙНОВАНО"</string>
+    <string name="t_255b5911" formatted="false">"Зелений люмінофор CRT, лінії розгортки та смуга оновлення."</string>
+    <string name="t_2570d23e" formatted="false">"Зосередьте вогонь. ANALYST і ROOT ADMIN тягнуть хвилі босів."</string>
+    <string name="t_25a6b96b" formatted="false">"Надійна шкода на середній дистанції за низьку ціну, і єдиний агент з імунітетом до JAM боса. Коротка дальність, тож мусить стояти біля лінії — саме тому цей імунітет і важливий."</string>
+    <string name="t_25bd1975" formatted="false">"ШКД"</string>
+    <string name="t_25efb9da" formatted="false">"РАДІУС ВИБУХУ"</string>
+    <string name="t_260d60b1" formatted="false">"ОДНА РЕКЛАМА ПІСЛЯ ПРОГРАШУ · ВІДРОДЖЕННЯ ДОБРОВІЛЬНЕ"</string>
+    <string name="t_26b80d1f" formatted="false">"ГОТОВО"</string>
+    <string name="t_27a68119" formatted="false">"СТАН МЕРЕЖІ"</string>
+    <string name="t_27d9802d" formatted="false">"ОДНА РЕКЛАМА ПІСЛЯ ПРОГРАШУ"</string>
+    <string name="t_27daad70" formatted="false">"Іній, що підкрадається від країв."</string>
+    <string name="t_28c31125" formatted="false">"Броньований і терплячий. Важкі поодинокі удари його перемагають; швидкий вогонь марнується."</string>
+    <string name="t_28e339dd" formatted="false">"Рідкі стовпці символів, що падають, за полем."</string>
+    <string name="t_296fb456" formatted="false">"РЕМОНТ +{0} HP · КОЖНІ {1} с · СЛОТ CORE-SERVER · МАКС {2}"</string>
+    <string name="t_297ae895" formatted="false">"У КАРАНТИНІ"</string>
+    <string name="t_2a1bde6e" formatted="false">"Система запобігання вторгненням стоїть на шляху трафіку й має право діяти щодо виявленого: розриває чи скидає з'єднання, а не лише сповіщає. Компроміс реальний: IPS, що помилково оцінить легітимний трафік, його заблокує."</string>
+    <string name="t_2a934539" formatted="false">"ДЖЕРЕЛО АТАКИ"</string>
+    <string name="t_2a9b95e6" formatted="false">"Завдає ×{0} шкоди кожному босу."</string>
+    <string name="t_2bb9a482" formatted="false">"Брандмауер перевіряє трафік за списком правил і відкидає все, що не відповідає. Це найстаріший і досі найважливіший захист периметра."</string>
+    <string name="t_2be00c84" formatted="false">"ЗМІНИТИ ПОЗИВНИЙ"</string>
+    <string name="t_2c13b917" formatted="false">"Завдає ×{0} шкоди: {1}."</string>
+    <string name="t_2ce4713d" formatted="false">"&gt; синхронізація CORE-SERVER"</string>
+    <string name="t_2d14c154" formatted="false">"Повільні діагональні потоки даних перетинають поле."</string>
+    <string name="t_2dcb788c" formatted="false">"Цю гру розроблено за допомогою інструментів штучного інтелекту, що використовувалися як навчальні й допоміжні засоби під час вивчення програмування та розробки програмного забезпечення.\n\nІнструменти ШІ допомагали з написанням коду, усуненням проблем, документацією та навчанням. Остаточні рішення щодо дизайну, напрям ігрового процесу, тестування та рішення про публікацію залишаються відповідальністю розробника.\n\nЦю гру не створено, не спонсоровано, не схвалено, вона не належить жодній компанії зі штучного інтелекту й не видана нею."</string>
+    <string name="t_2df53561" formatted="false">"Фільтр трафіку на основі правил"</string>
+    <string name="t_2e0cf790" formatted="false">"ІНШІ"</string>
+    <string name="t_2e19cc63" formatted="false">"Один раз підіймається з 40% здоров'я. Убити його — ще не означає добити."</string>
+    <string name="t_2ef9e2c6" formatted="false">"КІБЕРАТАКИ"</string>
+    <string name="t_2f3549f7" formatted="false">"ХМАРНЕ ЗБЕРЕЖЕННЯ НЕДОСТУПНЕ"</string>
+    <string name="t_302a4f0a" formatted="false">"БАЗОВИЙ"</string>
+    <string name="t_302eea27" formatted="false">"ЗНАЄТЕ, ЩО НАСУВАЄТЬСЯ?"</string>
+    <string name="t_3083c674" formatted="false">"ЖИВИЙ: ДРЕЙФ"</string>
+    <string name="t_30867b62" formatted="false">"Повністю офлайн"</string>
+    <string name="t_30ed929d" formatted="false">"Відкрийте цього агента, дійшовши до хвилі {0} на {1}."</string>
+    <string name="t_31359ec6" formatted="false">"{0}: фокус вимк."</string>
+    <string name="t_313900e6" formatted="false">"КАНАЛ АРХІТЕКТОРА"</string>
+    <string name="t_314d733e" formatted="false">"Доступно € {0}"</string>
+    <string name="t_317b7de0" formatted="false">"Код, що падає всередині самої стійки."</string>
+    <string name="t_31d43b93" formatted="false">"ЖИВИЙ: ДОЩ"</string>
+    <string name="t_326bdc38" formatted="false">"АГЕНТА НЕ ЗАРЕЄСТРОВАНО"</string>
+    <string name="t_32a3e9f3" formatted="false">"ОСОБЛИВЕ — {0}"</string>
+    <string name="t_32bafd88" formatted="false">"ДАЛІ"</string>
+    <string name="t_32e6f915" formatted="false">"ДОСТУПНО ЗАРАЗ"</string>
+    <string name="t_332ec80a" formatted="false">"Їх убиває що завгодно. Не будуйте для них надто багато."</string>
+    <string name="t_33cd995a" formatted="false">"ВТОРГНЕННЯ ЗАБЛОКОВАНО"</string>
+    <string name="t_3425c9d3" formatted="false">"РІВЕНЬ {0}"</string>
+    <string name="t_35350bff" formatted="false">"Пульсуюче кільце стримування."</string>
+    <string name="t_3595e52a" formatted="false">"МАРШРУТ {0}"</string>
+    <string name="t_35c82960" formatted="false">"ЯДРО: GLACIER"</string>
+    <string name="t_35f74be9" formatted="false">"Нищівна шкода по одній цілі, що ігнорує всю броню. Найдорожчий агент у грі, відкривається дуже пізно. Відкриває вибір цілі."</string>
+    <string name="t_36900a0f" formatted="false">"Дешевий і майже нешкідливий. Усе в його радіусі повзе."</string>
+    <string name="t_37447c3a" formatted="false">"Надзвичайно висока швидкострільність, і кожен постріл розлітається."</string>
+    <string name="t_376bc6d2" formatted="false">"Відлік триває, поки це відкрито."</string>
+    <string name="t_376c54b2" formatted="false">"ПРИБРАТИ РЕКЛАМУ"</string>
+    <string name="t_379656ef" formatted="false">"ЯДРО: VOID"</string>
+    <string name="t_37bc9401" formatted="false">"Ця збірка показує рекламу від Google AdMob. Перегляд реклами, щоб продовжити забіг, завжди необов'язковий і ніколи не потрібен для гри."</string>
+    <string name="t_384d3555" formatted="false">"{0} живих"</string>
+    <string name="t_384e5d9f" formatted="false">"ХМАРНЕ ЗБЕРЕЖЕННЯ"</string>
+    <string name="t_385b9a87" formatted="false">"Тарпіт приймає вороже з'єднання, а потім відповідає так повільно, як тільки дозволено, тримаючи нападника на сокеті, що веде в нікуди. Це тактика затримки, а не блокування: цінність — у часі, який втрачає інша сторона."</string>
+    <string name="t_38695d86" formatted="false">"РЕЗЕРВНА КОПІЯ ПРОГРЕСУ"</string>
+    <string name="t_38c1e7e0" formatted="false">"ЗА РЕКЛАМУ"</string>
+    <string name="t_38d9a5af" formatted="false">"&gt; мережу скомпрометовано"</string>
+    <string name="t_38e03b91" formatted="false">"ПОВНІСТЮ ВСТАНОВЛЕНО"</string>
+    <string name="t_3950774a" formatted="false">"ЗАРЕЄСТРОВАНО ЯК"</string>
+    <string name="t_395af116" formatted="false">"АНОНІМНИЙ ЗЛАМ"</string>
+    <string name="t_396e8daa" formatted="false">"СПЕКТР"</string>
+    <string name="t_3a06e0fa" formatted="false">"МУЗИКА"</string>
+    <string name="t_3a7e7fe6" formatted="false">"ТИП ЗБІРКИ"</string>
+    <string name="t_3a8a0a59" formatted="false">"Кожне влучання його пришвидшує, хоч яке мале; він сповільнюється, коли його лишають у спокої. Кілька великих ударів кращі за багато дрібних."</string>
+    <string name="t_3aa6f2eb" formatted="false">"ZERO-DAY HUNTER і ROOT ADMIN повністю ігнорують броню."</string>
+    <string name="t_3aaad671" formatted="false">"ТОРКНІТЬСЯ ДЛЯ ПОДРОБИЦЬ"</string>
+    <string name="t_3b12a908" formatted="false">"GRADIENT пришвидшується з кожним влучанням, хоч яким малим, і сповільнюється, коли його лишають у спокої. Кілька великих ударів кращі за багато дрібних."</string>
+    <string name="t_3b53a59d" formatted="false">"Також автоматично запускати хвилі босів. Вимк.: хвилі босів чекають на вас"</string>
+    <string name="t_3bc78174" formatted="false">"РОЗРОБКА ЗА ДОПОМОГОЮ ШІ"</string>
+    <string name="t_3c66aec8" formatted="false">"Ваші хвилі, агенти, € і прошивка зберігаються в акаунті Google. Увійдіть у нього на іншому пристрої — і вони там. Синхронізація відбувається, коли ви виходите з гри та коли закінчується забіг."</string>
+    <string name="t_3cef355d" formatted="false">"Найбільше здоров'я, що лишилося"</string>
+    <string name="t_3d17c701" formatted="false">"РИВОК ШВИДКОСТІ"</string>
+    <string name="t_3d331382" formatted="false">"Шлях, яким іде трафік"</string>
+    <string name="t_3d509ddc" formatted="false">"Удвічі знизити частоту кадрів і прибрати декоративні ефекти"</string>
+    <string name="t_3d83d177" formatted="false">"КІБЕРАГЕНТИ"</string>
+    <string name="t_3db03eca" formatted="false">"ВАШ РЕКОРД"</string>
+    <string name="t_3e12b118" formatted="false">"ДОВІДКА"</string>
+    <string name="t_3e27e12f" formatted="false">"Найменше здоров'я, що лишилося"</string>
+    <string name="t_3ecdd82e" formatted="false">"Вразливість нульового дня — це вразливість, на виправлення якої захисник мав нуль днів, бо ніхто не знав про її існування. Немає сигнатури для порівняння, і саме це робить їх такими небезпечними."</string>
+    <string name="t_3fa2aee2" formatted="false">"Отримує на 35% менше шкоди від агентів FIREWALL."</string>
+    <string name="t_401924c3" formatted="false">"СКІН CORE-SERVER"</string>
+    <string name="t_4071c698" formatted="false">"Google Play відповів. Покупки й відновлення працюють як слід."</string>
+    <string name="t_40b15bdb" formatted="false">"Накопичується на кожній десятій хвилі. Що глибше забіг, то більша виплата — нагорода зростає з квадратом рубежу, тож один глибокий забіг вартує п'яти мілких."</string>
+    <string name="t_4104a0b2" formatted="false">"Ваш найкращий результат на {0}: хвиля {1}"</string>
+    <string name="t_4108bc91" formatted="false">"РУКОСТИСКАННЯ ВІДХИЛЕНО"</string>
+    <string name="t_41203058" formatted="false">"СПОРЯДЖЕННЯ"</string>
+    <string name="t_412ea11f" formatted="false">"Торкніться двох підсвічених вузлів біля маршруту. Два — не порада: один агент не втримає лінію сам."</string>
+    <string name="t_419c5ded" formatted="false">"ВСЬОГО ЗІГРАНО ІГОР"</string>
+    <string name="t_41a1b85e" formatted="false">"ПАРАМЕТРИ КОНФІДЕНЦІЙНОСТІ"</string>
+    <string name="t_41ca8ef5" formatted="false">"Зберігається локально на цьому пристрої · нічого не вивантажується"</string>
+    <string name="t_41e88f52" formatted="false">"Розведіть два пальці, щоб наблизити поле — зблизька вузли легше натискати. У наближенні тягніть одним пальцем, щоб пересуватися. Зведіть пальці до кінця, щоб знову побачити все поле."</string>
+    <string name="t_4208e473" formatted="false">"БЕЗ РЕКЛАМИ"</string>
+    <string name="t_420bd000" formatted="false">"BOTMASTER кожні кілька секунд залишає позаду BOT. Убийте його швидко й лишіть щось на рій."</string>
+    <string name="t_4273a8be" formatted="false">"АКАУНТ"</string>
+    <string name="t_42832744" formatted="false">"Без азартних ігор, лутбоксів і випадкових платних нагород"</string>
+    <string name="t_42880e6f" formatted="false">"ЗАБЛОКОВАНО · {0}"</string>
+    <string name="t_42a0e053" formatted="false">"ПРО ГРУ"</string>
+    <string name="t_42addf6c" formatted="false">"ВІДКРИТИ МАГАЗИН"</string>
+    <string name="t_42afe7bc" formatted="false">"ПІДКЛЮЧЕННЯ"</string>
+    <string name="t_42ef8058" formatted="false">"ЖУРНАЛ ОБОРОНИ"</string>
+    <string name="t_4306ee12" formatted="false">"БЮДЖЕТ €1,500"</string>
+    <string name="t_4333987a" formatted="false">"Рідкі стовпці символів, що падають."</string>
+    <string name="t_43a1c2e8" formatted="false">"ВАРТІСТЬ ПОКРАЩЕННЯ"</string>
+    <string name="t_441ec9a9" formatted="false">"Короткий огляд меню. ДАЛІ — продовжити, ПРОПУСТИТИ — закрити. Повторити можна будь-коли в НАЛАШТУВАННЯХ."</string>
+    <string name="t_4427afab" formatted="false">"Броня притуплює дрібні удари: беріть ANALYST або ROOT ADMIN, а не IPS."</string>
+    <string name="t_4439e789" formatted="false">"ЗАБЛОКОВАНО · Пройдіть рівень 5 (відбийте хвилю 100 на DDoS), щоб відкрити музичний плеєр і список треків."</string>
+    <string name="t_448177d3" formatted="false">"ОСТАННЯ СИНХРОНІЗАЦІЯ"</string>
+    <string name="t_4494c488" formatted="false">"{0} ХВ ТОМУ"</string>
+    <string name="t_44c51c30" formatted="false">"АТАКУ ЗАБЛОКОВАНО"</string>
+    <string name="t_44fbbc54" formatted="false">"&gt; !! наближається кібератака — серйозний прорив на підході !!"</string>
+    <string name="t_4538f2a7" formatted="false">"Брандмауер перевіряє трафік за набором правил і відкидає все, чого правила не дозволяють. Зазвичай це перший рубіж між ненадійною мережею й тим, що варто захищати, і судять його за правилами, які йому дали, а не за кмітливістю."</string>
+    <string name="t_45b17976" formatted="false">"Важка шкода по одній цілі, однакова з кожним пострілом без жодної лотереї, ігнорує броню. Дорогий і повільний; один такий лінію не втримає."</string>
+    <string name="t_4631883a" formatted="false">"ВСТАНОВИТИ МАКС  (+{0})"</string>
+    <string name="t_463cbc28" formatted="false">"ЗДОРОВ'Я ×{0} · БРОНЯ +{1} · ШВИДКІСТЬ ×{2}"</string>
+    <string name="t_466578df" formatted="false">"Продовжити цю хвилю з половиною цілісності."</string>
+    <string name="t_466b92a9" formatted="false">"КАНАЛ СЕГМЕНТА"</string>
+    <string name="t_46984fe6" formatted="false">"ГРАТИ · ПРОДОВЖИТИ"</string>
+    <string name="t_46cc0ef8" formatted="false">"Також збільшує ◇ крипту, яку дає кожен забіг, на +{0}% за рівень аж до подвоєння. Не впливає на здоров'я ворогів чи склад хвиль."</string>
+    <string name="t_4735c1ed" formatted="false">"Кібератаки прямують до CORE-SERVER. Розгорніть Кіберагентів біля маршрутів, щоб зупинити їх до прибуття."</string>
+    <string name="t_4747b424" formatted="false">"ВОРОГИ"</string>
+    <string name="t_477d52c6" formatted="false">"Прив'язано. Увійдіть у той самий акаунт Google на іншому телефоні чи планшеті — і ваш прогрес там."</string>
+    <string name="t_47c5c237" formatted="false">"НЕДІЙСНИЙ ВУЗОЛ"</string>
+    <string name="t_485268f0" formatted="false">"&gt; озброєння кіберагентів"</string>
+    <string name="t_4882e1dc" formatted="false">"KERNEL PANIC, помираючи, глушить кожного агента в радіусі на 3 секунди. FIREWALL це витримує."</string>
+    <string name="t_488d4b25" formatted="false">"Тисячі машин одночасно шлють трафік на одну ціль. Жоден окремий запит не є атакою; атака — це потоп. Мета — не проникнути, а зробити сервіс непридатним."</string>
+    <string name="t_4905ed7b" formatted="false">"НЕМАЄ"</string>
+    <string name="t_494c304d" formatted="false">"-◇{0} ВИКРАДЕНО"</string>
+    <string name="t_49848f53" formatted="false">"СЛІПА SQL-ІН'ЄКЦІЯ"</string>
+    <string name="t_498754a7" formatted="false">"ЗБЕРЕГТИ САУНДТРЕК НА ТЕЛЕФОН"</string>
+    <string name="t_4af4306b" formatted="false">"ЗБІРКА"</string>
+    <string name="t_4c1012d3" formatted="false">"Тримайте його під вогнем: він лагодиться лише після паузи без влучань, тож закривайте прогалини між зонами ураження."</string>
+    <string name="t_4c6d3272" formatted="false">"🔒 ЗАБЛОКОВАНО"</string>
+    <string name="t_4cc6f55a" formatted="false">"Google Play Ігри недоступні. Ваші забіги записуються на цьому пристрої, а найкращий буде опубліковано, коли наступний забіг завершиться онлайн."</string>
+    <string name="t_4d54c785" formatted="false">"РОЗМІЩЕННЯ {0} — торкніться вузла"</string>
+    <string name="t_4d6e69d2" formatted="false">"МУЗИЧНИЙ ПЛЕЄР"</string>
+    <string name="t_4d7ab8a3" formatted="false">"ПОЗИВНИЙ"</string>
+    <string name="t_4e2b3472" formatted="false">"НЕМАЄ ЗБЕРЕЖЕНОЇ СЕСІЇ"</string>
+    <string name="t_4ebbf8bd" formatted="false">"Залишилось відроджень у цьому забігу: {0}."</string>
+    <string name="t_4f0fcb18" formatted="false">"Приходить на кожній п'ятій хвилі"</string>
+    <string name="t_4f160176" formatted="false">"Забіг за врожаєм. Жодних хитрощів, жодного глушіння — на двадцять відсотків більше, ніж будь-чого іншого на полі."</string>
+    <string name="t_5022c684" formatted="false">"ШИФРУВАННЯ"</string>
+    <string name="t_5067a989" formatted="false">"ЗАПЛУТАНИЙ ЛАНЦЮГ"</string>
+    <string name="t_5079b771" formatted="false">"Відкрийте цього агента, дійшовши до хвилі {0} на {1} у режимі {2}."</string>
+    <string name="t_509d7851" formatted="false">" · УДАР {0}"</string>
+    <string name="t_513901c7" formatted="false">" · БЕЗ РЕКЛАМИ"</string>
+    <string name="t_513dcdc9" formatted="false">"НА АГЕНТА"</string>
+    <string name="t_520a6b88" formatted="false">"Кожен рівень трохи дорожчий за попередній, тож множник росте, але ніколи не виходить з-під контролю. Стелі, якої ви реально досягнете, немає."</string>
+    <string name="t_5333e76e" formatted="false">"РЕНДЕРИНГ"</string>
+    <string name="t_53e605b3" formatted="false">"ОБЕРЕЖНО"</string>
+    <string name="t_543ce9f7" formatted="false">"КОЖНІ"</string>
+    <string name="t_54523d94" formatted="false">"Стійка, в яку вбудовано ваше ядро. Видно на полі бою."</string>
+    <string name="t_54743050" formatted="false">"ВСЬОГО ЗАБЛОКОВАНО АТАК"</string>
+    <string name="t_54797d92" formatted="false">"Доріжки схем під індикаторами."</string>
+    <string name="t_549824f8" formatted="false">"ПОРТ ЗАХИЩЕНО"</string>
+    <string name="t_5571a722" formatted="false">"ГРА ОФЛАЙН · БЕЗ ВХОДУ"</string>
+    <string name="t_55f85167" formatted="false">"КОМПАКТНЕ МЕНЮ АГЕНТІВ"</string>
+    <string name="t_565a738e" formatted="false">"НІ, ДАЙТЕ ГРАТИ"</string>
+    <string name="t_56a9a004" formatted="false">"Ін'єкція з вимкненим світлом"</string>
+    <string name="t_56bafb67" formatted="false">"Одне відродження за забіг."</string>
+    <string name="t_56c54890" formatted="false">"Роздута модель: трохи більше здоров'я, трохи повільніша."</string>
+    <string name="t_56c6b2ae" formatted="false">"Художня вольність, чітко позначена: цей агент просто ігнорує властивість ENCRYPTED замість того, щоб слабшати через неї, і завдає потрійної шкоди всьому, що її має. Справжня криптографія так не працює, і ніщо тут не зламує справжній шифр."</string>
+    <string name="t_5749c8dc" formatted="false">"Хвилю {0} і все розгорнуте буде втрачено."</string>
+    <string name="t_5785b710" formatted="false">"Виберіть агента, потім торкніться підсвіченого вузла розгортання."</string>
+    <string name="t_57f88861" formatted="false">"ФОКУС: ЛИШЕ БОСИ"</string>
+    <string name="t_582ec4a0" formatted="false">"Скомпрометовані комп'ютери тихо виконують накази центрального контролера. Власники зазвичай нічого не знають. Саме ботнети уможливлюють великі DDoS-атаки."</string>
+    <string name="t_5840893d" formatted="false">"ВТОРГНЕННЯ СТРИМАНО"</string>
+    <string name="t_58a5f08a" formatted="false">"Звичайна сітка. Без руху."</string>
+    <string name="t_597ee3cb" formatted="false">"СИГНАТУРА ЗБІГЛАСЯ"</string>
+    <string name="t_5a02fc0a" formatted="false">"НАБІР ВІДРОДЖЕНЬ"</string>
+    <string name="t_5a3d8598" formatted="false">"Найближчі до CORE-SERVER"</string>
+    <string name="t_5a911db6" formatted="false">"ВАШ АКАУНТ GOOGLE"</string>
+    <string name="t_5aa1d1dc" formatted="false">"{0}: фокус увімк."</string>
+    <string name="t_5b19a621" formatted="false">"Атака на вразливість, яку ще ніхто не залатав, — захисник мав нуль днів на підготовку. Рідкісна, міцна й вартує чималої крипти."</string>
+    <string name="t_5c19fc6b" formatted="false">"КУПИТИ САУНДТРЕК CyOps TD · {0}"</string>
+    <string name="t_5c3f86fb" formatted="false">"НАЙСИЛЬНІШІ"</string>
+    <string name="t_5d1868fb" formatted="false">"ЯДРО"</string>
+    <string name="t_5d377851" formatted="false">"Постійні покращення · кожен матч відтепер"</string>
+    <string name="t_5d4d0273" formatted="false">"{0} заблоковано: {1}."</string>
+    <string name="t_5de47a9b" formatted="false">"УСІ СКЛАДНОСТІ"</string>
+    <string name="t_5de55828" formatted="false">"!! НИЗЬКА ЦІЛІСНІСТЬ !!"</string>
+    <string name="t_5e75065a" formatted="false">"ПІДКЛЮЧЕНО"</string>
+    <string name="t_5f2258c9" formatted="false">"Гроші ліворуч. Вони накопичуються на кожній десятій хвилі забігу й лишаються після його завершення. Глибші забіги дають значно більше."</string>
+    <string name="t_5fd47bcf" formatted="false">"ЯДРО: MERIDIAN"</string>
+    <string name="t_602fffef" formatted="false">"Усе, крім CRYPTOGRAPHER, тут втрачає понад половину шкоди."</string>
+    <string name="t_6049b1e7" formatted="false">"ЖИВИЙ ФОН"</string>
+    <string name="t_60a5a04c" formatted="false">"Пауза музики"</string>
+    <string name="t_60ecea1a" formatted="false">"АБСОЛЮТНИЙ"</string>
+    <string name="t_60f81814" formatted="false">"Кожні {0} с LICENSE протягом {1} ігнорує будь-який тип агента, що продовжує його бити. Змішуйте типи агентів."</string>
+    <string name="t_61919374" formatted="false">"ВІДРОДЖЕНО — більше не повернеться"</string>
+    <string name="t_61ebe734" formatted="false">"ТРУСІННЯ ЕКРАНА"</string>
+    <string name="t_625afb79" formatted="false">"Придбано. Зберігається в Music/CyOps TD як «CyOps TD - Level X (Y)»."</string>
+    <string name="t_628c7cd9" formatted="false">"РОЗПОДІЛ РОЗГОРТАННЯ АГЕНТІВ"</string>
+    <string name="t_62f8af50" formatted="false">"+{0} HP / {1} с"</string>
+    <string name="t_63374e04" formatted="false">"ГОЛОВНЕ МЕНЮ"</string>
+    <string name="t_633e8e1a" formatted="false">"Після смерті розпадається на трьох менших хробаків, і кожен із них ділиться ще раз. Шкода по площі — ваш друг."</string>
+    <string name="t_6343926d" formatted="false">"ГЛУШІННЯ"</string>
+    <string name="t_638aaa93" formatted="false">"ТАКОЖ ТРАПЛЯЄТЬСЯ ТУТ"</string>
+    <string name="t_63b00a3c" formatted="false">"Дані, що передаються мережею, ріжуться на пакети: невеликі шматки з адресою призначення та корисним навантаженням. Пакет — не атака: майже всі вони звичайний трафік. Тут ви стріляєте по пакетах із конкретною атакою, тому кожен названо за атакою, а не за пакетом."</string>
+    <string name="t_63b54927" formatted="false">"3 відродження за забіг і жодної реклами відродження, плюс €5,000."</string>
+    <string name="t_63bef594" formatted="false">"HP {0}"</string>
+    <string name="t_63f3d76a" formatted="false">"ЗБЕРЕГТИ"</string>
+    <string name="t_63facb82" formatted="false">"ЖИВИЙ: ПУЛЬС"</string>
+    <string name="t_6480a147" formatted="false">"ХВИЛЯ {0}  —  ЗМІЦНІТЬ ПЕРИМЕТР"</string>
+    <string name="t_648a945b" formatted="false">"ДВІ РЕЧІ, ПРО ЯКІ НІХТО НЕ КАЖЕ"</string>
+    <string name="t_6490c689" formatted="false">"Без справжньої криптовалюти, блокчейну, гаманців, майнінгу чи NFT"</string>
+    <string name="t_64d398f9" formatted="false">"ДАЛЬНІСТЬ"</string>
+    <string name="t_65155738" formatted="false">"ШВИДКІСТЬ 5×"</string>
+    <string name="t_65252ce7" formatted="false">"ПЕРШІ"</string>
+    <string name="t_6554cde7" formatted="false">"Запитуємо Google Play, що має цей акаунт. Зазвичай це займає мить."</string>
+    <string name="t_655c9284" formatted="false">"ЖИВИЙ: РЕШІТКА"</string>
+    <string name="t_656e6ce8" formatted="false">"АГЕНТИ"</string>
+    <string name="t_65c8fd90" formatted="false">"БРИФІНГ ПРО ЗАГРОЗУ"</string>
+    <string name="t_6678bfdf" formatted="false">"Коли він гине, кожен агент поруч заглушений на 3 секунди. Убивайте його далеко від поля або коли наступна хвиля ще далеко."</string>
+    <string name="t_66fa85d7" formatted="false">"Розставте агентів так, щоб одне глушіння не заглушило всю лінію."</string>
+    <string name="t_6700226a" formatted="false">"ПРИВ'ЯЗАНО"</string>
+    <string name="t_67043715" formatted="false">"БРОНЯ"</string>
+    <string name="t_67313d46" formatted="false">"СТІНУ ЗВЕДЕНО"</string>
+    <string name="t_6757b458" formatted="false">"ЗУПИНЕНІ АТАКИ"</string>
+    <string name="t_6813ef42" formatted="false">"АНОНІМНИЙ ЗЛАМ — {0} BOT НАСУВАЮТЬСЯ З ПОДВІЙНОЮ ШВИДКІСТЮ"</string>
+    <string name="t_681745bd" formatted="false">"АГЕНТА ЗАБЛОКОВАНО — {0}"</string>
+    <string name="t_682d973f" formatted="false">"СТАРТ"</string>
+    <string name="t_68e88af7" formatted="false">"НЕБЕЗПЕЧНА ЗОНА"</string>
+    <string name="t_68e985d6" formatted="false">"Більше нічого нікуди не надсилається. У гру можна грати взагалі без мережі."</string>
+    <string name="t_6904aeb4" formatted="false">"ГРА"</string>
+    <string name="t_69698cdc" formatted="false">"WORM після смерті розпадається на трьох менших хробаків, а ті діляться ще раз. Убийте його рано, маючи поруч шкоду по площі."</string>
+    <string name="t_69a293c4" formatted="false">"SUDO ЗАВЕРШИТИ"</string>
+    <string name="t_6ad356c5" formatted="false">"Три маршрути: прямий через центр і два, що в'ються зигзагом над і під ним."</string>
+    <string name="t_6b2d8165" formatted="false">"РІВ {0}  {1} ШКД"</string>
+    <string name="t_6c161f51" formatted="false">"Протягом 2 секунд із кожних 17 ігнорує будь-який тип агента, що продовжує його бити. Різноманітне поле й далі його ранить."</string>
+    <string name="t_6c7aa396" formatted="false">"Різні боси — різні слабкості."</string>
+    <string name="t_6ca9de88" formatted="false">"АГЕНТИ СПЕКТРА"</string>
+    <string name="t_6cb7e8e3" formatted="false">"Повільні важкі удари. +80% шкоди елітним і босам."</string>
+    <string name="t_6cbf7c76" formatted="false">"ПЕРЕМОЖЕНО БОСІВ"</string>
+    <string name="t_6ccdc653" formatted="false">"Повністю ігнорує шифрування й завдає йому потрійної шкоди."</string>
+    <string name="t_6cedde69" formatted="false">"ГУЧНІСТЬ МУЗИКИ"</string>
+    <string name="t_6d2d6d6b" formatted="false">"Ігнорує його броню."</string>
+    <string name="t_6d907c0d" formatted="false">"«Синя команда» захищає систему й реагує на інциденти — це протилежність червоної команди. «Синій капелюх» у галузі вживають по-різному, і це не стандартизований термін, тож тут описано лише значення синьої команди."</string>
+    <string name="t_6dbe0ea3" formatted="false">"РІВЕНЬ"</string>
+    <string name="t_6f053419" formatted="false">"ЛІМІТ {0} — МАКС {1}"</string>
+    <string name="t_6f21a684" formatted="false">"БОСИ — кожна п'ята хвиля"</string>
+    <string name="t_70d42172" formatted="false">"Поділ мережі так, щоб злам в одній зоні не дістав до решти. Саме тому один скомпрометований ноутбук не має означати скомпрометовану компанію."</string>
+    <string name="t_7191bf1d" formatted="false">"ЗАКРІПЛЕННЯ"</string>
+    <string name="t_71c5931f" formatted="false">"Енергозбереження змінює лише те, що малюється. Складність хвиль, шкода й таймінги зовсім не змінюються."</string>
+    <string name="t_72102eb0" formatted="false">"Покупки, відновлення й те, що залишає цей пристрій"</string>
+    <string name="t_722a0bad" formatted="false">"ПОВТОРИТИ ПІДКАЗКИ"</string>
+    <string name="t_73236391" formatted="false">"Сама гра не збирає жодних персональних даних"</string>
+    <string name="t_735d4940" formatted="false">"ГУЧНІСТЬ ЕФЕКТІВ"</string>
+    <string name="t_73907e76" formatted="false">"Усі 24 треки з гри, збережені в папку Music на телефоні, щоб слухати будь-де."</string>
+    <string name="t_7397fdaa" formatted="false">"Холодне світло, що рухається за всім."</string>
+    <string name="t_739a7f7a" formatted="false">"© {0} {1}. Усі права захищено."</string>
+    <string name="t_73d812dc" formatted="false">"Кожна п'ята хвиля і що вона приносить"</string>
+    <string name="t_73e8cb50" formatted="false">"Оригінальний код, оригінальна графіка, оригінальний синтезований звук. Створено на Kotlin, Jetpack Compose та Android Canvas API.\n\nІконки: CoreUI Icons Free від creativeLabs (coreui.io/icons), ліцензія CC BY 4.0.\n\nЛіцензії сторонніх залежностей наведено в LICENSES.md у репозиторії проєкту."</string>
+    <string name="t_74066c59" formatted="false">"У ГРІ"</string>
+    <string name="t_746ab6c3" formatted="false">"IPS завдає роям на 35% більше шкоди. Ставте його там, де сходяться лінії."</string>
+    <string name="t_746d814e" formatted="false">"Видаляє збережений забіг, відкритих агентів, статистику та налаштування. Цю дію не можна скасувати."</string>
+    <string name="t_74aa6c59" formatted="false">"НЕДОСТАТНЬО € БЮДЖЕТУ"</string>
+    <string name="t_74fff44e" formatted="false">"Створює копії-приманки себе, що вбирають вогонь. ANALYST і ROOT ADMIN бачать їх наскрізь."</string>
+    <string name="t_750800eb" formatted="false">"Стріляє так само швидко, як будь-хто в загоні, і завжди спершу по босу. Подвійна шкода [GG] GOOD GAME. Максимум чотири."</string>
+    <string name="t_7596436a" formatted="false">"Старший інженер з безпеки зі ступенем бакалавра з кібербезпеки, який зупиняє атаки, створюючи програмне забезпечення для захисту від них: посилені сервіси, патчі й фільтри, що стоять на місці до атаки, а не після неї."</string>
+    <string name="t_75b191e4" formatted="false">"Зводить стіну поперек найближчого маршруту в радіусі. Загрози зупиняються біля стіни й мусять її зруйнувати, щоб пройти; боси руйнують найшвидше. Коли вона падає, ACE відбудовує її за кілька секунд, міцнішою з кожним рівнем. Його власні постріли завдають {0}× шкоди кожному босу перших п'яти рівнів. Можна розгорнути не більше трьох."</string>
+    <string name="t_75bd8866" formatted="false">"Оберіть рівень і складність"</string>
+    <string name="t_75e65d90" formatted="false">"ТОРКНІТЬСЯ ДВІЧІ, ЩОБ РОЗГОРНУТИ"</string>
+    <string name="t_75f24f6e" formatted="false">"Кожні кілька секунд блокує покращення одного агента на 8 секунд. Покращуйте до його появи."</string>
+    <string name="t_7682806a" formatted="false">"КРОК 2 — ОБЕРІТЬ FIREWALL"</string>
+    <string name="t_77212b64" formatted="false">"Це хвиля атаки, з якою ви стикаєтеся. Вона зростає, поки ви утримуєте сервер, — кожна п'ята хвиля приносить боса."</string>
+    <string name="t_772b21ba" formatted="false">"Захист, який ви розгортаєте"</string>
+    <string name="t_776f4222" formatted="false">"РІВ {0}"</string>
+    <string name="t_77a2583e" formatted="false">"У безпеці «квантовими» називають дві різні речі, і їх варто розрізняти. Квантовий розподіл ключів використовує фізику, щоб виявити прослуховування каналу, і застосовується лише в рідкісних спеціалізованих умовах. Постквантова криптографія — звичайна програмна математика, розроблена протистояти майбутнім квантовим комп'ютерам, і саме її зараз впроваджують."</string>
+    <string name="t_77a6da9b" formatted="false">"Кільця, що розходяться від ядра."</string>
+    <string name="t_77d03aa5" formatted="false">"Сліпа ін'єкція не отримує жодних повідомлень про помилки, тож нападник виводить відповідь по одному питанню «так чи ні». Вона повільніша й набагато терплячіша за звичайну ін'єкцію та приходить загартованою проти очевидних захистів."</string>
+    <string name="t_77e5929c" formatted="false">"Перше торкання показує дальність агента в цьому місці; торкніться ще раз, щоб розгорнути"</string>
+    <string name="t_77e8896f" formatted="false">"Один маршрут п'ять разів перетинає поле від кута до кута."</string>
+    <string name="t_77f7e381" formatted="false">" · БРОНЯ {0}"</string>
+    <string name="t_782074f1" formatted="false">"  ·  АВТО {0}"</string>
+    <string name="t_7841323b" formatted="false">"ОБОРОННА ЗАЧИСТКА"</string>
+    <string name="t_78526608" formatted="false">"ДОСЯГНУТА ХВИЛЯ"</string>
+    <string name="t_78a52e3b" formatted="false">"ПРИХОВАНО"</string>
+    <string name="t_7922c8d5" formatted="false">"Посилює кожного агента в радіусі: +30% шкоди, +20% швидкострільності."</string>
+    <string name="t_79a4baee" formatted="false">"&lt; НАЗАД"</string>
+    <string name="t_79fc7a80" formatted="false">"Працює лише коли ввімкнено АВТОСТАРТ ХВИЛЬ"</string>
+    <string name="t_7a1f56c4" formatted="false">"СИНХРОНІЗУВАТИ"</string>
+    <string name="t_7aba529e" formatted="false">"Зламує його шифрування: ×{0} шкоди."</string>
+    <string name="t_7abfb3c7" formatted="false">"На половині здоров'я ділиться надвоє, і друга половина йде іншим маршрутом."</string>
+    <string name="t_7b3bb73f" formatted="false">"ЗАГРОЗУ НЕЙТРАЛІЗОВАНО"</string>
+    <string name="t_7b84a6c4" formatted="false">"Прив'яжіть акаунт Google на екрані GOOGLE PLAY, щоб бачити світову таблицю й публікувати в ній. Ваші забіги й далі записуються на цьому пристрої."</string>
+    <string name="t_7ba7f176" formatted="false">"+{0}% ШКД"</string>
+    <string name="t_7be6fbad" formatted="false">"ХВИЛЯ {0} · СИМУЛЯЦІЮ ЗУПИНЕНО"</string>
+    <string name="t_7bf2105b" formatted="false">"Розподілена відмова в обслуговуванні"</string>
+    <string name="t_7c4e4414" formatted="false">"ОСТАННІ"</string>
+    <string name="t_7c6853de" formatted="false">"СВІТ · {0}"</string>
+    <string name="t_7d5cc77f" formatted="false">"ВСЬОГО ЗАРОБЛЕНО КРИПТИ"</string>
+    <string name="t_7dc33bc2" formatted="false">"ДОСЯГНУТО МАКСИМАЛЬНОГО РІВНЯ"</string>
+    <string name="t_7e1cf3a7" formatted="false">"РЕМОНТ"</string>
+    <string name="t_7e522f64" formatted="false">"АВТОРИ"</string>
+    <string name="t_7e72ed35" formatted="false">"ПРОГРЕС ЗБЕРЕЖЕНО В АКАУНТІ"</string>
+    <string name="t_7e906966" formatted="false">"Збережено треків у Music/CyOps TD: {0}."</string>
+    <string name="t_7ea71dbe" formatted="false">"Знову відкрийте АГЕНТИ й оберіть TARPIT. Він не завдає шкоди — сповільнює кожну загрозу в аурі, тож ваші FIREWALL встигають більше стріляти."</string>
+    <string name="t_7f11b512" formatted="false">"{0} · {1} ЗА ЗАБІГ {2}"</string>
+    <string name="t_7fd8e294" formatted="false">"&gt; периметр онлайн"</string>
+    <string name="t_804ef7d5" formatted="false">"Найпоширеніша атака в інтернеті й базова загроза тут. Нападник вводить команди бази даних у поле, де очікувалося ім'я чи пароль; якщо застосунок передає це напряму, база даних слухається."</string>
+    <string name="t_80592dd9" formatted="false">"ВЕРСІЯ"</string>
+    <string name="t_8175c5fc" formatted="false">"ЦІЛІСНІСТЬ CORE-SERVER"</string>
+    <string name="t_8198af01" formatted="false">"Ховається на 2 секунди з кожних 6: ніщо не може в нього прицілитися. Шкода по площі й ланцюги все одно дістають."</string>
+    <string name="t_81e23c68" formatted="false">"ІНШІ: лише дрібні одиниці та елітні, ніколи боси"</string>
+    <string name="t_8230b283" formatted="false">"IDS завдає швидким атакам на 45% більше шкоди й першим бачить їх."</string>
+    <string name="t_82966ea3" formatted="false">"ЛІЧИЛЬНИК ХВИЛЬ"</string>
+    <string name="t_829e8e06" formatted="false">"Агентів у його радіусі неможливо заглушити. {0}× шкоди WHITE EYE і BLACK EYE. Максимум два."</string>
+    <string name="t_82a1fee3" formatted="false">"Справді перезапустити забіг?"</string>
+    <string name="t_82a70835" formatted="false">"Без прив'язки прогрес забігів живе лише на цьому пристрої. Видалення гри чи скидання до заводських налаштувань його стирає; покупки переживають і те, й інше."</string>
+    <string name="t_830a30fd" formatted="false">"БЮДЖЕТ"</string>
+    <string name="t_830b01d9" formatted="false">"Прошивка множить шкоду кожного агента, якого ви розгортаєте, у кожному матчі відтепер. Вона застосовується до броні й до таблиці контрзаходів, тож допомагає Cryptographer проти шифрування рівно так само, як Firewall — проти звичайного трафіку."</string>
+    <string name="t_831712ed" formatted="false">"ВІДКРИТО НОВОГО КІБЕРАГЕНТА"</string>
+    <string name="t_83186dce" formatted="false">"ЛИШЕ ЦЕЙ ПРИСТРІЙ"</string>
+    <string name="t_8340a76d" formatted="false">"ЧОМУ ЦЕ ВАЖЛИВО"</string>
+    <string name="t_838b0928" formatted="false">"Під час просування викликає супровідні атаки."</string>
+    <string name="t_8478f19e" formatted="false">"ЩО ЗАЛИШАЄ ЦЕЙ ПРИСТРІЙ"</string>
+    <string name="t_848f3f46" formatted="false">"ВИДАЛИТИ ВЕСЬ ПРОГРЕС?"</string>
+    <string name="t_852bda75" formatted="false">"КОДЕКС"</string>
+    <string name="t_862b3f34" formatted="false">"РОЗГОРНУТИ КІБЕРАГЕНТА"</string>
+    <string name="t_869cf6b4" formatted="false">"ЗАРЕЄСТРУВАТИ ПОЗИВНИЙ"</string>
+    <string name="t_86cce90c" formatted="false">"НАЙСЛАБШІ"</string>
+    <string name="t_87442b62" formatted="false">"НАСТУПНА ХВИЛЯ · BREACH"</string>
+    <string name="t_87a9dd3e" formatted="false">"ХВИЛІ, € І ПРОШИВКА"</string>
+    <string name="t_87d92d69" formatted="false">"Дуже велика дальність виявлення; +45% шкоди швидким атакам."</string>
+    <string name="t_8806feca" formatted="false">"Шість скінів CORE-SERVER плюс €2,000. NEONGRID продається окремо."</string>
+    <string name="t_882561c2" formatted="false">"ОЦІНКА ЗАГРОЗИ"</string>
+    <string name="t_891fc63b" formatted="false">"ПІДРОБКУ СКИНУТО"</string>
+    <string name="t_8980d82b" formatted="false">"Обрано {0} — торкніться підсвіченого вузла, щоб розгорнути."</string>
+    <string name="t_899bae42" formatted="false">"Необов'язково. Усе в грі працює без прив'язки, і нічого, крім вашого прогресу, не вивантажується."</string>
+    <string name="t_89a47932" formatted="false">"Грати музику"</string>
+    <string name="t_89c7b011" formatted="false">"Знову відкрийте форму згоди Google, щоб змінити, що рекламні партнери можуть робити з даними цього пристрою. Ваш ігровий прогрес зберігається на цьому пристрої й ніколи не є її частиною."</string>
+    <string name="t_89d7c51c" formatted="false">"Туди, назад і довгий спільний шлях до стійки."</string>
+    <string name="t_89dd34f8" formatted="false">"Залиште розчищення роїв на IPS, щоб важкі стрільці лишалися на босі."</string>
+    <string name="t_89e1b0eb" formatted="false">"Його поле стягує GRADIENT униз, поки той пришвидшується."</string>
+    <string name="t_89e450ea" formatted="false">"ПРИБРАНО · РЕКЛАМА ВІДРОДЖЕННЯ ОКРЕМО"</string>
+    <string name="t_8a058fa3" formatted="false">"Стандартна крива."</string>
+    <string name="t_8a86921d" formatted="false">"Кнопки праворуч прокручуються. Нижче: МАГАЗИН, СПОРЯДЖЕННЯ (скіни та фони), GOOGLE PLAY (покупки й хмарне збереження), ТАБЛИЦЯ ЛІДЕРІВ, КОДЕКС (пояснення загроз і агентів), СТАТИСТИКА, НАЛАШТУВАННЯ та ПРО ГРУ."</string>
+    <string name="t_8a96f0aa" formatted="false">"НЕДОСТУПНО"</string>
+    <string name="t_8aa097b1" formatted="false">"  (ЗАБЛОКОВАНО)"</string>
+    <string name="t_8aec13a9" formatted="false">"Розподілена відмова в обслуговуванні: атака — це обсяг. Кожен запит дрібний, але вони приходять швидше за все інше в грі, і їх завжди більше."</string>
+    <string name="t_8af0e8d8" formatted="false">"Скоординована спроба зламу. Жодних хитрощів, лише маса."</string>
+    <string name="t_8b094c6c" formatted="false">"Підключення до Google Play…"</string>
+    <string name="t_8c42a507" formatted="false">"Крижані голки, що розходяться від замерзлого ядра."</string>
+    <string name="t_8c61de92" formatted="false">"АВТОСТАРТ ХВИЛЬ"</string>
+    <string name="t_8d56a5da" formatted="false">"Повільні еліптичні траси, що кружляють навколо ядра."</string>
+    <string name="t_8d91a14b" formatted="false">"GOOGLE PLAY"</string>
+    <string name="t_8d9dd637" formatted="false">"БОС: стріляє лише по босах, інакше тримає вогонь"</string>
+    <string name="t_8e0413ab" formatted="false">"У цій збірці немає вбудованих покупок."</string>
+    <string name="t_8e3787c1" formatted="false">"ЗАБЛОКОВАНО · {0} (найкраще: {1})"</string>
+    <string name="t_8f0536a7" formatted="false">"ВСТАНОВИТИ МАКС"</string>
+    <string name="t_8f37a712" formatted="false">"ЗАВДАНО ШКОДИ"</string>
+    <string name="t_8f48da3c" formatted="false">"МЕРЕЖУ СКОМПРОМЕТОВАНО"</string>
+    <string name="t_8f5d0f11" formatted="false">"ЕКОНОМІКА"</string>
+    <string name="t_8f61abf9" formatted="false">"ОБРОБКА…"</string>
+    <string name="t_8f68a3ab" formatted="false">"&gt; завантаження сигнатур загроз"</string>
+    <string name="t_8ff6e51c" formatted="false">"На {0} ще немає записаних забігів."</string>
+    <string name="t_90391726" formatted="false">"ПРОДОВЖИТИ"</string>
+    <string name="t_910b3ae9" formatted="false">"Гроші, зароблені на купівлю агентів для захисту сервера. Крипта◇ нараховується за кожне вбивство й кожну пройдену хвилю."</string>
+    <string name="t_915c2f22" formatted="false">"Збережено треків: {0}, потім телефон відмовив у решті. Звільніть місце й спробуйте ще раз."</string>
+    <string name="t_919816cc" formatted="false">"Google Play недоступний. Усе придбане й надалі ваше — спробуйте ВІДНОВИТИ, коли знову будете онлайн."</string>
+    <string name="t_91ae1cd3" formatted="false">"Глосарій простою мовою"</string>
+    <string name="t_91d4d5fc" formatted="false">"ДОСТУПНО · ◇ {0}"</string>
+    <string name="t_9231c915" formatted="false">"Бурштинові кільця стримування навколо реакції, що триває."</string>
+    <string name="t_933bf2fb" formatted="false">"ПРИБРАТИ РЕКЛАМУ стосується реклами між забігами; реклама відродження — окремо."</string>
+    <string name="t_935cf7b5" formatted="false">"Швидкострільність капелюхів, важчі постріли й {0}× шкоди SYN-STORM і GRADIENT. Максимум два."</string>
+    <string name="t_93875a49" formatted="false">"дальність"</string>
+    <string name="t_93f1bd2f" formatted="false">"Дуже висока швидкострільність, завжди цілиться в босів раніше за все інше в радіусі та завдає подвійної шкоди [GG] GOOD GAME. Відкривається на 30-й хвилі, можна розгорнути не більше чотирьох."</string>
+    <string name="t_94061f4f" formatted="false">"Майже не завдає шкоди. Усе в його радіусі повзе, що значно довше тримає загрози в зоні ваших стрільців. Дешевий і марний сам по собі — це підсилювач для всього, що стріляє поруч."</string>
+    <string name="t_941dea68" formatted="false">"ЧИСЛА ШКОДИ"</string>
+    <string name="t_9427590a" formatted="false">"Показувати спливаючі значення шкоди при влучаннях"</string>
+    <string name="t_94bbec0b" formatted="false">"Торкніться НАСТУПНА ХВИЛЯ. Ваші агенти стріляють автоматично. Кожна зупинена атака приносить ◇ Крипту, за яку можна купити більше агентів і покращень."</string>
+    <string name="t_94dc88d3" formatted="false">"Кожен рівень прошивки додає +{0}% шкоди кожному агенту та +{1}% ◇ крипти, заробленої в забігах (аж до подвоєння), у кожному майбутньому матчі. Він ніколи не зникає."</string>
+    <string name="t_95051192" formatted="false">"НЕ ЗАДАНО"</string>
+    <string name="t_952dc0bb" formatted="false">"ТАБЛИЦЯ ЛІДЕРІВ"</string>
+    <string name="t_959b6bbb" formatted="false">"МАКС {0} РОЗГОРНУТО"</string>
+    <string name="t_9655a074" formatted="false">"Повільні потоки даних за меню та полем."</string>
+    <string name="t_97e1363f" formatted="false">"Велике фіксоване зниження шкоди з кожним влучанням."</string>
+    <string name="t_98189a64" formatted="false">"Жодних. Це чесний бій."</string>
+    <string name="t_9873614b" formatted="false">"Найбільша дальність виявлення в загоні та +45% шкоди проти швидких атак. Повільна швидкострільність — це розвідник, який заодно стріляє; найкраще ставити там, де він покриє багато лінії."</string>
+    <string name="t_98a9c7f2" formatted="false">"€ БЮДЖЕТ"</string>
+    <string name="t_98b63553" formatted="false">"Для гри не потрібні акаунт чи вхід"</string>
+    <string name="t_98cc567c" formatted="false">"НАЙКРАЩА ШКОДА"</string>
+    <string name="t_98f4abc6" formatted="false">"◇ {0} · відкривається на хвилі {1} на {2}"</string>
+    <string name="t_98fbe3ee" formatted="false">"МУЛЬТИЗАХОПЛЕННЯ"</string>
+    <string name="t_991bd4c3" formatted="false">"Один CRYPTOGRAPHER перевертає весь бій."</string>
+    <string name="t_991c8ba8" formatted="false">"ВСЬОГО ПОКРАЩЕНЬ АГЕНТІВ"</string>
+    <string name="t_996095bd" formatted="false">"Деякі назви, терміни й торговельні марки, згадані в цій грі, можуть належати їхнім відповідним власникам. Такі згадки використовуються виключно для ідентифікації, коментаря, освітнього контексту та художнього відображення в грі.\n\nЦю гру розроблено незалежно, і вона не пов'язана з Red Hat, Microsoft чи будь-яким іншим стороннім власником торговельних марок, не спонсорована, не схвалена й не затверджена ними.\n\nУсі сторонні торговельні марки, назви продуктів, назви компаній і логотипи залишаються власністю їхніх відповідних власників."</string>
+    <string name="t_99ab6437" formatted="false">"Знову показати огляд головного меню та пояснення ПРОШИВКИ наступного разу, коли ви відкриєте ці екрани."</string>
+    <string name="t_99cfdd6c" formatted="false">"Попередній перегляд: {0}"</string>
+    <string name="t_99d175d2" formatted="false">"Тримайте TARPIT на маршруті, щоб гасити прискорення."</string>
+    <string name="t_99f43c9c" formatted="false">"НЕДОСТАТНЬО КРИПТИ"</string>
+    <string name="t_9a8ee779" formatted="false">"Стріляє так само швидко, як будь-хто в загоні, і завжди спершу по босу. Подвійна шкода [!!!] BREACH. Максимум чотири."</string>
+    <string name="t_9a9bcdd3" formatted="false">"СЛОТ"</string>
+    <string name="t_9aa5d01a" formatted="false">"Жодної міжсторінкової реклами після поразки, плюс €5,000. Реклама відродження добровільна й окрема — див. НАБІР ВІДРОДЖЕНЬ."</string>
+    <string name="t_9adba547" formatted="false">"Найвигідніше за євро."</string>
+    <string name="t_9ae9f14f" formatted="false">"Повільний дрейф далеких точок."</string>
+    <string name="t_9aed28a1" formatted="false">"ДОСЯГНУТО ЛІМІТУ РОЗГОРТАННЯ"</string>
+    <string name="t_9b08be38" formatted="false">"Запит до Google Play Ігор…"</string>
+    <string name="t_9b1d7455" formatted="false">"ХВИЛЯ {0}"</string>
+    <string name="t_9b4c97a7" formatted="false">"Названо на честь дерев'яного коня: програма, що виглядає як бажане, а несе те, чого ви геть не хочете."</string>
+    <string name="t_9b557f99" formatted="false">"Ваш найкращий результат: хвиля {0}"</string>
+    <string name="t_9b989bfb" formatted="false">"НАЙКРАЩЕ"</string>
+    <string name="t_9bcd1b03" formatted="false">"Усі сім живих фонів плюс €2,000."</string>
+    <string name="t_9bd1faf7" formatted="false">"Повернення коштів, способи оплати й чеки обробляє Google, а не ця гра."</string>
+    <string name="t_9c2ade2b" formatted="false">"РІВ {0}  ×{1}"</string>
+    <string name="t_9c6be09c" formatted="false">"МОДИФІКАТОРИ"</string>
+    <string name="t_9d0c4ff1" formatted="false">"&gt; хвиля {0} активна — залишилось загроз: {1}"</string>
+    <string name="t_9d29de23" formatted="false">"НАЙКРАЩА ХВИЛЯ ЗА РІВНЕМ"</string>
+    <string name="t_9d2c3eea" formatted="false">"МЕРЕЖЕВІ ТЕРМІНИ"</string>
+    <string name="t_9d36e329" formatted="false">"ВИКУП"</string>
+    <string name="t_9d5ca8b9" formatted="false">"ВІДРОДИТИСЯ?"</string>
+    <string name="t_9df821c5" formatted="false">"ЛАСКАВО ПРОСИМО ДО CyOps TD"</string>
+    <string name="t_9e30871d" formatted="false">"Одна скомпрометована машина, що виконує чужі накази. Один бот нешкідливий. Ботнет із тисяч — ні; тому вони завжди приходять групами."</string>
+    <string name="t_9e77c8cf" formatted="false">"Додає п'яту швидкість симуляції для швидкого проходження хвиль."</string>
+    <string name="t_9ef0ebe5" formatted="false">"СЕГМЕНТАЦІЯ"</string>
+    <string name="t_9f26f678" formatted="false">"  →"</string>
+    <string name="t_9f70f631" formatted="false">"ШВИДКОСТРІЛЬНІСТЬ"</string>
+    <string name="t_9fb6c271" formatted="false">"Ненадовго глушить агентів поруч, сповільнюючи їхній вогонь."</string>
+    <string name="t_a12f7814" formatted="false">"+{0} (БОС)"</string>
+    <string name="t_a15faa1f" formatted="false">"РЕЖИМ"</string>
+    <string name="t_a19abbd4" formatted="false">"Кожен кіберагент, що він робить і яка хвиля його відкриває."</string>
+    <string name="t_a21dbf00" formatted="false">"НАКОПИЧЕНО €{0} БЮДЖЕТУ"</string>
+    <string name="t_a24181ff" formatted="false">"ЩО АТАКУЄ"</string>
+    <string name="t_a2517472" formatted="false">"МАГАЗИН НЕДОСТУПНИЙ"</string>
+    <string name="t_a29c69ba" formatted="false">"ВИХІД"</string>
+    <string name="t_a2b3bef5" formatted="false">"ДІЙДІТЬ ДО ХВИЛІ {0}"</string>
+    <string name="t_a2dd8300" formatted="false">"Випробування. Два маршрути, що повертаються, потім коло перед стійкою."</string>
+    <string name="t_a2e2f704" formatted="false">"ЗЛАМ ШИФРУ"</string>
+    <string name="t_a32353a8" formatted="false">"БЮДЖЕТ €9,000"</string>
+    <string name="t_a36e1b6d" formatted="false">"НЕМАЄ В ЦІЙ ЗБІРЦІ"</string>
+    <string name="t_a3ebab03" formatted="false">"Незалатана невідома вразливість"</string>
+    <string name="t_a4a2cd90" formatted="false">"&gt;&gt; НОВИЙ РЕКОРД &lt;&lt;"</string>
+    <string name="t_a4fd7522" formatted="false">" · МАКС {0}"</string>
+    <string name="t_a5460e4e" formatted="false">"Повільні важкі поодинокі удари з +80% шкоди проти елітних і босів. Слабкий проти роїв. Відкриває вибір цілі, тож можна навести його на те, що справді треба знищити."</string>
+    <string name="t_a596b409" formatted="false">"ШВИДКІСТЬ 5× — У МАГАЗИНІ"</string>
+    <string name="t_a599c90a" formatted="false">"Кожен агент у його радіусі, включно з ним самим, має імунітет до глушіння від будь-якого боса. Швидкі важкі постріли з {0}× шкоди WHITE EYE і BLACK EYE. Дальність TARPIT. Можна розгорнути не більше двох."</string>
+    <string name="t_a5b1ffba" formatted="false">"Необмежений доступ до системи"</string>
+    <string name="t_a5da8eea" formatted="false">"Застрягли на хвилі? Накопичте бюджет, встановіть прошивку — і те саме поле вдарить сильніше в наступному забігу."</string>
+    <string name="t_a6291e29" formatted="false">"БЮДЖЕТ €5,000"</string>
+    <string name="t_a62c1133" formatted="false">"Жодних справжніх хакерських можливостей — ніщо тут не торкається справжньої мережі"</string>
+    <string name="t_a66c22f9" formatted="false">"Змінюйте мову в НАЛАШТУВАННЯХ головного меню: перемикання перезапускає гру, і цей забіг завершиться."</string>
+    <string name="t_a6cd2e07" formatted="false">"{0}-{1} символів. A-Z, 0-9, дефіс і підкреслення."</string>
+    <string name="t_a6ee02f4" formatted="false">"СКАСУВАТИ"</string>
+    <string name="t_a727a483" formatted="false">"ВКЛЮЧАЄ"</string>
+    <string name="t_a7c5a24a" formatted="false">"Збереження в Music/CyOps TD…"</string>
+    <string name="t_a7c97dfd" formatted="false">"СКИНУТИ"</string>
+    <string name="t_a7e02911" formatted="false">"НА ЯДРІ"</string>
+    <string name="t_a7e24bd6" formatted="false">"НАВЕДЕННЯ"</string>
+    <string name="t_a8031bce" formatted="false">"ВІДКРИТИ СТОРІНКУ В МАГАЗИНІ"</string>
+    <string name="t_a8191219" formatted="false">"SPOOFER створює копії-приманки себе, що вбирають вогонь. ANALYST і ROOT ADMIN бачать їх наскрізь."</string>
+    <string name="t_a8768bb2" formatted="false">"СКІНИ АГЕНТІВ"</string>
+    <string name="t_a8935036" formatted="false">"ЗАРОБЛЕНО КРИПТИ"</string>
+    <string name="t_a92b98a8" formatted="false">"КРИПТА ◇"</string>
+    <string name="t_a9a8f56c" formatted="false">"ГРАФІКА"</string>
+    <string name="t_a9ad0741" formatted="false">"€ ЗА ЦЕЙ ЗАБІГ"</string>
+    <string name="t_a9cf50ec" formatted="false">"Справжній трафік іде маршрутом через комутатори й маршрутизатори до місця призначення. Два звивисті маршрути тут — цей шлях, що повертається, щоб ви бачили кожен перехід одразу."</string>
+    <string name="t_a9d9e481" formatted="false">"CORE-SERVER — те, що ви захищаєте, а показник ЦІЛІСНІСТЬ у верхній смузі — ваше єдине життя. Кожен ворожий пакет, що дістається стійки, відкушує шматок. На 0 сервер зламано, і забіг завершується — тож уся робота в тому, щоб нічого не пропустити."</string>
+    <string name="t_aab511c4" formatted="false">"ROOTKIT ховається на 2 секунди з кожних 6, і ніщо не може в нього прицілитися. Шкода по площі й ланцюги все одно дістають."</string>
+    <string name="t_aac1d4da" formatted="false">"НЕ ПРИВ'ЯЗАНО"</string>
+    <string name="t_aadac61a" formatted="false">"Застосунки ставлять базам даних запитання мовою SQL. Якщо введення користувача вставляється просто в це запитання, нападник може дописати власне закінчення — вивантажити таблицю користувачів, обійти вхід або все видалити. Виправлення давнє й добре відоме (параметризовані запити), і саме тому так прикро, що це досі атака, яку ви зустрінете найчастіше."</string>
+    <string name="t_ab62d63d" formatted="false">"Система виявлення вторгнень стежить за активністю мережі чи хоста, шукаючи шаблони, схожі на атаку, і подає сигнал. Вона повідомляє, але не блокує. Хтось або щось інше все ще мусить діяти за її знахідками."</string>
+    <string name="t_aca3253a" formatted="false">"НА ПОЛІ · ТОРКНІТЬСЯ БОСА, ЩОБ ПОДИВИТИСЯ"</string>
+    <string name="t_ad03a515" formatted="false">"Поділ мережі на зони"</string>
+    <string name="t_ad26a7c7" formatted="false">"невідомо"</string>
+    <string name="t_ae00f867" formatted="false">"АНАЛІТИКА"</string>
+    <string name="t_ae59bf94" formatted="false">"ПРОДАТИ  ◇ {0}"</string>
+    <string name="t_b0147d1e" formatted="false">"У цій хвилі покладайтеся на агентів, що не є FIREWALL."</string>
+    <string name="t_b0af39a6" formatted="false">"ЗМІНИТИ"</string>
+    <string name="t_b0d341a2" formatted="false">"ПОНАД МІСЯЦЬ ТОМУ"</string>
+    <string name="t_b0f472d0" formatted="false">"СКЛАДНІСТЬ"</string>
+    <string name="t_b16e2042" formatted="false">"Фіолетове зоряне поле за стійкою."</string>
+    <string name="t_b2029176" formatted="false">"Автоматично починати наступну хвилю після короткої паузи"</string>
+    <string name="t_b253fa2b" formatted="false">"Криптографія захищає дані під час передавання й зберігання, тож перехопити їх — не те саме, що прочитати. Нападники теж нею користуються — багато ворожого трафіку зашифровано, — тому захисники перевіряють трафік на кінцевих точках, які контролюють, а не намагаються зламати саме шифрування."</string>
+    <string name="t_b28b05f8" formatted="false">"Система запобігання вторгненням"</string>
+    <string name="t_b2dbc630" formatted="false">"БРАНДМАУЕР АКТИВНИЙ"</string>
+    <string name="t_b2ef7c39" formatted="false">"Кібероперативники: Захист веж"</string>
+    <string name="t_b32b1a1d" formatted="false">"ЗРУЧНІСТЬ"</string>
+    <string name="t_b3735fe8" formatted="false">"Решітка схем, що дихає разом із хвилею."</string>
+    <string name="t_b3b53e34" formatted="false">"Покупки прив'язано до акаунта Google, а не до цього пристрою. Перевстановлення чи зміна телефону їх не втрачає."</string>
+    <string name="t_b3c34c67" formatted="false">"ЩОЙНО"</string>
+    <string name="t_b40b6d1c" formatted="false">"«Червона команда» атакує систему з дозволу, щоб знайти те, що нападник знайшов би першим. «Червоний капелюх» — неформальний сленг, а не посада чи сертифікат, і його значення різниться в різних людей; стандартною є саме частина про червону команду."</string>
+    <string name="t_b5ca7a98" formatted="false">"Найкраща хвиля кожного гравця у світі за позивним. Зареєструйте позивний праворуч, інакше Google покаже ваше ім'я в Play Іграх."</string>
+    <string name="t_b649891d" formatted="false">"ПАУЗА"</string>
+    <string name="t_b683e66d" formatted="false">"{0} заблоковано: {1}, щоб відкрити."</string>
+    <string name="t_b6bcb68c" formatted="false">"Важка шкода по одній цілі, однакова з кожним пострілом. Ігнорує всю броню."</string>
+    <string name="t_b7ba0ba1" formatted="false">"REGENERATION лагодить його, щойно він {0} с не отримує влучань. Тримайте його під вогнем усю дорогу."</string>
+    <string name="t_b7c4c2a3" formatted="false">"[{0}] {1} (заблоковано): {2}"</string>
+    <string name="t_b7cf2aab" formatted="false">"ЖОДЕН ЗАСТОСУНОК НЕ МОЖЕ ВІДКРИТИ GOOGLE PLAY"</string>
+    <string name="t_b8201e22" formatted="false">"ДАЛІ: ХВИЛЯ {0} · БОС"</string>
+    <string name="t_b82dfd13" formatted="false">"ВЕДЕ ДО"</string>
+    <string name="t_b835d746" formatted="false">"КРОК 5 — РОЗГОРНІТЬ ДВА TARPIT"</string>
+    <string name="t_b8cbfe08" formatted="false">"Найдалі від CORE-SERVER"</string>
+    <string name="t_b8f9cbc8" formatted="false">"ШКД {0}  ТЕМП {1}/с"</string>
+    <string name="t_b8ffa95c" formatted="false">"ЖИВИЙ: СЯЙВО"</string>
+    <string name="t_b9918647" formatted="false">"Йому заплатили, щоб він тут був. Жодних хитрощів, жодного глушіння — на двадцять відсотків більше, ніж будь-чого іншого на полі."</string>
+    <string name="t_b9a3ada7" formatted="false">"EXFIL швидкий. Якщо дістанеться ядра, вкраде половину вашої крипти замість цілісності. Витратьте спершу або зупиніть його."</string>
+    <string name="t_b9c6b239" formatted="false">"Малюється під лініями та за кожним меню."</string>
+    <string name="t_badb0f4a" formatted="false">"Періодично прискорюється до сервера."</string>
+    <string name="t_bae2cee7" formatted="false">"ТАК — ДИВИТИСЯ РЕКЛАМУ"</string>
+    <string name="t_bb0a2d46" formatted="false">"ВИБРАТИ"</string>
+    <string name="t_bb621985" formatted="false">"ЗАГАРТОВАНИЙ"</string>
+    <string name="t_bb93827c" formatted="false">"ВІДРОДЖЕННЯ НЕ ВДАЛОСЯ — ЗАБІГ УЖЕ ЗАВЕРШЕНО"</string>
+    <string name="t_bc855067" formatted="false">"ДОСТУП ЗАБОРОНЕНО"</string>
+    <string name="t_bcdf64b3" formatted="false">"SQL-ІН'ЄКЦІЯ"</string>
+    <string name="t_bceaf8ce" formatted="false">"!!! НАБЛИЖАЄТЬСЯ КІБЕРАТАКА !!!"</string>
+    <string name="t_bd0c6acd" formatted="false">"ДАЛІ € {0} · +{1}% {2} за рівень"</string>
+    <string name="t_bd1b1fc9" formatted="false">"ВИМК."</string>
+    <string name="t_bd8215e6" formatted="false">"ТАК, РОЗКАЖІТЬ"</string>
+    <string name="t_bd84c20a" formatted="false">"ХВИЛЮ {0} УТРИМАНО"</string>
+    <string name="t_be1fc25b" formatted="false">"Надійна універсальна шкода, і його неможливо заглушити."</string>
+    <string name="t_beb11f45" formatted="false">"Модифікатор боса"</string>
+    <string name="t_beb3cdc3" formatted="false">"Його поле сповільнює босів удвічі сильніше, ніж інші загрози."</string>
+    <string name="t_bec37550" formatted="false">"ГАРЯЧИЙ РЕМОНТ"</string>
+    <string name="t_bed8ffbb" formatted="false">"Відновлення знову запитує в Play, що має цей акаунт Google. Його безпечно натискати будь-коли, і воно ніколи не списує гроші."</string>
+    <string name="t_bf09fcca" formatted="false">"У цій збірці не налаштовано проєкт Play Ігор, тож прогрес лишається на цьому пристрої. Власна резервна копія Android усе одно відновить його, коли ви перевстановите гру на телефоні з тим самим акаунтом Google."</string>
+    <string name="t_bf0c2eaa" formatted="false">"РЕПЛІКАЦІЯ"</string>
+    <string name="t_bf7cfb98" formatted="false">"У цій збірці немає реклами для налаштування."</string>
+    <string name="t_c1386132" formatted="false">"◇ КРИПТА"</string>
+    <string name="t_c164d2e8" formatted="false">"Стріляє так само швидко, як капелюхи, і б'є сильніше, з {0}× шкоди босам DUCK-USB SYN-STORM і GRADIENT. Зберігає режими наведення. Можна розгорнути не більше двох. Малюється як голограма, яку скіни агентів не змінюють."</string>
+    <string name="t_c19b9c99" formatted="false">"ЦІЛІСНІСТЬ CORE-SERVER 0 · З'ЄДНАННЯ РОЗІРВАНО"</string>
+    <string name="t_c1b7bcc5" formatted="false">"Ця збірка не показує реклами."</string>
+    <string name="t_c2658f4d" formatted="false">"Нищівна шкода по одній цілі. Ігнорує всю броню."</string>
+    <string name="t_c2c8c2f8" formatted="false">"ПОКАЗУВАТИ ДАЛЬНІСТЬ АГЕНТА"</string>
+    <string name="t_c2d127eb" formatted="false">"ПРОПУСТИТИ ×"</string>
+    <string name="t_c31db047" formatted="false">"НАБІР ВІДРОДЖЕНЬ — без реклами."</string>
+    <string name="t_c39850a1" formatted="false">"КРОК 3 — РОЗГОРНІТЬ ДВА FIREWALL"</string>
+    <string name="t_c3e1a996" formatted="false">"◇ Крипта й € Бюджет — вигадані внутрішньоігрові ресурси. Вони не мають грошової цінності, їх не можна обміняти ні на що поза грою, і вони не можуть залишити пристрій."</string>
+    <string name="t_c405af57" formatted="false">"ГРАТИ запускає забіг на рівні й у режимі, обраних ліворуч. Якщо забіг збережено, ПРОДОВЖИТИ відновлює його, а НОВИЙ ЗАБІГ починає спочатку."</string>
+    <string name="t_c40bc4a4" formatted="false">"IDS стежить за мережевою активністю, шукаючи підозрілу поведінку й загрози безпеці, а потім подає сигнал. Вона спостерігає, але не блокує."</string>
+    <string name="t_c4a14a23" formatted="false">"Оберіть FIREWALL. Він дешевий, надійний, і його неможливо заглушити."</string>
+    <string name="t_c4b7782d" formatted="false">"Аналітик безпеки — справжня професія. Людина в контурі бере те, що позначили автоматичні інструменти, з'ясовує, що сталося насправді, і вирішує, що з цим робити. Повільніше за машину й значно краще у випадках, що не відповідають відомому шаблону."</string>
+    <string name="t_c4d0dc6f" formatted="false">"Інструменти машинного навчання позначають незвичні шаблони в набагато більшій кількості сигналів, ніж може прочитати людина, і допомагають звузити те, що заслуговує на увагу. Вони допомагають аналітикам, а не замінюють їх, і дають хибні спрацьовування — позначка є зачіпкою, а не вироком."</string>
+    <string name="t_c51041e3" formatted="false">"  ·"</string>
+    <string name="t_c55cc938" formatted="false">"НОВИЙ ЗАБІГ"</string>
+    <string name="t_c55e934e" formatted="false">"ПРОКРУТІТЬ, ЩОБ ПОБАЧИТИ БІЛЬШЕ"</string>
+    <string name="t_c570c6cd" formatted="false">"Стовпці коду, що падають усередині стійки."</string>
+    <string name="t_c5cb18f9" formatted="false">"УСІ РІВНІ"</string>
+    <string name="t_c81c4fa0" formatted="false">"1 рівень"</string>
+    <string name="t_c8a9aae9" formatted="false">"Три маршрути двічі переплітаються: кожна лінія змінює бік."</string>
+    <string name="t_c9301368" formatted="false">"ЯДРО: REACTOR"</string>
+    <string name="t_c9402c75" formatted="false">"НІ"</string>
+    <string name="t_c944e5aa" formatted="false">"КОНТРЗАХОДИ"</string>
+    <string name="t_c9a2aee9" formatted="false">"Відкрийте цього агента, дійшовши до хвилі {0} на будь-якому рівні."</string>
+    <string name="t_ca02a8f8" formatted="false">"Кожен агент носить колір своєї справи."</string>
+    <string name="t_ca5ea88d" formatted="false">"НАЙВИГІДНІШЕ"</string>
+    <string name="t_cabf47fa" formatted="false">"МАКС +{0}"</string>
+    <string name="t_cb02b3da" formatted="false">"Повільний цикл кольорів на весь загін."</string>
+    <string name="t_cb1fd3f1" formatted="false">"IPS — це IDS із правом діяти. Розпізнавши атаку, вона сама відкидає трафік, а не лише когось повідомляє."</string>
+    <string name="t_cb4ff573" formatted="false">"РЕКЛАМА Й ПОКУПКИ"</string>
+    <string name="t_cbd3b516" formatted="false">"Без реклами, скін агента SPECTRUM, фон DRIFT і €2,000."</string>
+    <string name="t_cbd47695" formatted="false">"БЛОКУВАННЯ НАВАНТАЖЕННЯ"</string>
+    <string name="t_cbf7d422" formatted="false">"SYN-STORM на половині здоров'я ділиться надвоє, і друга половина йде іншим маршрутом. Покрийте кожен маршрут."</string>
+    <string name="t_cc52e024" formatted="false">"ДАЛІ: ХВИЛЯ {0} — БОС · ТОРКНІТЬСЯ НАСТУПНИЙ БОС ДЛЯ БРИФІНГУ"</string>
+    <string name="t_cc5435ac" formatted="false">"Що йде лініями"</string>
+    <string name="t_cc5c44e8" formatted="false">"ФОКУС: ЛИШЕ ДРІБНІ ОДИНИЦІ ТА ЕЛІТНІ"</string>
+    <string name="t_cc6791f1" formatted="false">"Стійкий до агентів FIREWALL."</string>
+    <string name="t_cc7fe141" formatted="false">"Стежить за наступальними інструментами. Кожні кілька секунд ненадовго глушить агентів RED HAT поблизу."</string>
+    <string name="t_cc9e044b" formatted="false">"ЖИВИЙ: ОРБІТА"</string>
+    <string name="t_ccb963f2" formatted="false">"ПАКЕТ"</string>
+    <string name="t_ccbd0815" formatted="false">"Стандартна стійка."</string>
+    <string name="t_ccbefbf5" formatted="false">"РАДІУС СКАНУВАННЯ {0}"</string>
+    <string name="t_ccd3b8ff" formatted="false">"Параметри конфіденційності зараз недоступні."</string>
+    <string name="t_cce0919d" formatted="false">"ПРИДБАНО"</string>
+    <string name="t_cd27794d" formatted="false">"Позивний діє лише на цьому пристрої й не є акаунтом Google. Він підписує ваші забіги в таблиці лідерів."</string>
+    <string name="t_cd7ef0df" formatted="false">"ПОВІДОМЛЕННЯ ПРО ТОРГОВЕЛЬНІ МАРКИ ТА ТРЕТІ СТОРОНИ"</string>
+    <string name="t_cd8fc1d8" formatted="false">"Через Google Play доступні необов'язкові вбудовані покупки. Ніщо в грі не закрито за ними."</string>
+    <string name="t_cde6047e" formatted="false">"Система виявлення вторгнень"</string>
+    <string name="t_ce2cde0d" formatted="false">"КРОК 1 — ВІДКРИЙТЕ ЗАГІН"</string>
+    <string name="t_ce56b8c8" formatted="false">"КЕРУВАТИ В GOOGLE PLAY"</string>
+    <string name="t_ce8b48c9" formatted="false">"ІГРОВИЙ ПРОЦЕС"</string>
+    <string name="t_ceb6dbab" formatted="false">"САУНДТРЕК CyOps TD"</string>
+    <string name="t_cec6cd66" formatted="false">"Ще немає записаних забігів. Завершіть забіг, і він з'явиться тут, упорядкований за досягнутою хвилею."</string>
+    <string name="t_cee3b8c9" formatted="false">"ПРОПУСТИТИ"</string>
+    <string name="t_cfd886ad" formatted="false">"Два маршрути прочісують кожен свою половину. Вежі в центральному проміжку дістають обидва."</string>
+    <string name="t_d0112898" formatted="false">"ПРИМАНКА"</string>
+    <string name="t_d07db54c" formatted="false">"ROOT / ADMIN"</string>
+    <string name="t_d08f5138" formatted="false">"Два звивисті маршрути, що повертаються повз ті самі гармати."</string>
+    <string name="t_d10c0c39" formatted="false">"Дуже висока швидкострільність, і кожен постріл розлітається, тож це відповідь на рій, а не на одну важку ціль. Дорожчий за IDS і б'є не так далеко."</string>
+    <string name="t_d11351ac" formatted="false">"УВІМК."</string>
+    <string name="t_d173b657" formatted="false">"Акаунт, що може в системі все. Нападники його прагнуть; захисники ретельно його охороняють. Більшість роботи з безпеки — обмежувати, хто його отримує і на скільки."</string>
+    <string name="t_d19c7c8e" formatted="false">"◇ {0} · відкривається на хвилі {1}"</string>
+    <string name="t_d22f26dd" formatted="false">"Атакує до 3 окремих загроз кожним залпом."</string>
+    <string name="t_d2ee5fd2" formatted="false">"Прогрес зберігається автоматично"</string>
+    <string name="t_d31b24bf" formatted="false">"{0} · {1}  ·  найкраще {2}"</string>
+    <string name="t_d35bc038" formatted="false">"{0} — {1} Він не завдає шкоди; він купує час іншим вашим агентам."</string>
+    <string name="t_d415f020" formatted="false">"Вразливість нульового дня — це вада, для якої ще немає виправлення: захисник мав нуль днів, щоб її залатати. Дослідники вразливостей шукають їх, щоб про них повідомили й виправили, перш ніж хтось інший знайде першим. «Zero-day hunter» — неформальне скорочення, а не сертифікат чи офіційна посада."</string>
+    <string name="t_d477fdfb" formatted="false">"ПРОШИВКУ ПОВНІСТЮ ВСТАНОВЛЕНО"</string>
+    <string name="t_d488d098" formatted="false">"НАВЧАЛЬНОМУ ЗАБІГУ ДАЛІ ПОТРІБЕН TARPIT"</string>
+    <string name="t_d48f1170" formatted="false">"▼  ДАЛІ БІЛЬШЕ"</string>
+    <string name="t_d4bb26ac" formatted="false">"НАБІР СКІНІВ ЯДРА"</string>
+    <string name="t_d5acb32b" formatted="false">"Вібрація при тривогах босів, влучаннях у сервер і поразці"</string>
+    <string name="t_d5b86d2a" formatted="false">"Центр операцій безпеки"</string>
+    <string name="t_d5d0b693" formatted="false">"ПРОДОВЖИТИ"</string>
+    <string name="t_d62907f6" formatted="false">"ВСТАНОВЛЕНА ПРОШИВКА"</string>
+    <string name="t_d63b9487" formatted="false">"НЕДОСЯЖНО"</string>
+    <string name="t_d736d92d" formatted="false">"OK"</string>
+    <string name="t_d8386755" formatted="false">"ОПЛАТА GOOGLE PLAY"</string>
+    <string name="t_d84b41e9" formatted="false">"Перемагає тривала шкода. IPS або прокачаний FIREWALL."</string>
+    <string name="t_d8705eb7" formatted="false">"Кібератаки просуваються мережевими маршрутами до CORE-SERVER. Ви розгортаєте Кіберагентів біля ліній; вони виявляють і знищують усе, що проходить. Кожна зупинена атака приносить ◇ Крипту, за яку можна купити більше агентів і покращень. Кожна п'ята хвиля — бос. Останньої хвилі немає — питання лише в тому, як далеко ви зайдете."</string>
+    <string name="t_d889d3ab" formatted="false">"+1, +10 і +100 купують стільки рівнів. ВСТАНОВИТИ МАКС витрачає стільки, скільки ви можете дозволити. Кожен рівень трохи дорожчий."</string>
+    <string name="t_d8bcdc1d" formatted="false">"ПЕРЕЗАПУСК"</string>
+    <string name="t_d8fec6d4" formatted="false">"ВСЬОГО РОЗГОРНУТО АГЕНТІВ"</string>
+    <string name="t_d9074af5" formatted="false">"Шифрування перемішує дані так, що прочитати їх може лише власник правильного ключа. Воно захищає легітимний трафік — і так само добре ховає корисне навантаження нападника від перевірки."</string>
+    <string name="t_d92ad54a" formatted="false">"У цій збірці не налаштовано оплату Google Play, або на цьому пристрої немає Play Маркету. Нічого не можна купити, і нічого платного для гри не потрібно."</string>
+    <string name="t_d9694eb9" formatted="false">"Та сама вада, без зворотного зв'язку. Застосунок не повертає ні помилки, ні даних, тож нападник ставить запитання «так чи ні» й стежить, що змінюється — час, довжина сторінки, коди стану, — щоб читати базу біт за бітом. Повільно, терпляче й значно важче помітити в журналі."</string>
+    <string name="t_d9b49353" formatted="false">"ПОВТОРИТИ"</string>
+    <string name="t_d9b88563" formatted="false">"Одиниця мережевого трафіку"</string>
+    <string name="t_d9c57847" formatted="false">"ПЕРИМЕТР ГОТОВИЙ"</string>
+    <string name="t_da10b268" formatted="false">"НЕ ПРИДБАНО"</string>
+    <string name="t_da169a1a" formatted="false">"СВІТ"</string>
+    <string name="t_da3ae5ed" formatted="false">"Не завдає шкоди й ні в що не цілиться. Відновлює 1 одиницю цілісності CORE-SERVER кожні 30 секунд, поки йде хвиля (ніколи під час перерви чи паузи). Розгортається на самому CORE-SERVER, де для нього є два слоти, і більше ніде. Рівні скорочують таймер. Можна розгорнути не більше двох."</string>
+    <string name="t_dad4b11e" formatted="false">"НАСТУПАЛЬНА ЗАЧИСТКА"</string>
+    <string name="t_db696c4d" formatted="false">"Величезний і важкоброньований, але повільний. Візьміть щось, що ігнорує броню."</string>
+    <string name="t_db971746" formatted="false">"Стежить за оборонними інструментами. Кожні кілька секунд ненадовго глушить агентів BLUE HAT поблизу."</string>
+    <string name="t_dba0a883" formatted="false">"Мережа захоплених машин"</string>
+    <string name="t_dbc1a374" formatted="false">"РЕКЛАМУ НЕ ДОДИВЛЕНО — НІЧОГО НЕ ВИТРАЧЕНО"</string>
+    <string name="t_dc09f8b7" formatted="false">"ГЛУШІННЯ — бос може порушити роботу агента, удвічі знижуючи його швидкострільність на час дії. {0} створено, щоб на це не зважати."</string>
+    <string name="t_dc37fa05" formatted="false">"Широкі смуги холодного світла, що рухаються за всім."</string>
+    <string name="t_dc62badb" formatted="false">"ТИТУЛ"</string>
+    <string name="t_dce01a82" formatted="false">"ВВЕДІТЬ ПОЗИВНИЙ"</string>
+    <string name="t_dd220c90" formatted="false">"РЕКЛАМА"</string>
+    <string name="t_dd4083b5" formatted="false">"Нічого не придбано. Усе вище можна також заробити або просто грати без цього."</string>
+    <string name="t_dd55f56b" formatted="false">"Два маршрути тричі переплітаються перед стійкою, наче нитка ДНК."</string>
+    <string name="t_ddb5514a" formatted="false">"ВІДКРИТИ В GOOGLE PLAY ІГРАХ"</string>
+    <string name="t_ddcb2958" formatted="false">"Названо на честь першого й суто науково-фантастичного: кожне влучання перескакує на дві найближчі загрози з 55% шкоди. Сильний проти скупчених хвиль, марний проти самотньої цілі. Відкриває вибір цілі."</string>
+    <string name="t_ddd374d9" formatted="false">"Короткий огляд атак, які ви зустрінете, босів і того, що з ними роблять ваші агенти. Займає близько двадцяти секунд."</string>
+    <string name="t_dee83e52" formatted="false">"ПРОЗОРІСТЬ ПАНЕЛЕЙ У ГРІ"</string>
+    <string name="t_e00d9a42" formatted="false">"РОЗМІСТИТИ В СЛОТІ CORE-SERVER"</string>
+    <string name="t_e01007ce" formatted="false">"Вигідніше за євро, ніж малий набір."</string>
+    <string name="t_e07706fa" formatted="false">"ЦЕЙ ПРИСТРІЙ ДО ПРИВ'ЯЗКИ"</string>
+    <string name="t_e0a2aaa4" formatted="false">"ПРИВ'ЯЗАТИ АКАУНТ GOOGLE"</string>
+    <string name="t_e12d998f" formatted="false">"НАБІР"</string>
+    <string name="t_e13093ea" formatted="false">"ШКОДА"</string>
+    <string name="t_e1892d25" formatted="false">"ПРОШИВКА ЯДРА"</string>
+    <string name="t_e1df4ef7" formatted="false">"БОСИ"</string>
+    <string name="t_e3407723" formatted="false">"ТАК"</string>
+    <string name="t_e3a7e50c" formatted="false">"ЗАЛИШИТИ МОЄ ЗБЕРЕЖЕННЯ"</string>
+    <string name="t_e3c4a9cc" formatted="false">"{0} глушить агентів {1} поблизу. Ставте їх позаду, на межі дальності."</string>
+    <string name="t_e4554374" formatted="false">"ЗАКРИТИ"</string>
+    <string name="t_e55f9c78" formatted="false">"ЧОГО ЦЯ ГРА НЕ РОБИТЬ"</string>
+    <string name="t_e587f42b" formatted="false">"СИСТЕМНА ЗА ЗАМОВЧУВАННЯМ (мова телефону)"</string>
+    <string name="t_e5e7e535" formatted="false">"ПОДІЛ SYN-STORM"</string>
+    <string name="t_e6694d9c" formatted="false">"Відновлює 1 цілісності CORE-SERVER кожні 30 секунд активної хвилі з одного з двох слотів на CORE-SERVER. Швидше з рівнями. Максимум два."</string>
+    <string name="t_e807eff2" formatted="false">"Перегороджує стіною найближчий маршрут у радіусі; загрози мусять її зламати. Дуже сильно б'є кожного боса. Максимум три."</string>
+    <string name="t_e8757749" formatted="false">"відбийте хвилю {0} на {1}"</string>
+    <string name="t_e8987cec" formatted="false">"СКИНУТИ ПРОГРЕС"</string>
+    <string name="t_e94c961d" formatted="false">"СТАТИСТИКА"</string>
+    <string name="t_e979d28d" formatted="false">"ТЕМП"</string>
+    <string name="t_e99d5d17" formatted="false">"Набори € витрачаються, а не належать вам: їх зараховують один раз, і ВІДНОВИТИ не видає їх повторно."</string>
+    <string name="t_e9caa97b" formatted="false">"Розгортань ще не записано. Зіграйте забіг, щоб заповнити це."</string>
+    <string name="t_ea16b407" formatted="false">"Золоті доріжки на глибокому індиго."</string>
+    <string name="t_ea31efb2" formatted="false">"відбийте хвилю {0}"</string>
+    <string name="t_eab5f205" formatted="false">"ЗМІНИТИ ПОЗИВНИЙ"</string>
+    <string name="t_eaf7396d" formatted="false">"GOOGLE НЕДОСТУПНИЙ — ЗБЕРЕЖЕННЯ ЛИШИЛОСЯ НА ПРИСТРОЇ"</string>
+    <string name="t_eb2e832a" formatted="false">"АГЕНТ {0}"</string>
+    <string name="t_ebdd4d5e" formatted="false">"ПРИБРАНО · НЕМАЄ"</string>
+    <string name="t_ec91403d" formatted="false">"ХВИЛЯ"</string>
+    <string name="t_ed31a176" formatted="false">"Дихаюча решітка схем, що реагує на хвилю."</string>
+    <string name="t_ed5c9d47" formatted="false">"ЗА РІВЕНЬ"</string>
+    <string name="t_ed7160a0" formatted="false">"НІКОЛИ"</string>
+    <string name="t_ed7ecda7" formatted="false">"Заблоковано"</string>
+    <string name="t_ee0803eb" formatted="false">"СТІЙКИЙ"</string>
+    <string name="t_ee094192" formatted="false">"У цій збірці не налаштовано оплату Google Play, тож тут нічого не можна купити. Кожна частина гри, що не коштує грошей, працює цілком звично."</string>
+    <string name="t_ee5525d9" formatted="false">"KERNEL PANIC · {0} ЗАГЛУШЕНО"</string>
+    <string name="t_ee6595fd" formatted="false">"Команда й кімната, що стежать за тривогами. Якщо в цієї гри є місце дії, то це настінний екран SOC о третій ночі."</string>
+    <string name="t_eea62f11" formatted="false">"ПОКУПКИ"</string>
+    <string name="t_eef967f2" formatted="false">"МАСШТАБУВАННЯ ПОЛЯ БОЮ"</string>
+    <string name="t_ef29f425" formatted="false">"ЗВУК"</string>
+    <string name="t_efcf9890" formatted="false">"ШКД {0} · ТЕМП {1}/с · ДАЛ {2}"</string>
+    <string name="t_f001b942" formatted="false">"УКРІПЛЕНИЙ"</string>
+    <string name="t_f03b01af" formatted="false">"Повільно лагодить себе, коли якийсь час не отримує влучань."</string>
+    <string name="t_f100d10c" formatted="false">"Усе, що позначено ЗАБЛОКОВАНО, є в магазині. Ніщо тут не змінює гру — скіни це вигляд, а не перевага."</string>
+    <string name="t_f16b76bc" formatted="false">"«Rubber ducky» — USB-флешка, що вдає клавіатуру й набирає атаку швидше за будь-кого. Захист — USB-вартовий, що перевіряє кожен новий пристрій, перш ніж комп'ютер йому довіриться, і блокує клавіатуру, яка друкує як машина."</string>
+    <string name="t_f17dfdae" formatted="false">"Один довгий маршрут спускається згори й по спіралі розкручується до стійки."</string>
+    <string name="t_f25360a0" formatted="false">"Зміни діють одразу й зберігаються на цьому пристрої"</string>
+    <string name="t_f293dfd1" formatted="false">"ПЕРЕВІРКА ПОКУПОК"</string>
+    <string name="t_f2e7479c" formatted="false">"Прив'яжіть акаунт Google, щоб зберігати прогрес на будь-якому телефоні чи планшеті. Google попросить дозвіл керувати збереженими даними цієї гри у вашому акаунті — це сховище ігрових збережень, і лише ним ми користуємося."</string>
+    <string name="t_f2ed0368" formatted="false">"Швидкий. Якщо дістанеться ядра, вкраде половину вашої крипти замість цілісності."</string>
+    <string name="t_f2f63d9f" formatted="false">"НА ЦЬОМУ ПРИСТРОЇ"</string>
+    <string name="t_f33c5b01" formatted="false">"КРОК 6 — ПОЧНІТЬ ХВИЛЮ"</string>
+    <string name="t_f38eb808" formatted="false">"Міцніші загрози, щільніше, менше цілісності. Щедріші нагороди."</string>
+    <string name="t_f3e23f71" formatted="false">"ЯДРО: CASCADE"</string>
+    <string name="t_f49a4ff9" formatted="false">"АГЕНТА ЗАБЛОКОВАНО"</string>
+    <string name="t_f4f677dc" formatted="false">"ЗАРОБЛЕНО ЗА ВЕСЬ ЧАС"</string>
+    <string name="t_f5537783" formatted="false">"ЯДРО: MAINFRAME"</string>
+    <string name="t_f590e2c9" formatted="false">"МАРШРУТ"</string>
+    <string name="t_f5b866e4" formatted="false">"Скоординована спроба зламу з такою надмірністю, що не помітить непідготовленої мережі. Кожна п'ята хвиля приносить одну, і кожна міцніша за попередню."</string>
+    <string name="t_f60f5840" formatted="false">"Як і раніше, немає ні акаунта CyOps, ні пароля. Покупки йдуть за акаунтом Google, під яким виконано вхід у Play Маркет на цьому пристрої. Прогрес іде за акаунтом Google, який ви прив'язуєте вище, — окремий необов'язковий вибір: гра повна й без нього."</string>
+    <string name="t_f692d3ce" formatted="false">"БОТНЕТ"</string>
+    <string name="t_f69a80a7" formatted="false">"Гра перезапуститься, щоб перейти на {0}. Ваш прогрес збережено."</string>
+    <string name="t_f6f93110" formatted="false">"ЯДРО: NEONGRID"</string>
+    <string name="t_f720bfa7" formatted="false">"Лінії розгортки люмінофору CRT."</string>
+    <string name="t_f76fff7f" formatted="false">"Шкідливе ПЗ: код, написаний, щоб пошкоджувати, порушувати роботу чи красти. Несе більше навантаження, ніж проста ін'єкція, тож поглинає більше шкоди, перш ніж розвалитися."</string>
+    <string name="t_f7a4fc70" formatted="false">"ТОРКНІТЬСЯ ЩЕ РАЗ, ЩОБ РОЗГОРНУТИ"</string>
+    <string name="t_f7a7b98a" formatted="false">"ШКД {0} · ТЕМП {1} · ДАЛ {2}"</string>
+    <string name="t_f7eb1496" formatted="false">"Місце визначає найглибша досягнута хвиля. За рівності вирішує завдана шкода."</string>
+    <string name="t_f803ec67" formatted="false">"ІСТОРІЯ ЗАМОВЛЕНЬ І ПОВЕРНЕННЯ"</string>
+    <string name="t_f85117ec" formatted="false">"Усі {0} треків уже в Music/CyOps TD."</string>
+    <string name="t_f8723c46" formatted="false">"ШВИДКІСТЬ"</string>
+    <string name="t_f8d84db3" formatted="false">"НЕ ЗАРЕЄСТРОВАНО"</string>
+    <string name="t_f8e6e39f" formatted="false">"Системні інженери підтримують сервери в роботі: латають, замінюють несправні деталі, відновлюють із резервних копій і стежать за станом машин. «Інженер серверних систем» описує такий тип роботи; назви посад різняться між організаціями."</string>
+    <string name="t_f9807a9f" formatted="false">"&gt; у готовності — розгорніть агентів і почніть хвилю 1"</string>
+    <string name="t_f9cec260" formatted="false">"Кілька величезних ударів ледве пришвидшують GRADIENT."</string>
+    <string name="t_f9d6b090" formatted="false">"Дрейфуючі дані ASCII за полем бою та меню"</string>
+    <string name="t_fa1b4500" formatted="false">"Статистика накопичується з кожного забігу, включно з тими, які ви покинули з меню паузи. Скидання прогресу в НАЛАШТУВАННЯХ стирає все."</string>
+    <string name="t_fa60c2c6" formatted="false">"ЖИВИЙ: ТЕПЛОВА КАРТА"</string>
+    <string name="t_fb735826" formatted="false">"ВІБРАЦІЯ"</string>
+    <string name="t_fb889492" formatted="false">"Незалежно розроблена гра жанру tower defense з офлайн-пріоритетом і темою кібербезпеки. Сценарії, агенти й термінологія вигадані для ігрового процесу, з короткими поясненнями з реального світу, щоб поняття за ними можна було вивчити. Гра не навчає жодних наступальних технік і не виконує жодної справжньої функції безпеки."</string>
+    <string name="t_fbca7f29" formatted="false">"Шкідливе ПЗ у корисній личині"</string>
+    <string name="t_fbd9e20c" formatted="false">"АНІМАЦІЯ ФОНУ"</string>
+    <string name="t_fc778505" formatted="false">"Чиста стійка, без позначок."</string>
+    <string name="t_fcc1e712" formatted="false">"КОНФІДЕНЦІЙНІСТЬ"</string>
+    <string name="t_fd3cb488" formatted="false">"ЯК ПРАЦЮЄ ВХІД"</string>
+    <string name="t_fdb0282f" formatted="false">"ЗАВАНТАЖЕННЯ РЕКЛАМИ…"</string>
+    <string name="t_fde05efe" formatted="false">"ДІЙДІТЬ ДО ХВИЛІ {0} НА {1}"</string>
+    <string name="t_fe26fa48" formatted="false">"НАЙКРАЩА ХВИЛЯ"</string>
+    <string name="t_fe451d7a" formatted="false">"СИСТЕМИ ВІДНОВЛЕНО — ЦІЛІСНІСТЬ {0}"</string>
+    <string name="t_fe86390c" formatted="false">" · ШВД {0}"</string>
+    <string name="t_feeee285" formatted="false">"Скінів ядра: {0} · фонів: {1}"</string>
+    <string name="t_feef9615" formatted="false">"НАСТУПНИЙ БОС"</string>
+    <string name="t_ff2d6a51" formatted="false">"Три маршрути двічі міняються місцями. Кожне перехрестя — точка, що б'є по двох."</string>
+    <string name="t_ffa57dc1" formatted="false">"&gt; монтування топології ліній"</string>
+    <string name="t_ffc3db58" formatted="false">"ДАЛ {0}"</string>
+    <string name="t_ffff9bd9" formatted="false">"Агенти повільно дрейфують спектром кольорів, кожна одиниця зміщена відносно наступної."</string>
+</resources>

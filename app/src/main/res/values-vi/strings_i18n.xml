@@ -1,0 +1,867 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Translation of values/strings_i18n.xml. Machine-quality (AI) translation; see FEATURE_BACKLOG.md. -->
+<resources>
+    <string name="t_0069698f" formatted="false">"€ {0} trong ngân sách"</string>
+    <string name="t_00bdf050" formatted="false">"THIẾT BỊ NÀY"</string>
+    <string name="t_00c74b4a" formatted="false">"Tấn công tối đa ba mối đe dọa riêng biệt mỗi loạt bắn, là lời đáp của đội hình cho một đợt rộng. Cho phép chọn mục tiêu."</string>
+    <string name="t_00cb85ad" formatted="false">"BƯỚC 4 — CHỌN TARPIT"</string>
+    <string name="t_00f316c1" formatted="false">"CHI PHÍ CẤP TIẾP THEO"</string>
+    <string name="t_00fafa13" formatted="false">"TÀI KHOẢN NÀY SỞ HỮU"</string>
+    <string name="t_01278423" formatted="false">"ĐIỀU NÀY THAY ĐỔI GÌ"</string>
+    <string name="t_014c06bb" formatted="false">"Đã mở {0}/{1} · đợt tốt nhất {2}"</string>
+    <string name="t_01b91dff" formatted="false">"RANSOM cứ vài giây lại khóa nâng cấp của một đặc vụ trong {0} giây. Hãy nâng cấp trước khi nó đến."</string>
+    <string name="t_01ba7032" formatted="false">"0 cấp"</string>
+    <string name="t_01f2a69d" formatted="false">"GHI CHÚ PHIÊN"</string>
+    <string name="t_0288b770" formatted="false">"Chạm nút ĐẶC VỤ trên thanh điều khiển bên dưới."</string>
+    <string name="t_02b88c49" formatted="false">"Toàn bộ âm thanh được tạo trên thiết bị khi khởi động; trò chơi không kèm tệp âm thanh nào."</string>
+    <string name="t_02f0f435" formatted="false">"Root, hay quản trị viên, là cấp quyền cao nhất trên một hệ thống: nó có thể dừng mọi tiến trình và thay đổi mọi thứ. Chính vì vậy, thực hành tốt là cấp nó càng hiếm và càng ngắn càng tốt. \"Root admin\" là cách gọi tắt cấp truy cập, không phải chức danh."</string>
+    <string name="t_0306926d" formatted="false">"Ba tuyến tấn công dẫn vào máy chủ lõi"</string>
+    <string name="t_0358799e" formatted="false">"Áp dụng cho mọi {0} trong mọi trận từ giờ trở đi, cộng thêm vào FIRMWARE LÕI. Các cấp đầu rẻ; mỗi cấp đắt hơn cấp trước, và các cấp cao nhất tốn hàng triệu."</string>
+    <string name="t_0397b7d9" formatted="false">"TỰ BẮT ĐẦU ĐỢT TRÙM"</string>
+    <string name="t_03d108e0" formatted="false">"Đã liên kết nhưng không kết nối được Google. Không mất gì cả — bản lưu trên thiết bị này đang được dùng, và lần đồng bộ tới sẽ cập nhật tài khoản."</string>
+    <string name="t_059b388a" formatted="false">"&gt; đã quét sạch đợt {0} — chuẩn bị cho đợt {1}"</string>
+    <string name="t_05ea5d0e" formatted="false">"Có sẵn từ đầu."</string>
+    <string name="t_05f2ef1e" formatted="false">"Bài tiếp theo"</string>
+    <string name="t_063d8618" formatted="false">"Mã độc đội lốt thứ bạn yêu cầu. Di chuyển chậm nhưng bọc dày — giáp làm cùn mọi đòn đơn lẻ, nên những phát bắn nhanh mà yếu sẽ phí công."</string>
+    <string name="t_07269781" formatted="false">"Chọn độ khó để xem bảng xếp hạng toàn cầu."</string>
+    <string name="t_07a3d7ab" formatted="false">"Mọi thứ đã sở hữu, kể cả lượt hồi sinh, sẽ trở lại từ Google Play bằng KHÔI PHỤC trên bất kỳ thiết bị nào. Chúng không bao giờ thuộc bản lưu đám mây, nên không tệp lưu nào có thể cho hoặc lấy đi một giao dịch mua."</string>
+    <string name="t_07fbf4bd" formatted="false">"ĐÃ HỒI SINH"</string>
+    <string name="t_08039ac7" formatted="false">"CỬA HÀNG"</string>
+    <string name="t_08175caa" formatted="false">"MÀU THEO LỚP"</string>
+    <string name="t_08218c08" formatted="false">"ĐANG LIÊN KẾT…"</string>
+    <string name="t_08279524" formatted="false">"Mã lợi dụng một lỗ hổng cụ thể trong hệ thống. Exploit di chuyển nhanh và đánh mạnh; khi chúng kéo đến, tầm phát hiện quan trọng hơn sát thương thô."</string>
+    <string name="t_086b8b8e" formatted="false">"TRÙM"</string>
+    <string name="t_08f0711d" formatted="false">"KHÔI PHỤC GIAO DỊCH"</string>
+    <string name="t_09653280" formatted="false">"ĐẾN LÕI"</string>
+    <string name="t_0a0bc63d" formatted="false">"Bài trước"</string>
+    <string name="t_0a2301f4" formatted="false">"TIẾN ĐỘ ĐÃ LƯU"</string>
+    <string name="t_0a344034" formatted="false">"TIẾP: ĐỢT {0}"</string>
+    <string name="t_0ae74b3e" formatted="false">"ĐÒN ZERO-DAY"</string>
+    <string name="t_0b205685" formatted="false">"Đang khởi tạo mạng..."</string>
+    <string name="t_0b809aa5" formatted="false">"Chưa có bảng toàn cầu cho {0}. Các lượt chơi ở đó được ghi trên thiết bị này."</string>
+    <string name="t_0bc6e19b" formatted="false">"Tự nó không gây sát thương. Tăng cho mọi đặc vụ trong tầm +30% sát thương và +20% tốc độ bắn, nên toàn bộ giá trị nằm ở chỗ bạn đặt nó."</string>
+    <string name="t_0bd16003" formatted="false">"TỐI ĐA"</string>
+    <string name="t_0bfbeb5b" formatted="false">"Giữ chúng trong vùng TARPIT, rồi để IPS dọn phần tồn đọng."</string>
+    <string name="t_0c121fb2" formatted="false">"ĐÃ ĐỒNG BỘ TIẾN ĐỘ"</string>
+    <string name="t_0c147607" formatted="false">"QUÉT SÂU"</string>
+    <string name="t_0c16a4ef" formatted="false">"Chưa có điểm. Hoàn thành một lượt để là người đầu tiên."</string>
+    <string name="t_0c997319" formatted="false">"WORM TÁCH ĐÔI"</string>
+    <string name="t_0cb4ce2b" formatted="false">"ĐÃ GIỮ ĐỢT {0}  ◇{1}"</string>
+    <string name="t_0cfa4a6e" formatted="false">"CÁC TRÙM CỦA MÀN NÀY"</string>
+    <string name="t_0d884b08" formatted="false">"XÂM NHẬP (TRÙM)"</string>
+    <string name="t_0d8c63a6" formatted="false">"Mỗi đòn lan sang 2 mối đe dọa gần đó với 55% sát thương."</string>
+    <string name="t_0df4bfec" formatted="false">"YẾU TRƯỚC"</string>
+    <string name="t_0e69fc6c" formatted="false">"Thanh triển khai chỉ hiện biểu tượng và giá của mỗi đặc vụ"</string>
+    <string name="t_0eb480b6" formatted="false">"Lưới phối cảnh lùi xa, với một dải rượt đuổi bên dưới."</string>
+    <string name="t_0f47943c" formatted="false">"TẮT TẬP TRUNG"</string>
+    <string name="t_0f5d5911" formatted="false">"TIẾT KIỆM PIN"</string>
+    <string name="t_0f80d304" formatted="false">"SÁT THƯƠNG ĐẶC VỤ"</string>
+    <string name="t_0f9a43d6" formatted="false">"TẤT CẢ HÌNH NỀN ĐỘNG"</string>
+    <string name="t_0fa88218" formatted="false">"Không kết nối được Google Play — thường do không có mạng. Mọi thứ đã mua vẫn là của bạn; khi có mạng lại hãy nhấn KHÔI PHỤC và chúng sẽ xuất hiện lại."</string>
+    <string name="t_0fd40469" formatted="false">"HIỆU NĂNG"</string>
+    <string name="t_0fd4c0f4" formatted="false">"Ô CORE-SERVER CHỈ DÀNH CHO [S]"</string>
+    <string name="t_1046865f" formatted="false">"Liên tục sinh BOT phía sau. Tiêu diệt nhanh hoặc chìm trong botnet của nó."</string>
+    <string name="t_107ea55b" formatted="false">"NÂNG CẤP BỊ TỐNG TIỀN"</string>
+    <string name="t_108f4363" formatted="false">"CÀI ĐẶT"</string>
+    <string name="t_111611f9" formatted="false">"TƯỜNG VÁ"</string>
+    <string name="t_1181f7e7" formatted="false">"ĐẶC VỤ BỊ NHIỄU"</string>
+    <string name="t_11c0f105" formatted="false">"NHẠC MÀN (TỰ ĐỘNG)"</string>
+    <string name="t_11c8546c" formatted="false">"sát thương"</string>
+    <string name="t_11d858aa" formatted="false">"ĐỢT CAO NHẤT"</string>
+    <string name="t_1213b2b6" formatted="false">"{0} GIỜ TRƯỚC"</string>
+    <string name="t_12193f21" formatted="false">"Kiến trúc sư mạng thiết kế cách chia mạng. Phân đoạn nghĩa là một vụ xâm nhập ở vùng này không thể cứ thế đi sang vùng kế tiếp, nhờ đó hạn chế thiệt hại của bất kỳ sự cố đơn lẻ nào. Đó là công việc thiết kế trước sự cố, không phải công cụ dùng trong sự cố."</string>
+    <string name="t_1248f6ec" formatted="false">"Lưu nhạc nền cần Android 10 trở lên."</string>
+    <string name="t_125ca8ca" formatted="false">"GÓI KHỞI ĐẦU"</string>
+    <string name="t_12a36ceb" formatted="false">"BỊ GIẢ MẠO"</string>
+    <string name="t_12e8edf9" formatted="false">"NGÔN NGỮ"</string>
+    <string name="t_1380e038" formatted="false">"BỊ TỐNG TIỀN · KHÓA NÂNG CẤP {0} giây"</string>
+    <string name="t_138da392" formatted="false">"Lưới có các ô nóng lên và nguội đi theo lưu lượng."</string>
+    <string name="t_13df4b88" formatted="false">"FIRMWARE"</string>
+    <string name="t_13ee9782" formatted="false">"ĐÃ TRIỂN KHAI"</string>
+    <string name="t_141ad814" formatted="false">"PHẢN HỒI"</string>
+    <string name="t_143628e2" formatted="false">"CHỈ QUẢNG CÁO HỒI SINH · TỰ NGUYỆN"</string>
+    <string name="t_1489b7f6" formatted="false">"{0} NGÀY TRƯỚC"</string>
+    <string name="t_14bdf6f2" formatted="false">"LƯỢT HƯỚNG DẪN CẦN FIREWALL TRƯỚC"</string>
+    <string name="t_14c27ca9" formatted="false">"ANALYST gây thêm 80% sát thương lên tinh nhuệ. Đặc vụ bỏ qua giáp rất có ích."</string>
+    <string name="t_14cecaa5" formatted="false">"Làm dữ liệu không đọc được nếu không có khóa"</string>
+    <string name="t_14ecbe1d" formatted="false">"{0}/giây"</string>
+    <string name="t_1512aeac" formatted="false">"{0} cấp"</string>
+    <string name="t_154419d5" formatted="false">"Được tính là mã hóa: hầu hết đặc vụ gây sát thương giảm."</string>
+    <string name="t_154a5adf" formatted="false">"CẤP"</string>
+    <string name="t_15680f7c" formatted="false">"Dùng nó cho sát thương FIRMWARE LÕI vĩnh viễn."</string>
+    <string name="t_1571a208" formatted="false">"Đặt hai TARPIT sao cho vùng hào quang phủ khu vực mà FIREWALL của bạn đang bắn. Làm chậm là thứ khiến sát thương trúng đích."</string>
+    <string name="t_15aa2838" formatted="false">"Lưới thô có các ô nóng lên và nguội đi theo lưu lượng."</string>
+    <string name="t_15ede35d" formatted="false">"◇ {0} · có sẵn từ đầu"</string>
+    <string name="t_167ae054" formatted="false">"Thao tác này sẽ xóa lượt chơi đã lưu, mọi đặc vụ đã mở, toàn bộ thống kê và cài đặt của bạn.\n\nKhông thể hoàn tác."</string>
+    <string name="t_17a13ae4" formatted="false">"Trùm di chuyển chậm nhưng đánh CORE-SERVER mất {0} độ toàn vẹn. Chúng trả nhiều crypto nhất trong trò chơi và cứng hơn sau mỗi chu kỳ."</string>
+    <string name="t_17e0e9f0" formatted="false">"Tốc độ bắn rất cao, luôn nhắm trùm trước mọi thứ khác trong tầm và gây gấp đôi sát thương lên [!!!] BREACH. Mở ở đợt 30 và chỉ được triển khai tối đa bốn."</string>
+    <string name="t_1877f7c0" formatted="false">"CHƯA CÀI"</string>
+    <string name="t_197d534b" formatted="false">"Dùng € NGÂN SÁCH — tích lũy mỗi đợt thứ mười của lượt chơi và giữ lại sau đó — để tăng sát thương vĩnh viễn cho mọi đặc vụ."</string>
+    <string name="t_1991565e" formatted="false">"GIỚI HẠN TẦN SUẤT"</string>
+    <string name="t_19cbe369" formatted="false">"ĐẶC VỤ YÊU THÍCH"</string>
+    <string name="t_1a155da6" formatted="false">"ĐỢT TIẾP THEO"</string>
+    <string name="t_1a2a0f17" formatted="false">"ĐÃ KHÓA"</string>
+    <string name="t_1a73c7da" formatted="false">"tốc độ bắn"</string>
+    <string name="t_1aba43b0" formatted="false">"Những vệt elip chậm quanh lõi, như một bộ lập lịch đang làm việc."</string>
+    <string name="t_1b0d8052" formatted="false">"Rung chiến trường khi CORE-SERVER bị đánh"</string>
+    <string name="t_1ba327c9" formatted="false">"Kiểu tấn công web phổ biến nhất"</string>
+    <string name="t_1ba41734" formatted="false">"ĐÃ CHẶN TẤN CÔNG"</string>
+    <string name="t_1cc19733" formatted="false">"THẾ GIỚI THỰC"</string>
+    <string name="t_1d162704" formatted="false">"Bạn có chắc muốn bắt đầu lượt mới? Phiên đã lưu sẽ bị thay thế."</string>
+    <string name="t_1d29935f" formatted="false">"{0} BỊ NHIỄU"</string>
+    <string name="t_1d8fe548" formatted="false">"BẮT ĐẦU LẠI"</string>
+    <string name="t_1dea7837" formatted="false">"HACK:AI đã vượt quá giới hạn. Một nửa độ toàn vẹn, gấp đôi phần thưởng."</string>
+    <string name="t_1deb5c00" formatted="false">"ĐÃ LIÊN KẾT · NGOẠI TUYẾN"</string>
+    <string name="t_1e09b492" formatted="false">"🔒 [{0}] {1} · ĐÃ KHÓA"</string>
+    <string name="t_1e6ed1a9" formatted="false">"HÌNH NỀN ĐỘNG"</string>
+    <string name="t_1ef7821b" formatted="false">"Lưới xanh neon lùi vào lõi, với vòng ba chiều lướt từ xanh dương sang xanh lá."</string>
+    <string name="t_1f3159fc" formatted="false">"MÀU ĐẶC VỤ"</string>
+    <string name="t_1f5df304" formatted="false">"KẾT NỐI BỊ ĐẶT LẠI"</string>
+    <string name="t_1ff44d56" formatted="false">"GIẤY PHÉP CƯỠNG CHẾ"</string>
+    <string name="t_20ce505d" formatted="false">"TẠM DỪNG"</string>
+    <string name="t_21399575" formatted="false">"NHÀ PHÁT TRIỂN"</string>
+    <string name="t_2198b685" formatted="false">"Vẽ bán kính quét của đặc vụ đang chọn"</string>
+    <string name="t_21bb43e3" formatted="false">"{0} · MỌI MÀN"</string>
+    <string name="t_22100250" formatted="false">"MÀN {0} · TỐI ĐA"</string>
+    <string name="t_224d65ed" formatted="false">"GIAO DIỆN CORE-SERVER"</string>
+    <string name="t_22686e59" formatted="false">"KẾT NỐI"</string>
+    <string name="t_227cde14" formatted="false">"{0} trong {1}"</string>
+    <string name="t_2283d7ca" formatted="false">"NÚT ĐÃ CÓ NGƯỜI"</string>
+    <string name="t_22b6479a" formatted="false">"Chuyên gia tác chiến mạng điều hành phòng thủ như một chiến dịch trực tiếp: theo dõi nhiễu loạn, giữ công cụ của đội hoạt động trong khi có kẻ đang tích cực tìm cách tắt chúng, và đánh thẳng vào nguồn gốc."</string>
+    <string name="t_22c4ef22" formatted="false">"Nội dung của nó bị xáo trộn, nên phần lớn hệ phòng thủ không đọc được thứ mình đang bắn và chỉ gây một phần sát thương. Đặc vụ CRYPTOGRAPHER xuyên thẳng qua mật mã."</string>
+    <string name="t_23020c53" formatted="false">" · mua được {0}"</string>
+    <string name="t_236f5b12" formatted="false">"TỔNG TRÙM ĐÃ HẠ"</string>
+    <string name="t_23763c89" formatted="false">"CÀI ĐẶT"</string>
+    <string name="t_23961a76" formatted="false">"TRÙM {0}/{1} · CHẠM VÀO TRÙM ĐỂ CHUYỂN"</string>
+    <string name="t_24adcafc" formatted="false">"TỔNG SÁT THƯƠNG MÁY CHỦ NHẬN"</string>
+    <string name="t_24bbb47b" formatted="false">"VẬT PHẨM ĐÃ KHÓA"</string>
+    <string name="t_24d3a2ef" formatted="false">"TƯỜNG SẬP"</string>
+    <string name="t_255b5911" formatted="false">"Lân quang CRT xanh lá, đường quét và vệt làm mới."</string>
+    <string name="t_2570d23e" formatted="false">"Tập trung hỏa lực. ANALYST và ROOT ADMIN gánh các đợt trùm."</string>
+    <string name="t_25a6b96b" formatted="false">"Sát thương tầm trung ổn định với giá rẻ, và là đặc vụ duy nhất miễn nhiễm JAM của trùm. Tầm ngắn nên phải đứng gần tuyến — đó chính là lý do sự miễn nhiễm ấy quan trọng."</string>
+    <string name="t_25bd1975" formatted="false">"ST"</string>
+    <string name="t_25efb9da" formatted="false">"BÁN KÍNH NỔ"</string>
+    <string name="t_260d60b1" formatted="false">"MỘT QUẢNG CÁO SAU LƯỢT THUA · HỒI SINH TỰ NGUYỆN"</string>
+    <string name="t_26b80d1f" formatted="false">"XONG"</string>
+    <string name="t_27a68119" formatted="false">"TRẠNG THÁI MẠNG"</string>
+    <string name="t_27d9802d" formatted="false">"MỘT QUẢNG CÁO SAU LƯỢT THUA"</string>
+    <string name="t_27daad70" formatted="false">"Sương giá lan vào từ các mép."</string>
+    <string name="t_28c31125" formatted="false">"Bọc giáp và kiên nhẫn. Đòn đơn nặng đánh bại nó; bắn nhanh là phí."</string>
+    <string name="t_28e339dd" formatted="false">"Những cột ký tự rơi thưa thớt phía sau chiến trường."</string>
+    <string name="t_296fb456" formatted="false">"SỬA +{0} HP · MỖI {1} giây · Ô CORE-SERVER · TỐI ĐA {2}"</string>
+    <string name="t_297ae895" formatted="false">"ĐÃ CÁCH LY"</string>
+    <string name="t_2a1bde6e" formatted="false">"Hệ thống Ngăn chặn Xâm nhập nằm trên đường đi của lưu lượng và được phép hành động với những gì nó phát hiện, cắt hoặc đặt lại kết nối thay vì chỉ cảnh báo. Cái giá là có thật: một IPS đánh giá sai lưu lượng hợp lệ sẽ chặn nó."</string>
+    <string name="t_2a934539" formatted="false">"NGUỒN TẤN CÔNG"</string>
+    <string name="t_2a9b95e6" formatted="false">"Gây ×{0} sát thương lên mọi trùm."</string>
+    <string name="t_2bb9a482" formatted="false">"Tường lửa kiểm tra lưu lượng theo danh sách quy tắc và loại bỏ mọi thứ không khớp. Đây là lớp phòng thủ vành đai lâu đời nhất và vẫn quan trọng nhất."</string>
+    <string name="t_2be00c84" formatted="false">"SỬA BIỆT DANH"</string>
+    <string name="t_2c13b917" formatted="false">"Gây ×{0} sát thương lên {1}."</string>
+    <string name="t_2ce4713d" formatted="false">"&gt; đang đồng bộ CORE-SERVER"</string>
+    <string name="t_2d14c154" formatted="false">"Dòng dữ liệu chéo chậm rãi băng qua chiến trường."</string>
+    <string name="t_2dcb788c" formatted="false">"Trò chơi này được phát triển với sự hỗ trợ của các công cụ trí tuệ nhân tạo, dùng làm phương tiện học tập và phát triển trong quá trình học lập trình và phát triển phần mềm.\n\nCác công cụ AI hỗ trợ ở những mảng như phát triển mã, xử lý sự cố, tài liệu và học tập. Các quyết định thiết kế cuối cùng, định hướng lối chơi, kiểm thử và quyết định phát hành vẫn thuộc trách nhiệm của nhà phát triển.\n\nTrò chơi này không được tạo ra, tài trợ, chứng thực, sở hữu hay phát hành bởi bất kỳ công ty trí tuệ nhân tạo nào."</string>
+    <string name="t_2df53561" formatted="false">"Bộ lọc lưu lượng theo quy tắc"</string>
+    <string name="t_2e0cf790" formatted="false">"KHÁC"</string>
+    <string name="t_2e19cc63" formatted="false">"Đứng dậy một lần với 40% máu. Giết nó không có nghĩa là kết liễu nó."</string>
+    <string name="t_2ef9e2c6" formatted="false">"TẤN CÔNG MẠNG"</string>
+    <string name="t_2f3549f7" formatted="false">"KHÔNG CÓ LƯU ĐÁM MÂY"</string>
+    <string name="t_302a4f0a" formatted="false">"CƠ BẢN"</string>
+    <string name="t_302eea27" formatted="false">"BIẾT CÁI GÌ SẮP ĐẾN?"</string>
+    <string name="t_3083c674" formatted="false">"ĐỘNG: TRÔI"</string>
+    <string name="t_30867b62" formatted="false">"Chơi hoàn toàn ngoại tuyến"</string>
+    <string name="t_30ed929d" formatted="false">"Mở đặc vụ này bằng cách đạt đợt {0} ở {1}."</string>
+    <string name="t_31359ec6" formatted="false">"Tắt tập trung {0}"</string>
+    <string name="t_313900e6" formatted="false">"ĐƯỜNG LÊN KIẾN TRÚC SƯ"</string>
+    <string name="t_314d733e" formatted="false">"Có sẵn € {0}"</string>
+    <string name="t_317b7de0" formatted="false">"Mã rơi bên trong chính tủ máy."</string>
+    <string name="t_31d43b93" formatted="false">"ĐỘNG: MƯA"</string>
+    <string name="t_326bdc38" formatted="false">"ĐẶC VỤ CHƯA ĐĂNG KÝ"</string>
+    <string name="t_32a3e9f3" formatted="false">"ĐẶC BIỆT — {0}"</string>
+    <string name="t_32bafd88" formatted="false">"TIẾP"</string>
+    <string name="t_32e6f915" formatted="false">"MUA ĐƯỢC NGAY"</string>
+    <string name="t_332ec80a" formatted="false">"Thứ gì cũng giết được chúng. Đừng xây quá nhiều cho chúng."</string>
+    <string name="t_33cd995a" formatted="false">"ĐÃ CHẶN XÂM NHẬP"</string>
+    <string name="t_3425c9d3" formatted="false">"MÀN {0}"</string>
+    <string name="t_35350bff" formatted="false">"Vòng phong tỏa nhấp nháy."</string>
+    <string name="t_3595e52a" formatted="false">"TUYẾN {0}"</string>
+    <string name="t_35c82960" formatted="false">"LÕI: GLACIER"</string>
+    <string name="t_35f74be9" formatted="false">"Sát thương đơn mục tiêu áp đảo, bỏ qua mọi giáp. Đặc vụ đắt nhất trò chơi và mở rất muộn. Cho phép chọn mục tiêu."</string>
+    <string name="t_36900a0f" formatted="false">"Rẻ và gần như vô hại. Mọi thứ trong bán kính của nó đều bò chậm."</string>
+    <string name="t_37447c3a" formatted="false">"Tốc độ bắn cực cao, và mỗi phát đều văng."</string>
+    <string name="t_376bc6d2" formatted="false">"Đồng hồ đếm ngược vẫn chạy khi mục này đang mở."</string>
+    <string name="t_376c54b2" formatted="false">"XÓA QUẢNG CÁO"</string>
+    <string name="t_379656ef" formatted="false">"LÕI: VOID"</string>
+    <string name="t_37bc9401" formatted="false">"Bản này hiển thị quảng cáo do Google AdMob cung cấp. Xem quảng cáo để tiếp tục lượt chơi luôn là tùy chọn và không bao giờ bắt buộc để chơi."</string>
+    <string name="t_384d3555" formatted="false">"{0} còn sống"</string>
+    <string name="t_384e5d9f" formatted="false">"LƯU ĐÁM MÂY"</string>
+    <string name="t_385b9a87" formatted="false">"Tarpit chấp nhận một kết nối thù địch rồi trả lời chậm nhất có thể, giữ kẻ tấn công trên một socket chẳng đi đến đâu. Đó là chiến thuật trì hoãn chứ không phải chặn: giá trị nằm ở thời gian nó làm phía bên kia hao tốn."</string>
+    <string name="t_38695d86" formatted="false">"SAO LƯU TIẾN ĐỘ"</string>
+    <string name="t_38c1e7e0" formatted="false">"XEM QUẢNG CÁO"</string>
+    <string name="t_38d9a5af" formatted="false">"&gt; mạng bị xâm phạm"</string>
+    <string name="t_38e03b91" formatted="false">"ĐÃ CÀI ĐẦY ĐỦ"</string>
+    <string name="t_3950774a" formatted="false">"ĐĂNG KÝ LÀ"</string>
+    <string name="t_395af116" formatted="false">"HACK ẨN DANH"</string>
+    <string name="t_396e8daa" formatted="false">"QUANG PHỔ"</string>
+    <string name="t_3a06e0fa" formatted="false">"ÂM NHẠC"</string>
+    <string name="t_3a7e7fe6" formatted="false">"LOẠI BẢN DỰNG"</string>
+    <string name="t_3a8a0a59" formatted="false">"Mỗi đòn đánh đều làm nó nhanh hơn, dù nhỏ đến đâu; để yên thì nó chậm lại. Ít đòn lớn thắng nhiều đòn nhỏ."</string>
+    <string name="t_3aa6f2eb" formatted="false">"ZERO-DAY HUNTER và ROOT ADMIN hoàn toàn bỏ qua giáp."</string>
+    <string name="t_3aaad671" formatted="false">"CHẠM ĐỂ XEM CHI TIẾT"</string>
+    <string name="t_3b12a908" formatted="false">"GRADIENT nhanh hơn sau mỗi đòn, dù nhỏ đến đâu, và chậm lại khi bị để yên. Ít đòn lớn thắng nhiều đòn nhỏ."</string>
+    <string name="t_3b53a59d" formatted="false">"Cũng tự bắt đầu đợt trùm. Tắt: đợt trùm chờ bạn"</string>
+    <string name="t_3bc78174" formatted="false">"PHÁT TRIỂN CÓ AI HỖ TRỢ"</string>
+    <string name="t_3c66aec8" formatted="false">"Các đợt, đặc vụ, € và firmware của bạn được lưu vào tài khoản Google. Đăng nhập trên thiết bị khác là có. Đồng bộ khi bạn thoát trò chơi và khi lượt chơi kết thúc."</string>
+    <string name="t_3cef355d" formatted="false">"Máu còn lại cao nhất"</string>
+    <string name="t_3d17c701" formatted="false">"BỨT TỐC"</string>
+    <string name="t_3d331382" formatted="false">"Con đường lưu lượng đi qua"</string>
+    <string name="t_3d509ddc" formatted="false">"Giảm nửa tốc độ khung hình và bỏ hiệu ứng trang trí"</string>
+    <string name="t_3d83d177" formatted="false">"ĐẶC VỤ MẠNG"</string>
+    <string name="t_3db03eca" formatted="false">"THÀNH TÍCH CỦA BẠN"</string>
+    <string name="t_3e12b118" formatted="false">"TRỢ GIÚP"</string>
+    <string name="t_3e27e12f" formatted="false">"Máu còn lại thấp nhất"</string>
+    <string name="t_3ecdd82e" formatted="false">"Zero-day là lỗ hổng mà bên phòng thủ có không ngày nào để sửa, vì chẳng ai biết nó tồn tại. Không có chữ ký nào để đối chiếu, và đó là điều khiến chúng nguy hiểm."</string>
+    <string name="t_3fa2aee2" formatted="false">"Nhận ít hơn 35% sát thương từ đặc vụ FIREWALL."</string>
+    <string name="t_401924c3" formatted="false">"GIAO DIỆN CORE-SERVER"</string>
+    <string name="t_4071c698" formatted="false">"Google Play đã phản hồi. Mua và khôi phục hoạt động bình thường."</string>
+    <string name="t_40b15bdb" formatted="false">"Tích lũy mỗi đợt thứ mười. Lượt chơi càng sâu càng trả nhiều — phần thưởng tăng theo bình phương mốc, nên một lượt sâu thắng năm lượt nông."</string>
+    <string name="t_4104a0b2" formatted="false">"Tốt nhất của bạn ở {0}: đợt {1}"</string>
+    <string name="t_4108bc91" formatted="false">"BẮT TAY BỊ TỪ CHỐI"</string>
+    <string name="t_41203058" formatted="false">"TRANG BỊ"</string>
+    <string name="t_412ea11f" formatted="false">"Chạm vào hai nút triển khai được tô sáng cạnh một tuyến. Hai không phải là gợi ý: một đặc vụ không thể tự giữ một làn."</string>
+    <string name="t_419c5ded" formatted="false">"TỔNG SỐ VÁN ĐÃ CHƠI"</string>
+    <string name="t_41a1b85e" formatted="false">"TÙY CHỌN QUYỀN RIÊNG TƯ"</string>
+    <string name="t_41ca8ef5" formatted="false">"Lưu cục bộ trên thiết bị này · không tải lên gì cả"</string>
+    <string name="t_41e88f52" formatted="false">"Chụm hai ngón tay để phóng to bàn chơi — ở gần dễ chạm vào nút hơn. Khi đã phóng to, kéo bằng một ngón để di chuyển. Thu nhỏ hết cỡ để xem lại toàn bộ bàn chơi."</string>
+    <string name="t_4208e473" formatted="false">"KHÔNG QUẢNG CÁO"</string>
+    <string name="t_420bd000" formatted="false">"BOTMASTER cứ vài giây lại thả BOT phía sau. Tiêu diệt nhanh, và chừa lại hỏa lực cho bầy."</string>
+    <string name="t_4273a8be" formatted="false">"TÀI KHOẢN"</string>
+    <string name="t_42832744" formatted="false">"Không cờ bạc, không hộp quà ngẫu nhiên, không phần thưởng trả phí ngẫu nhiên"</string>
+    <string name="t_42880e6f" formatted="false">"ĐÃ KHÓA · {0}"</string>
+    <string name="t_42a0e053" formatted="false">"GIỚI THIỆU"</string>
+    <string name="t_42addf6c" formatted="false">"MỞ CỬA HÀNG"</string>
+    <string name="t_42afe7bc" formatted="false">"ĐANG KẾT NỐI"</string>
+    <string name="t_42ef8058" formatted="false">"HỒ SƠ PHÒNG THỦ"</string>
+    <string name="t_4306ee12" formatted="false">"NGÂN SÁCH €1,500"</string>
+    <string name="t_4333987a" formatted="false">"Những cột ký tự rơi thưa thớt."</string>
+    <string name="t_43a1c2e8" formatted="false">"CHI PHÍ NÂNG CẤP"</string>
+    <string name="t_441ec9a9" formatted="false">"Một vòng tham quan nhanh menu. TIẾP để đi tiếp, BỎ QUA để đóng. Bạn có thể xem lại bất cứ lúc nào trong CÀI ĐẶT."</string>
+    <string name="t_4427afab" formatted="false">"Giáp làm cùn đòn nhỏ: mang ANALYST hoặc ROOT ADMIN, không phải IPS."</string>
+    <string name="t_4439e789" formatted="false">"ĐÃ KHÓA · Hoàn thành màn 5 (quét sạch đợt 100 trên DDoS) để mở trình phát nhạc và danh sách bài."</string>
+    <string name="t_448177d3" formatted="false">"LẦN ĐỒNG BỘ CUỐI"</string>
+    <string name="t_4494c488" formatted="false">"{0} PHÚT TRƯỚC"</string>
+    <string name="t_44c51c30" formatted="false">"ĐÃ CHẶN TẤN CÔNG"</string>
+    <string name="t_44fbbc54" formatted="false">"&gt; !! tấn công mạng đang đến — xâm nhập lớn sắp tới !!"</string>
+    <string name="t_4538f2a7" formatted="false">"Tường lửa kiểm tra lưu lượng theo một bộ quy tắc và loại bỏ mọi thứ quy tắc không cho phép. Nó thường là lớp kiểm soát đầu tiên giữa một mạng không tin cậy và thứ đáng bảo vệ, và được đánh giá qua quy tắc được giao chứ không qua sự khôn khéo."</string>
+    <string name="t_45b17976" formatted="false">"Sát thương đơn mục tiêu nặng, giống hệt nhau mỗi phát chứ không may rủi, và bỏ qua giáp. Đắt và chậm; một mình nó không giữ nổi một làn."</string>
+    <string name="t_4631883a" formatted="false">"CÀI TỐI ĐA  (+{0})"</string>
+    <string name="t_463cbc28" formatted="false">"MÁU ×{0} · GIÁP +{1} · TỐC ĐỘ ×{2}"</string>
+    <string name="t_466578df" formatted="false">"Tiếp tục đợt này với nửa độ toàn vẹn."</string>
+    <string name="t_466b92a9" formatted="false">"ĐƯỜNG LÊN PHÂN ĐOẠN"</string>
+    <string name="t_46984fe6" formatted="false">"CHƠI · TIẾP TỤC"</string>
+    <string name="t_46cc0ef8" formatted="false">"Nó còn tăng ◇ crypto mỗi lượt chơi trả, +{0}% mỗi cấp đến gấp đôi. Không ảnh hưởng máu kẻ địch hay thành phần đợt."</string>
+    <string name="t_4735c1ed" formatted="false">"Tấn công mạng đang nhắm vào CORE-SERVER. Triển khai Đặc vụ Mạng dọc các tuyến để chặn chúng trước khi chúng tới nơi."</string>
+    <string name="t_4747b424" formatted="false">"KẺ ĐỊCH"</string>
+    <string name="t_477d52c6" formatted="false">"Đã liên kết. Đăng nhập cùng tài khoản Google trên điện thoại hoặc máy tính bảng khác và tiến độ sẽ ở đó."</string>
+    <string name="t_47c5c237" formatted="false">"NÚT KHÔNG HỢP LỆ"</string>
+    <string name="t_485268f0" formatted="false">"&gt; đang vũ trang đặc vụ mạng"</string>
+    <string name="t_4882e1dc" formatted="false">"KERNEL PANIC khi chết gây nhiễu mọi đặc vụ trong tầm trong 3 giây. FIREWALL vẫn trụ được."</string>
+    <string name="t_488d4b25" formatted="false">"Hàng nghìn máy gửi lưu lượng vào một mục tiêu cùng lúc. Không yêu cầu đơn lẻ nào là tấn công; cơn lũ mới là. Mục đích không phải đột nhập mà làm dịch vụ không dùng được."</string>
+    <string name="t_4905ed7b" formatted="false">"KHÔNG CÓ"</string>
+    <string name="t_494c304d" formatted="false">"-◇{0} BỊ ĐÁNH CẮP"</string>
+    <string name="t_49848f53" formatted="false">"BLIND SQL INJECTION"</string>
+    <string name="t_498754a7" formatted="false">"LƯU NHẠC NỀN VÀO ĐIỆN THOẠI"</string>
+    <string name="t_4af4306b" formatted="false">"BẢN DỰNG"</string>
+    <string name="t_4c1012d3" formatted="false">"Giữ nó dưới làn đạn: nó chỉ tự sửa sau một lúc không bị trúng, nên hãy lấp khoảng trống giữa các vùng tiêu diệt."</string>
+    <string name="t_4c6d3272" formatted="false">"🔒 ĐÃ KHÓA"</string>
+    <string name="t_4cc6f55a" formatted="false">"Không kết nối được Google Play Trò chơi. Các lượt chơi được ghi trên thiết bị này và thành tích tốt nhất sẽ được đăng khi lượt chơi tiếp theo kết thúc lúc bạn trực tuyến."</string>
+    <string name="t_4d54c785" formatted="false">"ĐANG ĐẶT {0} — chạm vào một nút"</string>
+    <string name="t_4d6e69d2" formatted="false">"TRÌNH PHÁT NHẠC"</string>
+    <string name="t_4d7ab8a3" formatted="false">"BIỆT DANH"</string>
+    <string name="t_4e2b3472" formatted="false">"KHÔNG CÓ PHIÊN ĐÃ LƯU"</string>
+    <string name="t_4ebbf8bd" formatted="false">"Còn {0} lượt hồi sinh trong lượt chơi này."</string>
+    <string name="t_4f0fcb18" formatted="false">"Xuất hiện mỗi đợt thứ năm"</string>
+    <string name="t_4f160176" formatted="false">"Lượt thu hoạch. Không mánh, không gây nhiễu — nhiều hơn hai mươi phần trăm so với bất cứ thứ gì trên bàn."</string>
+    <string name="t_5022c684" formatted="false">"MÃ HÓA"</string>
+    <string name="t_5067a989" formatted="false">"CHUỖI VƯỚNG VÍU"</string>
+    <string name="t_5079b771" formatted="false">"Mở đặc vụ này bằng cách đạt đợt {0} ở {1} trong chế độ {2}."</string>
+    <string name="t_509d7851" formatted="false">" · TÁC ĐỘNG {0}"</string>
+    <string name="t_513901c7" formatted="false">" · KHÔNG QUẢNG CÁO"</string>
+    <string name="t_513dcdc9" formatted="false">"MỖI ĐẶC VỤ"</string>
+    <string name="t_520a6b88" formatted="false">"Mỗi cấp đắt hơn cấp trước một chút, nên hệ số nhân tăng mãi nhưng không bao giờ mất kiểm soát. Không có giới hạn nào bạn thực sự chạm tới."</string>
+    <string name="t_5333e76e" formatted="false">"KẾT XUẤT"</string>
+    <string name="t_53e605b3" formatted="false">"CẢNH GIÁC"</string>
+    <string name="t_543ce9f7" formatted="false">"MỖI"</string>
+    <string name="t_54523d94" formatted="false">"Tủ máy chứa lõi của bạn. Hiện trên chiến trường."</string>
+    <string name="t_54743050" formatted="false">"TỔNG TẤN CÔNG ĐÃ CHẶN"</string>
+    <string name="t_54797d92" formatted="false">"Đường mạch chạy bên dưới các chỉ số."</string>
+    <string name="t_549824f8" formatted="false">"ĐÃ BẢO VỆ CỔNG"</string>
+    <string name="t_5571a722" formatted="false">"CHƠI NGOẠI TUYẾN · KHÔNG CẦN ĐĂNG NHẬP"</string>
+    <string name="t_55f85167" formatted="false">"MENU ĐẶC VỤ GỌN"</string>
+    <string name="t_565a738e" formatted="false">"KHÔNG, ĐỂ TÔI CHƠI"</string>
+    <string name="t_56a9a004" formatted="false">"Injection trong bóng tối"</string>
+    <string name="t_56bafb67" formatted="false">"Một lượt hồi sinh mỗi lượt chơi."</string>
+    <string name="t_56c54890" formatted="false">"Một mô hình phình to: nhiều máu hơn chút, chậm hơn chút."</string>
+    <string name="t_56c6b2ae" formatted="false">"Hư cấu có chủ ý, được ghi rõ: đặc vụ này đơn giản bỏ qua thuộc tính ENCRYPTED thay vì bị nó làm yếu, và gây gấp ba sát thương lên mọi thứ mang nó. Mật mã học thật không hoạt động như vậy và không có gì ở đây phá được mật mã thật."</string>
+    <string name="t_5749c8dc" formatted="false">"Đợt {0} và mọi thứ đã triển khai sẽ mất."</string>
+    <string name="t_5785b710" formatted="false">"Chọn một đặc vụ, rồi chạm vào nút triển khai được tô sáng."</string>
+    <string name="t_57f88861" formatted="false">"TẬP TRUNG: CHỈ TRÙM"</string>
+    <string name="t_582ec4a0" formatted="false">"Máy tính bị chiếm quyền lặng lẽ nhận lệnh từ một bộ điều khiển trung tâm. Chủ của chúng thường không hề hay biết. Botnet là thứ khiến các vụ DDoS lớn có thể xảy ra."</string>
+    <string name="t_5840893d" formatted="false">"ĐÃ KHỐNG CHẾ XÂM NHẬP"</string>
+    <string name="t_58a5f08a" formatted="false">"Lưới trơn. Không chuyển động."</string>
+    <string name="t_597ee3cb" formatted="false">"KHỚP CHỮ KÝ"</string>
+    <string name="t_5a02fc0a" formatted="false">"GÓI HỒI SINH"</string>
+    <string name="t_5a3d8598" formatted="false">"Gần CORE-SERVER nhất"</string>
+    <string name="t_5a911db6" formatted="false">"TÀI KHOẢN GOOGLE CỦA BẠN"</string>
+    <string name="t_5aa1d1dc" formatted="false">"Bật tập trung {0}"</string>
+    <string name="t_5b19a621" formatted="false">"Đòn tấn công vào lỗ hổng chưa ai vá — bên phòng thủ có không ngày nào để chuẩn bị. Hiếm, lì, và đáng kha khá crypto khi chặn được."</string>
+    <string name="t_5c19fc6b" formatted="false">"MUA NHẠC NỀN CyOps TD · {0}"</string>
+    <string name="t_5c3f86fb" formatted="false">"MẠNH NHẤT"</string>
+    <string name="t_5d1868fb" formatted="false">"LÕI"</string>
+    <string name="t_5d377851" formatted="false">"Nâng cấp vĩnh viễn · mọi trận từ giờ trở đi"</string>
+    <string name="t_5d4d0273" formatted="false">"{0} đã khóa: {1}."</string>
+    <string name="t_5de47a9b" formatted="false">"MỌI ĐỘ KHÓ"</string>
+    <string name="t_5de55828" formatted="false">"!! ĐỘ TOÀN VẸN THẤP !!"</string>
+    <string name="t_5e75065a" formatted="false">"ĐÃ KẾT NỐI"</string>
+    <string name="t_5f2258c9" formatted="false">"Số tiền ở bên trái. Nó được tích lũy mỗi đợt thứ mười của lượt chơi và giữ lại khi lượt chơi kết thúc. Lượt càng sâu trả càng nhiều."</string>
+    <string name="t_5fd47bcf" formatted="false">"LÕI: MERIDIAN"</string>
+    <string name="t_602fffef" formatted="false">"Mọi thứ trừ CRYPTOGRAPHER đều mất hơn một nửa sát thương ở đây."</string>
+    <string name="t_6049b1e7" formatted="false">"HÌNH NỀN ĐỘNG"</string>
+    <string name="t_60a5a04c" formatted="false">"Tạm dừng nhạc"</string>
+    <string name="t_60ecea1a" formatted="false">"TUYỆT ĐỐI"</string>
+    <string name="t_60f81814" formatted="false">"Cứ mỗi {0} giây, LICENSE dành {1} để phớt lờ bất kỳ loại đặc vụ nào cứ đánh nó. Hãy trộn các loại đặc vụ."</string>
+    <string name="t_61919374" formatted="false">"ĐÃ HỒI SINH — nó sẽ không quay lại nữa"</string>
+    <string name="t_61ebe734" formatted="false">"RUNG MÀN HÌNH"</string>
+    <string name="t_625afb79" formatted="false">"Đã sở hữu. Lưu vào Music/CyOps TD với tên \"CyOps TD - Level X (Y)\"."</string>
+    <string name="t_628c7cd9" formatted="false">"PHÂN BỔ TRIỂN KHAI ĐẶC VỤ"</string>
+    <string name="t_62f8af50" formatted="false">"+{0} HP / {1} giây"</string>
+    <string name="t_63374e04" formatted="false">"MENU CHÍNH"</string>
+    <string name="t_633e8e1a" formatted="false">"Khi bị giết tách thành ba con sâu nhỏ hơn, và mỗi con lại tách thêm một lần. Sát thương lan là bạn của bạn."</string>
+    <string name="t_6343926d" formatted="false">"GÂY NHIỄU"</string>
+    <string name="t_638aaa93" formatted="false">"CŨNG XUẤT HIỆN Ở ĐÂY"</string>
+    <string name="t_63b00a3c" formatted="false">"Dữ liệu gửi qua mạng được cắt thành các gói: những mẩu nhỏ có địa chỉ đích và phần tải. Gói tin không phải tấn công — gần như tất cả là lưu lượng bình thường. Thứ bạn bắn ở đây là những gói mang một kiểu tấn công cụ thể, nên mỗi cái được đặt tên theo đòn tấn công chứ không theo gói tin."</string>
+    <string name="t_63b54927" formatted="false">"3 lượt hồi sinh mỗi lượt chơi và không bao giờ có quảng cáo hồi sinh, cộng €5,000."</string>
+    <string name="t_63bef594" formatted="false">"HP {0}"</string>
+    <string name="t_63f3d76a" formatted="false">"LƯU"</string>
+    <string name="t_63facb82" formatted="false">"ĐỘNG: NHỊP"</string>
+    <string name="t_6480a147" formatted="false">"ĐỢT {0}  —  GIA CỐ VÀNH ĐAI"</string>
+    <string name="t_648a945b" formatted="false">"HAI ĐIỀU KHÔNG AI NÓI VỚI BẠN"</string>
+    <string name="t_6490c689" formatted="false">"Không có tiền mã hóa thật, blockchain, ví, đào coin hay NFT"</string>
+    <string name="t_64d398f9" formatted="false">"TẦM"</string>
+    <string name="t_65155738" formatted="false">"TỐC ĐỘ 5×"</string>
+    <string name="t_65252ce7" formatted="false">"ĐẦU TIÊN"</string>
+    <string name="t_6554cde7" formatted="false">"Đang hỏi Google Play tài khoản này sở hữu gì. Thường chỉ mất một lát."</string>
+    <string name="t_655c9284" formatted="false">"ĐỘNG: MẠNG LƯỚI"</string>
+    <string name="t_656e6ce8" formatted="false">"ĐẶC VỤ"</string>
+    <string name="t_65c8fd90" formatted="false">"TÓM TẮT MỐI ĐE DỌA"</string>
+    <string name="t_6678bfdf" formatted="false">"Khi nó chết, mọi đặc vụ gần đó bị nhiễu trong 3 giây. Hãy giết nó xa bàn của bạn, hoặc khi đợt kế tiếp còn xa."</string>
+    <string name="t_66fa85d7" formatted="false">"Dàn đặc vụ ra để một lần nhiễu không làm câm cả tuyến."</string>
+    <string name="t_6700226a" formatted="false">"ĐÃ LIÊN KẾT"</string>
+    <string name="t_67043715" formatted="false">"GIÁP"</string>
+    <string name="t_67313d46" formatted="false">"TƯỜNG DỰNG"</string>
+    <string name="t_6757b458" formatted="false">"ĐÃ CHẶN TẤN CÔNG"</string>
+    <string name="t_6813ef42" formatted="false">"HACK ẨN DANH — {0} BOT LAO TỚI VỚI TỐC ĐỘ GẤP ĐÔI"</string>
+    <string name="t_681745bd" formatted="false">"ĐẶC VỤ ĐÃ KHÓA — {0}"</string>
+    <string name="t_682d973f" formatted="false">"BẮT ĐẦU"</string>
+    <string name="t_68e88af7" formatted="false">"VÙNG NGUY HIỂM"</string>
+    <string name="t_68e985d6" formatted="false">"Không có gì khác được gửi đi đâu cả. Trò chơi chơi được mà không cần mạng."</string>
+    <string name="t_6904aeb4" formatted="false">"TRÒ CHƠI"</string>
+    <string name="t_69698cdc" formatted="false">"WORM khi bị giết tách thành ba con sâu nhỏ hơn, và chúng lại tách thêm một lần. Giết nó sớm, có sát thương lan gần đó."</string>
+    <string name="t_69a293c4" formatted="false">"SUDO TERMINATE"</string>
+    <string name="t_6ad356c5" formatted="false">"Ba tuyến: một đường thẳng xuyên giữa, hai đường ngoằn ngoèo bên trên và bên dưới."</string>
+    <string name="t_6b2d8165" formatted="false">"CẤP {0}  {1} ST"</string>
+    <string name="t_6c161f51" formatted="false">"Cứ 2 giây trong mỗi 17 giây, nó phớt lờ bất kỳ loại đặc vụ nào cứ đánh nó. Một bàn chơi đa dạng vẫn làm nó đau."</string>
+    <string name="t_6c7aa396" formatted="false">"Trùm khác nhau, điểm yếu khác nhau."</string>
+    <string name="t_6ca9de88" formatted="false">"ĐẶC VỤ QUANG PHỔ"</string>
+    <string name="t_6cb7e8e3" formatted="false">"Đòn chậm và nặng. +80% sát thương lên tinh nhuệ và trùm."</string>
+    <string name="t_6cbf7c76" formatted="false">"TRÙM ĐÃ HẠ"</string>
+    <string name="t_6ccdc653" formatted="false">"Hoàn toàn bỏ qua mã hóa và gây gấp ba sát thương lên nó."</string>
+    <string name="t_6cedde69" formatted="false">"ÂM LƯỢNG NHẠC"</string>
+    <string name="t_6d2d6d6b" formatted="false">"Bỏ qua giáp của nó."</string>
+    <string name="t_6d907c0d" formatted="false">"\"Đội xanh\" phòng thủ hệ thống và ứng phó sự cố — đối trọng của đội đỏ. \"Mũ xanh\" được dùng theo nhiều cách trong ngành và không phải thuật ngữ chuẩn, nên ở đây chỉ mô tả nghĩa đội xanh."</string>
+    <string name="t_6dbe0ea3" formatted="false">"MÀN"</string>
+    <string name="t_6f053419" formatted="false">"GIỚI HẠN {0} — TỐI ĐA {1}"</string>
+    <string name="t_6f21a684" formatted="false">"TRÙM — mỗi đợt thứ năm"</string>
+    <string name="t_70d42172" formatted="false">"Chia mạng để một vụ xâm nhập ở vùng này không chạm tới phần còn lại. Đó là lý do một chiếc laptop bị chiếm không nên đồng nghĩa với cả công ty bị chiếm."</string>
+    <string name="t_7191bf1d" formatted="false">"DUY TRÌ"</string>
+    <string name="t_71c5931f" formatted="false">"Tiết kiệm pin chỉ thay đổi những gì được vẽ. Độ khó đợt, sát thương và thời gian hoàn toàn không bị ảnh hưởng."</string>
+    <string name="t_72102eb0" formatted="false">"Giao dịch, khôi phục và những gì rời khỏi thiết bị này"</string>
+    <string name="t_722a0bad" formatted="false">"XEM LẠI HƯỚNG DẪN"</string>
+    <string name="t_73236391" formatted="false">"Bản thân trò chơi không thu thập dữ liệu cá nhân"</string>
+    <string name="t_735d4940" formatted="false">"ÂM LƯỢNG HIỆU ỨNG"</string>
+    <string name="t_73907e76" formatted="false">"Toàn bộ 24 bài trong trò chơi, lưu vào thư mục Music của điện thoại để nghe ở bất cứ đâu."</string>
+    <string name="t_7397fdaa" formatted="false">"Ánh sáng lạnh chuyển động phía sau mọi thứ."</string>
+    <string name="t_739a7f7a" formatted="false">"© {0} {1}. Bảo lưu mọi quyền."</string>
+    <string name="t_73d812dc" formatted="false">"Mỗi đợt thứ năm, và những gì nó mang đến"</string>
+    <string name="t_73e8cb50" formatted="false">"Mã gốc, hình ảnh gốc, âm thanh tổng hợp gốc. Xây dựng bằng Kotlin, Jetpack Compose và Android Canvas API.\n\nBiểu tượng: CoreUI Icons Free của creativeLabs (coreui.io/icons), cấp phép CC BY 4.0.\n\nGiấy phép của các thư viện bên thứ ba được liệt kê trong LICENSES.md trong kho mã dự án."</string>
+    <string name="t_74066c59" formatted="false">"TRONG GAME"</string>
+    <string name="t_746ab6c3" formatted="false">"IPS gây thêm 35% sát thương lên bầy đàn. Đặt nó nơi các làn hội tụ."</string>
+    <string name="t_746d814e" formatted="false">"Xóa lượt chơi đã lưu, đặc vụ đã mở, thống kê và cài đặt. Không thể hoàn tác."</string>
+    <string name="t_74aa6c59" formatted="false">"KHÔNG ĐỦ € NGÂN SÁCH"</string>
+    <string name="t_74fff44e" formatted="false">"Tạo bản sao mồi nhử của chính nó để hút đạn. ANALYST và ROOT ADMIN nhìn xuyên được."</string>
+    <string name="t_750800eb" formatted="false">"Bắn nhanh như bất cứ ai trong đội và luôn bắn trùm trước. Gấp đôi sát thương lên [GG] GOOD GAME. Tối đa bốn."</string>
+    <string name="t_7596436a" formatted="false">"Một kỹ sư bảo mật cấp cao có bằng cử nhân an ninh mạng, ngăn chặn tấn công bằng cách xây dựng phần mềm chống lại chúng: dịch vụ được gia cố, bản vá và bộ lọc có sẵn trước khi đòn tấn công đến chứ không phải sau."</string>
+    <string name="t_75b191e4" formatted="false">"Dựng một bức tường chắn ngang tuyến gần nhất trong tầm. Mối đe dọa dừng ở tường và phải phá nó mới qua được; trùm phá nhanh nhất. Khi tường đổ, ACE dựng lại sau vài giây, mạnh hơn theo mỗi cấp. Đạn của chính nó gây {0}× sát thương lên mọi trùm của năm màn đầu. Chỉ được triển khai tối đa ba."</string>
+    <string name="t_75bd8866" formatted="false">"Chọn màn và độ khó"</string>
+    <string name="t_75e65d90" formatted="false">"CHẠM HAI LẦN ĐỂ TRIỂN KHAI"</string>
+    <string name="t_75f24f6e" formatted="false">"Cứ vài giây lại khóa nâng cấp của một đặc vụ trong 8 giây. Hãy nâng cấp trước khi nó đến."</string>
+    <string name="t_7682806a" formatted="false">"BƯỚC 2 — CHỌN FIREWALL"</string>
+    <string name="t_77212b64" formatted="false">"Đây là đợt tấn công bạn đang đối mặt. Nó cứ tăng lên chừng nào bạn còn giữ máy chủ — mỗi đợt thứ năm có một trùm."</string>
+    <string name="t_772b21ba" formatted="false">"Hệ phòng thủ bạn triển khai"</string>
+    <string name="t_776f4222" formatted="false">"CẤP {0}"</string>
+    <string name="t_77a2583e" formatted="false">"Có hai thứ khác nhau đều được gọi là \"lượng tử\" trong bảo mật, và nên phân biệt rõ. Phân phối khóa lượng tử dùng vật lý để phát hiện nghe lén trên một đường truyền, và chỉ được triển khai ở những nơi hiếm hoi, chuyên biệt. Mật mã hậu lượng tử là toán học phần mềm thông thường được thiết kế để chống lại máy tính lượng tử tương lai, và đó mới là thứ đang thực sự được triển khai."</string>
+    <string name="t_77a6da9b" formatted="false">"Những vòng tròn lan ra từ lõi."</string>
+    <string name="t_77d03aa5" formatted="false">"Blind injection không nhận được thông báo lỗi nào, nên kẻ tấn công suy ra câu trả lời qua từng câu hỏi đúng-sai một. Nó chậm hơn và kiên nhẫn hơn nhiều so với injection thông thường, và đến đã được gia cố trước các biện pháp phòng thủ hiển nhiên."</string>
+    <string name="t_77e5929c" formatted="false">"Chạm lần đầu hiện tầm của đặc vụ tại chỗ đó; chạm lần nữa để triển khai"</string>
+    <string name="t_77e8896f" formatted="false">"Một tuyến chém chéo bàn từ góc này sang góc kia năm lần."</string>
+    <string name="t_77f7e381" formatted="false">" · GIÁP {0}"</string>
+    <string name="t_782074f1" formatted="false">"  ·  TỰ ĐỘNG {0}"</string>
+    <string name="t_7841323b" formatted="false">"QUÉT PHÒNG THỦ"</string>
+    <string name="t_78526608" formatted="false">"ĐỢT ĐẠT ĐƯỢC"</string>
+    <string name="t_78a52e3b" formatted="false">"ẨN"</string>
+    <string name="t_7922c8d5" formatted="false">"Tăng sức cho mọi đặc vụ trong tầm: +30% sát thương, +20% tốc độ bắn."</string>
+    <string name="t_79a4baee" formatted="false">"&lt; QUAY LẠI"</string>
+    <string name="t_79fc7a80" formatted="false">"Chỉ áp dụng khi TỰ BẮT ĐẦU ĐỢT đang bật"</string>
+    <string name="t_7a1f56c4" formatted="false">"ĐỒNG BỘ NGAY"</string>
+    <string name="t_7aba529e" formatted="false">"Phá mã hóa của nó: ×{0} sát thương."</string>
+    <string name="t_7abfb3c7" formatted="false">"Tách làm đôi khi còn nửa máu, và nửa thứ hai đi tuyến khác."</string>
+    <string name="t_7b3bb73f" formatted="false">"ĐÃ VÔ HIỆU HÓA MỐI ĐE DỌA"</string>
+    <string name="t_7b84a6c4" formatted="false">"Liên kết tài khoản Google ở màn hình GOOGLE PLAY để xem và đăng lên bảng toàn cầu. Các lượt chơi vẫn được ghi trên thiết bị này."</string>
+    <string name="t_7ba7f176" formatted="false">"+{0}% ST"</string>
+    <string name="t_7be6fbad" formatted="false">"ĐỢT {0} · DỪNG MÔ PHỎNG"</string>
+    <string name="t_7bf2105b" formatted="false">"Từ chối dịch vụ phân tán"</string>
+    <string name="t_7c4e4414" formatted="false">"CUỐI"</string>
+    <string name="t_7c6853de" formatted="false">"TOÀN CẦU · {0}"</string>
+    <string name="t_7d5cc77f" formatted="false">"TỔNG CRYPTO KIẾM ĐƯỢC"</string>
+    <string name="t_7dc33bc2" formatted="false">"ĐÃ ĐẠT CẤP TỐI ĐA"</string>
+    <string name="t_7e1cf3a7" formatted="false">"SỬA CHỮA"</string>
+    <string name="t_7e522f64" formatted="false">"GHI CÔNG"</string>
+    <string name="t_7e72ed35" formatted="false">"ĐÃ LƯU TIẾN ĐỘ VÀO TÀI KHOẢN"</string>
+    <string name="t_7e906966" formatted="false">"Đã lưu {0} bài vào Music/CyOps TD."</string>
+    <string name="t_7ea71dbe" formatted="false">"Mở lại ĐẶC VỤ và chọn TARPIT. Nó không gây sát thương — nó làm chậm mọi mối đe dọa trong hào quang để FIREWALL của bạn bắn được nhiều phát hơn."</string>
+    <string name="t_7f11b512" formatted="false">"{0} · {1} MỖI LƯỢT {2}"</string>
+    <string name="t_7fd8e294" formatted="false">"&gt; vành đai trực tuyến"</string>
+    <string name="t_804ef7d5" formatted="false">"Kiểu tấn công phổ biến nhất trên internet, và là mối đe dọa cơ bản ở đây. Kẻ tấn công gõ lệnh cơ sở dữ liệu vào ô vốn chờ tên hoặc mật khẩu; nếu ứng dụng chuyển thẳng nó đi, cơ sở dữ liệu sẽ tuân lệnh."</string>
+    <string name="t_80592dd9" formatted="false">"PHIÊN BẢN"</string>
+    <string name="t_8175c5fc" formatted="false">"ĐỘ TOÀN VẸN CORE-SERVER"</string>
+    <string name="t_8198af01" formatted="false">"Ẩn mình 2 giây trong mỗi 6 giây: không gì nhắm được nó. Sát thương lan và chuỗi vẫn chạm tới."</string>
+    <string name="t_81e23c68" formatted="false">"KHÁC: chỉ đơn vị nhỏ và tinh nhuệ, không bao giờ trùm"</string>
+    <string name="t_8230b283" formatted="false">"IDS gây thêm 45% sát thương lên đòn tấn công nhanh và phát hiện chúng sớm nhất."</string>
+    <string name="t_82966ea3" formatted="false">"SỐ ĐỢT"</string>
+    <string name="t_829e8e06" formatted="false">"Đặc vụ trong tầm của nó không thể bị nhiễu. {0}× sát thương lên WHITE EYE và BLACK EYE. Tối đa hai."</string>
+    <string name="t_82a1fee3" formatted="false">"Bạn có chắc muốn chơi lại lượt này?"</string>
+    <string name="t_82a70835" formatted="false">"Khi chưa liên kết, tiến độ chỉ nằm trên thiết bị này. Gỡ cài đặt hoặc khôi phục cài đặt gốc sẽ xóa nó; giao dịch mua thì vẫn còn."</string>
+    <string name="t_830a30fd" formatted="false">"NGÂN SÁCH"</string>
+    <string name="t_830b01d9" formatted="false">"Firmware nhân sát thương của mọi đặc vụ bạn triển khai, trong mọi trận từ giờ trở đi. Nó được áp dụng trước giáp và trước bảng khắc chế, nên giúp Cryptographer chống mã hóa đúng bằng mức giúp Firewall chống lưu lượng thường."</string>
+    <string name="t_831712ed" formatted="false">"ĐÃ MỞ ĐẶC VỤ MẠNG MỚI"</string>
+    <string name="t_83186dce" formatted="false">"CHỈ THIẾT BỊ NÀY"</string>
+    <string name="t_8340a76d" formatted="false">"VÌ SAO QUAN TRỌNG"</string>
+    <string name="t_838b0928" formatted="false">"Sinh ra đòn tấn công hộ tống khi tiến lên."</string>
+    <string name="t_8478f19e" formatted="false">"NHỮNG GÌ RỜI KHỎI THIẾT BỊ NÀY"</string>
+    <string name="t_848f3f46" formatted="false">"XÓA TOÀN BỘ TIẾN ĐỘ?"</string>
+    <string name="t_852bda75" formatted="false">"BÁCH KHOA"</string>
+    <string name="t_862b3f34" formatted="false">"TRIỂN KHAI ĐẶC VỤ MẠNG"</string>
+    <string name="t_869cf6b4" formatted="false">"ĐĂNG KÝ BIỆT DANH"</string>
+    <string name="t_86cce90c" formatted="false">"YẾU NHẤT"</string>
+    <string name="t_87442b62" formatted="false">"ĐỢT TIẾP · BREACH"</string>
+    <string name="t_87a9dd3e" formatted="false">"ĐỢT, € VÀ FIRMWARE"</string>
+    <string name="t_87d92d69" formatted="false">"Tầm phát hiện rất xa; +45% sát thương lên đòn tấn công nhanh."</string>
+    <string name="t_8806feca" formatted="false">"Sáu giao diện CORE-SERVER, cộng €2,000. NEONGRID bán riêng."</string>
+    <string name="t_882561c2" formatted="false">"ĐÁNH GIÁ MỐI ĐE DỌA"</string>
+    <string name="t_891fc63b" formatted="false">"ĐÃ RỚT LỚP GIẢ MẠO"</string>
+    <string name="t_8980d82b" formatted="false">"Đã chọn {0} — chạm vào nút được tô sáng để triển khai."</string>
+    <string name="t_899bae42" formatted="false">"Tùy chọn. Mọi thứ trong trò chơi đều hoạt động khi không liên kết, và ngoài tiến độ của bạn thì không gì được tải lên."</string>
+    <string name="t_89a47932" formatted="false">"Phát nhạc"</string>
+    <string name="t_89c7b011" formatted="false">"Mở lại biểu mẫu đồng ý của Google để thay đổi những gì đối tác quảng cáo được làm với dữ liệu từ thiết bị này. Tiến độ trò chơi được lưu trên thiết bị này và không bao giờ thuộc về phần đó."</string>
+    <string name="t_89d7c51c" formatted="false">"Đi ra, quay về, rồi một đoạn đường về chung dài tới tủ máy."</string>
+    <string name="t_89dd34f8" formatted="false">"Để IPS dọn bầy, cho các tay bắn nặng tập trung vào trùm."</string>
+    <string name="t_89e1b0eb" formatted="false">"Vùng của nó kéo GRADIENT chậm lại trong khi nó tăng tốc."</string>
+    <string name="t_89e450ea" formatted="false">"ĐÃ XÓA · QUẢNG CÁO HỒI SINH TÍNH RIÊNG"</string>
+    <string name="t_8a058fa3" formatted="false">"Đường cong tiêu chuẩn."</string>
+    <string name="t_8a86921d" formatted="false">"Các nút bên phải cuộn được. Phía dưới còn: CỬA HÀNG, TRANG BỊ (gắn giao diện và hình nền), GOOGLE PLAY (giao dịch và lưu đám mây), BẢNG XẾP HẠNG, BÁCH KHOA (giải thích mối đe dọa và đặc vụ), THỐNG KÊ, CÀI ĐẶT và GIỚI THIỆU."</string>
+    <string name="t_8a96f0aa" formatted="false">"KHÔNG KHẢ DỤNG"</string>
+    <string name="t_8aa097b1" formatted="false">"  (ĐÃ KHÓA)"</string>
+    <string name="t_8aec13a9" formatted="false">"Từ chối dịch vụ phân tán: số lượng chính là đòn tấn công. Mỗi yêu cầu đều vặt vãnh, nhưng chúng đến nhanh hơn bất cứ thứ gì trong trò chơi và lúc nào cũng còn thêm."</string>
+    <string name="t_8af0e8d8" formatted="false">"Một nỗ lực xâm nhập có phối hợp. Không mánh khóe, chỉ có sức nặng."</string>
+    <string name="t_8b094c6c" formatted="false">"Đang kết nối Google Play…"</string>
+    <string name="t_8c42a507" formatted="false">"Kim băng tỏa ra từ lõi đóng băng."</string>
+    <string name="t_8c61de92" formatted="false">"TỰ BẮT ĐẦU ĐỢT"</string>
+    <string name="t_8d56a5da" formatted="false">"Những vệt elip chậm xoay quanh lõi."</string>
+    <string name="t_8d91a14b" formatted="false">"GOOGLE PLAY"</string>
+    <string name="t_8d9dd637" formatted="false">"TRÙM: chỉ bắn trùm, ngoài ra ngưng bắn"</string>
+    <string name="t_8e0413ab" formatted="false">"Bản này không có mua hàng trong ứng dụng."</string>
+    <string name="t_8e3787c1" formatted="false">"ĐÃ KHÓA · {0} (tốt nhất: {1})"</string>
+    <string name="t_8f0536a7" formatted="false">"CÀI TỐI ĐA"</string>
+    <string name="t_8f37a712" formatted="false">"SÁT THƯƠNG GÂY RA"</string>
+    <string name="t_8f48da3c" formatted="false">"MẠNG BỊ XÂM PHẠM"</string>
+    <string name="t_8f5d0f11" formatted="false">"KINH TẾ"</string>
+    <string name="t_8f61abf9" formatted="false">"ĐANG XỬ LÝ…"</string>
+    <string name="t_8f68a3ab" formatted="false">"&gt; đang tải chữ ký mối đe dọa"</string>
+    <string name="t_8ff6e51c" formatted="false">"Chưa có lượt chơi nào được ghi ở {0}."</string>
+    <string name="t_90391726" formatted="false">"TIẾP TỤC"</string>
+    <string name="t_910b3ae9" formatted="false">"Tiền kiếm được để mua đặc vụ bảo vệ máy chủ. Crypto◇ nhận được sau mỗi lần hạ địch và mỗi đợt hoàn thành."</string>
+    <string name="t_915c2f22" formatted="false">"Đã lưu {0} bài, sau đó điện thoại từ chối phần còn lại. Giải phóng bớt dung lượng rồi thử lại."</string>
+    <string name="t_919816cc" formatted="false">"Không kết nối được Google Play. Mọi thứ đã mua vẫn là của bạn — hãy thử KHÔI PHỤC khi có mạng lại."</string>
+    <string name="t_91ae1cd3" formatted="false">"Thuật ngữ dễ hiểu"</string>
+    <string name="t_91d4d5fc" formatted="false">"CÓ SẴN · ◇ {0}"</string>
+    <string name="t_9231c915" formatted="false">"Vòng phong tỏa màu hổ phách quanh một phản ứng đang chạy."</string>
+    <string name="t_933bf2fb" formatted="false">"XÓA QUẢNG CÁO áp dụng cho quảng cáo giữa các lượt chơi; quảng cáo hồi sinh tính riêng."</string>
+    <string name="t_935cf7b5" formatted="false">"Tốc độ bắn của nhóm mũ, đạn nặng hơn và {0}× sát thương lên SYN-STORM và GRADIENT. Tối đa hai."</string>
+    <string name="t_93875a49" formatted="false">"tầm"</string>
+    <string name="t_93f1bd2f" formatted="false">"Tốc độ bắn rất cao, luôn nhắm trùm trước mọi thứ khác trong tầm và gây gấp đôi sát thương lên [GG] GOOD GAME. Mở ở đợt 30 và chỉ được triển khai tối đa bốn."</string>
+    <string name="t_94061f4f" formatted="false">"Gần như không gây sát thương. Mọi thứ trong bán kính của nó bò chậm, giữ mối đe dọa trong tầm của đặc vụ gây sát thương lâu hơn nhiều. Rẻ, và vô dụng nếu đứng một mình — nó là bộ khuếch đại sức mạnh cho bất cứ thứ gì bắn cạnh nó."</string>
+    <string name="t_941dea68" formatted="false">"SỐ SÁT THƯƠNG"</string>
+    <string name="t_9427590a" formatted="false">"Hiện giá trị sát thương bay lên khi trúng"</string>
+    <string name="t_94bbec0b" formatted="false">"Chạm ĐỢT TIẾP THEO. Đặc vụ tự động bắn. Mỗi đòn tấn công bạn chặn được trả ◇ Crypto, dùng để mua thêm đặc vụ và nâng cấp."</string>
+    <string name="t_94dc88d3" formatted="false">"Mỗi cấp firmware cộng +{0}% sát thương cho mọi đặc vụ và +{1}% ◇ crypto kiếm được trong lượt chơi (đến gấp đôi), ở mọi trận sau này. Không bao giờ mất đi."</string>
+    <string name="t_95051192" formatted="false">"CHƯA ĐẶT"</string>
+    <string name="t_952dc0bb" formatted="false">"BẢNG XẾP HẠNG"</string>
+    <string name="t_959b6bbb" formatted="false">"ĐÃ TRIỂN KHAI TỐI ĐA {0}"</string>
+    <string name="t_9655a074" formatted="false">"Dòng dữ liệu chậm phía sau menu và bàn chơi."</string>
+    <string name="t_97e1363f" formatted="false">"Giảm mạnh một lượng sát thương cố định mỗi đòn."</string>
+    <string name="t_98189a64" formatted="false">"Không có. Đây là trận đấu tay đôi."</string>
+    <string name="t_9873614b" formatted="false">"Tầm phát hiện xa nhất đội hình, và +45% sát thương lên đòn tấn công nhanh. Tốc độ bắn chậm — nó là trinh sát tiện thể biết bắn, tốt nhất đặt ở nơi phủ được nhiều làn."</string>
+    <string name="t_98a9c7f2" formatted="false">"€ NGÂN SÁCH"</string>
+    <string name="t_98b63553" formatted="false">"Không cần tài khoản hay đăng nhập để chơi"</string>
+    <string name="t_98cc567c" formatted="false">"SÁT THƯƠNG TỐT NHẤT"</string>
+    <string name="t_98f4abc6" formatted="false">"◇ {0} · mở ở đợt {1} trên {2}"</string>
+    <string name="t_98fbe3ee" formatted="false">"ĐA KHÓA MỤC TIÊU"</string>
+    <string name="t_991bd4c3" formatted="false">"Một CRYPTOGRAPHER duy nhất có thể xoay chuyển cả trận."</string>
+    <string name="t_991c8ba8" formatted="false">"TỔNG NÂNG CẤP ĐẶC VỤ"</string>
+    <string name="t_996095bd" formatted="false">"Một số tên, thuật ngữ và nhãn hiệu được nhắc đến trong trò chơi này có thể thuộc sở hữu của các chủ sở hữu tương ứng. Các tham chiếu như vậy chỉ dùng để nhận diện, bình luận, bối cảnh giáo dục và mô tả hư cấu trong trò chơi.\n\nTrò chơi này được phát triển độc lập và không liên kết, không được tài trợ, chứng thực hay phê duyệt bởi Red Hat, Microsoft hay bất kỳ chủ sở hữu nhãn hiệu bên thứ ba nào.\n\nMọi nhãn hiệu, tên sản phẩm, tên công ty và logo của bên thứ ba vẫn thuộc sở hữu của các chủ sở hữu tương ứng."</string>
+    <string name="t_99ab6437" formatted="false">"Hiện lại phần tham quan menu chính và phần giải thích FIRMWARE vào lần tới bạn mở các màn hình đó."</string>
+    <string name="t_99cfdd6c" formatted="false">"Xem trước {0}"</string>
+    <string name="t_99d175d2" formatted="false">"Giữ một TARPIT trên tuyến để triệt tiêu đà tăng tốc."</string>
+    <string name="t_99f43c9c" formatted="false">"KHÔNG ĐỦ CRYPTO"</string>
+    <string name="t_9a8ee779" formatted="false">"Bắn nhanh như bất cứ ai trong đội và luôn bắn trùm trước. Gấp đôi sát thương lên [!!!] BREACH. Tối đa bốn."</string>
+    <string name="t_9a9bcdd3" formatted="false">"Ô"</string>
+    <string name="t_9aa5d01a" formatted="false">"Không bao giờ có quảng cáo xen kẽ sau lượt thua, cộng €5,000. Quảng cáo hồi sinh là tự nguyện và tính riêng — xem GÓI HỒI SINH."</string>
+    <string name="t_9adba547" formatted="false">"Đáng giá nhất trên mỗi euro."</string>
+    <string name="t_9ae9f14f" formatted="false">"Những điểm sáng xa xôi trôi chậm."</string>
+    <string name="t_9aed28a1" formatted="false">"ĐÃ ĐẠT GIỚI HẠN TRIỂN KHAI"</string>
+    <string name="t_9b08be38" formatted="false">"Đang hỏi Google Play Trò chơi…"</string>
+    <string name="t_9b1d7455" formatted="false">"ĐỢT {0}"</string>
+    <string name="t_9b4c97a7" formatted="false">"Đặt theo tên con ngựa gỗ: phần mềm trông như thứ bạn muốn, mang theo thứ bạn hoàn toàn không muốn."</string>
+    <string name="t_9b557f99" formatted="false">"Tốt nhất của bạn: đợt {0}"</string>
+    <string name="t_9b989bfb" formatted="false">"TỐT NHẤT"</string>
+    <string name="t_9bcd1b03" formatted="false">"Cả bảy hình nền động, cộng €2,000."</string>
+    <string name="t_9bd1faf7" formatted="false">"Hoàn tiền, phương thức thanh toán và biên nhận do Google xử lý, không phải trò chơi này."</string>
+    <string name="t_9c2ade2b" formatted="false">"CẤP {0}  ×{1}"</string>
+    <string name="t_9c6be09c" formatted="false">"BIẾN THỂ"</string>
+    <string name="t_9d0c4ff1" formatted="false">"&gt; đợt {0} đang diễn ra — còn {1} mối đe dọa"</string>
+    <string name="t_9d29de23" formatted="false">"ĐỢT TỐT NHẤT THEO MÀN"</string>
+    <string name="t_9d2c3eea" formatted="false">"THUẬT NGỮ MẠNG"</string>
+    <string name="t_9d36e329" formatted="false">"BỊ TỐNG TIỀN"</string>
+    <string name="t_9d5ca8b9" formatted="false">"BẠN CÓ MUỐN HỒI SINH?"</string>
+    <string name="t_9df821c5" formatted="false">"CHÀO MỪNG ĐẾN VỚI CyOps TD"</string>
+    <string name="t_9e30871d" formatted="false">"Một máy tính bị chiếm quyền đang nhận lệnh từ người khác. Một bot thì vô hại. Một botnet hàng nghìn máy thì không — đó là lý do chúng luôn đến theo bầy."</string>
+    <string name="t_9e77c8cf" formatted="false">"Thêm mức tốc độ mô phỏng thứ năm để quét đợt thật nhanh."</string>
+    <string name="t_9ef0ebe5" formatted="false">"PHÂN ĐOẠN"</string>
+    <string name="t_9f26f678" formatted="false">"  →"</string>
+    <string name="t_9f70f631" formatted="false">"TỐC ĐỘ BẮN"</string>
+    <string name="t_9fb6c271" formatted="false">"Gây nhiễu ngắn các đặc vụ gần đó, làm chậm tốc độ bắn của chúng."</string>
+    <string name="t_a12f7814" formatted="false">"+{0} (TRÙM)"</string>
+    <string name="t_a15faa1f" formatted="false">"CHẾ ĐỘ"</string>
+    <string name="t_a19abbd4" formatted="false">"Mọi đặc vụ mạng, chức năng của chúng và đợt mở khóa chúng."</string>
+    <string name="t_a21dbf00" formatted="false">"ĐÃ TÍCH LŨY €{0} NGÂN SÁCH"</string>
+    <string name="t_a24181ff" formatted="false">"CÁI GÌ ĐANG TẤN CÔNG"</string>
+    <string name="t_a2517472" formatted="false">"CỬA HÀNG KHÔNG KHẢ DỤNG"</string>
+    <string name="t_a29c69ba" formatted="false">"THOÁT"</string>
+    <string name="t_a2b3bef5" formatted="false">"ĐẠT ĐỢT {0}"</string>
+    <string name="t_a2dd8300" formatted="false">"Một thử thách. Hai tuyến quay đầu, rồi một vòng trước tủ máy."</string>
+    <string name="t_a2e2f704" formatted="false">"PHÁ MÃ"</string>
+    <string name="t_a32353a8" formatted="false">"NGÂN SÁCH €9,000"</string>
+    <string name="t_a36e1b6d" formatted="false">"KHÔNG CÓ TRONG BẢN NÀY"</string>
+    <string name="t_a3ebab03" formatted="false">"Một lỗ hổng chưa biết, chưa vá"</string>
+    <string name="t_a4a2cd90" formatted="false">"&gt;&gt; KỶ LỤC MỚI &lt;&lt;"</string>
+    <string name="t_a4fd7522" formatted="false">" · TỐI ĐA {0}"</string>
+    <string name="t_a5460e4e" formatted="false">"Đòn đơn chậm, nặng với +80% sát thương lên tinh nhuệ và trùm. Kém trước bầy đàn. Cho phép chọn mục tiêu, để bạn nhắm vào thứ mình thật sự muốn tiêu diệt."</string>
+    <string name="t_a596b409" formatted="false">"TỐC ĐỘ 5× CÓ TRONG CỬA HÀNG"</string>
+    <string name="t_a599c90a" formatted="false">"Mọi đặc vụ trong tầm của nó, kể cả chính nó, miễn nhiễm nhiễu từ mọi trùm. Đạn nhanh và nặng, với {0}× sát thương lên WHITE EYE và BLACK EYE. Tầm như TARPIT. Chỉ được triển khai tối đa hai."</string>
+    <string name="t_a5b1ffba" formatted="false">"Quyền truy cập hệ thống không giới hạn"</string>
+    <string name="t_a5da8eea" formatted="false">"Kẹt ở một đợt? Tích lũy ngân sách, cài firmware, và cùng bàn chơi đó sẽ đánh mạnh hơn ở lượt sau."</string>
+    <string name="t_a6291e29" formatted="false">"NGÂN SÁCH €5,000"</string>
+    <string name="t_a62c1133" formatted="false">"Không có khả năng hack thật — không gì ở đây chạm vào mạng thật"</string>
+    <string name="t_a66c22f9" formatted="false">"Đổi ngôn ngữ trong CÀI ĐẶT ở menu chính: việc chuyển sẽ khởi động lại trò chơi, khiến lượt này kết thúc."</string>
+    <string name="t_a6cd2e07" formatted="false">"{0}-{1} ký tự. A-Z, 0-9, gạch ngang và gạch dưới."</string>
+    <string name="t_a6ee02f4" formatted="false">"HỦY"</string>
+    <string name="t_a727a483" formatted="false">"BAO GỒM"</string>
+    <string name="t_a7c5a24a" formatted="false">"Đang lưu vào Music/CyOps TD…"</string>
+    <string name="t_a7c97dfd" formatted="false">"ĐẶT LẠI"</string>
+    <string name="t_a7e02911" formatted="false">"TRÊN LÕI"</string>
+    <string name="t_a7e24bd6" formatted="false">"NHẮM MỤC TIÊU"</string>
+    <string name="t_a8031bce" formatted="false">"MỞ TRANG CỬA HÀNG"</string>
+    <string name="t_a8191219" formatted="false">"SPOOFER tạo bản sao mồi nhử của chính nó để hút đạn. ANALYST và ROOT ADMIN nhìn xuyên được."</string>
+    <string name="t_a8768bb2" formatted="false">"GIAO DIỆN ĐẶC VỤ"</string>
+    <string name="t_a8935036" formatted="false">"CRYPTO KIẾM ĐƯỢC"</string>
+    <string name="t_a92b98a8" formatted="false">"CRYPTO ◇"</string>
+    <string name="t_a9a8f56c" formatted="false">"HÌNH ẢNH"</string>
+    <string name="t_a9ad0741" formatted="false">"€ LƯỢT NÀY"</string>
+    <string name="t_a9cf50ec" formatted="false">"Lưu lượng thật đi theo một tuyến qua các switch và router để tới đích. Hai tuyến uốn lượn ở đây chính là con đường đó, quay đầu để bạn thấy mọi bước nhảy cùng lúc."</string>
+    <string name="t_a9d9e481" formatted="false">"CORE-SERVER là thứ bạn bảo vệ, và chỉ số ĐỘ TOÀN VẸN ở dải trên cùng là mạng sống duy nhất của bạn. Mỗi gói tin thù địch tới được tủ máy đều cắn mất một miếng. Về 0 thì máy chủ bị phá và lượt chơi kết thúc — nên không để gì lọt qua là toàn bộ nhiệm vụ."</string>
+    <string name="t_aab511c4" formatted="false">"ROOTKIT ẩn mình 2 giây trong mỗi 6 giây và không gì nhắm được nó. Sát thương lan và chuỗi vẫn chạm tới."</string>
+    <string name="t_aac1d4da" formatted="false">"CHƯA LIÊN KẾT"</string>
+    <string name="t_aadac61a" formatted="false">"Ứng dụng hỏi cơ sở dữ liệu bằng SQL. Nếu dữ liệu người dùng nhập được dán thẳng vào câu hỏi đó, kẻ tấn công có thể tự viết phần kết — xuất bảng người dùng, vượt qua đăng nhập, hoặc xóa sạch. Cách sửa đã cũ và ai cũng biết (truy vấn tham số hóa), và chính điều đó khiến thật khó chịu khi đây vẫn là đòn tấn công bạn gặp nhiều nhất."</string>
+    <string name="t_ab62d63d" formatted="false">"Hệ thống Phát hiện Xâm nhập theo dõi hoạt động mạng hoặc máy chủ để tìm mẫu giống tấn công và phát cảnh báo. Nó báo cáo; nó không chặn. Vẫn cần ai đó hoặc thứ gì khác hành động theo phát hiện của nó."</string>
+    <string name="t_aca3253a" formatted="false">"TRÊN SÂN · CHẠM VÀO TRÙM ĐỂ XEM"</string>
+    <string name="t_ad03a515" formatted="false">"Chia mạng thành các vùng"</string>
+    <string name="t_ad26a7c7" formatted="false">"không rõ"</string>
+    <string name="t_ae00f867" formatted="false">"PHÂN TÍCH"</string>
+    <string name="t_ae59bf94" formatted="false">"BÁN  ◇ {0}"</string>
+    <string name="t_b0147d1e" formatted="false">"Dựa vào đặc vụ không phải FIREWALL trong đợt này."</string>
+    <string name="t_b0af39a6" formatted="false">"ĐỔI"</string>
+    <string name="t_b0d341a2" formatted="false">"HƠN MỘT THÁNG TRƯỚC"</string>
+    <string name="t_b0f472d0" formatted="false">"ĐỘ KHÓ"</string>
+    <string name="t_b16e2042" formatted="false">"Bầu trời sao tím phía sau tủ máy."</string>
+    <string name="t_b2029176" formatted="false">"Tự bắt đầu đợt tiếp theo sau một khoảng nghỉ ngắn"</string>
+    <string name="t_b253fa2b" formatted="false">"Mật mã học bảo vệ dữ liệu khi truyền và khi lưu trữ, để chặn bắt được không có nghĩa là đọc được. Kẻ tấn công cũng dùng nó — nhiều lưu lượng thù địch được mã hóa — nên bên phòng thủ kiểm tra tại các điểm cuối họ kiểm soát thay vì cố phá chính mã hóa."</string>
+    <string name="t_b28b05f8" formatted="false">"Hệ thống Ngăn chặn Xâm nhập"</string>
+    <string name="t_b2dbc630" formatted="false">"TƯỜNG LỬA ĐANG BẬT"</string>
+    <string name="t_b2ef7c39" formatted="false">"Đặc vụ Mạng: Thủ thành"</string>
+    <string name="t_b32b1a1d" formatted="false">"TIỆN LỢI"</string>
+    <string name="t_b3735fe8" formatted="false">"Mạng lưới mạch thở theo đợt."</string>
+    <string name="t_b3b53e34" formatted="false">"Giao dịch mua gắn với tài khoản Google của bạn, không phải thiết bị này. Cài lại hay đổi điện thoại cũng không mất."</string>
+    <string name="t_b3c34c67" formatted="false">"VỪA XONG"</string>
+    <string name="t_b40b6d1c" formatted="false">"\"Đội đỏ\" tấn công hệ thống khi được phép, để tìm ra thứ kẻ tấn công sẽ tìm thấy trước. \"Mũ đỏ\" là tiếng lóng không chính thức chứ không phải chức danh hay chứng chỉ, và nghĩa của nó khác nhau tùy người dùng; phần đội đỏ mới là chuẩn."</string>
+    <string name="t_b5ca7a98" formatted="false">"Đợt tốt nhất của mỗi người chơi trên toàn thế giới, liệt kê theo biệt danh. Đăng ký một cái ở bên phải, nếu không Google sẽ hiện tên Play Trò chơi của bạn."</string>
+    <string name="t_b649891d" formatted="false">"ĐÃ TẠM DỪNG"</string>
+    <string name="t_b683e66d" formatted="false">"{0} đã khóa: {1} để mở."</string>
+    <string name="t_b6bcb68c" formatted="false">"Sát thương đơn mục tiêu nặng, giống hệt mỗi phát. Bỏ qua mọi giáp."</string>
+    <string name="t_b7ba0ba1" formatted="false">"REGENERATION sửa nó sau {0} giây không bị trúng. Giữ nó dưới làn đạn suốt dọc đường."</string>
+    <string name="t_b7c4c2a3" formatted="false">"[{0}] {1} (đã khóa): {2}"</string>
+    <string name="t_b7cf2aab" formatted="false">"KHÔNG ỨNG DỤNG NÀO MỞ ĐƯỢC GOOGLE PLAY"</string>
+    <string name="t_b8201e22" formatted="false">"TIẾP: ĐỢT {0} · TRÙM"</string>
+    <string name="t_b82dfd13" formatted="false">"ĐƯA BẠN ĐẾN"</string>
+    <string name="t_b835d746" formatted="false">"BƯỚC 5 — TRIỂN KHAI HAI TARPIT"</string>
+    <string name="t_b8cbfe08" formatted="false">"Xa CORE-SERVER nhất"</string>
+    <string name="t_b8f9cbc8" formatted="false">"ST {0}  NHỊP {1}/giây"</string>
+    <string name="t_b8ffa95c" formatted="false">"ĐỘNG: CỰC QUANG"</string>
+    <string name="t_b9918647" formatted="false">"Được trả tiền để có mặt. Không mánh, không gây nhiễu — nhiều hơn hai mươi phần trăm so với bất cứ thứ gì trên bàn."</string>
+    <string name="t_b9a3ada7" formatted="false">"EXFIL rất nhanh. Nếu tới được lõi, nó lấy cắp một nửa crypto của bạn thay vì độ toàn vẹn. Hãy tiêu trước, hoặc chặn nó."</string>
+    <string name="t_b9c6b239" formatted="false">"Được vẽ bên dưới các làn và phía sau mọi menu."</string>
+    <string name="t_badb0f4a" formatted="false">"Định kỳ tăng tốc lao về phía máy chủ."</string>
+    <string name="t_bae2cee7" formatted="false">"CÓ — XEM QUẢNG CÁO"</string>
+    <string name="t_bb0a2d46" formatted="false">"CHỌN"</string>
+    <string name="t_bb621985" formatted="false">"ĐƯỢC GIA CỐ"</string>
+    <string name="t_bb93827c" formatted="false">"HỒI SINH THẤT BẠI — LƯỢT ĐÃ KẾT THÚC"</string>
+    <string name="t_bc855067" formatted="false">"TỪ CHỐI TRUY CẬP"</string>
+    <string name="t_bcdf64b3" formatted="false">"SQL INJECTION"</string>
+    <string name="t_bceaf8ce" formatted="false">"!!! TẤN CÔNG MẠNG ĐANG ĐẾN !!!"</string>
+    <string name="t_bd0c6acd" formatted="false">"TIẾP € {0} · +{1}% {2} mỗi cấp"</string>
+    <string name="t_bd1b1fc9" formatted="false">"TẮT"</string>
+    <string name="t_bd8215e6" formatted="false">"CÓ, TÓM TẮT CHO TÔI"</string>
+    <string name="t_bd84c20a" formatted="false">"ĐÃ GIỮ ĐỢT {0}"</string>
+    <string name="t_be1fc25b" formatted="false">"Sát thương toàn diện ổn định, và không thể bị nhiễu."</string>
+    <string name="t_beb11f45" formatted="false">"Biến thể trùm"</string>
+    <string name="t_beb3cdc3" formatted="false">"Vùng của nó làm chậm trùm gấp đôi so với các mối đe dọa khác."</string>
+    <string name="t_bec37550" formatted="false">"SỬA NÓNG"</string>
+    <string name="t_bed8ffbb" formatted="false">"Khôi phục sẽ hỏi lại Play tài khoản Google này sở hữu gì. Nhấn bất cứ lúc nào cũng an toàn và không bao giờ tính phí."</string>
+    <string name="t_bf09fcca" formatted="false">"Bản này chưa cấu hình dự án Play Trò chơi, nên tiến độ ở lại thiết bị này. Bản sao lưu của chính Android vẫn khôi phục nó khi bạn cài lại trên điện thoại đăng nhập cùng tài khoản Google."</string>
+    <string name="t_bf0c2eaa" formatted="false">"ĐANG NHÂN BẢN"</string>
+    <string name="t_bf7cfb98" formatted="false">"Bản này không có quảng cáo để cấu hình."</string>
+    <string name="t_c1386132" formatted="false">"◇ CRYPTO"</string>
+    <string name="t_c164d2e8" formatted="false">"Bắn nhanh như nhóm mũ và đánh mạnh hơn, với {0}× sát thương lên các trùm DUCK-USB SYN-STORM và GRADIENT. Giữ các chế độ nhắm mục tiêu. Chỉ được triển khai tối đa hai. Được vẽ dưới dạng ảnh ba chiều mà giao diện đặc vụ không thay đổi."</string>
+    <string name="t_c19b9c99" formatted="false">"ĐỘ TOÀN VẸN CORE-SERVER 0 · KẾT NỐI ĐÃ BỊ NGẮT"</string>
+    <string name="t_c1b7bcc5" formatted="false">"Bản này không hiển thị quảng cáo."</string>
+    <string name="t_c2658f4d" formatted="false">"Sát thương đơn mục tiêu áp đảo. Bỏ qua mọi giáp."</string>
+    <string name="t_c2c8c2f8" formatted="false">"HIỆN TẦM ĐẶC VỤ"</string>
+    <string name="t_c2d127eb" formatted="false">"BỎ QUA ×"</string>
+    <string name="t_c31db047" formatted="false">"GÓI HỒI SINH — không quảng cáo."</string>
+    <string name="t_c39850a1" formatted="false">"BƯỚC 3 — TRIỂN KHAI HAI FIREWALL"</string>
+    <string name="t_c3e1a996" formatted="false">"◇ Crypto và € Ngân sách là tài nguyên hư cấu trong trò chơi. Chúng không có giá trị tiền tệ, không thể đổi lấy bất cứ thứ gì ngoài trò chơi và không thể rời khỏi thiết bị."</string>
+    <string name="t_c405af57" formatted="false">"CHƠI bắt đầu một lượt ở màn và chế độ đã chọn bên trái. Khi có lượt đã lưu, TIẾP TỤC sẽ chơi tiếp và LƯỢT MỚI bắt đầu lại từ đầu."</string>
+    <string name="t_c40bc4a4" formatted="false">"IDS giám sát hoạt động mạng để tìm hành vi đáng ngờ và mối đe dọa bảo mật, rồi phát cảnh báo. Nó quan sát; nó không chặn."</string>
+    <string name="t_c4a14a23" formatted="false">"Chọn FIREWALL. Nó rẻ, ổn định và không thể bị nhiễu."</string>
+    <string name="t_c4b7782d" formatted="false">"Chuyên viên phân tích bảo mật là một nghề có thật. Con người trong vòng lặp tiếp nhận những gì công cụ tự động đánh dấu, tìm ra điều thực sự đã xảy ra và quyết định xử lý thế nào. Chậm hơn máy, nhưng giỏi hơn nhiều với các trường hợp không khớp mẫu đã biết."</string>
+    <string name="t_c4d0dc6f" formatted="false">"Công cụ học máy đánh dấu mẫu bất thường trên nhiều tín hiệu hơn hẳn một người có thể đọc, và được dùng để thu hẹp những gì đáng chú ý. Chúng hỗ trợ chứ không thay thế chuyên viên phân tích, và có tạo cảnh báo sai — một dấu hiệu là manh mối, không phải phán quyết."</string>
+    <string name="t_c51041e3" formatted="false">"  ·"</string>
+    <string name="t_c55cc938" formatted="false">"LƯỢT MỚI"</string>
+    <string name="t_c55e934e" formatted="false">"CUỘN ĐỂ XEM THÊM"</string>
+    <string name="t_c570c6cd" formatted="false">"Những cột mã rơi bên trong tủ máy."</string>
+    <string name="t_c5cb18f9" formatted="false">"MỌI MÀN"</string>
+    <string name="t_c81c4fa0" formatted="false">"1 cấp"</string>
+    <string name="t_c8a9aae9" formatted="false">"Ba tuyến bện vào nhau hai lần: mỗi làn đều đổi bên."</string>
+    <string name="t_c9301368" formatted="false">"LÕI: REACTOR"</string>
+    <string name="t_c9402c75" formatted="false">"KHÔNG"</string>
+    <string name="t_c944e5aa" formatted="false">"BIỆN PHÁP ĐỐI PHÓ"</string>
+    <string name="t_c9a2aee9" formatted="false">"Mở đặc vụ này bằng cách đạt đợt {0} ở bất kỳ màn nào."</string>
+    <string name="t_ca02a8f8" formatted="false">"Mỗi đặc vụ mang màu của việc nó làm."</string>
+    <string name="t_ca5ea88d" formatted="false">"ĐÁNG GIÁ NHẤT"</string>
+    <string name="t_cabf47fa" formatted="false">"TỐI ĐA +{0}"</string>
+    <string name="t_cb02b3da" formatted="false">"Chu kỳ màu chậm trên toàn đội hình."</string>
+    <string name="t_cb1fd3f1" formatted="false">"IPS là IDS có quyền hành động. Khi nhận ra một cuộc tấn công, nó tự loại bỏ lưu lượng thay vì chỉ báo cho ai đó."</string>
+    <string name="t_cb4ff573" formatted="false">"QUẢNG CÁO VÀ GIAO DỊCH"</string>
+    <string name="t_cbd3b516" formatted="false">"Không quảng cáo, giao diện đặc vụ SPECTRUM, hình nền DRIFT và €2,000."</string>
+    <string name="t_cbd47695" formatted="false">"CHẶN PHẦN TẢI"</string>
+    <string name="t_cbf7d422" formatted="false">"SYN-STORM tách làm đôi khi còn nửa máu, và nửa thứ hai đi tuyến khác. Hãy phủ mọi tuyến."</string>
+    <string name="t_cc52e024" formatted="false">"TIẾP: ĐỢT {0} — TRÙM · CHẠM TRÙM TIẾP THEO ĐỂ XEM TÓM TẮT"</string>
+    <string name="t_cc5435ac" formatted="false">"Những gì đang tới trên các làn"</string>
+    <string name="t_cc5c44e8" formatted="false">"TẬP TRUNG: CHỈ ĐƠN VỊ NHỎ VÀ TINH NHUỆ"</string>
+    <string name="t_cc6791f1" formatted="false">"Kháng đặc vụ FIREWALL."</string>
+    <string name="t_cc7fe141" formatted="false">"Theo dõi công cụ tấn công. Cứ vài giây lại gây nhiễu ngắn các đặc vụ RED HAT gần nó."</string>
+    <string name="t_cc9e044b" formatted="false">"ĐỘNG: QUỸ ĐẠO"</string>
+    <string name="t_ccb963f2" formatted="false">"GÓI TIN"</string>
+    <string name="t_ccbd0815" formatted="false">"Tủ máy mặc định."</string>
+    <string name="t_ccbefbf5" formatted="false">"TẦM QUÉT {0}"</string>
+    <string name="t_ccd3b8ff" formatted="false">"Tùy chọn quyền riêng tư hiện không khả dụng."</string>
+    <string name="t_cce0919d" formatted="false">"ĐÃ SỞ HỮU"</string>
+    <string name="t_cd27794d" formatted="false">"Biệt danh chỉ có trên thiết bị này và không phải tài khoản Google. Nó đặt tên cho các lượt chơi của bạn trên bảng xếp hạng."</string>
+    <string name="t_cd7ef0df" formatted="false">"THÔNG BÁO NHÃN HIỆU VÀ BÊN THỨ BA"</string>
+    <string name="t_cd8fc1d8" formatted="false">"Có các giao dịch mua trong ứng dụng tùy chọn qua Google Play. Không có gì trong trò chơi bị khóa sau chúng."</string>
+    <string name="t_cde6047e" formatted="false">"Hệ thống Phát hiện Xâm nhập"</string>
+    <string name="t_ce2cde0d" formatted="false">"BƯỚC 1 — MỞ ĐỘI HÌNH"</string>
+    <string name="t_ce56b8c8" formatted="false">"QUẢN LÝ TRÊN GOOGLE PLAY"</string>
+    <string name="t_ce8b48c9" formatted="false">"LỐI CHƠI"</string>
+    <string name="t_ceb6dbab" formatted="false">"NHẠC NỀN CyOps TD"</string>
+    <string name="t_cec6cd66" formatted="false">"Chưa có lượt chơi nào được ghi. Hoàn thành một lượt và nó sẽ được liệt kê ở đây, xếp theo đợt bạn đạt được."</string>
+    <string name="t_cee3b8c9" formatted="false">"BỎ QUA"</string>
+    <string name="t_cfd886ad" formatted="false">"Hai tuyến rà soát nửa của mình. Tháp ở khe giữa với tới cả hai."</string>
+    <string name="t_d0112898" formatted="false">"MỒI NHỬ"</string>
+    <string name="t_d07db54c" formatted="false">"ROOT / ADMIN"</string>
+    <string name="t_d08f5138" formatted="false">"Hai tuyến uốn lượn quay đầu qua cùng những khẩu súng."</string>
+    <string name="t_d10c0c39" formatted="false">"Tốc độ bắn rất cao và mỗi phát đều văng, nên nó là lời đáp cho bầy đàn chứ không phải cho một mục tiêu nặng. Đắt hơn IDS và tầm ngắn hơn."</string>
+    <string name="t_d11351ac" formatted="false">"BẬT"</string>
+    <string name="t_d173b657" formatted="false">"Tài khoản có thể làm mọi thứ trên hệ thống. Kẻ tấn công muốn nó; bên phòng thủ canh giữ cẩn thận. Phần lớn công việc bảo mật là giới hạn ai được nhận nó và trong bao lâu."</string>
+    <string name="t_d19c7c8e" formatted="false">"◇ {0} · mở ở đợt {1}"</string>
+    <string name="t_d22f26dd" formatted="false">"Tấn công tối đa 3 mối đe dọa riêng biệt mỗi loạt bắn."</string>
+    <string name="t_d2ee5fd2" formatted="false">"Tiến độ được lưu tự động"</string>
+    <string name="t_d31b24bf" formatted="false">"{0} · {1}  ·  tốt nhất {2}"</string>
+    <string name="t_d35bc038" formatted="false">"{0} — {1} Nó không gây sát thương; nó câu giờ cho các đặc vụ khác."</string>
+    <string name="t_d415f020" formatted="false">"Zero-day là lỗ hổng chưa có bản sửa — bên phòng thủ có không ngày nào để vá. Các nhà nghiên cứu lỗ hổng săn lùng chúng để có thể báo cáo và sửa trước khi người khác tìm ra. \"Zero-day hunter\" là cách gọi tắt không chính thức, không phải chứng chỉ hay chức danh chính thức."</string>
+    <string name="t_d477fdfb" formatted="false">"ĐÃ CÀI ĐẦY ĐỦ FIRMWARE"</string>
+    <string name="t_d488d098" formatted="false">"LƯỢT HƯỚNG DẪN TIẾP THEO CẦN TARPIT"</string>
+    <string name="t_d48f1170" formatted="false">"▼  CÒN NỮA BÊN DƯỚI"</string>
+    <string name="t_d4bb26ac" formatted="false">"GÓI GIAO DIỆN LÕI"</string>
+    <string name="t_d5acb32b" formatted="false">"Rung khi có cảnh báo trùm, máy chủ bị đánh và thua cuộc"</string>
+    <string name="t_d5b86d2a" formatted="false">"Trung tâm Điều hành An ninh"</string>
+    <string name="t_d5d0b693" formatted="false">"TIẾP TỤC"</string>
+    <string name="t_d62907f6" formatted="false">"FIRMWARE ĐÃ CÀI"</string>
+    <string name="t_d63b9487" formatted="false">"KHÔNG TRUY CẬP ĐƯỢC"</string>
+    <string name="t_d736d92d" formatted="false">"OK"</string>
+    <string name="t_d8386755" formatted="false">"THANH TOÁN GOOGLE PLAY"</string>
+    <string name="t_d84b41e9" formatted="false">"Sát thương bền bỉ sẽ thắng. IPS hoặc FIREWALL đã lên cấp."</string>
+    <string name="t_d8705eb7" formatted="false">"Tấn công mạng tiến dọc các tuyến mạng về phía CORE-SERVER. Bạn triển khai Đặc vụ Mạng cạnh các làn; chúng phát hiện và tiêu diệt những gì đi qua. Mỗi đòn tấn công bạn chặn được trả ◇ Crypto, dùng để mua thêm đặc vụ và nâng cấp. Mỗi đợt thứ năm là một trùm. Không có đợt cuối — câu hỏi duy nhất là bạn đi được bao xa."</string>
+    <string name="t_d889d3ab" formatted="false">"+1, +10 và +100 mua chừng ấy cấp. CÀI TỐI ĐA tiêu hết số bạn đủ khả năng. Mỗi cấp đắt hơn một chút."</string>
+    <string name="t_d8bcdc1d" formatted="false">"CHƠI LẠI"</string>
+    <string name="t_d8fec6d4" formatted="false">"TỔNG ĐẶC VỤ ĐÃ TRIỂN KHAI"</string>
+    <string name="t_d9074af5" formatted="false">"Mã hóa xáo trộn dữ liệu để chỉ người có đúng khóa mới đọc được. Nó bảo vệ lưu lượng hợp lệ — và cũng che giấu phần tải của kẻ tấn công khỏi việc kiểm tra y như vậy."</string>
+    <string name="t_d92ad54a" formatted="false">"Bản này chưa cấu hình thanh toán Google Play, hoặc thiết bị này không có Cửa hàng Play. Không mua được gì, và không có gì tốn tiền là bắt buộc để chơi."</string>
+    <string name="t_d9694eb9" formatted="false">"Cùng lỗ hổng đó, không có phản hồi. Ứng dụng không trả lỗi cũng không trả dữ liệu, nên kẻ tấn công đặt câu hỏi có-hoặc-không và quan sát điều gì thay đổi — thời gian, độ dài trang, mã trạng thái — để đọc cơ sở dữ liệu từng bit một. Chậm, kiên nhẫn và khó phát hiện trong nhật ký hơn nhiều."</string>
+    <string name="t_d9b49353" formatted="false">"THỬ LẠI"</string>
+    <string name="t_d9b88563" formatted="false">"Đơn vị lưu lượng mạng"</string>
+    <string name="t_d9c57847" formatted="false">"VÀNH ĐAI SẴN SÀNG"</string>
+    <string name="t_da10b268" formatted="false">"CHƯA SỞ HỮU"</string>
+    <string name="t_da169a1a" formatted="false">"TOÀN CẦU"</string>
+    <string name="t_da3ae5ed" formatted="false">"Không gây sát thương và không nhắm gì cả. Sửa 1 điểm độ toàn vẹn CORE-SERVER mỗi 30 giây khi đợt đang diễn ra (không bao giờ trong giờ nghỉ hay khi tạm dừng). Nó được triển khai ngay trên CORE-SERVER, nơi có hai ô dành cho nó, và không ở đâu khác. Cấp độ rút ngắn bộ đếm. Chỉ được triển khai tối đa hai."</string>
+    <string name="t_dad4b11e" formatted="false">"QUÉT TẤN CÔNG"</string>
+    <string name="t_db696c4d" formatted="false">"Khổng lồ và giáp dày, nhưng chậm. Mang thứ gì đó bỏ qua giáp."</string>
+    <string name="t_db971746" formatted="false">"Theo dõi công cụ phòng thủ. Cứ vài giây lại gây nhiễu ngắn các đặc vụ BLUE HAT gần nó."</string>
+    <string name="t_dba0a883" formatted="false">"Mạng lưới máy tính bị chiếm quyền"</string>
+    <string name="t_dbc1a374" formatted="false">"CHƯA XEM HẾT QUẢNG CÁO — KHÔNG TỐN GÌ"</string>
+    <string name="t_dc09f8b7" formatted="false">"GÂY NHIỄU — trùm có thể làm rối một đặc vụ, giảm nửa tốc độ bắn trong thời gian đó. {0} được tạo ra để chẳng bận tâm."</string>
+    <string name="t_dc37fa05" formatted="false">"Những dải sáng lạnh rộng chuyển động phía sau mọi thứ."</string>
+    <string name="t_dc62badb" formatted="false">"DANH HIỆU"</string>
+    <string name="t_dce01a82" formatted="false">"NHẬP BIỆT DANH"</string>
+    <string name="t_dd220c90" formatted="false">"QUẢNG CÁO"</string>
+    <string name="t_dd4083b5" formatted="false">"Chưa mua gì. Mọi thứ ở trên cũng có thể kiếm được, hoặc cứ thế chơi mà không cần."</string>
+    <string name="t_dd55f56b" formatted="false">"Hai tuyến bện vào nhau ba lần trước tủ máy, như một chuỗi DNA."</string>
+    <string name="t_ddb5514a" formatted="false">"MỞ TRONG GOOGLE PLAY TRÒ CHƠI"</string>
+    <string name="t_ddcb2958" formatted="false">"Đặt theo tên cái đầu tiên và hoàn toàn là khoa học viễn tưởng: mỗi đòn lan sang hai mối đe dọa gần đó với 55% sát thương. Mạnh trước các đợt dồn cục, phí công với mục tiêu đơn lẻ. Cho phép chọn mục tiêu."</string>
+    <string name="t_ddd374d9" formatted="false">"Tóm tắt nhanh các đòn tấn công bạn sẽ gặp, các trùm và cách đặc vụ của bạn đối phó. Mất khoảng hai mươi giây."</string>
+    <string name="t_dee83e52" formatted="false">"ĐỘ MỜ BẢNG TRONG GAME"</string>
+    <string name="t_e00d9a42" formatted="false">"ĐẶT VÀO Ô CORE-SERVER"</string>
+    <string name="t_e01007ce" formatted="false">"Đáng giá trên mỗi euro hơn gói nhỏ."</string>
+    <string name="t_e07706fa" formatted="false">"THIẾT BỊ NÀY ĐẾN KHI LIÊN KẾT"</string>
+    <string name="t_e0a2aaa4" formatted="false">"LIÊN KẾT TÀI KHOẢN GOOGLE"</string>
+    <string name="t_e12d998f" formatted="false">"GÓI"</string>
+    <string name="t_e13093ea" formatted="false">"SÁT THƯƠNG"</string>
+    <string name="t_e1892d25" formatted="false">"FIRMWARE LÕI"</string>
+    <string name="t_e1df4ef7" formatted="false">"TRÙM"</string>
+    <string name="t_e3407723" formatted="false">"CÓ"</string>
+    <string name="t_e3a7e50c" formatted="false">"GIỮ BẢN LƯU CỦA TÔI"</string>
+    <string name="t_e3c4a9cc" formatted="false">"{0} gây nhiễu các đặc vụ {1} ở gần nó. Hãy đặt chúng lùi lại, ở rìa tầm bắn."</string>
+    <string name="t_e4554374" formatted="false">"ĐÓNG"</string>
+    <string name="t_e55f9c78" formatted="false">"NHỮNG GÌ TRÒ CHƠI NÀY KHÔNG LÀM"</string>
+    <string name="t_e587f42b" formatted="false">"MẶC ĐỊNH HỆ THỐNG (ngôn ngữ điện thoại)"</string>
+    <string name="t_e5e7e535" formatted="false">"SYN-STORM TÁCH ĐÔI"</string>
+    <string name="t_e6694d9c" formatted="false">"Sửa 1 độ toàn vẹn CORE-SERVER mỗi 30 giây khi đợt đang diễn ra, từ một trong hai ô trên CORE-SERVER. Nhanh hơn theo cấp. Tối đa hai."</string>
+    <string name="t_e807eff2" formatted="false">"Chắn tường tuyến gần nhất trong tầm; mối đe dọa phải phá nó. Đánh mọi trùm rất mạnh. Tối đa ba."</string>
+    <string name="t_e8757749" formatted="false">"quét sạch đợt {0} ở {1}"</string>
+    <string name="t_e8987cec" formatted="false">"ĐẶT LẠI TIẾN ĐỘ"</string>
+    <string name="t_e94c961d" formatted="false">"THỐNG KÊ"</string>
+    <string name="t_e979d28d" formatted="false">"NHỊP"</string>
+    <string name="t_e99d5d17" formatted="false">"Gói € là để tiêu chứ không để sở hữu: chúng được cộng một lần và KHÔI PHỤC không cấp lại."</string>
+    <string name="t_e9caa97b" formatted="false">"Chưa có lượt triển khai nào được ghi. Chơi một lượt để điền vào đây."</string>
+    <string name="t_ea16b407" formatted="false">"Đường vàng trên nền chàm đậm."</string>
+    <string name="t_ea31efb2" formatted="false">"quét sạch đợt {0}"</string>
+    <string name="t_eab5f205" formatted="false">"ĐỔI BIỆT DANH"</string>
+    <string name="t_eaf7396d" formatted="false">"KHÔNG TỚI ĐƯỢC GOOGLE — BẢN LƯU VẪN Ở THIẾT BỊ"</string>
+    <string name="t_eb2e832a" formatted="false">"ĐẶC VỤ {0}"</string>
+    <string name="t_ebdd4d5e" formatted="false">"ĐÃ XÓA · KHÔNG CÓ"</string>
+    <string name="t_ec91403d" formatted="false">"ĐỢT"</string>
+    <string name="t_ed31a176" formatted="false">"Mạng lưới mạch biết thở, phản ứng theo đợt."</string>
+    <string name="t_ed5c9d47" formatted="false">"MỖI CẤP"</string>
+    <string name="t_ed7160a0" formatted="false">"KHÔNG BAO GIỜ"</string>
+    <string name="t_ed7ecda7" formatted="false">"Đã khóa"</string>
+    <string name="t_ee0803eb" formatted="false">"BỀN BỈ"</string>
+    <string name="t_ee094192" formatted="false">"Bản này chưa cấu hình thanh toán Google Play, nên ở đây không mua được gì. Mọi phần không tốn tiền của trò chơi vẫn hoạt động hoàn toàn bình thường."</string>
+    <string name="t_ee5525d9" formatted="false">"KERNEL PANIC · {0} BỊ NHIỄU"</string>
+    <string name="t_ee6595fd" formatted="false">"Đội ngũ và căn phòng theo dõi cảnh báo. Nếu trò chơi này có bối cảnh, đó là màn hình tường SOC lúc 3 giờ sáng."</string>
+    <string name="t_eea62f11" formatted="false">"GIAO DỊCH"</string>
+    <string name="t_eef967f2" formatted="false">"PHÓNG TO CHIẾN TRƯỜNG"</string>
+    <string name="t_ef29f425" formatted="false">"ÂM THANH"</string>
+    <string name="t_efcf9890" formatted="false">"ST {0} · NHỊP {1}/giây · TẦM {2}"</string>
+    <string name="t_f001b942" formatted="false">"KIÊN CỐ"</string>
+    <string name="t_f03b01af" formatted="false">"Từ từ tự sửa sau một lúc không bị trúng."</string>
+    <string name="t_f100d10c" formatted="false">"Mọi thứ đánh dấu ĐÃ KHÓA đều có trong cửa hàng. Không gì ở đây thay đổi cách chơi — giao diện chỉ là vẻ ngoài, không phải lợi thế."</string>
+    <string name="t_f16b76bc" formatted="false">"\"Rubber ducky\" là một chiếc USB giả làm bàn phím và gõ một đòn tấn công nhanh hơn bất kỳ ai. Cách phòng thủ là một bộ bảo vệ USB kiểm tra mọi thiết bị mới trước khi máy tính tin nó, và chặn bàn phím gõ như máy."</string>
+    <string name="t_f17dfdae" formatted="false">"Một tuyến dài từ trên thả xuống và xoắn ốc ra ngoài tới tủ máy."</string>
+    <string name="t_f25360a0" formatted="false">"Thay đổi áp dụng ngay và được lưu trên thiết bị này"</string>
+    <string name="t_f293dfd1" formatted="false">"KIỂM TRA GIAO DỊCH"</string>
+    <string name="t_f2e7479c" formatted="false">"Liên kết tài khoản Google để giữ tiến độ trên mọi điện thoại hay máy tính bảng. Google sẽ xin quyền quản lý dữ liệu đã lưu của trò chơi này trong tài khoản của bạn — đó là kho lưu trò chơi, và đó là tất cả những gì được dùng."</string>
+    <string name="t_f2ed0368" formatted="false">"Rất nhanh. Nếu tới được lõi, nó lấy cắp một nửa crypto của bạn thay vì độ toàn vẹn."</string>
+    <string name="t_f2f63d9f" formatted="false">"TRÊN THIẾT BỊ NÀY"</string>
+    <string name="t_f33c5b01" formatted="false">"BƯỚC 6 — BẮT ĐẦU ĐỢT"</string>
+    <string name="t_f38eb808" formatted="false">"Mối đe dọa cứng hơn, dày hơn, độ toàn vẹn ít hơn. Phần thưởng hậu hĩnh hơn."</string>
+    <string name="t_f3e23f71" formatted="false">"LÕI: CASCADE"</string>
+    <string name="t_f49a4ff9" formatted="false">"ĐẶC VỤ ĐÃ KHÓA"</string>
+    <string name="t_f4f677dc" formatted="false">"TỔNG KIẾM ĐƯỢC"</string>
+    <string name="t_f5537783" formatted="false">"LÕI: MAINFRAME"</string>
+    <string name="t_f590e2c9" formatted="false">"TUYẾN"</string>
+    <string name="t_f5b866e4" formatted="false">"Một nỗ lực xâm nhập có phối hợp với đủ dự phòng để gạt phăng một mạng không chuẩn bị. Mỗi đợt thứ năm mang đến một, và cái sau cứng hơn cái trước."</string>
+    <string name="t_f60f5840" formatted="false">"Vẫn không có tài khoản CyOps và không có mật khẩu. Giao dịch mua đi theo tài khoản Google đăng nhập Cửa hàng Play trên thiết bị này. Tiến độ đi theo tài khoản Google bạn liên kết ở trên — một lựa chọn riêng và tùy chọn: trò chơi vẫn đầy đủ khi không có nó."</string>
+    <string name="t_f692d3ce" formatted="false">"BOTNET"</string>
+    <string name="t_f69a80a7" formatted="false">"Trò chơi sẽ khởi động lại để chuyển sang {0}. Tiến độ của bạn được giữ nguyên."</string>
+    <string name="t_f6f93110" formatted="false">"LÕI: NEONGRID"</string>
+    <string name="t_f720bfa7" formatted="false">"Đường quét lân quang CRT."</string>
+    <string name="t_f76fff7f" formatted="false">"Phần mềm độc hại: mã viết ra để phá hoại, gây gián đoạn hoặc đánh cắp. Nó mang nhiều phần tải hơn một injection đơn giản, nên chịu được nhiều sát thương hơn trước khi tan rã."</string>
+    <string name="t_f7a4fc70" formatted="false">"CHẠM LẦN NỮA ĐỂ TRIỂN KHAI"</string>
+    <string name="t_f7a7b98a" formatted="false">"ST {0} · NHỊP {1} · TẦM {2}"</string>
+    <string name="t_f7eb1496" formatted="false">"Thứ hạng được tính theo đợt sâu nhất bạn đạt được. Sát thương gây ra dùng để phân định khi hòa."</string>
+    <string name="t_f803ec67" formatted="false">"LỊCH SỬ ĐƠN HÀNG &amp; HOÀN TIỀN"</string>
+    <string name="t_f85117ec" formatted="false">"Cả {0} bài đã có trong Music/CyOps TD."</string>
+    <string name="t_f8723c46" formatted="false">"TỐC ĐỘ"</string>
+    <string name="t_f8d84db3" formatted="false">"CHƯA ĐĂNG KÝ"</string>
+    <string name="t_f8e6e39f" formatted="false">"Kỹ sư hệ thống giữ cho máy chủ hoạt động: vá lỗi, thay linh kiện hỏng, khôi phục từ bản sao lưu và theo dõi sức khỏe của máy. \"Kỹ sư hệ thống máy chủ\" mô tả kiểu công việc đó; chức danh khác nhau tùy tổ chức."</string>
+    <string name="t_f9807a9f" formatted="false">"&gt; sẵn sàng — triển khai đặc vụ và bắt đầu đợt 1"</string>
+    <string name="t_f9cec260" formatted="false">"Vài đòn cực lớn hầu như không làm GRADIENT nhanh hơn."</string>
+    <string name="t_f9d6b090" formatted="false">"Dữ liệu ASCII trôi phía sau chiến trường và menu"</string>
+    <string name="t_fa1b4500" formatted="false">"Thống kê được cộng dồn qua mọi lượt chơi, kể cả lượt bạn bỏ dở từ menu tạm dừng. Đặt lại tiến độ trong CÀI ĐẶT sẽ xóa tất cả."</string>
+    <string name="t_fa60c2c6" formatted="false">"ĐỘNG: BẢN ĐỒ NHIỆT"</string>
+    <string name="t_fb735826" formatted="false">"RUNG"</string>
+    <string name="t_fb889492" formatted="false">"Một trò chơi thủ thành phát triển độc lập, ưu tiên ngoại tuyến, chủ đề an ninh mạng. Kịch bản, đặc vụ và thuật ngữ được hư cấu hóa cho lối chơi, kèm những giải thích ngắn về thế giới thực để có thể học các khái niệm đằng sau. Trò chơi không dạy kỹ thuật tấn công nào và không thực hiện chức năng bảo mật thật nào."</string>
+    <string name="t_fbca7f29" formatted="false">"Mã độc trong lớp vỏ hữu ích"</string>
+    <string name="t_fbd9e20c" formatted="false">"HOẠT ẢNH NỀN"</string>
+    <string name="t_fc778505" formatted="false">"Một tủ máy sạch, không dấu."</string>
+    <string name="t_fcc1e712" formatted="false">"QUYỀN RIÊNG TƯ"</string>
+    <string name="t_fd3cb488" formatted="false">"CÁCH ĐĂNG NHẬP HOẠT ĐỘNG"</string>
+    <string name="t_fdb0282f" formatted="false">"ĐANG TẢI QUẢNG CÁO…"</string>
+    <string name="t_fde05efe" formatted="false">"ĐẠT ĐỢT {0} Ở {1}"</string>
+    <string name="t_fe26fa48" formatted="false">"ĐỢT TỐT NHẤT"</string>
+    <string name="t_fe451d7a" formatted="false">"ĐÃ KHÔI PHỤC HỆ THỐNG — ĐỘ TOÀN VẸN {0}"</string>
+    <string name="t_fe86390c" formatted="false">" · TỐC {0}"</string>
+    <string name="t_feeee285" formatted="false">"{0} giao diện lõi · {1} hình nền có sẵn"</string>
+    <string name="t_feef9615" formatted="false">"TRÙM TIẾP THEO"</string>
+    <string name="t_ff2d6a51" formatted="false">"Ba tuyến đổi chỗ cho nhau hai lần. Mỗi giao điểm là nơi đánh trúng hai tuyến."</string>
+    <string name="t_ffa57dc1" formatted="false">"&gt; đang gắn kết cấu trúc làn"</string>
+    <string name="t_ffc3db58" formatted="false">"TẦM {0}"</string>
+    <string name="t_ffff9bd9" formatted="false">"Các đặc vụ trôi chậm qua dải màu quang phổ, mỗi đơn vị lệch so với đơn vị kế tiếp."</string>
+</resources>

@@ -1,5 +1,7 @@
 package com.cyopstd.game.ui.stats
 
+import com.cyopstd.game.i18n.tr
+
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -39,8 +41,8 @@ fun StatisticsScreen(
     val favorite = stats.favoriteAgent?.let { AgentType.fromNameSafe(it) }
 
     ScreenScaffold(
-        title = "STATISTICS",
-        subtitle = "Stored locally on this device · nothing is uploaded",
+        title = tr("STATISTICS"),
+        subtitle = tr("Stored locally on this device · nothing is uploaded"),
         onBack = onBack,
         backgroundAnimation = backgroundAnimation
     ) {
@@ -54,21 +56,21 @@ fun StatisticsScreen(
                     .fillMaxHeight()
                     .verticalScroll(rememberScrollState())
             ) {
-                TerminalPanel(title = "DEFENCE RECORD", accent = Palette.Green) {
-                    StatRow("HIGHEST WAVE", stats.highestWave.toString(), valueColor = Palette.Crypto)
-                    StatRow("TOTAL GAMES PLAYED", stats.totalGamesPlayed.toString())
+                TerminalPanel(title = tr("DEFENCE RECORD"), accent = Palette.Green) {
+                    StatRow(tr("HIGHEST WAVE"), stats.highestWave.toString(), valueColor = Palette.Crypto)
+                    StatRow(tr("TOTAL GAMES PLAYED"), stats.totalGamesPlayed.toString())
                     StatRow(
-                        "TOTAL ATTACKS BLOCKED",
+                        tr("TOTAL ATTACKS BLOCKED"),
                         stats.totalAttacksBlocked.toString(),
                         valueColor = Palette.Cyan
                     )
                     StatRow(
-                        "TOTAL BOSSES DEFEATED",
+                        tr("TOTAL BOSSES DEFEATED"),
                         stats.totalBossesDefeated.toString(),
                         valueColor = Palette.Red
                     )
                     StatRow(
-                        "TOTAL SERVER DAMAGE TAKEN",
+                        tr("TOTAL SERVER DAMAGE TAKEN"),
                         stats.totalServerDamageTaken.toString(),
                         valueColor = Palette.Orange
                     )
@@ -76,16 +78,16 @@ fun StatisticsScreen(
 
                 Spacer(Modifier.height(12.dp))
 
-                TerminalPanel(title = "ECONOMY", accent = Palette.Crypto) {
+                TerminalPanel(title = tr("ECONOMY"), accent = Palette.Crypto) {
                     StatRow(
-                        "TOTAL CRYPTO EARNED",
+                        tr("TOTAL CRYPTO EARNED"),
                         "◇ ${stats.totalCryptoEarned}",
                         valueColor = Palette.Crypto
                     )
-                    StatRow("TOTAL AGENTS DEPLOYED", stats.totalAgentsDeployed.toString())
-                    StatRow("TOTAL AGENT UPGRADES", stats.totalAgentUpgrades.toString())
+                    StatRow(tr("TOTAL AGENTS DEPLOYED"), stats.totalAgentsDeployed.toString())
+                    StatRow(tr("TOTAL AGENT UPGRADES"), stats.totalAgentUpgrades.toString())
                     StatRow(
-                        "FAVOURITE AGENT",
+                        tr("FAVOURITE AGENT"),
                         favorite?.displayName ?: "—",
                         valueColor = Palette.Cyan
                     )
@@ -100,9 +102,9 @@ fun StatisticsScreen(
             ) {
                 // ♡4 (owner, 2026-09-30): personal bests per level and mode,
                 // separate from the leaderboard.
-                TerminalPanel(title = "BEST WAVE BY LEVEL", accent = Palette.Purple) {
+                TerminalPanel(title = tr("BEST WAVE BY LEVEL"), accent = Palette.Purple) {
                     Row(Modifier.fillMaxWidth()) {
-                        Text("LEVEL", style = MaterialTheme.typography.labelSmall,
+                        Text(tr("LEVEL"), style = MaterialTheme.typography.labelSmall,
                             color = Palette.TextMuted, modifier = Modifier.weight(1.6f))
                         for (mode in com.cyopstd.game.core.GameMode.entries) {
                             Text(mode.runName, style = MaterialTheme.typography.labelSmall,
@@ -126,9 +128,9 @@ fun StatisticsScreen(
 
                 Spacer(Modifier.height(12.dp))
 
-                TerminalPanel(title = "AGENT DEPLOYMENT BREAKDOWN", accent = Palette.Cyan) {
+                TerminalPanel(title = tr("AGENT DEPLOYMENT BREAKDOWN"), accent = Palette.Cyan) {
                     if (stats.deploymentsByAgent.isEmpty()) {
-                        Caption("No deployments recorded yet. Play a run to populate this.")
+                        Caption(tr("No deployments recorded yet. Play a run to populate this."))
                     } else {
                         val maxCount = stats.deploymentsByAgent.values.maxOrNull() ?: 1
                         stats.deploymentsByAgent
@@ -148,11 +150,11 @@ fun StatisticsScreen(
 
                 Spacer(Modifier.height(12.dp))
 
-                TerminalPanel(title = "SESSION NOTES", accent = Palette.Purple) {
+                TerminalPanel(title = tr("SESSION NOTES"), accent = Palette.Purple) {
                     Caption(
-                        "Statistics accumulate across every run, including runs you " +
+                        tr("Statistics accumulate across every run, including runs you " +
                             "abandon from the pause menu. Resetting progress in " +
-                            "SETTINGS clears all of it."
+                            "SETTINGS clears all of it.")
                     )
                 }
             }

@@ -1,5 +1,7 @@
 package com.cyopstd.game.ui.menu
 
+import com.cyopstd.game.i18n.tr
+
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -62,17 +64,17 @@ fun storeSections(adsConfigured: Boolean): List<StoreSection> =
 /** The full catalogue, in order. Filtered through [storeSections] before display. */
 val STORE_SECTIONS: List<StoreSection> = listOf(
     StoreSection(
-        "BEST VALUE",
+        tr("BEST VALUE"),
         Palette.Crypto,
         listOf(Sku.STARTER_PACK, Sku.CORE_SKIN_PACK, Sku.BG_PACK)
     ),
     StoreSection(
-        "BUDGET",
+        tr("BUDGET"),
         Palette.Cyan,
         listOf(Sku.BUDGET_SMALL, Sku.BUDGET_MEDIUM, Sku.BUDGET_LARGE)
     ),
     StoreSection(
-        "CONVENIENCE",
+        tr("CONVENIENCE"),
         Palette.Green,
         // REVIVE_PACK sits next to NO_ADS on purpose: they are the two
         // products with "ads" in them, and a player comparing them side by
@@ -80,7 +82,7 @@ val STORE_SECTIONS: List<StoreSection> = listOf(
         // bought the wrong one.
         listOf(Sku.NO_ADS, Sku.REVIVE_PACK, Sku.SPEED_5X)
     ),
-    StoreSection("MUSIC", Palette.Magenta, listOf(Sku.SOUNDTRACK))
+    StoreSection(tr("MUSIC"), Palette.Magenta, listOf(Sku.SOUNDTRACK))
 )
 
 /**
@@ -124,24 +126,24 @@ fun StoreScreen(
     val sections = storeSections(adsConfigured)
 
     ScreenScaffold(
-        title = "STORE",
-        subtitle = "€ $budget in the budget",
+        title = tr("STORE"),
+        subtitle = tr("€ {0} in the budget", budget),
         onBack = onBack,
         backgroundAnimation = backgroundAnimation
     ) {
         if (!available) {
-            TerminalPanel(title = "STORE UNAVAILABLE", accent = Palette.Orange) {
+            TerminalPanel(title = tr("STORE UNAVAILABLE"), accent = Palette.Orange) {
                 Text(
                     text = when (status) {
-                        BillingStatus.CONNECTING -> "Connecting to Google Play…"
+                        BillingStatus.CONNECTING -> tr("Connecting to Google Play…")
                         BillingStatus.ERROR ->
-                            "Google Play could not be reached. Anything already " +
+                            tr("Google Play could not be reached. Anything already " +
                                 "purchased is still yours — try RESTORE once you " +
-                                "are back online."
+                                "are back online.")
                         else ->
-                            "This build has no Google Play billing configured, so " +
+                            tr("This build has no Google Play billing configured, so " +
                                 "nothing can be bought here. Every part of the game " +
-                                "that does not cost money works exactly as normal."
+                                "that does not cost money works exactly as normal.")
                     },
                     style = MaterialTheme.typography.bodyMedium,
                     color = Palette.TextSecondary
@@ -178,31 +180,31 @@ fun StoreScreen(
                     .weight(1f)
                     .verticalScroll(rememberScrollState())
             ) {
-                Section("CORE-SERVER SKINS", Palette.Purple) {
+                Section(tr("CORE-SERVER SKINS"), Palette.Purple) {
                     for (sku in Sku.coreSkins) {
                         ProductRow(sku, entitlements, prices, available, onBuy)
                     }
                 }
                 Spacer(Modifier.height(12.dp))
-                Section("LIVING BACKGROUNDS", Palette.Blue) {
+                Section(tr("LIVING BACKGROUNDS"), Palette.Blue) {
                     for (sku in Sku.backgrounds) {
                         ProductRow(sku, entitlements, prices, available, onBuy)
                     }
                 }
                 Spacer(Modifier.height(12.dp))
-                Section("AGENT SKINS", Palette.Magenta) {
+                Section(tr("AGENT SKINS"), Palette.Magenta) {
                     ProductRow(Sku.SKIN_AGENTS_SPECTRUM, entitlements, prices, available, onBuy)
                 }
 
                 Spacer(Modifier.height(12.dp))
-                TerminalPanel(title = "ACCOUNT", accent = Palette.CyanDim) {
+                TerminalPanel(title = tr("ACCOUNT"), accent = Palette.CyanDim) {
                     Caption(
-                        "Purchases are tied to your Google account, not to this " +
-                            "device. Reinstalling or changing phone does not lose them."
+                        tr("Purchases are tied to your Google account, not to this " +
+                            "device. Reinstalling or changing phone does not lose them.")
                     )
                     Spacer(Modifier.height(8.dp))
                     CompactButton(
-                        text = "RESTORE PURCHASES",
+                        text = tr("RESTORE PURCHASES"),
                         onClick = onRestore,
                         enabled = status != BillingStatus.UNAVAILABLE,
                         accent = Palette.Cyan,
@@ -248,14 +250,14 @@ private fun ProductRow(
             }
             Spacer(Modifier.height(0.dp))
             CompactButton(
-                text = if (owned) "OWNED" else price,
+                text = if (owned) tr("OWNED") else price,
                 onClick = { onBuy(sku) },
                 enabled = available && !owned,
                 accent = if (owned) Palette.GreenDim else Palette.Crypto
             )
         }
         if (sku.grantsBudget > 0) {
-            StatRow("INCLUDES", "€ ${sku.grantsBudget}", valueColor = Palette.Cyan)
+            StatRow(tr("INCLUDES"), "€ ${sku.grantsBudget}", valueColor = Palette.Cyan)
         }
         AsciiRule(color = Palette.Divider)
     }
@@ -288,15 +290,15 @@ private fun SoundtrackRow(
         Spacer(Modifier.height(6.dp))
         if (owned) {
             CompactButton(
-                text = "SAVE SOUNDTRACK TO PHONE",
+                text = tr("SAVE SOUNDTRACK TO PHONE"),
                 onClick = onSave,
                 accent = Palette.Green,
                 modifier = Modifier.fillMaxWidth()
             )
-            Caption(status ?: "Owned. Saves to Music/CyOps TD as \"CyOps TD - Level X (Y)\".")
+            Caption(status ?: tr("Owned. Saves to Music/CyOps TD as \"CyOps TD - Level X (Y)\"."))
         } else {
             CompactButton(
-                text = "BUY CyOps TD SOUNDTRACK \u00B7 $price",
+                text = tr("BUY CyOps TD SOUNDTRACK \u00B7 {0}", price),
                 onClick = { onBuy(sku) },
                 enabled = available,
                 accent = Palette.Crypto,

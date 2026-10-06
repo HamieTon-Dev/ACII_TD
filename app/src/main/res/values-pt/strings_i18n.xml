@@ -1,0 +1,867 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Translation of values/strings_i18n.xml. Machine-quality (AI) translation; see FEATURE_BACKLOG.md. -->
+<resources>
+    <string name="t_0069698f" formatted="false">"€ {0} no orçamento"</string>
+    <string name="t_00bdf050" formatted="false">"ESTE DISPOSITIVO"</string>
+    <string name="t_00c74b4a" formatted="false">"Ataca até três ameaças diferentes a cada rajada, o que a torna a resposta do time a uma onda ampla. Permite escolher o alvo."</string>
+    <string name="t_00cb85ad" formatted="false">"PASSO 4 — ESCOLHA TARPIT"</string>
+    <string name="t_00f316c1" formatted="false">"CUSTO DO PRÓXIMO NÍVEL"</string>
+    <string name="t_00fafa13" formatted="false">"ESTA CONTA POSSUI"</string>
+    <string name="t_01278423" formatted="false">"O QUE ISTO MUDA"</string>
+    <string name="t_014c06bb" formatted="false">"{0} de {1} desbloqueados · melhor onda {2}"</string>
+    <string name="t_01b91dff" formatted="false">"RANSOM bloqueia as melhorias de um agente por {0} segundos, a cada poucos segundos. Melhore antes que ele chegue."</string>
+    <string name="t_01ba7032" formatted="false">"0 níveis"</string>
+    <string name="t_01f2a69d" formatted="false">"NOTAS DA SESSÃO"</string>
+    <string name="t_0288b770" formatted="false">"Toque no botão AGENTES na barra de controle abaixo."</string>
+    <string name="t_02b88c49" formatted="false">"Todo o áudio é gerado no aparelho ao iniciar; o jogo não traz arquivos de som."</string>
+    <string name="t_02f0f435" formatted="false">"Root, ou administrador, é o nível mais alto de autoridade em um sistema: pode parar qualquer processo e mudar qualquer coisa. Justamente por isso, a boa prática é concedê-lo o mínimo possível e pelo menor tempo possível. \"Root admin\" é uma forma abreviada de falar desse nível de acesso, não um cargo."</string>
+    <string name="t_0306926d" formatted="false">"Três rotas de ataque chegando ao servidor central"</string>
+    <string name="t_0358799e" formatted="false">"Vale para cada {0} em todas as partidas a partir de agora, além do FIRMWARE DO NÚCLEO. Os primeiros níveis são baratos; cada um custa mais que o anterior, e os níveis mais altos custam milhões."</string>
+    <string name="t_0397b7d9" formatted="false">"INICIAR ONDAS DE CHEFE SOZINHAS"</string>
+    <string name="t_03d108e0" formatted="false">"Vinculada, mas não foi possível falar com o Google. Nada se perde: o jogo usa o salvamento deste aparelho, e a próxima sincronização atualiza a conta."</string>
+    <string name="t_059b388a" formatted="false">"&gt; onda {0} concluída — prepare-se para a onda {1}"</string>
+    <string name="t_05ea5d0e" formatted="false">"Disponível desde o início."</string>
+    <string name="t_05f2ef1e" formatted="false">"Próxima faixa"</string>
+    <string name="t_063d8618" formatted="false">"Código hostil disfarçado de algo que você pediu. Lento, mas muito protegido: a blindagem amortece cada golpe, então tiros rápidos e fracos se desperdiçam nele."</string>
+    <string name="t_07269781" formatted="false">"Escolha uma dificuldade para ver o ranking mundial."</string>
+    <string name="t_07a3d7ab" formatted="false">"Tudo o que você comprou, incluindo os reviveres, volta do Google Play com RESTAURAR em qualquer aparelho. Nunca faz parte do salvamento na nuvem, então nenhum arquivo de salvamento pode dar ou tirar uma compra."</string>
+    <string name="t_07fbf4bd" formatted="false">"REANIMADO"</string>
+    <string name="t_08039ac7" formatted="false">"LOJA"</string>
+    <string name="t_08175caa" formatted="false">"CORES POR CLASSE"</string>
+    <string name="t_08218c08" formatted="false">"VINCULANDO…"</string>
+    <string name="t_08279524" formatted="false">"Código que explora uma falha específica de um sistema. Exploits se movem rápido e batem forte; quando eles chegam, o alcance de detecção importa mais que o dano bruto."</string>
+    <string name="t_086b8b8e" formatted="false">"CHEFE"</string>
+    <string name="t_08f0711d" formatted="false">"RESTAURAR COMPRAS"</string>
+    <string name="t_09653280" formatted="false">"ATÉ O NÚCLEO"</string>
+    <string name="t_0a0bc63d" formatted="false">"Faixa anterior"</string>
+    <string name="t_0a2301f4" formatted="false">"PROGRESSO SALVO"</string>
+    <string name="t_0a344034" formatted="false">"PRÓXIMA: ONDA {0}"</string>
+    <string name="t_0ae74b3e" formatted="false">"ATAQUE DIA ZERO"</string>
+    <string name="t_0b205685" formatted="false">"Inicializando a rede..."</string>
+    <string name="t_0b809aa5" formatted="false">"Ainda não há ranking mundial para {0}. As partidas lá são registradas neste aparelho."</string>
+    <string name="t_0bc6e19b" formatted="false">"Não causa dano por conta própria. Fortalece todos os agentes no alcance com +30% de dano e +20% de cadência, então todo o seu valor está em onde você a coloca."</string>
+    <string name="t_0bd16003" formatted="false">"MÁX."</string>
+    <string name="t_0bfbeb5b" formatted="false">"Segure-os no campo de um TARPIT e deixe o IPS limpar a fila."</string>
+    <string name="t_0c121fb2" formatted="false">"PROGRESSO SINCRONIZADO"</string>
+    <string name="t_0c147607" formatted="false">"VARREDURA PROFUNDA"</string>
+    <string name="t_0c16a4ef" formatted="false">"Ainda não há pontuações. Termine uma partida para ser o primeiro."</string>
+    <string name="t_0c997319" formatted="false">"WORM DIVIDIDO"</string>
+    <string name="t_0cb4ce2b" formatted="false">"ONDA {0} PROTEGIDA  ◇{1}"</string>
+    <string name="t_0cfa4a6e" formatted="false">"CHEFES DESTE NÍVEL"</string>
+    <string name="t_0d884b08" formatted="false">"INVASÃO (CHEFE)"</string>
+    <string name="t_0d8c63a6" formatted="false">"Cada golpe se encadeia em 2 ameaças próximas com 55% do dano."</string>
+    <string name="t_0df4bfec" formatted="false">"FRACO CONTRA"</string>
+    <string name="t_0e69fc6c" formatted="false">"A barra de implantação mostra só o ícone e o custo de cada agente"</string>
+    <string name="t_0eb480b6" formatted="false">"Uma grade em perspectiva que se afasta, com uma faixa de luzes embaixo."</string>
+    <string name="t_0f47943c" formatted="false">"FOCO DESLIGADO"</string>
+    <string name="t_0f5d5911" formatted="false">"ECONOMIA DE BATERIA"</string>
+    <string name="t_0f80d304" formatted="false">"DANO DOS AGENTES"</string>
+    <string name="t_0f9a43d6" formatted="false">"TODOS OS FUNDOS VIVOS"</string>
+    <string name="t_0fa88218" formatted="false">"Não foi possível falar com o Google Play, geralmente por falta de rede. O que você já comprou continua seu: toque em RESTAURAR quando estiver on-line de novo e tudo reaparece."</string>
+    <string name="t_0fd40469" formatted="false">"DESEMPENHO"</string>
+    <string name="t_0fd4c0f4" formatted="false">"OS ESPAÇOS DO CORE-SERVER SÃO SÓ PARA [S]"</string>
+    <string name="t_1046865f" formatted="false">"Fica gerando BOTs atrás de si. Mate-o rápido ou afunde na botnet dele."</string>
+    <string name="t_107ea55b" formatted="false">"MELHORIAS PRESAS POR RESGATE"</string>
+    <string name="t_108f4363" formatted="false">"INSTALAR"</string>
+    <string name="t_111611f9" formatted="false">"MURO DE PATCHES"</string>
+    <string name="t_1181f7e7" formatted="false">"AGENTES BLOQUEADOS"</string>
+    <string name="t_11c0f105" formatted="false">"MÚSICA DO NÍVEL (AUTO)"</string>
+    <string name="t_11c8546c" formatted="false">"dano"</string>
+    <string name="t_11d858aa" formatted="false">"ONDA MAIS ALTA"</string>
+    <string name="t_1213b2b6" formatted="false">"HÁ {0} H"</string>
+    <string name="t_12193f21" formatted="false">"Arquitetos de rede projetam como uma rede é dividida. A segmentação faz com que um comprometimento em uma área não passe simplesmente para a próxima, o que limita o dano de qualquer falha isolada. É trabalho de projeto feito antes de um incidente, não uma ferramenta usada durante ele."</string>
+    <string name="t_1248f6ec" formatted="false">"Salvar a trilha sonora exige Android 10 ou mais recente."</string>
+    <string name="t_125ca8ca" formatted="false">"PACOTE INICIAL"</string>
+    <string name="t_12a36ceb" formatted="false">"FALSIFICADO"</string>
+    <string name="t_12e8edf9" formatted="false">"IDIOMA"</string>
+    <string name="t_1380e038" formatted="false">"SEQUESTRADO · MELHORIAS BLOQUEADAS {0}s"</string>
+    <string name="t_138da392" formatted="false">"Uma grade cujas células esquentam e esfriam com o tráfego."</string>
+    <string name="t_13df4b88" formatted="false">"FIRMWARE"</string>
+    <string name="t_13ee9782" formatted="false">"IMPLANTADO"</string>
+    <string name="t_141ad814" formatted="false">"RESPOSTA"</string>
+    <string name="t_143628e2" formatted="false">"SÓ ANÚNCIOS PARA REVIVER · OPCIONAIS"</string>
+    <string name="t_1489b7f6" formatted="false">"HÁ {0} DIAS"</string>
+    <string name="t_14bdf6f2" formatted="false">"A PARTIDA GUIADA PRECISA DO FIREWALL PRIMEIRO"</string>
+    <string name="t_14c27ca9" formatted="false">"ANALYST causa 80% a mais em elites. Agentes que ignoram blindagem ajudam."</string>
+    <string name="t_14cecaa5" formatted="false">"Tornar dados ilegíveis sem uma chave"</string>
+    <string name="t_14ecbe1d" formatted="false">"{0}/s"</string>
+    <string name="t_1512aeac" formatted="false">"{0} níveis"</string>
+    <string name="t_154419d5" formatted="false">"Conta como criptografado: a maioria dos agentes causa menos dano."</string>
+    <string name="t_154a5adf" formatted="false">"NÍV."</string>
+    <string name="t_15680f7c" formatted="false">"Gaste em dano permanente de FIRMWARE DO NÚCLEO."</string>
+    <string name="t_1571a208" formatted="false">"Coloque dois TARPIT de modo que as auras cubram a área onde seus FIREWALL atiram. Desacelerar é o que faz o dano acertar."</string>
+    <string name="t_15aa2838" formatted="false">"Uma grade grossa cujas células esquentam e esfriam com o tráfego."</string>
+    <string name="t_15ede35d" formatted="false">"◇ {0} · disponível desde o início"</string>
+    <string name="t_167ae054" formatted="false">"Isto apaga sua partida salva, todos os agentes desbloqueados, todas as estatísticas e suas configurações.\n\nNão dá para desfazer."</string>
+    <string name="t_17a13ae4" formatted="false">"Os chefes andam devagar, mas tiram {0} de integridade do CORE-SERVER. São os que mais pagam cripto no jogo e ficam mais fortes a cada ciclo."</string>
+    <string name="t_17e0e9f0" formatted="false">"Cadência altíssima, sempre mira em chefes antes de qualquer outra coisa no alcance e causa o dobro de dano em [!!!] BREACH. Desbloqueia na onda 30 e no máximo quatro podem ser implantados."</string>
+    <string name="t_1877f7c0" formatted="false">"DESINSTALADO"</string>
+    <string name="t_197d534b" formatted="false">"Gaste ORÇAMENTO € — acumulado a cada dez ondas de uma partida e mantido depois — em um aumento permanente de dano para todos os agentes."</string>
+    <string name="t_1991565e" formatted="false">"LIMITE DE TAXA"</string>
+    <string name="t_19cbe369" formatted="false">"AGENTE FAVORITO"</string>
+    <string name="t_1a155da6" formatted="false">"PRÓXIMA ONDA"</string>
+    <string name="t_1a2a0f17" formatted="false">"BLOQUEADO"</string>
+    <string name="t_1a73c7da" formatted="false">"cadência"</string>
+    <string name="t_1aba43b0" formatted="false">"Traços elípticos lentos em volta do núcleo, como um agendador trabalhando."</string>
+    <string name="t_1b0d8052" formatted="false">"Tremer o campo de batalha quando o CORE-SERVER é atingido"</string>
+    <string name="t_1ba327c9" formatted="false">"O ataque web mais comum que existe"</string>
+    <string name="t_1ba41734" formatted="false">"ATAQUES BLOQUEADOS"</string>
+    <string name="t_1cc19733" formatted="false">"NO MUNDO REAL"</string>
+    <string name="t_1d162704" formatted="false">"Tem certeza de que quer começar uma partida nova? Sua sessão salva será substituída."</string>
+    <string name="t_1d29935f" formatted="false">"{0} BLOQUEADOS"</string>
+    <string name="t_1d8fe548" formatted="false">"COMEÇAR DO ZERO"</string>
+    <string name="t_1dea7837" formatted="false">"HACK:AI levado além dos limites. Metade da integridade, o dobro das recompensas."</string>
+    <string name="t_1deb5c00" formatted="false">"VINCULADA · OFF-LINE"</string>
+    <string name="t_1e09b492" formatted="false">"🔒 [{0}] {1} · BLOQUEADO"</string>
+    <string name="t_1e6ed1a9" formatted="false">"FUNDOS VIVOS"</string>
+    <string name="t_1ef7821b" formatted="false">"Grade azul-neon que se afasta rumo ao núcleo, com um anel holográfico que passa do azul ao verde."</string>
+    <string name="t_1f3159fc" formatted="false">"CORES DOS AGENTES"</string>
+    <string name="t_1f5df304" formatted="false">"CONEXÃO REINICIADA"</string>
+    <string name="t_1ff44d56" formatted="false">"LICENÇA APLICADA"</string>
+    <string name="t_20ce505d" formatted="false">"PAUSAR"</string>
+    <string name="t_21399575" formatted="false">"DESENVOLVEDOR"</string>
+    <string name="t_2198b685" formatted="false">"Desenhar o raio de varredura do agente selecionado"</string>
+    <string name="t_21bb43e3" formatted="false">"{0} · QUALQUER NÍVEL"</string>
+    <string name="t_22100250" formatted="false">"NÍVEL {0} · MÁX."</string>
+    <string name="t_224d65ed" formatted="false">"VISUAIS DO CORE-SERVER"</string>
+    <string name="t_22686e59" formatted="false">"CONEXÃO"</string>
+    <string name="t_227cde14" formatted="false">"{0} em {1}"</string>
+    <string name="t_2283d7ca" formatted="false">"NÓ OCUPADO"</string>
+    <string name="t_22b6479a" formatted="false">"Um especialista em operações cibernéticas conduz a defesa como uma operação ao vivo: vigia interferências, mantém as ferramentas da equipe funcionando enquanto alguém tenta desligá-las e vai direto à origem."</string>
+    <string name="t_22c4ef22" formatted="false">"O conteúdo está embaralhado, então a maioria das defesas não sabe no que está atirando e só causa dano parcial. Um agente CRYPTOGRAPHER atravessa a cifra direto."</string>
+    <string name="t_23020c53" formatted="false">" · {0} acessíveis"</string>
+    <string name="t_236f5b12" formatted="false">"TOTAL DE CHEFES DERROTADOS"</string>
+    <string name="t_23763c89" formatted="false">"CONFIGURAÇÕES"</string>
+    <string name="t_23961a76" formatted="false">"CHEFE {0} DE {1} · TOQUE EM UM CHEFE PARA TROCAR"</string>
+    <string name="t_24adcafc" formatted="false">"DANO TOTAL SOFRIDO PELO SERVIDOR"</string>
+    <string name="t_24bbb47b" formatted="false">"ITENS BLOQUEADOS"</string>
+    <string name="t_24d3a2ef" formatted="false">"MURO DERRUBADO"</string>
+    <string name="t_255b5911" formatted="false">"Verde de fósforo de CRT, linhas de varredura e um feixe de atualização."</string>
+    <string name="t_2570d23e" formatted="false">"Concentre o fogo. ANALYST e ROOT ADMIN seguram as ondas de chefe."</string>
+    <string name="t_25a6b96b" formatted="false">"Dano confiável a média distância por um preço baixo, e o único agente imune ao BLOQUEIO de um chefe. Alcance curto, então precisa ficar perto da rota — e é exatamente por isso que essa imunidade importa."</string>
+    <string name="t_25bd1975" formatted="false">"DANO"</string>
+    <string name="t_25efb9da" formatted="false">"RAIO DE EXPLOSÃO"</string>
+    <string name="t_260d60b1" formatted="false">"UM ANÚNCIO APÓS UMA DERROTA · REVIVER OPCIONAL"</string>
+    <string name="t_26b80d1f" formatted="false">"PRONTO"</string>
+    <string name="t_27a68119" formatted="false">"STATUS DA REDE"</string>
+    <string name="t_27d9802d" formatted="false">"UM ANÚNCIO APÓS UMA DERROTA"</string>
+    <string name="t_27daad70" formatted="false">"Geada avançando a partir das bordas."</string>
+    <string name="t_28c31125" formatted="false">"Blindado e paciente. Golpes únicos e pesados o vencem; fogo rápido se desperdiça."</string>
+    <string name="t_28e339dd" formatted="false">"Colunas esparsas de caracteres caindo atrás do campo."</string>
+    <string name="t_296fb456" formatted="false">"REPARA +{0} PV · A CADA {1}s · ESPAÇO CORE-SERVER · MÁX. {2}"</string>
+    <string name="t_297ae895" formatted="false">"EM QUARENTENA"</string>
+    <string name="t_2a1bde6e" formatted="false">"Um sistema de prevenção de intrusão fica no caminho do tráfego e pode agir sobre o que detecta, descartando ou reiniciando uma conexão em vez de só alertar. A contrapartida é real: um IPS que avalia mal o tráfego legítimo o bloqueia."</string>
+    <string name="t_2a934539" formatted="false">"ORIGEM DO ATAQUE"</string>
+    <string name="t_2a9b95e6" formatted="false">"Causa ×{0} de dano em todos os chefes."</string>
+    <string name="t_2bb9a482" formatted="false">"Um firewall compara o tráfego com uma lista de regras e descarta o que não combina. É a defesa de perímetro mais antiga e ainda a mais importante que existe."</string>
+    <string name="t_2be00c84" formatted="false">"EDITAR CODINOME"</string>
+    <string name="t_2c13b917" formatted="false">"Causa ×{0} de dano em {1}."</string>
+    <string name="t_2ce4713d" formatted="false">"&gt; sincronizando CORE-SERVER"</string>
+    <string name="t_2d14c154" formatted="false">"Correntes lentas e diagonais de dados cruzando o campo."</string>
+    <string name="t_2dcb788c" formatted="false">"Este jogo foi desenvolvido com a ajuda de ferramentas de inteligência artificial, usadas como apoio educacional e de desenvolvimento durante o aprendizado de programação e desenvolvimento de software.\n\nAs ferramentas de IA ajudaram em áreas como desenvolvimento de código, solução de problemas, documentação e aprendizado. As decisões finais de design, a direção do jogo, os testes e as decisões de publicação continuam sendo responsabilidade do desenvolvedor.\n\nEste jogo não foi gerado, patrocinado, endossado, nem pertence ou é publicado por nenhuma empresa de inteligência artificial."</string>
+    <string name="t_2df53561" formatted="false">"Filtro de tráfego baseado em regras"</string>
+    <string name="t_2e0cf790" formatted="false">"OUTROS"</string>
+    <string name="t_2e19cc63" formatted="false">"Levanta uma vez, com 40% de vida. Matá-lo não é o mesmo que acabar com ele."</string>
+    <string name="t_2ef9e2c6" formatted="false">"CIBERATAQUES"</string>
+    <string name="t_2f3549f7" formatted="false">"SALVAMENTO NA NUVEM INDISPONÍVEL"</string>
+    <string name="t_302a4f0a" formatted="false">"BÁSICO"</string>
+    <string name="t_302eea27" formatted="false">"SABE O QUE VEM AÍ?"</string>
+    <string name="t_3083c674" formatted="false">"VIVO: DRIFT"</string>
+    <string name="t_30867b62" formatted="false">"Funciona totalmente off-line"</string>
+    <string name="t_30ed929d" formatted="false">"Desbloqueie este agente chegando à onda {0} em {1}."</string>
+    <string name="t_31359ec6" formatted="false">"foco {0} desligado"</string>
+    <string name="t_313900e6" formatted="false">"LINK DE ARQUITETO"</string>
+    <string name="t_314d733e" formatted="false">"€ {0} disponíveis"</string>
+    <string name="t_317b7de0" formatted="false">"Código caindo dentro do próprio rack."</string>
+    <string name="t_31d43b93" formatted="false">"VIVO: RAINFALL"</string>
+    <string name="t_326bdc38" formatted="false">"AGENTE NÃO REGISTRADO"</string>
+    <string name="t_32a3e9f3" formatted="false">"ESPECIAL — {0}"</string>
+    <string name="t_32bafd88" formatted="false">"PRÓXIMO"</string>
+    <string name="t_32e6f915" formatted="false">"DÁ PARA COMPRAR AGORA"</string>
+    <string name="t_332ec80a" formatted="false">"Qualquer coisa mata estes. Não construa demais para eles."</string>
+    <string name="t_33cd995a" formatted="false">"INVASÃO BLOQUEADA"</string>
+    <string name="t_3425c9d3" formatted="false">"NÍVEL {0}"</string>
+    <string name="t_35350bff" formatted="false">"Um anel de contenção pulsando."</string>
+    <string name="t_3595e52a" formatted="false">"ROTA {0}"</string>
+    <string name="t_35c82960" formatted="false">"NÚCLEO: GLACIER"</string>
+    <string name="t_35f74be9" formatted="false">"Dano esmagador a um único alvo que ignora toda a blindagem. O agente mais caro do jogo, desbloqueado bem tarde. Permite escolher o alvo."</string>
+    <string name="t_36900a0f" formatted="false">"Barato e quase inofensivo. Tudo dentro do seu raio se arrasta."</string>
+    <string name="t_37447c3a" formatted="false">"Cadência de fogo altíssima, e cada tiro respinga."</string>
+    <string name="t_376bc6d2" formatted="false">"A contagem regressiva continua enquanto isto está aberto."</string>
+    <string name="t_376c54b2" formatted="false">"REMOVER ANÚNCIOS"</string>
+    <string name="t_379656ef" formatted="false">"NÚCLEO: VOID"</string>
+    <string name="t_37bc9401" formatted="false">"Esta versão mostra anúncios do Google AdMob. Assistir a um anúncio para continuar uma partida é sempre opcional e nunca é obrigatório para jogar."</string>
+    <string name="t_384d3555" formatted="false">"{0} ativos"</string>
+    <string name="t_384e5d9f" formatted="false">"SALVAMENTO NA NUVEM"</string>
+    <string name="t_385b9a87" formatted="false">"Um tarpit aceita uma conexão hostil e responde o mais devagar que pode, prendendo o atacante em um socket que não leva a lugar nenhum. É uma tática de atraso, não de bloqueio: o valor está no tempo que custa ao outro lado."</string>
+    <string name="t_38695d86" formatted="false">"BACKUP DO PROGRESSO"</string>
+    <string name="t_38c1e7e0" formatted="false">"COM UM ANÚNCIO"</string>
+    <string name="t_38d9a5af" formatted="false">"&gt; rede comprometida"</string>
+    <string name="t_38e03b91" formatted="false">"TOTALMENTE INSTALADO"</string>
+    <string name="t_3950774a" formatted="false">"REGISTRADO COMO"</string>
+    <string name="t_395af116" formatted="false">"HACK ANÔNIMO"</string>
+    <string name="t_396e8daa" formatted="false">"ESPECTRO"</string>
+    <string name="t_3a06e0fa" formatted="false">"MÚSICA"</string>
+    <string name="t_3a7e7fe6" formatted="false">"TIPO DE VERSÃO"</string>
+    <string name="t_3a8a0a59" formatted="false">"Cada golpe o acelera, por menor que seja; ele desacelera quando é deixado em paz. Poucos golpes grandes vencem muitos pequenos."</string>
+    <string name="t_3aa6f2eb" formatted="false">"ZERO-DAY HUNTER e ROOT ADMIN ignoram totalmente a blindagem."</string>
+    <string name="t_3aaad671" formatted="false">"TOQUE PARA DETALHES"</string>
+    <string name="t_3b12a908" formatted="false">"GRADIENT acelera a cada golpe, por menor que seja, e desacelera quando deixado em paz. Poucos golpes grandes vencem muitos pequenos."</string>
+    <string name="t_3b53a59d" formatted="false">"Iniciar também as ondas de chefe automaticamente. Desligado: as ondas de chefe esperam por você"</string>
+    <string name="t_3bc78174" formatted="false">"DESENVOLVIMENTO ASSISTIDO POR IA"</string>
+    <string name="t_3c66aec8" formatted="false">"Suas ondas, agentes, € e firmware ficam salvos na sua conta do Google. Entre nela em outro aparelho e eles estarão lá. Sincroniza quando você sai do jogo e quando uma partida termina."</string>
+    <string name="t_3cef355d" formatted="false">"Mais vida restante"</string>
+    <string name="t_3d17c701" formatted="false">"ARRANCADA"</string>
+    <string name="t_3d331382" formatted="false">"O caminho que o tráfego percorre"</string>
+    <string name="t_3d509ddc" formatted="false">"Reduzir os quadros pela metade e tirar efeitos decorativos"</string>
+    <string name="t_3d83d177" formatted="false">"CIBERAGENTES"</string>
+    <string name="t_3db03eca" formatted="false">"SEU HISTÓRICO"</string>
+    <string name="t_3e12b118" formatted="false">"AJUDA"</string>
+    <string name="t_3e27e12f" formatted="false">"Menos vida restante"</string>
+    <string name="t_3ecdd82e" formatted="false">"Um dia zero é uma vulnerabilidade que o defensor teve zero dias para corrigir, porque ninguém sabia que existia. Não há assinatura para comparar, e é isso que a torna tão perigosa."</string>
+    <string name="t_3fa2aee2" formatted="false">"Sofre 35% menos dano de agentes FIREWALL."</string>
+    <string name="t_401924c3" formatted="false">"VISUAL DO CORE-SERVER"</string>
+    <string name="t_4071c698" formatted="false">"O Google Play respondeu. Compras e restaurações funcionam normalmente."</string>
+    <string name="t_40b15bdb" formatted="false">"Acumulado a cada dez ondas. Quanto mais longe a partida vai, mais paga — o prêmio cresce com o quadrado do marco, então uma partida longa vale mais que cinco curtas."</string>
+    <string name="t_4104a0b2" formatted="false">"Seu recorde em {0}: onda {1}"</string>
+    <string name="t_4108bc91" formatted="false">"HANDSHAKE RECUSADO"</string>
+    <string name="t_41203058" formatted="false">"EQUIPAMENTO"</string>
+    <string name="t_412ea11f" formatted="false">"Toque em dois nós de implantação destacados ao lado de uma rota. Dois não é sugestão: um agente sozinho não cobre uma rota."</string>
+    <string name="t_419c5ded" formatted="false">"TOTAL DE PARTIDAS JOGADAS"</string>
+    <string name="t_41a1b85e" formatted="false">"OPÇÕES DE PRIVACIDADE"</string>
+    <string name="t_41ca8ef5" formatted="false">"Salvo localmente neste aparelho · nada é enviado"</string>
+    <string name="t_41e88f52" formatted="false">"Faça o gesto de pinça com dois dedos para aproximar o tabuleiro — os nós ficam mais fáceis de tocar de perto. Com zoom, arraste com um dedo para se mover. Afaste totalmente para ver o tabuleiro inteiro de novo."</string>
+    <string name="t_4208e473" formatted="false">"SEM ANÚNCIO"</string>
+    <string name="t_420bd000" formatted="false">"BOTMASTER solta BOTs atrás de si a cada poucos segundos. Mate-o rápido e guarde algo para o enxame."</string>
+    <string name="t_4273a8be" formatted="false">"CONTA"</string>
+    <string name="t_42832744" formatted="false">"Sem apostas, caixas de saque ou recompensas pagas aleatórias"</string>
+    <string name="t_42880e6f" formatted="false">"BLOQUEADO · {0}"</string>
+    <string name="t_42a0e053" formatted="false">"SOBRE"</string>
+    <string name="t_42addf6c" formatted="false">"ABRIR LOJA"</string>
+    <string name="t_42afe7bc" formatted="false">"CONECTANDO"</string>
+    <string name="t_42ef8058" formatted="false">"HISTÓRICO DE DEFESA"</string>
+    <string name="t_4306ee12" formatted="false">"ORÇAMENTO DE €1.500"</string>
+    <string name="t_4333987a" formatted="false">"Colunas esparsas de caracteres caindo."</string>
+    <string name="t_43a1c2e8" formatted="false">"CUSTO DA MELHORIA"</string>
+    <string name="t_441ec9a9" formatted="false">"Um tour rápido pelo menu. PRÓXIMO para seguir, PULAR para fechar. Você pode repetir quando quiser em CONFIGURAÇÕES."</string>
+    <string name="t_4427afab" formatted="false">"A blindagem amortece golpes pequenos: leve ANALYST ou ROOT ADMIN, não IPS."</string>
+    <string name="t_4439e789" formatted="false">"BLOQUEADO · Complete o nível 5 (passe da onda 100 em DDoS) para desbloquear o player de música e a lista de faixas."</string>
+    <string name="t_448177d3" formatted="false">"ÚLTIMA SINCRONIZAÇÃO"</string>
+    <string name="t_4494c488" formatted="false">"HÁ {0} MIN"</string>
+    <string name="t_44c51c30" formatted="false">"ATAQUE BLOQUEADO"</string>
+    <string name="t_44fbbc54" formatted="false">"&gt; !! ciberataque chegando — grande violação a caminho !!"</string>
+    <string name="t_4538f2a7" formatted="false">"Um firewall compara o tráfego com um conjunto de regras e descarta o que essas regras não permitem. Costuma ser o primeiro controle entre uma rede não confiável e algo que vale proteger, e é julgado pelas regras que recebe, não pela esperteza."</string>
+    <string name="t_45b17976" formatted="false">"Muito dano a um único alvo, igual em todo tiro em vez de uma aposta, e ignora a blindagem. Caro e lento; um sozinho não segura uma rota."</string>
+    <string name="t_4631883a" formatted="false">"INSTALAR MÁX.  (+{0})"</string>
+    <string name="t_463cbc28" formatted="false">"VIDA ×{0} · BLINDAGEM +{1} · VELOCIDADE ×{2}"</string>
+    <string name="t_466578df" formatted="false">"Retome esta onda com metade da integridade."</string>
+    <string name="t_466b92a9" formatted="false">"LINK DE SEGMENTO"</string>
+    <string name="t_46984fe6" formatted="false">"JOGAR · CONTINUAR"</string>
+    <string name="t_46cc0ef8" formatted="false">"Também aumenta o ◇ cripto que cada partida paga, +{0}% por nível até o dobro. Não afeta a vida dos inimigos nem a composição das ondas."</string>
+    <string name="t_4735c1ed" formatted="false">"Ciberataques estão vindo para o CORE-SERVER. Implante ciberagentes ao lado das rotas para pará-los antes que cheguem."</string>
+    <string name="t_4747b424" formatted="false">"INIMIGOS"</string>
+    <string name="t_477d52c6" formatted="false">"Vinculada. Entre na mesma conta do Google em outro celular ou tablet e seu progresso estará lá."</string>
+    <string name="t_47c5c237" formatted="false">"NÓ INVÁLIDO"</string>
+    <string name="t_485268f0" formatted="false">"&gt; armando ciberagentes"</string>
+    <string name="t_4882e1dc" formatted="false">"KERNEL PANIC bloqueia todos os agentes ao alcance por 3 segundos quando morre. O FIREWALL aguenta."</string>
+    <string name="t_488d4b25" formatted="false">"Milhares de máquinas enviam tráfego para um mesmo alvo ao mesmo tempo. Nenhuma requisição sozinha é um ataque; a enxurrada é. O objetivo não é invadir, e sim deixar o serviço inutilizável."</string>
+    <string name="t_4905ed7b" formatted="false">"NENHUM"</string>
+    <string name="t_494c304d" formatted="false">"-◇{0} EXFILTRADOS"</string>
+    <string name="t_49848f53" formatted="false">"INJEÇÃO SQL CEGA"</string>
+    <string name="t_498754a7" formatted="false">"SALVAR TRILHA SONORA NO CELULAR"</string>
+    <string name="t_4af4306b" formatted="false">"VERSÃO"</string>
+    <string name="t_4c1012d3" formatted="false">"Mantenha-o sob fogo: ele só se repara depois de um tempo sem ser atingido, então cubra as lacunas entre as zonas de abate."</string>
+    <string name="t_4c6d3272" formatted="false">"🔒 BLOQUEADO"</string>
+    <string name="t_4cc6f55a" formatted="false">"Não foi possível falar com o Google Play Games. Suas partidas são registradas neste aparelho e seu recorde é publicado na próxima vez que uma partida terminar com você on-line."</string>
+    <string name="t_4d54c785" formatted="false">"POSICIONANDO {0} — toque em um nó"</string>
+    <string name="t_4d6e69d2" formatted="false">"PLAYER DE MÚSICA"</string>
+    <string name="t_4d7ab8a3" formatted="false">"CODINOME"</string>
+    <string name="t_4e2b3472" formatted="false">"NENHUMA SESSÃO SALVA"</string>
+    <string name="t_4ebbf8bd" formatted="false">"Restam {0} reviveres nesta partida."</string>
+    <string name="t_4f0fcb18" formatted="false">"Chega a cada quinta onda"</string>
+    <string name="t_4f160176" formatted="false">"A coleta. Sem truques, sem bloqueios — vinte por cento a mais de tudo do que qualquer outra coisa no tabuleiro."</string>
+    <string name="t_5022c684" formatted="false">"CRIPTOGRAFIA"</string>
+    <string name="t_5067a989" formatted="false">"CORRENTE ENTRELAÇADA"</string>
+    <string name="t_5079b771" formatted="false">"Desbloqueie este agente chegando à onda {0} em {1} no modo {2}."</string>
+    <string name="t_509d7851" formatted="false">" · IMPACTO {0}"</string>
+    <string name="t_513901c7" formatted="false">" · SEM ANÚNCIOS"</string>
+    <string name="t_513dcdc9" formatted="false">"POR AGENTE"</string>
+    <string name="t_520a6b88" formatted="false">"Cada nível custa um pouco mais que o anterior, então o multiplicador continua subindo, mas nunca dispara. Não há limite que você vá alcançar de verdade."</string>
+    <string name="t_5333e76e" formatted="false">"RENDERIZAÇÃO"</string>
+    <string name="t_53e605b3" formatted="false">"CUIDADO COM"</string>
+    <string name="t_543ce9f7" formatted="false">"A CADA"</string>
+    <string name="t_54523d94" formatted="false">"O rack onde seu núcleo está montado. Aparece no campo de batalha."</string>
+    <string name="t_54743050" formatted="false">"TOTAL DE ATAQUES BLOQUEADOS"</string>
+    <string name="t_54797d92" formatted="false">"Trilhas de circuito correndo sob os indicadores."</string>
+    <string name="t_549824f8" formatted="false">"PORTA PROTEGIDA"</string>
+    <string name="t_5571a722" formatted="false">"FUNCIONA OFF-LINE · SEM LOGIN"</string>
+    <string name="t_55f85167" formatted="false">"MENU DE AGENTES COMPACTO"</string>
+    <string name="t_565a738e" formatted="false">"NÃO, ME DEIXE JOGAR"</string>
+    <string name="t_56a9a004" formatted="false">"Injeção no escuro"</string>
+    <string name="t_56bafb67" formatted="false">"Um reviver por partida."</string>
+    <string name="t_56c54890" formatted="false">"Um modelo inchado: um pouco mais de vida, um pouco mais lento."</string>
+    <string name="t_56c6b2ae" formatted="false">"Licença de ficção, bem sinalizada: este agente simplesmente ignora o traço CRIPTOGRAFADO em vez de ser freado por ele e causa o triplo de dano a tudo que o carrega. A criptografia real não funciona assim, e nada aqui quebra uma cifra real."</string>
+    <string name="t_5749c8dc" formatted="false">"A onda {0} e tudo o que foi implantado serão perdidos."</string>
+    <string name="t_5785b710" formatted="false">"Escolha um agente e depois toque em um nó de implantação destacado."</string>
+    <string name="t_57f88861" formatted="false">"FOCO: SÓ CHEFES"</string>
+    <string name="t_582ec4a0" formatted="false">"Computadores comprometidos recebendo ordens em silêncio de um controlador central. Os donos geralmente nem sabem. Botnets são o que tornam possíveis os grandes ataques DDoS."</string>
+    <string name="t_5840893d" formatted="false">"INVASÃO CONTIDA"</string>
+    <string name="t_58a5f08a" formatted="false">"A grade simples. Sem movimento."</string>
+    <string name="t_597ee3cb" formatted="false">"ASSINATURA ENCONTRADA"</string>
+    <string name="t_5a02fc0a" formatted="false">"PACOTE DE REVIVER"</string>
+    <string name="t_5a3d8598" formatted="false">"Mais perto do CORE-SERVER"</string>
+    <string name="t_5a911db6" formatted="false">"SUA CONTA DO GOOGLE"</string>
+    <string name="t_5aa1d1dc" formatted="false">"foco {0} ligado"</string>
+    <string name="t_5b19a621" formatted="false">"Um ataque contra uma falha que ninguém corrigiu ainda — o defensor teve zero dias para se preparar. Raro, resistente e vale muito cripto derrubá-lo."</string>
+    <string name="t_5c19fc6b" formatted="false">"COMPRAR CyOps TD SOUNDTRACK · {0}"</string>
+    <string name="t_5c3f86fb" formatted="false">"MAIS FORTE"</string>
+    <string name="t_5d1868fb" formatted="false">"NÚCLEO"</string>
+    <string name="t_5d377851" formatted="false">"Melhorias permanentes · em todas as partidas a partir de agora"</string>
+    <string name="t_5d4d0273" formatted="false">"{0} está bloqueado: {1}."</string>
+    <string name="t_5de47a9b" formatted="false">"TODAS AS DIFICULDADES"</string>
+    <string name="t_5de55828" formatted="false">"!! INTEGRIDADE BAIXA !!"</string>
+    <string name="t_5e75065a" formatted="false">"CONECTADO"</string>
+    <string name="t_5f2258c9" formatted="false">"O dinheiro da esquerda. É acumulado a cada dez ondas de uma partida e mantido quando ela termina. Partidas mais longas pagam muito mais."</string>
+    <string name="t_5fd47bcf" formatted="false">"NÚCLEO: MERIDIAN"</string>
+    <string name="t_602fffef" formatted="false">"Tudo, exceto CRYPTOGRAPHER, perde mais da metade do dano aqui."</string>
+    <string name="t_6049b1e7" formatted="false">"FUNDO VIVO"</string>
+    <string name="t_60a5a04c" formatted="false">"Pausar música"</string>
+    <string name="t_60ecea1a" formatted="false">"ABSOLUTO"</string>
+    <string name="t_60f81814" formatted="false">"A cada {0} segundos, LICENSE passa {1} ignorando qualquer tipo de agente que continue a atingi-lo. Misture os tipos de agente."</string>
+    <string name="t_61919374" formatted="false">"REANIMADO — não vai voltar de novo"</string>
+    <string name="t_61ebe734" formatted="false">"TREMOR DE TELA"</string>
+    <string name="t_625afb79" formatted="false">"Comprado. É salvo em Music/CyOps TD como \"CyOps TD - Level X (Y)\"."</string>
+    <string name="t_628c7cd9" formatted="false">"AGENTES IMPLANTADOS POR TIPO"</string>
+    <string name="t_62f8af50" formatted="false">"+{0} PV / {1}s"</string>
+    <string name="t_63374e04" formatted="false">"MENU PRINCIPAL"</string>
+    <string name="t_633e8e1a" formatted="false">"Quebra em três vermes menores ao morrer, e cada um quebra mais uma vez. Dano em área é seu amigo."</string>
+    <string name="t_6343926d" formatted="false">"BLOQUEIO"</string>
+    <string name="t_638aaa93" formatted="false">"TAMBÉM APARECEM AQUI"</string>
+    <string name="t_63b00a3c" formatted="false">"Dados enviados por uma rede são divididos em pacotes: pequenos pedaços com um endereço de destino e uma carga. Um pacote não é um ataque — quase todos são tráfego comum. O que você atira aqui são pacotes levando um ataque específico, por isso cada um tem o nome do ataque, não do pacote."</string>
+    <string name="t_63b54927" formatted="false">"3 reviveres por partida e nunca anúncios para reviver, mais €5.000."</string>
+    <string name="t_63bef594" formatted="false">"PV {0}"</string>
+    <string name="t_63f3d76a" formatted="false">"SALVAR"</string>
+    <string name="t_63facb82" formatted="false">"VIVO: PULSE"</string>
+    <string name="t_6480a147" formatted="false">"ONDA {0}  —  PROTEJA O PERÍMETRO"</string>
+    <string name="t_648a945b" formatted="false">"DUAS COISAS QUE NINGUÉM TE CONTA"</string>
+    <string name="t_6490c689" formatted="false">"Sem criptomoeda real, blockchain, carteira, mineração ou NFT"</string>
+    <string name="t_64d398f9" formatted="false">"ALCANCE"</string>
+    <string name="t_65155738" formatted="false">"VELOCIDADE 5×"</string>
+    <string name="t_65252ce7" formatted="false">"PRIMEIRO"</string>
+    <string name="t_6554cde7" formatted="false">"Perguntando ao Google Play o que esta conta possui. Costuma levar um instante."</string>
+    <string name="t_655c9284" formatted="false">"VIVO: LATTICE"</string>
+    <string name="t_656e6ce8" formatted="false">"AGENTES"</string>
+    <string name="t_65c8fd90" formatted="false">"BRIEFING DE AMEAÇAS"</string>
+    <string name="t_6678bfdf" formatted="false">"Quando morre, todos os agentes próximos ficam bloqueados por 3 segundos. Mate-o longe das suas defesas, ou com a próxima onda ainda longe."</string>
+    <string name="t_66fa85d7" formatted="false">"Espalhe seus agentes para que um único bloqueio não silencie a linha."</string>
+    <string name="t_6700226a" formatted="false">"VINCULADA"</string>
+    <string name="t_67043715" formatted="false">"BLINDAGEM"</string>
+    <string name="t_67313d46" formatted="false">"MURO ERGUIDO"</string>
+    <string name="t_6757b458" formatted="false">"ATAQUES PARADOS"</string>
+    <string name="t_6813ef42" formatted="false">"HACK ANÔNIMO — {0} BOTS CHEGANDO COM O DOBRO DA VELOCIDADE"</string>
+    <string name="t_681745bd" formatted="false">"AGENTE BLOQUEADO — {0}"</string>
+    <string name="t_682d973f" formatted="false">"INICIAR"</string>
+    <string name="t_68e88af7" formatted="false">"ZONA DE PERIGO"</string>
+    <string name="t_68e985d6" formatted="false">"Nada mais é enviado para lugar nenhum. O jogo funciona sem nenhuma rede."</string>
+    <string name="t_6904aeb4" formatted="false">"O JOGO"</string>
+    <string name="t_69698cdc" formatted="false">"WORM quebra em três vermes menores ao morrer, e eles quebram mais uma vez. Mate-o cedo, com dano em área por perto."</string>
+    <string name="t_69a293c4" formatted="false">"SUDO TERMINATE"</string>
+    <string name="t_6ad356c5" formatted="false">"Três rotas: uma reta pelo meio e duas em zigue-zague acima e abaixo dela."</string>
+    <string name="t_6b2d8165" formatted="false">"NV {0}  {1} DANO"</string>
+    <string name="t_6c161f51" formatted="false">"Por 2 segundos a cada 17, ignora qualquer tipo de agente que continue a atingi-lo. Um time variado continua causando dano."</string>
+    <string name="t_6c7aa396" formatted="false">"Chefes diferentes, fraquezas diferentes."</string>
+    <string name="t_6ca9de88" formatted="false">"AGENTES ESPECTRO"</string>
+    <string name="t_6cb7e8e3" formatted="false">"Golpes lentos e pesados. +80% de dano em elites e chefes."</string>
+    <string name="t_6cbf7c76" formatted="false">"CHEFES DERROTADOS"</string>
+    <string name="t_6ccdc653" formatted="false">"Ignora totalmente a criptografia e causa o triplo de dano a ela."</string>
+    <string name="t_6cedde69" formatted="false">"VOLUME DA MÚSICA"</string>
+    <string name="t_6d2d6d6b" formatted="false">"Ignora a blindagem dele."</string>
+    <string name="t_6d907c0d" formatted="false">"Um \"time azul\" defende um sistema e responde a incidentes — a contraparte de um time vermelho. \"Blue hat\" é usado de mais de um jeito no setor e não é um termo padronizado, então aqui só se descreve o sentido de time azul."</string>
+    <string name="t_6dbe0ea3" formatted="false">"NÍVEL"</string>
+    <string name="t_6f053419" formatted="false">"LIMITE DE {0} — MÁX. {1}"</string>
+    <string name="t_6f21a684" formatted="false">"CHEFES — a cada quinta onda"</string>
+    <string name="t_70d42172" formatted="false">"Dividir uma rede para que uma violação em uma área não alcance o resto. É por isso que um notebook comprometido não deveria significar uma empresa comprometida."</string>
+    <string name="t_7191bf1d" formatted="false">"PERSISTÊNCIA"</string>
+    <string name="t_71c5931f" formatted="false">"A economia de bateria só muda o que é desenhado. A dificuldade das ondas, o dano e o tempo não mudam em nada."</string>
+    <string name="t_72102eb0" formatted="false">"Compras, restaurações e o que sai deste aparelho"</string>
+    <string name="t_722a0bad" formatted="false">"REPETIR GUIAS"</string>
+    <string name="t_73236391" formatted="false">"O jogo em si não coleta dados pessoais"</string>
+    <string name="t_735d4940" formatted="false">"VOLUME DOS EFEITOS"</string>
+    <string name="t_73907e76" formatted="false">"As 24 faixas do jogo, salvas na pasta Música do seu celular para ouvir onde quiser."</string>
+    <string name="t_7397fdaa" formatted="false">"Luz fria se movendo atrás de tudo."</string>
+    <string name="t_739a7f7a" formatted="false">"© {0} {1}. Todos os direitos reservados."</string>
+    <string name="t_73d812dc" formatted="false">"A cada quinta onda, e o que ela traz"</string>
+    <string name="t_73e8cb50" formatted="false">"Código original, arte original, áudio sintetizado original. Feito com Kotlin, Jetpack Compose e a API Canvas do Android.\n\nÍcones: CoreUI Icons Free da creativeLabs (coreui.io/icons), licença CC BY 4.0.\n\nAs licenças das dependências de terceiros estão em LICENSES.md, no repositório do projeto."</string>
+    <string name="t_74066c59" formatted="false">"NO JOGO"</string>
+    <string name="t_746ab6c3" formatted="false">"O IPS causa 35% a mais em enxames. Posicione-o onde as rotas se encontram."</string>
+    <string name="t_746d814e" formatted="false">"Apaga sua partida salva, agentes desbloqueados, estatísticas e configurações. Não dá para desfazer."</string>
+    <string name="t_74aa6c59" formatted="false">"ORÇAMENTO € INSUFICIENTE"</string>
+    <string name="t_74fff44e" formatted="false">"Lança cópias-isca de si mesmo que absorvem tiros. ANALYST e ROOT ADMIN enxergam através delas."</string>
+    <string name="t_750800eb" formatted="false">"Atira tão rápido quanto o melhor do time e sempre mira primeiro em um chefe. Dano em dobro em [GG] GOOD GAME. No máximo quatro."</string>
+    <string name="t_7596436a" formatted="false">"Um engenheiro de segurança sênior, formado em cibersegurança, que impede ataques criando o software que os combate: serviços reforçados, patches e filtros que estão prontos antes de o ataque chegar, não depois."</string>
+    <string name="t_75b191e4" formatted="false">"Ergue um muro na rota mais próxima dentro do alcance. As ameaças param no muro e precisam derrubá-lo para passar; os chefes derrubam mais rápido. Quando cai, o ACE o reconstrói em poucos segundos, mais forte a cada nível. Seus próprios tiros causam {0}× de dano em todos os chefes dos cinco primeiros níveis. No máximo três podem ser implantados."</string>
+    <string name="t_75bd8866" formatted="false">"Escolha um nível e uma dificuldade"</string>
+    <string name="t_75e65d90" formatted="false">"TOCAR DUAS VEZES PARA IMPLANTAR"</string>
+    <string name="t_75f24f6e" formatted="false">"A cada poucos segundos, bloqueia as melhorias de um agente por 8 segundos. Melhore antes que ele chegue."</string>
+    <string name="t_7682806a" formatted="false">"PASSO 2 — ESCOLHA FIREWALL"</string>
+    <string name="t_77212b64" formatted="false">"Esta é a onda de ataque que você enfrenta. Ela sobe enquanto você segurar o servidor — a cada quinta onda vem um chefe."</string>
+    <string name="t_772b21ba" formatted="false">"As defesas que você implanta"</string>
+    <string name="t_776f4222" formatted="false">"NV {0}"</string>
+    <string name="t_77a2583e" formatted="false">"Duas coisas diferentes são chamadas de \"quântico\" em segurança, e vale separá-las. A distribuição quântica de chaves usa a física para detectar escutas em um link e só é usada em ambientes raros e especializados. A criptografia pós-quântica é matemática de software comum, feita para resistir a futuros computadores quânticos, e é a que está de fato sendo implantada."</string>
+    <string name="t_77a6da9b" formatted="false">"Anéis se afastando do núcleo."</string>
+    <string name="t_77d03aa5" formatted="false">"Uma injeção cega não recebe mensagens de erro, então o atacante deduz a resposta pergunta por pergunta, de verdadeiro ou falso. É mais lenta e bem mais paciente que uma injeção normal, e chega reforçada contra as defesas óbvias."</string>
+    <string name="t_77e5929c" formatted="false">"O primeiro toque mostra o alcance do agente naquele ponto; toque de novo para implantar"</string>
+    <string name="t_77e8896f" formatted="false">"Uma rota corta o tabuleiro de canto a canto cinco vezes."</string>
+    <string name="t_77f7e381" formatted="false">" · BLINDAGEM {0}"</string>
+    <string name="t_782074f1" formatted="false">"  ·  AUTO {0}"</string>
+    <string name="t_7841323b" formatted="false">"VARREDURA DEFENSIVA"</string>
+    <string name="t_78526608" formatted="false">"ONDA ALCANÇADA"</string>
+    <string name="t_78a52e3b" formatted="false">"OCULTO"</string>
+    <string name="t_7922c8d5" formatted="false">"Fortalece todos os agentes no alcance: +30% de dano, +20% de cadência."</string>
+    <string name="t_79a4baee" formatted="false">"&lt; VOLTAR"</string>
+    <string name="t_79fc7a80" formatted="false">"Só vale quando INICIAR ONDAS SOZINHAS está ligado"</string>
+    <string name="t_7a1f56c4" formatted="false">"SINCRONIZAR AGORA"</string>
+    <string name="t_7aba529e" formatted="false">"Quebra a criptografia: ×{0} de dano."</string>
+    <string name="t_7abfb3c7" formatted="false">"Divide-se em dois com metade da vida, e a segunda metade pega outra rota."</string>
+    <string name="t_7b3bb73f" formatted="false">"AMEAÇA NEUTRALIZADA"</string>
+    <string name="t_7b84a6c4" formatted="false">"Vincule sua conta do Google na tela GOOGLE PLAY para ver o ranking mundial e publicar nele. Suas partidas continuam sendo registradas neste aparelho."</string>
+    <string name="t_7ba7f176" formatted="false">"+{0}% DANO"</string>
+    <string name="t_7be6fbad" formatted="false">"ONDA {0} · SIMULAÇÃO PARADA"</string>
+    <string name="t_7bf2105b" formatted="false">"Negação de serviço distribuída"</string>
+    <string name="t_7c4e4414" formatted="false">"ÚLTIMO"</string>
+    <string name="t_7c6853de" formatted="false">"MUNDIAL · {0}"</string>
+    <string name="t_7d5cc77f" formatted="false">"TOTAL DE CRIPTO GANHO"</string>
+    <string name="t_7dc33bc2" formatted="false">"NÍVEL MÁXIMO ALCANÇADO"</string>
+    <string name="t_7e1cf3a7" formatted="false">"REPARO"</string>
+    <string name="t_7e522f64" formatted="false">"CRÉDITOS"</string>
+    <string name="t_7e72ed35" formatted="false">"PROGRESSO SALVO NA SUA CONTA"</string>
+    <string name="t_7e906966" formatted="false">"{0} faixas salvas em Music/CyOps TD."</string>
+    <string name="t_7ea71dbe" formatted="false">"Abra AGENTES de novo e escolha TARPIT. Ele não causa dano — desacelera toda ameaça dentro da aura para que seus FIREWALL acertem mais tiros."</string>
+    <string name="t_7f11b512" formatted="false">"{0} · {1} POR PARTIDA {2}"</string>
+    <string name="t_7fd8e294" formatted="false">"&gt; perímetro on-line"</string>
+    <string name="t_804ef7d5" formatted="false">"O ataque mais comum da internet, e a ameaça básica aqui. Um atacante digita comandos de banco de dados em um campo que esperava um nome ou uma senha; se o aplicativo repassa isso direto, o banco de dados obedece."</string>
+    <string name="t_80592dd9" formatted="false">"VERSÃO"</string>
+    <string name="t_8175c5fc" formatted="false">"INTEGRIDADE DO CORE-SERVER"</string>
+    <string name="t_8198af01" formatted="false">"Fica oculto 2 segundos a cada 6: nada consegue mirá-lo. Dano em área e encadeamentos ainda o atingem."</string>
+    <string name="t_81e23c68" formatted="false">"OUTROS: só unidades pequenas e elites, nunca chefes"</string>
+    <string name="t_8230b283" formatted="false">"O IDS causa 45% a mais em ataques rápidos e os vê chegando antes."</string>
+    <string name="t_82966ea3" formatted="false">"O CONTADOR DE ONDAS"</string>
+    <string name="t_829e8e06" formatted="false">"Os agentes no seu alcance não podem ser bloqueados. {0}× de dano em WHITE EYE e BLACK EYE. No máximo dois."</string>
+    <string name="t_82a1fee3" formatted="false">"Tem certeza de que quer reiniciar sua partida?"</string>
+    <string name="t_82a70835" formatted="false">"Sem vincular, o progresso só existe neste aparelho. Desinstalar ou restaurar de fábrica o apaga; as compras sobrevivem a ambos."</string>
+    <string name="t_830a30fd" formatted="false">"ORÇAMENTO"</string>
+    <string name="t_830b01d9" formatted="false">"O firmware multiplica o dano de todo agente que você implanta, em todas as partidas a partir de agora. É aplicado antes da blindagem e da tabela de contra-ataques, então ajuda um Cryptographer contra a criptografia exatamente tanto quanto ajuda um Firewall contra o tráfego comum."</string>
+    <string name="t_831712ed" formatted="false">"NOVO CIBERAGENTE DESBLOQUEADO"</string>
+    <string name="t_83186dce" formatted="false">"SÓ ESTE APARELHO"</string>
+    <string name="t_8340a76d" formatted="false">"POR QUE IMPORTA"</string>
+    <string name="t_838b0928" formatted="false">"Gera ataques de escolta enquanto avança."</string>
+    <string name="t_8478f19e" formatted="false">"O QUE SAI DESTE APARELHO"</string>
+    <string name="t_848f3f46" formatted="false">"APAGAR TODO O PROGRESSO?"</string>
+    <string name="t_852bda75" formatted="false">"CÓDICE"</string>
+    <string name="t_862b3f34" formatted="false">"IMPLANTAR CIBERAGENTE"</string>
+    <string name="t_869cf6b4" formatted="false">"REGISTRAR CODINOME"</string>
+    <string name="t_86cce90c" formatted="false">"MAIS FRACO"</string>
+    <string name="t_87442b62" formatted="false">"PRÓXIMA ONDA · BREACH"</string>
+    <string name="t_87a9dd3e" formatted="false">"ONDAS, € E FIRMWARE"</string>
+    <string name="t_87d92d69" formatted="false">"Alcance de detecção muito longo; +45% de dano em ataques rápidos."</string>
+    <string name="t_8806feca" formatted="false">"Seis visuais de CORE-SERVER, mais €2.000. NEONGRID vendido separadamente."</string>
+    <string name="t_882561c2" formatted="false">"AVALIAÇÃO DE AMEAÇA"</string>
+    <string name="t_891fc63b" formatted="false">"FALSIFICAÇÃO ANULADA"</string>
+    <string name="t_8980d82b" formatted="false">"{0} selecionado — toque em um nó destacado para implantar."</string>
+    <string name="t_899bae42" formatted="false">"Opcional. Tudo no jogo funciona sem vincular, e nada além do seu progresso é enviado."</string>
+    <string name="t_89a47932" formatted="false">"Tocar música"</string>
+    <string name="t_89c7b011" formatted="false">"Reabra o formulário de consentimento do Google para mudar o que os parceiros de publicidade podem fazer com os dados deste aparelho. O progresso do jogo fica neste aparelho e nunca faz parte disso."</string>
+    <string name="t_89d7c51c" formatted="false">"Ida, volta e um longo retorno compartilhado até o rack."</string>
+    <string name="t_89dd34f8" formatted="false">"Deixe a limpeza dos enxames para o IPS, assim seus agentes pesados continuam no chefe."</string>
+    <string name="t_89e1b0eb" formatted="false">"O campo dele freia o GRADIENT enquanto ele acelera."</string>
+    <string name="t_89e450ea" formatted="false">"REMOVIDOS · ANÚNCIOS DE REVIVER SÃO À PARTE"</string>
+    <string name="t_8a058fa3" formatted="false">"A curva padrão."</string>
+    <string name="t_8a86921d" formatted="false">"Os botões à direita rolam. Mais abaixo: LOJA, EQUIPAMENTO (visuais e fundos), GOOGLE PLAY (compras e salvamento na nuvem), RANKING, CÓDICE (ameaças e agentes explicados), ESTATÍSTICAS, CONFIGURAÇÕES e SOBRE."</string>
+    <string name="t_8a96f0aa" formatted="false">"INDISPONÍVEL"</string>
+    <string name="t_8aa097b1" formatted="false">"  (BLOQUEADO)"</string>
+    <string name="t_8aec13a9" formatted="false">"Negação de serviço distribuída: o ataque é o volume. Cada requisição é trivial, mas elas chegam mais rápido que qualquer outra coisa no jogo, e sempre há mais."</string>
+    <string name="t_8af0e8d8" formatted="false">"Uma tentativa de violação coordenada. Sem truques, só peso."</string>
+    <string name="t_8b094c6c" formatted="false">"Conectando ao Google Play…"</string>
+    <string name="t_8c42a507" formatted="false">"Agulhas de gelo irradiando de um núcleo congelado."</string>
+    <string name="t_8c61de92" formatted="false">"INICIAR ONDAS SOZINHAS"</string>
+    <string name="t_8d56a5da" formatted="false">"Traços elípticos lentos circulando o núcleo."</string>
+    <string name="t_8d91a14b" formatted="false">"GOOGLE PLAY"</string>
+    <string name="t_8d9dd637" formatted="false">"CHEFE: só atira em chefes; caso contrário, não atira"</string>
+    <string name="t_8e0413ab" formatted="false">"Esta versão não tem compras no aplicativo."</string>
+    <string name="t_8e3787c1" formatted="false">"BLOQUEADO · {0} (recorde: {1})"</string>
+    <string name="t_8f0536a7" formatted="false">"INSTALAR MÁX."</string>
+    <string name="t_8f37a712" formatted="false">"DANO CAUSADO"</string>
+    <string name="t_8f48da3c" formatted="false">"REDE COMPROMETIDA"</string>
+    <string name="t_8f5d0f11" formatted="false">"ECONOMIA"</string>
+    <string name="t_8f61abf9" formatted="false">"PROCESSANDO…"</string>
+    <string name="t_8f68a3ab" formatted="false">"&gt; carregando assinaturas de ameaças"</string>
+    <string name="t_8ff6e51c" formatted="false">"Ainda não há partidas registradas em {0}."</string>
+    <string name="t_90391726" formatted="false">"CONTINUAR"</string>
+    <string name="t_910b3ae9" formatted="false">"Dinheiro ganho para comprar agentes que defendem o servidor. Cripto◇ é ganho a cada abate e a cada onda concluída."</string>
+    <string name="t_915c2f22" formatted="false">"{0} faixas salvas, depois o celular recusou o resto. Libere espaço e tente de novo."</string>
+    <string name="t_919816cc" formatted="false">"Não foi possível falar com o Google Play. O que você já comprou continua seu — tente RESTAURAR quando estiver on-line de novo."</string>
+    <string name="t_91ae1cd3" formatted="false">"Glossário em linguagem simples"</string>
+    <string name="t_91d4d5fc" formatted="false">"DISPONÍVEL · ◇ {0}"</string>
+    <string name="t_9231c915" formatted="false">"Anéis de contenção âmbar em volta de uma reação em andamento."</string>
+    <string name="t_933bf2fb" formatted="false">"REMOVER ANÚNCIOS cobre os anúncios entre partidas; os anúncios para reviver são à parte."</string>
+    <string name="t_935cf7b5" formatted="false">"Cadência dos chapéus, tiros mais pesados e {0}× de dano em SYN-STORM e GRADIENT. No máximo dois."</string>
+    <string name="t_93875a49" formatted="false">"alcance"</string>
+    <string name="t_93f1bd2f" formatted="false">"Cadência altíssima, sempre mira em chefes antes de qualquer outra coisa no alcance e causa o dobro de dano em [GG] GOOD GAME. Desbloqueia na onda 30 e no máximo quatro podem ser implantados."</string>
+    <string name="t_94061f4f" formatted="false">"Quase não causa dano. Tudo dentro do seu raio se arrasta, o que mantém as ameaças ao alcance dos seus atacantes por muito mais tempo. Barato e inútil sozinho: multiplica a força de quem estiver atirando ao lado."</string>
+    <string name="t_941dea68" formatted="false">"NÚMEROS DE DANO"</string>
+    <string name="t_9427590a" formatted="false">"Mostrar valores de dano flutuantes nos golpes"</string>
+    <string name="t_94bbec0b" formatted="false">"Toque em PRÓXIMA ONDA. Seus agentes atiram sozinhos. Cada ataque que você para rende ◇ Cripto, que compra mais agentes e melhorias."</string>
+    <string name="t_94dc88d3" formatted="false">"Cada nível de firmware adiciona +{0}% de dano a todos os agentes e +{1}% de ◇ cripto ganho nas partidas (até o dobro), em todas as partidas futuras. Nunca desaparece."</string>
+    <string name="t_95051192" formatted="false">"NÃO DEFINIDO"</string>
+    <string name="t_952dc0bb" formatted="false">"RANKING"</string>
+    <string name="t_959b6bbb" formatted="false">"MÁX. {0} IMPLANTADOS"</string>
+    <string name="t_9655a074" formatted="false">"Correntes lentas de dados atrás do menu e do tabuleiro."</string>
+    <string name="t_97e1363f" formatted="false">"Forte redução fixa de dano em cada golpe."</string>
+    <string name="t_98189a64" formatted="false">"Nenhum. Esta é uma luta direta."</string>
+    <string name="t_9873614b" formatted="false">"O maior alcance de detecção do time e +45% de dano contra ataques rápidos. Cadência lenta — é um vigia que também atira, melhor posicionado onde cubra muita rota."</string>
+    <string name="t_98a9c7f2" formatted="false">"ORÇAMENTO €"</string>
+    <string name="t_98b63553" formatted="false">"Não é preciso conta nem login para jogar"</string>
+    <string name="t_98cc567c" formatted="false">"MAIOR DANO"</string>
+    <string name="t_98f4abc6" formatted="false">"◇ {0} · desbloqueia na onda {1} em {2}"</string>
+    <string name="t_98fbe3ee" formatted="false">"BLOQUEIO MÚLTIPLO"</string>
+    <string name="t_991bd4c3" formatted="false">"Um único CRYPTOGRAPHER muda a luta inteira."</string>
+    <string name="t_991c8ba8" formatted="false">"TOTAL DE MELHORIAS DE AGENTES"</string>
+    <string name="t_996095bd" formatted="false">"Alguns nomes, termos e marcas citados neste jogo podem pertencer aos seus respectivos donos. Essas referências são usadas apenas para identificação, comentário, contexto educacional e representação ficcional dentro do jogo.\n\nEste jogo é desenvolvido de forma independente e não é afiliado, patrocinado, endossado nem aprovado pela Red Hat, pela Microsoft ou por qualquer outro dono de marca.\n\nTodas as marcas, nomes de produtos, nomes de empresas e logotipos de terceiros continuam pertencendo aos seus respectivos donos."</string>
+    <string name="t_99ab6437" formatted="false">"Mostrar de novo o tour do menu principal e a explicação do FIRMWARE na próxima vez que você abrir essas telas."</string>
+    <string name="t_99cfdd6c" formatted="false">"Prévia de {0}"</string>
+    <string name="t_99d175d2" formatted="false">"Mantenha um TARPIT na rota para segurar a aceleração."</string>
+    <string name="t_99f43c9c" formatted="false">"CRIPTO INSUFICIENTE"</string>
+    <string name="t_9a8ee779" formatted="false">"Atira tão rápido quanto o melhor do time e sempre mira primeiro em um chefe. Dano em dobro em [!!!] BREACH. No máximo quatro."</string>
+    <string name="t_9a9bcdd3" formatted="false">"ESPAÇO"</string>
+    <string name="t_9aa5d01a" formatted="false">"Nunca um anúncio após uma derrota, mais €5.000. Os anúncios para reviver são opcionais e à parte — veja PACOTE DE REVIVER."</string>
+    <string name="t_9adba547" formatted="false">"O melhor custo-benefício por euro."</string>
+    <string name="t_9ae9f14f" formatted="false">"Uma deriva lenta de pontos distantes."</string>
+    <string name="t_9aed28a1" formatted="false">"LIMITE DE IMPLANTAÇÃO ATINGIDO"</string>
+    <string name="t_9b08be38" formatted="false">"Perguntando ao Google Play Games…"</string>
+    <string name="t_9b1d7455" formatted="false">"ONDA {0}"</string>
+    <string name="t_9b4c97a7" formatted="false">"O nome vem do cavalo de madeira: software que parece algo que você quer e carrega algo que você não quer de jeito nenhum."</string>
+    <string name="t_9b557f99" formatted="false">"Seu recorde: onda {0}"</string>
+    <string name="t_9b989bfb" formatted="false">"RECORDE"</string>
+    <string name="t_9bcd1b03" formatted="false">"Os sete fundos vivos, mais €2.000."</string>
+    <string name="t_9bd1faf7" formatted="false">"Reembolsos, formas de pagamento e recibos são tratados pelo Google, não por este jogo."</string>
+    <string name="t_9c2ade2b" formatted="false">"NV {0}  ×{1}"</string>
+    <string name="t_9c6be09c" formatted="false">"MODIFICADORES"</string>
+    <string name="t_9d0c4ff1" formatted="false">"&gt; onda {0} em andamento — restam {1} ameaças"</string>
+    <string name="t_9d29de23" formatted="false">"MELHOR ONDA POR NÍVEL"</string>
+    <string name="t_9d2c3eea" formatted="false">"TERMOS DE REDE"</string>
+    <string name="t_9d36e329" formatted="false">"SEQUESTRADO"</string>
+    <string name="t_9d5ca8b9" formatted="false">"QUER REVIVER?"</string>
+    <string name="t_9df821c5" formatted="false">"BEM-VINDO AO CyOps TD"</string>
+    <string name="t_9e30871d" formatted="false">"Uma única máquina comprometida recebendo ordens de outra pessoa. Um bot é inofensivo. Uma botnet de milhares não é — por isso eles sempre chegam em grupo."</string>
+    <string name="t_9e77c8cf" formatted="false">"Adiciona uma quinta velocidade de simulação para acabar as ondas rápido."</string>
+    <string name="t_9ef0ebe5" formatted="false">"SEGMENTAÇÃO"</string>
+    <string name="t_9f26f678" formatted="false">"  →"</string>
+    <string name="t_9f70f631" formatted="false">"CADÊNCIA"</string>
+    <string name="t_9fb6c271" formatted="false">"Bloqueia rapidamente os agentes próximos, reduzindo a cadência deles."</string>
+    <string name="t_a12f7814" formatted="false">"+{0} (CHEFE)"</string>
+    <string name="t_a15faa1f" formatted="false">"MODO"</string>
+    <string name="t_a19abbd4" formatted="false">"Cada ciberagente, o que ele faz e a onda que o desbloqueia."</string>
+    <string name="t_a21dbf00" formatted="false">"ORÇAMENTO DE €{0} ACUMULADO"</string>
+    <string name="t_a24181ff" formatted="false">"O QUE ESTÁ ATACANDO"</string>
+    <string name="t_a2517472" formatted="false">"LOJA INDISPONÍVEL"</string>
+    <string name="t_a29c69ba" formatted="false">"SAIR"</string>
+    <string name="t_a2b3bef5" formatted="false">"CHEGUE À ONDA {0}"</string>
+    <string name="t_a2dd8300" formatted="false">"Um desafio. Duas rotas que voltam sobre si mesmas e depois um circuito antes do rack."</string>
+    <string name="t_a2e2f704" formatted="false">"QUEBRA DE CIFRA"</string>
+    <string name="t_a32353a8" formatted="false">"ORÇAMENTO DE €9.000"</string>
+    <string name="t_a36e1b6d" formatted="false">"NÃO ESTÁ NESTA VERSÃO"</string>
+    <string name="t_a3ebab03" formatted="false">"Uma falha desconhecida e sem correção"</string>
+    <string name="t_a4a2cd90" formatted="false">"&gt;&gt; NOVO RECORDE &lt;&lt;"</string>
+    <string name="t_a4fd7522" formatted="false">" · MÁX. {0}"</string>
+    <string name="t_a5460e4e" formatted="false">"Golpes únicos lentos e pesados, com +80% de dano contra elites e chefes. Fraco contra enxames. Permite escolher o alvo, então você pode mirar no que realmente quer eliminar."</string>
+    <string name="t_a596b409" formatted="false">"A VELOCIDADE 5× ESTÁ NA LOJA"</string>
+    <string name="t_a599c90a" formatted="false">"Todo agente no seu alcance, inclusive ele mesmo, fica imune ao bloqueio de qualquer chefe. Tiros rápidos e pesados, com {0}× de dano em WHITE EYE e BLACK EYE. Alcance do TARPIT. No máximo dois podem ser implantados."</string>
+    <string name="t_a5b1ffba" formatted="false">"Acesso irrestrito ao sistema"</string>
+    <string name="t_a5da8eea" formatted="false">"Travou em uma onda? Junte orçamento, instale firmware, e o mesmo time bate mais forte na próxima partida."</string>
+    <string name="t_a6291e29" formatted="false">"ORÇAMENTO DE €5.000"</string>
+    <string name="t_a62c1133" formatted="false">"Nenhuma capacidade real de hacking — nada aqui toca uma rede real"</string>
+    <string name="t_a66c22f9" formatted="false">"Mude o idioma em CONFIGURAÇÕES no menu principal: trocar reinicia o jogo, o que encerraria esta partida."</string>
+    <string name="t_a6cd2e07" formatted="false">"{0}-{1} caracteres. A-Z, 0-9, hífen e sublinhado."</string>
+    <string name="t_a6ee02f4" formatted="false">"CANCELAR"</string>
+    <string name="t_a727a483" formatted="false">"INCLUI"</string>
+    <string name="t_a7c5a24a" formatted="false">"Salvando em Music/CyOps TD…"</string>
+    <string name="t_a7c97dfd" formatted="false">"REDEFINIR"</string>
+    <string name="t_a7e02911" formatted="false">"NO NÚCLEO"</string>
+    <string name="t_a7e24bd6" formatted="false">"ALVO"</string>
+    <string name="t_a8031bce" formatted="false">"ABRIR PÁGINA NA LOJA"</string>
+    <string name="t_a8191219" formatted="false">"SPOOFER lança iscas de si mesmo que absorvem tiros. ANALYST e ROOT ADMIN enxergam através delas."</string>
+    <string name="t_a8768bb2" formatted="false">"VISUAIS DE AGENTES"</string>
+    <string name="t_a8935036" formatted="false">"CRIPTO GANHO"</string>
+    <string name="t_a92b98a8" formatted="false">"CRIPTO ◇"</string>
+    <string name="t_a9a8f56c" formatted="false">"VISUAL"</string>
+    <string name="t_a9ad0741" formatted="false">"€ NESTA PARTIDA"</string>
+    <string name="t_a9cf50ec" formatted="false">"O tráfego real segue uma rota por switches e roteadores até o destino. As duas rotas sinuosas aqui são esse caminho, voltando sobre si para você ver cada salto de uma vez."</string>
+    <string name="t_a9d9e481" formatted="false">"O CORE-SERVER é o que você defende, e o indicador de INTEGRIDADE na faixa de cima é a única vida que você tem. Cada pacote hostil que chega ao rack tira um pedaço. Em 0, o servidor cai e a partida acaba — então não deixar nada passar é o trabalho todo."</string>
+    <string name="t_aab511c4" formatted="false">"ROOTKIT fica oculto 2 segundos a cada 6 e nada consegue mirá-lo. Dano em área e encadeamentos ainda o atingem."</string>
+    <string name="t_aac1d4da" formatted="false">"NÃO VINCULADA"</string>
+    <string name="t_aadac61a" formatted="false">"Aplicativos fazem perguntas aos bancos de dados em SQL. Se o que o usuário digita é colado direto nessa pergunta, um atacante pode escrever o próprio final — despejar uma tabela de usuários, burlar um login ou apagar tudo. A correção é antiga e conhecida (consultas parametrizadas), e é isso que torna tão frustrante ele ainda ser o ataque que você mais vai ver."</string>
+    <string name="t_ab62d63d" formatted="false">"Um sistema de detecção de intrusão vigia a atividade da rede ou do computador em busca de padrões que pareçam um ataque e emite um alerta. Ele avisa; não bloqueia. Alguém, ou alguma outra coisa, ainda precisa agir sobre o que ele encontra."</string>
+    <string name="t_aca3253a" formatted="false">"EM CAMPO · TOQUE EM UM CHEFE PARA VÊ-LO"</string>
+    <string name="t_ad03a515" formatted="false">"Dividir uma rede em zonas"</string>
+    <string name="t_ad26a7c7" formatted="false">"desconhecido"</string>
+    <string name="t_ae00f867" formatted="false">"ANÁLISE DE DADOS"</string>
+    <string name="t_ae59bf94" formatted="false">"VENDER  ◇ {0}"</string>
+    <string name="t_b0147d1e" formatted="false">"Conte com agentes que não sejam FIREWALL nesta onda."</string>
+    <string name="t_b0af39a6" formatted="false">"MUDAR"</string>
+    <string name="t_b0d341a2" formatted="false">"HÁ MAIS DE UM MÊS"</string>
+    <string name="t_b0f472d0" formatted="false">"DIFICULDADE"</string>
+    <string name="t_b16e2042" formatted="false">"Um campo de estrelas violeta atrás do rack."</string>
+    <string name="t_b2029176" formatted="false">"Começar a próxima onda automaticamente após uma pausa curta"</string>
+    <string name="t_b253fa2b" formatted="false">"A criptografia protege dados em trânsito e armazenados, para que interceptá-los não seja o mesmo que lê-los. Atacantes também a usam — muito tráfego hostil é criptografado — e por isso os defensores inspecionam nas pontas que controlam em vez de tentar quebrar a criptografia."</string>
+    <string name="t_b28b05f8" formatted="false">"Sistema de prevenção de intrusão"</string>
+    <string name="t_b2dbc630" formatted="false">"FIREWALL ATIVO"</string>
+    <string name="t_b2ef7c39" formatted="false">"Ciberoperativos: Defesa de Torres"</string>
+    <string name="t_b32b1a1d" formatted="false">"CONVENIÊNCIA"</string>
+    <string name="t_b3735fe8" formatted="false">"Uma malha de circuitos que respira com a onda."</string>
+    <string name="t_b3b53e34" formatted="false">"As compras ficam ligadas à sua conta do Google, não a este aparelho. Reinstalar ou trocar de celular não faz você perdê-las."</string>
+    <string name="t_b3c34c67" formatted="false">"AGORA MESMO"</string>
+    <string name="t_b40b6d1c" formatted="false">"Um \"time vermelho\" ataca um sistema com permissão para descobrir o que um atacante acharia primeiro. \"Red hat\" é uma gíria informal, não um cargo nem uma certificação, e o sentido varia conforme quem usa; a parte do time vermelho é que é padrão."</string>
+    <string name="t_b5ca7a98" formatted="false">"A melhor onda de cada jogador no mundo todo, por codinome. Registre um à direita, ou o Google mostra seu nome do Play Games."</string>
+    <string name="t_b649891d" formatted="false">"PAUSADO"</string>
+    <string name="t_b683e66d" formatted="false">"{0} está bloqueado: {1} para desbloquear."</string>
+    <string name="t_b6bcb68c" formatted="false">"Muito dano a um único alvo, igual em todo tiro. Ignora toda a blindagem."</string>
+    <string name="t_b7ba0ba1" formatted="false">"REGENERATION o repara quando ele passa {0} segundos sem ser atingido. Mantenha-o sob fogo o caminho todo."</string>
+    <string name="t_b7c4c2a3" formatted="false">"[{0}] {1} (bloqueado): {2}"</string>
+    <string name="t_b7cf2aab" formatted="false">"NENHUM APP CONSEGUE ABRIR O GOOGLE PLAY"</string>
+    <string name="t_b8201e22" formatted="false">"PRÓXIMA: ONDA {0} · CHEFE"</string>
+    <string name="t_b82dfd13" formatted="false">"LEVA VOCÊ A"</string>
+    <string name="t_b835d746" formatted="false">"PASSO 5 — IMPLANTE DOIS TARPIT"</string>
+    <string name="t_b8cbfe08" formatted="false">"Mais longe do CORE-SERVER"</string>
+    <string name="t_b8f9cbc8" formatted="false">"DANO {0}  CADÊNCIA {1}/s"</string>
+    <string name="t_b8ffa95c" formatted="false">"VIVO: AURORA"</string>
+    <string name="t_b9918647" formatted="false">"Pago para estar aqui. Sem truques, sem bloqueios — vinte por cento a mais de tudo do que qualquer outra coisa no tabuleiro."</string>
+    <string name="t_b9a3ada7" formatted="false">"EXFIL é rápido. Se chegar ao núcleo, rouba metade do seu cripto em vez de integridade. Gaste antes, ou pare-o."</string>
+    <string name="t_b9c6b239" formatted="false">"Desenhado sob as rotas e atrás de todos os menus."</string>
+    <string name="t_badb0f4a" formatted="false">"Acelera de tempos em tempos em direção ao servidor."</string>
+    <string name="t_bae2cee7" formatted="false">"SIM — VER ANÚNCIO"</string>
+    <string name="t_bb0a2d46" formatted="false">"ESCOLHER"</string>
+    <string name="t_bb621985" formatted="false">"REFORÇADO"</string>
+    <string name="t_bb93827c" formatted="false">"REVIVER FALHOU — A PARTIDA JÁ ACABOU"</string>
+    <string name="t_bc855067" formatted="false">"ACESSO NEGADO"</string>
+    <string name="t_bcdf64b3" formatted="false">"INJEÇÃO SQL"</string>
+    <string name="t_bceaf8ce" formatted="false">"!!! CIBERATAQUE CHEGANDO !!!"</string>
+    <string name="t_bd0c6acd" formatted="false">"PRÓXIMO € {0} · +{1}% de {2} por nível"</string>
+    <string name="t_bd1b1fc9" formatted="false">"DESL."</string>
+    <string name="t_bd8215e6" formatted="false">"SIM, ME EXPLIQUE"</string>
+    <string name="t_bd84c20a" formatted="false">"ONDA {0} PROTEGIDA"</string>
+    <string name="t_be1fc25b" formatted="false">"Dano confiável para tudo, e não pode ser bloqueado."</string>
+    <string name="t_beb11f45" formatted="false">"Modificador de chefe"</string>
+    <string name="t_beb3cdc3" formatted="false">"O campo dele freia chefes o dobro que outras ameaças."</string>
+    <string name="t_bec37550" formatted="false">"REPARO A QUENTE"</string>
+    <string name="t_bed8ffbb" formatted="false">"Restaurar pergunta de novo ao Play o que esta conta do Google possui. Pode tocar quando quiser e nunca cobra nada."</string>
+    <string name="t_bf09fcca" formatted="false">"Esta versão não tem um projeto do Play Games configurado, então o progresso fica neste aparelho. O backup do próprio Android ainda o restaura ao reinstalar em um celular com a mesma conta do Google."</string>
+    <string name="t_bf0c2eaa" formatted="false">"REPLICANDO"</string>
+    <string name="t_bf7cfb98" formatted="false">"Esta versão não tem publicidade para configurar."</string>
+    <string name="t_c1386132" formatted="false">"◇ CRIPTO"</string>
+    <string name="t_c164d2e8" formatted="false">"Atira tão rápido quanto os chapéus e bate mais forte, com {0}× de dano nos chefes de DUCK-USB, SYN-STORM e GRADIENT. Mantém os modos de alvo. No máximo dois podem ser implantados. Desenhado como um holograma que os visuais de agente não mudam."</string>
+    <string name="t_c19b9c99" formatted="false">"INTEGRIDADE DO CORE-SERVER 0 · CONEXÃO ENCERRADA"</string>
+    <string name="t_c1b7bcc5" formatted="false">"Esta versão não mostra anúncios."</string>
+    <string name="t_c2658f4d" formatted="false">"Dano esmagador a um único alvo. Ignora toda a blindagem."</string>
+    <string name="t_c2c8c2f8" formatted="false">"MOSTRAR ALCANCE DO AGENTE"</string>
+    <string name="t_c2d127eb" formatted="false">"PULAR ×"</string>
+    <string name="t_c31db047" formatted="false">"PACOTE DE REVIVER — sem anúncio."</string>
+    <string name="t_c39850a1" formatted="false">"PASSO 3 — IMPLANTE DOIS FIREWALL"</string>
+    <string name="t_c3e1a996" formatted="false">"◇ Cripto e € Orçamento são recursos fictícios do jogo. Não têm valor monetário, não podem ser trocados por nada fora do jogo e não podem sair do aparelho."</string>
+    <string name="t_c405af57" formatted="false">"JOGAR começa uma partida no nível e no modo escolhidos à esquerda. Se houver uma partida salva, CONTINUAR a retoma e NOVA PARTIDA começa do zero."</string>
+    <string name="t_c40bc4a4" formatted="false">"Um IDS monitora a atividade da rede em busca de comportamentos suspeitos e ameaças, e emite um alerta. Ele vigia; não bloqueia."</string>
+    <string name="t_c4a14a23" formatted="false">"Escolha FIREWALL. É barato, confiável e não pode ser bloqueado."</string>
+    <string name="t_c4b7782d" formatted="false">"Analista de segurança é uma profissão real. A pessoa no processo pega o que as ferramentas automáticas sinalizaram, descobre o que de fato aconteceu e decide o que fazer. Mais lenta que uma máquina, e muito melhor nos casos que não seguem um padrão conhecido."</string>
+    <string name="t_c4d0dc6f" formatted="false">"Ferramentas de aprendizado de máquina apontam padrões incomuns em muito mais sinais do que uma pessoa consegue ler, e servem para filtrar o que merece atenção. Elas ajudam os analistas em vez de substituí-los, e geram falsos positivos — um alerta é uma pista, não um veredito."</string>
+    <string name="t_c51041e3" formatted="false">"  ·"</string>
+    <string name="t_c55cc938" formatted="false">"NOVA PARTIDA"</string>
+    <string name="t_c55e934e" formatted="false">"ROLE PARA VER MAIS"</string>
+    <string name="t_c570c6cd" formatted="false">"Colunas de código caindo dentro do rack."</string>
+    <string name="t_c5cb18f9" formatted="false">"TODOS OS NÍVEIS"</string>
+    <string name="t_c81c4fa0" formatted="false">"1 nível"</string>
+    <string name="t_c8a9aae9" formatted="false">"Três rotas se trançam duas vezes: cada faixa troca de lado."</string>
+    <string name="t_c9301368" formatted="false">"NÚCLEO: REACTOR"</string>
+    <string name="t_c9402c75" formatted="false">"NÃO"</string>
+    <string name="t_c944e5aa" formatted="false">"CONTRAMEDIDAS"</string>
+    <string name="t_c9a2aee9" formatted="false">"Desbloqueie este agente chegando à onda {0} em qualquer nível."</string>
+    <string name="t_ca02a8f8" formatted="false">"Cada agente usa a cor do que faz."</string>
+    <string name="t_ca5ea88d" formatted="false">"MELHOR CUSTO-BENEFÍCIO"</string>
+    <string name="t_cabf47fa" formatted="false">"MÁX. +{0}"</string>
+    <string name="t_cb02b3da" formatted="false">"Um ciclo lento de cores por todo o time."</string>
+    <string name="t_cb1fd3f1" formatted="false">"Um IPS é um IDS com autoridade para agir. Quando reconhece um ataque, ele mesmo descarta o tráfego em vez de só avisar alguém."</string>
+    <string name="t_cb4ff573" formatted="false">"PUBLICIDADE E COMPRAS"</string>
+    <string name="t_cbd3b516" formatted="false">"Sem anúncios, o visual de agente ESPECTRO, o fundo DRIFT e €2.000."</string>
+    <string name="t_cbd47695" formatted="false">"BLOQUEIO DE CARGA"</string>
+    <string name="t_cbf7d422" formatted="false">"SYN-STORM se divide em dois com metade da vida, e a segunda metade pega outra rota. Cubra todas as rotas."</string>
+    <string name="t_cc52e024" formatted="false">"PRÓXIMA: ONDA {0} — CHEFE · TOQUE EM PRÓXIMO CHEFE PARA O BRIEFING"</string>
+    <string name="t_cc5435ac" formatted="false">"O que vem descendo pelas rotas"</string>
+    <string name="t_cc5c44e8" formatted="false">"FOCO: SÓ UNIDADES PEQUENAS E ELITES"</string>
+    <string name="t_cc6791f1" formatted="false">"Resiste aos agentes FIREWALL."</string>
+    <string name="t_cc7fe141" formatted="false">"Vigia ferramentas ofensivas. Bloqueia rapidamente os agentes RED HAT próximos a cada poucos segundos."</string>
+    <string name="t_cc9e044b" formatted="false">"VIVO: ORBIT"</string>
+    <string name="t_ccb963f2" formatted="false">"PACOTE DE DADOS"</string>
+    <string name="t_ccbd0815" formatted="false">"O rack padrão."</string>
+    <string name="t_ccbefbf5" formatted="false">"ALCANCE DE VARREDURA {0}"</string>
+    <string name="t_ccd3b8ff" formatted="false">"As opções de privacidade não estão disponíveis agora."</string>
+    <string name="t_cce0919d" formatted="false">"COMPRADO"</string>
+    <string name="t_cd27794d" formatted="false">"O codinome é local deste aparelho e não é uma conta do Google. Ele dá nome às suas partidas no ranking."</string>
+    <string name="t_cd7ef0df" formatted="false">"AVISO DE MARCAS E TERCEIROS"</string>
+    <string name="t_cd8fc1d8" formatted="false">"Há compras opcionais no aplicativo pelo Google Play. Nada no jogo depende delas."</string>
+    <string name="t_cde6047e" formatted="false">"Sistema de detecção de intrusão"</string>
+    <string name="t_ce2cde0d" formatted="false">"PASSO 1 — ABRA A EQUIPE"</string>
+    <string name="t_ce56b8c8" formatted="false">"GERENCIAR NO GOOGLE PLAY"</string>
+    <string name="t_ce8b48c9" formatted="false">"JOGABILIDADE"</string>
+    <string name="t_ceb6dbab" formatted="false">"CyOps TD SOUNDTRACK"</string>
+    <string name="t_cec6cd66" formatted="false">"Ainda não há partidas registradas. Termine uma e ela aparece aqui, ordenada pela onda que você alcançou."</string>
+    <string name="t_cee3b8c9" formatted="false">"PULAR"</string>
+    <string name="t_cfd886ad" formatted="false">"Duas rotas varrem cada uma a sua metade. Torres no vão do meio alcançam as duas."</string>
+    <string name="t_d0112898" formatted="false">"ISCA"</string>
+    <string name="t_d07db54c" formatted="false">"ROOT / ADMIN"</string>
+    <string name="t_d08f5138" formatted="false">"Duas rotas sinuosas que voltam passando pelas mesmas armas."</string>
+    <string name="t_d10c0c39" formatted="false">"Cadência altíssima e cada tiro respinga, então é a resposta a um enxame, não a um único alvo pesado. Custa mais que um IDS e alcança menos."</string>
+    <string name="t_d11351ac" formatted="false">"LIG"</string>
+    <string name="t_d173b657" formatted="false">"A conta que pode fazer qualquer coisa em um sistema. Atacantes a querem; defensores a guardam com cuidado. Boa parte do trabalho de segurança é limitar quem a recebe e por quanto tempo."</string>
+    <string name="t_d19c7c8e" formatted="false">"◇ {0} · desbloqueia na onda {1}"</string>
+    <string name="t_d22f26dd" formatted="false">"Ataca até 3 ameaças diferentes a cada rajada."</string>
+    <string name="t_d2ee5fd2" formatted="false">"O progresso é salvo automaticamente"</string>
+    <string name="t_d31b24bf" formatted="false">"{0} · {1}  ·  recorde {2}"</string>
+    <string name="t_d35bc038" formatted="false">"{0} — {1} Não causa dano; ganha tempo para seus outros agentes."</string>
+    <string name="t_d415f020" formatted="false">"Um dia zero é uma falha ainda sem correção — o defensor teve zero dias para corrigi-la. Pesquisadores de vulnerabilidades procuram essas falhas para que sejam relatadas e corrigidas antes que outra pessoa as encontre. \"Zero-day hunter\" é uma expressão informal, não uma certificação nem um cargo formal."</string>
+    <string name="t_d477fdfb" formatted="false">"FIRMWARE TOTALMENTE INSTALADO"</string>
+    <string name="t_d488d098" formatted="false">"A PARTIDA GUIADA PRECISA DO TARPIT AGORA"</string>
+    <string name="t_d48f1170" formatted="false">"▼  MAIS ABAIXO"</string>
+    <string name="t_d4bb26ac" formatted="false">"PACOTE DE VISUAIS DE NÚCLEO"</string>
+    <string name="t_d5acb32b" formatted="false">"Vibração em alertas de chefe, golpes no servidor e fim de jogo"</string>
+    <string name="t_d5b86d2a" formatted="false">"Centro de operações de segurança"</string>
+    <string name="t_d5d0b693" formatted="false">"CONTINUAR"</string>
+    <string name="t_d62907f6" formatted="false">"FIRMWARE INSTALADO"</string>
+    <string name="t_d63b9487" formatted="false">"INACESSÍVEL"</string>
+    <string name="t_d736d92d" formatted="false">"OK"</string>
+    <string name="t_d8386755" formatted="false">"FATURAMENTO DO GOOGLE PLAY"</string>
+    <string name="t_d84b41e9" formatted="false">"Dano contínuo vence. IPS ou um FIREWALL evoluído."</string>
+    <string name="t_d8705eb7" formatted="false">"Ciberataques avançam por rotas de rede rumo ao CORE-SERVER. Você implanta ciberagentes ao lado das rotas; eles detectam e destroem o que passa. Cada ataque que você para rende ◇ Cripto, que compra mais agentes e melhorias. A cada quinta onda vem um chefe. Não há onda final — a única pergunta é até onde você chega."</string>
+    <string name="t_d889d3ab" formatted="false">"+1, +10 e +100 compram essa quantidade de níveis. INSTALAR MÁX. gasta tudo o que você puder pagar. Cada nível custa um pouco mais."</string>
+    <string name="t_d8bcdc1d" formatted="false">"REINICIAR"</string>
+    <string name="t_d8fec6d4" formatted="false">"TOTAL DE AGENTES IMPLANTADOS"</string>
+    <string name="t_d9074af5" formatted="false">"A criptografia embaralha os dados para que só quem tem a chave certa consiga lê-los. Ela protege o tráfego legítimo — e esconde igualmente bem a carga de um atacante da inspeção."</string>
+    <string name="t_d92ad54a" formatted="false">"Esta versão não tem faturamento do Google Play configurado, ou este aparelho não tem a Play Store. Nada pode ser comprado, e nada que custe dinheiro é necessário para jogar."</string>
+    <string name="t_d9694eb9" formatted="false">"A mesma falha, sem retorno. O aplicativo não devolve erro nem dados, então o atacante faz perguntas de sim ou não e observa o que muda — tempo, tamanho da página, códigos de status — para ler o banco de dados um bit por vez. Lento, paciente e muito mais difícil de notar em um log."</string>
+    <string name="t_d9b49353" formatted="false">"TENTAR DE NOVO"</string>
+    <string name="t_d9b88563" formatted="false">"A unidade do tráfego de rede"</string>
+    <string name="t_d9c57847" formatted="false">"PERÍMETRO PRONTO"</string>
+    <string name="t_da10b268" formatted="false">"NÃO COMPRADO"</string>
+    <string name="t_da169a1a" formatted="false">"MUNDIAL"</string>
+    <string name="t_da3ae5ed" formatted="false">"Não causa dano nem mira em nada. Repara 1 ponto de integridade do CORE-SERVER a cada 30 segundos enquanto uma onda está em andamento (nunca no intervalo nem pausado). É implantado no próprio CORE-SERVER, que tem dois espaços para ele, e em nenhum outro lugar. Os níveis encurtam o tempo. No máximo dois podem ser implantados."</string>
+    <string name="t_dad4b11e" formatted="false">"VARREDURA OFENSIVA"</string>
+    <string name="t_db696c4d" formatted="false">"Enorme e muito blindado, mas lento. Leve algo que ignore blindagem."</string>
+    <string name="t_db971746" formatted="false">"Vigia ferramentas defensivas. Bloqueia rapidamente os agentes BLUE HAT próximos a cada poucos segundos."</string>
+    <string name="t_dba0a883" formatted="false">"Uma rede de máquinas sequestradas"</string>
+    <string name="t_dbc1a374" formatted="false">"ANÚNCIO NÃO CONCLUÍDO — NADA FOI GASTO"</string>
+    <string name="t_dc09f8b7" formatted="false">"BLOQUEIO — um chefe pode interferir em um agente e cortar a cadência dele pela metade enquanto durar. {0} foi feito para não se importar."</string>
+    <string name="t_dc37fa05" formatted="false">"Faixas largas de luz fria se movendo atrás de tudo."</string>
+    <string name="t_dc62badb" formatted="false">"TÍTULO"</string>
+    <string name="t_dce01a82" formatted="false">"DIGITE O CODINOME"</string>
+    <string name="t_dd220c90" formatted="false">"PUBLICIDADE"</string>
+    <string name="t_dd4083b5" formatted="false">"Nada comprado. Tudo acima também pode ser conquistado, ou simplesmente dá para jogar sem."</string>
+    <string name="t_dd55f56b" formatted="false">"Duas rotas se entrelaçam três vezes antes do rack, como uma fita de DNA."</string>
+    <string name="t_ddb5514a" formatted="false">"ABRIR NO GOOGLE PLAY GAMES"</string>
+    <string name="t_ddcb2958" formatted="false">"Leva o nome da primeira e é pura ficção científica: cada golpe se encadeia em duas ameaças próximas com 55% do dano. Forte contra ondas agrupadas, desperdiçado em um alvo sozinho. Permite escolher o alvo."</string>
+    <string name="t_ddd374d9" formatted="false">"Um resumo rápido dos ataques que você vai enfrentar, dos chefes e do que seus agentes fazem contra eles. Leva uns vinte segundos."</string>
+    <string name="t_dee83e52" formatted="false">"OPACIDADE DOS PAINÉIS NO JOGO"</string>
+    <string name="t_e00d9a42" formatted="false">"COLOQUE EM UM ESPAÇO DO CORE-SERVER"</string>
+    <string name="t_e01007ce" formatted="false">"Melhor custo-benefício por euro que o pacote pequeno."</string>
+    <string name="t_e07706fa" formatted="false">"ESTE APARELHO ATÉ VINCULAR"</string>
+    <string name="t_e0a2aaa4" formatted="false">"VINCULAR CONTA DO GOOGLE"</string>
+    <string name="t_e12d998f" formatted="false">"PACOTE"</string>
+    <string name="t_e13093ea" formatted="false">"DANO"</string>
+    <string name="t_e1892d25" formatted="false">"FIRMWARE DO NÚCLEO"</string>
+    <string name="t_e1df4ef7" formatted="false">"CHEFES"</string>
+    <string name="t_e3407723" formatted="false">"SIM"</string>
+    <string name="t_e3a7e50c" formatted="false">"MANTER MEU SALVAMENTO"</string>
+    <string name="t_e3c4a9cc" formatted="false">"{0} bloqueia os agentes {1} próximos. Posicione-os mais atrás, no limite do alcance."</string>
+    <string name="t_e4554374" formatted="false">"FECHAR"</string>
+    <string name="t_e55f9c78" formatted="false">"O QUE ESTE JOGO NÃO FAZ"</string>
+    <string name="t_e587f42b" formatted="false">"PADRÃO DO SISTEMA (idioma do celular)"</string>
+    <string name="t_e5e7e535" formatted="false">"SYN-STORM DIVIDIDO"</string>
+    <string name="t_e6694d9c" formatted="false">"Repara 1 de integridade do CORE-SERVER a cada 30 segundos de onda, a partir de um dos dois espaços do CORE-SERVER. Mais rápido com os níveis. No máximo dois."</string>
+    <string name="t_e807eff2" formatted="false">"Fecha com um muro a rota mais próxima no alcance; as ameaças precisam derrubá-lo. Bate muito forte em todos os chefes. No máximo três."</string>
+    <string name="t_e8757749" formatted="false">"passe da onda {0} em {1}"</string>
+    <string name="t_e8987cec" formatted="false">"REDEFINIR PROGRESSO"</string>
+    <string name="t_e94c961d" formatted="false">"ESTATÍSTICAS"</string>
+    <string name="t_e979d28d" formatted="false">"CADÊNCIA"</string>
+    <string name="t_e99d5d17" formatted="false">"Os pacotes de € são gastos, não possuídos: são creditados uma vez e RESTAURAR não os entrega de novo."</string>
+    <string name="t_e9caa97b" formatted="false">"Ainda não há implantações registradas. Jogue uma partida para preencher isto."</string>
+    <string name="t_ea16b407" formatted="false">"Traços dourados sobre índigo profundo."</string>
+    <string name="t_ea31efb2" formatted="false">"passe da onda {0}"</string>
+    <string name="t_eab5f205" formatted="false">"MUDAR CODINOME"</string>
+    <string name="t_eaf7396d" formatted="false">"GOOGLE INACESSÍVEL — SALVAMENTO MANTIDO NO APARELHO"</string>
+    <string name="t_eb2e832a" formatted="false">"AGENTE {0}"</string>
+    <string name="t_ebdd4d5e" formatted="false">"REMOVIDOS · NENHUM"</string>
+    <string name="t_ec91403d" formatted="false">"ONDA"</string>
+    <string name="t_ed31a176" formatted="false">"Uma malha de circuitos que respira e reage à onda."</string>
+    <string name="t_ed5c9d47" formatted="false">"POR NÍVEL"</string>
+    <string name="t_ed7160a0" formatted="false">"NUNCA"</string>
+    <string name="t_ed7ecda7" formatted="false">"Bloqueado"</string>
+    <string name="t_ee0803eb" formatted="false">"RESILIENTE"</string>
+    <string name="t_ee094192" formatted="false">"Esta versão não tem faturamento do Google Play configurado, então nada pode ser comprado aqui. Tudo no jogo que não custa dinheiro funciona normalmente."</string>
+    <string name="t_ee5525d9" formatted="false">"KERNEL PANIC · {0} BLOQUEADOS"</string>
+    <string name="t_ee6595fd" formatted="false">"A equipe e a sala que vigiam os alertas. Se este jogo tem um cenário, é a tela de parede de um SOC às 3 da manhã."</string>
+    <string name="t_eea62f11" formatted="false">"COMPRAS"</string>
+    <string name="t_eef967f2" formatted="false">"APROXIME O CAMPO DE BATALHA"</string>
+    <string name="t_ef29f425" formatted="false">"ÁUDIO"</string>
+    <string name="t_efcf9890" formatted="false">"DANO {0} · CADÊNCIA {1}/s · ALCANCE {2}"</string>
+    <string name="t_f001b942" formatted="false">"FORTIFICADO"</string>
+    <string name="t_f03b01af" formatted="false">"Repara-se devagar depois de um tempo sem ser atingido."</string>
+    <string name="t_f100d10c" formatted="false">"Tudo marcado como BLOQUEADO está na loja. Nada disso muda como o jogo funciona — visuais são aparência, não vantagem."</string>
+    <string name="t_f16b76bc" formatted="false">"Um \"rubber ducky\" é um pen drive que finge ser um teclado e digita um ataque mais rápido do que qualquer pessoa. A defesa é um guarda de USB que verifica cada dispositivo novo antes de o computador confiar nele e bloqueia um teclado que digita como uma máquina."</string>
+    <string name="t_f17dfdae" formatted="false">"Uma rota longa entra pelo alto e sai em espiral até o rack."</string>
+    <string name="t_f25360a0" formatted="false">"As mudanças valem na hora e ficam salvas neste aparelho"</string>
+    <string name="t_f293dfd1" formatted="false">"VERIFICAÇÃO DE COMPRAS"</string>
+    <string name="t_f2e7479c" formatted="false">"Vincule sua conta do Google para manter seu progresso em qualquer celular ou tablet. O Google vai pedir permissão para gerenciar os dados salvos deste jogo na sua conta — é o armazenamento de jogos salvos, e é só isso que é usado."</string>
+    <string name="t_f2ed0368" formatted="false">"Rápido. Se chegar ao núcleo, rouba metade do seu cripto em vez de integridade."</string>
+    <string name="t_f2f63d9f" formatted="false">"NESTE APARELHO"</string>
+    <string name="t_f33c5b01" formatted="false">"PASSO 6 — COMECE A ONDA"</string>
+    <string name="t_f38eb808" formatted="false">"Ameaças mais fortes, mais próximas, menos integridade. Recompensas maiores."</string>
+    <string name="t_f3e23f71" formatted="false">"NÚCLEO: CASCADE"</string>
+    <string name="t_f49a4ff9" formatted="false">"AGENTE BLOQUEADO"</string>
+    <string name="t_f4f677dc" formatted="false">"TOTAL GANHO"</string>
+    <string name="t_f5537783" formatted="false">"NÚCLEO: MAINFRAME"</string>
+    <string name="t_f590e2c9" formatted="false">"ROTA"</string>
+    <string name="t_f5b866e4" formatted="false">"Uma tentativa de violação coordenada, com redundância suficiente para aguentar uma rede despreparada. A cada quinta onda vem uma, cada uma mais forte que a anterior."</string>
+    <string name="t_f60f5840" formatted="false">"Continua não havendo conta CyOps nem senha. As compras acompanham a conta do Google conectada à Play Store neste aparelho. O progresso acompanha a conta do Google que você vincular acima — uma escolha separada e opcional: o jogo é completo sem ela."</string>
+    <string name="t_f692d3ce" formatted="false">"BOTNET"</string>
+    <string name="t_f69a80a7" formatted="false">"O jogo reinicia para mudar para {0}. Seu progresso é mantido."</string>
+    <string name="t_f6f93110" formatted="false">"NÚCLEO: NEONGRID"</string>
+    <string name="t_f720bfa7" formatted="false">"Linhas de varredura de fósforo de CRT."</string>
+    <string name="t_f76fff7f" formatted="false">"Software malicioso: código feito para danificar, interromper ou roubar. Carrega mais do que uma simples injeção, então aguenta mais dano antes de se desfazer."</string>
+    <string name="t_f7a4fc70" formatted="false">"TOQUE DE NOVO PARA IMPLANTAR"</string>
+    <string name="t_f7a7b98a" formatted="false">"DANO {0} · CADÊNCIA {1} · ALC. {2}"</string>
+    <string name="t_f7eb1496" formatted="false">"A posição é definida pela onda mais longe que você alcançou. O dano causado desempata."</string>
+    <string name="t_f803ec67" formatted="false">"HISTÓRICO DE PEDIDOS E REEMBOLSOS"</string>
+    <string name="t_f85117ec" formatted="false">"As {0} faixas já estão em Music/CyOps TD."</string>
+    <string name="t_f8723c46" formatted="false">"VELOCIDADE"</string>
+    <string name="t_f8d84db3" formatted="false">"NÃO REGISTRADO"</string>
+    <string name="t_f8e6e39f" formatted="false">"Engenheiros de sistemas mantêm os servidores funcionando: aplicam patches, trocam peças com defeito, restauram backups e acompanham a saúde das máquinas. \"Server systems engineer\" descreve esse tipo de trabalho; os cargos variam entre organizações."</string>
+    <string name="t_f9807a9f" formatted="false">"&gt; em espera — implante agentes e comece a onda 1"</string>
+    <string name="t_f9cec260" formatted="false">"Poucos golpes enormes mal aceleram o GRADIENT."</string>
+    <string name="t_f9d6b090" formatted="false">"Dados ASCII flutuando atrás do campo de batalha e dos menus"</string>
+    <string name="t_fa1b4500" formatted="false">"As estatísticas se acumulam em todas as partidas, inclusive as que você abandona pelo menu de pausa. Redefinir o progresso em CONFIGURAÇÕES apaga tudo."</string>
+    <string name="t_fa60c2c6" formatted="false">"VIVO: HEATMAP"</string>
+    <string name="t_fb735826" formatted="false">"VIBRAÇÃO"</string>
+    <string name="t_fb889492" formatted="false">"Um jogo de tower defense independente, feito para funcionar off-line e com tema de cibersegurança. Os cenários, agentes e termos são ficcionalizados para o jogo, com breves explicações do mundo real para que os conceitos por trás deles possam ser aprendidos. Ele não ensina nenhuma técnica ofensiva e não executa nenhuma função real de segurança."</string>
+    <string name="t_fbca7f29" formatted="false">"Malware com um disfarce útil"</string>
+    <string name="t_fbd9e20c" formatted="false">"ANIMAÇÃO DE FUNDO"</string>
+    <string name="t_fc778505" formatted="false">"Um rack limpo, sem marca."</string>
+    <string name="t_fcc1e712" formatted="false">"PRIVACIDADE"</string>
+    <string name="t_fd3cb488" formatted="false">"COMO FUNCIONA O LOGIN"</string>
+    <string name="t_fdb0282f" formatted="false">"CARREGANDO ANÚNCIO…"</string>
+    <string name="t_fde05efe" formatted="false">"CHEGUE À ONDA {0} EM {1}"</string>
+    <string name="t_fe26fa48" formatted="false">"MELHOR ONDA"</string>
+    <string name="t_fe451d7a" formatted="false">"SISTEMAS RESTAURADOS — INTEGRIDADE {0}"</string>
+    <string name="t_fe86390c" formatted="false">" · VEL {0}"</string>
+    <string name="t_feeee285" formatted="false">"{0} visuais de núcleo · {1} fundos disponíveis"</string>
+    <string name="t_feef9615" formatted="false">"PRÓXIMO CHEFE"</string>
+    <string name="t_ff2d6a51" formatted="false">"Três rotas trocam de lugar duas vezes. Cada cruzamento é um ponto que alcança duas."</string>
+    <string name="t_ffa57dc1" formatted="false">"&gt; montando a topologia das rotas"</string>
+    <string name="t_ffc3db58" formatted="false">"ALC. {0}"</string>
+    <string name="t_ffff9bd9" formatted="false">"Os agentes percorrem devagar o espectro de cores, cada unidade defasada da próxima."</string>
+</resources>

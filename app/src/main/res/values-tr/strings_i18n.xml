@@ -1,0 +1,867 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Translation of values/strings_i18n.xml. Machine-quality (AI) translation; see FEATURE_BACKLOG.md. -->
+<resources>
+    <string name="t_0069698f" formatted="false">"Bütçede € {0}"</string>
+    <string name="t_00bdf050" formatted="false">"BU CİHAZ"</string>
+    <string name="t_00c74b4a" formatted="false">"Her yaylımda en fazla üç ayrı tehditle çatışır; bu da onu kadronun geniş bir dalgaya cevabı yapar. Hedefleme seçicisini açar."</string>
+    <string name="t_00cb85ad" formatted="false">"ADIM 4 — TARPIT SEÇ"</string>
+    <string name="t_00f316c1" formatted="false">"SONRAKİ SEVİYE MALİYETİ"</string>
+    <string name="t_00fafa13" formatted="false">"BU HESABIN SAHİP OLDUKLARI"</string>
+    <string name="t_01278423" formatted="false">"BU NEYİ DEĞİŞTİRİR"</string>
+    <string name="t_014c06bb" formatted="false">"{0}/{1} açık · en iyi dalga {2}"</string>
+    <string name="t_01b91dff" formatted="false">"RANSOM birkaç saniyede bir, bir ajanın yükseltmelerini {0} saniye kilitler. O gelmeden yükselt."</string>
+    <string name="t_01ba7032" formatted="false">"0 seviye"</string>
+    <string name="t_01f2a69d" formatted="false">"OTURUM NOTLARI"</string>
+    <string name="t_0288b770" formatted="false">"Aşağıdaki kontrol çubuğunda AJANLAR düğmesine dokun."</string>
+    <string name="t_02b88c49" formatted="false">"Tüm sesler açılışta cihazda üretilir; oyunda hiç ses dosyası yoktur."</string>
+    <string name="t_02f0f435" formatted="false">"Root ya da yönetici, bir sistemdeki en yüksek yetki seviyesidir: her işlemi durdurabilir ve her şeyi değiştirebilir. Tam da bu yüzden iyi uygulama, onu olabildiğince seyrek ve olabildiğince kısa süreyle vermektir. \"Root admin\" bu erişim seviyesinin kısaltmasıdır, bir unvan değildir."</string>
+    <string name="t_0306926d" formatted="false">"Ana sunucuya giden üç saldırı hattı"</string>
+    <string name="t_0358799e" formatted="false">"Bundan sonra her maçta her {0} için geçerlidir, ÇEKİRDEK YAZILIMI'nın üstüne eklenir. İlk seviyeler ucuzdur; her biri bir öncekinden pahalıdır ve en üst seviyeler milyonlar tutar."</string>
+    <string name="t_0397b7d9" formatted="false">"BOSS DALGALARINI OTOMATİK BAŞLAT"</string>
+    <string name="t_03d108e0" formatted="false">"Bağlı, ancak Google'a ulaşılamadı. Hiçbir şey kaybolmadı — oynanan kayıt bu cihazdaki kayıttır ve bir sonraki eşitleme hesabı güncelleyecek."</string>
+    <string name="t_059b388a" formatted="false">"&gt; dalga {0} temizlendi — dalga {1} için hazırlan"</string>
+    <string name="t_05ea5d0e" formatted="false">"Baştan itibaren mevcut."</string>
+    <string name="t_05f2ef1e" formatted="false">"Sonraki parça"</string>
+    <string name="t_063d8618" formatted="false">"İstediğin bir şey kılığına girmiş düşman kod. Yavaş ilerler ama kalın sarılmıştır — zırh her tek vuruşu köreltir, bu yüzden hızlı zayıf atışlar boşa gider."</string>
+    <string name="t_07269781" formatted="false">"Dünya tablosunu görmek için bir zorluk seç."</string>
+    <string name="t_07a3d7ab" formatted="false">"Sahip olunan her şey, canlanmalar dahil, herhangi bir cihazda GERİ YÜKLE ile Google Play'den geri gelir. Bulut kaydının asla parçası değildir, bu yüzden hiçbir kayıt dosyası bir satın alımı veremez ya da alamaz."</string>
+    <string name="t_07fbf4bd" formatted="false">"DİRİLDİ"</string>
+    <string name="t_08039ac7" formatted="false">"MAĞAZA"</string>
+    <string name="t_08175caa" formatted="false">"SINIF RENKLERİ"</string>
+    <string name="t_08218c08" formatted="false">"BAĞLANIYOR…"</string>
+    <string name="t_08279524" formatted="false">"Bir sistemdeki belirli bir açığı istismar eden kod. İstismarlar hızlı ilerler ve sert vurur; geldiklerinde tespit menzili ham hasardan daha önemlidir."</string>
+    <string name="t_086b8b8e" formatted="false">"BOSS"</string>
+    <string name="t_08f0711d" formatted="false">"SATIN ALIMLARI GERİ YÜKLE"</string>
+    <string name="t_09653280" formatted="false">"ÇEKİRDEĞE"</string>
+    <string name="t_0a0bc63d" formatted="false">"Önceki parça"</string>
+    <string name="t_0a2301f4" formatted="false">"KAYITLI İLERLEME"</string>
+    <string name="t_0a344034" formatted="false">"SONRAKİ: DALGA {0}"</string>
+    <string name="t_0ae74b3e" formatted="false">"SIFIRINCI GÜN SALDIRISI"</string>
+    <string name="t_0b205685" formatted="false">"Ağ başlatılıyor..."</string>
+    <string name="t_0b809aa5" formatted="false">"{0} için henüz dünya tablosu yok. Oradaki oyunlar bu cihaza kaydedilir."</string>
+    <string name="t_0bc6e19b" formatted="false">"Kendisi hasar vermez. Menzildeki her ajana +%30 hasar ve +%20 atış hızı verir, yani tüm değeri onu nereye koyduğundadır."</string>
+    <string name="t_0bd16003" formatted="false">"MAKS"</string>
+    <string name="t_0bfbeb5b" formatted="false">"Onları bir TARPIT alanında tut, sonra birikmiş olanları IPS temizlesin."</string>
+    <string name="t_0c121fb2" formatted="false">"İLERLEME EŞİTLENDİ"</string>
+    <string name="t_0c147607" formatted="false">"DERİN TARAMA"</string>
+    <string name="t_0c16a4ef" formatted="false">"Henüz skor yok. İlk olmak için bir oyun bitir."</string>
+    <string name="t_0c997319" formatted="false">"WORM BÖLÜNMESİ"</string>
+    <string name="t_0cb4ce2b" formatted="false">"DALGA {0} GÜVENCEDE  ◇{1}"</string>
+    <string name="t_0cfa4a6e" formatted="false">"BU SEVİYENİN BOSSLARI"</string>
+    <string name="t_0d884b08" formatted="false">"SIZMA (BOSS)"</string>
+    <string name="t_0d8c63a6" formatted="false">"Her vuruş yakındaki 2 tehdide %55 hasarla zincirlenir."</string>
+    <string name="t_0df4bfec" formatted="false">"ZAYIF OLDUĞU"</string>
+    <string name="t_0e69fc6c" formatted="false">"Konuşlandırma çubuğu her ajanın yalnızca simgesini ve fiyatını gösterir"</string>
+    <string name="t_0eb480b6" formatted="false">"Uzaklaşan bir perspektif ızgarası, altında bir takip şeridi."</string>
+    <string name="t_0f47943c" formatted="false">"ODAK KAPALI"</string>
+    <string name="t_0f5d5911" formatted="false">"PİL TASARRUFU"</string>
+    <string name="t_0f80d304" formatted="false">"AJAN HASARI"</string>
+    <string name="t_0f9a43d6" formatted="false">"TÜM CANLI ARKA PLANLAR"</string>
+    <string name="t_0fa88218" formatted="false">"Google Play'e ulaşılamadı — genellikle ağ yoktur. Daha önce alınan her şey hâlâ senindir; tekrar çevrimiçi olunca GERİ YÜKLE'ye bas, yeniden görünecek."</string>
+    <string name="t_0fd40469" formatted="false">"PERFORMANS"</string>
+    <string name="t_0fd4c0f4" formatted="false">"CORE-SERVER YUVALARI YALNIZCA [S] İÇİN"</string>
+    <string name="t_1046865f" formatted="false">"Arkasında sürekli BOT üretir. Onu hızlı öldür ya da botnetinde boğul."</string>
+    <string name="t_107ea55b" formatted="false">"YÜKSELTMELER FİDYEDE"</string>
+    <string name="t_108f4363" formatted="false">"YÜKLE"</string>
+    <string name="t_111611f9" formatted="false">"YAMA DUVARI"</string>
+    <string name="t_1181f7e7" formatted="false">"AJANLAR SIKIŞTI"</string>
+    <string name="t_11c0f105" formatted="false">"SEVİYE MÜZİĞİ (OTOMATİK)"</string>
+    <string name="t_11c8546c" formatted="false">"hasar"</string>
+    <string name="t_11d858aa" formatted="false">"EN YÜKSEK DALGA"</string>
+    <string name="t_1213b2b6" formatted="false">"{0} SA ÖNCE"</string>
+    <string name="t_12193f21" formatted="false">"Ağ mimarları bir ağın nasıl bölüneceğini tasarlar. Segmentasyon, bir bölgedeki ihlalin bir sonrakine öylece geçemeyeceği anlamına gelir; bu da tek bir arızanın hasarını sınırlar. Bu, olaydan önce yapılan bir tasarım işidir, olay sırasında kullanılan bir araç değil."</string>
+    <string name="t_1248f6ec" formatted="false">"Film müziğini kaydetmek için Android 10 veya üstü gerekir."</string>
+    <string name="t_125ca8ca" formatted="false">"BAŞLANGIÇ PAKETİ"</string>
+    <string name="t_12a36ceb" formatted="false">"SAHTELENDİ"</string>
+    <string name="t_12e8edf9" formatted="false">"DİL"</string>
+    <string name="t_1380e038" formatted="false">"FİDYEDE · YÜKSELTMELER KİLİTLİ {0} sn"</string>
+    <string name="t_138da392" formatted="false">"Hücreleri trafikle ısınıp soğuyan bir ızgara."</string>
+    <string name="t_13df4b88" formatted="false">"YAZILIM"</string>
+    <string name="t_13ee9782" formatted="false">"KONUŞLANDI"</string>
+    <string name="t_141ad814" formatted="false">"GERİ BİLDİRİM"</string>
+    <string name="t_143628e2" formatted="false">"YALNIZCA CANLANMA REKLAMLARI · İSTEĞE BAĞLI"</string>
+    <string name="t_1489b7f6" formatted="false">"{0} GÜN ÖNCE"</string>
+    <string name="t_14bdf6f2" formatted="false">"REHBERLİ OYUN ÖNCE FIREWALL İSTER"</string>
+    <string name="t_14c27ca9" formatted="false">"ANALYST elitlere %80 ekstra hasar verir. Zırhı yok sayan ajanlar yardımcı olur."</string>
+    <string name="t_14cecaa5" formatted="false">"Veriyi anahtarsız okunamaz yapmak"</string>
+    <string name="t_14ecbe1d" formatted="false">"{0}/sn"</string>
+    <string name="t_1512aeac" formatted="false">"{0} seviye"</string>
+    <string name="t_154419d5" formatted="false">"Şifreli sayılır: çoğu ajan azaltılmış hasar verir."</string>
+    <string name="t_154a5adf" formatted="false">"SVY"</string>
+    <string name="t_15680f7c" formatted="false">"Kalıcı ÇEKİRDEK YAZILIMI hasarına harca."</string>
+    <string name="t_1571a208" formatted="false">"İki TARPIT'i, auraları FIREWALL'larının ateş ettiği alanı kaplayacak şekilde yerleştir. Hasarın isabet etmesini sağlayan yavaşlatmadır."</string>
+    <string name="t_15aa2838" formatted="false">"Hücreleri trafikle ısınıp soğuyan kaba bir ızgara."</string>
+    <string name="t_15ede35d" formatted="false">"◇ {0} · baştan itibaren mevcut"</string>
+    <string name="t_167ae054" formatted="false">"Bu, kayıtlı oyununu, açılmış her ajanı, tüm istatistikleri ve ayarlarını siler.\n\nBu geri alınamaz."</string>
+    <string name="t_17a13ae4" formatted="false">"Bosslar yavaş ilerler ama CORE-SERVER'a {0} bütünlük hasarı verir. Oyundaki en çok kriptoyu verirler ve her döngüde güçlenirler."</string>
+    <string name="t_17e0e9f0" formatted="false">"Çok yüksek atış hızı, menzildeki her şeyden önce daima bosslara nişan alır ve [!!!] BREACH'e çift hasar verir. 30. dalgada açılır ve en fazla dört tane konuşlandırılabilir."</string>
+    <string name="t_1877f7c0" formatted="false">"YÜKLENMEDİ"</string>
+    <string name="t_197d534b" formatted="false">"€ BÜTÇE'yi — her oyunun her onuncu dalgasında biriktirilir ve sonrasında da saklanır — her ajan için kalıcı hasar artışına harca."</string>
+    <string name="t_1991565e" formatted="false">"HIZ SINIRI"</string>
+    <string name="t_19cbe369" formatted="false">"FAVORİ AJAN"</string>
+    <string name="t_1a155da6" formatted="false">"SONRAKİ DALGA"</string>
+    <string name="t_1a2a0f17" formatted="false">"KİLİTLİ"</string>
+    <string name="t_1a73c7da" formatted="false">"atış hızı"</string>
+    <string name="t_1aba43b0" formatted="false">"Çekirdeğin etrafında yavaş eliptik izler, çalışan bir zamanlayıcı gibi."</string>
+    <string name="t_1b0d8052" formatted="false">"CORE-SERVER vurulduğunda savaş alanını salla"</string>
+    <string name="t_1ba327c9" formatted="false">"En yaygın web saldırısı"</string>
+    <string name="t_1ba41734" formatted="false">"ENGELLENEN SALDIRILAR"</string>
+    <string name="t_1cc19733" formatted="false">"GERÇEK DÜNYA"</string>
+    <string name="t_1d162704" formatted="false">"Yeni bir oyuna başlamak istediğinden emin misin? Kayıtlı oturumun değiştirilecek."</string>
+    <string name="t_1d29935f" formatted="false">"{0} SIKIŞTI"</string>
+    <string name="t_1d8fe548" formatted="false">"YENİDEN BAŞLA"</string>
+    <string name="t_1dea7837" formatted="false">"HACK:AI sınırlarını aştı. Yarı bütünlük, iki kat ödül."</string>
+    <string name="t_1deb5c00" formatted="false">"BAĞLI · ÇEVRİMDIŞI"</string>
+    <string name="t_1e09b492" formatted="false">"🔒 [{0}] {1} · KİLİTLİ"</string>
+    <string name="t_1e6ed1a9" formatted="false">"CANLI ARKA PLANLAR"</string>
+    <string name="t_1ef7821b" formatted="false">"Çekirdeğe doğru uzanan neon mavi ızgara, maviden yeşile kayan holografik bir halkayla."</string>
+    <string name="t_1f3159fc" formatted="false">"AJAN RENKLERİ"</string>
+    <string name="t_1f5df304" formatted="false">"BAĞLANTI SIFIRLANDI"</string>
+    <string name="t_1ff44d56" formatted="false">"LİSANS UYGULANDI"</string>
+    <string name="t_20ce505d" formatted="false">"DURAKLAT"</string>
+    <string name="t_21399575" formatted="false">"GELİŞTİRİCİ"</string>
+    <string name="t_2198b685" formatted="false">"Seçili ajanın tarama yarıçapını çiz"</string>
+    <string name="t_21bb43e3" formatted="false">"{0} · HERHANGİ BİR SEVİYE"</string>
+    <string name="t_22100250" formatted="false">"SEVİYE {0} · MAKS"</string>
+    <string name="t_224d65ed" formatted="false">"CORE-SERVER GÖRÜNÜMLERİ"</string>
+    <string name="t_22686e59" formatted="false">"BAĞLANTI"</string>
+    <string name="t_227cde14" formatted="false">"{1} içinde {0}"</string>
+    <string name="t_2283d7ca" formatted="false">"DÜĞÜM DOLU"</string>
+    <string name="t_22b6479a" formatted="false">"Bir siber operasyon uzmanı savunmayı canlı bir operasyon olarak yürütür: müdahaleyi izler, biri aktif olarak kapatmaya çalışırken ekibin araçlarını çalışır tutar ve doğrudan kaynağına gider."</string>
+    <string name="t_22c4ef22" formatted="false">"İçeriği karıştırılmıştır, bu yüzden çoğu savunma neye ateş ettiğini okuyamaz ve yalnızca kısmi hasar verir. Bir CRYPTOGRAPHER ajanı şifreyi doğrudan deler."</string>
+    <string name="t_23020c53" formatted="false">" · {0} alınabilir"</string>
+    <string name="t_236f5b12" formatted="false">"TOPLAM YENİLEN BOSS"</string>
+    <string name="t_23763c89" formatted="false">"AYARLAR"</string>
+    <string name="t_23961a76" formatted="false">"BOSS {0}/{1} · DEĞİŞTİRMEK İÇİN BİR BOSSA DOKUN"</string>
+    <string name="t_24adcafc" formatted="false">"SUNUCUNUN ALDIĞI TOPLAM HASAR"</string>
+    <string name="t_24bbb47b" formatted="false">"KİLİTLİ ÖĞELER"</string>
+    <string name="t_24d3a2ef" formatted="false">"DUVAR YIKILDI"</string>
+    <string name="t_255b5911" formatted="false">"CRT fosfor yeşili, tarama çizgileri ve bir yenileme süpürmesi."</string>
+    <string name="t_2570d23e" formatted="false">"Ateşi yoğunlaştır. Boss dalgalarını ANALYST ve ROOT ADMIN taşır."</string>
+    <string name="t_25a6b96b" formatted="false">"Düşük fiyata güvenilir orta menzil hasarı ve boss JAM'ine bağışık tek ajan. Menzili kısadır, bu yüzden hatta yakın durmalı — o bağışıklığın önemi de tam olarak buradan gelir."</string>
+    <string name="t_25bd1975" formatted="false">"HSR"</string>
+    <string name="t_25efb9da" formatted="false">"PATLAMA YARIÇAPI"</string>
+    <string name="t_260d60b1" formatted="false">"KAYBEDİLEN OYUNDAN SONRA BİR REKLAM · CANLANMA İSTEĞE BAĞLI"</string>
+    <string name="t_26b80d1f" formatted="false">"TAMAM"</string>
+    <string name="t_27a68119" formatted="false">"AĞ DURUMU"</string>
+    <string name="t_27d9802d" formatted="false">"KAYBEDİLEN OYUNDAN SONRA BİR REKLAM"</string>
+    <string name="t_27daad70" formatted="false">"Kenarlardan sızan ayaz."</string>
+    <string name="t_28c31125" formatted="false">"Zırhlı ve sabırlı. Ağır tek vuruşlar onu yener; hızlı ateş boşa gider."</string>
+    <string name="t_28e339dd" formatted="false">"Alanın arkasında seyrek düşen karakter sütunları."</string>
+    <string name="t_296fb456" formatted="false">"ONARIM +{0} HP · HER {1} sn · YUVA CORE-SERVER · MAKS {2}"</string>
+    <string name="t_297ae895" formatted="false">"KARANTİNADA"</string>
+    <string name="t_2a1bde6e" formatted="false">"Bir Saldırı Önleme Sistemi trafik yolunda durur ve tespit ettiği şeye göre harekete geçmesine izin verilir; yalnızca uyarmak yerine bağlantıyı düşürür veya sıfırlar. Bedeli gerçektir: meşru trafiği yanlış değerlendiren bir IPS onu engeller."</string>
+    <string name="t_2a934539" formatted="false">"SALDIRI KAYNAĞI"</string>
+    <string name="t_2a9b95e6" formatted="false">"Her bossa ×{0} hasar verir."</string>
+    <string name="t_2bb9a482" formatted="false">"Güvenlik duvarı trafiği bir kural listesine göre denetler ve eşleşmeyen her şeyi düşürür. En eski ve hâlâ en önemli çevre savunmasıdır."</string>
+    <string name="t_2be00c84" formatted="false">"ÇAĞRI ADINI DÜZENLE"</string>
+    <string name="t_2c13b917" formatted="false">"{1} için ×{0} hasar verir."</string>
+    <string name="t_2ce4713d" formatted="false">"&gt; CORE-SERVER eşitleniyor"</string>
+    <string name="t_2d14c154" formatted="false">"Alanı kesen yavaş çapraz veri akıntıları."</string>
+    <string name="t_2dcb788c" formatted="false">"Bu oyun, programlama ve yazılım geliştirme öğrenilirken eğitim ve geliştirme yardımcısı olarak kullanılan yapay zekâ araçlarının yardımıyla geliştirildi.\n\nYapay zekâ araçları kod geliştirme, sorun giderme, belgeleme ve öğrenme gibi alanlarda yardımcı oldu. Nihai tasarım kararları, oynanış yönü, test ve yayın kararları geliştiricinin sorumluluğunda kalır.\n\nBu oyun herhangi bir yapay zekâ şirketi tarafından üretilmemiş, sponsor olunmamış, onaylanmamış, sahiplenilmemiş veya yayımlanmamıştır."</string>
+    <string name="t_2df53561" formatted="false">"Kural tabanlı trafik filtresi"</string>
+    <string name="t_2e0cf790" formatted="false">"DİĞER"</string>
+    <string name="t_2e19cc63" formatted="false">"%40 canla bir kez ayağa kalkar. Onu öldürmek, onu bitirmekle aynı şey değil."</string>
+    <string name="t_2ef9e2c6" formatted="false">"SİBER SALDIRILAR"</string>
+    <string name="t_2f3549f7" formatted="false">"BULUT KAYDI KULLANILAMIYOR"</string>
+    <string name="t_302a4f0a" formatted="false">"TEMEL"</string>
+    <string name="t_302eea27" formatted="false">"NE GELDİĞİNİ BİLİYOR MUSUN?"</string>
+    <string name="t_3083c674" formatted="false">"CANLI: SÜRÜKLENME"</string>
+    <string name="t_30867b62" formatted="false">"Tamamen çevrimdışı oynanır"</string>
+    <string name="t_30ed929d" formatted="false">"Bu ajanı {1} haritasında {0}. dalgaya ulaşarak aç."</string>
+    <string name="t_31359ec6" formatted="false">"{0} odağı kapalı"</string>
+    <string name="t_313900e6" formatted="false">"MİMAR BAĞLANTISI"</string>
+    <string name="t_314d733e" formatted="false">"€ {0} mevcut"</string>
+    <string name="t_317b7de0" formatted="false">"Rafın kendi içinde düşen kod."</string>
+    <string name="t_31d43b93" formatted="false">"CANLI: YAĞMUR"</string>
+    <string name="t_326bdc38" formatted="false">"AJAN KAYITSIZ"</string>
+    <string name="t_32a3e9f3" formatted="false">"ÖZEL — {0}"</string>
+    <string name="t_32bafd88" formatted="false">"SONRAKİ"</string>
+    <string name="t_32e6f915" formatted="false">"ŞİMDİ ALINABİLİR"</string>
+    <string name="t_332ec80a" formatted="false">"Bunları her şey öldürür. Onlar için fazla inşa etme."</string>
+    <string name="t_33cd995a" formatted="false">"SIZMA ENGELLENDİ"</string>
+    <string name="t_3425c9d3" formatted="false">"SEVİYE {0}"</string>
+    <string name="t_35350bff" formatted="false">"Atan bir çevreleme halkası."</string>
+    <string name="t_3595e52a" formatted="false">"ROTA {0}"</string>
+    <string name="t_35c82960" formatted="false">"ÇEKİRDEK: GLACIER"</string>
+    <string name="t_35f74be9" formatted="false">"Tüm zırhı yok sayan ezici tek hedef hasarı. Oyundaki en pahalı ajan ve çok geç açılır. Hedefleme seçicisini açar."</string>
+    <string name="t_36900a0f" formatted="false">"Ucuz ve neredeyse zararsız. Yarıçapındaki her şey sürünür."</string>
+    <string name="t_37447c3a" formatted="false">"Son derece yüksek atış hızı ve her atış sıçrar."</string>
+    <string name="t_376bc6d2" formatted="false">"Bu açıkken geri sayım devam eder."</string>
+    <string name="t_376c54b2" formatted="false">"REKLAMLARI KALDIR"</string>
+    <string name="t_379656ef" formatted="false">"ÇEKİRDEK: VOID"</string>
+    <string name="t_37bc9401" formatted="false">"Bu sürüm Google AdMob tarafından sağlanan reklamlar gösterir. Bir oyuna devam etmek için reklam izlemek her zaman isteğe bağlıdır ve oynamak için asla gerekmez."</string>
+    <string name="t_384d3555" formatted="false">"{0} canlı"</string>
+    <string name="t_384e5d9f" formatted="false">"BULUT KAYDI"</string>
+    <string name="t_385b9a87" formatted="false">"Bir tarpit düşman bir bağlantıyı kabul eder ve izin verilen en yavaş şekilde yanıt verir, saldırganı hiçbir yere gitmeyen bir sokette açık tutar. Bu bir engelleme değil, oyalama taktiğidir: değeri karşı tarafa kaybettirdiği zamandır."</string>
+    <string name="t_38695d86" formatted="false">"İLERLEME YEDEĞİ"</string>
+    <string name="t_38c1e7e0" formatted="false">"REKLAMLA"</string>
+    <string name="t_38d9a5af" formatted="false">"&gt; ağ ele geçirildi"</string>
+    <string name="t_38e03b91" formatted="false">"TAMAMEN YÜKLÜ"</string>
+    <string name="t_3950774a" formatted="false">"KAYITLI AD"</string>
+    <string name="t_395af116" formatted="false">"ANONİM HACK"</string>
+    <string name="t_396e8daa" formatted="false">"SPEKTRUM"</string>
+    <string name="t_3a06e0fa" formatted="false">"MÜZİK"</string>
+    <string name="t_3a7e7fe6" formatted="false">"SÜRÜM TÜRÜ"</string>
+    <string name="t_3a8a0a59" formatted="false">"Her vuruş onu hızlandırır, ne kadar küçük olursa olsun; yalnız bırakılınca yavaşlar. Az sayıda büyük vuruş çok sayıda küçüğünü yener."</string>
+    <string name="t_3aa6f2eb" formatted="false">"ZERO-DAY HUNTER ve ROOT ADMIN zırhı tamamen yok sayar."</string>
+    <string name="t_3aaad671" formatted="false">"AYRINTILAR İÇİN DOKUN"</string>
+    <string name="t_3b12a908" formatted="false">"GRADIENT her vuruşla hızlanır, ne kadar küçük olursa olsun, ve yalnız bırakılınca yavaşlar. Az sayıda büyük vuruş çok sayıda küçüğünü yener."</string>
+    <string name="t_3b53a59d" formatted="false">"Boss dalgalarını da otomatik başlat. Kapalı: boss dalgaları seni bekler"</string>
+    <string name="t_3bc78174" formatted="false">"YAPAY ZEKÂ DESTEKLİ GELİŞTİRME"</string>
+    <string name="t_3c66aec8" formatted="false">"Dalgaların, ajanların, € ve yazılımın Google hesabına kaydedilir. Başka bir cihazda oturum aç, orada olurlar. Oyundan çıktığında ve bir oyun bittiğinde eşitlenir."</string>
+    <string name="t_3cef355d" formatted="false">"En yüksek kalan can"</string>
+    <string name="t_3d17c701" formatted="false">"HIZ PATLAMASI"</string>
+    <string name="t_3d331382" formatted="false">"Trafiğin izlediği yol"</string>
+    <string name="t_3d509ddc" formatted="false">"Kare hızını yarıya indir ve süs efektlerini kaldır"</string>
+    <string name="t_3d83d177" formatted="false">"SİBER AJANLAR"</string>
+    <string name="t_3db03eca" formatted="false">"KAYDIN"</string>
+    <string name="t_3e12b118" formatted="false">"YARDIM"</string>
+    <string name="t_3e27e12f" formatted="false">"En düşük kalan can"</string>
+    <string name="t_3ecdd82e" formatted="false">"Sıfırıncı gün, savunanın düzeltmek için sıfır günü olduğu bir açıktır, çünkü kimse var olduğunu bilmiyordu. Eşleştirilecek bir imza yoktur; onları bu kadar tehlikeli yapan da budur."</string>
+    <string name="t_3fa2aee2" formatted="false">"FIREWALL ajanlarından %35 daha az hasar alır."</string>
+    <string name="t_401924c3" formatted="false">"CORE-SERVER GÖRÜNÜMÜ"</string>
+    <string name="t_4071c698" formatted="false">"Google Play yanıt verdi. Satın alma ve geri yükleme normal çalışıyor."</string>
+    <string name="t_40b15bdb" formatted="false">"Her onuncu dalgada biriktirilir. Bir oyun ne kadar derine giderse o kadar çok öder — ödül kilometre taşının karesiyle büyür, bu yüzden bir derin oyun beş sığ oyunu yener."</string>
+    <string name="t_4104a0b2" formatted="false">"{0} üzerindeki en iyin: dalga {1}"</string>
+    <string name="t_4108bc91" formatted="false">"EL SIKIŞMA REDDEDİLDİ"</string>
+    <string name="t_41203058" formatted="false">"DONANIM"</string>
+    <string name="t_412ea11f" formatted="false">"Bir rotanın yanındaki iki vurgulu konuşlandırma düğümüne dokun. İki bir öneri değil: tek bir ajan bir hattı tek başına kapatamaz."</string>
+    <string name="t_419c5ded" formatted="false">"TOPLAM OYNANAN OYUN"</string>
+    <string name="t_41a1b85e" formatted="false">"GİZLİLİK SEÇENEKLERİ"</string>
+    <string name="t_41ca8ef5" formatted="false">"Bu cihazda yerel olarak saklanır · hiçbir şey yüklenmez"</string>
+    <string name="t_41e88f52" formatted="false">"Tahtaya yakınlaşmak için iki parmakla sıkıştır — düğümlere yakından dokunmak daha kolaydır. Yakınlaşmışken etrafta gezinmek için tek parmakla sürükle. Tüm tahtayı yeniden görmek için tamamen uzaklaştır."</string>
+    <string name="t_4208e473" formatted="false">"REKLAMSIZ"</string>
+    <string name="t_420bd000" formatted="false">"BOTMASTER birkaç saniyede bir arkasına BOT bırakır. Onu hızlı öldür ve sürü için bir şey ayır."</string>
+    <string name="t_4273a8be" formatted="false">"HESAP"</string>
+    <string name="t_42832744" formatted="false">"Kumar, ganimet kutusu veya rastgele ücretli ödül yok"</string>
+    <string name="t_42880e6f" formatted="false">"KİLİTLİ · {0}"</string>
+    <string name="t_42a0e053" formatted="false">"HAKKINDA"</string>
+    <string name="t_42addf6c" formatted="false">"MAĞAZAYI AÇ"</string>
+    <string name="t_42afe7bc" formatted="false">"BAĞLANIYOR"</string>
+    <string name="t_42ef8058" formatted="false">"SAVUNMA KAYDI"</string>
+    <string name="t_4306ee12" formatted="false">"€1,500 BÜTÇE"</string>
+    <string name="t_4333987a" formatted="false">"Seyrek düşen karakter sütunları."</string>
+    <string name="t_43a1c2e8" formatted="false">"YÜKSELTME MALİYETİ"</string>
+    <string name="t_441ec9a9" formatted="false">"Menüde kısa bir tur. Devam için SONRAKİ, kapatmak için ATLA. İstediğin zaman AYARLAR'dan tekrar izleyebilirsin."</string>
+    <string name="t_4427afab" formatted="false">"Zırh küçük vuruşları köreltir: IPS değil, ANALYST veya ROOT ADMIN getir."</string>
+    <string name="t_4439e789" formatted="false">"KİLİTLİ · Müzik çaları ve parça listesini açmak için 5. seviyeyi tamamla (DDoS'ta 100. dalgayı temizle)."</string>
+    <string name="t_448177d3" formatted="false">"SON EŞİTLEME"</string>
+    <string name="t_4494c488" formatted="false">"{0} DK ÖNCE"</string>
+    <string name="t_44c51c30" formatted="false">"SALDIRI ENGELLENDİ"</string>
+    <string name="t_44fbbc54" formatted="false">"&gt; !! siber saldırı geliyor — büyük ihlal yolda !!"</string>
+    <string name="t_4538f2a7" formatted="false">"Güvenlik duvarı trafiği bir kural kümesine göre denetler ve kuralların izin vermediği her şeyi düşürür. Genellikle güvenilmeyen bir ağ ile korunmaya değer bir şey arasına konan ilk kontroldür ve zekâsıyla değil, verilen kurallarla değerlendirilir."</string>
+    <string name="t_45b17976" formatted="false">"Ağır tek hedef hasarı, kumar değil her atışta aynı, ve zırhı yok sayar. Pahalı ve yavaş; bunlardan biri bir hattı tek başına tutamaz."</string>
+    <string name="t_4631883a" formatted="false">"MAKS YÜKLE  (+{0})"</string>
+    <string name="t_463cbc28" formatted="false">"CAN ×{0} · ZIRH +{1} · HIZ ×{2}"</string>
+    <string name="t_466578df" formatted="false">"Bu dalgaya yarı bütünlükle devam et."</string>
+    <string name="t_466b92a9" formatted="false">"SEGMENT BAĞLANTISI"</string>
+    <string name="t_46984fe6" formatted="false">"OYNA · DEVAM"</string>
+    <string name="t_46cc0ef8" formatted="false">"Ayrıca her oyunun verdiği ◇ kriptoyu seviye başına +%{0} artırır, iki katına kadar. Düşman canını veya dalga yapısını etkilemez."</string>
+    <string name="t_4735c1ed" formatted="false">"Siber saldırılar CORE-SERVER'a doğru geliyor. Varmadan durdurmak için rotaların yanına Siber Ajanlar konuşlandır."</string>
+    <string name="t_4747b424" formatted="false">"DÜŞMANLAR"</string>
+    <string name="t_477d52c6" formatted="false">"Bağlı. Başka bir telefonda veya tablette aynı Google hesabına giriş yap, ilerlemen orada."</string>
+    <string name="t_47c5c237" formatted="false">"GEÇERSİZ DÜĞÜM"</string>
+    <string name="t_485268f0" formatted="false">"&gt; siber ajanlar silahlanıyor"</string>
+    <string name="t_4882e1dc" formatted="false">"KERNEL PANIC öldüğünde menzilindeki her ajanı 3 saniye sıkıştırır. FIREWALL buna dayanır."</string>
+    <string name="t_488d4b25" formatted="false">"Binlerce makine aynı anda tek bir hedefe trafik gönderir. Tek bir istek saldırı değildir; sel saldırıdır. Amaç içeri girmek değil, hizmeti kullanılamaz hâle getirmektir."</string>
+    <string name="t_4905ed7b" formatted="false">"YOK"</string>
+    <string name="t_494c304d" formatted="false">"-◇{0} SIZDIRILDI"</string>
+    <string name="t_49848f53" formatted="false">"KÖR SQL ENJEKSİYONU"</string>
+    <string name="t_498754a7" formatted="false">"FİLM MÜZİĞİNİ TELEFONA KAYDET"</string>
+    <string name="t_4af4306b" formatted="false">"SÜRÜM"</string>
+    <string name="t_4c1012d3" formatted="false">"Ateş altında tut: yalnızca bir süre vurulmadığında onarılır, bu yüzden öldürme bölgeleri arasındaki boşlukları kapat."</string>
+    <string name="t_4c6d3272" formatted="false">"🔒 KİLİTLİ"</string>
+    <string name="t_4cc6f55a" formatted="false">"Google Play Oyunlar'a ulaşılamadı. Oyunların bu cihaza kaydedilir ve en iyin, bir dahaki sefere çevrimiçiyken bir oyun bittiğinde gönderilir."</string>
+    <string name="t_4d54c785" formatted="false">"{0} YERLEŞTİRİLİYOR — bir düğüme dokun"</string>
+    <string name="t_4d6e69d2" formatted="false">"MÜZİK ÇALAR"</string>
+    <string name="t_4d7ab8a3" formatted="false">"ÇAĞRI ADI"</string>
+    <string name="t_4e2b3472" formatted="false">"KAYITLI OTURUM YOK"</string>
+    <string name="t_4ebbf8bd" formatted="false">"Bu oyunda {0} canlanma kaldı."</string>
+    <string name="t_4f0fcb18" formatted="false">"Her beşinci dalgada gelir"</string>
+    <string name="t_4f160176" formatted="false">"Toplama oyunu. Hile yok, sıkıştırma yok — tahtadaki her şeyden yüzde yirmi fazlası."</string>
+    <string name="t_5022c684" formatted="false">"ŞİFRELEME"</string>
+    <string name="t_5067a989" formatted="false">"DOLANIK ZİNCİR"</string>
+    <string name="t_5079b771" formatted="false">"Bu ajanı {1} haritasında {2} modunda {0}. dalgaya ulaşarak aç."</string>
+    <string name="t_509d7851" formatted="false">" · ETKİ {0}"</string>
+    <string name="t_513901c7" formatted="false">" · REKLAMSIZ"</string>
+    <string name="t_513dcdc9" formatted="false">"AJAN BAŞINA"</string>
+    <string name="t_520a6b88" formatted="false">"Her seviye bir öncekinden biraz pahalıdır, yani çarpan tırmanmaya devam eder ama kontrolden çıkmaz. Gerçekçi olarak ulaşacağın bir tavan yok."</string>
+    <string name="t_5333e76e" formatted="false">"İŞLEME"</string>
+    <string name="t_53e605b3" formatted="false">"DİKKAT"</string>
+    <string name="t_543ce9f7" formatted="false">"HER"</string>
+    <string name="t_54523d94" formatted="false">"Çekirdeğinin içine kurulduğu raf. Savaş alanında görünür."</string>
+    <string name="t_54743050" formatted="false">"TOPLAM ENGELLENEN SALDIRI"</string>
+    <string name="t_54797d92" formatted="false">"Göstergelerin altından geçen devre izleri."</string>
+    <string name="t_549824f8" formatted="false">"PORT GÜVENCEDE"</string>
+    <string name="t_5571a722" formatted="false">"ÇEVRİMDIŞI OYNANIR · GİRİŞ GEREKMEZ"</string>
+    <string name="t_55f85167" formatted="false">"KOMPAKT AJAN MENÜSÜ"</string>
+    <string name="t_565a738e" formatted="false">"HAYIR, OYNAYAYIM"</string>
+    <string name="t_56a9a004" formatted="false">"Işıklar kapalıyken enjeksiyon"</string>
+    <string name="t_56bafb67" formatted="false">"Oyun başına bir canlanma."</string>
+    <string name="t_56c54890" formatted="false">"Şişkin bir model: biraz daha fazla can, biraz daha yavaş."</string>
+    <string name="t_56c6b2ae" formatted="false">"Kurgusal serbestlik, açıkça belirtilmiş: bu ajan ENCRYPTED özelliğiyle yavaşlamak yerine onu basitçe yok sayar ve onu taşıyan her şeye üç kat hasar verir. Gerçek kriptografi böyle çalışmaz ve burada hiçbir şey gerçek bir şifreyi kırmaz."</string>
+    <string name="t_5749c8dc" formatted="false">"{0}. dalga ve konuşlandırılan her şey kaybolacak."</string>
+    <string name="t_5785b710" formatted="false">"Bir ajan seç, sonra vurgulu bir konuşlandırma düğümüne dokun."</string>
+    <string name="t_57f88861" formatted="false">"ODAK: YALNIZCA BOSSLAR"</string>
+    <string name="t_582ec4a0" formatted="false">"Merkezi bir denetleyiciden sessizce emir alan ele geçirilmiş bilgisayarlar. Sahipleri genellikle farkında değildir. Büyük DDoS saldırılarını mümkün kılan botnetlerdir."</string>
+    <string name="t_5840893d" formatted="false">"SIZMA KONTROL ALTINDA"</string>
+    <string name="t_58a5f08a" formatted="false">"Düz ızgara. Hareket yok."</string>
+    <string name="t_597ee3cb" formatted="false">"İMZA EŞLEŞTİ"</string>
+    <string name="t_5a02fc0a" formatted="false">"CANLANMA PAKETİ"</string>
+    <string name="t_5a3d8598" formatted="false">"CORE-SERVER'a en yakın"</string>
+    <string name="t_5a911db6" formatted="false">"GOOGLE HESABIN"</string>
+    <string name="t_5aa1d1dc" formatted="false">"{0} odağı açık"</string>
+    <string name="t_5b19a621" formatted="false">"Henüz kimsenin yamamadığı bir açığa saldırı — savunanın hazırlanmak için sıfır günü oldu. Nadir, dayanıklı ve durdurmak gerçek kripto değerinde."</string>
+    <string name="t_5c19fc6b" formatted="false">"CyOps TD FİLM MÜZİĞİNİ SATIN AL · {0}"</string>
+    <string name="t_5c3f86fb" formatted="false">"EN GÜÇLÜ"</string>
+    <string name="t_5d1868fb" formatted="false">"ÇEKİRDEK"</string>
+    <string name="t_5d377851" formatted="false">"Kalıcı yükseltmeler · bundan sonra her maç"</string>
+    <string name="t_5d4d0273" formatted="false">"{0} kilitli: {1}."</string>
+    <string name="t_5de47a9b" formatted="false">"TÜM ZORLUKLAR"</string>
+    <string name="t_5de55828" formatted="false">"!! BÜTÜNLÜK DÜŞÜK !!"</string>
+    <string name="t_5e75065a" formatted="false">"BAĞLANDI"</string>
+    <string name="t_5f2258c9" formatted="false">"Soldaki para. Bir oyunun her onuncu dalgasında biriktirilir ve oyun bitince saklanır. Daha derin oyunlar çok daha fazla öder."</string>
+    <string name="t_5fd47bcf" formatted="false">"ÇEKİRDEK: MERIDIAN"</string>
+    <string name="t_602fffef" formatted="false">"CRYPTOGRAPHER dışındaki her şey burada hasarının yarısından fazlasını kaybeder."</string>
+    <string name="t_6049b1e7" formatted="false">"CANLI ARKA PLAN"</string>
+    <string name="t_60a5a04c" formatted="false">"Müziği duraklat"</string>
+    <string name="t_60ecea1a" formatted="false">"MUTLAK"</string>
+    <string name="t_60f81814" formatted="false">"LICENSE her {0} saniyede bir, kendisine vurmaya devam eden ajan türünü {1} boyunca umursamaz. Ajan türlerini karıştır."</string>
+    <string name="t_61919374" formatted="false">"DİRİLDİ — bir daha geri gelmeyecek"</string>
+    <string name="t_61ebe734" formatted="false">"EKRAN SALLANMASI"</string>
+    <string name="t_625afb79" formatted="false">"Sahip olundu. Music/CyOps TD klasörüne \"CyOps TD - Level X (Y)\" olarak kaydeder."</string>
+    <string name="t_628c7cd9" formatted="false">"AJAN KONUŞLANDIRMA DAĞILIMI"</string>
+    <string name="t_62f8af50" formatted="false">"+{0} HP / {1} sn"</string>
+    <string name="t_63374e04" formatted="false">"ANA MENÜ"</string>
+    <string name="t_633e8e1a" formatted="false">"Öldürüldüğünde üç küçük solucana bölünür ve her biri bir kez daha bölünür. Sıçrama hasarı dostundur."</string>
+    <string name="t_6343926d" formatted="false">"SIKIŞTIRMA"</string>
+    <string name="t_638aaa93" formatted="false">"BURADA DA BELİRİYOR"</string>
+    <string name="t_63b00a3c" formatted="false">"Ağ üzerinden gönderilen veri paketlere bölünür: hedef adresi ve yükü olan küçük parçalar. Paket bir saldırı değildir — neredeyse hepsi sıradan trafiktir. Burada ateş ettiklerin belirli bir saldırıyı taşıyan paketlerdir; bu yüzden her biri pakete göre değil saldırıya göre adlandırılır."</string>
+    <string name="t_63b54927" formatted="false">"Oyun başına 3 canlanma ve asla canlanma reklamı yok, artı €5,000."</string>
+    <string name="t_63bef594" formatted="false">"HP {0}"</string>
+    <string name="t_63f3d76a" formatted="false">"KAYDET"</string>
+    <string name="t_63facb82" formatted="false">"CANLI: NABIZ"</string>
+    <string name="t_6480a147" formatted="false">"DALGA {0}  —  ÇEVREYİ SAĞLAMLAŞTIR"</string>
+    <string name="t_648a945b" formatted="false">"KİMSENİN SÖYLEMEDİĞİ İKİ ŞEY"</string>
+    <string name="t_6490c689" formatted="false">"Gerçek kripto para, blokzincir, cüzdan, madencilik veya NFT yok"</string>
+    <string name="t_64d398f9" formatted="false">"MENZİL"</string>
+    <string name="t_65155738" formatted="false">"5× HIZ"</string>
+    <string name="t_65252ce7" formatted="false">"İLK"</string>
+    <string name="t_6554cde7" formatted="false">"Google Play'e bu hesabın nelere sahip olduğu soruluyor. Bu genellikle bir an sürer."</string>
+    <string name="t_655c9284" formatted="false">"CANLI: KAFES"</string>
+    <string name="t_656e6ce8" formatted="false">"AJANLAR"</string>
+    <string name="t_65c8fd90" formatted="false">"TEHDİT BRİFİNGİ"</string>
+    <string name="t_6678bfdf" formatted="false">"Öldüğünde yakınındaki her ajan 3 saniye sıkışır. Onu tahtandan uzakta ya da sonraki dalga uzaktayken öldür."</string>
+    <string name="t_66fa85d7" formatted="false">"Ajanlarını yay ki tek bir sıkıştırma hattı susturamasın."</string>
+    <string name="t_6700226a" formatted="false">"BAĞLI"</string>
+    <string name="t_67043715" formatted="false">"ZIRH"</string>
+    <string name="t_67313d46" formatted="false">"DUVAR KALKTI"</string>
+    <string name="t_6757b458" formatted="false">"DURDURULAN SALDIRILAR"</string>
+    <string name="t_6813ef42" formatted="false">"ANONİM HACK — {0} BOT ÇİFT HIZLA GELİYOR"</string>
+    <string name="t_681745bd" formatted="false">"AJAN KİLİTLİ — {0}"</string>
+    <string name="t_682d973f" formatted="false">"BAŞLAT"</string>
+    <string name="t_68e88af7" formatted="false">"TEHLİKE BÖLGESİ"</string>
+    <string name="t_68e985d6" formatted="false">"Başka hiçbir şey hiçbir yere gönderilmez. Oyun hiç ağ olmadan oynanabilir."</string>
+    <string name="t_6904aeb4" formatted="false">"OYUN"</string>
+    <string name="t_69698cdc" formatted="false">"WORM öldürüldüğünde üç küçük solucana bölünür ve onlar bir kez daha bölünür. Onu erken, yakında sıçrama hasarıyla öldür."</string>
+    <string name="t_69a293c4" formatted="false">"SUDO SONLANDIR"</string>
+    <string name="t_6ad356c5" formatted="false">"Üç rota: ortadan düz bir hat, üstünde ve altında zikzak çizen iki hat."</string>
+    <string name="t_6b2d8165" formatted="false">"SV {0}  {1} HSR"</string>
+    <string name="t_6c161f51" formatted="false">"Her 17 saniyenin 2'sinde, kendisine vurmaya devam eden ajan türünü umursamaz. Çeşitli bir tahta ona zarar vermeye devam eder."</string>
+    <string name="t_6c7aa396" formatted="false">"Farklı bosslar, farklı zayıflıklar."</string>
+    <string name="t_6ca9de88" formatted="false">"SPEKTRUM AJANLARI"</string>
+    <string name="t_6cb7e8e3" formatted="false">"Yavaş, ağır vuruşlar. Elitlere ve bosslara +%80 hasar."</string>
+    <string name="t_6cbf7c76" formatted="false">"YENİLEN BOSSLAR"</string>
+    <string name="t_6ccdc653" formatted="false">"Şifrelemeyi tamamen yok sayar ve ona üç kat hasar verir."</string>
+    <string name="t_6cedde69" formatted="false">"MÜZİK SESİ"</string>
+    <string name="t_6d2d6d6b" formatted="false">"Zırhını yok sayar."</string>
+    <string name="t_6d907c0d" formatted="false">"\"Mavi takım\" bir sistemi savunur ve olaylara müdahale eder — kırmızı takımın karşılığıdır. \"Mavi şapka\" sektörde birden fazla şekilde kullanılır ve standart bir terim değildir, bu yüzden burada yalnızca mavi takım anlamı açıklanır."</string>
+    <string name="t_6dbe0ea3" formatted="false">"SEVİYE"</string>
+    <string name="t_6f053419" formatted="false">"{0} SINIRI — MAKS {1}"</string>
+    <string name="t_6f21a684" formatted="false">"BOSSLAR — her beşinci dalga"</string>
+    <string name="t_70d42172" formatted="false">"Bir ağı, bir bölgedeki ihlal geri kalanına ulaşamayacak şekilde bölmek. Ele geçirilmiş tek bir dizüstünün ele geçirilmiş bir şirket anlamına gelmemesinin nedeni budur."</string>
+    <string name="t_7191bf1d" formatted="false">"KALICILIK"</string>
+    <string name="t_71c5931f" formatted="false">"Pil tasarrufu yalnızca neyin çizildiğini değiştirir. Dalga zorluğu, hasar ve zamanlama hiç etkilenmez."</string>
+    <string name="t_72102eb0" formatted="false">"Satın alımlar, geri yüklemeler ve bu cihazdan çıkanlar"</string>
+    <string name="t_722a0bad" formatted="false">"REHBERLERİ TEKRARLA"</string>
+    <string name="t_73236391" formatted="false">"Oyunun kendisi hiçbir kişisel veri toplamaz"</string>
+    <string name="t_735d4940" formatted="false">"SES EFEKTİ SESİ"</string>
+    <string name="t_73907e76" formatted="false">"Oyundaki 24 parçanın tamamı, her yerde çalmak için telefonunun Music klasörüne kaydedilir."</string>
+    <string name="t_7397fdaa" formatted="false">"Her şeyin arkasında hareket eden soğuk ışık."</string>
+    <string name="t_739a7f7a" formatted="false">"© {0} {1}. Tüm hakları saklıdır."</string>
+    <string name="t_73d812dc" formatted="false">"Her beşinci dalga ve getirdikleri"</string>
+    <string name="t_73e8cb50" formatted="false">"Özgün kod, özgün çizimler, özgün sentezlenmiş ses. Kotlin, Jetpack Compose ve Android Canvas API ile yapıldı.\n\nSimgeler: creativeLabs tarafından CoreUI Icons Free (coreui.io/icons), CC BY 4.0 lisanslı.\n\nÜçüncü taraf bağımlılık lisansları proje deposundaki LICENSES.md dosyasında listelenmiştir."</string>
+    <string name="t_74066c59" formatted="false">"OYUN İÇİ"</string>
+    <string name="t_746ab6c3" formatted="false">"IPS sürülere %35 ekstra hasar verir. Hatların birleştiği yere koy."</string>
+    <string name="t_746d814e" formatted="false">"Kayıtlı oyununu, açılmış ajanları, istatistikleri ve ayarları siler. Bu geri alınamaz."</string>
+    <string name="t_74aa6c59" formatted="false">"YETERSİZ € BÜTÇE"</string>
+    <string name="t_74fff44e" formatted="false">"Ateşi emen sahte kopyalarını yaratır. ANALYST ve ROOT ADMIN onların içini görür."</string>
+    <string name="t_750800eb" formatted="false">"Kadrodaki her şey kadar hızlı ateş eder ve daima önce bossa ateş eder. [GG] GOOD GAME'e çift hasar. En fazla dört."</string>
+    <string name="t_7596436a" formatted="false">"Siber güvenlik lisans derecesine sahip kıdemli bir güvenlik mühendisi; saldırıları, onlara karşı savunan yazılımı inşa ederek durdurur: sertleştirilmiş hizmetler, yamalar ve saldırı geldikten sonra değil, gelmeden önce yerinde olan filtreler."</string>
+    <string name="t_75b191e4" formatted="false">"Menzilindeki en yakın rotanın önüne bir duvar örer. Tehditler duvarda durur ve geçebilmek için onu yıkmak zorundadır; bosslar en hızlı yıkar. Yıkıldığında ACE birkaç saniye sonra onu yeniden kurar, her seviyede daha güçlü. Kendi atışları ilk beş seviyenin her bossuna {0}× hasar verir. En fazla üç tane konuşlandırılabilir."</string>
+    <string name="t_75bd8866" formatted="false">"Bir seviye ve bir zorluk seç"</string>
+    <string name="t_75e65d90" formatted="false">"KONUŞLANDIRMAK İÇİN İKİ KEZ DOKUN"</string>
+    <string name="t_75f24f6e" formatted="false">"Birkaç saniyede bir, bir ajanın yükseltmelerini 8 saniye kilitler. O gelmeden yükselt."</string>
+    <string name="t_7682806a" formatted="false">"ADIM 2 — FIREWALL SEÇ"</string>
+    <string name="t_77212b64" formatted="false">"Bu, karşılaştığın saldırı dalgasıdır. Sunucuyu tuttuğun sürece yükselir — her beşinci dalga bir boss getirir."</string>
+    <string name="t_772b21ba" formatted="false">"Konuşlandırdığın savunmalar"</string>
+    <string name="t_776f4222" formatted="false">"SV {0}"</string>
+    <string name="t_77a2583e" formatted="false">"Güvenlikte iki farklı şeye \"kuantum\" denir ve onları ayırmak gerekir. Kuantum anahtar dağıtımı bir bağlantıdaki dinlemeyi tespit etmek için fizik kullanır ve yalnızca nadir, özel ortamlarda kurulur. Kuantum sonrası kriptografi, gelecekteki kuantum bilgisayarlara direnmek için tasarlanmış sıradan yazılım matematiğidir ve gerçekten yaygınlaştırılan odur."</string>
+    <string name="t_77a6da9b" formatted="false">"Çekirdekten dışarı yayılan halkalar."</string>
+    <string name="t_77d03aa5" formatted="false">"Kör enjeksiyon hiçbir hata mesajı almaz, bu yüzden saldırgan cevabı her seferinde bir doğru-yanlış sorusuyla çıkarır. Normal bir enjeksiyondan daha yavaş ve çok daha sabırlıdır ve bariz savunmalara karşı sertleşmiş olarak gelir."</string>
+    <string name="t_77e5929c" formatted="false">"İlk dokunuş ajanın o noktadaki menzilini gösterir; konuşlandırmak için tekrar dokun"</string>
+    <string name="t_77e8896f" formatted="false">"Tek bir rota tahtayı köşeden köşeye beş kez keser."</string>
+    <string name="t_77f7e381" formatted="false">" · ZIRH {0}"</string>
+    <string name="t_782074f1" formatted="false">"  ·  OTOMATİK {0}"</string>
+    <string name="t_7841323b" formatted="false">"SAVUNMA TARAMASI"</string>
+    <string name="t_78526608" formatted="false">"ULAŞILAN DALGA"</string>
+    <string name="t_78a52e3b" formatted="false">"GİZLİ"</string>
+    <string name="t_7922c8d5" formatted="false">"Menzildeki her ajanı güçlendirir: +%30 hasar, +%20 atış hızı."</string>
+    <string name="t_79a4baee" formatted="false">"&lt; GERİ"</string>
+    <string name="t_79fc7a80" formatted="false">"Yalnızca DALGALARI OTOMATİK BAŞLAT açıkken geçerlidir"</string>
+    <string name="t_7a1f56c4" formatted="false">"ŞİMDİ EŞİTLE"</string>
+    <string name="t_7aba529e" formatted="false">"Şifrelemesini kırar: ×{0} hasar."</string>
+    <string name="t_7abfb3c7" formatted="false">"Yarı canda ikiye bölünür ve ikinci yarı başka bir rotaya sapar."</string>
+    <string name="t_7b3bb73f" formatted="false">"TEHDİT ETKİSİZ"</string>
+    <string name="t_7b84a6c4" formatted="false">"Dünya tablosunu görmek ve ona skor göndermek için GOOGLE PLAY ekranında Google hesabını bağla. Oyunların yine de bu cihaza kaydedilir."</string>
+    <string name="t_7ba7f176" formatted="false">"+%{0} HSR"</string>
+    <string name="t_7be6fbad" formatted="false">"DALGA {0} · SİMÜLASYON DURDU"</string>
+    <string name="t_7bf2105b" formatted="false">"Dağıtık Hizmet Engelleme"</string>
+    <string name="t_7c4e4414" formatted="false">"SON"</string>
+    <string name="t_7c6853de" formatted="false">"DÜNYA · {0}"</string>
+    <string name="t_7d5cc77f" formatted="false">"TOPLAM KAZANILAN KRİPTO"</string>
+    <string name="t_7dc33bc2" formatted="false">"EN YÜKSEK SEVİYEYE ULAŞILDI"</string>
+    <string name="t_7e1cf3a7" formatted="false">"ONAR"</string>
+    <string name="t_7e522f64" formatted="false">"EMEĞİ GEÇENLER"</string>
+    <string name="t_7e72ed35" formatted="false">"İLERLEME HESABINA KAYDEDİLDİ"</string>
+    <string name="t_7e906966" formatted="false">"{0} parça Music/CyOps TD klasörüne kaydedildi."</string>
+    <string name="t_7ea71dbe" formatted="false">"AJANLAR'ı tekrar aç ve TARPIT'i seç. Hasar vermez — aurasının içindeki her tehdidi yavaşlatır, böylece FIREWALL'ların onlara daha çok atış yapar."</string>
+    <string name="t_7f11b512" formatted="false">"{0} · OYUN BAŞINA {1} {2}"</string>
+    <string name="t_7fd8e294" formatted="false">"&gt; çevre çevrimiçi"</string>
+    <string name="t_804ef7d5" formatted="false">"İnternetteki en yaygın saldırı ve buradaki temel tehdit. Saldırgan, bir ad veya parola bekleyen bir alana veritabanı komutları yazar; uygulama bunu doğrudan iletirse veritabanı itaat eder."</string>
+    <string name="t_80592dd9" formatted="false">"SÜRÜM"</string>
+    <string name="t_8175c5fc" formatted="false">"CORE-SERVER BÜTÜNLÜĞÜ"</string>
+    <string name="t_8198af01" formatted="false">"Her 6 saniyenin 2'sinde gizlenir: hiçbir şey onu hedef alamaz. Sıçrama ve zincirler yine de ulaşır."</string>
+    <string name="t_81e23c68" formatted="false">"DİĞER: yalnızca küçük birimler ve elitler, asla bosslar"</string>
+    <string name="t_8230b283" formatted="false">"IDS hızlı saldırılara %45 ekstra hasar verir ve onları ilk o görür."</string>
+    <string name="t_82966ea3" formatted="false">"DALGA SAYISI"</string>
+    <string name="t_829e8e06" formatted="false">"Menzilindeki ajanlar sıkıştırılamaz. WHITE EYE ve BLACK EYE'a {0}× hasar. En fazla iki."</string>
+    <string name="t_82a1fee3" formatted="false">"Oyununu yeniden başlatmak istediğinden emin misin?"</string>
+    <string name="t_82a70835" formatted="false">"Bağlı değilken oyun ilerlemesi yalnızca bu cihazda yaşar. Kaldırma veya fabrika ayarlarına sıfırlama onu siler; satın alımlar her ikisinden de kurtulur."</string>
+    <string name="t_830a30fd" formatted="false">"BÜTÇE"</string>
+    <string name="t_830b01d9" formatted="false">"Yazılım, bundan sonra her maçta konuşlandırdığın her ajanın hasarını çarpar. Zırhtan ve karşı-tablodan önce uygulanır, yani bir Cryptographer'a şifrelemeye karşı, bir Firewall'a düz trafiğe karşı yardım ettiği kadar yardım eder."</string>
+    <string name="t_831712ed" formatted="false">"YENİ SİBER AJAN AÇILDI"</string>
+    <string name="t_83186dce" formatted="false">"YALNIZCA BU CİHAZ"</string>
+    <string name="t_8340a76d" formatted="false">"NEDEN ÖNEMLİ"</string>
+    <string name="t_838b0928" formatted="false">"İlerlerken eskort saldırılar üretir."</string>
+    <string name="t_8478f19e" formatted="false">"BU CİHAZDAN NELER ÇIKAR"</string>
+    <string name="t_848f3f46" formatted="false">"TÜM İLERLEME SİLİNSİN Mİ?"</string>
+    <string name="t_852bda75" formatted="false">"KODEKS"</string>
+    <string name="t_862b3f34" formatted="false">"SİBER AJAN KONUŞLANDIR"</string>
+    <string name="t_869cf6b4" formatted="false">"ÇAĞRI ADI KAYDET"</string>
+    <string name="t_86cce90c" formatted="false">"EN ZAYIF"</string>
+    <string name="t_87442b62" formatted="false">"SONRAKİ DALGA · BREACH"</string>
+    <string name="t_87a9dd3e" formatted="false">"DALGALAR, € VE YAZILIM"</string>
+    <string name="t_87d92d69" formatted="false">"Çok uzun tespit menzili; hızlı saldırılara +%45 hasar."</string>
+    <string name="t_8806feca" formatted="false">"Altı CORE-SERVER görünümü, artı €2,000. NEONGRID ayrı satılır."</string>
+    <string name="t_882561c2" formatted="false">"TEHDİT DEĞERLENDİRMESİ"</string>
+    <string name="t_891fc63b" formatted="false">"SAHTELEME DÜŞTÜ"</string>
+    <string name="t_8980d82b" formatted="false">"{0} seçildi — konuşlandırmak için vurgulu bir düğüme dokun."</string>
+    <string name="t_899bae42" formatted="false">"İsteğe bağlı. Oyundaki her şey bağlamadan çalışır ve ilerlemen dışında hiçbir şey yüklenmez."</string>
+    <string name="t_89a47932" formatted="false">"Müziği çal"</string>
+    <string name="t_89c7b011" formatted="false">"Reklam ortaklarının bu cihazdaki verilerle neler yapabileceğini değiştirmek için Google'ın onay formunu yeniden aç. Oyun ilerlemen bu cihazda saklanır ve asla bunun parçası değildir."</string>
+    <string name="t_89d7c51c" formatted="false">"Gidiş, dönüş ve rafa uzun ortak bir dönüş."</string>
+    <string name="t_89dd34f8" formatted="false">"Sürü temizliğini IPS'e bırak ki ağır vurucuların bossta kalsın."</string>
+    <string name="t_89e1b0eb" formatted="false">"Alanı, hızlanan GRADIENT'i geri aşağı çeker."</string>
+    <string name="t_89e450ea" formatted="false">"KALDIRILDI · CANLANMA REKLAMLARI AYRI"</string>
+    <string name="t_8a058fa3" formatted="false">"Standart eğri."</string>
+    <string name="t_8a86921d" formatted="false">"Sağdaki düğmeler kaydırılır. Daha aşağıda: MAĞAZA, DONANIM (görünüm ve arka plan kuşan), GOOGLE PLAY (satın alımlar ve bulut kaydı), SKOR TABLOSU, KODEKS (tehditler ve ajanlar açıklamalı), İSTATİSTİKLER, AYARLAR ve HAKKINDA."</string>
+    <string name="t_8a96f0aa" formatted="false">"KULLANILAMIYOR"</string>
+    <string name="t_8aa097b1" formatted="false">"  (KİLİTLİ)"</string>
+    <string name="t_8aec13a9" formatted="false">"Dağıtık Hizmet Engelleme: saldırı hacmin kendisidir. Her istek önemsizdir, ama oyundaki her şeyden hızlı gelirler ve her zaman daha fazlası vardır."</string>
+    <string name="t_8af0e8d8" formatted="false">"Koordineli bir ihlal girişimi. Hile yok, sadece ağırlık."</string>
+    <string name="t_8b094c6c" formatted="false">"Google Play'e bağlanılıyor…"</string>
+    <string name="t_8c42a507" formatted="false">"Donmuş bir çekirdekten yayılan buz iğneleri."</string>
+    <string name="t_8c61de92" formatted="false">"DALGALARI OTOMATİK BAŞLAT"</string>
+    <string name="t_8d56a5da" formatted="false">"Çekirdeğin etrafında dönen yavaş eliptik izler."</string>
+    <string name="t_8d91a14b" formatted="false">"GOOGLE PLAY"</string>
+    <string name="t_8d9dd637" formatted="false">"BOSS: yalnızca bosslara ateş eder, aksi hâlde ateşi tutar"</string>
+    <string name="t_8e0413ab" formatted="false">"Bu sürümde uygulama içi satın alma yok."</string>
+    <string name="t_8e3787c1" formatted="false">"KİLİTLİ · {0} (en iyi: {1})"</string>
+    <string name="t_8f0536a7" formatted="false">"MAKS YÜKLE"</string>
+    <string name="t_8f37a712" formatted="false">"VERİLEN HASAR"</string>
+    <string name="t_8f48da3c" formatted="false">"AĞ ELE GEÇİRİLDİ"</string>
+    <string name="t_8f5d0f11" formatted="false">"EKONOMİ"</string>
+    <string name="t_8f61abf9" formatted="false">"ÇALIŞIYOR…"</string>
+    <string name="t_8f68a3ab" formatted="false">"&gt; tehdit imzaları yükleniyor"</string>
+    <string name="t_8ff6e51c" formatted="false">"{0} üzerinde henüz kayıtlı oyun yok."</string>
+    <string name="t_90391726" formatted="false">"DEVAM ET"</string>
+    <string name="t_910b3ae9" formatted="false">"Sunucuyu savunacak ajanları satın almak için kazanılan para. Her öldürme ve tamamlanan her dalga için Kripto◇ kazanılır."</string>
+    <string name="t_915c2f22" formatted="false">"{0} parça kaydedildi, sonra telefon geri kalanını reddetti. Biraz yer aç ve tekrar dene."</string>
+    <string name="t_919816cc" formatted="false">"Google Play'e ulaşılamadı. Daha önce alınan her şey hâlâ senin — tekrar çevrimiçi olunca GERİ YÜKLE'yi dene."</string>
+    <string name="t_91ae1cd3" formatted="false">"Sade dilde sözlük"</string>
+    <string name="t_91d4d5fc" formatted="false">"MEVCUT · ◇ {0}"</string>
+    <string name="t_9231c915" formatted="false">"Çalışan bir reaksiyonun etrafında kehribar çevreleme halkaları."</string>
+    <string name="t_933bf2fb" formatted="false">"REKLAMLARI KALDIR oyunlar arasındaki reklamları kapsar; canlanma reklamları ayrıdır."</string>
+    <string name="t_935cf7b5" formatted="false">"Şapkaların atış hızı, daha ağır atışlar ve SYN-STORM ile GRADIENT'e {0}× hasar. En fazla iki."</string>
+    <string name="t_93875a49" formatted="false">"menzil"</string>
+    <string name="t_93f1bd2f" formatted="false">"Çok yüksek atış hızı, menzildeki her şeyden önce daima bosslara nişan alır ve [GG] GOOD GAME'e çift hasar verir. 30. dalgada açılır ve en fazla dört tane konuşlandırılabilir."</string>
+    <string name="t_94061f4f" formatted="false">"Neredeyse hiç hasar vermez. Yarıçapındaki her şey sürünür, bu da tehditleri hasar verenlerinin menzilinde çok daha uzun tutar. Ucuz ve tek başına işe yaramaz — yanında ateş eden her şey için bir güç çarpanıdır."</string>
+    <string name="t_941dea68" formatted="false">"HASAR SAYILARI"</string>
+    <string name="t_9427590a" formatted="false">"Vuruşlarda havada uçan hasar değerlerini göster"</string>
+    <string name="t_94bbec0b" formatted="false">"SONRAKİ DALGA'ya dokun. Ajanların otomatik ateş eder. Durdurduğun her saldırı ◇ Kripto öder; bununla daha çok ajan ve yükseltme alırsın."</string>
+    <string name="t_94dc88d3" formatted="false">"Her yazılım seviyesi, gelecekteki her maçta her ajana +%{0} hasar ve oyunlarda kazanılan ◇ kriptoya +%{1} (iki katına kadar) ekler. Asla kaybolmaz."</string>
+    <string name="t_95051192" formatted="false">"AYARLANMADI"</string>
+    <string name="t_952dc0bb" formatted="false">"SKOR TABLOSU"</string>
+    <string name="t_959b6bbb" formatted="false">"MAKS {0} KONUŞLANDIRILDI"</string>
+    <string name="t_9655a074" formatted="false">"Menünün ve tahtanın arkasında yavaş veri akıntıları."</string>
+    <string name="t_97e1363f" formatted="false">"Her vuruşta ağır sabit hasar azaltımı."</string>
+    <string name="t_98189a64" formatted="false">"Yok. Bu düz bir dövüş."</string>
+    <string name="t_9873614b" formatted="false">"Kadronun en uzun tespit menzili ve hızlı saldırılara karşı +%45 hasar. Yavaş atış hızı — ateş de eden bir gözcüdür, hattın büyük kısmını kapsayabileceği yere en iyi şekilde yerleştirilir."</string>
+    <string name="t_98a9c7f2" formatted="false">"€ BÜTÇE"</string>
+    <string name="t_98b63553" formatted="false">"Oynamak için hesap veya giriş gerekmez"</string>
+    <string name="t_98cc567c" formatted="false">"EN İYİ HASAR"</string>
+    <string name="t_98f4abc6" formatted="false">"◇ {0} · {2} haritasında {1}. dalgada açılır"</string>
+    <string name="t_98fbe3ee" formatted="false">"ÇOKLU KİLİT"</string>
+    <string name="t_991bd4c3" formatted="false">"Tek bir CRYPTOGRAPHER tüm savaşı değiştirir."</string>
+    <string name="t_991c8ba8" formatted="false">"TOPLAM AJAN YÜKSELTMESİ"</string>
+    <string name="t_996095bd" formatted="false">"Bu oyunda atıfta bulunulan bazı adlar, terimler ve ticari markalar ilgili sahiplerinin mülkü olabilir. Bu tür atıflar yalnızca tanımlama, yorum, eğitim bağlamı ve oyun içinde kurgusal temsil amacıyla kullanılır.\n\nBu oyun bağımsız olarak geliştirilmiştir ve Red Hat, Microsoft veya başka herhangi bir üçüncü taraf ticari marka sahibiyle bağlantılı değildir, onlar tarafından desteklenmemiş, onaylanmamış veya kabul edilmemiştir.\n\nTüm üçüncü taraf ticari markaları, ürün adları, şirket adları ve logolar ilgili sahiplerinin mülkü olarak kalır."</string>
+    <string name="t_99ab6437" formatted="false">"Bu ekranları bir dahaki açışında ana menü turunu ve YAZILIM açıklamasını yeniden göster."</string>
+    <string name="t_99cfdd6c" formatted="false">"Önizle: {0}"</string>
+    <string name="t_99d175d2" formatted="false">"Hızlanmayı azaltmak için rotada bir TARPIT tut."</string>
+    <string name="t_99f43c9c" formatted="false">"YETERSİZ KRİPTO"</string>
+    <string name="t_9a8ee779" formatted="false">"Kadrodaki her şey kadar hızlı ateş eder ve daima önce bossa ateş eder. [!!!] BREACH'e çift hasar. En fazla dört."</string>
+    <string name="t_9a9bcdd3" formatted="false">"YUVA"</string>
+    <string name="t_9aa5d01a" formatted="false">"Başarısız bir oyundan sonra asla geçiş reklamı yok, artı €5,000. Canlanma reklamları isteğe bağlı ve ayrıdır — bkz. CANLANMA PAKETİ."</string>
+    <string name="t_9adba547" formatted="false">"Avro başına en iyi değer."</string>
+    <string name="t_9ae9f14f" formatted="false">"Uzak noktaların yavaş sürüklenmesi."</string>
+    <string name="t_9aed28a1" formatted="false">"KONUŞLANDIRMA SINIRINA ULAŞILDI"</string>
+    <string name="t_9b08be38" formatted="false">"Google Play Oyunlar'a soruluyor…"</string>
+    <string name="t_9b1d7455" formatted="false">"DALGA {0}"</string>
+    <string name="t_9b4c97a7" formatted="false">"Tahta attan adını alır: istediğin bir şeye benzeyen ama hiç istemediğin bir şey taşıyan yazılım."</string>
+    <string name="t_9b557f99" formatted="false">"En iyin: dalga {0}"</string>
+    <string name="t_9b989bfb" formatted="false">"EN İYİ"</string>
+    <string name="t_9bcd1b03" formatted="false">"Yedi canlı arka planın tamamı, artı €2,000."</string>
+    <string name="t_9bd1faf7" formatted="false">"İadeler, ödeme yöntemleri ve makbuzlar bu oyun tarafından değil, Google tarafından yönetilir."</string>
+    <string name="t_9c2ade2b" formatted="false">"SV {0}  ×{1}"</string>
+    <string name="t_9c6be09c" formatted="false">"DEĞİŞTİRİCİLER"</string>
+    <string name="t_9d0c4ff1" formatted="false">"&gt; dalga {0} aktif — {1} tehdit kaldı"</string>
+    <string name="t_9d29de23" formatted="false">"SEVİYEYE GÖRE EN İYİ DALGA"</string>
+    <string name="t_9d2c3eea" formatted="false">"AĞ TERİMLERİ"</string>
+    <string name="t_9d36e329" formatted="false">"FİDYEDE"</string>
+    <string name="t_9d5ca8b9" formatted="false">"CANLANMAK İSTER MİSİN?"</string>
+    <string name="t_9df821c5" formatted="false">"CyOps TD'YE HOŞ GELDİN"</string>
+    <string name="t_9e30871d" formatted="false">"Başkasından emir alan tek bir ele geçirilmiş makine. Tek bir bot zararsızdır. Binlercesinden oluşan bir botnet değildir — bu yüzden hep gruplar hâlinde gelirler."</string>
+    <string name="t_9e77c8cf" formatted="false">"Dalgaları hızlı temizlemek için beşinci bir simülasyon hızı ekler."</string>
+    <string name="t_9ef0ebe5" formatted="false">"SEGMENTASYON"</string>
+    <string name="t_9f26f678" formatted="false">"  →"</string>
+    <string name="t_9f70f631" formatted="false">"ATIŞ HIZI"</string>
+    <string name="t_9fb6c271" formatted="false">"Yakındaki ajanları kısa süre sıkıştırır, atış hızlarını düşürür."</string>
+    <string name="t_a12f7814" formatted="false">"+{0} (BOSS)"</string>
+    <string name="t_a15faa1f" formatted="false">"MOD"</string>
+    <string name="t_a19abbd4" formatted="false">"Her siber ajan, ne yaptığı ve onu açan dalga."</string>
+    <string name="t_a21dbf00" formatted="false">"€{0} BÜTÇE BİRİKTİRİLDİ"</string>
+    <string name="t_a24181ff" formatted="false">"SALDIRAN NE"</string>
+    <string name="t_a2517472" formatted="false">"MAĞAZA KULLANILAMIYOR"</string>
+    <string name="t_a29c69ba" formatted="false">"ÇIKIŞ"</string>
+    <string name="t_a2b3bef5" formatted="false">"DALGA {0}'A ULAŞ"</string>
+    <string name="t_a2dd8300" formatted="false">"Bir sınav. İki rota, geri dönüyor, sonra raftan önce bir tur."</string>
+    <string name="t_a2e2f704" formatted="false">"ŞİFRE KIRMA"</string>
+    <string name="t_a32353a8" formatted="false">"€9,000 BÜTÇE"</string>
+    <string name="t_a36e1b6d" formatted="false">"BU SÜRÜMDE YOK"</string>
+    <string name="t_a3ebab03" formatted="false">"Yamalanmamış, bilinmeyen bir açık"</string>
+    <string name="t_a4a2cd90" formatted="false">"&gt;&gt; YENİ REKOR &lt;&lt;"</string>
+    <string name="t_a4fd7522" formatted="false">" · MAKS {0}"</string>
+    <string name="t_a5460e4e" formatted="false">"Elitlere ve bosslara karşı +%80 hasarlı yavaş, ağır tek vuruşlar. Sürülere karşı zayıf. Hedefleme seçicisini açar, böylece onu gerçekten ölmesini istediğin şeye yöneltebilirsin."</string>
+    <string name="t_a596b409" formatted="false">"5× HIZ MAĞAZADA"</string>
+    <string name="t_a599c90a" formatted="false">"Menzilindeki her ajan, kendisi dahil, herhangi bir bossun sıkıştırmasına bağışıktır. Hızlı, ağır atışlar, WHITE EYE ve BLACK EYE'a {0}× hasar. TARPIT'in menzili. En fazla iki tane konuşlandırılabilir."</string>
+    <string name="t_a5b1ffba" formatted="false">"Sınırsız sistem erişimi"</string>
+    <string name="t_a5da8eea" formatted="false">"Bir dalgada mı takıldın? Bütçe biriktir, yazılım yükle, aynı tahta bir sonraki oyunda daha sert vurur."</string>
+    <string name="t_a6291e29" formatted="false">"€5,000 BÜTÇE"</string>
+    <string name="t_a62c1133" formatted="false">"Gerçek bir hack yeteneği yok — buradaki hiçbir şey gerçek bir ağa dokunmaz"</string>
+    <string name="t_a66c22f9" formatted="false">"Dili ana menüdeki AYARLAR'dan değiştir: değiştirmek oyunu yeniden başlatır, bu da bu oyunu bitirir."</string>
+    <string name="t_a6cd2e07" formatted="false">"{0}-{1} karakter. A-Z, 0-9, tire ve alt çizgi."</string>
+    <string name="t_a6ee02f4" formatted="false">"İPTAL"</string>
+    <string name="t_a727a483" formatted="false">"İÇERİR"</string>
+    <string name="t_a7c5a24a" formatted="false">"Music/CyOps TD klasörüne kaydediliyor…"</string>
+    <string name="t_a7c97dfd" formatted="false">"SIFIRLA"</string>
+    <string name="t_a7e02911" formatted="false">"ÇEKİRDEKTE"</string>
+    <string name="t_a7e24bd6" formatted="false">"HEDEFLEME"</string>
+    <string name="t_a8031bce" formatted="false">"MAĞAZA SAYFASINI AÇ"</string>
+    <string name="t_a8191219" formatted="false">"SPOOFER ateşi emen sahte kopyalarını yaratır. ANALYST ve ROOT ADMIN onların içini görür."</string>
+    <string name="t_a8768bb2" formatted="false">"AJAN GÖRÜNÜMLERİ"</string>
+    <string name="t_a8935036" formatted="false">"KAZANILAN KRİPTO"</string>
+    <string name="t_a92b98a8" formatted="false">"KRİPTO ◇"</string>
+    <string name="t_a9a8f56c" formatted="false">"GÖRSELLER"</string>
+    <string name="t_a9ad0741" formatted="false">"BU OYUNDA €"</string>
+    <string name="t_a9cf50ec" formatted="false">"Gerçek trafik, hedefine ulaşmak için anahtarlar ve yönlendiriciler üzerinden bir rota izler. Buradaki iki kıvrımlı rota o yoldur; her atlamayı aynı anda görebilmen için geri döner."</string>
+    <string name="t_a9d9e481" formatted="false">"CORE-SERVER savunduğun şeydir ve üst şeritteki BÜTÜNLÜK göstergesi sahip olduğun tek candır. Rafa ulaşan her düşman paket ondan bir parça koparır. 0'da sunucu ihlal edilir ve oyun biter — yani hiçbir şeyin geçmemesi işin tamamıdır."</string>
+    <string name="t_aab511c4" formatted="false">"ROOTKIT her 6 saniyenin 2'sinde gizlenir ve hiçbir şey onu hedef alamaz. Sıçrama ve zincirler yine de ulaşır."</string>
+    <string name="t_aac1d4da" formatted="false">"BAĞLI DEĞİL"</string>
+    <string name="t_aadac61a" formatted="false">"Uygulamalar veritabanlarına SQL ile soru sorar. Kullanıcı girdisi doğrudan o sorunun içine yapıştırılırsa, saldırgan ona kendi sonunu yazabilir — bir kullanıcı tablosunu dökmek, bir girişi atlatmak veya her şeyi silmek. Çözüm eski ve iyi bilinir (parametreli sorgular); bu yüzden hâlâ en sık karşılaşacağın saldırı olması çok sinir bozucudur."</string>
+    <string name="t_ab62d63d" formatted="false">"Bir Saldırı Tespit Sistemi ağ veya ana makine etkinliğini saldırıya benzeyen kalıplar için izler ve uyarı verir. Raporlar; engellemez. Bulduğu şeye göre birinin ya da başka bir şeyin harekete geçmesi gerekir."</string>
+    <string name="t_aca3253a" formatted="false">"SAHADA · GÖRMEK İÇİN BİR BOSSA DOKUN"</string>
+    <string name="t_ad03a515" formatted="false">"Bir ağı bölgelere ayırmak"</string>
+    <string name="t_ad26a7c7" formatted="false">"bilinmiyor"</string>
+    <string name="t_ae00f867" formatted="false">"ANALİTİK"</string>
+    <string name="t_ae59bf94" formatted="false">"SAT  ◇ {0}"</string>
+    <string name="t_b0147d1e" formatted="false">"Bu dalga için FIREWALL dışı ajanlara yaslan."</string>
+    <string name="t_b0af39a6" formatted="false">"DEĞİŞTİR"</string>
+    <string name="t_b0d341a2" formatted="false">"BİR AYDAN FAZLA ÖNCE"</string>
+    <string name="t_b0f472d0" formatted="false">"ZORLUK"</string>
+    <string name="t_b16e2042" formatted="false">"Rafın arkasında mor bir yıldız alanı."</string>
+    <string name="t_b2029176" formatted="false">"Kısa bir aradan sonra sonraki dalgayı otomatik başlat"</string>
+    <string name="t_b253fa2b" formatted="false">"Kriptografi, aktarımdaki ve depolanan veriyi korur; böylece onu ele geçirmek okumakla aynı şey olmaz. Saldırganlar da onu kullanır — düşman trafiğin çoğu şifrelidir — bu yüzden savunanlar şifrelemeyi kırmaya çalışmak yerine kendi kontrol ettikleri uç noktalarda denetler."</string>
+    <string name="t_b28b05f8" formatted="false">"Saldırı Önleme Sistemi"</string>
+    <string name="t_b2dbc630" formatted="false">"GÜVENLİK DUVARI AKTİF"</string>
+    <string name="t_b2ef7c39" formatted="false">"SİBER OPERATİFLER: KULE SAVUNMASI"</string>
+    <string name="t_b32b1a1d" formatted="false">"KOLAYLIK"</string>
+    <string name="t_b3735fe8" formatted="false">"Dalgayla nefes alan bir devre kafesi."</string>
+    <string name="t_b3b53e34" formatted="false">"Satın alımlar bu cihaza değil, Google hesabına bağlıdır. Yeniden yüklemek veya telefon değiştirmek onları kaybettirmez."</string>
+    <string name="t_b3c34c67" formatted="false">"AZ ÖNCE"</string>
+    <string name="t_b40b6d1c" formatted="false">"Bir \"kırmızı takım\", bir saldırganın önce bulacağı şeyi bulmak için izinle bir sisteme saldırır. \"Kırmızı şapka\" bir unvan veya sertifika değil, gayriresmî bir argodur ve anlamı kullananlar arasında değişir; standart olan kırmızı takım kısmıdır."</string>
+    <string name="t_b5ca7a98" formatted="false">"Dünya genelinde her oyuncunun en iyi dalgası, çağrı adına göre listelenir. Sağda bir tane kaydet, yoksa Google senin Play Oyunlar adını gösterir."</string>
+    <string name="t_b649891d" formatted="false">"DURAKLATILDI"</string>
+    <string name="t_b683e66d" formatted="false">"{0} kilitli: açmak için {1}."</string>
+    <string name="t_b6bcb68c" formatted="false">"Ağır tek hedef hasarı, her atışta aynı. Tüm zırhı yok sayar."</string>
+    <string name="t_b7ba0ba1" formatted="false">"REGENERATION, {0} saniye vurulmadan geçince onu onarır. Yol boyunca ateş altında tut."</string>
+    <string name="t_b7c4c2a3" formatted="false">"[{0}] {1} (kilitli): {2}"</string>
+    <string name="t_b7cf2aab" formatted="false">"GOOGLE PLAY'İ AÇABİLECEK UYGULAMA YOK"</string>
+    <string name="t_b8201e22" formatted="false">"SONRAKİ: DALGA {0} · BOSS"</string>
+    <string name="t_b82dfd13" formatted="false">"SENİ GÖTÜRDÜĞÜ YER"</string>
+    <string name="t_b835d746" formatted="false">"ADIM 5 — İKİ TARPIT KONUŞLANDIR"</string>
+    <string name="t_b8cbfe08" formatted="false">"CORE-SERVER'a en uzak"</string>
+    <string name="t_b8f9cbc8" formatted="false">"HSR {0}  HIZ {1}/sn"</string>
+    <string name="t_b8ffa95c" formatted="false">"CANLI: AURORA"</string>
+    <string name="t_b9918647" formatted="false">"Burada olmak için para aldı. Hile yok, sıkıştırma yok — tahtadaki her şeyden yüzde yirmi fazlası."</string>
+    <string name="t_b9a3ada7" formatted="false">"EXFIL hızlıdır. Çekirdeğe ulaşırsa bütünlük yerine kriptonun yarısını çalar. Önce harca ya da onu durdur."</string>
+    <string name="t_b9c6b239" formatted="false">"Hatların altına ve her menünün arkasına çizilir."</string>
+    <string name="t_badb0f4a" formatted="false">"Belirli aralıklarla sunucuya doğru hızlanır."</string>
+    <string name="t_bae2cee7" formatted="false">"EVET — REKLAMI İZLE"</string>
+    <string name="t_bb0a2d46" formatted="false">"SEÇ"</string>
+    <string name="t_bb621985" formatted="false">"SERTLEŞTİRİLMİŞ"</string>
+    <string name="t_bb93827c" formatted="false">"CANLANMA BAŞARISIZ — OYUN ZATEN BİTTİ"</string>
+    <string name="t_bc855067" formatted="false">"ERİŞİM REDDEDİLDİ"</string>
+    <string name="t_bcdf64b3" formatted="false">"SQL ENJEKSİYONU"</string>
+    <string name="t_bceaf8ce" formatted="false">"!!! SİBER SALDIRI GELİYOR !!!"</string>
+    <string name="t_bd0c6acd" formatted="false">"SONRAKİ € {0} · seviye başına +%{1} {2}"</string>
+    <string name="t_bd1b1fc9" formatted="false">"KAPALI"</string>
+    <string name="t_bd8215e6" formatted="false">"EVET, BİLGİLENDİR"</string>
+    <string name="t_bd84c20a" formatted="false">"DALGA {0} GÜVENCEDE"</string>
+    <string name="t_be1fc25b" formatted="false">"Güvenilir çok yönlü hasar ve sıkıştırılamaz."</string>
+    <string name="t_beb11f45" formatted="false">"Boss değiştiricisi"</string>
+    <string name="t_beb3cdc3" formatted="false">"Alanı bossları diğer tehditlerden iki kat fazla yavaşlatır."</string>
+    <string name="t_bec37550" formatted="false">"SICAK ONARIM"</string>
+    <string name="t_bed8ffbb" formatted="false">"Geri yükle, bu Google hesabının nelere sahip olduğunu Play'e yeniden sorar. Her zaman basmak güvenlidir ve asla ücret almaz."</string>
+    <string name="t_bf09fcca" formatted="false">"Bu sürümde yapılandırılmış bir Play Oyunlar projesi yok, bu yüzden ilerleme bu cihazda kalır. Aynı Google hesabıyla giriş yapılmış bir telefona yeniden yüklediğinde Android'in kendi yedeği onu yine geri yükler."</string>
+    <string name="t_bf0c2eaa" formatted="false">"ÇOĞALIYOR"</string>
+    <string name="t_bf7cfb98" formatted="false">"Bu sürümde yapılandırılacak reklam yok."</string>
+    <string name="t_c1386132" formatted="false">"◇ KRİPTO"</string>
+    <string name="t_c164d2e8" formatted="false">"Şapkalar kadar hızlı ateş eder ve daha sert vurur; DUCK-USB bossları SYN-STORM ve GRADIENT'e {0}× hasar verir. Hedefleme modlarını korur. En fazla iki tane konuşlandırılabilir. Ajan görünümlerinin değiştirmediği bir hologram olarak çizilir."</string>
+    <string name="t_c19b9c99" formatted="false">"CORE-SERVER BÜTÜNLÜĞÜ 0 · BAĞLANTI SONLANDIRILDI"</string>
+    <string name="t_c1b7bcc5" formatted="false">"Bu sürüm reklam göstermez."</string>
+    <string name="t_c2658f4d" formatted="false">"Ezici tek hedef hasarı. Tüm zırhı yok sayar."</string>
+    <string name="t_c2c8c2f8" formatted="false">"AJAN MENZİLİNİ GÖSTER"</string>
+    <string name="t_c2d127eb" formatted="false">"ATLA ×"</string>
+    <string name="t_c31db047" formatted="false">"CANLANMA PAKETİ — reklam yok."</string>
+    <string name="t_c39850a1" formatted="false">"ADIM 3 — İKİ FIREWALL KONUŞLANDIR"</string>
+    <string name="t_c3e1a996" formatted="false">"◇ Kripto ve € Bütçe kurgusal oyun içi kaynaklardır. Parasal değerleri yoktur, oyun dışındaki hiçbir şeyle takas edilemezler ve cihazdan çıkamazlar."</string>
+    <string name="t_c405af57" formatted="false">"OYNA, soldan seçilen seviye ve oyun modunda bir oyun başlatır. Kayıtlı bir oyun varken DEVAM onu sürdürür ve YENİ OYUN baştan başlar."</string>
+    <string name="t_c40bc4a4" formatted="false">"Bir IDS ağ etkinliğini şüpheli davranış ve güvenlik tehditleri için izler, sonra uyarı verir. İzler; engellemez."</string>
+    <string name="t_c4a14a23" formatted="false">"FIREWALL'u seç. Ucuz, güvenilir ve sıkıştırılamaz."</string>
+    <string name="t_c4b7782d" formatted="false">"Güvenlik analisti gerçek bir iştir. Döngüdeki insan, otomatik araçların işaretlediğini alır, gerçekte ne olduğunu çözer ve ne yapılacağına karar verir. Bir makineden yavaştır ve bilinen bir kalıba uymayan durumlarda çok daha iyidir."</string>
+    <string name="t_c4d0dc6f" formatted="false">"Makine öğrenimi araçları, bir insanın okuyabileceğinden çok daha fazla sinyalde olağandışı kalıpları işaretler ve neyin dikkat gerektirdiğini daraltmak için kullanılır. Analistlere yardım eder, onların yerini almaz ve yanlış pozitifler üretir — bir işaret bir ipucudur, hüküm değil."</string>
+    <string name="t_c51041e3" formatted="false">"  ·"</string>
+    <string name="t_c55cc938" formatted="false">"YENİ OYUN"</string>
+    <string name="t_c55e934e" formatted="false">"DAHA FAZLASI İÇİN KAYDIR"</string>
+    <string name="t_c570c6cd" formatted="false">"Rafın içinde düşen kod sütunları."</string>
+    <string name="t_c5cb18f9" formatted="false">"TÜM SEVİYELER"</string>
+    <string name="t_c81c4fa0" formatted="false">"1 seviye"</string>
+    <string name="t_c8a9aae9" formatted="false">"Üç rota iki kez birbirine örülür: her hat taraf değiştirir."</string>
+    <string name="t_c9301368" formatted="false">"ÇEKİRDEK: REACTOR"</string>
+    <string name="t_c9402c75" formatted="false">"HAYIR"</string>
+    <string name="t_c944e5aa" formatted="false">"KARŞI ÖNLEMLER"</string>
+    <string name="t_c9a2aee9" formatted="false">"Bu ajanı herhangi bir seviyede {0}. dalgaya ulaşarak aç."</string>
+    <string name="t_ca02a8f8" formatted="false">"Her ajan yaptığı işin rengini giyer."</string>
+    <string name="t_ca5ea88d" formatted="false">"EN İYİ DEĞER"</string>
+    <string name="t_cabf47fa" formatted="false">"MAKS +{0}"</string>
+    <string name="t_cb02b3da" formatted="false">"Tüm kadroda yavaş bir renk döngüsü."</string>
+    <string name="t_cb1fd3f1" formatted="false">"IPS, harekete geçme yetkisi olan bir IDS'tir. Bir saldırıyı tanıdığında, birine haber vermek yerine trafiği kendisi düşürür."</string>
+    <string name="t_cb4ff573" formatted="false">"REKLAMLAR VE SATIN ALIMLAR"</string>
+    <string name="t_cbd3b516" formatted="false">"Reklam yok, SPECTRUM ajan görünümü, DRIFT arka planı ve €2,000."</string>
+    <string name="t_cbd47695" formatted="false">"YÜK ENGELİ"</string>
+    <string name="t_cbf7d422" formatted="false">"SYN-STORM yarı canda ikiye bölünür ve ikinci yarı başka bir rotaya sapar. Her rotayı kapat."</string>
+    <string name="t_cc52e024" formatted="false">"SONRAKİ: DALGA {0} — BOSS · BRİFİNG İÇİN SONRAKİ BOSS'A DOKUN"</string>
+    <string name="t_cc5435ac" formatted="false">"Hatlardan ne geliyor"</string>
+    <string name="t_cc5c44e8" formatted="false">"ODAK: YALNIZCA KÜÇÜK BİRİMLER VE ELİTLER"</string>
+    <string name="t_cc6791f1" formatted="false">"FIREWALL ajanlarına dirençlidir."</string>
+    <string name="t_cc7fe141" formatted="false">"Saldırı araçlarını izler. Yakınındaki RED HAT ajanlarını birkaç saniyede bir kısa süre sıkıştırır."</string>
+    <string name="t_cc9e044b" formatted="false">"CANLI: YÖRÜNGE"</string>
+    <string name="t_ccb963f2" formatted="false">"PAKET"</string>
+    <string name="t_ccbd0815" formatted="false">"Varsayılan raf."</string>
+    <string name="t_ccbefbf5" formatted="false">"TARAMA MENZİLİ {0}"</string>
+    <string name="t_ccd3b8ff" formatted="false">"Gizlilik seçenekleri şu anda kullanılamıyor."</string>
+    <string name="t_cce0919d" formatted="false">"SAHİP OLUNAN"</string>
+    <string name="t_cd27794d" formatted="false">"Çağrı adı bu cihaza özeldir ve bir Google hesabı değildir. Skor tablosunda oyunlarını adlandırır."</string>
+    <string name="t_cd7ef0df" formatted="false">"TİCARİ MARKA VE ÜÇÜNCÜ TARAF BİLDİRİMİ"</string>
+    <string name="t_cd8fc1d8" formatted="false">"Google Play üzerinden isteğe bağlı uygulama içi satın alımlar mevcuttur. Oyundaki hiçbir şey bir satın alıma bağlı değildir."</string>
+    <string name="t_cde6047e" formatted="false">"Saldırı Tespit Sistemi"</string>
+    <string name="t_ce2cde0d" formatted="false">"ADIM 1 — KADROYU AÇ"</string>
+    <string name="t_ce56b8c8" formatted="false">"GOOGLE PLAY'DE YÖNET"</string>
+    <string name="t_ce8b48c9" formatted="false">"OYNANIŞ"</string>
+    <string name="t_ceb6dbab" formatted="false">"CyOps TD FİLM MÜZİĞİ"</string>
+    <string name="t_cec6cd66" formatted="false">"Henüz kayıtlı oyun yok. Bir oyun bitir, ulaştığın dalgaya göre sıralanarak burada listelenecek."</string>
+    <string name="t_cee3b8c9" formatted="false">"ATLA"</string>
+    <string name="t_cfd886ad" formatted="false">"İki rota kendi yarılarını tarar. Ortadaki boşluktaki kuleler ikisine de ulaşır."</string>
+    <string name="t_d0112898" formatted="false">"YEM"</string>
+    <string name="t_d07db54c" formatted="false">"ROOT / ADMIN"</string>
+    <string name="t_d08f5138" formatted="false">"Aynı topların önünden geri dönen iki kıvrımlı rota."</string>
+    <string name="t_d10c0c39" formatted="false">"Çok yüksek atış hızı ve her atış sıçrar; bu yüzden tek bir ağır hedefin değil, sürünün cevabıdır. IDS'ten pahalıdır ve daha kısa menzillidir."</string>
+    <string name="t_d11351ac" formatted="false">"AÇIK"</string>
+    <string name="t_d173b657" formatted="false">"Bir sistemde her şeyi yapabilen hesap. Saldırganlar onu ister; savunanlar onu dikkatle korur. Güvenlik işinin çoğu, onu kimin ve ne kadar süreyle alacağını sınırlamakla ilgilidir."</string>
+    <string name="t_d19c7c8e" formatted="false">"◇ {0} · {1}. dalgada açılır"</string>
+    <string name="t_d22f26dd" formatted="false">"Her yaylımda en fazla 3 ayrı tehditle çatışır."</string>
+    <string name="t_d2ee5fd2" formatted="false">"İlerleme otomatik kaydedilir"</string>
+    <string name="t_d31b24bf" formatted="false">"{0} · {1}  ·  en iyi {2}"</string>
+    <string name="t_d35bc038" formatted="false">"{0} — {1} Hasar vermez; diğer ajanlarına zaman kazandırır."</string>
+    <string name="t_d415f020" formatted="false">"Sıfırıncı gün, henüz düzeltmesi olmayan bir açıktır — savunanın yamalamak için sıfır günü oldu. Güvenlik açığı araştırmacıları bunları, başkası önce bulmadan raporlanıp düzeltilsin diye arar. \"Zero-day hunter\" gayriresmî bir kısaltmadır, sertifika veya resmî unvan değildir."</string>
+    <string name="t_d477fdfb" formatted="false">"YAZILIM TAMAMEN YÜKLÜ"</string>
+    <string name="t_d488d098" formatted="false">"REHBERLİ OYUN SIRADA TARPIT İSTER"</string>
+    <string name="t_d48f1170" formatted="false">"▼  AŞAĞIDA DAHA FAZLASI"</string>
+    <string name="t_d4bb26ac" formatted="false">"ÇEKİRDEK GÖRÜNÜM PAKETİ"</string>
+    <string name="t_d5acb32b" formatted="false">"Boss uyarılarında, sunucu vuruşlarında ve oyun sonunda titreşim"</string>
+    <string name="t_d5b86d2a" formatted="false">"Güvenlik Operasyon Merkezi"</string>
+    <string name="t_d5d0b693" formatted="false">"DEVAM"</string>
+    <string name="t_d62907f6" formatted="false">"YÜKLÜ YAZILIM"</string>
+    <string name="t_d63b9487" formatted="false">"ULAŞILAMIYOR"</string>
+    <string name="t_d736d92d" formatted="false">"TAMAM"</string>
+    <string name="t_d8386755" formatted="false">"GOOGLE PLAY FATURALANDIRMA"</string>
+    <string name="t_d84b41e9" formatted="false">"Sürekli hasar kazanır. IPS ya da seviyesi yükseltilmiş bir FIREWALL."</string>
+    <string name="t_d8705eb7" formatted="false">"Siber saldırılar ağ rotaları boyunca CORE-SERVER'a doğru ilerler. Hatların yanına Siber Ajanlar konuşlandırırsın; geçenleri tespit edip yok ederler. Durdurduğun her saldırı ◇ Kripto öder; bununla daha çok ajan ve yükseltme alırsın. Her beşinci dalga bir bosstur. Son dalga yok — tek soru ne kadar ileri gideceğin."</string>
+    <string name="t_d889d3ab" formatted="false">"+1, +10 ve +100 o kadar seviye satın alır. MAKS YÜKLE karşılayabildiğin kadarını harcar. Her seviye biraz daha pahalıdır."</string>
+    <string name="t_d8bcdc1d" formatted="false">"YENİDEN BAŞLAT"</string>
+    <string name="t_d8fec6d4" formatted="false">"TOPLAM KONUŞLANDIRILAN AJAN"</string>
+    <string name="t_d9074af5" formatted="false">"Şifreleme veriyi karıştırır, böylece yalnızca doğru anahtara sahip olan okuyabilir. Meşru trafiği korur — ve aynı ölçüde bir saldırganın yükünü denetimden gizler."</string>
+    <string name="t_d92ad54a" formatted="false">"Bu sürümde yapılandırılmış Google Play faturalandırma yok ya da bu cihazda Play Store yok. Hiçbir şey satın alınamaz ve oynamak için para gerektiren hiçbir şey gerekmez."</string>
+    <string name="t_d9694eb9" formatted="false">"Aynı açık, geri bildirim yok. Uygulama hata da veri de döndürmez; bu yüzden saldırgan evet-hayır soruları sorar ve neyin değiştiğini izler — zamanlama, sayfa uzunluğu, durum kodları — veritabanını bit bit okumak için. Yavaş, sabırlı ve bir günlükte fark edilmesi çok daha zor."</string>
+    <string name="t_d9b49353" formatted="false">"TEKRAR DENE"</string>
+    <string name="t_d9b88563" formatted="false">"Ağ trafiğinin birimi"</string>
+    <string name="t_d9c57847" formatted="false">"ÇEVRE HAZIR"</string>
+    <string name="t_da10b268" formatted="false">"SAHİP DEĞİL"</string>
+    <string name="t_da169a1a" formatted="false">"DÜNYA"</string>
+    <string name="t_da3ae5ed" formatted="false">"Hasar vermez ve hiçbir şeyi hedef almaz. Bir dalga sürerken her 30 saniyede CORE-SERVER bütünlüğünü 1 puan onarır (aralarda veya duraklatılmışken asla). Yalnızca CORE-SERVER'ın kendisine konuşlanır; orada onun için iki yuva vardır, başka hiçbir yere değil. Seviyeler zamanlayıcıyı kısaltır. En fazla iki tane konuşlandırılabilir."</string>
+    <string name="t_dad4b11e" formatted="false">"SALDIRI TARAMASI"</string>
+    <string name="t_db696c4d" formatted="false">"Devasa ve ağır zırhlı, ama yavaş. Zırhı yok sayan bir şey getir."</string>
+    <string name="t_db971746" formatted="false">"Savunma araçlarını izler. Yakınındaki BLUE HAT ajanlarını birkaç saniyede bir kısa süre sıkıştırır."</string>
+    <string name="t_dba0a883" formatted="false">"Ele geçirilmiş makinelerden oluşan bir ağ"</string>
+    <string name="t_dbc1a374" formatted="false">"REKLAM TAMAMLANMADI — HİÇBİR ŞEY HARCANMADI"</string>
+    <string name="t_dc09f8b7" formatted="false">"SIKIŞTIRMA — bir boss bir ajanı bozabilir, süresince atış hızını yarıya indirir. {0} bunu umursamayacak şekilde yapılmıştır."</string>
+    <string name="t_dc37fa05" formatted="false">"Her şeyin arkasında hareket eden geniş soğuk ışık bantları."</string>
+    <string name="t_dc62badb" formatted="false">"UNVAN"</string>
+    <string name="t_dce01a82" formatted="false">"ÇAĞRI ADI GİR"</string>
+    <string name="t_dd220c90" formatted="false">"REKLAMCILIK"</string>
+    <string name="t_dd4083b5" formatted="false">"Hiçbir şey satın alınmadı. Yukarıdaki her şey kazanılabilir ya da onlarsız da oynanabilir."</string>
+    <string name="t_dd55f56b" formatted="false">"İki rota raftan önce üç kez birbirinin içinden geçer, bir DNA sarmalı gibi."</string>
+    <string name="t_ddb5514a" formatted="false">"GOOGLE PLAY OYUNLAR'DA AÇ"</string>
+    <string name="t_ddcb2958" formatted="false">"İlk ve kesinlikle bilim kurgu olanın adını taşır: her vuruş yakındaki iki tehdide %55 hasarla zincirlenir. Kümelenmiş dalgalara karşı güçlü, tek bir hedefte boşa gider. Hedefleme seçicisini açar."</string>
+    <string name="t_ddd374d9" formatted="false">"Karşılaşacağın saldırılar, bosslar ve ajanlarının onlara karşı ne yaptığı hakkında kısa bir özet. Yaklaşık yirmi saniye sürer."</string>
+    <string name="t_dee83e52" formatted="false">"OYUN İÇİ PANEL OPAKLIĞI"</string>
+    <string name="t_e00d9a42" formatted="false">"BİR CORE-SERVER YUVASINA YERLEŞTİR"</string>
+    <string name="t_e01007ce" formatted="false">"Avro başına küçük paketten daha iyi değer."</string>
+    <string name="t_e07706fa" formatted="false">"BAĞLANANA KADAR BU CİHAZ"</string>
+    <string name="t_e0a2aaa4" formatted="false">"GOOGLE HESABINI BAĞLA"</string>
+    <string name="t_e12d998f" formatted="false">"PAKET"</string>
+    <string name="t_e13093ea" formatted="false">"HASAR"</string>
+    <string name="t_e1892d25" formatted="false">"ÇEKİRDEK YAZILIMI"</string>
+    <string name="t_e1df4ef7" formatted="false">"BOSSLAR"</string>
+    <string name="t_e3407723" formatted="false">"EVET"</string>
+    <string name="t_e3a7e50c" formatted="false">"KAYDIMI KORU"</string>
+    <string name="t_e3c4a9cc" formatted="false">"{0} yakınındaki {1} ajanlarını sıkıştırır. Onları geriye, menzillerinin kenarına yerleştir."</string>
+    <string name="t_e4554374" formatted="false">"KAPAT"</string>
+    <string name="t_e55f9c78" formatted="false">"BU OYUNUN YAPMADIKLARI"</string>
+    <string name="t_e587f42b" formatted="false">"SİSTEM VARSAYILANI (telefon dili)"</string>
+    <string name="t_e5e7e535" formatted="false">"SYN-STORM BÖLÜNMESİ"</string>
+    <string name="t_e6694d9c" formatted="false">"Süren bir dalganın her 30 saniyesinde, CORE-SERVER üzerindeki iki yuvadan birinden 1 CORE-SERVER bütünlüğü onarır. Seviyelerle hızlanır. En fazla iki."</string>
+    <string name="t_e807eff2" formatted="false">"Menzilindeki en yakın rotayı duvarla kapatır; tehditler onu yıkmak zorundadır. Her bossa çok sert vurur. En fazla üç."</string>
+    <string name="t_e8757749" formatted="false">"{1} haritasında {0}. dalgayı temizle"</string>
+    <string name="t_e8987cec" formatted="false">"İLERLEMEYİ SIFIRLA"</string>
+    <string name="t_e94c961d" formatted="false">"İSTATİSTİKLER"</string>
+    <string name="t_e979d28d" formatted="false">"HIZ"</string>
+    <string name="t_e99d5d17" formatted="false">"€ paketleri harcanır, sahip olunmaz: bir kez yüklenir ve GERİ YÜKLE onları yeniden vermez."</string>
+    <string name="t_e9caa97b" formatted="false">"Henüz kayıtlı konuşlandırma yok. Bunu doldurmak için bir oyun oyna."</string>
+    <string name="t_ea16b407" formatted="false">"Koyu çivit üzerinde altın izler."</string>
+    <string name="t_ea31efb2" formatted="false">"{0}. dalgayı temizle"</string>
+    <string name="t_eab5f205" formatted="false">"ÇAĞRI ADINI DEĞİŞTİR"</string>
+    <string name="t_eaf7396d" formatted="false">"GOOGLE'A ULAŞILAMIYOR — KAYIT CİHAZDA TUTULDU"</string>
+    <string name="t_eb2e832a" formatted="false">"AJAN {0}"</string>
+    <string name="t_ebdd4d5e" formatted="false">"KALDIRILDI · YOK"</string>
+    <string name="t_ec91403d" formatted="false">"DALGA"</string>
+    <string name="t_ed31a176" formatted="false">"Dalgaya tepki veren, nefes alan bir devre kafesi."</string>
+    <string name="t_ed5c9d47" formatted="false">"SEVİYE BAŞINA"</string>
+    <string name="t_ed7160a0" formatted="false">"ASLA"</string>
+    <string name="t_ed7ecda7" formatted="false">"Kilitli"</string>
+    <string name="t_ee0803eb" formatted="false">"DİRENÇLİ"</string>
+    <string name="t_ee094192" formatted="false">"Bu sürümde yapılandırılmış Google Play faturalandırma yok, bu yüzden burada hiçbir şey satın alınamaz. Oyunun para gerektirmeyen her parçası tamamen normal çalışır."</string>
+    <string name="t_ee5525d9" formatted="false">"KERNEL PANIC · {0} SIKIŞTI"</string>
+    <string name="t_ee6595fd" formatted="false">"Uyarıları izleyen ekip ve oda. Bu oyunun bir mekânı varsa, gece 3'te bir SOC duvar ekranıdır."</string>
+    <string name="t_eea62f11" formatted="false">"SATIN ALIMLAR"</string>
+    <string name="t_eef967f2" formatted="false">"SAVAŞ ALANINI YAKINLAŞTIR"</string>
+    <string name="t_ef29f425" formatted="false">"SES"</string>
+    <string name="t_efcf9890" formatted="false">"HSR {0} · HIZ {1}/sn · MNZ {2}"</string>
+    <string name="t_f001b942" formatted="false">"TAHKİMLİ"</string>
+    <string name="t_f03b01af" formatted="false">"Bir süre vurulmadan kalınca yavaşça kendini onarır."</string>
+    <string name="t_f100d10c" formatted="false">"KİLİTLİ işaretli her şey mağazadadır. Buradaki hiçbir şey oyunun oynanışını değiştirmez — görünümler avantaj değil, görünüştür."</string>
+    <string name="t_f16b76bc" formatted="false">"\"Rubber ducky\", klavye gibi davranan ve bir saldırıyı herkesten hızlı yazan bir USB bellektir. Savunma, bilgisayar her yeni cihaza güvenmeden önce onu denetleyen ve makine gibi yazan bir klavyeyi engelleyen bir USB korumasıdır."</string>
+    <string name="t_f17dfdae" formatted="false">"Uzun tek bir rota yukarıdan iner ve rafa doğru dışa doğru sarmal çizer."</string>
+    <string name="t_f25360a0" formatted="false">"Değişiklikler hemen uygulanır ve bu cihazda kalır"</string>
+    <string name="t_f293dfd1" formatted="false">"SATIN ALMA KONTROLLERİ"</string>
+    <string name="t_f2e7479c" formatted="false">"İlerlemeni her telefonda veya tablette tutmak için Google hesabını bağla. Google, bu oyunun hesabındaki kayıtlı verilerini yönetmek için izin isteyecek — bu kayıtlı oyun depolamasıdır ve kullanılan tek şey odur."</string>
+    <string name="t_f2ed0368" formatted="false">"Hızlı. Çekirdeğe ulaşırsa bütünlük yerine kriptonun yarısını çalar."</string>
+    <string name="t_f2f63d9f" formatted="false">"BU CİHAZDA"</string>
+    <string name="t_f33c5b01" formatted="false">"ADIM 6 — DALGAYI BAŞLAT"</string>
+    <string name="t_f38eb808" formatted="false">"Daha sert tehditler, daha sık, daha az bütünlük. Daha zengin ödüller."</string>
+    <string name="t_f3e23f71" formatted="false">"ÇEKİRDEK: CASCADE"</string>
+    <string name="t_f49a4ff9" formatted="false">"AJAN KİLİTLİ"</string>
+    <string name="t_f4f677dc" formatted="false">"ÖMÜR BOYU KAZANILAN"</string>
+    <string name="t_f5537783" formatted="false">"ÇEKİRDEK: MAINFRAME"</string>
+    <string name="t_f590e2c9" formatted="false">"ROTA"</string>
+    <string name="t_f5b866e4" formatted="false">"Hazırlıksız bir ağı umursamayacak kadar yedekliliğe sahip koordineli bir ihlal girişimi. Her beşinci dalga bir tane getirir ve her biri bir öncekinden serttir."</string>
+    <string name="t_f60f5840" formatted="false">"Hâlâ bir CyOps hesabı ve parola yok. Satın alımlar bu cihazda Play Store'a giriş yapılmış Google hesabını izler. İlerleme yukarıda bağladığın Google hesabını izler — ayrı, isteğe bağlı bir seçim: oyun onsuz da eksiksizdir."</string>
+    <string name="t_f692d3ce" formatted="false">"BOTNET"</string>
+    <string name="t_f69a80a7" formatted="false">"Oyun {0} diline geçmek için yeniden başlar. İlerlemen korunur."</string>
+    <string name="t_f6f93110" formatted="false">"ÇEKİRDEK: NEONGRID"</string>
+    <string name="t_f720bfa7" formatted="false">"CRT fosfor tarama çizgileri."</string>
+    <string name="t_f76fff7f" formatted="false">"Kötü amaçlı yazılım: zarar vermek, bozmak veya çalmak için yazılmış kod. Basit bir enjeksiyondan daha fazla yük taşır, bu yüzden dağılmadan önce daha fazla hasar emer."</string>
+    <string name="t_f7a4fc70" formatted="false">"KONUŞLANDIRMAK İÇİN TEKRAR DOKUN"</string>
+    <string name="t_f7a7b98a" formatted="false">"HSR {0} · HIZ {1} · MNZ {2}"</string>
+    <string name="t_f7eb1496" formatted="false">"Sıralama ulaştığın en derin dalgaya göre belirlenir. Eşitliği verilen hasar bozar."</string>
+    <string name="t_f803ec67" formatted="false">"SİPARİŞ GEÇMİŞİ VE İADELER"</string>
+    <string name="t_f85117ec" formatted="false">"{0} parçanın tamamı zaten Music/CyOps TD klasöründe."</string>
+    <string name="t_f8723c46" formatted="false">"HIZ"</string>
+    <string name="t_f8d84db3" formatted="false">"KAYITSIZ"</string>
+    <string name="t_f8e6e39f" formatted="false">"Sistem mühendisleri sunucuları çalışır tutar: yamalama, arızalı parçaları değiştirme, yedekten geri yükleme ve makinelerin sağlığını izleme. \"Sunucu sistem mühendisi\" bu tür işi tanımlar; unvanlar kuruluşlar arasında değişir."</string>
+    <string name="t_f9807a9f" formatted="false">"&gt; beklemede — ajanları konuşlandır ve 1. dalgayı başlat"</string>
+    <string name="t_f9cec260" formatted="false">"Az sayıda dev vuruş GRADIENT'i neredeyse hiç hızlandırmaz."</string>
+    <string name="t_f9d6b090" formatted="false">"Savaş alanının ve menülerin arkasında sürüklenen ASCII verisi"</string>
+    <string name="t_fa1b4500" formatted="false">"İstatistikler, duraklatma menüsünden terk ettiğin oyunlar dahil her oyunda birikir. AYARLAR'dan ilerlemeyi sıfırlamak hepsini siler."</string>
+    <string name="t_fa60c2c6" formatted="false">"CANLI: ISI HARİTASI"</string>
+    <string name="t_fb735826" formatted="false">"TİTREŞİM"</string>
+    <string name="t_fb889492" formatted="false">"Siber güvenlik temalı, bağımsız geliştirilmiş, önce çevrimdışı bir kule savunma oyunu. Senaryolar, ajanlar ve terimler oynanış için kurgulanmıştır; arkalarındaki kavramlar öğrenilebilsin diye kısa gerçek dünya açıklamaları eklenmiştir. Hiçbir saldırı tekniği öğretmez ve gerçek bir güvenlik işlevi görmez."</string>
+    <string name="t_fbca7f29" formatted="false">"Kullanışlı kılık değiştirmiş kötü amaçlı yazılım"</string>
+    <string name="t_fbd9e20c" formatted="false">"ARKA PLAN ANİMASYONU"</string>
+    <string name="t_fc778505" formatted="false">"Temiz bir raf, iz yok."</string>
+    <string name="t_fcc1e712" formatted="false">"GİZLİLİK"</string>
+    <string name="t_fd3cb488" formatted="false">"OTURUM AÇMA NASIL ÇALIŞIR"</string>
+    <string name="t_fdb0282f" formatted="false">"REKLAM YÜKLENİYOR…"</string>
+    <string name="t_fde05efe" formatted="false">"{1} HARİTASINDA DALGA {0}'A ULAŞ"</string>
+    <string name="t_fe26fa48" formatted="false">"EN İYİ DALGA"</string>
+    <string name="t_fe451d7a" formatted="false">"SİSTEMLER GERİ YÜKLENDİ — BÜTÜNLÜK {0}"</string>
+    <string name="t_fe86390c" formatted="false">" · HIZ {0}"</string>
+    <string name="t_feeee285" formatted="false">"{0} çekirdek görünümü · {1} arka plan mevcut"</string>
+    <string name="t_feef9615" formatted="false">"SONRAKİ BOSS"</string>
+    <string name="t_ff2d6a51" formatted="false">"Üç rota iki kez yer değiştirir. Her kesişim ikisine birden vuran bir noktadır."</string>
+    <string name="t_ffa57dc1" formatted="false">"&gt; hat topolojisi bağlanıyor"</string>
+    <string name="t_ffc3db58" formatted="false">"MNZ {0}"</string>
+    <string name="t_ffff9bd9" formatted="false">"Ajanlar renk spektrumunda yavaşça kayar, her birim bir sonrakinden kaydırılmış."</string>
+</resources>

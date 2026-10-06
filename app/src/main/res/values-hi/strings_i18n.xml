@@ -1,0 +1,867 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Translation of values/strings_i18n.xml. Machine-quality (AI) translation; see FEATURE_BACKLOG.md. -->
+<resources>
+    <string name="t_0069698f" formatted="false">"बजट में € {0}"</string>
+    <string name="t_00bdf050" formatted="false">"यह डिवाइस"</string>
+    <string name="t_00c74b4a" formatted="false">"हर बौछार में तीन अलग-अलग खतरों से एक साथ भिड़ता है, जो इसे चौड़ी लहर का जवाब बनाता है। लक्ष्य चयनकर्ता दिखाता है।"</string>
+    <string name="t_00cb85ad" formatted="false">"चरण 4 — TARPIT चुनें"</string>
+    <string name="t_00f316c1" formatted="false">"अगले स्तर की लागत"</string>
+    <string name="t_00fafa13" formatted="false">"इस खाते के पास है"</string>
+    <string name="t_01278423" formatted="false">"इससे क्या बदलता है"</string>
+    <string name="t_014c06bb" formatted="false">"{1} में से {0} अनलॉक · सर्वश्रेष्ठ लहर {2}"</string>
+    <string name="t_01b91dff" formatted="false">"RANSOM हर कुछ सेकंड में एक एजेंट के अपग्रेड {0} सेकंड के लिए लॉक कर देता है। उसके आने से पहले अपग्रेड करें।"</string>
+    <string name="t_01ba7032" formatted="false">"0 स्तर"</string>
+    <string name="t_01f2a69d" formatted="false">"सत्र नोट्स"</string>
+    <string name="t_0288b770" formatted="false">"नीचे कंट्रोल बार में एजेंट बटन पर टैप करें।"</string>
+    <string name="t_02b88c49" formatted="false">"सारा ऑडियो शुरू होते समय डिवाइस पर ही बनता है; गेम में कोई साउंड फ़ाइल नहीं है।"</string>
+    <string name="t_02f0f435" formatted="false">"रूट, या एडमिनिस्ट्रेटर, किसी सिस्टम पर सबसे ऊँचा अधिकार है: यह कोई भी प्रोसेस रोक सकता है और कुछ भी बदल सकता है। ठीक इसी वजह से अच्छा तरीका यह है कि इसे जितना कम हो सके और जितने कम समय के लिए हो सके, दिया जाए। \"Root admin\" इस एक्सेस स्तर का संक्षिप्त नाम है, कोई पद नहीं।"</string>
+    <string name="t_0306926d" formatted="false">"कोर सर्वर तक जाती तीन हमले की लेन"</string>
+    <string name="t_0358799e" formatted="false">"अब से हर मैच में हर {0} पर लागू होता है, कोर फ़र्मवेयर के ऊपर। शुरुआती स्तर सस्ते हैं; हर स्तर पिछले से महँगा है, और ऊपरी स्तरों की कीमत लाखों में है।"</string>
+    <string name="t_0397b7d9" formatted="false">"बॉस लहरें अपने-आप शुरू करें"</string>
+    <string name="t_03d108e0" formatted="false">"लिंक है, लेकिन Google तक नहीं पहुँच सके। कुछ नहीं खोया — इस डिवाइस का सेव ही खेला जा रहा है, और अगला सिंक खाते को अपडेट कर देगा।"</string>
+    <string name="t_059b388a" formatted="false">"&gt; लहर {0} साफ़ — लहर {1} के लिए तैयार हो जाएँ"</string>
+    <string name="t_05ea5d0e" formatted="false">"शुरुआत से उपलब्ध।"</string>
+    <string name="t_05f2ef1e" formatted="false">"अगला ट्रैक"</string>
+    <string name="t_063d8618" formatted="false">"आपकी माँगी गई चीज़ के भेस में शत्रुतापूर्ण कोड। धीमा चलता है लेकिन भारी परतों में लिपटा है — कवच हर अकेले वार को कुंद कर देता है, इसलिए तेज़ कमज़ोर शॉट इस पर बर्बाद होते हैं।"</string>
+    <string name="t_07269781" formatted="false">"विश्वव्यापी बोर्ड देखने के लिए एक कठिनाई चुनें।"</string>
+    <string name="t_07a3d7ab" formatted="false">"आपकी हर चीज़, रिवाइव समेत, किसी भी डिवाइस पर पुनर्स्थापित से Google Play से वापस आती है। यह कभी क्लाउड सेव का हिस्सा नहीं होती, इसलिए कोई सेव फ़ाइल कोई खरीद न दे सकती है न छीन सकती है।"</string>
+    <string name="t_07fbf4bd" formatted="false">"फिर से जीवित"</string>
+    <string name="t_08039ac7" formatted="false">"स्टोर"</string>
+    <string name="t_08175caa" formatted="false">"वर्ग रंग"</string>
+    <string name="t_08218c08" formatted="false">"लिंक हो रहा है…"</string>
+    <string name="t_08279524" formatted="false">"ऐसा कोड जो सिस्टम की किसी खास खामी का फ़ायदा उठाता है। एक्सप्लॉइट तेज़ चलते हैं और ज़ोर से मारते हैं; जब ये आ रहे हों तो पहचान की दूरी कच्चे नुकसान से ज़्यादा मायने रखती है।"</string>
+    <string name="t_086b8b8e" formatted="false">"बॉस"</string>
+    <string name="t_08f0711d" formatted="false">"खरीदारी पुनर्स्थापित करें"</string>
+    <string name="t_09653280" formatted="false">"कोर तक"</string>
+    <string name="t_0a0bc63d" formatted="false">"पिछला ट्रैक"</string>
+    <string name="t_0a2301f4" formatted="false">"सहेजी गई प्रगति"</string>
+    <string name="t_0a344034" formatted="false">"अगली: लहर {0}"</string>
+    <string name="t_0ae74b3e" formatted="false">"ज़ीरो-डे स्ट्राइक"</string>
+    <string name="t_0b205685" formatted="false">"नेटवर्क शुरू हो रहा है..."</string>
+    <string name="t_0b809aa5" formatted="false">"{0} के लिए अभी कोई विश्वव्यापी बोर्ड नहीं। वहाँ के रन इस डिवाइस पर दर्ज होते हैं।"</string>
+    <string name="t_0bc6e19b" formatted="false">"खुद कोई नुकसान नहीं करता। सीमा में हर एजेंट को +30% नुकसान और +20% फ़ायर रेट देता है, इसलिए इसका पूरा मूल्य इस पर है कि आप इसे कहाँ रखते हैं।"</string>
+    <string name="t_0bd16003" formatted="false">"अधिकतम"</string>
+    <string name="t_0bfbeb5b" formatted="false">"उन्हें TARPIT क्षेत्र में रोकें, फिर IPS को बचा हुआ ढेर साफ़ करने दें।"</string>
+    <string name="t_0c121fb2" formatted="false">"प्रगति सिंक हुई"</string>
+    <string name="t_0c147607" formatted="false">"डीप स्कैन"</string>
+    <string name="t_0c16a4ef" formatted="false">"अभी कोई स्कोर नहीं। पहले बनने के लिए एक रन पूरा करें।"</string>
+    <string name="t_0c997319" formatted="false">"WORM विभाजन"</string>
+    <string name="t_0cb4ce2b" formatted="false">"लहर {0} सुरक्षित  ◇{1}"</string>
+    <string name="t_0cfa4a6e" formatted="false">"इस स्तर के बॉस"</string>
+    <string name="t_0d884b08" formatted="false">"घुसपैठ (बॉस)"</string>
+    <string name="t_0d8c63a6" formatted="false">"हर वार पास के 2 खतरों तक 55% नुकसान के साथ श्रृंखला बनाता है।"</string>
+    <string name="t_0df4bfec" formatted="false">"कमज़ोरी"</string>
+    <string name="t_0e69fc6c" formatted="false">"डिप्लॉय बार में हर एजेंट का केवल आइकन और कीमत दिखती है"</string>
+    <string name="t_0eb480b6" formatted="false">"पीछे जाती परिप्रेक्ष्य ग्रिड, नीचे एक पीछा पट्टी के साथ।"</string>
+    <string name="t_0f47943c" formatted="false">"फ़ोकस बंद"</string>
+    <string name="t_0f5d5911" formatted="false">"बैटरी सेवर"</string>
+    <string name="t_0f80d304" formatted="false">"एजेंट नुकसान"</string>
+    <string name="t_0f9a43d6" formatted="false">"सभी जीवंत बैकग्राउंड"</string>
+    <string name="t_0fa88218" formatted="false">"Google Play तक नहीं पहुँच सके — आमतौर पर नेटवर्क नहीं होता। जो कुछ पहले से खरीदा है वह अब भी आपका है; ऑनलाइन वापस आने पर पुनर्स्थापित दबाएँ और वह फिर दिखेगा।"</string>
+    <string name="t_0fd40469" formatted="false">"प्रदर्शन"</string>
+    <string name="t_0fd4c0f4" formatted="false">"CORE-SERVER स्लॉट केवल [S] के लिए हैं"</string>
+    <string name="t_1046865f" formatted="false">"अपने पीछे लगातार BOT पैदा करता रहता है। इसे जल्दी मारें या इसके बॉटनेट में डूब जाएँ।"</string>
+    <string name="t_107ea55b" formatted="false">"अपग्रेड फिरौती में बंधक"</string>
+    <string name="t_108f4363" formatted="false">"इंस्टॉल"</string>
+    <string name="t_111611f9" formatted="false">"पैच दीवार"</string>
+    <string name="t_1181f7e7" formatted="false">"एजेंट जाम"</string>
+    <string name="t_11c0f105" formatted="false">"स्तर संगीत (ऑटो)"</string>
+    <string name="t_11c8546c" formatted="false">"नुकसान"</string>
+    <string name="t_11d858aa" formatted="false">"सबसे ऊँची लहर"</string>
+    <string name="t_1213b2b6" formatted="false">"{0} घंटे पहले"</string>
+    <string name="t_12193f21" formatted="false">"नेटवर्क आर्किटेक्ट तय करते हैं कि नेटवर्क कैसे बाँटा जाए। सेगमेंटेशन का अर्थ है कि एक क्षेत्र में सेंध सीधे अगले में नहीं जा सकती, जिससे किसी एक विफलता का नुकसान सीमित रहता है। यह घटना से पहले का डिज़ाइन काम है, घटना के दौरान इस्तेमाल होने वाला औज़ार नहीं।"</string>
+    <string name="t_1248f6ec" formatted="false">"साउंडट्रैक सेव करने के लिए Android 10 या नया चाहिए।"</string>
+    <string name="t_125ca8ca" formatted="false">"स्टार्टर पैक"</string>
+    <string name="t_12a36ceb" formatted="false">"नकली"</string>
+    <string name="t_12e8edf9" formatted="false">"भाषा"</string>
+    <string name="t_1380e038" formatted="false">"फिरौती में · अपग्रेड लॉक {0} से."</string>
+    <string name="t_138da392" formatted="false">"एक ग्रिड जिसके खाने ट्रैफ़िक के साथ गर्म और ठंडे होते हैं।"</string>
+    <string name="t_13df4b88" formatted="false">"फ़र्मवेयर"</string>
+    <string name="t_13ee9782" formatted="false">"तैनात"</string>
+    <string name="t_141ad814" formatted="false">"फ़ीडबैक"</string>
+    <string name="t_143628e2" formatted="false">"केवल रिवाइव विज्ञापन · स्वैच्छिक"</string>
+    <string name="t_1489b7f6" formatted="false">"{0} दिन पहले"</string>
+    <string name="t_14bdf6f2" formatted="false">"गाइडेड रन को पहले FIREWALL चाहिए"</string>
+    <string name="t_14c27ca9" formatted="false">"ANALYST एलीट पर 80% अतिरिक्त नुकसान करता है। कवच अनदेखा करने वाले एजेंट मदद करते हैं।"</string>
+    <string name="t_14cecaa5" formatted="false">"बिना कुंजी के डेटा को अपठनीय बनाना"</string>
+    <string name="t_14ecbe1d" formatted="false">"{0}/से."</string>
+    <string name="t_1512aeac" formatted="false">"{0} स्तर"</string>
+    <string name="t_154419d5" formatted="false">"एन्क्रिप्टेड गिना जाता है: ज़्यादातर एजेंट कम नुकसान करते हैं।"</string>
+    <string name="t_154a5adf" formatted="false">"स्तर"</string>
+    <string name="t_15680f7c" formatted="false">"इसे स्थायी कोर फ़र्मवेयर नुकसान पर खर्च करें।"</string>
+    <string name="t_1571a208" formatted="false">"दो TARPIT ऐसे रखें कि उनके घेरे उस ज़मीन को ढकें जिस पर आपके FIREWALL गोली चला रहे हैं। धीमा करना ही नुकसान को निशाने पर पहुँचाता है।"</string>
+    <string name="t_15aa2838" formatted="false">"एक मोटी ग्रिड जिसके खाने ट्रैफ़िक के साथ गर्म और ठंडे होते हैं।"</string>
+    <string name="t_15ede35d" formatted="false">"◇ {0} · शुरुआत से उपलब्ध"</string>
+    <string name="t_167ae054" formatted="false">"यह आपका सेव किया रन, हर अनलॉक एजेंट, सारे आँकड़े और आपकी सेटिंग्स मिटा देगा।\n\nइसे वापस नहीं किया जा सकता।"</string>
+    <string name="t_17a13ae4" formatted="false">"बॉस धीरे चलते हैं लेकिन CORE-SERVER पर {0} इंटीग्रिटी का वार करते हैं। ये गेम में सबसे ज़्यादा क्रिप्टो देते हैं, और हर चक्र में और कठिन होते जाते हैं।"</string>
+    <string name="t_17e0e9f0" formatted="false">"बहुत ऊँचा फ़ायर रेट, हमेशा सीमा में बाकी सब से पहले बॉस को निशाना बनाता है, और [!!!] BREACH पर दोगुना नुकसान करता है। लहर 30 पर अनलॉक होता है और चार से ज़्यादा तैनात नहीं हो सकते।"</string>
+    <string name="t_1877f7c0" formatted="false">"अनइंस्टॉल"</string>
+    <string name="t_197d534b" formatted="false">"€ बजट खर्च करें — रन की हर दसवीं लहर पर जमा होता है और बाद में भी रहता है — हर एजेंट के लिए स्थायी नुकसान बढ़ोतरी पर।"</string>
+    <string name="t_1991565e" formatted="false">"रेट लिमिट"</string>
+    <string name="t_19cbe369" formatted="false">"पसंदीदा एजेंट"</string>
+    <string name="t_1a155da6" formatted="false">"अगली लहर"</string>
+    <string name="t_1a2a0f17" formatted="false">"लॉक"</string>
+    <string name="t_1a73c7da" formatted="false">"फ़ायर रेट"</string>
+    <string name="t_1aba43b0" formatted="false">"कोर के चारों ओर धीमी अंडाकार रेखाएँ, जैसे काम करता शेड्यूलर।"</string>
+    <string name="t_1b0d8052" formatted="false">"CORE-SERVER पर वार होने पर युद्धक्षेत्र हिलाएँ"</string>
+    <string name="t_1ba327c9" formatted="false">"सबसे आम वेब हमला"</string>
+    <string name="t_1ba41734" formatted="false">"रोके गए हमले"</string>
+    <string name="t_1cc19733" formatted="false">"असली दुनिया"</string>
+    <string name="t_1d162704" formatted="false">"क्या आप सच में नया रन शुरू करना चाहते हैं? आपका सेव सत्र बदल दिया जाएगा।"</string>
+    <string name="t_1d29935f" formatted="false">"{0} जाम"</string>
+    <string name="t_1d8fe548" formatted="false">"नई शुरुआत"</string>
+    <string name="t_1dea7837" formatted="false">"HACK:AI अपनी सीमाओं से आगे निकल गया। आधी इंटीग्रिटी, दोगुने इनाम।"</string>
+    <string name="t_1deb5c00" formatted="false">"लिंक · ऑफ़लाइन"</string>
+    <string name="t_1e09b492" formatted="false">"🔒 [{0}] {1} · लॉक"</string>
+    <string name="t_1e6ed1a9" formatted="false">"जीवंत बैकग्राउंड"</string>
+    <string name="t_1ef7821b" formatted="false">"कोर की ओर जाती नियॉन-नीली ग्रिड, एक होलोग्राफ़िक रिंग के साथ जो नीले से हरे में बदलती है।"</string>
+    <string name="t_1f3159fc" formatted="false">"एजेंट रंग"</string>
+    <string name="t_1f5df304" formatted="false">"कनेक्शन रीसेट"</string>
+    <string name="t_1ff44d56" formatted="false">"लाइसेंस लागू"</string>
+    <string name="t_20ce505d" formatted="false">"रोकें"</string>
+    <string name="t_21399575" formatted="false">"डेवलपर"</string>
+    <string name="t_2198b685" formatted="false">"चुने गए एजेंट की स्कैन त्रिज्या दिखाएँ"</string>
+    <string name="t_21bb43e3" formatted="false">"{0} · कोई भी स्तर"</string>
+    <string name="t_22100250" formatted="false">"स्तर {0} · अधिकतम"</string>
+    <string name="t_224d65ed" formatted="false">"CORE-SERVER स्किन"</string>
+    <string name="t_22686e59" formatted="false">"कनेक्शन"</string>
+    <string name="t_227cde14" formatted="false">"{1} में {0}"</string>
+    <string name="t_2283d7ca" formatted="false">"नोड भरा हुआ"</string>
+    <string name="t_22b6479a" formatted="false">"साइबर ऑपरेशंस विशेषज्ञ रक्षा को एक लाइव ऑपरेशन की तरह चलाता है: दखल पर नज़र रखता है, टीम के औज़ार चालू रखता है जबकि कोई उन्हें सक्रिय रूप से बंद करने की कोशिश कर रहा हो, और सीधे उसके स्रोत पर जाता है।"</string>
+    <string name="t_22c4ef22" formatted="false">"इसकी सामग्री गड्डमड्ड है, इसलिए ज़्यादातर रक्षाएँ पढ़ नहीं पातीं कि वे किस पर गोली चला रही हैं और केवल आंशिक नुकसान करती हैं। CRYPTOGRAPHER एजेंट सीधे सिफ़र को काट देता है।"</string>
+    <string name="t_23020c53" formatted="false">" · {0} खरीद योग्य"</string>
+    <string name="t_236f5b12" formatted="false">"कुल हराए गए बॉस"</string>
+    <string name="t_23763c89" formatted="false">"सेटिंग्स"</string>
+    <string name="t_23961a76" formatted="false">"बॉस {1} में से {0} · बदलने के लिए किसी बॉस पर टैप करें"</string>
+    <string name="t_24adcafc" formatted="false">"सर्वर को लगा कुल नुकसान"</string>
+    <string name="t_24bbb47b" formatted="false">"लॉक आइटम"</string>
+    <string name="t_24d3a2ef" formatted="false">"दीवार गिरी"</string>
+    <string name="t_255b5911" formatted="false">"CRT फ़ॉस्फ़र हरा, स्कैनलाइन और रिफ़्रेश स्वीप।"</string>
+    <string name="t_2570d23e" formatted="false">"फ़ायर केंद्रित करें। ANALYST और ROOT ADMIN बॉस लहरें संभालते हैं।"</string>
+    <string name="t_25a6b96b" formatted="false">"कम कीमत में भरोसेमंद मध्यम दूरी का नुकसान, और बॉस JAM से प्रतिरक्षित एकमात्र एजेंट। पहुँच छोटी है, इसलिए इसे लेन के पास खड़ा होना पड़ता है — ठीक इसीलिए वह प्रतिरक्षा मायने रखती है।"</string>
+    <string name="t_25bd1975" formatted="false">"नुकसान"</string>
+    <string name="t_25efb9da" formatted="false">"विस्फोट त्रिज्या"</string>
+    <string name="t_260d60b1" formatted="false">"हारे हुए रन के बाद एक विज्ञापन · रिवाइव स्वैच्छिक"</string>
+    <string name="t_26b80d1f" formatted="false">"हो गया"</string>
+    <string name="t_27a68119" formatted="false">"नेटवर्क स्थिति"</string>
+    <string name="t_27d9802d" formatted="false">"हारे हुए रन के बाद एक विज्ञापन"</string>
+    <string name="t_27daad70" formatted="false">"किनारों से अंदर रेंगती बर्फ़।"</string>
+    <string name="t_28c31125" formatted="false">"कवचधारी और धैर्यवान। भारी अकेले वार इसे हराते हैं; तेज़ फ़ायर बर्बाद होता है।"</string>
+    <string name="t_28e339dd" formatted="false">"मैदान के पीछे गिरते अक्षरों के विरल स्तंभ।"</string>
+    <string name="t_296fb456" formatted="false">"मरम्मत +{0} HP · हर {1} से. · स्लॉट CORE-SERVER · अधिकतम {2}"</string>
+    <string name="t_297ae895" formatted="false">"क्वारंटीन"</string>
+    <string name="t_2a1bde6e" formatted="false">"घुसपैठ रोकथाम प्रणाली ट्रैफ़िक के रास्ते में बैठती है और जो पहचानती है उस पर कार्रवाई की अनुमति रखती है, केवल चेतावनी देने के बजाय कनेक्शन गिरा या रीसेट कर देती है। समझौता असली है: जो IPS वैध ट्रैफ़िक को गलत आँकता है, वह उसे रोक देता है।"</string>
+    <string name="t_2a934539" formatted="false">"हमले का स्रोत"</string>
+    <string name="t_2a9b95e6" formatted="false">"हर बॉस पर ×{0} नुकसान करता है।"</string>
+    <string name="t_2bb9a482" formatted="false">"फ़ायरवॉल नियमों की सूची से ट्रैफ़िक जाँचता है और जो मेल नहीं खाता उसे गिरा देता है। यह सबसे पुरानी और अब भी सबसे महत्वपूर्ण परिधि रक्षा है।"</string>
+    <string name="t_2be00c84" formatted="false">"कॉलसाइन बदलें"</string>
+    <string name="t_2c13b917" formatted="false">"{1} पर ×{0} नुकसान करता है।"</string>
+    <string name="t_2ce4713d" formatted="false">"&gt; CORE-SERVER सिंक हो रहा है"</string>
+    <string name="t_2d14c154" formatted="false">"मैदान को पार करती धीमी तिरछी डेटा धाराएँ।"</string>
+    <string name="t_2dcb788c" formatted="false">"यह गेम कृत्रिम बुद्धिमत्ता उपकरणों की सहायता से विकसित किया गया, जिन्हें प्रोग्रामिंग और सॉफ़्टवेयर विकास सीखते समय शैक्षिक और विकास सहायक के रूप में इस्तेमाल किया गया।\n\nAI उपकरणों ने कोड विकास, समस्या निवारण, दस्तावेज़ीकरण और सीखने जैसे क्षेत्रों में सहायता की। अंतिम डिज़ाइन निर्णय, गेमप्ले दिशा, परीक्षण और प्रकाशन निर्णय डेवलपर की ज़िम्मेदारी बने रहते हैं।\n\nयह गेम किसी भी कृत्रिम बुद्धिमत्ता कंपनी द्वारा उत्पन्न, प्रायोजित, समर्थित, स्वामित्व वाला या प्रकाशित नहीं है।"</string>
+    <string name="t_2df53561" formatted="false">"नियम-आधारित ट्रैफ़िक फ़िल्टर"</string>
+    <string name="t_2e0cf790" formatted="false">"अन्य"</string>
+    <string name="t_2e19cc63" formatted="false">"एक बार 40% स्वास्थ्य पर फिर उठ खड़ा होता है। इसे मारना इसे खत्म करने जैसा नहीं है।"</string>
+    <string name="t_2ef9e2c6" formatted="false">"साइबर हमले"</string>
+    <string name="t_2f3549f7" formatted="false">"क्लाउड सेव उपलब्ध नहीं"</string>
+    <string name="t_302a4f0a" formatted="false">"आधार"</string>
+    <string name="t_302eea27" formatted="false">"पता है क्या आ रहा है?"</string>
+    <string name="t_3083c674" formatted="false">"जीवंत: बहाव"</string>
+    <string name="t_30867b62" formatted="false">"पूरी तरह ऑफ़लाइन खेलें"</string>
+    <string name="t_30ed929d" formatted="false">"{1} पर लहर {0} तक पहुँचकर यह एजेंट अनलॉक करें।"</string>
+    <string name="t_31359ec6" formatted="false">"{0} फ़ोकस बंद"</string>
+    <string name="t_313900e6" formatted="false">"आर्किटेक्ट अपलिंक"</string>
+    <string name="t_314d733e" formatted="false">"€ {0} उपलब्ध"</string>
+    <string name="t_317b7de0" formatted="false">"रैक के अंदर ही गिरता कोड।"</string>
+    <string name="t_31d43b93" formatted="false">"जीवंत: बारिश"</string>
+    <string name="t_326bdc38" formatted="false">"एजेंट अपंजीकृत"</string>
+    <string name="t_32a3e9f3" formatted="false">"विशेष — {0}"</string>
+    <string name="t_32bafd88" formatted="false">"अगला"</string>
+    <string name="t_32e6f915" formatted="false">"अभी खरीद सकते हैं"</string>
+    <string name="t_332ec80a" formatted="false">"इन्हें कुछ भी मार देता है। इनके लिए ज़्यादा निर्माण न करें।"</string>
+    <string name="t_33cd995a" formatted="false">"घुसपैठ रोकी गई"</string>
+    <string name="t_3425c9d3" formatted="false">"स्तर {0}"</string>
+    <string name="t_35350bff" formatted="false">"एक धड़कती रोकथाम रिंग।"</string>
+    <string name="t_3595e52a" formatted="false">"मार्ग {0}"</string>
+    <string name="t_35c82960" formatted="false">"कोर: GLACIER"</string>
+    <string name="t_35f74be9" formatted="false">"ज़बरदस्त एकल-लक्ष्य नुकसान जो सारे कवच को अनदेखा करता है। गेम का सबसे महँगा एजेंट और बहुत देर से अनलॉक होता है। लक्ष्य चयनकर्ता दिखाता है।"</string>
+    <string name="t_36900a0f" formatted="false">"सस्ता और लगभग हानिरहित। इसके दायरे में सब कुछ रेंगता है।"</string>
+    <string name="t_37447c3a" formatted="false">"बेहद ऊँचा फ़ायर रेट, और हर शॉट छितरता है।"</string>
+    <string name="t_376bc6d2" formatted="false">"यह खुला रहने पर भी उलटी गिनती चलती रहती है।"</string>
+    <string name="t_376c54b2" formatted="false">"विज्ञापन हटाएँ"</string>
+    <string name="t_379656ef" formatted="false">"कोर: VOID"</string>
+    <string name="t_37bc9401" formatted="false">"यह बिल्ड Google AdMob द्वारा दिए गए विज्ञापन दिखाता है। रन जारी रखने के लिए विज्ञापन देखना हमेशा वैकल्पिक है और खेलने के लिए कभी ज़रूरी नहीं।"</string>
+    <string name="t_384d3555" formatted="false">"{0} सक्रिय"</string>
+    <string name="t_384e5d9f" formatted="false">"क्लाउड सेव"</string>
+    <string name="t_385b9a87" formatted="false">"टारपिट एक शत्रुतापूर्ण कनेक्शन स्वीकार करता है और फिर जितना धीरे हो सके उतना धीरे जवाब देता है, हमलावर को ऐसे सॉकेट पर अटकाए रखता है जो कहीं नहीं जाता। यह देरी की रणनीति है, रोकने की नहीं: इसका मूल्य वह समय है जो यह दूसरे पक्ष का खर्च कराता है।"</string>
+    <string name="t_38695d86" formatted="false">"प्रगति बैकअप"</string>
+    <string name="t_38c1e7e0" formatted="false">"विज्ञापन पर"</string>
+    <string name="t_38d9a5af" formatted="false">"&gt; नेटवर्क में सेंध"</string>
+    <string name="t_38e03b91" formatted="false">"पूरी तरह इंस्टॉल"</string>
+    <string name="t_3950774a" formatted="false">"इस नाम से पंजीकृत"</string>
+    <string name="t_395af116" formatted="false">"अनाम हैक"</string>
+    <string name="t_396e8daa" formatted="false">"स्पेक्ट्रम"</string>
+    <string name="t_3a06e0fa" formatted="false">"संगीत"</string>
+    <string name="t_3a7e7fe6" formatted="false">"बिल्ड प्रकार"</string>
+    <string name="t_3a8a0a59" formatted="false">"हर वार इसे तेज़ करता है, चाहे कितना भी छोटा हो; अकेला छोड़ने पर धीमा होता है। कुछ बड़े वार कई छोटे वारों पर भारी पड़ते हैं।"</string>
+    <string name="t_3aa6f2eb" formatted="false">"ZERO-DAY HUNTER और ROOT ADMIN कवच को पूरी तरह अनदेखा करते हैं।"</string>
+    <string name="t_3aaad671" formatted="false">"विवरण के लिए टैप करें"</string>
+    <string name="t_3b12a908" formatted="false">"GRADIENT हर वार के साथ तेज़ होता है, चाहे कितना भी छोटा हो, और अकेला छोड़ने पर धीमा होता है। कुछ बड़े वार कई छोटे वारों पर भारी पड़ते हैं।"</string>
+    <string name="t_3b53a59d" formatted="false">"बॉस लहरें भी अपने-आप शुरू करें। बंद: बॉस लहरें आपका इंतज़ार करती हैं"</string>
+    <string name="t_3bc78174" formatted="false">"AI-सहायता प्राप्त विकास"</string>
+    <string name="t_3c66aec8" formatted="false">"आपकी लहरें, एजेंट, € और फ़र्मवेयर आपके Google खाते में सेव होते हैं। दूसरे डिवाइस पर उसमें साइन इन करें और वे वहाँ होंगे। गेम छोड़ने और रन खत्म होने पर सिंक होता है।"</string>
+    <string name="t_3cef355d" formatted="false">"सबसे ज़्यादा बचा स्वास्थ्य"</string>
+    <string name="t_3d17c701" formatted="false">"स्पीड बर्स्ट"</string>
+    <string name="t_3d331382" formatted="false">"ट्रैफ़िक जिस रास्ते जाता है"</string>
+    <string name="t_3d509ddc" formatted="false">"फ़्रेम रेट आधा करें और सजावटी प्रभाव हटाएँ"</string>
+    <string name="t_3d83d177" formatted="false">"साइबर एजेंट"</string>
+    <string name="t_3db03eca" formatted="false">"आपका रिकॉर्ड"</string>
+    <string name="t_3e12b118" formatted="false">"मदद"</string>
+    <string name="t_3e27e12f" formatted="false">"सबसे कम बचा स्वास्थ्य"</string>
+    <string name="t_3ecdd82e" formatted="false">"ज़ीरो-डे ऐसी कमज़ोरी है जिसे ठीक करने के लिए रक्षक के पास शून्य दिन थे, क्योंकि किसी को पता ही नहीं था कि वह मौजूद है। मिलान के लिए कोई सिग्नेचर नहीं, यही उन्हें इतना खतरनाक बनाता है।"</string>
+    <string name="t_3fa2aee2" formatted="false">"FIREWALL एजेंटों से 35% कम नुकसान लेता है।"</string>
+    <string name="t_401924c3" formatted="false">"CORE-SERVER स्किन"</string>
+    <string name="t_4071c698" formatted="false">"Google Play ने जवाब दिया। खरीद और पुनर्स्थापना सामान्य रूप से काम करती हैं।"</string>
+    <string name="t_40b15bdb" formatted="false">"हर दसवीं लहर पर जमा होता है। रन जितना गहरा जाए, उतना ज़्यादा मिलता है — इनाम पड़ाव के वर्ग के साथ बढ़ता है, इसलिए एक गहरा रन पाँच उथले रनों से बेहतर है।"</string>
+    <string name="t_4104a0b2" formatted="false">"{0} पर आपका सर्वश्रेष्ठ: लहर {1}"</string>
+    <string name="t_4108bc91" formatted="false">"हैंडशेक अस्वीकृत"</string>
+    <string name="t_41203058" formatted="false">"लोडआउट"</string>
+    <string name="t_412ea11f" formatted="false">"किसी मार्ग के बगल में दो हाइलाइट किए गए तैनाती नोड पर टैप करें। दो कोई सुझाव नहीं है: एक एजेंट अकेले लेन नहीं संभाल सकता।"</string>
+    <string name="t_419c5ded" formatted="false">"कुल खेले गए गेम"</string>
+    <string name="t_41a1b85e" formatted="false">"गोपनीयता विकल्प"</string>
+    <string name="t_41ca8ef5" formatted="false">"इसी डिवाइस पर स्थानीय रूप से संग्रहीत · कुछ भी अपलोड नहीं होता"</string>
+    <string name="t_41e88f52" formatted="false">"बोर्ड पर ज़ूम करने के लिए दो उँगलियों से पिंच करें — पास से नोड पर टैप करना आसान है। ज़ूम होने पर इधर-उधर जाने के लिए एक उँगली से खींचें। पूरा बोर्ड फिर देखने के लिए पूरी तरह पिंच आउट करें।"</string>
+    <string name="t_4208e473" formatted="false">"कोई विज्ञापन नहीं"</string>
+    <string name="t_420bd000" formatted="false">"BOTMASTER हर कुछ सेकंड में अपने पीछे BOT छोड़ता है। इसे जल्दी मारें, और झुंड के लिए कुछ बचाकर रखें।"</string>
+    <string name="t_4273a8be" formatted="false">"खाता"</string>
+    <string name="t_42832744" formatted="false">"कोई जुआ, लूट बॉक्स या यादृच्छिक भुगतान इनाम नहीं"</string>
+    <string name="t_42880e6f" formatted="false">"लॉक · {0}"</string>
+    <string name="t_42a0e053" formatted="false">"परिचय"</string>
+    <string name="t_42addf6c" formatted="false">"स्टोर खोलें"</string>
+    <string name="t_42afe7bc" formatted="false">"कनेक्ट हो रहा है"</string>
+    <string name="t_42ef8058" formatted="false">"रक्षा रिकॉर्ड"</string>
+    <string name="t_4306ee12" formatted="false">"€1,500 बजट"</string>
+    <string name="t_4333987a" formatted="false">"गिरते अक्षरों के विरल स्तंभ।"</string>
+    <string name="t_43a1c2e8" formatted="false">"अपग्रेड लागत"</string>
+    <string name="t_441ec9a9" formatted="false">"मेनू का छोटा दौरा। आगे बढ़ने के लिए अगला, बंद करने के लिए छोड़ें। आप इसे कभी भी सेटिंग्स से दोबारा चला सकते हैं।"</string>
+    <string name="t_4427afab" formatted="false">"कवच छोटे वारों को कुंद करता है: ANALYST या ROOT ADMIN लाएँ, IPS नहीं।"</string>
+    <string name="t_4439e789" formatted="false">"लॉक · संगीत प्लेयर और ट्रैक सूची अनलॉक करने के लिए स्तर 5 पूरा करें (DDoS पर लहर 100 साफ़ करें)।"</string>
+    <string name="t_448177d3" formatted="false">"पिछला सिंक"</string>
+    <string name="t_4494c488" formatted="false">"{0} मिनट पहले"</string>
+    <string name="t_44c51c30" formatted="false">"हमला रोका गया"</string>
+    <string name="t_44fbbc54" formatted="false">"&gt; !! साइबर हमला आ रहा है — बड़ी सेंध रास्ते में !!"</string>
+    <string name="t_4538f2a7" formatted="false">"फ़ायरवॉल नियमों के एक समूह से ट्रैफ़िक जाँचता है और जो नियम अनुमति नहीं देते उसे गिरा देता है। यह आमतौर पर अविश्वसनीय नेटवर्क और सुरक्षा योग्य चीज़ के बीच रखा गया पहला नियंत्रण होता है, और इसे दिए गए नियमों से आँका जाता है, चतुराई से नहीं।"</string>
+    <string name="t_45b17976" formatted="false">"भारी एकल-लक्ष्य नुकसान, हर शॉट पर एक जैसा, कोई जुआ नहीं, और यह कवच अनदेखा करता है। महँगा और धीमा; इनमें से एक अकेले लेन नहीं संभालता।"</string>
+    <string name="t_4631883a" formatted="false">"अधिकतम इंस्टॉल  (+{0})"</string>
+    <string name="t_463cbc28" formatted="false">"स्वास्थ्य ×{0} · कवच +{1} · गति ×{2}"</string>
+    <string name="t_466578df" formatted="false">"यह लहर आधी इंटीग्रिटी पर फिर शुरू करें।"</string>
+    <string name="t_466b92a9" formatted="false">"सेगमेंट अपलिंक"</string>
+    <string name="t_46984fe6" formatted="false">"खेलें · जारी रखें"</string>
+    <string name="t_46cc0ef8" formatted="false">"यह हर रन में मिलने वाले ◇ क्रिप्टो को भी बढ़ाता है, प्रति स्तर +{0}%, दोगुने तक। यह दुश्मन के स्वास्थ्य या लहर की संरचना को प्रभावित नहीं करता।"</string>
+    <string name="t_4735c1ed" formatted="false">"साइबर हमले CORE-SERVER की ओर आ रहे हैं। मार्गों के बगल में साइबर एजेंट तैनात करें ताकि वे पहुँचने से पहले रुक जाएँ।"</string>
+    <string name="t_4747b424" formatted="false">"दुश्मन"</string>
+    <string name="t_477d52c6" formatted="false">"लिंक है। दूसरे फ़ोन या टैबलेट पर उसी Google खाते में साइन इन करें और आपकी प्रगति वहाँ होगी।"</string>
+    <string name="t_47c5c237" formatted="false">"अमान्य नोड"</string>
+    <string name="t_485268f0" formatted="false">"&gt; साइबर एजेंट सशस्त्र हो रहे हैं"</string>
+    <string name="t_4882e1dc" formatted="false">"KERNEL PANIC मरते समय पहुँच में हर एजेंट को 3 सेकंड के लिए जाम कर देता है। FIREWALL उसमें टिका रहता है।"</string>
+    <string name="t_488d4b25" formatted="false">"हज़ारों मशीनें एक साथ एक लक्ष्य पर ट्रैफ़िक भेजती हैं। कोई अकेला अनुरोध हमला नहीं है; बाढ़ हमला है। लक्ष्य घुसना नहीं, सेवा को बेकार बनाना है।"</string>
+    <string name="t_4905ed7b" formatted="false">"कोई नहीं"</string>
+    <string name="t_494c304d" formatted="false">"-◇{0} चुराया गया"</string>
+    <string name="t_49848f53" formatted="false">"ब्लाइंड SQL इंजेक्शन"</string>
+    <string name="t_498754a7" formatted="false">"साउंडट्रैक फ़ोन में सेव करें"</string>
+    <string name="t_4af4306b" formatted="false">"बिल्ड"</string>
+    <string name="t_4c1012d3" formatted="false">"इस पर फ़ायर जारी रखें: यह बिना वार के कुछ पल बाद ही मरम्मत करता है, इसलिए किल ज़ोन के बीच की खाली जगहें ढकें।"</string>
+    <string name="t_4c6d3272" formatted="false">"🔒 लॉक"</string>
+    <string name="t_4cc6f55a" formatted="false">"Google Play Games तक नहीं पहुँच सके। आपके रन इस डिवाइस पर दर्ज होते हैं और अगली बार ऑनलाइन रहते हुए रन खत्म होने पर आपका सर्वश्रेष्ठ पोस्ट होता है।"</string>
+    <string name="t_4d54c785" formatted="false">"{0} रखा जा रहा है — एक नोड पर टैप करें"</string>
+    <string name="t_4d6e69d2" formatted="false">"संगीत प्लेयर"</string>
+    <string name="t_4d7ab8a3" formatted="false">"कॉलसाइन"</string>
+    <string name="t_4e2b3472" formatted="false">"कोई सेव सत्र नहीं"</string>
+    <string name="t_4ebbf8bd" formatted="false">"इस रन में {0} रिवाइव बचे हैं।"</string>
+    <string name="t_4f0fcb18" formatted="false">"हर पाँचवीं लहर पर आता है"</string>
+    <string name="t_4f160176" formatted="false">"कलेक्शन रन। कोई चाल नहीं, कोई जाम नहीं — बोर्ड पर किसी भी चीज़ से बीस प्रतिशत ज़्यादा।"</string>
+    <string name="t_5022c684" formatted="false">"एन्क्रिप्शन"</string>
+    <string name="t_5067a989" formatted="false">"उलझी श्रृंखला"</string>
+    <string name="t_5079b771" formatted="false">"{1} पर {2} मोड में लहर {0} तक पहुँचकर यह एजेंट अनलॉक करें।"</string>
+    <string name="t_509d7851" formatted="false">" · प्रभाव {0}"</string>
+    <string name="t_513901c7" formatted="false">" · विज्ञापन-मुक्त"</string>
+    <string name="t_513dcdc9" formatted="false">"प्रति एजेंट"</string>
+    <string name="t_520a6b88" formatted="false">"हर स्तर पिछले से थोड़ा महँगा है, इसलिए गुणक बढ़ता रहता है पर बेकाबू नहीं होता। कोई ऐसी सीमा नहीं जिस तक आप वास्तव में पहुँचें।"</string>
+    <string name="t_5333e76e" formatted="false">"रेंडरिंग"</string>
+    <string name="t_53e605b3" formatted="false">"सावधान"</string>
+    <string name="t_543ce9f7" formatted="false">"हर"</string>
+    <string name="t_54523d94" formatted="false">"वह रैक जिसमें आपका कोर बना है। युद्धक्षेत्र पर दिखता है।"</string>
+    <string name="t_54743050" formatted="false">"कुल रोके गए हमले"</string>
+    <string name="t_54797d92" formatted="false">"रीडआउट के नीचे चलती सर्किट रेखाएँ।"</string>
+    <string name="t_549824f8" formatted="false">"पोर्ट सुरक्षित"</string>
+    <string name="t_5571a722" formatted="false">"ऑफ़लाइन खेलें · लॉगिन ज़रूरी नहीं"</string>
+    <string name="t_55f85167" formatted="false">"कॉम्पैक्ट एजेंट मेनू"</string>
+    <string name="t_565a738e" formatted="false">"नहीं, मुझे खेलने दो"</string>
+    <string name="t_56a9a004" formatted="false">"बत्ती बुझाकर इंजेक्शन"</string>
+    <string name="t_56bafb67" formatted="false">"प्रति रन एक रिवाइव।"</string>
+    <string name="t_56c54890" formatted="false">"फूला हुआ मॉडल: थोड़ा ज़्यादा स्वास्थ्य, थोड़ा धीमा।"</string>
+    <string name="t_56c6b2ae" formatted="false">"काल्पनिक छूट, साफ़ चिह्नित: यह एजेंट ENCRYPTED गुण से धीमा होने के बजाय उसे बस अनदेखा करता है, और उसे रखने वाली किसी भी चीज़ पर तिगुना नुकसान करता है। असली क्रिप्टोग्राफ़ी ऐसे काम नहीं करती और यहाँ कुछ भी कोई असली सिफ़र नहीं तोड़ता।"</string>
+    <string name="t_5749c8dc" formatted="false">"लहर {0} और तैनात सब कुछ खो जाएगा।"</string>
+    <string name="t_5785b710" formatted="false">"एक एजेंट चुनें, फिर हाइलाइट किए गए तैनाती नोड पर टैप करें।"</string>
+    <string name="t_57f88861" formatted="false">"फ़ोकस: केवल बॉस"</string>
+    <string name="t_582ec4a0" formatted="false">"संक्रमित कंप्यूटर चुपचाप एक केंद्रीय नियंत्रक से आदेश लेते हैं। उनके मालिकों को आमतौर पर पता नहीं होता। बॉटनेट ही बड़े DDoS हमलों को संभव बनाते हैं।"</string>
+    <string name="t_5840893d" formatted="false">"घुसपैठ नियंत्रित"</string>
+    <string name="t_58a5f08a" formatted="false">"सादी ग्रिड। कोई गति नहीं।"</string>
+    <string name="t_597ee3cb" formatted="false">"सिग्नेचर मेल खाया"</string>
+    <string name="t_5a02fc0a" formatted="false">"रिवाइव पैक"</string>
+    <string name="t_5a3d8598" formatted="false">"CORE-SERVER के सबसे पास"</string>
+    <string name="t_5a911db6" formatted="false">"आपका Google खाता"</string>
+    <string name="t_5aa1d1dc" formatted="false">"{0} फ़ोकस चालू"</string>
+    <string name="t_5b19a621" formatted="false">"ऐसी खामी पर हमला जिसे अभी तक किसी ने पैच नहीं किया — रक्षक के पास तैयारी के शून्य दिन थे। दुर्लभ, मज़बूत, और रोकने पर अच्छा क्रिप्टो मिलता है।"</string>
+    <string name="t_5c19fc6b" formatted="false">"CyOps TD साउंडट्रैक खरीदें · {0}"</string>
+    <string name="t_5c3f86fb" formatted="false">"सबसे मज़बूत"</string>
+    <string name="t_5d1868fb" formatted="false">"कोर"</string>
+    <string name="t_5d377851" formatted="false">"स्थायी अपग्रेड · अब से हर मैच"</string>
+    <string name="t_5d4d0273" formatted="false">"{0} लॉक है: {1}।"</string>
+    <string name="t_5de47a9b" formatted="false">"सभी कठिनाइयाँ"</string>
+    <string name="t_5de55828" formatted="false">"!! इंटीग्रिटी कम !!"</string>
+    <string name="t_5e75065a" formatted="false">"कनेक्टेड"</string>
+    <string name="t_5f2258c9" formatted="false">"बाईं ओर का पैसा। यह रन की हर दसवीं लहर पर जमा होता है और रन खत्म होने पर बना रहता है। गहरे रन कहीं ज़्यादा देते हैं।"</string>
+    <string name="t_5fd47bcf" formatted="false">"कोर: MERIDIAN"</string>
+    <string name="t_602fffef" formatted="false">"CRYPTOGRAPHER को छोड़कर सब कुछ यहाँ अपने आधे से ज़्यादा नुकसान खो देता है।"</string>
+    <string name="t_6049b1e7" formatted="false">"जीवंत बैकग्राउंड"</string>
+    <string name="t_60a5a04c" formatted="false">"संगीत रोकें"</string>
+    <string name="t_60ecea1a" formatted="false">"पूर्ण"</string>
+    <string name="t_60f81814" formatted="false">"हर {0} सेकंड में LICENSE {1} तक उस एजेंट प्रकार को झटक देता है जो उस पर बार-बार वार करता है। अपने एजेंट प्रकार मिलाएँ।"</string>
+    <string name="t_61919374" formatted="false">"फिर से जीवित — यह दोबारा नहीं लौटेगा"</string>
+    <string name="t_61ebe734" formatted="false">"स्क्रीन कंपन"</string>
+    <string name="t_625afb79" formatted="false">"स्वामित्व में। Music/CyOps TD में \"CyOps TD - Level X (Y)\" नाम से सेव होता है।"</string>
+    <string name="t_628c7cd9" formatted="false">"एजेंट तैनाती विवरण"</string>
+    <string name="t_62f8af50" formatted="false">"+{0} HP / {1} से."</string>
+    <string name="t_63374e04" formatted="false">"मुख्य मेनू"</string>
+    <string name="t_633e8e1a" formatted="false">"मारे जाने पर तीन छोटे वॉर्म में टूटता है, और उनमें से हर एक एक बार और टूटता है। स्प्लैश आपका दोस्त है।"</string>
+    <string name="t_6343926d" formatted="false">"जाम"</string>
+    <string name="t_638aaa93" formatted="false">"यहाँ भी दिखते हैं"</string>
+    <string name="t_63b00a3c" formatted="false">"नेटवर्क पर भेजा गया डेटा पैकेटों में कटता है: गंतव्य पते और पेलोड वाले छोटे टुकड़े। पैकेट हमला नहीं है — लगभग सभी सामान्य ट्रैफ़िक हैं। यहाँ आप जिन पर गोली चलाते हैं वे किसी खास हमले को ढोने वाले पैकेट हैं, इसलिए हर एक का नाम पैकेट के बजाय हमले पर रखा गया है।"</string>
+    <string name="t_63b54927" formatted="false">"प्रति रन 3 रिवाइव और कभी कोई रिवाइव विज्ञापन नहीं, साथ में €5,000।"</string>
+    <string name="t_63bef594" formatted="false">"HP {0}"</string>
+    <string name="t_63f3d76a" formatted="false">"सेव"</string>
+    <string name="t_63facb82" formatted="false">"जीवंत: धड़कन"</string>
+    <string name="t_6480a147" formatted="false">"लहर {0}  —  परिधि मज़बूत करें"</string>
+    <string name="t_648a945b" formatted="false">"दो बातें जो कोई नहीं बताता"</string>
+    <string name="t_6490c689" formatted="false">"कोई असली क्रिप्टोकरेंसी, ब्लॉकचेन, वॉलेट, माइनिंग या NFT नहीं"</string>
+    <string name="t_64d398f9" formatted="false">"सीमा"</string>
+    <string name="t_65155738" formatted="false">"5× गति"</string>
+    <string name="t_65252ce7" formatted="false">"पहला"</string>
+    <string name="t_6554cde7" formatted="false">"Google Play से पूछ रहे हैं कि इस खाते के पास क्या है। आमतौर पर एक पल लगता है।"</string>
+    <string name="t_655c9284" formatted="false">"जीवंत: जाली"</string>
+    <string name="t_656e6ce8" formatted="false">"एजेंट"</string>
+    <string name="t_65c8fd90" formatted="false">"खतरे की ब्रीफ़िंग"</string>
+    <string name="t_6678bfdf" formatted="false">"मरने पर इसके पास का हर एजेंट 3 सेकंड के लिए जाम हो जाता है। इसे अपने बोर्ड से दूर मारें, या जब अगली लहर दूर हो।"</string>
+    <string name="t_66fa85d7" formatted="false">"अपने एजेंट फैलाएँ ताकि एक जाम पूरी पंक्ति को चुप न करा सके।"</string>
+    <string name="t_6700226a" formatted="false">"लिंक"</string>
+    <string name="t_67043715" formatted="false">"कवच"</string>
+    <string name="t_67313d46" formatted="false">"दीवार खड़ी"</string>
+    <string name="t_6757b458" formatted="false">"रोके गए हमले"</string>
+    <string name="t_6813ef42" formatted="false">"अनाम हैक — {0} BOT दोगुनी गति से आ रहे हैं"</string>
+    <string name="t_681745bd" formatted="false">"एजेंट लॉक — {0}"</string>
+    <string name="t_682d973f" formatted="false">"शुरू करें"</string>
+    <string name="t_68e88af7" formatted="false">"खतरे का क्षेत्र"</string>
+    <string name="t_68e985d6" formatted="false">"और कुछ भी कहीं नहीं भेजा जाता। गेम बिना किसी नेटवर्क के खेला जा सकता है।"</string>
+    <string name="t_6904aeb4" formatted="false">"गेम"</string>
+    <string name="t_69698cdc" formatted="false">"WORM मारे जाने पर तीन छोटे वॉर्म में टूटता है, और वे एक बार और टूटते हैं। इसे जल्दी मारें, पास में स्प्लैश के साथ।"</string>
+    <string name="t_69a293c4" formatted="false">"SUDO समाप्त"</string>
+    <string name="t_6ad356c5" formatted="false">"तीन मार्ग: बीच से सीधा एक, और उसके ऊपर-नीचे दो टेढ़े-मेढ़े।"</string>
+    <string name="t_6b2d8165" formatted="false">"स्तर {0}  {1} नुकसान"</string>
+    <string name="t_6c161f51" formatted="false">"हर 17 में से 2 सेकंड यह उस एजेंट प्रकार को झटक देता है जो बार-बार वार करता है। विविध बोर्ड इसे चोट पहुँचाता रहता है।"</string>
+    <string name="t_6c7aa396" formatted="false">"अलग बॉस, अलग कमज़ोरियाँ।"</string>
+    <string name="t_6ca9de88" formatted="false">"स्पेक्ट्रम एजेंट"</string>
+    <string name="t_6cb7e8e3" formatted="false">"धीमे, भारी वार। एलीट और बॉस पर +80% नुकसान।"</string>
+    <string name="t_6cbf7c76" formatted="false">"हराए गए बॉस"</string>
+    <string name="t_6ccdc653" formatted="false">"एन्क्रिप्शन को पूरी तरह अनदेखा करता है और उस पर तिगुना नुकसान करता है।"</string>
+    <string name="t_6cedde69" formatted="false">"संगीत वॉल्यूम"</string>
+    <string name="t_6d2d6d6b" formatted="false">"इसके कवच को अनदेखा करता है।"</string>
+    <string name="t_6d907c0d" formatted="false">"\"ब्लू टीम\" सिस्टम की रक्षा करती है और घटनाओं पर प्रतिक्रिया देती है — रेड टीम का प्रतिरूप। \"ब्लू हैट\" उद्योग में एक से ज़्यादा तरीकों से इस्तेमाल होता है और मानक शब्द नहीं है, इसलिए यहाँ केवल ब्लू टीम का अर्थ बताया गया है।"</string>
+    <string name="t_6dbe0ea3" formatted="false">"स्तर"</string>
+    <string name="t_6f053419" formatted="false">"{0} सीमा — अधिकतम {1}"</string>
+    <string name="t_6f21a684" formatted="false">"बॉस — हर पाँचवीं लहर"</string>
+    <string name="t_70d42172" formatted="false">"नेटवर्क को बाँटना ताकि एक क्षेत्र की सेंध बाकी तक न पहुँचे। इसी वजह से एक संक्रमित लैपटॉप का मतलब पूरी कंपनी का संक्रमित होना नहीं होना चाहिए।"</string>
+    <string name="t_7191bf1d" formatted="false">"स्थायित्व"</string>
+    <string name="t_71c5931f" formatted="false">"बैटरी सेवर केवल यह बदलता है कि क्या दिखाया जाता है। लहर की कठिनाई, नुकसान और समय बिल्कुल प्रभावित नहीं होते।"</string>
+    <string name="t_72102eb0" formatted="false">"खरीद, पुनर्स्थापना और इस डिवाइस से क्या बाहर जाता है"</string>
+    <string name="t_722a0bad" formatted="false">"गाइड फिर चलाएँ"</string>
+    <string name="t_73236391" formatted="false">"गेम खुद कोई व्यक्तिगत डेटा एकत्र नहीं करता"</string>
+    <string name="t_735d4940" formatted="false">"साउंड इफ़ेक्ट वॉल्यूम"</string>
+    <string name="t_73907e76" formatted="false">"गेम के सभी 24 ट्रैक, आपके फ़ोन के Music फ़ोल्डर में सेव, कहीं भी चलाने के लिए।"</string>
+    <string name="t_7397fdaa" formatted="false">"हर चीज़ के पीछे चलती ठंडी रोशनी।"</string>
+    <string name="t_739a7f7a" formatted="false">"© {0} {1}। सर्वाधिकार सुरक्षित।"</string>
+    <string name="t_73d812dc" formatted="false">"हर पाँचवीं लहर, और वह क्या लाती है"</string>
+    <string name="t_73e8cb50" formatted="false">"मूल कोड, मूल कलाकृति, मूल संश्लेषित ऑडियो। Kotlin, Jetpack Compose और Android Canvas API से बनाया गया।\n\nआइकन: creativeLabs द्वारा CoreUI Icons Free (coreui.io/icons), CC BY 4.0 के तहत लाइसेंस।\n\nतृतीय-पक्ष निर्भरताओं के लाइसेंस प्रोजेक्ट रिपॉज़िटरी में LICENSES.md में सूचीबद्ध हैं।"</string>
+    <string name="t_74066c59" formatted="false">"गेम में"</string>
+    <string name="t_746ab6c3" formatted="false">"IPS झुंडों पर 35% अतिरिक्त नुकसान करता है। इसे वहाँ रखें जहाँ लेन मिलती हैं।"</string>
+    <string name="t_746d814e" formatted="false">"आपका सेव रन, अनलॉक एजेंट, आँकड़े और सेटिंग्स मिटा देता है। इसे वापस नहीं किया जा सकता।"</string>
+    <string name="t_74aa6c59" formatted="false">"€ बजट अपर्याप्त"</string>
+    <string name="t_74fff44e" formatted="false">"अपनी नकली प्रतियाँ बनाता है जो फ़ायर सोख लेती हैं। ANALYST और ROOT ADMIN उनके आर-पार देखते हैं।"</string>
+    <string name="t_750800eb" formatted="false">"रोस्टर में किसी जितना तेज़ फ़ायर करता है और हमेशा पहले बॉस पर गोली चलाता है। [GG] GOOD GAME पर दोगुना नुकसान। अधिकतम चार।"</string>
+    <string name="t_7596436a" formatted="false">"साइबर सुरक्षा में स्नातक डिग्री वाला वरिष्ठ सुरक्षा इंजीनियर, जो उनके ख़िलाफ़ रक्षा करने वाला सॉफ़्टवेयर बनाकर हमले रोकता है: मज़बूत सेवाएँ, पैच और फ़िल्टर जो हमला आने से पहले मौजूद हों, बाद में नहीं।"</string>
+    <string name="t_75b191e4" formatted="false">"अपनी सीमा में सबसे पास के मार्ग पर दीवार बनाता है। खतरे दीवार पर रुकते हैं और गुज़रने से पहले उसे तोड़ना पड़ता है; बॉस इसे सबसे तेज़ तोड़ते हैं। गिरने पर ACE इसे कुछ सेकंड बाद फिर बनाता है, हर स्तर के साथ और मज़बूत। इसके अपने शॉट पहले पाँच स्तरों के हर बॉस पर {0}× नुकसान करते हैं। तीन से ज़्यादा तैनात नहीं हो सकते।"</string>
+    <string name="t_75bd8866" formatted="false">"एक स्तर और एक कठिनाई चुनें"</string>
+    <string name="t_75e65d90" formatted="false">"तैनात करने के लिए दो बार टैप करें"</string>
+    <string name="t_75f24f6e" formatted="false">"हर कुछ सेकंड में एक एजेंट के अपग्रेड 8 सेकंड के लिए लॉक करता है। उसके आने से पहले अपग्रेड करें।"</string>
+    <string name="t_7682806a" formatted="false">"चरण 2 — FIREWALL चुनें"</string>
+    <string name="t_77212b64" formatted="false">"यह वह हमले की लहर है जिसका आप सामना कर रहे हैं। जब तक आप सर्वर बचाए रखते हैं यह बढ़ती रहती है — हर पाँचवीं लहर एक बॉस लाती है।"</string>
+    <string name="t_772b21ba" formatted="false">"आपकी तैनात की गई रक्षाएँ"</string>
+    <string name="t_776f4222" formatted="false">"स्तर {0}"</string>
+    <string name="t_77a2583e" formatted="false">"सुरक्षा में दो अलग चीज़ों को \"क्वांटम\" कहा जाता है और उन्हें अलग रखना ज़रूरी है। क्वांटम कुंजी वितरण किसी लिंक पर जासूसी पकड़ने के लिए भौतिकी का इस्तेमाल करता है, और केवल दुर्लभ, विशेष स्थितियों में तैनात होता है। पोस्ट-क्वांटम क्रिप्टोग्राफ़ी सामान्य सॉफ़्टवेयर गणित है जो भविष्य के क्वांटम कंप्यूटरों का प्रतिरोध करने के लिए बना है, और वही असल में लागू हो रहा है।"</string>
+    <string name="t_77a6da9b" formatted="false">"कोर से बाहर की ओर जाती रिंगें।"</string>
+    <string name="t_77d03aa5" formatted="false">"ब्लाइंड इंजेक्शन को कोई त्रुटि संदेश वापस नहीं मिलता, इसलिए हमलावर एक बार में एक सही-या-गलत सवाल से जवाब का अनुमान लगाता है। यह सामान्य इंजेक्शन से धीमा और कहीं ज़्यादा धैर्यवान है, और स्पष्ट रक्षाओं के ख़िलाफ़ मज़बूत होकर आता है।"</string>
+    <string name="t_77e5929c" formatted="false">"पहला टैप उस जगह पर एजेंट की सीमा दिखाता है; तैनात करने के लिए फिर टैप करें"</string>
+    <string name="t_77e8896f" formatted="false">"एक मार्ग बोर्ड को कोने से कोने तक पाँच बार काटता है।"</string>
+    <string name="t_77f7e381" formatted="false">" · कवच {0}"</string>
+    <string name="t_782074f1" formatted="false">"  ·  ऑटो {0}"</string>
+    <string name="t_7841323b" formatted="false">"रक्षात्मक स्वीप"</string>
+    <string name="t_78526608" formatted="false">"पहुँची लहर"</string>
+    <string name="t_78a52e3b" formatted="false">"छिपा"</string>
+    <string name="t_7922c8d5" formatted="false">"सीमा में हर एजेंट को बढ़ावा: +30% नुकसान, +20% फ़ायर रेट।"</string>
+    <string name="t_79a4baee" formatted="false">"&lt; वापस"</string>
+    <string name="t_79fc7a80" formatted="false">"केवल तब लागू जब लहरें अपने-आप शुरू करें चालू हो"</string>
+    <string name="t_7a1f56c4" formatted="false">"अभी सिंक करें"</string>
+    <string name="t_7aba529e" formatted="false">"इसका एन्क्रिप्शन तोड़ता है: ×{0} नुकसान।"</string>
+    <string name="t_7abfb3c7" formatted="false">"आधे स्वास्थ्य पर दो में बँट जाता है, और दूसरा आधा दूसरा मार्ग लेता है।"</string>
+    <string name="t_7b3bb73f" formatted="false">"खतरा निष्क्रिय"</string>
+    <string name="t_7b84a6c4" formatted="false">"विश्वव्यापी बोर्ड देखने और उस पर पोस्ट करने के लिए GOOGLE PLAY स्क्रीन पर अपना Google खाता लिंक करें। आपके रन अब भी इस डिवाइस पर दर्ज होते हैं।"</string>
+    <string name="t_7ba7f176" formatted="false">"+{0}% नुकसान"</string>
+    <string name="t_7be6fbad" formatted="false">"लहर {0} · सिमुलेशन रुका"</string>
+    <string name="t_7bf2105b" formatted="false">"वितरित सेवा अस्वीकार"</string>
+    <string name="t_7c4e4414" formatted="false">"आखिरी"</string>
+    <string name="t_7c6853de" formatted="false">"विश्वव्यापी · {0}"</string>
+    <string name="t_7d5cc77f" formatted="false">"कुल कमाया क्रिप्टो"</string>
+    <string name="t_7dc33bc2" formatted="false">"अधिकतम स्तर पहुँचा"</string>
+    <string name="t_7e1cf3a7" formatted="false">"मरम्मत"</string>
+    <string name="t_7e522f64" formatted="false">"श्रेय"</string>
+    <string name="t_7e72ed35" formatted="false">"प्रगति आपके खाते में सेव हुई"</string>
+    <string name="t_7e906966" formatted="false">"{0} ट्रैक Music/CyOps TD में सेव हुए।"</string>
+    <string name="t_7ea71dbe" formatted="false">"एजेंट फिर खोलें और TARPIT चुनें। यह नुकसान नहीं करता — यह अपने घेरे के अंदर हर खतरे को धीमा करता है ताकि आपके FIREWALL को उन पर ज़्यादा शॉट मिलें।"</string>
+    <string name="t_7f11b512" formatted="false">"{0} · {1} प्रति रन {2}"</string>
+    <string name="t_7fd8e294" formatted="false">"&gt; परिधि ऑनलाइन"</string>
+    <string name="t_804ef7d5" formatted="false">"इंटरनेट पर सबसे आम हमला, और यहाँ का आधार खतरा। हमलावर ऐसे फ़ील्ड में डेटाबेस कमांड टाइप करता है जो नाम या पासवर्ड की उम्मीद करता था; अगर एप्लिकेशन उसे सीधे आगे भेज देता है, तो डेटाबेस मान लेता है।"</string>
+    <string name="t_80592dd9" formatted="false">"संस्करण"</string>
+    <string name="t_8175c5fc" formatted="false">"CORE-SERVER इंटीग्रिटी"</string>
+    <string name="t_8198af01" formatted="false">"हर 6 में से 2 सेकंड छिपा रहता है: कुछ भी इसे निशाना नहीं बना सकता। स्प्लैश और श्रृंखला फिर भी पहुँचती हैं।"</string>
+    <string name="t_81e23c68" formatted="false">"अन्य: केवल छोटी इकाइयाँ और एलीट, कभी बॉस नहीं"</string>
+    <string name="t_8230b283" formatted="false">"IDS तेज़ हमलों पर 45% अतिरिक्त नुकसान करता है और उन्हें सबसे पहले आते देखता है।"</string>
+    <string name="t_82966ea3" formatted="false">"लहर गिनती"</string>
+    <string name="t_829e8e06" formatted="false">"इसकी सीमा में एजेंट जाम नहीं हो सकते। WHITE EYE और BLACK EYE पर {0}× नुकसान। अधिकतम दो।"</string>
+    <string name="t_82a1fee3" formatted="false">"क्या आप सच में अपना रन फिर से शुरू करना चाहते हैं?"</string>
+    <string name="t_82a70835" formatted="false">"बिना लिंक के, रन प्रगति केवल इस डिवाइस पर रहती है। अनइंस्टॉल या फ़ैक्टरी रीसेट उसे मिटा देता है; खरीदारी दोनों में बची रहती है।"</string>
+    <string name="t_830a30fd" formatted="false">"बजट"</string>
+    <string name="t_830b01d9" formatted="false">"फ़र्मवेयर अब से हर मैच में आपके तैनात हर एजेंट का नुकसान गुणा करता है। यह कवच और काउंटर तालिका से पहले लागू होता है, इसलिए यह Cryptographer को एन्क्रिप्शन के ख़िलाफ़ ठीक उतनी ही मदद करता है जितनी Firewall को सादे ट्रैफ़िक के ख़िलाफ़।"</string>
+    <string name="t_831712ed" formatted="false">"नया साइबर एजेंट अनलॉक"</string>
+    <string name="t_83186dce" formatted="false">"केवल यह डिवाइस"</string>
+    <string name="t_8340a76d" formatted="false">"यह क्यों मायने रखता है"</string>
+    <string name="t_838b0928" formatted="false">"आगे बढ़ते हुए अनुरक्षक हमले पैदा करता है।"</string>
+    <string name="t_8478f19e" formatted="false">"इस डिवाइस से क्या बाहर जाता है"</string>
+    <string name="t_848f3f46" formatted="false">"सारी प्रगति मिटाएँ?"</string>
+    <string name="t_852bda75" formatted="false">"कोडेक्स"</string>
+    <string name="t_862b3f34" formatted="false">"साइबर एजेंट तैनात करें"</string>
+    <string name="t_869cf6b4" formatted="false">"कॉलसाइन पंजीकृत करें"</string>
+    <string name="t_86cce90c" formatted="false">"सबसे कमज़ोर"</string>
+    <string name="t_87442b62" formatted="false">"अगली लहर · BREACH"</string>
+    <string name="t_87a9dd3e" formatted="false">"लहरें, € और फ़र्मवेयर"</string>
+    <string name="t_87d92d69" formatted="false">"बहुत लंबी पहचान सीमा; तेज़ हमलों पर +45% नुकसान।"</string>
+    <string name="t_8806feca" formatted="false">"छह CORE-SERVER स्किन, साथ में €2,000। NEONGRID अलग से बिकता है।"</string>
+    <string name="t_882561c2" formatted="false">"खतरे का आकलन"</string>
+    <string name="t_891fc63b" formatted="false">"नकल हटी"</string>
+    <string name="t_8980d82b" formatted="false">"{0} चुना गया — तैनात करने के लिए हाइलाइट किए गए नोड पर टैप करें।"</string>
+    <string name="t_899bae42" formatted="false">"वैकल्पिक। गेम में सब कुछ बिना लिंक किए काम करता है, और आपकी प्रगति के सिवा कुछ भी अपलोड नहीं होता।"</string>
+    <string name="t_89a47932" formatted="false">"संगीत चलाएँ"</string>
+    <string name="t_89c7b011" formatted="false">"विज्ञापन भागीदार इस डिवाइस के डेटा के साथ क्या कर सकते हैं यह बदलने के लिए Google का सहमति फ़ॉर्म फिर खोलें। आपकी गेम प्रगति इस डिवाइस पर संग्रहीत है और कभी उसका हिस्सा नहीं होती।"</string>
+    <string name="t_89d7c51c" formatted="false">"बाहर, वापस, और रैक तक एक लंबी साझा वापसी।"</string>
+    <string name="t_89dd34f8" formatted="false">"झुंड की सफ़ाई IPS पर छोड़ें ताकि आपके भारी हमलावर बॉस पर टिके रहें।"</string>
+    <string name="t_89e1b0eb" formatted="false">"इसका क्षेत्र तेज़ होते GRADIENT को वापस नीचे खींचता है।"</string>
+    <string name="t_89e450ea" formatted="false">"हटाए गए · रिवाइव विज्ञापन अलग"</string>
+    <string name="t_8a058fa3" formatted="false">"मानक वक्र।"</string>
+    <string name="t_8a86921d" formatted="false">"दाईं ओर के बटन स्क्रॉल होते हैं। नीचे और: स्टोर, लोडआउट (स्किन और बैकग्राउंड लगाएँ), GOOGLE PLAY (खरीद और क्लाउड सेव), लीडरबोर्ड, कोडेक्स (खतरे और एजेंट समझाए गए), आँकड़े, सेटिंग्स और परिचय।"</string>
+    <string name="t_8a96f0aa" formatted="false">"उपलब्ध नहीं"</string>
+    <string name="t_8aa097b1" formatted="false">"  (लॉक)"</string>
+    <string name="t_8aec13a9" formatted="false">"वितरित सेवा अस्वीकार: मात्रा ही हमला है। हर अनुरोध मामूली है, लेकिन वे गेम में किसी भी चीज़ से तेज़ आते हैं और हमेशा और होते हैं।"</string>
+    <string name="t_8af0e8d8" formatted="false">"एक संगठित सेंध प्रयास। कोई चाल नहीं, बस वज़न।"</string>
+    <string name="t_8b094c6c" formatted="false">"Google Play से कनेक्ट हो रहा है…"</string>
+    <string name="t_8c42a507" formatted="false">"जमे हुए कोर से निकलती बर्फ़ की सुइयाँ।"</string>
+    <string name="t_8c61de92" formatted="false">"लहरें अपने-आप शुरू करें"</string>
+    <string name="t_8d56a5da" formatted="false">"कोर के चारों ओर घूमती धीमी अंडाकार रेखाएँ।"</string>
+    <string name="t_8d91a14b" formatted="false">"GOOGLE PLAY"</string>
+    <string name="t_8d9dd637" formatted="false">"बॉस: केवल बॉस पर गोली चलाता है, वरना रुका रहता है"</string>
+    <string name="t_8e0413ab" formatted="false">"इस बिल्ड में कोई इन-ऐप खरीदारी नहीं है।"</string>
+    <string name="t_8e3787c1" formatted="false">"लॉक · {0} (सर्वश्रेष्ठ: {1})"</string>
+    <string name="t_8f0536a7" formatted="false">"अधिकतम इंस्टॉल"</string>
+    <string name="t_8f37a712" formatted="false">"किया गया नुकसान"</string>
+    <string name="t_8f48da3c" formatted="false">"नेटवर्क में सेंध"</string>
+    <string name="t_8f5d0f11" formatted="false">"अर्थव्यवस्था"</string>
+    <string name="t_8f61abf9" formatted="false">"काम चल रहा है…"</string>
+    <string name="t_8f68a3ab" formatted="false">"&gt; खतरे के सिग्नेचर लोड हो रहे हैं"</string>
+    <string name="t_8ff6e51c" formatted="false">"{0} पर अभी कोई रन दर्ज नहीं।"</string>
+    <string name="t_90391726" formatted="false">"फिर शुरू करें"</string>
+    <string name="t_910b3ae9" formatted="false">"सर्वर की रक्षा के लिए एजेंट खरीदने हेतु कमाया पैसा। हर किल और हर पूरी लहर पर क्रिप्टो◇ मिलता है।"</string>
+    <string name="t_915c2f22" formatted="false">"{0} ट्रैक सेव हुए, फिर फ़ोन ने बाकी मना कर दिए। कुछ जगह खाली करके फिर कोशिश करें।"</string>
+    <string name="t_919816cc" formatted="false">"Google Play तक नहीं पहुँच सके। जो कुछ पहले से खरीदा है वह अब भी आपका है — ऑनलाइन वापस आने पर पुनर्स्थापित आज़माएँ।"</string>
+    <string name="t_91ae1cd3" formatted="false">"सरल भाषा शब्दावली"</string>
+    <string name="t_91d4d5fc" formatted="false">"उपलब्ध · ◇ {0}"</string>
+    <string name="t_9231c915" formatted="false">"चलती प्रतिक्रिया के चारों ओर एम्बर रोकथाम रिंगें।"</string>
+    <string name="t_933bf2fb" formatted="false">"विज्ञापन हटाएँ रनों के बीच के विज्ञापनों को कवर करता है; रिवाइव विज्ञापन अलग हैं।"</string>
+    <string name="t_935cf7b5" formatted="false">"हैट जैसा फ़ायर रेट, भारी शॉट, और SYN-STORM व GRADIENT पर {0}× नुकसान। अधिकतम दो।"</string>
+    <string name="t_93875a49" formatted="false">"सीमा"</string>
+    <string name="t_93f1bd2f" formatted="false">"बहुत ऊँचा फ़ायर रेट, हमेशा सीमा में बाकी सब से पहले बॉस को निशाना बनाता है, और [GG] GOOD GAME पर दोगुना नुकसान करता है। लहर 30 पर अनलॉक होता है और चार से ज़्यादा तैनात नहीं हो सकते।"</string>
+    <string name="t_94061f4f" formatted="false">"लगभग कोई नुकसान नहीं करता। इसके दायरे में सब कुछ रेंगता है, जिससे खतरे आपके नुकसान करने वालों की सीमा में कहीं ज़्यादा देर रहते हैं। सस्ता, और अकेले बेकार — यह बगल में गोली चलाने वाले किसी भी चीज़ का बल गुणक है।"</string>
+    <string name="t_941dea68" formatted="false">"नुकसान अंक"</string>
+    <string name="t_9427590a" formatted="false">"वार पर तैरते नुकसान मान दिखाएँ"</string>
+    <string name="t_94bbec0b" formatted="false">"अगली लहर पर टैप करें। आपके एजेंट अपने-आप फ़ायर करते हैं। हर रोका गया हमला ◇ क्रिप्टो देता है, जिससे और एजेंट और अपग्रेड खरीदे जाते हैं।"</string>
+    <string name="t_94dc88d3" formatted="false">"हर फ़र्मवेयर स्तर भविष्य के हर मैच में हर एजेंट पर +{0}% नुकसान और रनों में कमाए ◇ क्रिप्टो पर +{1}% (दोगुने तक) जोड़ता है। यह कभी नहीं जाता।"</string>
+    <string name="t_95051192" formatted="false">"सेट नहीं"</string>
+    <string name="t_952dc0bb" formatted="false">"लीडरबोर्ड"</string>
+    <string name="t_959b6bbb" formatted="false">"अधिकतम {0} तैनात"</string>
+    <string name="t_9655a074" formatted="false">"मेनू और बोर्ड के पीछे धीमी डेटा धाराएँ।"</string>
+    <string name="t_97e1363f" formatted="false">"हर वार पर भारी स्थिर नुकसान कमी।"</string>
+    <string name="t_98189a64" formatted="false">"कोई नहीं। यह सीधी लड़ाई है।"</string>
+    <string name="t_9873614b" formatted="false">"रोस्टर में सबसे लंबी पहचान सीमा, और तेज़ हमलों के ख़िलाफ़ +45% नुकसान। धीमा फ़ायर रेट — यह एक जासूस है जो संयोग से गोली भी चलाता है, सबसे अच्छा वहाँ रखें जहाँ यह लेन का बड़ा हिस्सा ढके।"</string>
+    <string name="t_98a9c7f2" formatted="false">"€ बजट"</string>
+    <string name="t_98b63553" formatted="false">"खेलने के लिए किसी खाते या लॉगिन की ज़रूरत नहीं"</string>
+    <string name="t_98cc567c" formatted="false">"सर्वश्रेष्ठ नुकसान"</string>
+    <string name="t_98f4abc6" formatted="false">"◇ {0} · {2} पर लहर {1} पर अनलॉक"</string>
+    <string name="t_98fbe3ee" formatted="false">"मल्टी-लॉक"</string>
+    <string name="t_991bd4c3" formatted="false">"एक अकेला CRYPTOGRAPHER पूरी लड़ाई पलट देता है।"</string>
+    <string name="t_991c8ba8" formatted="false">"कुल एजेंट अपग्रेड"</string>
+    <string name="t_996095bd" formatted="false">"इस गेम में संदर्भित कुछ नाम, शब्द और ट्रेडमार्क उनके संबंधित मालिकों की संपत्ति हो सकते हैं। ऐसे संदर्भ केवल पहचान, टिप्पणी, शैक्षिक संदर्भ और गेम के भीतर काल्पनिक प्रस्तुति के लिए उपयोग किए जाते हैं।\n\nयह गेम स्वतंत्र रूप से विकसित है और Red Hat, Microsoft या किसी अन्य तृतीय-पक्ष ट्रेडमार्क मालिक से संबद्ध, प्रायोजित, समर्थित या अनुमोदित नहीं है।\n\nसभी तृतीय-पक्ष ट्रेडमार्क, उत्पाद नाम, कंपनी नाम और लोगो उनके संबंधित मालिकों की संपत्ति बने रहते हैं।"</string>
+    <string name="t_99ab6437" formatted="false">"अगली बार वे स्क्रीन खोलने पर मुख्य मेनू का दौरा और फ़र्मवेयर व्याख्या फिर दिखाएँ।"</string>
+    <string name="t_99cfdd6c" formatted="false">"पूर्वावलोकन {0}"</string>
+    <string name="t_99d175d2" formatted="false">"त्वरण कम करने के लिए मार्ग पर एक TARPIT रखें।"</string>
+    <string name="t_99f43c9c" formatted="false">"क्रिप्टो अपर्याप्त"</string>
+    <string name="t_9a8ee779" formatted="false">"रोस्टर में किसी जितना तेज़ फ़ायर करता है और हमेशा पहले बॉस पर गोली चलाता है। [!!!] BREACH पर दोगुना नुकसान। अधिकतम चार।"</string>
+    <string name="t_9a9bcdd3" formatted="false">"स्लॉट"</string>
+    <string name="t_9aa5d01a" formatted="false">"असफल रन के बाद कभी कोई इंटरस्टिशियल नहीं, साथ में €5,000। रिवाइव विज्ञापन स्वैच्छिक और अलग हैं — रिवाइव पैक देखें।"</string>
+    <string name="t_9adba547" formatted="false">"प्रति यूरो सबसे अच्छा मूल्य।"</string>
+    <string name="t_9ae9f14f" formatted="false">"दूर के बिंदुओं का धीमा बहाव।"</string>
+    <string name="t_9aed28a1" formatted="false">"तैनाती सीमा पहुँची"</string>
+    <string name="t_9b08be38" formatted="false">"Google Play Games से पूछ रहे हैं…"</string>
+    <string name="t_9b1d7455" formatted="false">"लहर {0}"</string>
+    <string name="t_9b4c97a7" formatted="false">"लकड़ी के घोड़े के नाम पर: ऐसा सॉफ़्टवेयर जो आपकी चाही चीज़ जैसा दिखता है, और जो आप बिल्कुल नहीं चाहते वह ढोता है।"</string>
+    <string name="t_9b557f99" formatted="false">"आपका सर्वश्रेष्ठ: लहर {0}"</string>
+    <string name="t_9b989bfb" formatted="false">"सर्वश्रेष्ठ"</string>
+    <string name="t_9bcd1b03" formatted="false">"सभी सात जीवंत बैकग्राउंड, साथ में €2,000।"</string>
+    <string name="t_9bd1faf7" formatted="false">"रिफ़ंड, भुगतान विधियाँ और रसीदें Google संभालता है, यह गेम नहीं।"</string>
+    <string name="t_9c2ade2b" formatted="false">"स्तर {0}  ×{1}"</string>
+    <string name="t_9c6be09c" formatted="false">"संशोधक"</string>
+    <string name="t_9d0c4ff1" formatted="false">"&gt; लहर {0} सक्रिय — {1} खतरे बाकी"</string>
+    <string name="t_9d29de23" formatted="false">"स्तर अनुसार सर्वश्रेष्ठ लहर"</string>
+    <string name="t_9d2c3eea" formatted="false">"नेटवर्क शब्द"</string>
+    <string name="t_9d36e329" formatted="false">"फिरौती में"</string>
+    <string name="t_9d5ca8b9" formatted="false">"क्या आप रिवाइव करना चाहेंगे?"</string>
+    <string name="t_9df821c5" formatted="false">"CyOps TD में आपका स्वागत है"</string>
+    <string name="t_9e30871d" formatted="false">"एक अकेली संक्रमित मशीन जो किसी और से आदेश लेती है। एक बॉट हानिरहित है। हज़ारों का बॉटनेट नहीं — इसीलिए ये हमेशा समूहों में आते हैं।"</string>
+    <string name="t_9e77c8cf" formatted="false">"लहरें तेज़ी से साफ़ करने के लिए पाँचवीं सिमुलेशन गति जोड़ता है।"</string>
+    <string name="t_9ef0ebe5" formatted="false">"सेगमेंटेशन"</string>
+    <string name="t_9f26f678" formatted="false">"  →"</string>
+    <string name="t_9f70f631" formatted="false">"फ़ायर रेट"</string>
+    <string name="t_9fb6c271" formatted="false">"पास के एजेंटों को कुछ देर जाम करता है, उनका फ़ायर रेट धीमा करता है।"</string>
+    <string name="t_a12f7814" formatted="false">"+{0} (बॉस)"</string>
+    <string name="t_a15faa1f" formatted="false">"मोड"</string>
+    <string name="t_a19abbd4" formatted="false">"हर साइबर एजेंट, वह क्या करता है, और कौन-सी लहर उसे अनलॉक करती है।"</string>
+    <string name="t_a21dbf00" formatted="false">"€{0} बजट जमा हुआ"</string>
+    <string name="t_a24181ff" formatted="false">"कौन हमला कर रहा है"</string>
+    <string name="t_a2517472" formatted="false">"स्टोर उपलब्ध नहीं"</string>
+    <string name="t_a29c69ba" formatted="false">"बाहर निकलें"</string>
+    <string name="t_a2b3bef5" formatted="false">"लहर {0} तक पहुँचें"</string>
+    <string name="t_a2dd8300" formatted="false">"एक कठिन परीक्षा। दो मार्ग, मुड़कर वापस, फिर रैक से पहले एक चक्कर।"</string>
+    <string name="t_a2e2f704" formatted="false">"सिफ़र ब्रेक"</string>
+    <string name="t_a32353a8" formatted="false">"€9,000 बजट"</string>
+    <string name="t_a36e1b6d" formatted="false">"इस बिल्ड में नहीं"</string>
+    <string name="t_a3ebab03" formatted="false">"बिना पैच की अज्ञात खामी"</string>
+    <string name="t_a4a2cd90" formatted="false">"&gt;&gt; नया रिकॉर्ड &lt;&lt;"</string>
+    <string name="t_a4fd7522" formatted="false">" · अधिकतम {0}"</string>
+    <string name="t_a5460e4e" formatted="false">"एलीट और बॉस के ख़िलाफ़ +80% नुकसान के साथ धीमे, भारी अकेले वार। झुंडों के ख़िलाफ़ कमज़ोर। लक्ष्य चयनकर्ता दिखाता है, ताकि आप उसे उस पर लगा सकें जिसे आप सच में मरा हुआ देखना चाहते हैं।"</string>
+    <string name="t_a596b409" formatted="false">"5× गति स्टोर में है"</string>
+    <string name="t_a599c90a" formatted="false">"इसकी सीमा के अंदर हर एजेंट, खुद समेत, किसी भी बॉस के जाम से प्रतिरक्षित है। तेज़, भारी शॉट, WHITE EYE और BLACK EYE पर {0}× नुकसान के साथ। TARPIT जितनी सीमा। दो से ज़्यादा तैनात नहीं हो सकते।"</string>
+    <string name="t_a5b1ffba" formatted="false">"असीमित सिस्टम पहुँच"</string>
+    <string name="t_a5da8eea" formatted="false">"किसी लहर पर अटके हैं? बजट जमा करें, फ़र्मवेयर इंस्टॉल करें, और अगले रन में वही बोर्ड ज़्यादा ज़ोर से मारेगा।"</string>
+    <string name="t_a6291e29" formatted="false">"€5,000 बजट"</string>
+    <string name="t_a62c1133" formatted="false">"कोई असली हैकिंग क्षमता नहीं — यहाँ कुछ भी असली नेटवर्क को नहीं छूता"</string>
+    <string name="t_a66c22f9" formatted="false">"भाषा मुख्य मेनू पर सेटिंग्स से बदलें: बदलने से गेम फिर शुरू होता है, जिससे यह रन खत्म हो जाएगा।"</string>
+    <string name="t_a6cd2e07" formatted="false">"{0}-{1} अक्षर। A-Z, 0-9, डैश और अंडरस्कोर।"</string>
+    <string name="t_a6ee02f4" formatted="false">"रद्द करें"</string>
+    <string name="t_a727a483" formatted="false">"शामिल है"</string>
+    <string name="t_a7c5a24a" formatted="false">"Music/CyOps TD में सेव हो रहा है…"</string>
+    <string name="t_a7c97dfd" formatted="false">"रीसेट"</string>
+    <string name="t_a7e02911" formatted="false">"कोर पर"</string>
+    <string name="t_a7e24bd6" formatted="false">"लक्ष्यीकरण"</string>
+    <string name="t_a8031bce" formatted="false">"स्टोर लिस्टिंग खोलें"</string>
+    <string name="t_a8191219" formatted="false">"SPOOFER अपनी नकली प्रतियाँ बनाता है जो फ़ायर सोख लेती हैं। ANALYST और ROOT ADMIN उनके आर-पार देखते हैं।"</string>
+    <string name="t_a8768bb2" formatted="false">"एजेंट स्किन"</string>
+    <string name="t_a8935036" formatted="false">"कमाया क्रिप्टो"</string>
+    <string name="t_a92b98a8" formatted="false">"क्रिप्टो ◇"</string>
+    <string name="t_a9a8f56c" formatted="false">"दृश्य"</string>
+    <string name="t_a9ad0741" formatted="false">"इस रन का €"</string>
+    <string name="t_a9cf50ec" formatted="false">"असली ट्रैफ़िक अपने गंतव्य तक पहुँचने के लिए स्विच और राउटर से होकर एक मार्ग पर चलता है। यहाँ के दो सर्पिल मार्ग वही रास्ता हैं, मुड़कर वापस आते हैं ताकि आप हर हॉप एक साथ देख सकें।"</string>
+    <string name="t_a9d9e481" formatted="false">"CORE-SERVER वह है जिसकी आप रक्षा कर रहे हैं, और ऊपरी पट्टी में इसकी इंटीग्रिटी रीडिंग ही आपकी एकमात्र जान है। रैक तक पहुँचने वाला हर शत्रु पैकेट इसमें से एक टुकड़ा काटता है। 0 पर सर्वर में सेंध लग जाती है और रन खत्म — इसलिए कुछ भी न गुज़रने देना ही पूरा काम है।"</string>
+    <string name="t_aab511c4" formatted="false">"ROOTKIT हर 6 में से 2 सेकंड छिपा रहता है और कुछ भी इसे निशाना नहीं बना सकता। स्प्लैश और श्रृंखला फिर भी पहुँचती हैं।"</string>
+    <string name="t_aac1d4da" formatted="false">"लिंक नहीं"</string>
+    <string name="t_aadac61a" formatted="false">"एप्लिकेशन SQL में डेटाबेस से सवाल पूछते हैं। अगर उपयोगकर्ता इनपुट सीधे उस सवाल में चिपका दिया जाए, तो हमलावर उसका अपना अंत लिख सकता है — उपयोगकर्ता तालिका निकालना, लॉगिन को बायपास करना, या सब कुछ मिटाना। इलाज पुराना और जाना-माना है (पैरामीटराइज़्ड क्वेरी), और यही बात निराश करती है कि यह अब भी वह हमला है जिससे आप सबसे ज़्यादा मिलेंगे।"</string>
+    <string name="t_ab62d63d" formatted="false">"घुसपैठ पहचान प्रणाली नेटवर्क या होस्ट गतिविधि में हमले जैसे पैटर्न देखती है और चेतावनी देती है। यह रिपोर्ट करती है; रोकती नहीं। किसी व्यक्ति या किसी और चीज़ को अब भी इसके निष्कर्षों पर कार्रवाई करनी होती है।"</string>
+    <string name="t_aca3253a" formatted="false">"मैदान पर · देखने के लिए किसी बॉस पर टैप करें"</string>
+    <string name="t_ad03a515" formatted="false">"नेटवर्क को क्षेत्रों में बाँटना"</string>
+    <string name="t_ad26a7c7" formatted="false">"अज्ञात"</string>
+    <string name="t_ae00f867" formatted="false">"विश्लेषण"</string>
+    <string name="t_ae59bf94" formatted="false">"बेचें  ◇ {0}"</string>
+    <string name="t_b0147d1e" formatted="false">"इस लहर के लिए गैर-FIREWALL एजेंटों पर भरोसा करें।"</string>
+    <string name="t_b0af39a6" formatted="false">"बदलें"</string>
+    <string name="t_b0d341a2" formatted="false">"एक महीने से ज़्यादा पहले"</string>
+    <string name="t_b0f472d0" formatted="false">"कठिनाई"</string>
+    <string name="t_b16e2042" formatted="false">"रैक के पीछे बैंगनी तारों भरा आकाश।"</string>
+    <string name="t_b2029176" formatted="false">"छोटे विराम के बाद अगली लहर अपने-आप शुरू करें"</string>
+    <string name="t_b253fa2b" formatted="false">"क्रिप्टोग्राफ़ी भेजे जा रहे और संग्रहीत डेटा की रक्षा करती है, ताकि उसे पकड़ना उसे पढ़ने जैसा न हो। हमलावर भी इसका इस्तेमाल करते हैं — बहुत सा शत्रु ट्रैफ़िक एन्क्रिप्टेड होता है — इसीलिए रक्षक एन्क्रिप्शन तोड़ने की कोशिश के बजाय अपने नियंत्रण वाले एंडपॉइंट पर जाँच करते हैं।"</string>
+    <string name="t_b28b05f8" formatted="false">"घुसपैठ रोकथाम प्रणाली"</string>
+    <string name="t_b2dbc630" formatted="false">"फ़ायरवॉल सक्रिय"</string>
+    <string name="t_b2ef7c39" formatted="false">"साइबर ऑपरेटिव्स: टावर डिफ़ेंस"</string>
+    <string name="t_b32b1a1d" formatted="false">"सुविधा"</string>
+    <string name="t_b3735fe8" formatted="false">"लहर के साथ साँस लेती सर्किट जाली।"</string>
+    <string name="t_b3b53e34" formatted="false">"खरीदारी आपके Google खाते से जुड़ी है, इस डिवाइस से नहीं। फिर से इंस्टॉल करने या फ़ोन बदलने से वे नहीं खोतीं।"</string>
+    <string name="t_b3c34c67" formatted="false">"अभी-अभी"</string>
+    <string name="t_b40b6d1c" formatted="false">"\"रेड टीम\" अनुमति से किसी सिस्टम पर हमला करती है, यह जानने के लिए कि हमलावर पहले क्या ढूँढेगा। \"रेड हैट\" अनौपचारिक बोलचाल है, कोई पद या प्रमाणपत्र नहीं, और इसका अर्थ उपयोग करने वालों के बीच बदलता है; रेड टीम वाला हिस्सा ही मानक है।"</string>
+    <string name="t_b5ca7a98" formatted="false">"दुनिया भर में हर खिलाड़ी की सर्वश्रेष्ठ लहर, कॉलसाइन से सूचीबद्ध। दाईं ओर एक पंजीकृत करें, वरना Google आपका Play Games नाम दिखाता है।"</string>
+    <string name="t_b649891d" formatted="false">"रुका हुआ"</string>
+    <string name="t_b683e66d" formatted="false">"{0} लॉक है: अनलॉक करने के लिए {1}।"</string>
+    <string name="t_b6bcb68c" formatted="false">"भारी एकल-लक्ष्य नुकसान, हर शॉट एक जैसा। सारे कवच को अनदेखा करता है।"</string>
+    <string name="t_b7ba0ba1" formatted="false">"REGENERATION इसे {0} सेकंड बिना वार के गुज़रने पर ठीक कर देता है। पूरे रास्ते इस पर फ़ायर जारी रखें।"</string>
+    <string name="t_b7c4c2a3" formatted="false">"[{0}] {1} (लॉक): {2}"</string>
+    <string name="t_b7cf2aab" formatted="false">"कोई ऐप GOOGLE PLAY नहीं खोल सकता"</string>
+    <string name="t_b8201e22" formatted="false">"अगली: लहर {0} · बॉस"</string>
+    <string name="t_b82dfd13" formatted="false">"आपको ले जाता है"</string>
+    <string name="t_b835d746" formatted="false">"चरण 5 — दो TARPIT तैनात करें"</string>
+    <string name="t_b8cbfe08" formatted="false">"CORE-SERVER से सबसे दूर"</string>
+    <string name="t_b8f9cbc8" formatted="false">"नुकसान {0}  दर {1}/से."</string>
+    <string name="t_b8ffa95c" formatted="false">"जीवंत: अरोरा"</string>
+    <string name="t_b9918647" formatted="false">"यहाँ होने के पैसे मिले हैं। कोई चाल नहीं, कोई जाम नहीं — बोर्ड पर किसी भी चीज़ से बीस प्रतिशत ज़्यादा।"</string>
+    <string name="t_b9a3ada7" formatted="false">"EXFIL तेज़ है। अगर यह कोर तक पहुँचता है तो इंटीग्रिटी के बजाय आपका आधा क्रिप्टो चुरा लेता है। पहले खर्च करें, या इसे रोकें।"</string>
+    <string name="t_b9c6b239" formatted="false">"लेनों के नीचे, और हर मेनू के पीछे खींचा गया।"</string>
+    <string name="t_badb0f4a" formatted="false">"समय-समय पर सर्वर की ओर तेज़ होता है।"</string>
+    <string name="t_bae2cee7" formatted="false">"हाँ — विज्ञापन देखें"</string>
+    <string name="t_bb0a2d46" formatted="false">"चुनें"</string>
+    <string name="t_bb621985" formatted="false">"मज़बूत"</string>
+    <string name="t_bb93827c" formatted="false">"रिवाइव विफल — रन पहले ही खत्म"</string>
+    <string name="t_bc855067" formatted="false">"पहुँच अस्वीकृत"</string>
+    <string name="t_bcdf64b3" formatted="false">"SQL इंजेक्शन"</string>
+    <string name="t_bceaf8ce" formatted="false">"!!! साइबर हमला आ रहा है !!!"</string>
+    <string name="t_bd0c6acd" formatted="false">"अगला € {0} · प्रति स्तर +{1}% {2}"</string>
+    <string name="t_bd1b1fc9" formatted="false">"बंद"</string>
+    <string name="t_bd8215e6" formatted="false">"हाँ, मुझे बताएँ"</string>
+    <string name="t_bd84c20a" formatted="false">"लहर {0} सुरक्षित"</string>
+    <string name="t_be1fc25b" formatted="false">"भरोसेमंद हर तरफ़ का नुकसान, और इसे जाम नहीं किया जा सकता।"</string>
+    <string name="t_beb11f45" formatted="false">"बॉस संशोधक"</string>
+    <string name="t_beb3cdc3" formatted="false">"इसका क्षेत्र बॉस को दूसरे खतरों से दोगुना धीमा करता है।"</string>
+    <string name="t_bec37550" formatted="false">"हॉट रिपेयर"</string>
+    <string name="t_bed8ffbb" formatted="false">"पुनर्स्थापित Play से फिर पूछता है कि इस Google खाते के पास क्या है। इसे कभी भी दबाना सुरक्षित है और यह कभी शुल्क नहीं लेता।"</string>
+    <string name="t_bf09fcca" formatted="false">"इस बिल्ड में कोई Play Games प्रोजेक्ट कॉन्फ़िगर नहीं है, इसलिए प्रगति इसी डिवाइस पर रहती है। उसी Google खाते में साइन इन फ़ोन पर फिर से इंस्टॉल करने पर Android का अपना बैकअप उसे फिर भी पुनर्स्थापित करता है।"</string>
+    <string name="t_bf0c2eaa" formatted="false">"प्रतिकृति बन रही"</string>
+    <string name="t_bf7cfb98" formatted="false">"इस बिल्ड में कॉन्फ़िगर करने के लिए कोई विज्ञापन नहीं है।"</string>
+    <string name="t_c1386132" formatted="false">"◇ क्रिप्टो"</string>
+    <string name="t_c164d2e8" formatted="false">"हैट जितना तेज़ फ़ायर करता है और ज़्यादा ज़ोर से मारता है, DUCK-USB बॉस SYN-STORM और GRADIENT पर {0}× नुकसान के साथ। अपने लक्ष्यीकरण मोड रखता है। दो से ज़्यादा तैनात नहीं हो सकते। होलोग्राम के रूप में दिखता है जिसे एजेंट स्किन नहीं बदलतीं।"</string>
+    <string name="t_c19b9c99" formatted="false">"CORE-SERVER इंटीग्रिटी 0 · कनेक्शन समाप्त"</string>
+    <string name="t_c1b7bcc5" formatted="false">"यह बिल्ड कोई विज्ञापन नहीं दिखाता।"</string>
+    <string name="t_c2658f4d" formatted="false">"ज़बरदस्त एकल-लक्ष्य नुकसान। सारे कवच को अनदेखा करता है।"</string>
+    <string name="t_c2c8c2f8" formatted="false">"एजेंट सीमा दिखाएँ"</string>
+    <string name="t_c2d127eb" formatted="false">"छोड़ें ×"</string>
+    <string name="t_c31db047" formatted="false">"रिवाइव पैक — कोई विज्ञापन नहीं।"</string>
+    <string name="t_c39850a1" formatted="false">"चरण 3 — दो FIREWALL तैनात करें"</string>
+    <string name="t_c3e1a996" formatted="false">"◇ क्रिप्टो और € बजट काल्पनिक इन-गेम संसाधन हैं। इनका कोई मौद्रिक मूल्य नहीं, इन्हें गेम के बाहर किसी चीज़ से बदला नहीं जा सकता, और ये डिवाइस नहीं छोड़ सकते।"</string>
+    <string name="t_c405af57" formatted="false">"खेलें बाईं ओर चुने गए स्तर और रन मोड पर रन शुरू करता है। जब कोई रन सेव हो, जारी रखें उसे उठाता है और नया रन फिर से शुरू करता है।"</string>
+    <string name="t_c40bc4a4" formatted="false">"IDS संदिग्ध व्यवहार और सुरक्षा खतरों के लिए नेटवर्क गतिविधि पर नज़र रखता है, फिर चेतावनी देता है। यह देखता है; रोकता नहीं।"</string>
+    <string name="t_c4a14a23" formatted="false">"FIREWALL चुनें। यह सस्ता, भरोसेमंद है, और इसे जाम नहीं किया जा सकता।"</string>
+    <string name="t_c4b7782d" formatted="false">"सुरक्षा विश्लेषक एक असली नौकरी है। लूप में मौजूद इंसान वह लेता है जो स्वचालित उपकरणों ने चिह्नित किया, पता लगाता है कि असल में क्या हुआ, और तय करता है कि क्या करना है। मशीन से धीमा, और उन मामलों में कहीं बेहतर जो किसी ज्ञात पैटर्न से मेल नहीं खाते।"</string>
+    <string name="t_c4d0dc6f" formatted="false">"मशीन-लर्निंग उपकरण किसी व्यक्ति के पढ़ सकने से कहीं ज़्यादा संकेतों में असामान्य पैटर्न चिह्नित करते हैं, और यह छाँटने में इस्तेमाल होते हैं कि किस पर ध्यान देना चाहिए। वे विश्लेषकों की मदद करते हैं, उनकी जगह नहीं लेते, और गलत अलार्म भी देते हैं — एक चिह्न सुराग है, फ़ैसला नहीं।"</string>
+    <string name="t_c51041e3" formatted="false">"  ·"</string>
+    <string name="t_c55cc938" formatted="false">"नया रन"</string>
+    <string name="t_c55e934e" formatted="false">"और के लिए स्क्रॉल करें"</string>
+    <string name="t_c570c6cd" formatted="false">"रैक के अंदर गिरते कोड स्तंभ।"</string>
+    <string name="t_c5cb18f9" formatted="false">"सभी स्तर"</string>
+    <string name="t_c81c4fa0" formatted="false">"1 स्तर"</string>
+    <string name="t_c8a9aae9" formatted="false">"तीन मार्ग दो बार आपस में गुँथते हैं: हर लेन पक्ष बदलती है।"</string>
+    <string name="t_c9301368" formatted="false">"कोर: REACTOR"</string>
+    <string name="t_c9402c75" formatted="false">"नहीं"</string>
+    <string name="t_c944e5aa" formatted="false">"प्रतिरोधी उपाय"</string>
+    <string name="t_c9a2aee9" formatted="false">"किसी भी स्तर पर लहर {0} तक पहुँचकर यह एजेंट अनलॉक करें।"</string>
+    <string name="t_ca02a8f8" formatted="false">"हर एजेंट अपने काम का रंग पहनता है।"</string>
+    <string name="t_ca5ea88d" formatted="false">"सबसे अच्छा मूल्य"</string>
+    <string name="t_cabf47fa" formatted="false">"अधिकतम +{0}"</string>
+    <string name="t_cb02b3da" formatted="false">"पूरे रोस्टर पर धीमा रंग चक्र।"</string>
+    <string name="t_cb1fd3f1" formatted="false">"IPS वह IDS है जिसके पास कार्रवाई का अधिकार है। जब यह हमला पहचानता है तो किसी को बताने के बजाय खुद ट्रैफ़िक गिरा देता है।"</string>
+    <string name="t_cb4ff573" formatted="false">"विज्ञापन और खरीदारी"</string>
+    <string name="t_cbd3b516" formatted="false">"कोई विज्ञापन नहीं, SPECTRUM एजेंट स्किन, DRIFT बैकग्राउंड, और €2,000।"</string>
+    <string name="t_cbd47695" formatted="false">"पेलोड ब्लॉक"</string>
+    <string name="t_cbf7d422" formatted="false">"SYN-STORM आधे स्वास्थ्य पर दो में बँट जाता है, और दूसरा आधा दूसरा मार्ग लेता है। हर मार्ग ढकें।"</string>
+    <string name="t_cc52e024" formatted="false">"अगली: लहर {0} — बॉस · ब्रीफ़िंग के लिए अगला बॉस पर टैप करें"</string>
+    <string name="t_cc5435ac" formatted="false">"लेनों से क्या आ रहा है"</string>
+    <string name="t_cc5c44e8" formatted="false">"फ़ोकस: केवल छोटी इकाइयाँ और एलीट"</string>
+    <string name="t_cc6791f1" formatted="false">"FIREWALL एजेंटों का प्रतिरोध करता है।"</string>
+    <string name="t_cc7fe141" formatted="false">"आक्रामक उपकरणों पर नज़र रखता है। अपने पास के RED HAT एजेंटों को हर कुछ सेकंड में कुछ देर जाम करता है।"</string>
+    <string name="t_cc9e044b" formatted="false">"जीवंत: कक्षा"</string>
+    <string name="t_ccb963f2" formatted="false">"पैकेट"</string>
+    <string name="t_ccbd0815" formatted="false">"डिफ़ॉल्ट रैक।"</string>
+    <string name="t_ccbefbf5" formatted="false">"स्कैन सीमा {0}"</string>
+    <string name="t_ccd3b8ff" formatted="false">"गोपनीयता विकल्प अभी उपलब्ध नहीं हैं।"</string>
+    <string name="t_cce0919d" formatted="false">"स्वामित्व में"</string>
+    <string name="t_cd27794d" formatted="false">"कॉलसाइन इस डिवाइस तक सीमित है और Google खाता नहीं है। यह लीडरबोर्ड पर आपके रनों को नाम देता है।"</string>
+    <string name="t_cd7ef0df" formatted="false">"ट्रेडमार्क और तृतीय-पक्ष सूचना"</string>
+    <string name="t_cd8fc1d8" formatted="false">"Google Play के ज़रिए वैकल्पिक इन-ऐप खरीदारी उपलब्ध है। गेम में कुछ भी किसी खरीद के पीछे बंद नहीं है।"</string>
+    <string name="t_cde6047e" formatted="false">"घुसपैठ पहचान प्रणाली"</string>
+    <string name="t_ce2cde0d" formatted="false">"चरण 1 — रोस्टर खोलें"</string>
+    <string name="t_ce56b8c8" formatted="false">"GOOGLE PLAY पर प्रबंधित करें"</string>
+    <string name="t_ce8b48c9" formatted="false">"गेमप्ले"</string>
+    <string name="t_ceb6dbab" formatted="false">"CyOps TD साउंडट्रैक"</string>
+    <string name="t_cec6cd66" formatted="false">"अभी कोई रन दर्ज नहीं। एक रन पूरा करें और वह यहाँ सूचीबद्ध होगा, आपकी पहुँची लहर के अनुसार क्रमबद्ध।"</string>
+    <string name="t_cee3b8c9" formatted="false">"छोड़ें"</string>
+    <string name="t_cfd886ad" formatted="false">"दो मार्ग अपने-अपने आधे हिस्से को छानते हैं। बीच की खाली जगह के टावर दोनों तक पहुँचते हैं।"</string>
+    <string name="t_d0112898" formatted="false">"चकमा"</string>
+    <string name="t_d07db54c" formatted="false">"ROOT / ADMIN"</string>
+    <string name="t_d08f5138" formatted="false">"दो सर्पिल मार्ग जो उन्हीं तोपों के पास से मुड़कर लौटते हैं।"</string>
+    <string name="t_d10c0c39" formatted="false">"बहुत ऊँचा फ़ायर रेट और हर शॉट छितरता है, इसलिए यह एक भारी लक्ष्य के बजाय झुंड का जवाब है। IDS से महँगा और कम दूर तक पहुँचता है।"</string>
+    <string name="t_d11351ac" formatted="false">"चालू"</string>
+    <string name="t_d173b657" formatted="false">"वह खाता जो सिस्टम पर कुछ भी कर सकता है। हमलावर इसे चाहते हैं; रक्षक इसकी सावधानी से रखवाली करते हैं। ज़्यादातर सुरक्षा काम यह सीमित करने के बारे में है कि इसे कौन पाता है और कितनी देर के लिए।"</string>
+    <string name="t_d19c7c8e" formatted="false">"◇ {0} · लहर {1} पर अनलॉक"</string>
+    <string name="t_d22f26dd" formatted="false">"हर बौछार में 3 अलग-अलग खतरों से भिड़ता है।"</string>
+    <string name="t_d2ee5fd2" formatted="false">"प्रगति अपने-आप सेव होती है"</string>
+    <string name="t_d31b24bf" formatted="false">"{0} · {1}  ·  सर्वश्रेष्ठ {2}"</string>
+    <string name="t_d35bc038" formatted="false">"{0} — {1} यह नुकसान नहीं करता; यह आपके दूसरे एजेंटों के लिए समय खरीदता है।"</string>
+    <string name="t_d415f020" formatted="false">"ज़ीरो-डे ऐसी खामी है जिसका अभी कोई इलाज उपलब्ध नहीं — रक्षक के पास इसे पैच करने के शून्य दिन थे। भेद्यता शोधकर्ता इन्हें खोजते हैं ताकि किसी और के पहले पाने से पहले इनकी रिपोर्ट और मरम्मत हो सके। \"ज़ीरो-डे हंटर\" अनौपचारिक संक्षिप्त नाम है, कोई प्रमाणपत्र या औपचारिक पद नहीं।"</string>
+    <string name="t_d477fdfb" formatted="false">"फ़र्मवेयर पूरी तरह इंस्टॉल"</string>
+    <string name="t_d488d098" formatted="false">"गाइडेड रन को अब TARPIT चाहिए"</string>
+    <string name="t_d48f1170" formatted="false">"▼  नीचे और"</string>
+    <string name="t_d4bb26ac" formatted="false">"कोर स्किन पैक"</string>
+    <string name="t_d5acb32b" formatted="false">"बॉस चेतावनी, सर्वर पर वार और गेम खत्म होने पर कंपन"</string>
+    <string name="t_d5b86d2a" formatted="false">"सुरक्षा संचालन केंद्र"</string>
+    <string name="t_d5d0b693" formatted="false">"जारी रखें"</string>
+    <string name="t_d62907f6" formatted="false">"इंस्टॉल फ़र्मवेयर"</string>
+    <string name="t_d63b9487" formatted="false">"पहुँच से बाहर"</string>
+    <string name="t_d736d92d" formatted="false">"ठीक है"</string>
+    <string name="t_d8386755" formatted="false">"GOOGLE PLAY बिलिंग"</string>
+    <string name="t_d84b41e9" formatted="false">"लगातार नुकसान जीतता है। IPS या उन्नत FIREWALL।"</string>
+    <string name="t_d8705eb7" formatted="false">"साइबर हमले नेटवर्क मार्गों पर CORE-SERVER की ओर बढ़ते हैं। आप लेनों के बगल में साइबर एजेंट तैनात करते हैं; वे जो गुज़रता है उसे पहचानकर नष्ट करते हैं। हर रोका गया हमला ◇ क्रिप्टो देता है, जिससे और एजेंट और अपग्रेड खरीदे जाते हैं। हर पाँचवीं लहर एक बॉस है। कोई अंतिम लहर नहीं — सवाल बस इतना है कि आप कितनी दूर जाते हैं।"</string>
+    <string name="t_d889d3ab" formatted="false">"+1, +10 और +100 उतने स्तर खरीदते हैं। अधिकतम इंस्टॉल जितना खर्च कर सकें उतना खर्च करता है। हर स्तर थोड़ा महँगा होता है।"</string>
+    <string name="t_d8bcdc1d" formatted="false">"फिर से शुरू करें"</string>
+    <string name="t_d8fec6d4" formatted="false">"कुल तैनात एजेंट"</string>
+    <string name="t_d9074af5" formatted="false">"एन्क्रिप्शन डेटा को गड्डमड्ड करता है ताकि केवल सही कुंजी वाला ही पढ़ सके। यह वैध ट्रैफ़िक की रक्षा करता है — और उतनी ही अच्छी तरह हमलावर के पेलोड को जाँच से छिपाता है।"</string>
+    <string name="t_d92ad54a" formatted="false">"इस बिल्ड में Google Play बिलिंग कॉन्फ़िगर नहीं है, या इस डिवाइस में Play Store नहीं है। कुछ भी खरीदा नहीं जा सकता, और खेलने के लिए पैसे वाली कोई चीज़ ज़रूरी नहीं।"</string>
+    <string name="t_d9694eb9" formatted="false">"वही खामी, कोई प्रतिक्रिया नहीं। एप्लिकेशन कोई त्रुटि और कोई डेटा नहीं लौटाता, इसलिए हमलावर हाँ-या-ना सवाल पूछता है और देखता है कि क्या बदलता है — समय, पेज की लंबाई, स्टेटस कोड — ताकि डेटाबेस को एक-एक बिट पढ़ सके। धीमा, धैर्यवान, और लॉग में पकड़ना कहीं कठिन।"</string>
+    <string name="t_d9b49353" formatted="false">"फिर कोशिश करें"</string>
+    <string name="t_d9b88563" formatted="false">"नेटवर्क ट्रैफ़िक की इकाई"</string>
+    <string name="t_d9c57847" formatted="false">"परिधि तैयार"</string>
+    <string name="t_da10b268" formatted="false">"स्वामित्व में नहीं"</string>
+    <string name="t_da169a1a" formatted="false">"विश्वव्यापी"</string>
+    <string name="t_da3ae5ed" formatted="false">"कोई नुकसान नहीं करता और कुछ भी निशाना नहीं बनाता। लहर चलते समय हर 30 सेकंड में CORE-SERVER इंटीग्रिटी का 1 अंक ठीक करता है (विराम के दौरान या रुके होने पर कभी नहीं)। यह खुद CORE-SERVER पर तैनात होता है, जिसमें इसके लिए दो स्लॉट हैं, और कहीं नहीं। स्तर टाइमर छोटा करते हैं। दो से ज़्यादा तैनात नहीं हो सकते।"</string>
+    <string name="t_dad4b11e" formatted="false">"आक्रामक स्वीप"</string>
+    <string name="t_db696c4d" formatted="false">"विशाल और भारी कवचधारी, लेकिन धीमा। कुछ ऐसा लाएँ जो कवच अनदेखा करे।"</string>
+    <string name="t_db971746" formatted="false">"रक्षात्मक उपकरणों पर नज़र रखता है। अपने पास के BLUE HAT एजेंटों को हर कुछ सेकंड में कुछ देर जाम करता है।"</string>
+    <string name="t_dba0a883" formatted="false">"अपहृत मशीनों का नेटवर्क"</string>
+    <string name="t_dbc1a374" formatted="false">"विज्ञापन पूरा नहीं — कुछ खर्च नहीं हुआ"</string>
+    <string name="t_dc09f8b7" formatted="false">"जाम — बॉस किसी एजेंट को बाधित कर सकता है, जब तक चले उसका फ़ायर रेट आधा कर देता है। {0} को इसकी परवाह न करने के लिए बनाया गया है।"</string>
+    <string name="t_dc37fa05" formatted="false">"हर चीज़ के पीछे चलती ठंडी रोशनी की चौड़ी पट्टियाँ।"</string>
+    <string name="t_dc62badb" formatted="false">"उपाधि"</string>
+    <string name="t_dce01a82" formatted="false">"कॉलसाइन दर्ज करें"</string>
+    <string name="t_dd220c90" formatted="false">"विज्ञापन"</string>
+    <string name="t_dd4083b5" formatted="false">"कुछ नहीं खरीदा गया। ऊपर की हर चीज़ कमाई भी जा सकती है या बिना उसके भी खेला जा सकता है।"</string>
+    <string name="t_dd55f56b" formatted="false">"दो मार्ग रैक से पहले तीन बार एक-दूसरे में गुँथते हैं, DNA की एक लड़ी की तरह।"</string>
+    <string name="t_ddb5514a" formatted="false">"GOOGLE PLAY GAMES में खोलें"</string>
+    <string name="t_ddcb2958" formatted="false">"पहले और पूरी तरह विज्ञान-कथा वाले के नाम पर: हर वार पास के दो खतरों तक 55% नुकसान के साथ श्रृंखला बनाता है। घनी लहरों के ख़िलाफ़ मज़बूत, अकेले लक्ष्य पर बर्बाद। लक्ष्य चयनकर्ता दिखाता है।"</string>
+    <string name="t_ddd374d9" formatted="false">"आपके सामने आने वाले हमलों, बॉस, और आपके एजेंट उनके बारे में क्या करते हैं, इसका छोटा सार। लगभग बीस सेकंड लगते हैं।"</string>
+    <string name="t_dee83e52" formatted="false">"गेम में पैनल अपारदर्शिता"</string>
+    <string name="t_e00d9a42" formatted="false">"CORE-SERVER स्लॉट पर रखें"</string>
+    <string name="t_e01007ce" formatted="false">"छोटे पैक से प्रति यूरो बेहतर मूल्य।"</string>
+    <string name="t_e07706fa" formatted="false">"लिंक होने तक यह डिवाइस"</string>
+    <string name="t_e0a2aaa4" formatted="false">"GOOGLE खाता लिंक करें"</string>
+    <string name="t_e12d998f" formatted="false">"पैकेज"</string>
+    <string name="t_e13093ea" formatted="false">"नुकसान"</string>
+    <string name="t_e1892d25" formatted="false">"कोर फ़र्मवेयर"</string>
+    <string name="t_e1df4ef7" formatted="false">"बॉस"</string>
+    <string name="t_e3407723" formatted="false">"हाँ"</string>
+    <string name="t_e3a7e50c" formatted="false">"मेरा सेव रखें"</string>
+    <string name="t_e3c4a9cc" formatted="false">"{0} अपने पास के {1} एजेंटों को जाम करता है। उन्हें पीछे, अपनी सीमा के किनारे पर रखें।"</string>
+    <string name="t_e4554374" formatted="false">"बंद करें"</string>
+    <string name="t_e55f9c78" formatted="false">"यह गेम क्या नहीं करता"</string>
+    <string name="t_e587f42b" formatted="false">"सिस्टम डिफ़ॉल्ट (फ़ोन की भाषा)"</string>
+    <string name="t_e5e7e535" formatted="false">"SYN-STORM विभाजन"</string>
+    <string name="t_e6694d9c" formatted="false">"चलती लहर के हर 30 सेकंड में CORE-SERVER पर दो स्लॉट में से एक से 1 CORE-SERVER इंटीग्रिटी ठीक करता है। स्तरों के साथ तेज़। अधिकतम दो।"</string>
+    <string name="t_e807eff2" formatted="false">"सीमा में सबसे पास के मार्ग को दीवार से बंद करता है; खतरों को उसे तोड़ना पड़ता है। हर बॉस पर बहुत ज़ोर से मारता है। अधिकतम तीन।"</string>
+    <string name="t_e8757749" formatted="false">"{1} पर लहर {0} साफ़ करें"</string>
+    <string name="t_e8987cec" formatted="false">"प्रगति रीसेट करें"</string>
+    <string name="t_e94c961d" formatted="false">"आँकड़े"</string>
+    <string name="t_e979d28d" formatted="false">"दर"</string>
+    <string name="t_e99d5d17" formatted="false">"€ पैक खर्च होते हैं, स्वामित्व में नहीं रहते: वे एक बार जमा होते हैं और पुनर्स्थापित उन्हें फिर नहीं देता।"</string>
+    <string name="t_e9caa97b" formatted="false">"अभी कोई तैनाती दर्ज नहीं। इसे भरने के लिए एक रन खेलें।"</string>
+    <string name="t_ea16b407" formatted="false">"गहरे नील पर सुनहरी रेखाएँ।"</string>
+    <string name="t_ea31efb2" formatted="false">"लहर {0} साफ़ करें"</string>
+    <string name="t_eab5f205" formatted="false">"कॉलसाइन बदलें"</string>
+    <string name="t_eaf7396d" formatted="false">"GOOGLE पहुँच से बाहर — सेव डिवाइस पर रखा गया"</string>
+    <string name="t_eb2e832a" formatted="false">"एजेंट {0}"</string>
+    <string name="t_ebdd4d5e" formatted="false">"हटाए गए · कोई नहीं"</string>
+    <string name="t_ec91403d" formatted="false">"लहर"</string>
+    <string name="t_ed31a176" formatted="false">"लहर पर प्रतिक्रिया करती साँस लेती सर्किट जाली।"</string>
+    <string name="t_ed5c9d47" formatted="false">"प्रति स्तर"</string>
+    <string name="t_ed7160a0" formatted="false">"कभी नहीं"</string>
+    <string name="t_ed7ecda7" formatted="false">"लॉक"</string>
+    <string name="t_ee0803eb" formatted="false">"लचीला"</string>
+    <string name="t_ee094192" formatted="false">"इस बिल्ड में Google Play बिलिंग कॉन्फ़िगर नहीं है, इसलिए यहाँ कुछ भी खरीदा नहीं जा सकता। गेम का हर हिस्सा जिसमें पैसा नहीं लगता, बिल्कुल सामान्य रूप से काम करता है।"</string>
+    <string name="t_ee5525d9" formatted="false">"KERNEL PANIC · {0} जाम"</string>
+    <string name="t_ee6595fd" formatted="false">"चेतावनियाँ देखने वाली टीम और कमरा। अगर इस गेम की कोई सेटिंग है, तो वह सुबह 3 बजे SOC की दीवार स्क्रीन है।"</string>
+    <string name="t_eea62f11" formatted="false">"खरीदारी"</string>
+    <string name="t_eef967f2" formatted="false">"युद्धक्षेत्र ज़ूम करें"</string>
+    <string name="t_ef29f425" formatted="false">"ऑडियो"</string>
+    <string name="t_efcf9890" formatted="false">"नुकसान {0} · दर {1}/से. · सीमा {2}"</string>
+    <string name="t_f001b942" formatted="false">"किलेबंद"</string>
+    <string name="t_f03b01af" formatted="false">"कुछ पल बिना वार के गुज़रने पर धीरे-धीरे खुद ठीक होता है।"</string>
+    <string name="t_f100d10c" formatted="false">"लॉक चिह्नित हर चीज़ स्टोर में है। यहाँ कुछ भी गेम खेलने का तरीका नहीं बदलता — स्किन दिखावट हैं, फ़ायदा नहीं।"</string>
+    <string name="t_f16b76bc" formatted="false">"\"रबर डकी\" एक USB स्टिक है जो कीबोर्ड होने का नाटक करती है और किसी से भी तेज़ हमला टाइप करती है। रक्षा एक USB गार्ड है जो कंप्यूटर के भरोसा करने से पहले हर नए डिवाइस को जाँचता है, और मशीन जैसे टाइप करने वाले कीबोर्ड को रोकता है।"</string>
+    <string name="t_f17dfdae" formatted="false">"एक लंबा मार्ग ऊपर से उतरता है और बाहर की ओर घूमता हुआ रैक तक जाता है।"</string>
+    <string name="t_f25360a0" formatted="false">"बदलाव तुरंत लागू होते हैं और इस डिवाइस पर बने रहते हैं"</string>
+    <string name="t_f293dfd1" formatted="false">"खरीद जाँच"</string>
+    <string name="t_f2e7479c" formatted="false">"किसी भी फ़ोन या टैबलेट पर अपनी प्रगति रखने के लिए अपना Google खाता लिंक करें। Google आपके खाते में इस गेम के सेव डेटा को प्रबंधित करने की अनुमति माँगेगा — वह सेव-गेम संग्रहण है, और यह बस उसी का उपयोग करता है।"</string>
+    <string name="t_f2ed0368" formatted="false">"तेज़। अगर यह कोर तक पहुँचता है तो इंटीग्रिटी के बजाय आपका आधा क्रिप्टो चुरा लेता है।"</string>
+    <string name="t_f2f63d9f" formatted="false">"इस डिवाइस पर"</string>
+    <string name="t_f33c5b01" formatted="false">"चरण 6 — लहर शुरू करें"</string>
+    <string name="t_f38eb808" formatted="false">"कठिन खतरे, पास-पास, कम इंटीग्रिटी। ज़्यादा इनाम।"</string>
+    <string name="t_f3e23f71" formatted="false">"कोर: CASCADE"</string>
+    <string name="t_f49a4ff9" formatted="false">"एजेंट लॉक"</string>
+    <string name="t_f4f677dc" formatted="false">"कुल कमाई"</string>
+    <string name="t_f5537783" formatted="false">"कोर: MAINFRAME"</string>
+    <string name="t_f590e2c9" formatted="false">"मार्ग"</string>
+    <string name="t_f5b866e4" formatted="false">"एक संगठित सेंध प्रयास, जिसमें इतना अतिरेक है कि बिना तैयारी वाले नेटवर्क को झटक दे। हर पाँचवीं लहर एक लाती है, और हर एक पिछले से कठिन है।"</string>
+    <string name="t_f60f5840" formatted="false">"अब भी कोई CyOps खाता और कोई पासवर्ड नहीं है। खरीदारी इस डिवाइस पर Play Store में साइन इन Google खाते के साथ जाती है। प्रगति ऊपर लिंक किए गए Google खाते के साथ जाती है — एक अलग, वैकल्पिक चुनाव: गेम इसके बिना भी पूरा है।"</string>
+    <string name="t_f692d3ce" formatted="false">"बॉटनेट"</string>
+    <string name="t_f69a80a7" formatted="false">"{0} पर जाने के लिए गेम फिर शुरू होगा। आपकी प्रगति बनी रहेगी।"</string>
+    <string name="t_f6f93110" formatted="false">"कोर: NEONGRID"</string>
+    <string name="t_f720bfa7" formatted="false">"CRT फ़ॉस्फ़र स्कैनलाइन।"</string>
+    <string name="t_f76fff7f" formatted="false">"मैलवेयर: नुकसान पहुँचाने, बाधित करने या चुराने के लिए लिखा गया कोड। यह साधारण इंजेक्शन से ज़्यादा पेलोड ढोता है, इसलिए टूटने से पहले ज़्यादा नुकसान सहता है।"</string>
+    <string name="t_f7a4fc70" formatted="false">"तैनात करने के लिए फिर टैप करें"</string>
+    <string name="t_f7a7b98a" formatted="false">"नुकसान {0} · दर {1} · सीमा {2}"</string>
+    <string name="t_f7eb1496" formatted="false">"रैंक आपकी पहुँची सबसे गहरी लहर से तय होती है। बराबरी किए गए नुकसान से टूटती है।"</string>
+    <string name="t_f803ec67" formatted="false">"ऑर्डर इतिहास और रिफ़ंड"</string>
+    <string name="t_f85117ec" formatted="false">"सभी {0} ट्रैक पहले से Music/CyOps TD में हैं।"</string>
+    <string name="t_f8723c46" formatted="false">"गति"</string>
+    <string name="t_f8d84db3" formatted="false">"अपंजीकृत"</string>
+    <string name="t_f8e6e39f" formatted="false">"सिस्टम इंजीनियर सर्वर चालू रखते हैं: पैच करना, खराब पुर्ज़े बदलना, बैकअप से पुनर्स्थापना करना और मशीनों के स्वास्थ्य पर नज़र रखना। \"सर्वर सिस्टम इंजीनियर\" इस तरह के काम का वर्णन है; इसके पद नाम संगठनों के बीच अलग होते हैं।"</string>
+    <string name="t_f9807a9f" formatted="false">"&gt; तैयार — एजेंट तैनात करें और लहर 1 शुरू करें"</string>
+    <string name="t_f9cec260" formatted="false">"कुछ विशाल वार GRADIENT को मुश्किल से तेज़ करते हैं।"</string>
+    <string name="t_f9d6b090" formatted="false">"युद्धक्षेत्र और मेनू के पीछे बहता ASCII डेटा"</string>
+    <string name="t_fa1b4500" formatted="false">"आँकड़े हर रन में जमा होते हैं, उन रनों समेत जिन्हें आप पॉज़ मेनू से छोड़ते हैं। सेटिंग्स में प्रगति रीसेट करने से सब मिट जाता है।"</string>
+    <string name="t_fa60c2c6" formatted="false">"जीवंत: हीटमैप"</string>
+    <string name="t_fb735826" formatted="false">"कंपन"</string>
+    <string name="t_fb889492" formatted="false">"एक स्वतंत्र रूप से विकसित, ऑफ़लाइन-प्रथम टावर डिफ़ेंस गेम जिसकी थीम साइबर सुरक्षा है। परिदृश्य, एजेंट और शब्दावली गेमप्ले के लिए काल्पनिक बनाए गए हैं, साथ में असली दुनिया की छोटी व्याख्याएँ हैं ताकि उनके पीछे की अवधारणाएँ सीखी जा सकें। यह कोई आक्रामक तकनीक नहीं सिखाता और कोई असली सुरक्षा कार्य नहीं करता।"</string>
+    <string name="t_fbca7f29" formatted="false">"उपयोगी भेस में मैलवेयर"</string>
+    <string name="t_fbd9e20c" formatted="false">"बैकग्राउंड एनिमेशन"</string>
+    <string name="t_fc778505" formatted="false">"एक साफ़ रैक, कोई निशान नहीं।"</string>
+    <string name="t_fcc1e712" formatted="false">"गोपनीयता"</string>
+    <string name="t_fd3cb488" formatted="false">"साइन-इन कैसे काम करता है"</string>
+    <string name="t_fdb0282f" formatted="false">"विज्ञापन लोड हो रहा है…"</string>
+    <string name="t_fde05efe" formatted="false">"{1} पर लहर {0} तक पहुँचें"</string>
+    <string name="t_fe26fa48" formatted="false">"सर्वश्रेष्ठ लहर"</string>
+    <string name="t_fe451d7a" formatted="false">"सिस्टम पुनर्स्थापित — इंटीग्रिटी {0}"</string>
+    <string name="t_fe86390c" formatted="false">" · गति {0}"</string>
+    <string name="t_feeee285" formatted="false">"{0} कोर स्किन · {1} बैकग्राउंड उपलब्ध"</string>
+    <string name="t_feef9615" formatted="false">"अगला बॉस"</string>
+    <string name="t_ff2d6a51" formatted="false">"तीन मार्ग दो बार जगह बदलते हैं। हर क्रॉसिंग ऐसी जगह है जो दो पर वार करती है।"</string>
+    <string name="t_ffa57dc1" formatted="false">"&gt; लेन टोपोलॉजी माउंट हो रही है"</string>
+    <string name="t_ffc3db58" formatted="false">"सीमा {0}"</string>
+    <string name="t_ffff9bd9" formatted="false">"एजेंट धीरे-धीरे रंग स्पेक्ट्रम में बहते हैं, हर इकाई अगली से थोड़ी हटकर।"</string>
+</resources>

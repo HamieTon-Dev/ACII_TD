@@ -1,5 +1,7 @@
 package com.cyopstd.game.engine
 
+import com.cyopstd.game.i18n.tr
+
 import com.cyopstd.game.core.Balance
 import com.cyopstd.game.core.GameMode
 import com.cyopstd.game.core.Maps
@@ -26,8 +28,8 @@ data class SpawnOrder(
 /** A rare wave that replaces an ordinary one. */
 enum class WaveEvent(val title: String, val announcement: String) {
     ANONYMOUS_HACK(
-        "ANONYMOUS HACK",
-        "ANONYMOUS HACK \u2014 ${Balance.ANON_HACK_COUNT} BOTS INCOMING AT DOUBLE SPEED"
+        tr("ANONYMOUS HACK"),
+        tr("ANONYMOUS HACK \u2014 {0} BOTS INCOMING AT DOUBLE SPEED", Balance.ANON_HACK_COUNT)
     )
 }
 

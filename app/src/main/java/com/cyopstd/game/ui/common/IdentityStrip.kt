@@ -1,5 +1,7 @@
 package com.cyopstd.game.ui.common
 
+import com.cyopstd.game.i18n.tr
+
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -36,7 +38,7 @@ object BuildStamp {
     val id: String by lazy {
         val short = BuildConfig.BUILD_STAMP.toLongOrNull()
             ?.let { java.lang.Long.toHexString(it).takeLast(6) }
-            ?: "unknown"
+            ?: tr("unknown")
         "${BuildConfig.VERSION_NAME} (${BuildConfig.VERSION_CODE}) · $short"
     }
 }

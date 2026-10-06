@@ -1,0 +1,867 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Translation of values/strings_i18n.xml. Machine-quality (AI) translation; see FEATURE_BACKLOG.md. -->
+<resources>
+    <string name="t_0069698f" formatted="false">"€ {0} في الميزانية"</string>
+    <string name="t_00bdf050" formatted="false">"هذا الجهاز"</string>
+    <string name="t_00c74b4a" formatted="false">"يشتبك مع ما يصل إلى ثلاثة تهديدات منفصلة في كل رشقة، ما يجعله جواب الفريق على موجة عريضة. يتيح اختيار الاستهداف."</string>
+    <string name="t_00cb85ad" formatted="false">"الخطوة 4 — اختر TARPIT"</string>
+    <string name="t_00f316c1" formatted="false">"تكلفة المستوى التالي"</string>
+    <string name="t_00fafa13" formatted="false">"يملك هذا الحساب"</string>
+    <string name="t_01278423" formatted="false">"ما الذي يغيّره هذا"</string>
+    <string name="t_014c06bb" formatted="false">"{0} من {1} مفتوحة · أفضل موجة {2}"</string>
+    <string name="t_01b91dff" formatted="false">"يقفل RANSOM ترقيات عميل واحد لمدة {0} ثانية، كل بضع ثوانٍ. قم بالترقية قبل وصوله."</string>
+    <string name="t_01ba7032" formatted="false">"0 مستويات"</string>
+    <string name="t_01f2a69d" formatted="false">"ملاحظات الجلسة"</string>
+    <string name="t_0288b770" formatted="false">"انقر زر العملاء في شريط التحكم بالأسفل."</string>
+    <string name="t_02b88c49" formatted="false">"يُولَّد كل الصوت على الجهاز عند التشغيل؛ لا تحتوي اللعبة على أي ملفات صوتية."</string>
+    <string name="t_02f0f435" formatted="false">"الجذر، أو المسؤول، هو أعلى مستوى صلاحية على النظام: يمكنه إيقاف أي عملية وتغيير أي شيء. ولهذا السبب بالذات، فإن الممارسة الجيدة هي منحه بأقل قدر ممكن ولأقصر وقت ممكن. «Root admin» اختصار لمستوى الوصول، وليس مسمى وظيفيًا."</string>
+    <string name="t_0306926d" formatted="false">"ثلاثة مسارات هجوم تصب في الخادم المركزي"</string>
+    <string name="t_0358799e" formatted="false">"يُطبَّق على كل {0} في كل مباراة من الآن فصاعدًا، فوق البرنامج الثابت للنواة. المستويات الأولى رخيصة؛ كل مستوى يكلّف أكثر من سابقه، والمستويات العليا تكلّف الملايين."</string>
+    <string name="t_0397b7d9" formatted="false">"بدء موجات الزعماء تلقائيًا"</string>
+    <string name="t_03d108e0" formatted="false">"مرتبط، لكن تعذّر الوصول إلى Google. لم يضِع شيء — الحفظ على هذا الجهاز هو المستخدم، والمزامنة التالية ستحدّث الحساب."</string>
+    <string name="t_059b388a" formatted="false">"&gt; تم تطهير الموجة {0} — استعد للموجة {1}"</string>
+    <string name="t_05ea5d0e" formatted="false">"متاح منذ البداية."</string>
+    <string name="t_05f2ef1e" formatted="false">"المقطع التالي"</string>
+    <string name="t_063d8618" formatted="false">"شيفرة معادية متنكرة في شيء طلبته. بطيئة الحركة لكنها مغلّفة بكثافة — الدرع يُضعف كل ضربة منفردة، لذا تضيع الطلقات السريعة الضعيفة عليها."</string>
+    <string name="t_07269781" formatted="false">"اختر مستوى صعوبة لترى لوحته العالمية."</string>
+    <string name="t_07a3d7ab" formatted="false">"كل ما تملكه، بما في ذلك الإحياءات، يعود من Google Play عبر استعادة على أي جهاز. لا يكون أبدًا جزءًا من الحفظ السحابي، فلا يمكن لأي ملف حفظ أن يمنح عملية شراء أو يسلبها."</string>
+    <string name="t_07fbf4bd" formatted="false">"أُعيد إحياؤه"</string>
+    <string name="t_08039ac7" formatted="false">"المتجر"</string>
+    <string name="t_08175caa" formatted="false">"ألوان الفئات"</string>
+    <string name="t_08218c08" formatted="false">"جارٍ الربط…"</string>
+    <string name="t_08279524" formatted="false">"شيفرة تستغل ثغرة محددة في نظام. الاستغلالات تتحرك بسرعة وتضرب بقوة؛ مدى الكشف أهم من الضرر الخام عندما تكون قادمة."</string>
+    <string name="t_086b8b8e" formatted="false">"زعيم"</string>
+    <string name="t_08f0711d" formatted="false">"استعادة المشتريات"</string>
+    <string name="t_09653280" formatted="false">"إلى النواة"</string>
+    <string name="t_0a0bc63d" formatted="false">"المقطع السابق"</string>
+    <string name="t_0a2301f4" formatted="false">"التقدم المحفوظ"</string>
+    <string name="t_0a344034" formatted="false">"التالي: الموجة {0}"</string>
+    <string name="t_0ae74b3e" formatted="false">"ضربة اليوم صفر"</string>
+    <string name="t_0b205685" formatted="false">"جارٍ تهيئة الشبكة..."</string>
+    <string name="t_0b809aa5" formatted="false">"لا توجد لوحة عالمية لـ {0} بعد. تُسجَّل الجولات هناك على هذا الجهاز."</string>
+    <string name="t_0bc6e19b" formatted="false">"لا يُحدث ضررًا بنفسه. يعزّز كل عميل في مداه بـ +30% ضرر و+20% معدل إطلاق، لذا فقيمته كلها في المكان الذي تضعه فيه."</string>
+    <string name="t_0bd16003" formatted="false">"أقصى"</string>
+    <string name="t_0bfbeb5b" formatted="false">"احبسهم في حقل TARPIT، ثم دع IPS يزيل التراكم."</string>
+    <string name="t_0c121fb2" formatted="false">"تمت مزامنة التقدم"</string>
+    <string name="t_0c147607" formatted="false">"فحص عميق"</string>
+    <string name="t_0c16a4ef" formatted="false">"لا توجد نتائج بعد. أنهِ جولة لتكون الأول."</string>
+    <string name="t_0c997319" formatted="false">"انقسام WORM"</string>
+    <string name="t_0cb4ce2b" formatted="false">"تم تأمين الموجة {0}  ◇{1}"</string>
+    <string name="t_0cfa4a6e" formatted="false">"زعماء هذا المستوى"</string>
+    <string name="t_0d884b08" formatted="false">"اختراق (زعيم)"</string>
+    <string name="t_0d8c63a6" formatted="false">"كل إصابة تتسلسل إلى تهديدين قريبين بضرر 55%."</string>
+    <string name="t_0df4bfec" formatted="false">"ضعيف أمام"</string>
+    <string name="t_0e69fc6c" formatted="false">"شريط النشر يعرض أيقونة كل عميل وتكلفته فقط"</string>
+    <string name="t_0eb480b6" formatted="false">"شبكة منظور متراجعة، مع شريط مطاردة في الأسفل."</string>
+    <string name="t_0f47943c" formatted="false">"التركيز متوقف"</string>
+    <string name="t_0f5d5911" formatted="false">"موفّر البطارية"</string>
+    <string name="t_0f80d304" formatted="false">"ضرر العملاء"</string>
+    <string name="t_0f9a43d6" formatted="false">"كل الخلفيات الحية"</string>
+    <string name="t_0fa88218" formatted="false">"تعذّر الوصول إلى Google Play — عادةً بسبب عدم وجود شبكة. كل ما اشتريته ما زال لك؛ اضغط استعادة بعد عودة الاتصال وسيظهر مجددًا."</string>
+    <string name="t_0fd40469" formatted="false">"الأداء"</string>
+    <string name="t_0fd4c0f4" formatted="false">"فتحات CORE-SERVER مخصصة لـ [S] فقط"</string>
+    <string name="t_1046865f" formatted="false">"يواصل إنتاج BOT خلفه. اقتله بسرعة أو اغرق في شبكة البوتات الخاصة به."</string>
+    <string name="t_107ea55b" formatted="false">"الترقيات محتجزة كفدية"</string>
+    <string name="t_108f4363" formatted="false">"تثبيت"</string>
+    <string name="t_111611f9" formatted="false">"جدار الترقيع"</string>
+    <string name="t_1181f7e7" formatted="false">"العملاء مُشوَّشون"</string>
+    <string name="t_11c0f105" formatted="false">"موسيقى المستوى (تلقائي)"</string>
+    <string name="t_11c8546c" formatted="false">"الضرر"</string>
+    <string name="t_11d858aa" formatted="false">"أعلى موجة"</string>
+    <string name="t_1213b2b6" formatted="false">"قبل {0} ساعة"</string>
+    <string name="t_12193f21" formatted="false">"يصمم مهندسو الشبكات طريقة تقسيم الشبكة. التجزئة تعني أن اختراق منطقة واحدة لا يمكنه ببساطة الانتقال إلى التالية، ما يحدّ من ضرر أي عطل منفرد. إنه عمل تصميمي يُنجز قبل الحادث، وليس أداة تُستخدم أثناءه."</string>
+    <string name="t_1248f6ec" formatted="false">"حفظ الموسيقى التصويرية يتطلب Android 10 أو أحدث."</string>
+    <string name="t_125ca8ca" formatted="false">"حزمة البداية"</string>
+    <string name="t_12a36ceb" formatted="false">"منتحَل"</string>
+    <string name="t_12e8edf9" formatted="false">"اللغة"</string>
+    <string name="t_1380e038" formatted="false">"محتجز كفدية · الترقيات مقفلة {0} ث"</string>
+    <string name="t_138da392" formatted="false">"شبكة تسخن خلاياها وتبرد مع حركة المرور."</string>
+    <string name="t_13df4b88" formatted="false">"البرنامج الثابت"</string>
+    <string name="t_13ee9782" formatted="false">"تم النشر"</string>
+    <string name="t_141ad814" formatted="false">"ملاحظات"</string>
+    <string name="t_143628e2" formatted="false">"إعلانات الإحياء فقط · اختيارية"</string>
+    <string name="t_1489b7f6" formatted="false">"قبل {0} يوم"</string>
+    <string name="t_14bdf6f2" formatted="false">"الجولة الإرشادية تحتاج FIREWALL أولًا"</string>
+    <string name="t_14c27ca9" formatted="false">"ANALYST يُحدث 80% ضررًا إضافيًا للنخبة. العملاء الذين يتجاهلون الدرع مفيدون."</string>
+    <string name="t_14cecaa5" formatted="false">"جعل البيانات غير مقروءة بدون مفتاح"</string>
+    <string name="t_14ecbe1d" formatted="false">"{0}/ث"</string>
+    <string name="t_1512aeac" formatted="false">"{0} مستويات"</string>
+    <string name="t_154419d5" formatted="false">"يُعدّ مشفّرًا: معظم العملاء يُحدثون ضررًا مخفّضًا."</string>
+    <string name="t_154a5adf" formatted="false">"مستوى"</string>
+    <string name="t_15680f7c" formatted="false">"أنفقه على ضرر دائم من البرنامج الثابت للنواة."</string>
+    <string name="t_1571a208" formatted="false">"ضع اثنين من TARPIT بحيث تغطي هالتاهما الأرض التي تطلق عليها FIREWALL. الإبطاء هو ما يجعل الضرر يصيب."</string>
+    <string name="t_15aa2838" formatted="false">"شبكة خشنة تسخن خلاياها وتبرد مع حركة المرور."</string>
+    <string name="t_15ede35d" formatted="false">"◇ {0} · متاح منذ البداية"</string>
+    <string name="t_167ae054" formatted="false">"سيؤدي هذا إلى مسح جولتك المحفوظة، وكل عميل مفتوح، وكل الإحصائيات وإعداداتك.\n\nلا يمكن التراجع عن هذا."</string>
+    <string name="t_17a13ae4" formatted="false">"يتحرك الزعماء ببطء لكنهم يضربون CORE-SERVER بـ {0} من السلامة. يدفعون أكبر قدر من العملة المشفرة في اللعبة، ويزدادون صلابة مع كل دورة."</string>
+    <string name="t_17e0e9f0" formatted="false">"معدل إطلاق مرتفع جدًا، يستهدف الزعماء دائمًا قبل أي شيء آخر في المدى، ويُحدث ضررًا مضاعفًا لـ [!!!] BREACH. يُفتح عند الموجة 30 ولا يُنشر منه أكثر من أربعة."</string>
+    <string name="t_1877f7c0" formatted="false">"غير مثبّت"</string>
+    <string name="t_197d534b" formatted="false">"أنفق € الميزانية — المودعة عند كل موجة عاشرة من الجولة والمحفوظة بعدها — على تعزيز ضرر دائم لكل عميل."</string>
+    <string name="t_1991565e" formatted="false">"تحديد المعدل"</string>
+    <string name="t_19cbe369" formatted="false">"العميل المفضل"</string>
+    <string name="t_1a155da6" formatted="false">"الموجة التالية"</string>
+    <string name="t_1a2a0f17" formatted="false">"مقفل"</string>
+    <string name="t_1a73c7da" formatted="false">"معدل الإطلاق"</string>
+    <string name="t_1aba43b0" formatted="false">"آثار إهليلجية بطيئة حول النواة، كمُجدوِل أثناء العمل."</string>
+    <string name="t_1b0d8052" formatted="false">"هزّ ساحة المعركة عند إصابة CORE-SERVER"</string>
+    <string name="t_1ba327c9" formatted="false">"أكثر هجمات الويب شيوعًا"</string>
+    <string name="t_1ba41734" formatted="false">"الهجمات المحجوبة"</string>
+    <string name="t_1cc19733" formatted="false">"في العالم الحقيقي"</string>
+    <string name="t_1d162704" formatted="false">"هل أنت متأكد أنك تريد بدء جولة جديدة؟ ستُستبدل جلستك المحفوظة."</string>
+    <string name="t_1d29935f" formatted="false">"{0} مُشوَّش"</string>
+    <string name="t_1d8fe548" formatted="false">"بدء جديد"</string>
+    <string name="t_1dea7837" formatted="false">"HACK:AI تجاوز حدوده. نصف السلامة، ضعف المكافآت."</string>
+    <string name="t_1deb5c00" formatted="false">"مرتبط · غير متصل"</string>
+    <string name="t_1e09b492" formatted="false">"🔒 [{0}] {1} · مقفل"</string>
+    <string name="t_1e6ed1a9" formatted="false">"خلفيات حية"</string>
+    <string name="t_1ef7821b" formatted="false">"شبكة زرقاء نيونية تتراجع نحو النواة، مع حلقة هولوغرامية تنزلق من الأزرق إلى الأخضر."</string>
+    <string name="t_1f3159fc" formatted="false">"ألوان العملاء"</string>
+    <string name="t_1f5df304" formatted="false">"إعادة تعيين الاتصال"</string>
+    <string name="t_1ff44d56" formatted="false">"الترخيص مفروض"</string>
+    <string name="t_20ce505d" formatted="false">"إيقاف مؤقت"</string>
+    <string name="t_21399575" formatted="false">"المطوّر"</string>
+    <string name="t_2198b685" formatted="false">"ارسم نصف قطر المسح للعميل المحدد"</string>
+    <string name="t_21bb43e3" formatted="false">"{0} · أي مستوى"</string>
+    <string name="t_22100250" formatted="false">"المستوى {0} · أقصى"</string>
+    <string name="t_224d65ed" formatted="false">"أشكال CORE-SERVER"</string>
+    <string name="t_22686e59" formatted="false">"الاتصال"</string>
+    <string name="t_227cde14" formatted="false">"{0} في {1}"</string>
+    <string name="t_2283d7ca" formatted="false">"العقدة مشغولة"</string>
+    <string name="t_22b6479a" formatted="false">"يدير متخصص العمليات السيبرانية الدفاع كعملية حية: يراقب التشويش، ويحافظ على عمل أدوات الفريق بينما يحاول أحدهم إيقافها بنشاط، ويتجه مباشرة إلى مصدرها."</string>
+    <string name="t_22c4ef22" formatted="false">"محتوياته مخلوطة، لذا لا تستطيع معظم الدفاعات قراءة ما تطلق عليه ولا تُحدث إلا ضررًا جزئيًا. عميل CRYPTOGRAPHER يخترق الشيفرة مباشرة."</string>
+    <string name="t_23020c53" formatted="false">" · {0} ميسور"</string>
+    <string name="t_236f5b12" formatted="false">"إجمالي الزعماء المهزومين"</string>
+    <string name="t_23763c89" formatted="false">"الإعدادات"</string>
+    <string name="t_23961a76" formatted="false">"الزعيم {0} من {1} · انقر زعيمًا للتبديل"</string>
+    <string name="t_24adcafc" formatted="false">"إجمالي الضرر الذي تلقاه الخادم"</string>
+    <string name="t_24bbb47b" formatted="false">"العناصر المقفلة"</string>
+    <string name="t_24d3a2ef" formatted="false">"الجدار سقط"</string>
+    <string name="t_255b5911" formatted="false">"فوسفور CRT أخضر، وخطوط مسح، وكنسة تحديث."</string>
+    <string name="t_2570d23e" formatted="false">"ركّز النيران. ANALYST وROOT ADMIN يحملان موجات الزعماء."</string>
+    <string name="t_25a6b96b" formatted="false">"ضرر متوسط المدى موثوق بسعر منخفض، والعميل الوحيد المحصّن ضد تشويش الزعيم. مداه قصير، لذا يجب أن يقف قرب المسار — ولهذا بالضبط تهم تلك الحصانة."</string>
+    <string name="t_25bd1975" formatted="false">"ضرر"</string>
+    <string name="t_25efb9da" formatted="false">"نصف قطر الانفجار"</string>
+    <string name="t_260d60b1" formatted="false">"إعلان واحد بعد جولة خاسرة · الإحياء اختياري"</string>
+    <string name="t_26b80d1f" formatted="false">"تم"</string>
+    <string name="t_27a68119" formatted="false">"حالة الشبكة"</string>
+    <string name="t_27d9802d" formatted="false">"إعلان واحد بعد جولة خاسرة"</string>
+    <string name="t_27daad70" formatted="false">"صقيع يزحف من الحواف."</string>
+    <string name="t_28c31125" formatted="false">"مدرّع وصبور. الضربات الفردية الثقيلة تهزمه؛ الإطلاق السريع يضيع عليه."</string>
+    <string name="t_28e339dd" formatted="false">"أعمدة متفرقة من حروف متساقطة خلف الساحة."</string>
+    <string name="t_296fb456" formatted="false">"إصلاح +{0} HP · كل {1} ث · فتحة CORE-SERVER · أقصى {2}"</string>
+    <string name="t_297ae895" formatted="false">"محجور"</string>
+    <string name="t_2a1bde6e" formatted="false">"يقع نظام منع التسلل في مسار حركة المرور ويُسمح له بالتصرف بناءً على ما يكتشفه، بإسقاط الاتصال أو إعادة تعيينه بدلًا من التنبيه فقط. والمقايضة حقيقية: نظام IPS يخطئ في تقدير حركة مرور مشروعة سيحجبها."</string>
+    <string name="t_2a934539" formatted="false">"مصدر الهجوم"</string>
+    <string name="t_2a9b95e6" formatted="false">"يُحدث ×{0} ضررًا لكل زعيم."</string>
+    <string name="t_2bb9a482" formatted="false">"يتحقق الجدار الناري من حركة المرور مقابل قائمة قواعد ويُسقط كل ما لا يطابقها. إنه أقدم دفاعات المحيط وما زال أهمها."</string>
+    <string name="t_2be00c84" formatted="false">"تعديل الاسم الرمزي"</string>
+    <string name="t_2c13b917" formatted="false">"يُحدث ×{0} ضررًا لـ {1}."</string>
+    <string name="t_2ce4713d" formatted="false">"&gt; جارٍ مزامنة CORE-SERVER"</string>
+    <string name="t_2d14c154" formatted="false">"تيارات بيانات قطرية بطيئة تعبر الساحة."</string>
+    <string name="t_2dcb788c" formatted="false">"طُوِّرت هذه اللعبة بمساعدة أدوات الذكاء الاصطناعي، التي استُخدمت كأدوات تعليمية وتطويرية أثناء تعلم البرمجة وتطوير البرمجيات.\n\nساعدت أدوات الذكاء الاصطناعي في مجالات مثل تطوير الشيفرة، واستكشاف الأخطاء وإصلاحها، والتوثيق والتعلم. تبقى قرارات التصميم النهائية، واتجاه اللعب، والاختبار وقرارات النشر من مسؤولية المطوّر.\n\nهذه اللعبة ليست مُولَّدة أو مُموَّلة أو معتمدة أو مملوكة أو منشورة من قِبل أي شركة ذكاء اصطناعي."</string>
+    <string name="t_2df53561" formatted="false">"مرشّح حركة مرور قائم على القواعد"</string>
+    <string name="t_2e0cf790" formatted="false">"أخرى"</string>
+    <string name="t_2e19cc63" formatted="false">"ينهض مرة واحدة بـ 40% من الصحة. قتله ليس كإنهائه."</string>
+    <string name="t_2ef9e2c6" formatted="false">"الهجمات السيبرانية"</string>
+    <string name="t_2f3549f7" formatted="false">"الحفظ السحابي غير متاح"</string>
+    <string name="t_302a4f0a" formatted="false">"أساسي"</string>
+    <string name="t_302eea27" formatted="false">"هل تعرف ما القادم؟"</string>
+    <string name="t_3083c674" formatted="false">"حي: انجراف"</string>
+    <string name="t_30867b62" formatted="false">"يُلعب دون اتصال بالكامل"</string>
+    <string name="t_30ed929d" formatted="false">"افتح هذا العميل بالوصول إلى الموجة {0} في {1}."</string>
+    <string name="t_31359ec6" formatted="false">"تركيز {0} متوقف"</string>
+    <string name="t_313900e6" formatted="false">"وصلة المهندس"</string>
+    <string name="t_314d733e" formatted="false">"€ {0} متاحة"</string>
+    <string name="t_317b7de0" formatted="false">"شيفرة تتساقط داخل الرف نفسه."</string>
+    <string name="t_31d43b93" formatted="false">"حي: مطر"</string>
+    <string name="t_326bdc38" formatted="false">"العميل غير مسجّل"</string>
+    <string name="t_32a3e9f3" formatted="false">"خاص — {0}"</string>
+    <string name="t_32bafd88" formatted="false">"التالي"</string>
+    <string name="t_32e6f915" formatted="false">"ميسور الآن"</string>
+    <string name="t_332ec80a" formatted="false">"أي شيء يقتلها. لا تبالغ في البناء من أجلها."</string>
+    <string name="t_33cd995a" formatted="false">"تم حجب الاختراق"</string>
+    <string name="t_3425c9d3" formatted="false">"المستوى {0}"</string>
+    <string name="t_35350bff" formatted="false">"حلقة احتواء نابضة."</string>
+    <string name="t_3595e52a" formatted="false">"المسار {0}"</string>
+    <string name="t_35c82960" formatted="false">"النواة: GLACIER"</string>
+    <string name="t_35f74be9" formatted="false">"ضرر ساحق لهدف واحد يتجاهل كل الدروع. أغلى عميل في اللعبة ويُفتح متأخرًا جدًا. يتيح اختيار الاستهداف."</string>
+    <string name="t_36900a0f" formatted="false">"رخيص وشبه غير مؤذٍ. كل ما داخل نطاقه يزحف."</string>
+    <string name="t_37447c3a" formatted="false">"معدل إطلاق مرتفع للغاية، وكل طلقة تتناثر."</string>
+    <string name="t_376bc6d2" formatted="false">"يستمر العدّ التنازلي بينما هذا مفتوح."</string>
+    <string name="t_376c54b2" formatted="false">"إزالة الإعلانات"</string>
+    <string name="t_379656ef" formatted="false">"النواة: VOID"</string>
+    <string name="t_37bc9401" formatted="false">"يعرض هذا الإصدار إعلانات مقدَّمة من Google AdMob. مشاهدة إعلان لمتابعة جولة اختيارية دائمًا وليست مطلوبة للعب أبدًا."</string>
+    <string name="t_384d3555" formatted="false">"{0} حي"</string>
+    <string name="t_384e5d9f" formatted="false">"الحفظ السحابي"</string>
+    <string name="t_385b9a87" formatted="false">"تقبل حفرة القطران اتصالًا معاديًا ثم تجيب بأبطأ ما يُسمح لها، فتُبقي المهاجم معلقًا على مقبس لا يقود إلى أي مكان. إنها تكتيك تأخير لا حجب: القيمة في الوقت الذي تكلّفه للطرف الآخر."</string>
+    <string name="t_38695d86" formatted="false">"نسخ احتياطي للتقدم"</string>
+    <string name="t_38c1e7e0" formatted="false">"مقابل إعلان"</string>
+    <string name="t_38d9a5af" formatted="false">"&gt; تم اختراق الشبكة"</string>
+    <string name="t_38e03b91" formatted="false">"مثبّت بالكامل"</string>
+    <string name="t_3950774a" formatted="false">"مسجّل باسم"</string>
+    <string name="t_395af116" formatted="false">"اختراق مجهول"</string>
+    <string name="t_396e8daa" formatted="false">"طيف"</string>
+    <string name="t_3a06e0fa" formatted="false">"الموسيقى"</string>
+    <string name="t_3a7e7fe6" formatted="false">"نوع الإصدار"</string>
+    <string name="t_3a8a0a59" formatted="false">"كل إصابة تسرّعه مهما كانت صغيرة؛ يتباطأ عند تركه. ضربات قليلة كبيرة تتفوق على كثير من الصغيرة."</string>
+    <string name="t_3aa6f2eb" formatted="false">"ZERO-DAY HUNTER وROOT ADMIN يتجاهلان الدرع تمامًا."</string>
+    <string name="t_3aaad671" formatted="false">"انقر للتفاصيل"</string>
+    <string name="t_3b12a908" formatted="false">"GRADIENT يتسارع مع كل إصابة مهما كانت صغيرة، ويتباطأ عند تركه. ضربات قليلة كبيرة تتفوق على كثير من الصغيرة."</string>
+    <string name="t_3b53a59d" formatted="false">"ابدأ موجات الزعماء تلقائيًا أيضًا. متوقف: موجات الزعماء تنتظرك"</string>
+    <string name="t_3bc78174" formatted="false">"تطوير بمساعدة الذكاء الاصطناعي"</string>
+    <string name="t_3c66aec8" formatted="false">"تُحفظ موجاتك وعملاؤك و€ والبرنامج الثابت في حساب Google الخاص بك. سجّل الدخول إليه على جهاز آخر وستجدها هناك. تتم المزامنة عند مغادرة اللعبة وعند انتهاء جولة."</string>
+    <string name="t_3cef355d" formatted="false">"أعلى صحة متبقية"</string>
+    <string name="t_3d17c701" formatted="false">"اندفاع السرعة"</string>
+    <string name="t_3d331382" formatted="false">"المسار الذي تسلكه حركة المرور"</string>
+    <string name="t_3d509ddc" formatted="false">"خفّض معدل الإطارات إلى النصف وأزل التأثيرات الزخرفية"</string>
+    <string name="t_3d83d177" formatted="false">"العملاء السيبرانيون"</string>
+    <string name="t_3db03eca" formatted="false">"سجلّك"</string>
+    <string name="t_3e12b118" formatted="false">"مساعدة"</string>
+    <string name="t_3e27e12f" formatted="false">"أدنى صحة متبقية"</string>
+    <string name="t_3ecdd82e" formatted="false">"ثغرة اليوم صفر هي ثغرة لم يكن لدى المدافع أي يوم لإصلاحها، لأن أحدًا لم يعلم بوجودها. لا يوجد توقيع للمطابقة، وهذا ما يجعلها خطيرة جدًا."</string>
+    <string name="t_3fa2aee2" formatted="false">"يتلقى ضررًا أقل بنسبة 35% من عملاء FIREWALL."</string>
+    <string name="t_401924c3" formatted="false">"شكل CORE-SERVER"</string>
+    <string name="t_4071c698" formatted="false">"استجاب Google Play. المشتريات والاستعادة تعمل بشكل طبيعي."</string>
+    <string name="t_40b15bdb" formatted="false">"يُودَع عند كل موجة عاشرة. كلما تعمقت الجولة، زاد ما تدفعه — المكافأة تنمو مع مربع المرحلة، لذا فجولة عميقة واحدة تتفوق على خمس سطحية."</string>
+    <string name="t_4104a0b2" formatted="false">"أفضل نتيجة لك في {0}: الموجة {1}"</string>
+    <string name="t_4108bc91" formatted="false">"تم رفض المصافحة"</string>
+    <string name="t_41203058" formatted="false">"العتاد"</string>
+    <string name="t_412ea11f" formatted="false">"انقر عقدتي نشر مميزتين بجانب مسار. اثنتان ليست اقتراحًا: عميل واحد لا يستطيع تغطية مسار وحده."</string>
+    <string name="t_419c5ded" formatted="false">"إجمالي الألعاب"</string>
+    <string name="t_41a1b85e" formatted="false">"خيارات الخصوصية"</string>
+    <string name="t_41ca8ef5" formatted="false">"مخزّن محليًا على هذا الجهاز · لا يُرفع أي شيء"</string>
+    <string name="t_41e88f52" formatted="false">"اقرص بإصبعين لتكبير اللوحة — العقد أسهل في النقر عن قرب. أثناء التكبير، اسحب بإصبع واحد للتنقل. اقرص للخارج بالكامل لرؤية اللوحة كلها مجددًا."</string>
+    <string name="t_4208e473" formatted="false">"بلا إعلان"</string>
+    <string name="t_420bd000" formatted="false">"BOTMASTER يُسقط BOT خلفه كل بضع ثوانٍ. اقتله بسرعة، واحتفظ بشيء للسرب."</string>
+    <string name="t_4273a8be" formatted="false">"الحساب"</string>
+    <string name="t_42832744" formatted="false">"لا قمار ولا صناديق غنائم ولا مكافآت مدفوعة عشوائية"</string>
+    <string name="t_42880e6f" formatted="false">"مقفل · {0}"</string>
+    <string name="t_42a0e053" formatted="false">"حول"</string>
+    <string name="t_42addf6c" formatted="false">"فتح المتجر"</string>
+    <string name="t_42afe7bc" formatted="false">"جارٍ الاتصال"</string>
+    <string name="t_42ef8058" formatted="false">"سجل الدفاع"</string>
+    <string name="t_4306ee12" formatted="false">"ميزانية €1,500"</string>
+    <string name="t_4333987a" formatted="false">"أعمدة متفرقة من حروف متساقطة."</string>
+    <string name="t_43a1c2e8" formatted="false">"تكلفة الترقية"</string>
+    <string name="t_441ec9a9" formatted="false">"جولة سريعة في القائمة. التالي للمتابعة، تخطٍّ للإغلاق. يمكنك إعادتها في أي وقت من الإعدادات."</string>
+    <string name="t_4427afab" formatted="false">"الدرع يُضعف الضربات الصغيرة: أحضر ANALYST أو ROOT ADMIN، لا IPS."</string>
+    <string name="t_4439e789" formatted="false">"مقفل · أكمل المستوى 5 (طهّر الموجة 100 في DDoS) لفتح مشغّل الموسيقى وقائمة المقاطع."</string>
+    <string name="t_448177d3" formatted="false">"آخر مزامنة"</string>
+    <string name="t_4494c488" formatted="false">"قبل {0} دقيقة"</string>
+    <string name="t_44c51c30" formatted="false">"تم حجب الهجوم"</string>
+    <string name="t_44fbbc54" formatted="false">"&gt; !! هجوم سيبراني قادم — اختراق كبير في الطريق !!"</string>
+    <string name="t_4538f2a7" formatted="false">"يتحقق الجدار الناري من حركة المرور مقابل مجموعة قواعد ويُسقط كل ما لا تسمح به القواعد. وعادةً ما يكون أول ضابط يوضع بين شبكة غير موثوقة وشيء يستحق الحماية، ويُحكم عليه بالقواعد المعطاة له لا بذكائه."</string>
+    <string name="t_45b17976" formatted="false">"ضرر ثقيل لهدف واحد، متطابق في كل طلقة بدلًا من المقامرة، ويتجاهل الدرع. مكلف وبطيء؛ واحد منه لا يصمد في مسار وحده."</string>
+    <string name="t_4631883a" formatted="false">"تثبيت الأقصى  (+{0})"</string>
+    <string name="t_463cbc28" formatted="false">"الصحة ×{0} · الدرع +{1} · السرعة ×{2}"</string>
+    <string name="t_466578df" formatted="false">"استأنف هذه الموجة بنصف السلامة."</string>
+    <string name="t_466b92a9" formatted="false">"وصلة القطاع"</string>
+    <string name="t_46984fe6" formatted="false">"العب · متابعة"</string>
+    <string name="t_46cc0ef8" formatted="false">"كما يرفع عملة ◇ المشفرة التي تدفعها كل جولة، +{0}% لكل مستوى حتى الضعف. لا يؤثر على صحة الأعداء أو تكوين الموجات."</string>
+    <string name="t_4735c1ed" formatted="false">"هجمات سيبرانية قادمة نحو CORE-SERVER. انشر عملاء سيبرانيين بجانب المسارات لإيقافها قبل وصولها."</string>
+    <string name="t_4747b424" formatted="false">"الأعداء"</string>
+    <string name="t_477d52c6" formatted="false">"مرتبط. سجّل الدخول إلى حساب Google نفسه على هاتف أو جهاز لوحي آخر وستجد تقدمك هناك."</string>
+    <string name="t_47c5c237" formatted="false">"عقدة غير صالحة"</string>
+    <string name="t_485268f0" formatted="false">"&gt; جارٍ تسليح العملاء السيبرانيين"</string>
+    <string name="t_4882e1dc" formatted="false">"KERNEL PANIC يشوّش كل عميل في متناوله لمدة 3 ثوانٍ عند موته. FIREWALL يصمد فيه."</string>
+    <string name="t_488d4b25" formatted="false">"آلاف الأجهزة ترسل حركة مرور إلى هدف واحد في آن واحد. لا يوجد طلب منفرد يُعدّ هجومًا؛ الفيضان هو الهجوم. الهدف ليس الاقتحام، بل جعل الخدمة غير قابلة للاستخدام."</string>
+    <string name="t_4905ed7b" formatted="false">"لا شيء"</string>
+    <string name="t_494c304d" formatted="false">"-◇{0} مُسرَّب"</string>
+    <string name="t_49848f53" formatted="false">"حقن SQL الأعمى"</string>
+    <string name="t_498754a7" formatted="false">"حفظ الموسيقى التصويرية على الهاتف"</string>
+    <string name="t_4af4306b" formatted="false">"الإصدار"</string>
+    <string name="t_4c1012d3" formatted="false">"أبقه تحت النار: لا يُصلح نفسه إلا بعد لحظة دون إصابة، فغطِّ الفجوات بين مناطق القتل."</string>
+    <string name="t_4c6d3272" formatted="false">"🔒 مقفل"</string>
+    <string name="t_4cc6f55a" formatted="false">"تعذّر الوصول إلى ألعاب Google Play. تُسجَّل جولاتك على هذا الجهاز ويُنشر أفضلها في المرة التالية التي تنتهي فيها جولة وأنت متصل."</string>
+    <string name="t_4d54c785" formatted="false">"وضع {0} — انقر عقدة"</string>
+    <string name="t_4d6e69d2" formatted="false">"مشغّل الموسيقى"</string>
+    <string name="t_4d7ab8a3" formatted="false">"الاسم الرمزي"</string>
+    <string name="t_4e2b3472" formatted="false">"لا توجد جلسة محفوظة"</string>
+    <string name="t_4ebbf8bd" formatted="false">"تبقّى {0} إحياء في هذه الجولة."</string>
+    <string name="t_4f0fcb18" formatted="false">"يصل في كل موجة خامسة"</string>
+    <string name="t_4f160176" formatted="false">"جولة الجمع. بلا حيل، بلا تشويش — عشرون بالمئة أكثر منه من أي شيء آخر على اللوحة."</string>
+    <string name="t_5022c684" formatted="false">"التشفير"</string>
+    <string name="t_5067a989" formatted="false">"سلسلة متشابكة"</string>
+    <string name="t_5079b771" formatted="false">"افتح هذا العميل بالوصول إلى الموجة {0} في {1} بوضع {2}."</string>
+    <string name="t_509d7851" formatted="false">" · التأثير {0}"</string>
+    <string name="t_513901c7" formatted="false">" · بلا إعلانات"</string>
+    <string name="t_513dcdc9" formatted="false">"لكل عميل"</string>
+    <string name="t_520a6b88" formatted="false">"كل مستوى يكلّف أكثر قليلًا من سابقه، فيظل المضاعِف يرتفع دون أن يخرج عن السيطرة. لا يوجد حد أقصى ستبلغه واقعيًا."</string>
+    <string name="t_5333e76e" formatted="false">"العرض"</string>
+    <string name="t_53e605b3" formatted="false">"احذر"</string>
+    <string name="t_543ce9f7" formatted="false">"كل"</string>
+    <string name="t_54523d94" formatted="false">"الرف الذي بُنيت فيه نواتك. يظهر في ساحة المعركة."</string>
+    <string name="t_54743050" formatted="false">"إجمالي الهجمات المحجوبة"</string>
+    <string name="t_54797d92" formatted="false">"مسارات دوائر تمتد تحت القراءات."</string>
+    <string name="t_549824f8" formatted="false">"المنفذ مؤمَّن"</string>
+    <string name="t_5571a722" formatted="false">"يُلعب دون اتصال · لا حاجة لتسجيل الدخول"</string>
+    <string name="t_55f85167" formatted="false">"قائمة عملاء مدمجة"</string>
+    <string name="t_565a738e" formatted="false">"لا، دعني ألعب"</string>
+    <string name="t_56a9a004" formatted="false">"حقن والأضواء مطفأة"</string>
+    <string name="t_56bafb67" formatted="false">"إحياء واحد لكل جولة."</string>
+    <string name="t_56c54890" formatted="false">"نموذج متضخم: صحة أكثر قليلًا، وأبطأ قليلًا."</string>
+    <string name="t_56c6b2ae" formatted="false">"ترخيص خيالي، مُشار إليه بوضوح: هذا العميل يتجاهل ببساطة سمة ENCRYPTED بدلًا من أن يتباطأ بسببها، ويُحدث ضررًا ثلاثيًا لأي شيء يحملها. التشفير الحقيقي لا يعمل بهذه الطريقة ولا شيء هنا يكسر أي شيفرة حقيقية."</string>
+    <string name="t_5749c8dc" formatted="false">"ستضيع الموجة {0} وكل ما تم نشره."</string>
+    <string name="t_5785b710" formatted="false">"اختر عميلًا، ثم انقر عقدة نشر مميزة."</string>
+    <string name="t_57f88861" formatted="false">"التركيز: الزعماء فقط"</string>
+    <string name="t_582ec4a0" formatted="false">"حواسيب مخترقة تتلقى الأوامر بهدوء من وحدة تحكم مركزية. أصحابها عادةً لا يعلمون. شبكات البوتات هي ما يجعل هجمات DDoS الكبيرة ممكنة."</string>
+    <string name="t_5840893d" formatted="false">"تم احتواء الاختراق"</string>
+    <string name="t_58a5f08a" formatted="false">"الشبكة البسيطة. بلا حركة."</string>
+    <string name="t_597ee3cb" formatted="false">"تطابق التوقيع"</string>
+    <string name="t_5a02fc0a" formatted="false">"حزمة الإحياء"</string>
+    <string name="t_5a3d8598" formatted="false">"الأقرب إلى CORE-SERVER"</string>
+    <string name="t_5a911db6" formatted="false">"حساب Google الخاص بك"</string>
+    <string name="t_5aa1d1dc" formatted="false">"تركيز {0} مفعّل"</string>
+    <string name="t_5b19a621" formatted="false">"هجوم على ثغرة لم يرقّعها أحد بعد — لم يكن لدى المدافع أي يوم للاستعداد. نادر وصلب، ويستحق عملة مشفرة حقيقية لإيقافه."</string>
+    <string name="t_5c19fc6b" formatted="false">"شراء موسيقى CyOps TD التصويرية · {0}"</string>
+    <string name="t_5c3f86fb" formatted="false">"الأقوى"</string>
+    <string name="t_5d1868fb" formatted="false">"النواة"</string>
+    <string name="t_5d377851" formatted="false">"ترقيات دائمة · كل مباراة من الآن فصاعدًا"</string>
+    <string name="t_5d4d0273" formatted="false">"{0} مقفل: {1}."</string>
+    <string name="t_5de47a9b" formatted="false">"كل مستويات الصعوبة"</string>
+    <string name="t_5de55828" formatted="false">"!! السلامة منخفضة !!"</string>
+    <string name="t_5e75065a" formatted="false">"متصل"</string>
+    <string name="t_5f2258c9" formatted="false">"المال على اليسار. يُودَع عند كل موجة عاشرة من الجولة ويُحتفظ به عند انتهائها. الجولات الأعمق تدفع أكثر بكثير."</string>
+    <string name="t_5fd47bcf" formatted="false">"النواة: MERIDIAN"</string>
+    <string name="t_602fffef" formatted="false">"كل شيء عدا CRYPTOGRAPHER يفقد أكثر من نصف ضرره هنا."</string>
+    <string name="t_6049b1e7" formatted="false">"الخلفية الحية"</string>
+    <string name="t_60a5a04c" formatted="false">"إيقاف الموسيقى مؤقتًا"</string>
+    <string name="t_60ecea1a" formatted="false">"مطلق"</string>
+    <string name="t_60f81814" formatted="false">"كل {0} ثانية يقضي LICENSE {1} متجاهلًا أي نوع عميل يواصل ضربه. نوّع أنواع عملائك."</string>
+    <string name="t_61919374" formatted="false">"أُعيد إحياؤه — لن يعود مرة أخرى"</string>
+    <string name="t_61ebe734" formatted="false">"اهتزاز الشاشة"</string>
+    <string name="t_625afb79" formatted="false">"مملوك. يُحفظ في Music/CyOps TD باسم \"CyOps TD - Level X (Y)\"."</string>
+    <string name="t_628c7cd9" formatted="false">"توزيع نشر العملاء"</string>
+    <string name="t_62f8af50" formatted="false">"+{0} HP / {1} ث"</string>
+    <string name="t_63374e04" formatted="false">"القائمة الرئيسية"</string>
+    <string name="t_633e8e1a" formatted="false">"ينقسم إلى ثلاث ديدان أصغر عند قتله، وكل منها تنقسم مرة أخرى. التناثر صديقك."</string>
+    <string name="t_6343926d" formatted="false">"تشويش"</string>
+    <string name="t_638aaa93" formatted="false">"يظهر هنا أيضًا"</string>
+    <string name="t_63b00a3c" formatted="false">"تُقطَّع البيانات المرسلة عبر الشبكة إلى حزم: أجزاء صغيرة بعنوان وجهة وحمولة. الحزمة ليست هجومًا — كلها تقريبًا حركة مرور عادية. ما تطلق عليه هنا هو حزم تحمل هجومًا محددًا، ولهذا سُمّي كل منها باسم الهجوم لا باسم الحزمة."</string>
+    <string name="t_63b54927" formatted="false">"3 إحياءات لكل جولة وبلا إعلانات إحياء أبدًا، بالإضافة إلى €5,000."</string>
+    <string name="t_63bef594" formatted="false">"HP {0}"</string>
+    <string name="t_63f3d76a" formatted="false">"حفظ"</string>
+    <string name="t_63facb82" formatted="false">"حي: نبض"</string>
+    <string name="t_6480a147" formatted="false">"الموجة {0}  —  حصّن المحيط"</string>
+    <string name="t_648a945b" formatted="false">"أمران لا يخبرك بهما أحد"</string>
+    <string name="t_6490c689" formatted="false">"لا عملات مشفرة حقيقية ولا بلوكتشين ولا محافظ ولا تعدين ولا NFT"</string>
+    <string name="t_64d398f9" formatted="false">"المدى"</string>
+    <string name="t_65155738" formatted="false">"سرعة 5×"</string>
+    <string name="t_65252ce7" formatted="false">"الأول"</string>
+    <string name="t_6554cde7" formatted="false">"جارٍ سؤال Google Play عما يملكه هذا الحساب. يستغرق هذا عادةً لحظة."</string>
+    <string name="t_655c9284" formatted="false">"حي: شبكية"</string>
+    <string name="t_656e6ce8" formatted="false">"العملاء"</string>
+    <string name="t_65c8fd90" formatted="false">"إحاطة التهديد"</string>
+    <string name="t_6678bfdf" formatted="false">"عند موته، يُشوَّش كل عميل قريب منه لمدة 3 ثوانٍ. اقتله بعيدًا عن لوحتك، أو حين تكون الموجة التالية بعيدة."</string>
+    <string name="t_66fa85d7" formatted="false">"وزّع عملاءك حتى لا يُسكت تشويش واحد الخط كله."</string>
+    <string name="t_6700226a" formatted="false">"مرتبط"</string>
+    <string name="t_67043715" formatted="false">"الدرع"</string>
+    <string name="t_67313d46" formatted="false">"الجدار قائم"</string>
+    <string name="t_6757b458" formatted="false">"الهجمات المُوقفة"</string>
+    <string name="t_6813ef42" formatted="false">"اختراق مجهول — {0} BOT قادمة بسرعة مضاعفة"</string>
+    <string name="t_681745bd" formatted="false">"العميل مقفل — {0}"</string>
+    <string name="t_682d973f" formatted="false">"ابدأ"</string>
+    <string name="t_68e88af7" formatted="false">"منطقة الخطر"</string>
+    <string name="t_68e985d6" formatted="false">"لا يُرسل أي شيء آخر إلى أي مكان. اللعبة قابلة للعب دون أي شبكة إطلاقًا."</string>
+    <string name="t_6904aeb4" formatted="false">"اللعبة"</string>
+    <string name="t_69698cdc" formatted="false">"WORM ينقسم إلى ثلاث ديدان أصغر عند قتله، وتنقسم تلك مرة أخرى. اقتله مبكرًا، مع تناثر قريب."</string>
+    <string name="t_69a293c4" formatted="false">"إنهاء SUDO"</string>
+    <string name="t_6ad356c5" formatted="false">"ثلاثة مسارات: طلقة مستقيمة في المنتصف، واثنان متعرجان فوقه وتحته."</string>
+    <string name="t_6b2d8165" formatted="false">"مستوى {0}  {1} ضرر"</string>
+    <string name="t_6c161f51" formatted="false">"لمدة ثانيتين من كل 17 يتجاهل أي نوع عميل يواصل ضربه. اللوحة المتنوعة تظل تؤذيه."</string>
+    <string name="t_6c7aa396" formatted="false">"زعماء مختلفون، نقاط ضعف مختلفة."</string>
+    <string name="t_6ca9de88" formatted="false">"عملاء الطيف"</string>
+    <string name="t_6cb7e8e3" formatted="false">"ضربات بطيئة وثقيلة. +80% ضرر للنخبة والزعماء."</string>
+    <string name="t_6cbf7c76" formatted="false">"الزعماء المهزومون"</string>
+    <string name="t_6ccdc653" formatted="false">"يتجاهل التشفير تمامًا ويُحدث له ضررًا ثلاثيًا."</string>
+    <string name="t_6cedde69" formatted="false">"مستوى صوت الموسيقى"</string>
+    <string name="t_6d2d6d6b" formatted="false">"يتجاهل درعه."</string>
+    <string name="t_6d907c0d" formatted="false">"«الفريق الأزرق» يدافع عن النظام ويستجيب للحوادث — وهو نظير الفريق الأحمر. «القبعة الزرقاء» تُستخدم بأكثر من طريقة في المجال وليست مصطلحًا موحدًا، لذا لا يُوصف هنا إلا معنى الفريق الأزرق."</string>
+    <string name="t_6dbe0ea3" formatted="false">"المستوى"</string>
+    <string name="t_6f053419" formatted="false">"حد {0} — أقصى {1}"</string>
+    <string name="t_6f21a684" formatted="false">"الزعماء — كل موجة خامسة"</string>
+    <string name="t_70d42172" formatted="false">"تقسيم الشبكة بحيث لا يصل اختراق منطقة واحدة إلى البقية. ولهذا لا ينبغي أن يعني حاسوب محمول مخترق شركة مخترقة."</string>
+    <string name="t_7191bf1d" formatted="false">"الاستمرار"</string>
+    <string name="t_71c5931f" formatted="false">"موفّر البطارية يغيّر ما يُرسم فقط. صعوبة الموجات والضرر والتوقيت لا تتأثر إطلاقًا."</string>
+    <string name="t_72102eb0" formatted="false">"المشتريات والاستعادة وما يغادر هذا الجهاز"</string>
+    <string name="t_722a0bad" formatted="false">"إعادة الإرشادات"</string>
+    <string name="t_73236391" formatted="false">"لا تجمع اللعبة نفسها أي بيانات شخصية"</string>
+    <string name="t_735d4940" formatted="false">"مستوى صوت المؤثرات"</string>
+    <string name="t_73907e76" formatted="false">"كل المقاطع الـ 24 من اللعبة، محفوظة في مجلد Music في هاتفك لتشغيلها في أي مكان."</string>
+    <string name="t_7397fdaa" formatted="false">"ضوء بارد يتحرك خلف كل شيء."</string>
+    <string name="t_739a7f7a" formatted="false">"© {0} {1}. جميع الحقوق محفوظة."</string>
+    <string name="t_73d812dc" formatted="false">"كل موجة خامسة، وما تجلبه"</string>
+    <string name="t_73e8cb50" formatted="false">"شيفرة أصلية، وفن أصلي، وصوت مُركَّب أصلي. مبنية بـ Kotlin وJetpack Compose وAndroid Canvas API.\n\nالأيقونات: CoreUI Icons Free من creativeLabs (coreui.io/icons)، مرخصة بموجب CC BY 4.0.\n\nتراخيص التبعيات الخارجية مدرجة في LICENSES.md في مستودع المشروع."</string>
+    <string name="t_74066c59" formatted="false">"داخل اللعبة"</string>
+    <string name="t_746ab6c3" formatted="false">"IPS يُحدث 35% ضررًا إضافيًا للأسراب. ضعه حيث تلتقي المسارات."</string>
+    <string name="t_746d814e" formatted="false">"يحذف جولتك المحفوظة والعملاء المفتوحين والإحصائيات والإعدادات. لا يمكن التراجع عن هذا."</string>
+    <string name="t_74aa6c59" formatted="false">"€ الميزانية غير كافية"</string>
+    <string name="t_74fff44e" formatted="false">"يُلقي نسخًا خادعة من نفسه تمتص النيران. ANALYST وROOT ADMIN يريان من خلالها."</string>
+    <string name="t_750800eb" formatted="false">"يطلق بسرعة أي شيء في الفريق ويستهدف الزعيم أولًا دائمًا. ضرر مضاعف لـ [GG] GOOD GAME. أربعة كحد أقصى."</string>
+    <string name="t_7596436a" formatted="false">"مهندس أمن أول يحمل بكالوريوس في الأمن السيبراني، يوقف الهجمات ببناء البرمجيات التي تدافع ضدها: خدمات مُحصّنة، وترقيعات ومرشّحات تكون في مكانها قبل وصول الهجوم لا بعده."</string>
+    <string name="t_75b191e4" formatted="false">"يبني جدارًا عبر أقرب مسار ضمن مداه. تتوقف التهديدات عند الجدار وعليها هدمه قبل أن تمر؛ الزعماء يهدمونه أسرع. عندما يسقط، يعيد ACE بناءه بعد بضع ثوانٍ، أقوى مع كل مستوى. طلقاته نفسها تُحدث {0}× ضررًا لكل زعيم في المستويات الخمسة الأولى. لا يُنشر منه أكثر من ثلاثة."</string>
+    <string name="t_75bd8866" formatted="false">"اختر مستوى ودرجة صعوبة"</string>
+    <string name="t_75e65d90" formatted="false">"انقر مرتين للنشر"</string>
+    <string name="t_75f24f6e" formatted="false">"كل بضع ثوانٍ، يقفل ترقيات عميل واحد لمدة 8 ثوانٍ. قم بالترقية قبل وصوله."</string>
+    <string name="t_7682806a" formatted="false">"الخطوة 2 — اختر FIREWALL"</string>
+    <string name="t_77212b64" formatted="false">"هذه موجة الهجوم التي تواجهها. تستمر في الارتفاع ما دمت تصمد بالخادم — كل موجة خامسة تجلب زعيمًا."</string>
+    <string name="t_772b21ba" formatted="false">"الدفاعات التي تنشرها"</string>
+    <string name="t_776f4222" formatted="false">"مستوى {0}"</string>
+    <string name="t_77a2583e" formatted="false">"شيئان مختلفان يُسمَّيان «كمّيًا» في الأمن ويستحق الفصل بينهما. توزيع المفاتيح الكمّي يستخدم الفيزياء لكشف التنصت على وصلة، ولا يُنشر إلا في بيئات نادرة ومتخصصة. التشفير ما بعد الكمّي رياضيات برمجية عادية مصممة لمقاومة الحواسيب الكمّية المستقبلية، وهو الذي يُعمَّم فعلًا."</string>
+    <string name="t_77a6da9b" formatted="false">"حلقات تنتقل للخارج من النواة."</string>
+    <string name="t_77d03aa5" formatted="false">"الحقن الأعمى لا يتلقى أي رسائل خطأ، لذا يستنتج المهاجم الإجابة سؤال صح أو خطأ في كل مرة. إنه أبطأ وأكثر صبرًا بكثير من الحقن العادي، ويصل محصّنًا ضد الدفاعات الواضحة."</string>
+    <string name="t_77e5929c" formatted="false">"النقرة الأولى تُظهر مدى العميل في ذلك الموضع؛ انقر مجددًا للنشر"</string>
+    <string name="t_77e8896f" formatted="false">"مسار واحد يشق اللوحة من زاوية إلى زاوية خمس مرات."</string>
+    <string name="t_77f7e381" formatted="false">" · الدرع {0}"</string>
+    <string name="t_782074f1" formatted="false">"  ·  تلقائي {0}"</string>
+    <string name="t_7841323b" formatted="false">"كنس دفاعي"</string>
+    <string name="t_78526608" formatted="false">"الموجة المبلوغة"</string>
+    <string name="t_78a52e3b" formatted="false">"مخفي"</string>
+    <string name="t_7922c8d5" formatted="false">"يعزّز كل عميل في المدى: +30% ضرر، +20% معدل إطلاق."</string>
+    <string name="t_79a4baee" formatted="false">"&lt; رجوع"</string>
+    <string name="t_79fc7a80" formatted="false">"يُطبَّق فقط عند تفعيل بدء الموجات تلقائيًا"</string>
+    <string name="t_7a1f56c4" formatted="false">"زامِن الآن"</string>
+    <string name="t_7aba529e" formatted="false">"يكسر تشفيره: ×{0} ضرر."</string>
+    <string name="t_7abfb3c7" formatted="false">"ينقسم إلى اثنين عند نصف الصحة، ويسلك النصف الثاني مسارًا آخر."</string>
+    <string name="t_7b3bb73f" formatted="false">"تم تحييد التهديد"</string>
+    <string name="t_7b84a6c4" formatted="false">"اربط حساب Google في شاشة GOOGLE PLAY لترى اللوحة العالمية وتنشر عليها. ما زالت جولاتك تُسجَّل على هذا الجهاز."</string>
+    <string name="t_7ba7f176" formatted="false">"+{0}% ضرر"</string>
+    <string name="t_7be6fbad" formatted="false">"الموجة {0} · توقفت المحاكاة"</string>
+    <string name="t_7bf2105b" formatted="false">"حجب الخدمة الموزَّع"</string>
+    <string name="t_7c4e4414" formatted="false">"الأخير"</string>
+    <string name="t_7c6853de" formatted="false">"عالمي · {0}"</string>
+    <string name="t_7d5cc77f" formatted="false">"إجمالي العملة المشفرة المكتسبة"</string>
+    <string name="t_7dc33bc2" formatted="false">"تم بلوغ المستوى الأقصى"</string>
+    <string name="t_7e1cf3a7" formatted="false">"إصلاح"</string>
+    <string name="t_7e522f64" formatted="false">"الاعتمادات"</string>
+    <string name="t_7e72ed35" formatted="false">"تم حفظ التقدم في حسابك"</string>
+    <string name="t_7e906966" formatted="false">"تم حفظ {0} مقطع في Music/CyOps TD."</string>
+    <string name="t_7ea71dbe" formatted="false">"افتح العملاء مجددًا واختر TARPIT. لا يُحدث ضررًا — يُبطئ كل تهديد داخل هالته فتحصل FIREWALL على طلقات أكثر."</string>
+    <string name="t_7f11b512" formatted="false">"{0} · {1} لكل جولة {2}"</string>
+    <string name="t_7fd8e294" formatted="false">"&gt; المحيط متصل"</string>
+    <string name="t_804ef7d5" formatted="false">"أكثر الهجمات شيوعًا على الإنترنت، والتهديد الأساسي هنا. يكتب المهاجم أوامر قاعدة بيانات في حقل كان يتوقع اسمًا أو كلمة مرور؛ وإذا مرّرها التطبيق مباشرة، تطيع قاعدة البيانات."</string>
+    <string name="t_80592dd9" formatted="false">"الإصدار"</string>
+    <string name="t_8175c5fc" formatted="false">"سلامة CORE-SERVER"</string>
+    <string name="t_8198af01" formatted="false">"يختفي لثانيتين من كل 6: لا شيء يستطيع استهدافه. التناثر والسلاسل ما زالت تصل إليه."</string>
+    <string name="t_81e23c68" formatted="false">"أخرى: الوحدات الصغيرة والنخبة فقط، لا الزعماء أبدًا"</string>
+    <string name="t_8230b283" formatted="false">"IDS يُحدث 45% ضررًا إضافيًا للهجمات السريعة ويراها قادمة أولًا."</string>
+    <string name="t_82966ea3" formatted="false">"عدد الموجات"</string>
+    <string name="t_829e8e06" formatted="false">"العملاء في مداه لا يمكن تشويشهم. {0}× ضرر لـ WHITE EYE وBLACK EYE. اثنان كحد أقصى."</string>
+    <string name="t_82a1fee3" formatted="false">"هل أنت متأكد أنك تريد إعادة بدء جولتك؟"</string>
+    <string name="t_82a70835" formatted="false">"بدون ربط، يعيش تقدم الجولات على هذا الجهاز فقط. إلغاء التثبيت أو إعادة ضبط المصنع يمسحه؛ المشتريات تنجو من كليهما."</string>
+    <string name="t_830a30fd" formatted="false">"الميزانية"</string>
+    <string name="t_830b01d9" formatted="false">"البرنامج الثابت يضاعف ضرر كل عميل تنشره، في كل مباراة من الآن فصاعدًا. يُطبَّق قبل الدرع وقبل جدول المضادات، لذا يساعد Cryptographer ضد التشفير بالقدر نفسه الذي يساعد به Firewall ضد حركة المرور العادية."</string>
+    <string name="t_831712ed" formatted="false">"تم فتح عميل سيبراني جديد"</string>
+    <string name="t_83186dce" formatted="false">"هذا الجهاز فقط"</string>
+    <string name="t_8340a76d" formatted="false">"لماذا يهم"</string>
+    <string name="t_838b0928" formatted="false">"يُنتج هجمات مرافقة أثناء تقدمه."</string>
+    <string name="t_8478f19e" formatted="false">"ما يغادر هذا الجهاز"</string>
+    <string name="t_848f3f46" formatted="false">"حذف كل التقدم؟"</string>
+    <string name="t_852bda75" formatted="false">"الموسوعة"</string>
+    <string name="t_862b3f34" formatted="false">"نشر عميل سيبراني"</string>
+    <string name="t_869cf6b4" formatted="false">"تسجيل الاسم الرمزي"</string>
+    <string name="t_86cce90c" formatted="false">"الأضعف"</string>
+    <string name="t_87442b62" formatted="false">"الموجة التالية · BREACH"</string>
+    <string name="t_87a9dd3e" formatted="false">"الموجات و€ والبرنامج الثابت"</string>
+    <string name="t_87d92d69" formatted="false">"مدى كشف طويل جدًا؛ +45% ضرر للهجمات السريعة."</string>
+    <string name="t_8806feca" formatted="false">"ستة أشكال لـ CORE-SERVER، بالإضافة إلى €2,000. NEONGRID يُباع منفصلًا."</string>
+    <string name="t_882561c2" formatted="false">"تقييم التهديد"</string>
+    <string name="t_891fc63b" formatted="false">"سقط الانتحال"</string>
+    <string name="t_8980d82b" formatted="false">"تم اختيار {0} — انقر عقدة مميزة للنشر."</string>
+    <string name="t_899bae42" formatted="false">"اختياري. كل شيء في اللعبة يعمل دون ربط، ولا يُرفع سوى تقدمك."</string>
+    <string name="t_89a47932" formatted="false">"تشغيل الموسيقى"</string>
+    <string name="t_89c7b011" formatted="false">"أعد فتح نموذج موافقة Google لتغيير ما يمكن لشركاء الإعلان فعله ببيانات هذا الجهاز. تقدمك في اللعبة مخزّن على هذا الجهاز وليس جزءًا منه أبدًا."</string>
+    <string name="t_89d7c51c" formatted="false">"ذهاب وإياب، ثم عودة طويلة مشتركة إلى الرف."</string>
+    <string name="t_89dd34f8" formatted="false">"اترك تنظيف السرب لـ IPS حتى يبقى ضاربوك الثقيلون على الزعيم."</string>
+    <string name="t_89e1b0eb" formatted="false">"حقله يسحب GRADIENT للأسفل بينما يتسارع."</string>
+    <string name="t_89e450ea" formatted="false">"أُزيلت · إعلانات الإحياء منفصلة"</string>
+    <string name="t_8a058fa3" formatted="false">"المنحنى القياسي."</string>
+    <string name="t_8a86921d" formatted="false">"الأزرار على اليمين قابلة للتمرير. في الأسفل: المتجر، العتاد (ارتداء الأشكال والخلفيات)، GOOGLE PLAY (المشتريات والحفظ السحابي)، لوحة الصدارة، الموسوعة (شرح التهديدات والعملاء)، الإحصائيات، الإعدادات وحول."</string>
+    <string name="t_8a96f0aa" formatted="false">"غير متاح"</string>
+    <string name="t_8aa097b1" formatted="false">"  (مقفل)"</string>
+    <string name="t_8aec13a9" formatted="false">"حجب الخدمة الموزَّع: الهجوم هو الحجم. كل طلب تافه، لكنها تصل أسرع من أي شيء آخر في اللعبة وهناك دائمًا المزيد."</string>
+    <string name="t_8af0e8d8" formatted="false">"محاولة اختراق منسّقة. بلا حيل، فقط ثقل."</string>
+    <string name="t_8b094c6c" formatted="false">"جارٍ الاتصال بـ Google Play…"</string>
+    <string name="t_8c42a507" formatted="false">"إبر جليدية تشع من نواة متجمدة."</string>
+    <string name="t_8c61de92" formatted="false">"بدء الموجات تلقائيًا"</string>
+    <string name="t_8d56a5da" formatted="false">"آثار إهليلجية بطيئة تدور حول النواة."</string>
+    <string name="t_8d91a14b" formatted="false">"GOOGLE PLAY"</string>
+    <string name="t_8d9dd637" formatted="false">"زعيم: يطلق على الزعماء فقط، ويمسك النار فيما عداهم"</string>
+    <string name="t_8e0413ab" formatted="false">"لا يحتوي هذا الإصدار على مشتريات داخل التطبيق."</string>
+    <string name="t_8e3787c1" formatted="false">"مقفل · {0} (الأفضل: {1})"</string>
+    <string name="t_8f0536a7" formatted="false">"تثبيت الأقصى"</string>
+    <string name="t_8f37a712" formatted="false">"الضرر المُحدَث"</string>
+    <string name="t_8f48da3c" formatted="false">"الشبكة مخترقة"</string>
+    <string name="t_8f5d0f11" formatted="false">"الاقتصاد"</string>
+    <string name="t_8f61abf9" formatted="false">"جارٍ العمل…"</string>
+    <string name="t_8f68a3ab" formatted="false">"&gt; جارٍ تحميل تواقيع التهديدات"</string>
+    <string name="t_8ff6e51c" formatted="false">"لا توجد جولات مسجلة في {0} بعد."</string>
+    <string name="t_90391726" formatted="false">"استئناف"</string>
+    <string name="t_910b3ae9" formatted="false">"مال يُكتسب لشراء عملاء للدفاع عن الخادم. تُكتسب عملة ◇ المشفرة مع كل قتل وكل موجة مكتملة."</string>
+    <string name="t_915c2f22" formatted="false">"تم حفظ {0} مقطع، ثم رفض الهاتف البقية. أفرغ بعض المساحة وحاول مجددًا."</string>
+    <string name="t_919816cc" formatted="false">"تعذّر الوصول إلى Google Play. كل ما اشتريته ما زال لك — جرّب استعادة بعد عودة الاتصال."</string>
+    <string name="t_91ae1cd3" formatted="false">"مسرد بلغة بسيطة"</string>
+    <string name="t_91d4d5fc" formatted="false">"متاح · ◇ {0}"</string>
+    <string name="t_9231c915" formatted="false">"حلقات احتواء كهرمانية حول تفاعل جارٍ."</string>
+    <string name="t_933bf2fb" formatted="false">"إزالة الإعلانات تغطي الإعلانات بين الجولات؛ إعلانات الإحياء منفصلة."</string>
+    <string name="t_935cf7b5" formatted="false">"معدل إطلاق القبعات، وطلقات أثقل، و{0}× ضرر لـ SYN-STORM وGRADIENT. اثنان كحد أقصى."</string>
+    <string name="t_93875a49" formatted="false">"المدى"</string>
+    <string name="t_93f1bd2f" formatted="false">"معدل إطلاق مرتفع جدًا، يستهدف الزعماء دائمًا قبل أي شيء آخر في المدى، ويُحدث ضررًا مضاعفًا لـ [GG] GOOD GAME. يُفتح عند الموجة 30 ولا يُنشر منه أكثر من أربعة."</string>
+    <string name="t_94061f4f" formatted="false">"لا يُحدث ضررًا يُذكر. كل ما داخل نطاقه يزحف، ما يُبقي التهديدات في مدى مُحدثي الضرر لديك وقتًا أطول بكثير. رخيص، وعديم الفائدة وحده — إنه مضاعِف قوة لكل ما يطلق بجانبه."</string>
+    <string name="t_941dea68" formatted="false">"أرقام الضرر"</string>
+    <string name="t_9427590a" formatted="false">"إظهار قيم الضرر العائمة عند الإصابة"</string>
+    <string name="t_94bbec0b" formatted="false">"انقر الموجة التالية. عملاؤك يطلقون تلقائيًا. كل هجوم توقفه يدفع ◇ عملة مشفرة، تشتري بها مزيدًا من العملاء والترقيات."</string>
+    <string name="t_94dc88d3" formatted="false">"كل مستوى من البرنامج الثابت يضيف +{0}% ضررًا لكل عميل و+{1}% من عملة ◇ المشفرة المكتسبة في الجولات (حتى الضعف)، في كل مباراة مستقبلية. لا يزول أبدًا."</string>
+    <string name="t_95051192" formatted="false">"غير معيّن"</string>
+    <string name="t_952dc0bb" formatted="false">"لوحة الصدارة"</string>
+    <string name="t_959b6bbb" formatted="false">"أقصى {0} منشور"</string>
+    <string name="t_9655a074" formatted="false">"تيارات بيانات بطيئة خلف القائمة واللوحة."</string>
+    <string name="t_97e1363f" formatted="false">"تخفيض ضرر ثابت كبير على كل إصابة."</string>
+    <string name="t_98189a64" formatted="false">"لا شيء. هذه معركة مباشرة."</string>
+    <string name="t_9873614b" formatted="false">"أطول مدى كشف في الفريق، و+45% ضرر ضد الهجمات السريعة. معدل إطلاق بطيء — إنه راصد يصادف أنه يطلق، والأفضل وضعه حيث يغطي جزءًا كبيرًا من المسار."</string>
+    <string name="t_98a9c7f2" formatted="false">"€ الميزانية"</string>
+    <string name="t_98b63553" formatted="false">"لا حاجة لحساب أو تسجيل دخول للعب"</string>
+    <string name="t_98cc567c" formatted="false">"أفضل ضرر"</string>
+    <string name="t_98f4abc6" formatted="false">"◇ {0} · يُفتح عند الموجة {1} في {2}"</string>
+    <string name="t_98fbe3ee" formatted="false">"قفل متعدد"</string>
+    <string name="t_991bd4c3" formatted="false">"CRYPTOGRAPHER واحد يقلب المعركة كلها."</string>
+    <string name="t_991c8ba8" formatted="false">"إجمالي ترقيات العملاء"</string>
+    <string name="t_996095bd" formatted="false">"قد تكون بعض الأسماء والمصطلحات والعلامات التجارية المشار إليها في هذه اللعبة ملكًا لأصحابها المعنيين. تُستخدم هذه الإشارات فقط للتعريف والتعليق والسياق التعليمي والتمثيل الخيالي داخل اللعبة.\n\nهذه اللعبة مطوَّرة بشكل مستقل وليست تابعة لـ Red Hat أو Microsoft أو أي مالك علامة تجارية آخر، ولا ممولة أو معتمدة أو موافقًا عليها من قِبلهم.\n\nتظل كل العلامات التجارية وأسماء المنتجات وأسماء الشركات والشعارات الخاصة بالأطراف الثالثة ملكًا لأصحابها المعنيين."</string>
+    <string name="t_99ab6437" formatted="false">"إظهار جولة القائمة الرئيسية وشرح البرنامج الثابت مجددًا، في المرة التالية التي تفتح فيها تلك الشاشات."</string>
+    <string name="t_99cfdd6c" formatted="false">"معاينة {0}"</string>
+    <string name="t_99d175d2" formatted="false">"أبقِ TARPIT على المسار لامتصاص التسارع."</string>
+    <string name="t_99f43c9c" formatted="false">"العملة المشفرة غير كافية"</string>
+    <string name="t_9a8ee779" formatted="false">"يطلق بسرعة أي شيء في الفريق ويستهدف الزعيم أولًا دائمًا. ضرر مضاعف لـ [!!!] BREACH. أربعة كحد أقصى."</string>
+    <string name="t_9a9bcdd3" formatted="false">"فتحة"</string>
+    <string name="t_9aa5d01a" formatted="false">"لا إعلان بيني بعد جولة فاشلة أبدًا، بالإضافة إلى €5,000. إعلانات الإحياء اختيارية ومنفصلة — انظر حزمة الإحياء."</string>
+    <string name="t_9adba547" formatted="false">"أفضل قيمة مقابل كل يورو."</string>
+    <string name="t_9ae9f14f" formatted="false">"انجراف بطيء لنقاط بعيدة."</string>
+    <string name="t_9aed28a1" formatted="false">"تم بلوغ حد النشر"</string>
+    <string name="t_9b08be38" formatted="false">"جارٍ سؤال ألعاب Google Play…"</string>
+    <string name="t_9b1d7455" formatted="false">"الموجة {0}"</string>
+    <string name="t_9b4c97a7" formatted="false">"سُمّي على اسم الحصان الخشبي: برنامج يبدو كشيء تريده، ويحمل شيئًا لا تريده إطلاقًا."</string>
+    <string name="t_9b557f99" formatted="false">"أفضل نتيجة لك: الموجة {0}"</string>
+    <string name="t_9b989bfb" formatted="false">"الأفضل"</string>
+    <string name="t_9bcd1b03" formatted="false">"كل الخلفيات الحية السبع، بالإضافة إلى €2,000."</string>
+    <string name="t_9bd1faf7" formatted="false">"تتولى Google المبالغ المستردة وطرق الدفع والإيصالات، لا هذه اللعبة."</string>
+    <string name="t_9c2ade2b" formatted="false">"مستوى {0}  ×{1}"</string>
+    <string name="t_9c6be09c" formatted="false">"المعدِّلات"</string>
+    <string name="t_9d0c4ff1" formatted="false">"&gt; الموجة {0} نشطة — {1} تهديد متبقٍ"</string>
+    <string name="t_9d29de23" formatted="false">"أفضل موجة لكل مستوى"</string>
+    <string name="t_9d2c3eea" formatted="false">"مصطلحات الشبكة"</string>
+    <string name="t_9d36e329" formatted="false">"محتجز كفدية"</string>
+    <string name="t_9d5ca8b9" formatted="false">"هل تريد الإحياء؟"</string>
+    <string name="t_9df821c5" formatted="false">"مرحبًا بك في CyOps TD"</string>
+    <string name="t_9e30871d" formatted="false">"جهاز واحد مخترق يتلقى الأوامر من شخص آخر. بوت واحد غير مؤذٍ. أما شبكة بوتات من الآلاف فليست كذلك — ولهذا تصل دائمًا في مجموعات."</string>
+    <string name="t_9e77c8cf" formatted="false">"يضيف سرعة محاكاة خامسة لتطهير الموجات بسرعة."</string>
+    <string name="t_9ef0ebe5" formatted="false">"التجزئة"</string>
+    <string name="t_9f26f678" formatted="false">"  →"</string>
+    <string name="t_9f70f631" formatted="false">"معدل الإطلاق"</string>
+    <string name="t_9fb6c271" formatted="false">"يشوّش العملاء القريبين لفترة وجيزة، فيبطئ معدل إطلاقهم."</string>
+    <string name="t_a12f7814" formatted="false">"+{0} (زعيم)"</string>
+    <string name="t_a15faa1f" formatted="false">"الوضع"</string>
+    <string name="t_a19abbd4" formatted="false">"كل عميل سيبراني، وما يفعله، والموجة التي تفتحه."</string>
+    <string name="t_a21dbf00" formatted="false">"تم إيداع ميزانية €{0}"</string>
+    <string name="t_a24181ff" formatted="false">"ما الذي يهاجم"</string>
+    <string name="t_a2517472" formatted="false">"المتجر غير متاح"</string>
+    <string name="t_a29c69ba" formatted="false">"خروج"</string>
+    <string name="t_a2b3bef5" formatted="false">"ابلغ الموجة {0}"</string>
+    <string name="t_a2dd8300" formatted="false">"تحدٍّ قاسٍ. مساران يرتدّان، ثم دائرة قبل الرف."</string>
+    <string name="t_a2e2f704" formatted="false">"كسر الشيفرة"</string>
+    <string name="t_a32353a8" formatted="false">"ميزانية €9,000"</string>
+    <string name="t_a36e1b6d" formatted="false">"ليس في هذا الإصدار"</string>
+    <string name="t_a3ebab03" formatted="false">"ثغرة مجهولة غير مُرقَّعة"</string>
+    <string name="t_a4a2cd90" formatted="false">"&gt;&gt; رقم قياسي جديد &lt;&lt;"</string>
+    <string name="t_a4fd7522" formatted="false">" · أقصى {0}"</string>
+    <string name="t_a5460e4e" formatted="false">"ضربات فردية بطيئة وثقيلة مع +80% ضرر ضد النخبة والزعماء. ضعيف ضد الأسراب. يتيح اختيار الاستهداف، فتصوّبه نحو ما تريد القضاء عليه فعلًا."</string>
+    <string name="t_a596b409" formatted="false">"سرعة 5× موجودة في المتجر"</string>
+    <string name="t_a599c90a" formatted="false">"كل عميل داخل مداه، بما فيه هو نفسه، محصّن ضد تشويش أي زعيم. طلقات سريعة وثقيلة، مع {0}× ضرر لـ WHITE EYE وBLACK EYE. بمدى TARPIT. لا يُنشر منه أكثر من اثنين."</string>
+    <string name="t_a5b1ffba" formatted="false">"وصول غير مقيّد إلى النظام"</string>
+    <string name="t_a5da8eea" formatted="false">"عالق عند موجة؟ أودِع الميزانية، وثبّت البرنامج الثابت، وستضرب اللوحة نفسها بقوة أكبر في الجولة التالية."</string>
+    <string name="t_a6291e29" formatted="false">"ميزانية €5,000"</string>
+    <string name="t_a62c1133" formatted="false">"لا قدرة اختراق حقيقية — لا شيء هنا يلمس شبكة حقيقية"</string>
+    <string name="t_a66c22f9" formatted="false">"غيّر اللغة من الإعدادات في القائمة الرئيسية: التبديل يعيد تشغيل اللعبة، ما سينهي هذه الجولة."</string>
+    <string name="t_a6cd2e07" formatted="false">"{0}-{1} حرفًا. A-Z و0-9 والشرطة والشرطة السفلية."</string>
+    <string name="t_a6ee02f4" formatted="false">"إلغاء"</string>
+    <string name="t_a727a483" formatted="false">"يتضمن"</string>
+    <string name="t_a7c5a24a" formatted="false">"جارٍ الحفظ في Music/CyOps TD…"</string>
+    <string name="t_a7c97dfd" formatted="false">"إعادة ضبط"</string>
+    <string name="t_a7e02911" formatted="false">"على النواة"</string>
+    <string name="t_a7e24bd6" formatted="false">"الاستهداف"</string>
+    <string name="t_a8031bce" formatted="false">"فتح صفحة المتجر"</string>
+    <string name="t_a8191219" formatted="false">"SPOOFER يُلقي نسخًا خادعة من نفسه تمتص النيران. ANALYST وROOT ADMIN يريان من خلالها."</string>
+    <string name="t_a8768bb2" formatted="false">"أشكال العملاء"</string>
+    <string name="t_a8935036" formatted="false">"العملة المشفرة المكتسبة"</string>
+    <string name="t_a92b98a8" formatted="false">"العملة المشفرة ◇"</string>
+    <string name="t_a9a8f56c" formatted="false">"المرئيات"</string>
+    <string name="t_a9ad0741" formatted="false">"€ هذه الجولة"</string>
+    <string name="t_a9cf50ec" formatted="false">"تتبع حركة المرور الحقيقية مسارًا عبر المحوّلات والموجّهات للوصول إلى وجهتها. المساران المتعرّجان هنا هما ذلك المسار، يرتدّان لترى كل قفزة دفعة واحدة."</string>
+    <string name="t_a9d9e481" formatted="false">"CORE-SERVER هو ما تدافع عنه، وقراءة السلامة في الشريط العلوي هي الحياة الوحيدة التي تملكها. كل حزمة معادية تصل إلى الرف تقضم منه. عند 0 يُخترق الخادم وتنتهي الجولة — لذا فالمهمة كلها ألّا يمر شيء."</string>
+    <string name="t_aab511c4" formatted="false">"ROOTKIT يختفي لثانيتين من كل 6 ولا شيء يستطيع استهدافه. التناثر والسلاسل ما زالت تصل إليه."</string>
+    <string name="t_aac1d4da" formatted="false">"غير مرتبط"</string>
+    <string name="t_aadac61a" formatted="false">"تطرح التطبيقات أسئلة على قواعد البيانات بلغة SQL. إذا لُصق إدخال المستخدم مباشرة في ذلك السؤال، يستطيع المهاجم كتابة نهايته الخاصة له — تفريغ جدول مستخدمين، أو تجاوز تسجيل دخول، أو حذف كل شيء. الإصلاح قديم ومعروف جيدًا (الاستعلامات ذات المعاملات)، وهذا ما يجعل من المحبط أنه لا يزال الهجوم الذي ستقابله أكثر من غيره."</string>
+    <string name="t_ab62d63d" formatted="false">"يراقب نظام كشف التسلل نشاط الشبكة أو المضيف بحثًا عن أنماط تشبه الهجوم ويُطلق تنبيهًا. إنه يبلّغ؛ لا يحجب. لا يزال على شخص ما، أو شيء آخر، التصرف بناءً على ما يجده."</string>
+    <string name="t_aca3253a" formatted="false">"في الساحة · انقر زعيمًا لرؤيته"</string>
+    <string name="t_ad03a515" formatted="false">"تقسيم الشبكة إلى مناطق"</string>
+    <string name="t_ad26a7c7" formatted="false">"غير معروف"</string>
+    <string name="t_ae00f867" formatted="false">"التحليلات"</string>
+    <string name="t_ae59bf94" formatted="false">"بيع  ◇ {0}"</string>
+    <string name="t_b0147d1e" formatted="false">"اعتمد على عملاء غير FIREWALL في هذه الموجة."</string>
+    <string name="t_b0af39a6" formatted="false">"تغيير"</string>
+    <string name="t_b0d341a2" formatted="false">"قبل أكثر من شهر"</string>
+    <string name="t_b0f472d0" formatted="false">"الصعوبة"</string>
+    <string name="t_b16e2042" formatted="false">"سماء نجوم بنفسجية خلف الرف."</string>
+    <string name="t_b2029176" formatted="false">"ابدأ الموجة التالية تلقائيًا بعد توقف قصير"</string>
+    <string name="t_b253fa2b" formatted="false">"يحمي التشفير البيانات أثناء النقل وأثناء التخزين، بحيث لا يكون اعتراضها مساويًا لقراءتها. والمهاجمون يستخدمونه أيضًا — فكثير من حركة المرور المعادية مشفّرة — ولهذا يفحص المدافعون عند نقاط طرفية يتحكمون بها بدلًا من محاولة كسر التشفير نفسه."</string>
+    <string name="t_b28b05f8" formatted="false">"نظام منع التسلل"</string>
+    <string name="t_b2dbc630" formatted="false">"الجدار الناري نشط"</string>
+    <string name="t_b2ef7c39" formatted="false">"العملاء السيبرانيون: دفاع الأبراج"</string>
+    <string name="t_b32b1a1d" formatted="false">"الراحة"</string>
+    <string name="t_b3735fe8" formatted="false">"شبكية دوائر تتنفس مع الموجة."</string>
+    <string name="t_b3b53e34" formatted="false">"المشتريات مرتبطة بحساب Google الخاص بك، لا بهذا الجهاز. إعادة التثبيت أو تغيير الهاتف لا يُفقدها."</string>
+    <string name="t_b3c34c67" formatted="false">"الآن"</string>
+    <string name="t_b40b6d1c" formatted="false">"«الفريق الأحمر» يهاجم نظامًا بإذن، ليجد ما سيجده المهاجم أولًا. «القبعة الحمراء» عامية غير رسمية وليست مسمى وظيفيًا أو شهادة، ويختلف معناها بين مستخدميها؛ نصف الفريق الأحمر هو الجزء المعياري."</string>
+    <string name="t_b5ca7a98" formatted="false">"أفضل موجة لكل لاعب حول العالم، مدرجة حسب الاسم الرمزي. سجّل واحدًا على اليمين، وإلا تعرض Google اسمك في ألعاب Play."</string>
+    <string name="t_b649891d" formatted="false">"متوقف مؤقتًا"</string>
+    <string name="t_b683e66d" formatted="false">"{0} مقفل: {1} لفتحه."</string>
+    <string name="t_b6bcb68c" formatted="false">"ضرر ثقيل لهدف واحد، متطابق في كل طلقة. يتجاهل كل الدروع."</string>
+    <string name="t_b7ba0ba1" formatted="false">"REGENERATION يصلحه بعد مرور {0} ثانية دون إصابة. أبقه تحت النار طوال الطريق."</string>
+    <string name="t_b7c4c2a3" formatted="false">"[{0}] {1} (مقفل): {2}"</string>
+    <string name="t_b7cf2aab" formatted="false">"لا يوجد تطبيق يمكنه فتح GOOGLE PLAY"</string>
+    <string name="t_b8201e22" formatted="false">"التالي: الموجة {0} · زعيم"</string>
+    <string name="t_b82dfd13" formatted="false">"ينقلك إلى"</string>
+    <string name="t_b835d746" formatted="false">"الخطوة 5 — انشر اثنين من TARPIT"</string>
+    <string name="t_b8cbfe08" formatted="false">"الأبعد عن CORE-SERVER"</string>
+    <string name="t_b8f9cbc8" formatted="false">"ضرر {0}  معدل {1}/ث"</string>
+    <string name="t_b8ffa95c" formatted="false">"حي: شفق"</string>
+    <string name="t_b9918647" formatted="false">"مدفوع ليكون هنا. بلا حيل، بلا تشويش — عشرون بالمئة أكثر منه من أي شيء آخر على اللوحة."</string>
+    <string name="t_b9a3ada7" formatted="false">"EXFIL سريع. إذا وصل إلى النواة يسرق نصف عملتك المشفرة بدلًا من السلامة. أنفق أولًا، أو أوقفه."</string>
+    <string name="t_b9c6b239" formatted="false">"تُرسم تحت المسارات، وخلف كل قائمة."</string>
+    <string name="t_badb0f4a" formatted="false">"يتسارع دوريًا نحو الخادم."</string>
+    <string name="t_bae2cee7" formatted="false">"نعم — شاهد الإعلان"</string>
+    <string name="t_bb0a2d46" formatted="false">"اختيار"</string>
+    <string name="t_bb621985" formatted="false">"مُحصَّن"</string>
+    <string name="t_bb93827c" formatted="false">"فشل الإحياء — انتهت الجولة بالفعل"</string>
+    <string name="t_bc855067" formatted="false">"تم رفض الوصول"</string>
+    <string name="t_bcdf64b3" formatted="false">"حقن SQL"</string>
+    <string name="t_bceaf8ce" formatted="false">"!!! هجوم سيبراني قادم !!!"</string>
+    <string name="t_bd0c6acd" formatted="false">"التالي € {0} · +{1}% {2} لكل مستوى"</string>
+    <string name="t_bd1b1fc9" formatted="false">"إيقاف"</string>
+    <string name="t_bd8215e6" formatted="false">"نعم، أطلعني"</string>
+    <string name="t_bd84c20a" formatted="false">"تم تأمين الموجة {0}"</string>
+    <string name="t_be1fc25b" formatted="false">"ضرر شامل موثوق، ولا يمكن تشويشه."</string>
+    <string name="t_beb11f45" formatted="false">"معدِّل الزعيم"</string>
+    <string name="t_beb3cdc3" formatted="false">"حقله يُبطئ الزعماء ضعف ما يُبطئ التهديدات الأخرى."</string>
+    <string name="t_bec37550" formatted="false">"إصلاح فوري"</string>
+    <string name="t_bed8ffbb" formatted="false">"الاستعادة تسأل Play مجددًا عما يملكه حساب Google هذا. من الآمن الضغط عليها في أي وقت ولا تفرض عليك أي رسوم أبدًا."</string>
+    <string name="t_bf09fcca" formatted="false">"لا يحتوي هذا الإصدار على مشروع ألعاب Play مُعدّ، لذا يبقى التقدم على هذا الجهاز. النسخ الاحتياطي الخاص بـ Android لا يزال يستعيده عند إعادة التثبيت على هاتف مسجّل بحساب Google نفسه."</string>
+    <string name="t_bf0c2eaa" formatted="false">"يتكاثر"</string>
+    <string name="t_bf7cfb98" formatted="false">"لا يحتوي هذا الإصدار على إعلانات لإعدادها."</string>
+    <string name="t_c1386132" formatted="false">"◇ العملة المشفرة"</string>
+    <string name="t_c164d2e8" formatted="false">"يطلق بسرعة القبعات ويضرب أقوى، مع {0}× ضرر لزعماء DUCK-USB SYN-STORM وGRADIENT. يحتفظ بأوضاع استهدافه. لا يُنشر منه أكثر من اثنين. يُرسم كصورة هولوغرامية لا تغيّرها أشكال العملاء."</string>
+    <string name="t_c19b9c99" formatted="false">"سلامة CORE-SERVER 0 · تم إنهاء الاتصال"</string>
+    <string name="t_c1b7bcc5" formatted="false">"لا يعرض هذا الإصدار أي إعلانات."</string>
+    <string name="t_c2658f4d" formatted="false">"ضرر ساحق لهدف واحد. يتجاهل كل الدروع."</string>
+    <string name="t_c2c8c2f8" formatted="false">"إظهار مدى العميل"</string>
+    <string name="t_c2d127eb" formatted="false">"تخطٍّ ×"</string>
+    <string name="t_c31db047" formatted="false">"حزمة الإحياء — بلا إعلان."</string>
+    <string name="t_c39850a1" formatted="false">"الخطوة 3 — انشر اثنين من FIREWALL"</string>
+    <string name="t_c3e1a996" formatted="false">"◇ العملة المشفرة و€ الميزانية موارد خيالية داخل اللعبة. ليس لها قيمة نقدية، ولا يمكن استبدالها بأي شيء خارج اللعبة، ولا يمكنها مغادرة الجهاز."</string>
+    <string name="t_c405af57" formatted="false">"العب يبدأ جولة على المستوى ووضع الجولة المختارين على اليسار. عند وجود جولة محفوظة، يكملها متابعة ويبدأ جولة جديدة من الصفر."</string>
+    <string name="t_c40bc4a4" formatted="false">"يراقب IDS نشاط الشبكة بحثًا عن سلوك مريب وتهديدات أمنية، ثم يُطلق تنبيهًا. إنه يراقب؛ لا يحجب."</string>
+    <string name="t_c4a14a23" formatted="false">"اختر FIREWALL. إنه رخيص وموثوق ولا يمكن تشويشه."</string>
+    <string name="t_c4b7782d" formatted="false">"محلل الأمن وظيفة حقيقية. الإنسان في الحلقة يأخذ ما أشارت إليه الأدوات الآلية، ويحدد ما حدث فعلًا، ويقرر ما يجب فعله. أبطأ من الآلة، وأفضل بكثير في الحالات التي لا تطابق نمطًا معروفًا."</string>
+    <string name="t_c4d0dc6f" formatted="false">"تُشير أدوات تعلم الآلة إلى أنماط غير عادية عبر إشارات أكثر بكثير مما يستطيع شخص قراءته، وتُستخدم لتضييق ما يستحق الانتباه. إنها تساعد المحللين لا تحل محلهم، وتُنتج إنذارات كاذبة — الإشارة خيط وليست حكمًا."</string>
+    <string name="t_c51041e3" formatted="false">"  ·"</string>
+    <string name="t_c55cc938" formatted="false">"جولة جديدة"</string>
+    <string name="t_c55e934e" formatted="false">"مرّر للمزيد"</string>
+    <string name="t_c570c6cd" formatted="false">"أعمدة شيفرة متساقطة داخل الرف."</string>
+    <string name="t_c5cb18f9" formatted="false">"كل المستويات"</string>
+    <string name="t_c81c4fa0" formatted="false">"مستوى واحد"</string>
+    <string name="t_c8a9aae9" formatted="false">"ثلاثة مسارات تتضافر مرتين: كل مسار يغيّر جانبه."</string>
+    <string name="t_c9301368" formatted="false">"النواة: REACTOR"</string>
+    <string name="t_c9402c75" formatted="false">"لا"</string>
+    <string name="t_c944e5aa" formatted="false">"التدابير المضادة"</string>
+    <string name="t_c9a2aee9" formatted="false">"افتح هذا العميل بالوصول إلى الموجة {0} في أي مستوى."</string>
+    <string name="t_ca02a8f8" formatted="false">"كل عميل يرتدي لون ما يفعله."</string>
+    <string name="t_ca5ea88d" formatted="false">"أفضل قيمة"</string>
+    <string name="t_cabf47fa" formatted="false">"أقصى +{0}"</string>
+    <string name="t_cb02b3da" formatted="false">"دورة ألوان بطيئة عبر الفريق كله."</string>
+    <string name="t_cb1fd3f1" formatted="false">"IPS هو IDS يملك صلاحية التصرف. عندما يتعرف على هجوم يُسقط حركة المرور بنفسه بدلًا من إخبار أحد فقط."</string>
+    <string name="t_cb4ff573" formatted="false">"الإعلانات والمشتريات"</string>
+    <string name="t_cbd3b516" formatted="false">"بلا إعلانات، وشكل العميل SPECTRUM، وخلفية DRIFT، و€2,000."</string>
+    <string name="t_cbd47695" formatted="false">"حجب الحمولة"</string>
+    <string name="t_cbf7d422" formatted="false">"SYN-STORM ينقسم إلى اثنين عند نصف الصحة، ويسلك النصف الثاني مسارًا آخر. غطِّ كل المسارات."</string>
+    <string name="t_cc52e024" formatted="false">"التالي: الموجة {0} — زعيم · انقر الزعيم التالي للإحاطة"</string>
+    <string name="t_cc5435ac" formatted="false">"ما القادم عبر المسارات"</string>
+    <string name="t_cc5c44e8" formatted="false">"التركيز: الوحدات الصغيرة والنخبة فقط"</string>
+    <string name="t_cc6791f1" formatted="false">"يقاوم عملاء FIREWALL."</string>
+    <string name="t_cc7fe141" formatted="false">"يراقب الأدوات الهجومية. يشوّش عملاء RED HAT القريبين منه لفترة وجيزة، كل بضع ثوانٍ."</string>
+    <string name="t_cc9e044b" formatted="false">"حي: مدار"</string>
+    <string name="t_ccb963f2" formatted="false">"حزمة"</string>
+    <string name="t_ccbd0815" formatted="false">"الرف الافتراضي."</string>
+    <string name="t_ccbefbf5" formatted="false">"مدى المسح {0}"</string>
+    <string name="t_ccd3b8ff" formatted="false">"خيارات الخصوصية غير متاحة حاليًا."</string>
+    <string name="t_cce0919d" formatted="false">"مملوك"</string>
+    <string name="t_cd27794d" formatted="false">"الاسم الرمزي محلي على هذا الجهاز وليس حساب Google. يُسمّي جولاتك في لوحة الصدارة."</string>
+    <string name="t_cd7ef0df" formatted="false">"إشعار العلامات التجارية والأطراف الثالثة"</string>
+    <string name="t_cd8fc1d8" formatted="false">"تتوفر مشتريات اختيارية داخل التطبيق عبر Google Play. لا شيء في اللعبة محجوب خلفها."</string>
+    <string name="t_cde6047e" formatted="false">"نظام كشف التسلل"</string>
+    <string name="t_ce2cde0d" formatted="false">"الخطوة 1 — افتح الفريق"</string>
+    <string name="t_ce56b8c8" formatted="false">"الإدارة على GOOGLE PLAY"</string>
+    <string name="t_ce8b48c9" formatted="false">"أسلوب اللعب"</string>
+    <string name="t_ceb6dbab" formatted="false">"موسيقى CyOps TD التصويرية"</string>
+    <string name="t_cec6cd66" formatted="false">"لا توجد جولات مسجلة بعد. أنهِ جولة وستُدرج هنا، مرتبة حسب الموجة التي بلغتها."</string>
+    <string name="t_cee3b8c9" formatted="false">"تخطٍّ"</string>
+    <string name="t_cfd886ad" formatted="false">"مساران يمشّطان نصفيهما. الأبراج في الفجوة الوسطى تصل إلى كليهما."</string>
+    <string name="t_d0112898" formatted="false">"طُعم"</string>
+    <string name="t_d07db54c" formatted="false">"ROOT / ADMIN"</string>
+    <string name="t_d08f5138" formatted="false">"مساران متعرّجان يرتدّان أمام المدافع نفسها."</string>
+    <string name="t_d10c0c39" formatted="false">"معدل إطلاق مرتفع جدًا وكل طلقة تتناثر، لذا فهو جواب السرب لا الهدف الثقيل المنفرد. يكلّف أكثر من IDS ويصل أقل."</string>
+    <string name="t_d11351ac" formatted="false">"تشغيل"</string>
+    <string name="t_d173b657" formatted="false">"الحساب الذي يستطيع فعل أي شيء على النظام. المهاجمون يريدونه؛ المدافعون يحرسونه بعناية. معظم عمل الأمن يتعلق بتقييد من يحصل عليه ولكم من الوقت."</string>
+    <string name="t_d19c7c8e" formatted="false">"◇ {0} · يُفتح عند الموجة {1}"</string>
+    <string name="t_d22f26dd" formatted="false">"يشتبك مع ما يصل إلى 3 تهديدات منفصلة في كل رشقة."</string>
+    <string name="t_d2ee5fd2" formatted="false">"يُحفظ التقدم تلقائيًا"</string>
+    <string name="t_d31b24bf" formatted="false">"{0} · {1}  ·  الأفضل {2}"</string>
+    <string name="t_d35bc038" formatted="false">"{0} — {1} لا يُحدث ضررًا؛ يكسب الوقت لعملائك الآخرين."</string>
+    <string name="t_d415f020" formatted="false">"ثغرة اليوم صفر هي ثغرة لا يتوفر لها إصلاح بعد — لم يكن لدى المدافع أي يوم لترقيعها. يبحث باحثو الثغرات عنها كي يُبلَّغ عنها وتُصلح قبل أن يجدها غيرهم أولًا. «صائد اليوم صفر» اختصار غير رسمي، وليس شهادة أو مسمى وظيفيًا رسميًا."</string>
+    <string name="t_d477fdfb" formatted="false">"البرنامج الثابت مثبّت بالكامل"</string>
+    <string name="t_d488d098" formatted="false">"الجولة الإرشادية تحتاج TARPIT بعد ذلك"</string>
+    <string name="t_d48f1170" formatted="false">"▼  المزيد بالأسفل"</string>
+    <string name="t_d4bb26ac" formatted="false">"حزمة أشكال النواة"</string>
+    <string name="t_d5acb32b" formatted="false">"اهتزاز عند تنبيهات الزعماء وإصابات الخادم وانتهاء اللعبة"</string>
+    <string name="t_d5b86d2a" formatted="false">"مركز العمليات الأمنية"</string>
+    <string name="t_d5d0b693" formatted="false">"متابعة"</string>
+    <string name="t_d62907f6" formatted="false">"البرنامج الثابت المثبّت"</string>
+    <string name="t_d63b9487" formatted="false">"يتعذر الوصول"</string>
+    <string name="t_d736d92d" formatted="false">"موافق"</string>
+    <string name="t_d8386755" formatted="false">"فوترة GOOGLE PLAY"</string>
+    <string name="t_d84b41e9" formatted="false">"الضرر المستمر يفوز. IPS أو FIREWALL مُرقّى."</string>
+    <string name="t_d8705eb7" formatted="false">"تتقدم الهجمات السيبرانية عبر مسارات الشبكة نحو CORE-SERVER. أنت تنشر عملاء سيبرانيين بجانب المسارات؛ فيكتشفون ويدمّرون ما يمر. كل هجوم توقفه يدفع ◇ عملة مشفرة، تشتري بها مزيدًا من العملاء والترقيات. كل موجة خامسة زعيم. لا توجد موجة أخيرة — السؤال الوحيد هو إلى أي مدى ستصل."</string>
+    <string name="t_d889d3ab" formatted="false">"+1 و+10 و+100 تشتري ذلك العدد من المستويات. تثبيت الأقصى ينفق كل ما تستطيع تحمّله. كل مستوى يكلّف أكثر قليلًا."</string>
+    <string name="t_d8bcdc1d" formatted="false">"إعادة البدء"</string>
+    <string name="t_d8fec6d4" formatted="false">"إجمالي العملاء المنشورين"</string>
+    <string name="t_d9074af5" formatted="false">"يخلط التشفير البيانات بحيث لا يقرؤها إلا من يملك المفتاح الصحيح. إنه يحمي حركة المرور المشروعة — ويخفي بالقدر نفسه حمولة المهاجم عن الفحص."</string>
+    <string name="t_d92ad54a" formatted="false">"لا يحتوي هذا الإصدار على فوترة Google Play مُعدّة، أو أن هذا الجهاز لا يحتوي على متجر Play. لا يمكن شراء أي شيء، ولا شيء يكلّف مالًا مطلوب للعب."</string>
+    <string name="t_d9694eb9" formatted="false">"الثغرة نفسها، بلا استجابة. لا يُرجع التطبيق أي خطأ ولا أي بيانات، لذا يطرح المهاجم أسئلة نعم أو لا ويراقب ما يتغيّر — التوقيت، طول الصفحة، رموز الحالة — ليقرأ قاعدة البيانات بتًا بتًا. بطيء وصبور، وأصعب بكثير في اكتشافه في السجل."</string>
+    <string name="t_d9b49353" formatted="false">"إعادة المحاولة"</string>
+    <string name="t_d9b88563" formatted="false">"وحدة حركة مرور الشبكة"</string>
+    <string name="t_d9c57847" formatted="false">"المحيط جاهز"</string>
+    <string name="t_da10b268" formatted="false">"غير مملوك"</string>
+    <string name="t_da169a1a" formatted="false">"عالمي"</string>
+    <string name="t_da3ae5ed" formatted="false">"لا يُحدث ضررًا ولا يستهدف شيئًا. يصلح نقطة واحدة من سلامة CORE-SERVER كل 30 ثانية أثناء سير الموجة (ليس أبدًا أثناء الاستراحة أو عند الإيقاف المؤقت). يُنشر على CORE-SERVER نفسه، الذي يحتوي على فتحتين له، ولا مكان غيره. المستويات تقصّر المؤقت. لا يُنشر منه أكثر من اثنين."</string>
+    <string name="t_dad4b11e" formatted="false">"كنس هجومي"</string>
+    <string name="t_db696c4d" formatted="false">"ضخم ومدرّع بكثافة، لكنه بطيء. أحضر شيئًا يتجاهل الدرع."</string>
+    <string name="t_db971746" formatted="false">"يراقب الأدوات الدفاعية. يشوّش عملاء BLUE HAT القريبين منه لفترة وجيزة، كل بضع ثوانٍ."</string>
+    <string name="t_dba0a883" formatted="false">"شبكة من الأجهزة المختطفة"</string>
+    <string name="t_dbc1a374" formatted="false">"لم يكتمل الإعلان — لم يُنفق شيء"</string>
+    <string name="t_dc09f8b7" formatted="false">"تشويش — يستطيع الزعيم تعطيل عميل، فيُنصّف معدل إطلاقه طوال مدته. {0} مصمم كي لا يكترث."</string>
+    <string name="t_dc37fa05" formatted="false">"أشرطة عريضة من ضوء بارد تتحرك خلف كل شيء."</string>
+    <string name="t_dc62badb" formatted="false">"اللقب"</string>
+    <string name="t_dce01a82" formatted="false">"أدخل الاسم الرمزي"</string>
+    <string name="t_dd220c90" formatted="false">"الإعلانات"</string>
+    <string name="t_dd4083b5" formatted="false">"لم يُشترَ شيء. كل ما سبق يمكن كسبه أيضًا أو ببساطة اللعب بدونه."</string>
+    <string name="t_dd55f56b" formatted="false">"مساران يتضافران ثلاث مرات قبل الرف، كشريط من الحمض النووي."</string>
+    <string name="t_ddb5514a" formatted="false">"فتح في ألعاب GOOGLE PLAY"</string>
+    <string name="t_ddcb2958" formatted="false">"سُمّي على اسم الأول وهو خيال علمي بحت: كل إصابة تتسلسل إلى تهديدين قريبين بضرر 55%. قوي ضد الموجات المتكتلة، ومُهدَر على هدف وحيد. يتيح اختيار الاستهداف."</string>
+    <string name="t_ddd374d9" formatted="false">"ملخص سريع للهجمات التي ستواجهها، والزعماء، وما يفعله عملاؤك حيالها. يستغرق نحو عشرين ثانية."</string>
+    <string name="t_dee83e52" formatted="false">"شفافية اللوحة داخل اللعبة"</string>
+    <string name="t_e00d9a42" formatted="false">"ضعه على فتحة CORE-SERVER"</string>
+    <string name="t_e01007ce" formatted="false">"قيمة أفضل مقابل كل يورو من الحزمة الصغيرة."</string>
+    <string name="t_e07706fa" formatted="false">"هذا الجهاز حتى الربط"</string>
+    <string name="t_e0a2aaa4" formatted="false">"ربط حساب GOOGLE"</string>
+    <string name="t_e12d998f" formatted="false">"الحزمة"</string>
+    <string name="t_e13093ea" formatted="false">"الضرر"</string>
+    <string name="t_e1892d25" formatted="false">"البرنامج الثابت للنواة"</string>
+    <string name="t_e1df4ef7" formatted="false">"الزعماء"</string>
+    <string name="t_e3407723" formatted="false">"نعم"</string>
+    <string name="t_e3a7e50c" formatted="false">"احتفظ بحفظي"</string>
+    <string name="t_e3c4a9cc" formatted="false">"{0} يشوّش عملاء {1} القريبين منه. ضعهم في الخلف، عند حافة مداهم."</string>
+    <string name="t_e4554374" formatted="false">"إغلاق"</string>
+    <string name="t_e55f9c78" formatted="false">"ما لا تفعله هذه اللعبة"</string>
+    <string name="t_e587f42b" formatted="false">"افتراضي النظام (لغة الهاتف)"</string>
+    <string name="t_e5e7e535" formatted="false">"انقسام SYN-STORM"</string>
+    <string name="t_e6694d9c" formatted="false">"يصلح نقطة واحدة من سلامة CORE-SERVER كل 30 ثانية من موجة جارية، من إحدى الفتحتين على CORE-SERVER. أسرع مع المستويات. اثنان كحد أقصى."</string>
+    <string name="t_e807eff2" formatted="false">"يغلق أقرب مسار في المدى بجدار؛ على التهديدات هدمه. يضرب كل زعيم بقوة كبيرة. ثلاثة كحد أقصى."</string>
+    <string name="t_e8757749" formatted="false">"طهّر الموجة {0} في {1}"</string>
+    <string name="t_e8987cec" formatted="false">"إعادة ضبط التقدم"</string>
+    <string name="t_e94c961d" formatted="false">"الإحصائيات"</string>
+    <string name="t_e979d28d" formatted="false">"المعدل"</string>
+    <string name="t_e99d5d17" formatted="false">"حزم € تُنفق ولا تُملك: تُضاف مرة واحدة ولا تعيد الاستعادة منحها."</string>
+    <string name="t_e9caa97b" formatted="false">"لا توجد عمليات نشر مسجلة بعد. العب جولة لملء هذا."</string>
+    <string name="t_ea16b407" formatted="false">"مسارات ذهبية على نيلي عميق."</string>
+    <string name="t_ea31efb2" formatted="false">"طهّر الموجة {0}"</string>
+    <string name="t_eab5f205" formatted="false">"تغيير الاسم الرمزي"</string>
+    <string name="t_eaf7396d" formatted="false">"تعذّر الوصول إلى GOOGLE — الحفظ باقٍ على الجهاز"</string>
+    <string name="t_eb2e832a" formatted="false">"العميل {0}"</string>
+    <string name="t_ebdd4d5e" formatted="false">"أُزيلت · لا شيء"</string>
+    <string name="t_ec91403d" formatted="false">"الموجة"</string>
+    <string name="t_ed31a176" formatted="false">"شبكية دوائر تتنفس وتتفاعل مع الموجة."</string>
+    <string name="t_ed5c9d47" formatted="false">"لكل مستوى"</string>
+    <string name="t_ed7160a0" formatted="false">"أبدًا"</string>
+    <string name="t_ed7ecda7" formatted="false">"مقفل"</string>
+    <string name="t_ee0803eb" formatted="false">"صامد"</string>
+    <string name="t_ee094192" formatted="false">"لا يحتوي هذا الإصدار على فوترة Google Play مُعدّة، لذا لا يمكن شراء شيء هنا. كل جزء من اللعبة لا يكلّف مالًا يعمل كالمعتاد تمامًا."</string>
+    <string name="t_ee5525d9" formatted="false">"KERNEL PANIC · {0} مُشوَّش"</string>
+    <string name="t_ee6595fd" formatted="false">"الفريق والغرفة اللذان يراقبان التنبيهات. إن كان لهذه اللعبة مكان، فهو شاشة جدار في SOC عند الثالثة فجرًا."</string>
+    <string name="t_eea62f11" formatted="false">"المشتريات"</string>
+    <string name="t_eef967f2" formatted="false">"تكبير ساحة المعركة"</string>
+    <string name="t_ef29f425" formatted="false">"الصوت"</string>
+    <string name="t_efcf9890" formatted="false">"ضرر {0} · معدل {1}/ث · مدى {2}"</string>
+    <string name="t_f001b942" formatted="false">"محصَّن"</string>
+    <string name="t_f03b01af" formatted="false">"يصلح نفسه ببطء بعد مرور لحظة دون إصابة."</string>
+    <string name="t_f100d10c" formatted="false">"كل ما عليه علامة مقفل موجود في المتجر. لا شيء هنا يغيّر طريقة اللعب — الأشكال مظهر، لا أفضلية."</string>
+    <string name="t_f16b76bc" formatted="false">"«البطة المطاطية» عصا USB تتظاهر بأنها لوحة مفاتيح وتكتب هجومًا أسرع من أي إنسان. الدفاع هو حارس USB يفحص كل جهاز جديد قبل أن يثق به الحاسوب، ويحجب لوحة مفاتيح تكتب كالآلة."</string>
+    <string name="t_f17dfdae" formatted="false">"مسار طويل واحد ينزل من الأعلى ويلتف حلزونيًا للخارج نحو الرف."</string>
+    <string name="t_f25360a0" formatted="false">"تُطبَّق التغييرات فورًا وتبقى على هذا الجهاز"</string>
+    <string name="t_f293dfd1" formatted="false">"فحوصات الشراء"</string>
+    <string name="t_f2e7479c" formatted="false">"اربط حساب Google للاحتفاظ بتقدمك على أي هاتف أو جهاز لوحي. ستطلب Google إذنًا لإدارة بيانات هذه اللعبة المحفوظة في حسابك — وهي مساحة تخزين الألعاب المحفوظة، وهي كل ما يستخدمه هذا."</string>
+    <string name="t_f2ed0368" formatted="false">"سريع. إذا وصل إلى النواة يسرق نصف عملتك المشفرة بدلًا من السلامة."</string>
+    <string name="t_f2f63d9f" formatted="false">"على هذا الجهاز"</string>
+    <string name="t_f33c5b01" formatted="false">"الخطوة 6 — ابدأ الموجة"</string>
+    <string name="t_f38eb808" formatted="false">"تهديدات أصلب، أقرب إلى بعضها، وسلامة أقل. مكافآت أغنى."</string>
+    <string name="t_f3e23f71" formatted="false">"النواة: CASCADE"</string>
+    <string name="t_f49a4ff9" formatted="false">"العميل مقفل"</string>
+    <string name="t_f4f677dc" formatted="false">"المكتسب طوال الوقت"</string>
+    <string name="t_f5537783" formatted="false">"النواة: MAINFRAME"</string>
+    <string name="t_f590e2c9" formatted="false">"المسار"</string>
+    <string name="t_f5b866e4" formatted="false">"محاولة اختراق منسّقة بقدر كافٍ من التكرار لتتجاهل شبكة غير مستعدة. كل موجة خامسة تجلب واحدًا، وكل واحد أصلب من سابقه."</string>
+    <string name="t_f60f5840" formatted="false">"لا يوجد حتى الآن حساب CyOps ولا كلمة مرور. المشتريات تتبع حساب Google المسجّل في متجر Play على هذا الجهاز. التقدم يتبع حساب Google الذي تربطه أعلاه — خيار منفصل واختياري: اللعبة كاملة بدونه."</string>
+    <string name="t_f692d3ce" formatted="false">"شبكة البوتات"</string>
+    <string name="t_f69a80a7" formatted="false">"ستُعاد تشغيل اللعبة للتبديل إلى {0}. يُحتفظ بتقدمك."</string>
+    <string name="t_f6f93110" formatted="false">"النواة: NEONGRID"</string>
+    <string name="t_f720bfa7" formatted="false">"خطوط مسح فوسفور CRT."</string>
+    <string name="t_f76fff7f" formatted="false">"برمجية خبيثة: شيفرة مكتوبة للإتلاف أو التعطيل أو السرقة. تحمل حمولة أكبر من حقن بسيط، لذا تمتص ضررًا أكثر قبل أن تتفكك."</string>
+    <string name="t_f7a4fc70" formatted="false">"انقر مجددًا للنشر"</string>
+    <string name="t_f7a7b98a" formatted="false">"ضرر {0} · معدل {1} · مدى {2}"</string>
+    <string name="t_f7eb1496" formatted="false">"يُحدَّد الترتيب بأعمق موجة بلغتها. الضرر المُحدَث يكسر التعادل."</string>
+    <string name="t_f803ec67" formatted="false">"سجل الطلبات والمبالغ المستردة"</string>
+    <string name="t_f85117ec" formatted="false">"كل المقاطع الـ {0} موجودة بالفعل في Music/CyOps TD."</string>
+    <string name="t_f8723c46" formatted="false">"السرعة"</string>
+    <string name="t_f8d84db3" formatted="false">"غير مسجّل"</string>
+    <string name="t_f8e6e39f" formatted="false">"يحافظ مهندسو الأنظمة على عمل الخوادم: الترقيع، واستبدال القطع المعطلة، والاستعادة من النسخ الاحتياطية ومراقبة صحة الأجهزة. «مهندس أنظمة الخوادم» يصف هذا النوع من العمل؛ وتختلف المسميات بين المؤسسات."</string>
+    <string name="t_f9807a9f" formatted="false">"&gt; في وضع الاستعداد — انشر العملاء وابدأ الموجة 1"</string>
+    <string name="t_f9cec260" formatted="false">"ضربات قليلة ضخمة بالكاد تسرّع GRADIENT."</string>
+    <string name="t_f9d6b090" formatted="false">"بيانات ASCII منجرفة خلف ساحة المعركة والقوائم"</string>
+    <string name="t_fa1b4500" formatted="false">"تتراكم الإحصائيات عبر كل جولة، بما فيها الجولات التي تتركها من قائمة الإيقاف المؤقت. إعادة ضبط التقدم في الإعدادات تمسحها كلها."</string>
+    <string name="t_fa60c2c6" formatted="false">"حي: خريطة حرارية"</string>
+    <string name="t_fb735826" formatted="false">"الاهتزاز"</string>
+    <string name="t_fb889492" formatted="false">"لعبة دفاع أبراج مستقلة التطوير، تعمل دون اتصال أولًا، بطابع الأمن السيبراني. السيناريوهات والعملاء والمصطلحات مُتخيَّلة لأغراض اللعب، مع شروحات قصيرة من العالم الحقيقي كي يمكن تعلّم المفاهيم وراءها. لا تُعلّم أي تقنية هجومية ولا تؤدي أي وظيفة أمنية حقيقية."</string>
+    <string name="t_fbca7f29" formatted="false">"برمجية خبيثة في تنكّر مفيد"</string>
+    <string name="t_fbd9e20c" formatted="false">"حركة الخلفية"</string>
+    <string name="t_fc778505" formatted="false">"رف نظيف، بلا علامة."</string>
+    <string name="t_fcc1e712" formatted="false">"الخصوصية"</string>
+    <string name="t_fd3cb488" formatted="false">"كيف يعمل تسجيل الدخول"</string>
+    <string name="t_fdb0282f" formatted="false">"جارٍ تحميل الإعلان…"</string>
+    <string name="t_fde05efe" formatted="false">"ابلغ الموجة {0} في {1}"</string>
+    <string name="t_fe26fa48" formatted="false">"أفضل موجة"</string>
+    <string name="t_fe451d7a" formatted="false">"تمت استعادة الأنظمة — السلامة {0}"</string>
+    <string name="t_fe86390c" formatted="false">" · سرعة {0}"</string>
+    <string name="t_feeee285" formatted="false">"{0} أشكال للنواة · {1} خلفيات متاحة"</string>
+    <string name="t_feef9615" formatted="false">"الزعيم التالي"</string>
+    <string name="t_ff2d6a51" formatted="false">"ثلاثة مسارات تتبادل الأماكن مرتين. كل تقاطع موضع يضرب اثنين."</string>
+    <string name="t_ffa57dc1" formatted="false">"&gt; جارٍ تركيب طوبولوجيا المسارات"</string>
+    <string name="t_ffc3db58" formatted="false">"مدى {0}"</string>
+    <string name="t_ffff9bd9" formatted="false">"ينجرف العملاء ببطء عبر طيف الألوان، وكل وحدة مزاحة عن التالية."</string>
+</resources>

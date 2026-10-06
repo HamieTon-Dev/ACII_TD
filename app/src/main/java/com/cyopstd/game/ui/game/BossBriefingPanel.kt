@@ -1,5 +1,7 @@
 package com.cyopstd.game.ui.game
 
+import com.cyopstd.game.i18n.tr
+
 import androidx.compose.foundation.background
 import androidx.compose.ui.platform.testTag
 import androidx.compose.foundation.layout.Box
@@ -80,82 +82,82 @@ data class BossBriefing(
             for ((variant, _) in variants) {
                 for ((name, multiplier) in variant.bonusDamageFrom) {
                     val agent = AgentType.fromNameSafe(name) ?: continue
-                    weakTo += agent to "Deals \u00D7${formatMultiplier(multiplier)} damage to ${variant.displayName}."
+                    weakTo += agent to tr("Deals \u00D7{0} damage to {1}.", formatMultiplier(multiplier), variant.displayName)
                 }
             }
             weakTo += AgentType.ANALYST to
-                "Deals \u00D7${formatMultiplier(ProjectileSystem.ANALYST_VS_ELITE)} damage to every boss."
+                tr("Deals \u00D7{0} damage to every boss.", formatMultiplier(ProjectileSystem.ANALYST_VS_ELITE))
             if (variants.any { it.first.armorBonus > 0f }) {
                 for (agent in listOf(AgentType.ZERO_DAY_HUNTER, AgentType.ROOT_ADMIN)) {
-                    weakTo += agent to "Ignores its armour."
+                    weakTo += agent to tr("Ignores its armour.")
                 }
             }
             if (variants.any { it.first == BossVariant.GRADIENT }) {
-                weakTo += AgentType.ROOT_ADMIN to "Few, huge hits barely speed GRADIENT up."
-                weakTo += AgentType.TARPIT to "Its field drags GRADIENT back down while it speeds up."
+                weakTo += AgentType.ROOT_ADMIN to tr("Few, huge hits barely speed GRADIENT up.")
+                weakTo += AgentType.TARPIT to tr("Its field drags GRADIENT back down while it speeds up.")
             }
             if (BossModifier.ENCRYPTION_SHIELD in modifiers) {
                 weakTo += AgentType.CRYPTOGRAPHER to
-                    "Breaks its encryption: \u00D7${formatMultiplier(ProjectileSystem.CRYPTOGRAPHER_VS_ENCRYPTED)} damage."
+                    tr("Breaks its encryption: \u00D7{0} damage.", formatMultiplier(ProjectileSystem.CRYPTOGRAPHER_VS_ENCRYPTED))
             }
 
-            weakTo += AgentType.TARPIT to "Its field slows bosses twice as hard as other threats."
+            weakTo += AgentType.TARPIT to tr("Its field slows bosses twice as hard as other threats.")
 
             val warnings = ArrayList<String>()
             for ((variant, _) in variants) {
                 val agent = variant.jamsAgentType?.let { AgentType.fromNameSafe(it) } ?: continue
-                warnings += "${variant.displayName} jams ${agent.displayName} agents close to it. " +
-                    "Place them back, at the edge of their range."
+                warnings += tr("{0} jams {1} agents close to it. " +
+                    "Place them back, at the edge of their range.", variant.displayName, agent.displayName)
             }
             if (variants.any { it.first == BossVariant.LICENSE }) {
-                warnings += "Every ${BossVariant.LICENSE_CYCLE_SECONDS.toInt()} seconds LICENSE spends " +
-                    "${BossVariant.LICENSE_ACTIVE_SECONDS.toInt()} shrugging off any agent type that keeps " +
-                    "hitting it. Mix your agent types."
+                warnings += tr("Every {0} seconds LICENSE spends " +
+                    "{1} shrugging off any agent type that keeps " +
+                    "hitting it. Mix your agent types.", BossVariant.LICENSE_CYCLE_SECONDS.toInt(), BossVariant.LICENSE_ACTIVE_SECONDS.toInt())
             }
             if (variants.any { it.first == BossVariant.RANSOM }) {
-                warnings += "RANSOM locks one agent's upgrades for " +
-                    "${BossVariant.RANSOM_SECONDS.toInt()} seconds, every few seconds. " +
-                    "Upgrade before it arrives."
+                warnings += tr("RANSOM locks one agent's upgrades for " +
+                    "{0} seconds, every few seconds. " +
+                    "Upgrade before it arrives.", BossVariant.RANSOM_SECONDS.toInt())
             }
             if (variants.any { it.first == BossVariant.EXFIL }) {
-                warnings += "EXFIL is fast. If it reaches the core it steals half " +
-                    "your crypto instead of integrity. Spend first, or stop it."
+                warnings += tr("EXFIL is fast. If it reaches the core it steals half " +
+                    "your crypto instead of integrity. Spend first, or stop it.")
             }
             if (variants.any { it.first == BossVariant.SYN_STORM }) {
-                warnings += "SYN-STORM splits in two at half health, and the second " +
-                    "half takes another route. Cover every route."
+                warnings += tr("SYN-STORM splits in two at half health, and the second " +
+                    "half takes another route. Cover every route.")
             }
             if (variants.any { it.first == BossVariant.GRADIENT }) {
-                warnings += "GRADIENT speeds up with every hit, however small, and " +
-                    "slows when left alone. Few big hits beat many small ones."
+                warnings += tr("GRADIENT speeds up with every hit, however small, and " +
+                    "slows when left alone. Few big hits beat many small ones.")
             }
             if (variants.any { it.first == BossVariant.BOTMASTER }) {
-                warnings += "BOTMASTER drops BOTs behind itself every few seconds. " +
-                    "Kill it fast, and keep something for the swarm."
+                warnings += tr("BOTMASTER drops BOTs behind itself every few seconds. " +
+                    "Kill it fast, and keep something for the swarm.")
             }
             if (variants.any { it.first == BossVariant.ROOTKIT }) {
-                warnings += "ROOTKIT hides for 2 seconds of every 6 and nothing can " +
-                    "target it. Splash and chains still reach it."
+                warnings += tr("ROOTKIT hides for 2 seconds of every 6 and nothing can " +
+                    "target it. Splash and chains still reach it.")
             }
             if (variants.any { it.first == BossVariant.WORM }) {
-                warnings += "WORM breaks into three smaller worms when killed, and " +
-                    "those break once more. Kill it early, with splash nearby."
+                warnings += tr("WORM breaks into three smaller worms when killed, and " +
+                    "those break once more. Kill it early, with splash nearby.")
             }
             if (variants.any { it.first == BossVariant.SPOOFER }) {
-                warnings += "SPOOFER casts decoys of itself that soak up fire. " +
-                    "ANALYST and ROOT ADMIN see through them."
+                warnings += tr("SPOOFER casts decoys of itself that soak up fire. " +
+                    "ANALYST and ROOT ADMIN see through them.")
             }
             if (variants.any { it.first == BossVariant.KERNEL_PANIC }) {
-                warnings += "KERNEL PANIC jams every agent within reach for 3 " +
-                    "seconds when it dies. FIREWALL stands in it."
+                warnings += tr("KERNEL PANIC jams every agent within reach for 3 " +
+                    "seconds when it dies. FIREWALL stands in it.")
             }
             if (BossModifier.REGENERATION in modifiers) {
-                warnings += "REGENERATION repairs it once it has gone " +
-                    "${formatMultiplier(com.cyopstd.game.core.Balance.REGEN_PAUSE_AFTER_HIT)} seconds without a hit. " +
-                    "Keep it under fire all the way along."
+                warnings += tr("REGENERATION repairs it once it has gone " +
+                    "{0} seconds without a hit. " +
+                    "Keep it under fire all the way along.", formatMultiplier(com.cyopstd.game.core.Balance.REGEN_PAUSE_AFTER_HIT))
             }
             if (BossModifier.FIREWALL_RESISTANCE in modifiers) {
-                warnings += "Resists FIREWALL agents."
+                warnings += tr("Resists FIREWALL agents.")
             }
 
             return BossBriefing(
@@ -192,12 +194,12 @@ fun BossBriefingPanel(
     ) {
         Row(verticalAlignment = Alignment.CenterVertically) {
             Text(
-                text = "NEXT: WAVE ${briefing.wave} \u00B7 BOSS",
+                text = tr("NEXT: WAVE {0} \u00B7 BOSS", briefing.wave),
                 style = MaterialTheme.typography.titleMedium,
                 color = Palette.Red,
                 modifier = Modifier.weight(1f)
             )
-            CompactButton(text = "CLOSE", onClick = onClose, accent = Palette.TextSecondary)
+            CompactButton(text = tr("CLOSE"), onClick = onClose, accent = Palette.TextSecondary)
         }
         AsciiRule(color = Palette.RedDeep)
         Column(Modifier.verticalScroll(rememberScrollState())) {
@@ -220,8 +222,8 @@ fun BossBriefingPanel(
                     color = Palette.TextSecondary
                 )
                 Text(
-                    text = "HEALTH \u00D7${variant.healthScale} \u00B7 ARMOUR +${variant.armorBonus.toInt()} " +
-                        "\u00B7 SPEED \u00D7${variant.speedScale}",
+                    text = tr("HEALTH \u00D7{0} \u00B7 ARMOUR +{1} " +
+                        "\u00B7 SPEED \u00D7{2}", variant.healthScale, variant.armorBonus.toInt(), variant.speedScale),
                     style = MaterialTheme.typography.labelSmall,
                     color = Palette.TextMuted
                 )
@@ -229,30 +231,30 @@ fun BossBriefingPanel(
 
             if (briefing.modifiers.isNotEmpty()) {
                 Spacer(Modifier.height(6.dp))
-                Section("MODIFIERS", Palette.Orange)
+                Section(tr("MODIFIERS"), Palette.Orange)
                 for (modifier in briefing.modifiers) {
                     Line("${modifier.displayName}: ${modifier.description}", Palette.TextSecondary)
                 }
             }
 
             Spacer(Modifier.height(6.dp))
-            Section("WEAK TO", Palette.Green)
+            Section(tr("WEAK TO"), Palette.Green)
             for ((agent, why) in briefing.weakTo) {
                 val owned = agent.name in unlockedAgents
                 Line(
-                    "[${agent.glyph}] ${agent.displayName}${if (owned) "" else " (locked)"}: $why",
+                    if (owned) "[${agent.glyph}] ${agent.displayName}: $why" else tr("[{0}] {1} (locked): {2}", agent.glyph, agent.displayName, why),
                     if (owned) Palette.Green else Palette.TextMuted
                 )
             }
 
             if (briefing.warnings.isNotEmpty()) {
                 Spacer(Modifier.height(6.dp))
-                Section("WATCH OUT", Palette.Red)
+                Section(tr("WATCH OUT"), Palette.Red)
                 for (warning in briefing.warnings) Line(warning, Palette.TextSecondary)
             }
 
             Spacer(Modifier.height(6.dp))
-            Caption("The countdown keeps running while this is open.")
+            Caption(tr("The countdown keeps running while this is open."))
         }
     }
 }

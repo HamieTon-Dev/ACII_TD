@@ -1,5 +1,7 @@
 package com.cyopstd.game.ui.common
 
+import com.cyopstd.game.i18n.tr
+
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -71,7 +73,7 @@ fun ScreenScaffold(
                 actions?.invoke()
                 Spacer(Modifier.height(0.dp))
                 CompactButton(
-                    text = "< BACK",
+                    text = tr("< BACK"),
                     onClick = onBack,
                     accent = Palette.TextSecondary
                 )

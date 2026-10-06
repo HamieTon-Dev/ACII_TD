@@ -1,5 +1,7 @@
 package com.cyopstd.game.ui.game
 
+import com.cyopstd.game.i18n.tr
+
 import androidx.compose.animation.core.RepeatMode
 import androidx.compose.animation.core.animateFloat
 import androidx.compose.animation.core.infiniteRepeatable
@@ -101,13 +103,13 @@ fun PauseOverlay(
                 )
                 Spacer(Modifier.width(10.dp))
                 Text(
-                    text = "PAUSED",
+                    text = tr("PAUSED"),
                     style = MaterialTheme.typography.headlineMedium,
                     color = Palette.Cyan
                 )
             }
             Text(
-                text = "WAVE $wave · SIMULATION HALTED",
+                text = tr("WAVE {0} · SIMULATION HALTED", wave),
                 style = MaterialTheme.typography.bodyMedium,
                 color = Palette.TextSecondary
             )
@@ -122,13 +124,13 @@ fun PauseOverlay(
             var confirmingRestart by remember { mutableStateOf(false) }
             if (confirmingRestart) {
                 Text(
-                    text = "Are you sure you want to restart your run?",
+                    text = tr("Are you sure you want to restart your run?"),
                     style = MaterialTheme.typography.titleMedium,
                     color = Palette.Orange
                 )
                 Spacer(Modifier.height(4.dp))
                 Text(
-                    text = "Wave $wave and everything deployed will be lost.",
+                    text = tr("Wave {0} and everything deployed will be lost.", wave),
                     style = MaterialTheme.typography.bodySmall,
                     color = Palette.TextMuted
                 )
@@ -139,7 +141,7 @@ fun PauseOverlay(
                 ) {
                     Box(Modifier.weight(1f)) {
                         BastionButton(
-                            "YES",
+                            tr("YES"),
                             onRestart,
                             accent = Palette.Orange,
                             leadingIcon = R.drawable.ic_action_yes
@@ -147,7 +149,7 @@ fun PauseOverlay(
                     }
                     Box(Modifier.weight(1f)) {
                         BastionButton(
-                            "NO",
+                            tr("NO"),
                             { confirmingRestart = false },
                             accent = Palette.Green,
                             leadingIcon = R.drawable.ic_action_no
@@ -155,20 +157,20 @@ fun PauseOverlay(
                     }
                 }
             } else {
-                BastionButton("RESUME", onResume, accent = Palette.Green, leadingIcon = R.drawable.ic_media_play)
+                BastionButton(tr("RESUME"), onResume, accent = Palette.Green, leadingIcon = R.drawable.ic_media_play)
                 Spacer(Modifier.height(8.dp))
                 BastionButton(
-                    "RESTART",
+                    tr("RESTART"),
                     { confirmingRestart = true },
                     accent = Palette.Orange,
                     leadingIcon = R.drawable.ic_action_restart
                 )
                 Spacer(Modifier.height(8.dp))
-                BastionButton("SETTINGS", onSettings, leadingIcon = R.drawable.ic_menu_settings)
+                BastionButton(tr("SETTINGS"), onSettings, leadingIcon = R.drawable.ic_menu_settings)
                 Spacer(Modifier.height(8.dp))
                 BastionButton(
-                    text = "MAIN MENU",
-                    subtitle = "Progress is saved automatically",
+                    text = tr("MAIN MENU"),
+                    subtitle = tr("Progress is saved automatically"),
                     onClick = onMainMenu,
                     accent = Palette.Red,
                     leadingIcon = R.drawable.ic_action_main_menu
@@ -216,7 +218,7 @@ fun GameOverOverlay(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Text(
-                text = "NETWORK COMPROMISED",
+                text = tr("NETWORK COMPROMISED"),
                 style = MaterialTheme.typography.headlineMedium,
                 color = Palette.Red,
                 modifier = Modifier.alpha(flash),
@@ -224,7 +226,7 @@ fun GameOverOverlay(
             )
             Spacer(Modifier.height(4.dp))
             Text(
-                text = "CORE-SERVER INTEGRITY 0 · CONNECTION TERMINATED",
+                text = tr("CORE-SERVER INTEGRITY 0 · CONNECTION TERMINATED"),
                 style = MaterialTheme.typography.bodySmall,
                 color = Palette.TextMuted,
                 textAlign = TextAlign.Center
@@ -236,27 +238,27 @@ fun GameOverOverlay(
 
             Column(Modifier.fillMaxWidth()) {
                 StatRow(
-                    "WAVE REACHED",
+                    tr("WAVE REACHED"),
                     summary.waveReached.toString(),
                     valueColor = Palette.Crypto
                 )
                 StatRow(
-                    "ATTACKS BLOCKED",
+                    tr("ATTACKS BLOCKED"),
                     summary.attacksBlocked.toString(),
                     valueColor = Palette.Cyan
                 )
                 StatRow(
-                    "CRYPTO EARNED",
+                    tr("CRYPTO EARNED"),
                     "◇ ${summary.cryptoEarned}",
                     valueColor = Palette.Crypto
                 )
                 StatRow(
-                    "BOSSES DEFEATED",
+                    tr("BOSSES DEFEATED"),
                     summary.bossesDefeated.toString(),
                     valueColor = Palette.Red
                 )
                 StatRow(
-                    "BEST WAVE",
+                    tr("BEST WAVE"),
                     summary.bestWave.toString(),
                     valueColor = Palette.Green
                 )
@@ -265,7 +267,7 @@ fun GameOverOverlay(
             if (summary.isNewRecord) {
                 Spacer(Modifier.height(8.dp))
                 Text(
-                    text = ">> NEW RECORD <<",
+                    text = tr(">> NEW RECORD <<"),
                     style = MaterialTheme.typography.titleMedium,
                     color = Palette.Green,
                     modifier = Modifier.alpha(flash)
@@ -282,7 +284,7 @@ fun GameOverOverlay(
                 // rewarded ad (or nothing, with the pack); NO is where the
                 // lost-run ad may play.
                 Text(
-                    text = "WOULD YOU LIKE TO REVIVE?",
+                    text = tr("WOULD YOU LIKE TO REVIVE?"),
                     style = MaterialTheme.typography.titleMedium,
                     color = Palette.Crypto,
                     textAlign = TextAlign.Center
@@ -295,11 +297,11 @@ fun GameOverOverlay(
                     Box(Modifier.weight(1f)) {
                         BastionButton(
                             text = when {
-                                reviveAdShowing -> "LOADING AD…"
+                                reviveAdShowing -> tr("LOADING AD…")
                                 // A player who bought the pack must not be told
                                 // they are about to watch an ad. They are not.
-                                reviveIsFree -> "YES"
-                                else -> "YES — WATCH AD"
+                                reviveIsFree -> tr("YES")
+                                else -> tr("YES — WATCH AD")
                             },
                             onClick = { if (!reviveAdShowing) onWatchAdToRevive() },
                             accent = Palette.Crypto,
@@ -308,7 +310,7 @@ fun GameOverOverlay(
                     }
                     Box(Modifier.weight(1f)) {
                         BastionButton(
-                            text = "NO",
+                            text = tr("NO"),
                             onClick = { if (!reviveAdShowing) onDeclineRevive() },
                             accent = Palette.Red,
                             leadingGlyph = "[X]"
@@ -320,12 +322,11 @@ fun GameOverOverlay(
                     // Each clause is something a player would otherwise find
                     // out the hard way: what it costs, what it gives back, and
                     // how many are left.
-                    text = "Resume this wave at half integrity. " +
-                        (if (revivesLeft == 1) "One revive per run."
-                        else "$revivesLeft revives left this run.") +
-                        (if (reviveIsFree) " REVIVE PACK — no ad."
-                        else " REMOVE ADS covers ads between runs; " +
-                            "revive ads are separate."),
+                    text = tr("Resume this wave at half integrity.") + " " +
+                        (if (revivesLeft == 1) tr("One revive per run.")
+                        else tr("{0} revives left this run.", revivesLeft)) + " " +
+                        (if (reviveIsFree) tr("REVIVE PACK — no ad.")
+                        else tr("REMOVE ADS covers ads between runs; revive ads are separate.")),
                     style = MaterialTheme.typography.bodySmall,
                     color = Palette.TextMuted,
                     textAlign = TextAlign.Center
@@ -340,10 +341,10 @@ fun GameOverOverlay(
                     horizontalArrangement = Arrangement.spacedBy(10.dp)
                 ) {
                     Box(Modifier.weight(1f)) {
-                        BastionButton("RETRY", onRetry, accent = Palette.Green, leadingGlyph = "[>]")
+                        BastionButton(tr("RETRY"), onRetry, accent = Palette.Green, leadingGlyph = "[>]")
                     }
                     Box(Modifier.weight(1f)) {
-                        BastionButton("MAIN MENU", onMainMenu, leadingGlyph = "[X]")
+                        BastionButton(tr("MAIN MENU"), onMainMenu, leadingGlyph = "[X]")
                     }
                 }
             }
@@ -371,7 +372,7 @@ fun UnlockBanner(type: AgentType, modifier: Modifier = Modifier) {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
-            text = "NEW CYBER AGENT UNLOCKED",
+            text = tr("NEW CYBER AGENT UNLOCKED"),
             style = MaterialTheme.typography.labelMedium,
             color = Palette.Green
         )
@@ -451,7 +452,7 @@ fun TutorialOverlay(
             TutorialGate.ACKNOWLEDGE -> {
                 Spacer(Modifier.height(10.dp))
                 CompactButton(
-                    text = "CONTINUE",
+                    text = tr("CONTINUE"),
                     onClick = onAdvance,
                     accent = Palette.Green,
                     modifier = Modifier.fillMaxWidth()
@@ -466,7 +467,7 @@ fun TutorialOverlay(
                 ) {
                     Box(Modifier.weight(1f)) {
                         CompactButton(
-                            text = "YES, BRIEF ME",
+                            text = tr("YES, BRIEF ME"),
                             onClick = { onBriefing(true) },
                             accent = Palette.Green,
                             modifier = Modifier.fillMaxWidth()
@@ -474,7 +475,7 @@ fun TutorialOverlay(
                     }
                     Box(Modifier.weight(1f)) {
                         CompactButton(
-                            text = "NO, LET ME PLAY",
+                            text = tr("NO, LET ME PLAY"),
                             onClick = { onBriefing(false) },
                             accent = Palette.TextSecondary,
                             modifier = Modifier.fillMaxWidth()
@@ -615,21 +616,21 @@ fun PreparationBanner(
         verticalAlignment = Alignment.CenterVertically
     ) {
         Text(
-            text = if (wave == 0) "PERIMETER READY" else "WAVE $wave SECURED",
+            text = if (wave == 0) tr("PERIMETER READY") else tr("WAVE {0} SECURED", wave),
             style = MaterialTheme.typography.labelMedium,
             color = Palette.Green,
             maxLines = 1
         )
         Text(
-            text = "  \u00B7  ",
+            text = tr("  \u00B7  "),
             style = MaterialTheme.typography.labelSmall,
             color = Palette.TextMuted
         )
         Text(
             text = if (nextIsBoss) {
-                "NEXT: WAVE ${wave + 1} \u2014 BOSS \u00B7 TAP NEXT BOSS FOR THE BRIEFING"
+                tr("NEXT: WAVE {0} \u2014 BOSS \u00B7 TAP NEXT BOSS FOR THE BRIEFING", wave + 1)
             } else {
-                "NEXT: WAVE ${wave + 1}"
+                tr("NEXT: WAVE {0}", wave + 1)
             },
             style = MaterialTheme.typography.labelMedium,
             color = if (nextIsBoss) Palette.Red else Palette.TextSecondary,
@@ -637,7 +638,7 @@ fun PreparationBanner(
         )
         if (autoStartIn > 0) {
             Text(
-                text = "  \u00B7  AUTO $autoStartIn",
+                text = tr("  \u00B7  AUTO {0}", autoStartIn),
                 style = MaterialTheme.typography.labelSmall,
                 color = Palette.Crypto,
                 maxLines = 1

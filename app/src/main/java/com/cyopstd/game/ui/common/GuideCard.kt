@@ -1,5 +1,7 @@
 package com.cyopstd.game.ui.common
 
+import com.cyopstd.game.i18n.tr
+
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
@@ -61,10 +63,10 @@ fun GuideCard(
         Spacer(Modifier.height(10.dp))
         Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
             if (!last) {
-                CompactButton(text = "SKIP", onClick = onFinished, accent = Palette.TextSecondary)
+                CompactButton(text = tr("SKIP"), onClick = onFinished, accent = Palette.TextSecondary)
             }
             CompactButton(
-                text = if (last) "DONE" else "NEXT",
+                text = if (last) tr("DONE") else tr("NEXT"),
                 onClick = { if (last) onFinished() else index++ },
                 accent = Palette.Green
             )
@@ -76,30 +78,30 @@ fun GuideCard(
 object MenuGuide {
     val steps: List<GuideStep> = listOf(
         GuideStep(
-            "MAIN MENU",
-            "A quick tour of the menu. NEXT to go on, SKIP to close it. You can " +
-                "replay it any time from SETTINGS."
+            tr("MAIN MENU"),
+            tr("A quick tour of the menu. NEXT to go on, SKIP to close it. You can " +
+                "replay it any time from SETTINGS.")
         ),
         GuideStep(
-            "PLAY · CONTINUE",
-            "PLAY starts a run on the level and run mode picked on the left. " +
-                "When a run is saved, CONTINUE picks it up and NEW RUN starts over."
+            tr("PLAY · CONTINUE"),
+            tr("PLAY starts a run on the level and run mode picked on the left. " +
+                "When a run is saved, CONTINUE picks it up and NEW RUN starts over.")
         ),
         GuideStep(
-            "AGENTS",
-            "Every cyber agent, what it does, and the wave that unlocks it."
+            tr("AGENTS"),
+            tr("Every cyber agent, what it does, and the wave that unlocks it.")
         ),
         GuideStep(
-            "FIRMWARE",
-            "Spend € BUDGET — banked at every tenth wave of a run and kept " +
-                "afterwards — on a permanent damage boost for every agent."
+            tr("FIRMWARE"),
+            tr("Spend € BUDGET — banked at every tenth wave of a run and kept " +
+                "afterwards — on a permanent damage boost for every agent.")
         ),
         GuideStep(
-            "SCROLL FOR MORE",
-            "The buttons on the right scroll. Further down: STORE, LOADOUT " +
+            tr("SCROLL FOR MORE"),
+            tr("The buttons on the right scroll. Further down: STORE, LOADOUT " +
                 "(equip skins and backgrounds), GOOGLE PLAY (purchases and cloud " +
                 "save), LEADERBOARD, CODEX (threats and agents explained), " +
-                "STATISTICS, SETTINGS and ABOUT."
+                "STATISTICS, SETTINGS and ABOUT.")
         )
     )
 }
@@ -115,26 +117,29 @@ object FirmwareGuide {
     val steps: List<GuideStep>
         get() = listOf(
             GuideStep(
-                "€ BUDGET",
-                "The money on the left. It is banked at every tenth wave of a " +
-                    "run and kept when the run ends. Deeper runs pay far more."
+                tr("€ BUDGET"),
+                tr("The money on the left. It is banked at every tenth wave of a " +
+                    "run and kept when the run ends. Deeper runs pay far more.")
             ),
             GuideStep(
-                "INSTALLED FIRMWARE",
-                "Each firmware level adds +$percentPerLevel% damage to every agent " +
-                    "and +${"%.2f".format(Balance.FIRMWARE_CRYPTO_PER_LEVEL * 100)}% " +
-                    "\u25C7 crypto earned in runs (up to double), in every future " +
-                    "match. It never goes away."
+                tr("INSTALLED FIRMWARE"),
+                tr(
+                    "Each firmware level adds +{0}% damage to every agent " +
+                        "and +{1}% " +
+                        "\u25C7 crypto earned in runs (up to double), in every future " +
+                        "match. It never goes away.",
+                    percentPerLevel, "%.2f".format(Balance.FIRMWARE_CRYPTO_PER_LEVEL * 100)
+                )
             ),
             GuideStep(
-                "INSTALL",
-                "+1, +10 and +100 buy that many levels. INSTALL MAX spends as " +
-                    "much as you can afford. Each level costs a little more."
+                tr("INSTALL"),
+                tr("+1, +10 and +100 buy that many levels. INSTALL MAX spends as " +
+                    "much as you can afford. Each level costs a little more.")
             ),
             GuideStep(
-                "WHY IT MATTERS",
-                "Stuck at a wave? Bank budget, install firmware, and the same " +
-                    "board hits harder next run."
+                tr("WHY IT MATTERS"),
+                tr("Stuck at a wave? Bank budget, install firmware, and the same " +
+                    "board hits harder next run.")
             )
         )
 }

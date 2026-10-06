@@ -1,5 +1,7 @@
 package com.cyopstd.game.engine
 
+import com.cyopstd.game.i18n.tr
+
 import com.cyopstd.game.core.Balance
 import com.cyopstd.game.core.WorldGeometry
 import com.cyopstd.game.model.BossModifier
@@ -179,7 +181,7 @@ class EnemySystem(private val engine: GameEngine, private val random: Random) {
                 enemy.burstTimer = 7.5f
                 enemy.burstActive = 1.4f
                 engine.effectSystem().spawnText(
-                    enemy.x, enemy.y - 44f, "SPEED BURST",
+                    enemy.x, enemy.y - 44f, tr("SPEED BURST"),
                     GameEngine.COLOR_WARNING, 0.8f
                 )
             }
@@ -203,7 +205,7 @@ class EnemySystem(private val engine: GameEngine, private val random: Random) {
                 val escortType = if (random.nextBoolean()) EnemyType.BOT else EnemyType.SQL_INJECTION
                 spawnEscort(escortType, enemy.lane, enemy.progress - 30f, engine.currentWave)
                 engine.effectSystem().spawnText(
-                    enemy.x, enemy.y - 52f, "REPLICATING",
+                    enemy.x, enemy.y - 52f, tr("REPLICATING"),
                     GameEngine.COLOR_HOSTILE, 0.8f
                 )
             }
@@ -241,7 +243,7 @@ class EnemySystem(private val engine: GameEngine, private val random: Random) {
                 }
                 if (jammed > 0) {
                     engine.effectSystem().spawnText(
-                        enemy.x, enemy.y - 52f, "AGENTS JAMMED",
+                        enemy.x, enemy.y - 52f, tr("AGENTS JAMMED"),
                         GameEngine.COLOR_HOSTILE, 1.0f
                     )
                 }
@@ -284,7 +286,7 @@ class EnemySystem(private val engine: GameEngine, private val random: Random) {
         placeOnPath(copy)
         engine.addToWave()
         engine.effectSystem().spawnText(
-            enemy.x, enemy.y - 56f, "SYN-STORM SPLIT", GameEngine.COLOR_HOSTILE, 1.1f
+            enemy.x, enemy.y - 56f, tr("SYN-STORM SPLIT"), GameEngine.COLOR_HOSTILE, 1.1f
         )
     }
 
@@ -297,7 +299,7 @@ class EnemySystem(private val engine: GameEngine, private val random: Random) {
             spawnEscort(EnemyType.BOT, enemy.lane, enemy.progress - 24f - i * 14f, engine.currentWave)
         }
         engine.effectSystem().spawnText(
-            enemy.x, enemy.y - 52f, "BOTNET", GameEngine.COLOR_HOSTILE, 0.8f
+            enemy.x, enemy.y - 52f, tr("BOTNET"), GameEngine.COLOR_HOSTILE, 0.8f
         )
     }
 
@@ -307,7 +309,7 @@ class EnemySystem(private val engine: GameEngine, private val random: Random) {
         val hide = enemy.variantTimer >= BossVariant.ROOTKIT_CYCLE - BossVariant.ROOTKIT_HIDDEN
         if (hide && !enemy.hidden) {
             engine.effectSystem().spawnText(
-                enemy.x, enemy.y - 52f, "HIDDEN", GameEngine.COLOR_HOSTILE, 0.8f
+                enemy.x, enemy.y - 52f, tr("HIDDEN"), GameEngine.COLOR_HOSTILE, 0.8f
             )
         }
         enemy.hidden = hide
@@ -346,7 +348,7 @@ class EnemySystem(private val engine: GameEngine, private val random: Random) {
         placeOnPath(decoy)
         escortIds.add(decoy)
         engine.effectSystem().spawnText(
-            enemy.x, enemy.y - 52f, "SPOOFED", GameEngine.COLOR_HOSTILE, 0.8f
+            enemy.x, enemy.y - 52f, tr("SPOOFED"), GameEngine.COLOR_HOSTILE, 0.8f
         )
     }
 
@@ -356,7 +358,7 @@ class EnemySystem(private val engine: GameEngine, private val random: Random) {
             if (!other.active || !other.decoy || other.decoyOwner !== owner) continue
             escortIds.remove(other)
             engine.effectSystem().spawnText(
-                other.x, other.y - 40f, "SPOOF DROPPED", GameEngine.COLOR_ELITE, 0.8f
+                other.x, other.y - 40f, tr("SPOOF DROPPED"), GameEngine.COLOR_ELITE, 0.8f
             )
             other.reset()
         }
@@ -396,7 +398,7 @@ class EnemySystem(private val engine: GameEngine, private val random: Random) {
         }
         if (made > 0) {
             engine.effectSystem().spawnText(
-                enemy.x, enemy.y - 56f, "WORM SPLIT", GameEngine.COLOR_HOSTILE, 1.0f
+                enemy.x, enemy.y - 56f, tr("WORM SPLIT"), GameEngine.COLOR_HOSTILE, 1.0f
             )
         }
     }
@@ -415,7 +417,7 @@ class EnemySystem(private val engine: GameEngine, private val random: Random) {
         }
         engine.effectSystem().spawnText(
             enemy.x, enemy.y - 90f,
-            if (jammed > 0) "KERNEL PANIC \u00B7 $jammed JAMMED" else "KERNEL PANIC",
+            if (jammed > 0) tr("KERNEL PANIC \u00B7 {0} JAMMED", jammed) else "KERNEL PANIC",
             GameEngine.COLOR_HOSTILE, 1.4f
         )
     }
@@ -431,7 +433,7 @@ class EnemySystem(private val engine: GameEngine, private val random: Random) {
         val victim = free[random.nextInt(free.size)]
         victim.ransomedFor = BossVariant.RANSOM_SECONDS
         engine.effectSystem().spawnText(
-            victim.x, victim.y - 44f, "RANSOMED", GameEngine.COLOR_HOSTILE, 1.2f
+            victim.x, victim.y - 44f, tr("RANSOMED"), GameEngine.COLOR_HOSTILE, 1.2f
         )
     }
 
@@ -448,7 +450,7 @@ class EnemySystem(private val engine: GameEngine, private val random: Random) {
             enemy.variantTimer -= BossVariant.LICENSE_CYCLE_SECONDS
             enemy.licenseHits.fill(0)
             engine.effectSystem().spawnText(
-                enemy.x, enemy.y - 50f, "LICENSE ENFORCED", GameEngine.COLOR_ELITE, 0.9f
+                enemy.x, enemy.y - 50f, tr("LICENSE ENFORCED"), GameEngine.COLOR_ELITE, 0.9f
             )
         }
     }
@@ -483,7 +485,7 @@ class EnemySystem(private val engine: GameEngine, private val random: Random) {
                 .first { it.name == target }
                 .displayName
             engine.effectSystem().spawnText(
-                enemy.x, enemy.y - 52f, "$label JAMMED",
+                enemy.x, enemy.y - 52f, tr("{0} JAMMED", label),
                 GameEngine.COLOR_HOSTILE, 1.0f
             )
         }
@@ -523,7 +525,7 @@ class EnemySystem(private val engine: GameEngine, private val random: Random) {
             if (stolen > 0) engine.removeCrypto(stolen)
             engine.effectSystem().spawnText(
                 WorldGeometry.SERVER_X - 24f, enemy.y,
-                "-\u25C7$stolen EXFILTRATED", GameEngine.COLOR_HOSTILE, 1.4f
+                tr("-\u25C7{0} EXFILTRATED", stolen), GameEngine.COLOR_HOSTILE, 1.4f
             )
         } else {
             engine.damageServer(enemy.serverDamage)
@@ -542,7 +544,7 @@ class EnemySystem(private val engine: GameEngine, private val random: Random) {
         if (enemy.decoy) {
             // Nothing to pay and nothing to count: it was never there.
             engine.effectSystem().spawnText(
-                enemy.x, enemy.y - 40f, "DECOY", GameEngine.COLOR_ELITE, 0.8f
+                enemy.x, enemy.y - 40f, tr("DECOY"), GameEngine.COLOR_ELITE, 0.8f
             )
             engine.effectSystem().spawnDeath(enemy.x, enemy.y, false)
             escortIds.remove(enemy)
@@ -589,7 +591,7 @@ class EnemySystem(private val engine: GameEngine, private val random: Random) {
             engine.soundListener?.invoke(GameSound.BOSS_DESTROYED)
             engine.hapticListener?.invoke(HapticCue.HEAVY)
             engine.effectSystem().spawnText(
-                enemy.x, enemy.y - 70f, "INTRUSION CONTAINED",
+                enemy.x, enemy.y - 70f, tr("INTRUSION CONTAINED"),
                 GameEngine.COLOR_SUCCESS, 1.4f, scale = 1.4f
             )
         } else {

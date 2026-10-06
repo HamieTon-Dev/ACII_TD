@@ -1,5 +1,7 @@
 package com.cyopstd.game.ads
 
+import com.cyopstd.game.i18n.tr
+
 import android.app.Activity
 
 /**
@@ -72,5 +74,5 @@ class NoConsentGateway : ConsentGateway {
     override val privacyOptionsRequired: Boolean get() = false
     override fun refresh(activity: Activity, onSettled: () -> Unit) = onSettled()
     override fun showPrivacyOptions(activity: Activity, onError: (String?) -> Unit) =
-        onError("This build has no advertising to configure.")
+        onError(tr("This build has no advertising to configure."))
 }
