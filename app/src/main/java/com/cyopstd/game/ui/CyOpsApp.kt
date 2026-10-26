@@ -55,6 +55,8 @@ import com.cyopstd.game.ui.theme.Palette
 sealed interface Screen {
     /** The studio ident, before anything else. */
     data object DeveloperIdent : Screen
+    /** First launch only: pick the game's language, between the ident and the boot screen. */
+    data object FirstLanguage : Screen
     data object Splash : Screen
     data object MainMenu : Screen
     data object Game : Screen
@@ -78,13 +80,19 @@ fun CyOpsApp(
     onExitApp: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    var screen by remember { mutableStateOf<Screen>(Screen.DeveloperIdent) }
-    // Where SETTINGS should return to: it is reachable from both the main menu
-    // and the in-match pause menu.
-    var settingsReturn by remember { mutableStateOf<Screen>(Screen.MainMenu) }
     // The Play account screen links out to Google Play; opening a URI needs a
     // Context, and this is the one place in the graph that already has one.
     val context = LocalContext.current
+    // The restart after a first-launch language pick goes straight to the boot
+    // screen: the ident played a moment ago.
+    var screen by remember {
+        mutableStateOf<Screen>(
+            if (com.cyopstd.game.i18n.Languages.takeSkipIdent(context)) Screen.Splash else Screen.DeveloperIdent
+        )
+    }
+    // Where SETTINGS should return to: it is reachable from both the main menu
+    // and the in-match pause menu.
+    var settingsReturn by remember { mutableStateOf<Screen>(Screen.MainMenu) }
 
     // Set once, read by every menu backdrop beneath it.
     val living = LivingBackground.forProduct(viewModel.cosmetics.backgroundId)
@@ -94,7 +102,17 @@ fun CyOpsApp(
             Screen.DeveloperIdent -> {
                 // The machine coming up, over the studio card.
                 LaunchedEffect(Unit) { viewModel.playBootChime() }
-                DeveloperSplashScreen(onFinished = { screen = Screen.Splash })
+                DeveloperSplashScreen(onFinished = {
+                    screen = if (com.cyopstd.game.i18n.Languages.needsPicker(context)) Screen.FirstLanguage else Screen.Splash
+                })
+            }
+
+            Screen.FirstLanguage -> {
+                val deviceTag = remember { com.cyopstd.game.i18n.Languages.match(com.cyopstd.game.i18n.Tr.locale) }
+                com.cyopstd.game.ui.splash.FirstLaunchLanguageScreen(deviceTag = deviceTag) { language ->
+                    viewModel.playClick()
+                    if (com.cyopstd.game.i18n.Languages.pickFirstLaunch(context, language)) screen = Screen.Splash
+                }
             }
 
             Screen.Splash -> SplashScreen(onFinished = { screen = Screen.MainMenu })

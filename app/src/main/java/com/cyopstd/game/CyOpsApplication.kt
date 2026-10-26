@@ -1,6 +1,7 @@
 package com.cyopstd.game
 
 import android.app.Application
+import com.cyopstd.game.i18n.Languages
 import com.cyopstd.game.i18n.Tr
 
 /**
@@ -11,6 +12,7 @@ import com.cyopstd.game.i18n.Tr
 class CyOpsApplication : Application() {
     override fun onCreate() {
         super.onCreate()
+        Languages.start(this)
         Tr.init(this)
     }
 }

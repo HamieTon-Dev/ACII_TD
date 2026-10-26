@@ -9,6 +9,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [1.57.0] — 2026-10-26
+
+### Added
+
+- **First-launch language picker.** On a fresh install, right after the
+  HamieTon.dev ident and before the boot screen, the game asks which of its
+  26 languages to use. Each is listed in its own name, the title cycles
+  through "choose your language" in every language, and the phone's language
+  is highlighted. Picking the phone's language carries straight on; any other
+  restarts once into it, straight to the boot screen.
+- It shows **only on a fresh install**. An update over an existing install,
+  or an install that already picked a language in SETTINGS, never sees it.
+  The language can still be changed any time under SETTINGS → LANGUAGE.
+- Tests: `FirstLaunchLanguageTest`.
+
 ## [1.56.0] — 2026-10-05
 
 ### Added
