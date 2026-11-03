@@ -25,6 +25,7 @@ class RunRecord:
     review: dict | None = None
     multisim_screenshots: list[Path] = field(default_factory=list)
     multisim_notes: list[str] = field(default_factory=list)
+    folder: Path | None = None
 
 
 def _img_tag(path: Path, alt: str) -> str:

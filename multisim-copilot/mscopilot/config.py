@@ -56,7 +56,35 @@ class Settings:
     gui_settle_seconds: float = 6.0
     max_design_iterations: int = 2
     output_root: str = ""
+    # report output: "lab" (course lab-report .docx), "engineering" (HTML + review), "both"
+    report_style: str = "both"
+    # lab-report profile (cover page + defaults); see labreport.Profile
+    course: str = ""
+    instructor: str = ""
+    student: str = ""
+    honor_pledge: str = ""
+    references: list = field(default_factory=list)
+    report_template: str = ""  # previous report .docx used for styles (logos stripped)
+    style_example: str = ""  # previous report .docx whose writing style the AI matches
     extra: dict = field(default_factory=dict)
+
+    def profile(self):
+        from mscopilot.labreport import Profile
+
+        return Profile(course=self.course, instructor=self.instructor, student=self.student,
+                       honor_pledge=self.honor_pledge, references=list(self.references or []),
+                       template=self.report_template)
+
+    def apply_profile(self, prof) -> None:
+        """Copy an imported profile in (only non-empty fields)."""
+        for k in ("course", "instructor", "student", "honor_pledge"):
+            if getattr(prof, k):
+                setattr(self, k, getattr(prof, k))
+        if prof.references:
+            self.references = list(prof.references)
+        if prof.template:
+            self.report_template = prof.template
+            self.style_example = self.style_example or prof.template
 
     # ---- persistence -------------------------------------------------
     @classmethod

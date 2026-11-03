@@ -68,38 +68,79 @@ def _normalise_image(name: str, data: bytes, media_type: str | None) -> ImageInp
 
 
 def read_docx(path: Path) -> tuple[str, list[ImageInput]]:
-    """Text (paragraphs and tables, in document order) plus embedded images."""
+    """Text (paragraphs and tables, in document order) plus embedded images.
+
+    Each image is named ``<file stem>:fig<N>`` in the order it appears, and a marker
+    ``[image <name>]`` is placed in the text where it sits, so the AI can tell which picture
+    is "Figure 2". Auto-numbered list paragraphs get their number (1., 2., a., ...) back.
+    """
     import docx  # python-docx
+    from docx.oxml.ns import qn
     from docx.table import Table
     from docx.text.paragraph import Paragraph
 
     doc = docx.Document(str(path))
     lines: list[str] = []
-    body = doc.element.body
-    for child in body.iterchildren():
+    images: list[ImageInput] = []
+    seen_rids: dict[str, str] = {}
+    counters: dict[tuple[str, int], int] = {}
+
+    def images_in(el) -> list[str]:
+        names = []
+        for blip in el.iter(qn("a:blip")):
+            rid = blip.get(qn("r:embed"))
+            if not rid or rid not in doc.part.rels:
+                continue
+            if rid not in seen_rids:
+                part = doc.part.rels[rid].target_part
+                name = f"{path.stem}:fig{len(images) + 1}"
+                try:
+                    images.append(_normalise_image(name, part.blob, part.content_type))
+                    seen_rids[rid] = name
+                except Exception:
+                    continue
+            names.append(seen_rids[rid])
+        return names
+
+    def numbering(p) -> str:
+        num_pr = p._p.pPr.numPr if p._p.pPr is not None else None
+        if num_pr is None or num_pr.numId is None:
+            return ""
+        num_id = str(num_pr.numId.val)
+        lvl = int(num_pr.ilvl.val) if num_pr.ilvl is not None else 0
+        key = (num_id, lvl)
+        counters[key] = counters.get(key, 0) + 1
+        for (nid, l2) in list(counters):  # deeper levels restart under a new parent item
+            if nid == num_id and l2 > lvl:
+                counters.pop((nid, l2))
+        n = counters[key]
+        return f"{n}. " if lvl == 0 else f"{'   ' * lvl}{chr(96 + n) if n <= 26 else n}. "
+
+    for child in doc.element.body.iterchildren():
         tag = child.tag.rsplit("}", 1)[-1]
         if tag == "p":
             p = Paragraph(child, doc)
             text = p.text.strip()
+            math = " ".join("".join(t.text or "" for t in m.iter(qn("m:t"))) for m in child.iter(qn("m:oMath"))).strip()
+            if math:
+                text = f"{text} [equation: {math}]".strip()
+            imgs = images_in(child)
             if text:
                 style = (p.style.name or "") if p.style is not None else ""
                 prefix = "#" * int(style[-1]) + " " if style.startswith("Heading") and style[-1:].isdigit() else ""
-                lines.append(prefix + text)
+                lines.append(prefix + numbering(p) + text)
+            lines += [f"[image {n}]" for n in imgs]
         elif tag == "tbl":
             t = Table(child, doc)
             for row in t.rows:
                 lines.append(" | ".join(c.text.strip() for c in row.cells))
+            lines += [f"[image {n}]" for n in images_in(child)]
             lines.append("")
-    images: list[ImageInput] = []
-    for rel in doc.part.rels.values():
-        if "image" in rel.reltype:
-            try:
-                blob = rel.target_part.blob
-                partname = str(rel.target_part.partname)
-                mt = rel.target_part.content_type
-                images.append(_normalise_image(f"{path.stem}:{Path(partname).name}", blob, mt))
-            except Exception:
-                continue
+        else:  # content controls, etc.
+            text = "".join(x.text or "" for x in child.iter(qn("w:t"))).strip()
+            if text:
+                lines.append(text)
+            lines += [f"[image {n}]" for n in images_in(child)]
     return "\n".join(lines), images
 
 

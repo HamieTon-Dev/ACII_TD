@@ -5,6 +5,8 @@
     MultisimCopilot.exe plan brief.docx -o plan.json      # AI plan only, for review
     MultisimCopilot.exe simulate plan.json                # run a reviewed plan, no AI
     MultisimCopilot.exe doctor                            # check ngspice / Multisim / API key
+    MultisimCopilot.exe import-profile old_report.docx    # reuse cover details + styles
+    MultisimCopilot.exe run lab_handout.docx --report lab # write the course lab report
 """
 from __future__ import annotations
 
@@ -33,10 +35,41 @@ def cmd_run(a) -> int:
         s.max_design_iterations = a.iterations
     if a.no_multisim:
         s.use_multisim_gui = s.use_multisim_com = False
+    if a.report:
+        s.report_style = a.report
     plan = Plan.load(a.plan) if a.plan else None
     pkg = _pkg(a.files, a.text)
     out = Pipeline(s).run(pkg, plan=plan, use_ai=not a.no_ai, input_paths=[Path(f) for f in a.files])
-    print(f"\nReport: {out.report_html}")
+    _print_outputs(out)
+    return 0
+
+
+def _print_outputs(out) -> None:
+    print()
+    if out.lab_report:
+        print(f"Lab report: {out.lab_report}")
+    if out.report_html:
+        print(f"Report: {out.report_html}")
+    print(f"Folder: {out.folder}")
+
+
+def cmd_import_profile(a) -> int:
+    import shutil
+
+    from mscopilot.labreport import import_profile
+
+    s = cfg.Settings.load()
+    prof = import_profile(a.report)
+    dest = cfg.config_dir() / "report_template.docx"
+    dest.parent.mkdir(parents=True, exist_ok=True)
+    shutil.copy2(a.report, dest)
+    prof.template = str(dest)
+    s.apply_profile(prof)
+    s.style_example = str(dest)
+    s.save()
+    print(f"Course     : {s.course}\nInstructor : {s.instructor}\nStudent    : {s.student}")
+    print(f"Pledge     : {s.honor_pledge[:70]}{'...' if len(s.honor_pledge) > 70 else ''}")
+    print(f"References : {len(s.references)}\nTemplate   : {dest}")
     return 0
 
 
@@ -61,8 +94,16 @@ def cmd_simulate(a) -> int:
     if a.no_multisim:
         s.use_multisim_gui = s.use_multisim_com = False
     pkg = _pkg(a.files, "") if a.files else DesignPackage()
-    out = Pipeline(s).run(pkg, plan=Plan.load(a.plan), use_ai=a.review, input_paths=[Path(f) for f in a.files])
-    print(f"\nReport: {out.report_html}")
+    lab_json = None
+    if a.lab_json:
+        import json
+
+        lab_json = json.loads(Path(a.lab_json).read_text(encoding="utf-8"))
+        if s.report_style == "engineering":
+            s.report_style = "both"
+    out = Pipeline(s).run(pkg, plan=Plan.load(a.plan), use_ai=a.review, input_paths=[Path(f) for f in a.files],
+                          lab_json=lab_json)
+    _print_outputs(out)
     return 0
 
 
@@ -101,7 +142,12 @@ def build_parser() -> argparse.ArgumentParser:
     r.add_argument("--iterations", type=int, help="max AI design iterations (default from settings)")
     r.add_argument("--no-multisim", action="store_true", help="skip Multisim automation")
     r.add_argument("-o", "--out", help="output root folder")
+    r.add_argument("--report", choices=["lab", "engineering", "both"], help="which report(s) to write (default from settings)")
     r.set_defaults(func=cmd_run)
+
+    ip = sub.add_parser("import-profile", help="take course/instructor/student/pledge/references and styles from a previous report")
+    ip.add_argument("report", help="a previous lab report .docx")
+    ip.set_defaults(func=cmd_import_profile)
 
     pl = sub.add_parser("plan", help="ask the AI for a simulation plan only")
     pl.add_argument("files", nargs="*")
@@ -113,6 +159,7 @@ def build_parser() -> argparse.ArgumentParser:
     sm.add_argument("plan")
     sm.add_argument("files", nargs="*", help="optional .ms14 files to open in Multisim")
     sm.add_argument("--review", action="store_true", help="also ask the AI to review the results")
+    sm.add_argument("--lab-json", help="render the lab report from this (edited) lab_report.json - no AI needed")
     sm.add_argument("--no-multisim", action="store_true")
     sm.add_argument("-o", "--out")
     sm.set_defaults(func=cmd_simulate)

@@ -32,6 +32,9 @@ def analysis_card(a: Analysis) -> str:
         return ".op"
     if a.kind == "ac":
         return f".ac dec {int(a.points_per_decade or 50)} {a.f_start:g} {a.f_stop:g}"
+    if a.kind == "ac_points":
+        f = a.frequencies[0]
+        return f".ac lin 1 {f:g} {f:g}"
     if a.kind == "tran":
         start = f" {a.t_start:g}" if a.t_start else ""
         # max step = t_step keeps the waveform smooth enough for scope-style plots
@@ -41,28 +44,24 @@ def analysis_card(a: Analysis) -> str:
     raise ValueError(a.kind)
 
 
-def _control_line(a: Analysis) -> str:
-    card = analysis_card(a)[1:]  # same syntax without the dot inside .control
-    return card
-
-
 def _vectors(a: Analysis) -> list[str]:
     vecs = [s.strip() for s in a.signals]
-    if a.reference_signal and a.reference_signal.strip() not in vecs:
-        vecs.append(a.reference_signal.strip())
-    # measurement signals must be recorded too
-    for m in a.measurements:
-        s = m.signal.strip()
-        if s and s not in vecs:
+    extra = [a.reference_signal] + [m.signal for m in a.measurements] + [m.reference for m in a.measurements]
+    for s in extra:
+        s = (s or "").strip()
+        if s and s.lower() not in (v.lower() for v in vecs):
             vecs.append(s)
     return vecs
 
 
-def multisim_deck(plan: Plan) -> str:
+def multisim_deck(plan: Plan, variant: str | None = None) -> str:
     """Circuit + analysis dot-commands, for importing into Multisim / any SPICE tool."""
-    out = [clean_netlist(plan.netlist, plan.title), "", "* Analyses requested by the plan"]
+    title = plan.title if not variant else f"{plan.title} - {plan.variant_title(variant)}"
+    out = [clean_netlist(plan.netlist_for(variant), title), "", "* Analyses requested by the plan"]
     seen = set()
     for a in plan.analyses:
+        if (a.variant or None) != (variant or None):
+            continue
         card = analysis_card(a)
         if card not in seen:
             out.append(card)
@@ -71,15 +70,29 @@ def multisim_deck(plan: Plan) -> str:
     return "\n".join(out) + "\n"
 
 
-def ngspice_deck(plan: Plan, data_files: dict[str, str]) -> str:
-    """Circuit + .control block writing each analysis to ``data_files[analysis.id]``."""
-    out = [clean_netlist(plan.netlist, plan.title), "", ".control", "set wr_singlescale", "set wr_vecnames", "set noaskquit"]
-    for a in plan.analyses:
+def data_paths(a: Analysis) -> list[str]:
+    """Relative data file(s) an analysis writes (one per frequency for ac_points)."""
+    if a.kind == "ac_points":
+        return [f"data/{a.id}__{k}.txt" for k in range(len(a.frequencies or []))]
+    return [f"data/{a.id}.txt"]
+
+
+def ngspice_deck(plan: Plan, analyses: list[Analysis], variant: str | None = None) -> str:
+    """Circuit + .control block writing each analysis to its data file(s)."""
+    out = [clean_netlist(plan.netlist_for(variant), plan.title), "", ".control", "set wr_singlescale", "set wr_vecnames", "set noaskquit"]
+    for a in analyses:
+        vecs = " ".join(_vectors(a))
         out.append(f"echo MSCOPILOT_BEGIN {a.id}")
-        out.append(_control_line(a))
-        out.append(f"wrdata {_quote(data_files[a.id])} {' '.join(_vectors(a))}")
+        if a.kind == "ac_points":
+            for f, path in zip(a.frequencies, data_paths(a)):
+                out.append(f"ac lin 1 {f:g} {f:g}")
+                out.append(f"wrdata {_quote(path)} {vecs}")
+                out.append("destroy all")
+        else:
+            out.append(analysis_card(a)[1:])  # same syntax without the dot inside .control
+            out.append(f"wrdata {_quote(data_paths(a)[0])} {vecs}")
+            out.append("destroy all")
         out.append(f"echo MSCOPILOT_END {a.id}")
-        out.append("destroy all")
     out += ["quit", ".endc", ".end"]
     return "\n".join(out) + "\n"
 

@@ -109,6 +109,8 @@ jobs:
           if (-not $env:NGSPICE_BIN) { Write-Warning "ngspice not bundled; skipping the simulation smoke test."; exit 0 }
           ./dist/MultisimCopilot/mscopilot-cli.exe simulate examples/sallen_key_plan.json --no-multisim -o "$env:RUNNER_TEMP/smoke"
           if (-not (Get-ChildItem -Recurse "$env:RUNNER_TEMP/smoke" -Filter report.html)) { throw "no report produced" }
+          ./dist/MultisimCopilot/mscopilot-cli.exe simulate examples/series_rc_lab/plan.json --lab-json examples/series_rc_lab/lab_report.json --no-multisim -o "$env:RUNNER_TEMP/smoke_lab"
+          if (-not (Get-ChildItem -Recurse "$env:RUNNER_TEMP/smoke_lab" -Filter *_Lab_Report.docx)) { throw "no lab report produced" }
 
       - name: Smoke test the COM worker
         run: |

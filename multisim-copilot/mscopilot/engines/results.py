@@ -22,6 +22,7 @@ class MeasurementResult:
     tolerance_pct: float | None = None
     status: str = "info"  # pass | fail | info | error
     note: str = ""
+    extra: dict = field(default_factory=dict)  # e.g. cursor times t1/t2 for scope plots
 
 
 @dataclass
@@ -38,9 +39,27 @@ class AnalysisResult:
     source: str = "ngspice"
 
     def op_values(self) -> dict[str, float]:
-        if self.analysis.kind != "op":
-            return {}
-        return {k: float(np.real(v[0])) for k, v in self.data.items() if len(v)}
+        """Single readings per probe: DC operating point, or AC magnitude at a single
+        frequency (what a DMM in AC mode shows)."""
+        if self.analysis.kind == "op":
+            return {k: float(np.real(v[0])) for k, v in self.data.items() if len(v)}
+        if self.analysis.kind == "ac_points" and self.scale is not None and len(self.scale) == 1:
+            return {k: float(np.abs(v[0])) for k, v in self.data.items() if len(v)}
+        return {}
+
+    def phasor(self, name: str, f: float | None = None) -> complex:
+        """Complex value of an AC/ac_points signal at frequency f (nearest point; exact for ac_points)."""
+        if self.analysis.kind not in ("ac", "ac_points"):
+            raise ValueError(f"{self.analysis.id} is not an AC analysis")
+        v = self.signal(name)
+        if f is None:
+            if len(v) != 1:
+                raise ValueError(f"{self.analysis.id} has several frequencies; give one")
+            return complex(v[0])
+        idx = int(np.argmin(np.abs(np.log10(self.scale) - np.log10(f))))
+        if self.analysis.kind == "ac_points" and not np.isclose(self.scale[idx], f, rtol=1e-6):
+            raise KeyError(f"{self.analysis.id} has no point at {f:g} Hz (have {', '.join(f'{x:g}' for x in self.scale)})")
+        return complex(v[idx])
 
     def signal(self, name: str) -> np.ndarray:
         key = _find_key(self.data, name)
@@ -138,10 +157,11 @@ def _crossing(x: np.ndarray, y: np.ndarray, level: float, log_x: bool = False, s
     return None
 
 
-def transfer(result: AnalysisResult, signal: str) -> np.ndarray:
+def transfer(result: AnalysisResult, signal: str, ref_name: str | None = "__analysis__") -> np.ndarray:
     """signal / reference (or the signal itself if there is no reference) for AC data."""
     sig = result.signal(signal)
-    ref_name = result.analysis.reference_signal
+    if ref_name == "__analysis__":
+        ref_name = result.analysis.reference_signal
     if ref_name and _norm(ref_name) != _norm(signal):
         ref = result.signal(ref_name)
         with np.errstate(divide="ignore", invalid="ignore"):
@@ -149,21 +169,57 @@ def transfer(result: AnalysisResult, signal: str) -> np.ndarray:
     return sig
 
 
+def _ac_at(r: AnalysisResult, x: np.ndarray, h: np.ndarray, at: float) -> complex:
+    if r.analysis.kind == "ac_points":
+        idx = int(np.argmin(np.abs(x - at)))
+        if not np.isclose(x[idx], at, rtol=1e-6):
+            raise ValueError(f"no point at {at:g} Hz")
+        return complex(h[idx])
+    mag = np.interp(math.log10(at), np.log10(x), np.abs(h))
+    ph = np.interp(math.log10(at), np.log10(x), np.unwrap(np.angle(h)))
+    return complex(mag * np.exp(1j * ph))
+
+
+def rising_crossings(t: np.ndarray, y: np.ndarray, falling: bool = False) -> list[float]:
+    """Times where y crosses its mid level going up (or down) (linear interpolation)."""
+    mid = (y.max() + y.min()) / 2
+    above = y >= mid
+    idx = np.where(above[:-1] & ~above[1:])[0] if falling else np.where(~above[:-1] & above[1:])[0]
+    return [float(t[j] + (mid - y[j]) * (t[j + 1] - t[j]) / (y[j + 1] - y[j])) for j in idx if y[j + 1] != y[j]]
+
+
+def estimate_period(t: np.ndarray, y: np.ndarray) -> float | None:
+    rise = rising_crossings(t, y)
+    if len(rise) >= 2:
+        return float(np.median(np.diff(rise)))
+    both = sorted(rise + rising_crossings(t, y, falling=True))
+    if len(both) >= 2:
+        return float(2 * np.median(np.diff(both)))
+    return None
+
+
 def compute_measurement(result: AnalysisResult, m: Measurement) -> MeasurementResult:
     mr = MeasurementResult(m.name, m.type, m.signal, None, m.unit or "", m.expected, m.tolerance_pct)
     try:
         x = result.scale
         kind = result.analysis.kind
-        if kind == "ac":
-            h = transfer(result, m.signal)
+        if kind in ("ac", "ac_points"):
+            ref = m.reference or result.analysis.reference_signal
+            h = transfer(result, m.signal, ref)
             mag_db = 20 * np.log10(np.maximum(np.abs(h), 1e-30))
             phase = np.degrees(np.unwrap(np.angle(h)))
-            if m.type == "gain_db_at":
-                mr.value = _interp(x, mag_db, m.at, log_x=True)
-            elif m.type == "phase_at":
-                mr.value = _interp(x, phase, m.at, log_x=True)
+            if m.type in ("gain_db_at", "phase_at", "mag_at", "value_at"):
+                z = _ac_at(result, x, h, m.at)
+                mr.value = {"gain_db_at": 20 * math.log10(max(abs(z), 1e-30)), "phase_at": math.degrees(np.angle(z)),
+                            "mag_at": abs(z), "value_at": abs(z)}[m.type]
             elif m.type == "max_gain_db":
                 mr.value = float(mag_db.max())
+            elif m.type in ("f_peak", "f_min"):
+                k = int(np.argmax(mag_db) if m.type == "f_peak" else np.argmin(mag_db))
+                mr.value = _refine_extremum(x, mag_db, k) if kind == "ac" else float(x[k])
+                mr.extra = {"gain_db": float(mag_db[k])}
+                if k in (0, len(x) - 1):
+                    mr.note = "extremum at the edge of the sweep; widen the frequency range"
             elif m.type == "f_3db":
                 peak = int(np.argmax(mag_db))
                 level = mag_db[peak] - 3.0103
@@ -173,8 +229,6 @@ def compute_measurement(result: AnalysisResult, m: Measurement) -> MeasurementRe
                 if f is None:
                     mr.note = "no -3 dB crossing inside the sweep"
                 mr.value = f
-            elif m.type == "value_at":
-                mr.value = _interp(x, np.abs(h), m.at, log_x=True)
             elif m.type in ("max", "min"):
                 mr.value = float(np.abs(h).max() if m.type == "max" else np.abs(h).min())
             else:
@@ -189,6 +243,8 @@ def compute_measurement(result: AnalysisResult, m: Measurement) -> MeasurementRe
                 mr.value = float(y.min())
             elif m.type == "vpp":
                 mr.value = float(y.max() - y.min())
+            elif m.type == "vpk":
+                mr.value = float(np.abs(y).max())
             elif m.type == "vrms":
                 mr.value = float(np.sqrt(np.trapezoid(y**2, x) / (x[-1] - x[0]))) if len(x) > 1 else float(abs(y[0]))
             elif m.type == "vavg":
@@ -199,6 +255,8 @@ def compute_measurement(result: AnalysisResult, m: Measurement) -> MeasurementRe
                 mr.value = _frequency(x, y)
                 if mr.value is None:
                     mr.note = "fewer than two cycles in the window"
+            elif m.type in ("period", "delta_t", "phase_shift_deg"):
+                _timing(result, m, mr, x, y)
             elif m.type == "rise_time":
                 lo, hi = y.min(), y.max()
                 t10 = _crossing(x, y, lo + 0.1 * (hi - lo))
@@ -213,6 +271,45 @@ def compute_measurement(result: AnalysisResult, m: Measurement) -> MeasurementRe
         return mr
     mr.status = judge(mr)
     return mr
+
+
+def _refine_extremum(x: np.ndarray, y: np.ndarray, k: int) -> float:
+    """Parabolic interpolation of a peak/dip on a log-frequency axis."""
+    if 0 < k < len(x) - 1:
+        lx = np.log10(x[k - 1 : k + 2])
+        a, b, _ = np.polyfit(lx, y[k - 1 : k + 2], 2)
+        if a != 0:
+            v = -b / (2 * a)
+            if lx[0] <= v <= lx[2]:
+                return float(10**v)
+    return float(x[k])
+
+
+def _timing(result: AnalysisResult, m: Measurement, mr: MeasurementResult, t: np.ndarray, y: np.ndarray) -> None:
+    """Scope-cursor style timing: period, delta-t and phase shift from rising crossings."""
+    sig_x = rising_crossings(t, y)
+    period = estimate_period(t, y)
+    if period is None or not sig_x:
+        raise ValueError("less than one full cycle in the window; lengthen the transient")
+    if m.type == "period":
+        mr.value = period
+        mr.extra = {"t1": sig_x[0], "t2": sig_x[0] + period, "ch_a": m.signal}
+        return
+    ref_name = m.reference or result.analysis.reference_signal
+    ref = np.real(result.signal(ref_name))
+    ref_x = rising_crossings(t, ref)
+    if not ref_x:
+        raise ValueError(f"reference {ref_name} has no rising crossing")
+    # pick the signal crossing nearest to the first reference crossing that has one after it
+    t_ref = next((tr for tr in ref_x if tr + period / 2 <= t[-1]), ref_x[0])
+    t_sig = min(sig_x, key=lambda ts: abs(ts - t_ref))
+    dt = t_ref - t_sig  # > 0 when the signal crosses first, i.e. leads the reference
+    # wrap into (-T/2, T/2]
+    dt = (dt + period / 2) % period - period / 2
+    mr.extra = {"t1": min(t_ref, t_sig), "t2": max(t_ref, t_sig), "period": period, "ch_a": m.signal, "ch_b": ref_name}
+    mr.value = abs(dt) if m.type == "delta_t" else dt / period * 360.0
+    if m.type == "delta_t":
+        mr.note = "signal leads reference" if dt > 0 else "signal lags reference"
 
 
 def _frequency(t: np.ndarray, y: np.ndarray) -> float | None:

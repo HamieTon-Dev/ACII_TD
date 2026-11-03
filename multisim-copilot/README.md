@@ -24,6 +24,62 @@ circuits:
    `report.docx`, with links to every generated file: `.cir`, `.ms14`, CSV, plan JSON and
    logs.
 
+## Lab reports in the course format
+
+Give it the lab handout (`.docx`, with its circuit figures) and it produces the full
+report as an editable Word file, in the same structure as a hand-written lab report:
+
+1. **Cover page:** course, instructor, title, student name(s), honor pledge, date. There is
+   no school logo.
+2. **Contents:** a table of contents that Word fills in when the file is opened.
+3. **Abstract, Introduction, Procedures:** first-person narrative written by the AI.
+4. **The handout's parts:** "Part I: …", with every step numbered continuously and the
+   action verbs in bold. Blanks such as "fr = ____ Hz" are filled in, and circuit
+   figures are placed with "Figure N:" captions.
+5. **Data Presentation & Analysis:** numbered tables ("Table N:", including merged
+   "Calculated" group headers) and plots ("Plot N:"). Plots are spreadsheet-style
+   frequency-response graphs or impedance/current phasor diagrams.
+6. **Calculations:** each step written out as
+   `Part II step 12: ZT = √(R² + XC²) = √(6,800² + 31,831²) = 32.549 kΩ`.
+7. **Required Screenshots:** Multisim captures when Multisim is installed, otherwise
+   oscilloscope figures with T1/T2 cursors and a Time/Channel A/Channel B readout,
+   Bode plots with a cursor at the resonant peak, and multimeter faces.
+8. **Conclusion:** includes percent differences.
+9. **References:** in APA format.
+
+**Every number is computed, not typed by the AI.** Table cells, calculations and in-text
+values are expressions such as `=mag('sweep','v(n2)',300) | V | .4f` or
+`{{meas('scope','theta') | ° | .2f}}`. The program evaluates them against the
+simulation data, so measured, calculated and percent-difference values always agree.
+If an expression can't be evaluated, the AI is asked to fix it (up to two rounds) before
+the report is written.
+
+The simulation side covers what these labs measure:
+* readings at listed frequencies: DMM-style RMS values or scope peak values with phase
+* circuit variants, such as swapping a capacitor or changing a winding resistance
+* oscilloscope period, Δt and phase angle/lag measured from the waveforms
+* Bode resonant frequency from the peak or dip of the response
+
+**Setup, once:** in Settings > Lab report, click **Import from a previous report**, or run
+`mscopilot-cli import-profile old_report.docx`. This fills in the course, instructor,
+student, pledge and standard references. It also uses that report as the **style
+template** (fonts, heading styles, margins, page numbers) and as a **writing-style
+example** for the AI. The template's text, pictures and header logos are removed and
+never copied into new reports.
+
+**Each lab:** add the handout and click **Run everything**. To write only the lab report,
+set *Report output* to "Lab report (.docx) only" or use
+`mscopilot-cli run handout.docx --report lab`. The run folder also contains
+`lab_report.json`. You can edit its text and re-render without the AI:
+`mscopilot-cli simulate <run>/simulation/plan.json --lab-json <run>/lab_report.json`.
+
+`examples/series_rc_lab/` has a worked series RC lab: handout, plan and report JSON. It
+renders with no API key:
+
+```bat
+mscopilot-cli simulate examples\series_rc_lab\plan.json --lab-json examples\series_rc_lab\lab_report.json --no-multisim
+```
+
 ## Install
 
 Download the `MultisimCopilot-windows` artifact from the latest run of the
@@ -145,6 +201,8 @@ mscopilot/
   engines/           netlist generation, ngspice runner, data parsing, measurements
   plots.py           Bode / oscilloscope / multimeter / sweep figures
   multisim/          COM worker + client, UI automation + screenshots
-  report.py          HTML and Word reports
+  report.py          HTML and Word engineering reports
+  labreport.py       course-format lab report (.docx): schema, template handling, tables, plots
+  labexpr.py         safe expression evaluation + number formatting for lab reports
   pipeline.py        end-to-end orchestration
 ```

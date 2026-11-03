@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import datetime as _dt
+import json
 import re
 import shutil
 import sys
@@ -32,6 +33,7 @@ class RunOutput:
     report_docx: Path | None = None
     records: list[RunRecord] = field(default_factory=list)
     files: list[Path] = field(default_factory=list)
+    lab_report: Path | None = None
 
 
 def slug(text: str) -> str:
@@ -100,7 +102,7 @@ class Pipeline:
     def multisim_stage(self, rec: RunRecord, folder: Path, pkg: DesignPackage) -> list[Path]:
         produced: list[Path] = []
         shots_dir = folder / "multisim_screenshots"
-        deck = folder / "circuit.cir"
+        decks = sorted(p for p in folder.glob("circuit*.cir") if not p.stem.endswith("_ngspice"))
 
         # --- COM (Automation API) ---
         if self.s.use_multisim_com and pkg.multisim_files:
@@ -125,7 +127,7 @@ class Pipeline:
 
         targets: list[tuple[Path, str]] = [(p, p.stem) for p in pkg.multisim_files]
         if not targets:
-            targets = [(deck, "circuit")]
+            targets = [(d, d.stem) for d in decks]
         for src, tag in targets:
             self._check()
             gui = None
@@ -141,7 +143,7 @@ class Pipeline:
                         produced.append(ms14)
                         rec.multisim_notes.append(f"Imported the SPICE deck into Multisim and saved {ms14.name}.")
                     else:
-                        rec.multisim_notes.append("Opened circuit.cir in Multisim but could not save it as .ms14 automatically; use File > Save As.")
+                        rec.multisim_notes.append(f"Opened {work.name} in Multisim but could not save it as .ms14 automatically; use File > Save As.")
                 else:
                     produced.append(work)
                 gui.run_interactive()
@@ -186,7 +188,8 @@ class Pipeline:
         return produced
 
     # ---------------------------------------------------------------- full run
-    def run(self, pkg: DesignPackage, plan: Plan | None = None, use_ai: bool = True, input_paths: list[Path] | None = None) -> RunOutput:
+    def run(self, pkg: DesignPackage, plan: Plan | None = None, use_ai: bool = True, input_paths: list[Path] | None = None,
+            lab_json: dict | None = None) -> RunOutput:
         if plan is None:
             if not use_ai:
                 raise ValueError("Without AI you must supply a plan JSON.")
@@ -201,15 +204,17 @@ class Pipeline:
         if pkg.instructions.strip():
             (inputs_dir / "instructions.txt").write_text(pkg.instructions, encoding="utf-8")
 
-        iterations = max(1, int(self.s.max_design_iterations if use_ai else 1))
+        lab_only = self.s.report_style == "lab"
+        iterations = 1 if (lab_only or not use_ai) else max(1, int(self.s.max_design_iterations))
         for i in range(1, iterations + 1):
             self._check()
             it_dir = out.folder / (f"iteration_{i}" if iterations > 1 else "simulation")
             it_dir.mkdir(exist_ok=True)
             plan.save(it_dir / "plan.json")
             self.log(f"--- Iteration {i}: simulating '{plan.title}' ---")
-            rec = self.simulate(plan, it_dir, use_ai_review=use_ai)
+            rec = self.simulate(plan, it_dir, use_ai_review=use_ai and not lab_only)
             rec.iteration = i
+            rec.folder = it_dir
             out.records.append(rec)
             verdict = (rec.review or {}).get("verdict") or overall_status(rec.results)
             if verdict != "fail" or i == iterations or not use_ai:
@@ -222,17 +227,79 @@ class Pipeline:
                 break
 
         final = out.records[-1]
-        final_dir = Path(final.results[0].csv_path).parent.parent if final.results and final.results[0].csv_path else out.folder
+        final_dir = final.folder or out.folder
         self._check()
         out.files += self.multisim_stage(final, final_dir, pkg)
+
+        if (use_ai or lab_json) and self.s.report_style in ("lab", "both"):
+            self._check()
+            try:
+                out.lab_report = self.lab_report(final, final_dir, pkg, out.folder, lab_json)
+            except AIError as e:
+                self.log(f"Lab report failed: {e}")
 
         for p in sorted(out.folder.rglob("*")):
             if p.is_file() and p.suffix.lower() in {".cir", ".ms14", ".csv", ".json", ".log", ".txt"} and p not in out.files:
                 out.files.append(p)
-        out.report_html = build_html(out.records, out.folder, out.files, pkg.describe())
-        try:
-            out.report_docx = build_docx(out.records, out.folder, out.files)
-        except Exception as e:
-            self.log(f"Word report failed: {e}")
-        self.log(f"Report written: {out.report_html}")
+        if self.s.report_style != "lab" or not out.lab_report:
+            out.report_html = build_html(out.records, out.folder, out.files, pkg.describe())
+            try:
+                out.report_docx = build_docx(out.records, out.folder, out.files)
+            except Exception as e:
+                self.log(f"Word report failed: {e}")
+            self.log(f"Report written: {out.report_html}")
         return out
+
+    # ---------------------------------------------------------------- lab report
+    def lab_images(self, rec: RunRecord, pkg: DesignPackage, folder: Path) -> tuple[dict[str, Path], dict[str, str]]:
+        """Image keys the lab writer may reference -> files, plus a description of each."""
+        paths: dict[str, Path] = {}
+        desc: dict[str, str] = {}
+        for r in rec.results:
+            for p in r.plots:
+                key = f"analysis:{r.analysis.id}"
+                paths[key] = p
+                desc[key] = f"{r.analysis.instrument} figure of '{r.analysis.title}' ({r.analysis.kind})"
+        for p in rec.multisim_screenshots:
+            key = f"multisim:{p.stem}"
+            paths[key] = p
+            desc[key] = "Multisim window capture"
+        img_dir = folder / "inputs" / "images"
+        for img in pkg.images:
+            img_dir.mkdir(parents=True, exist_ok=True)
+            ext = {"image/png": ".png", "image/jpeg": ".jpg", "image/gif": ".gif", "image/webp": ".webp"}.get(img.media_type, ".png")
+            f = img_dir / (slug(img.name.replace(":", "_")) + ext)
+            f.write_bytes(img.data)
+            key = f"input:{img.name}"
+            paths[key] = f
+            desc[key] = "picture from the inputs (attached as 'Image: " + img.name + "')"
+        return paths, desc
+
+    def lab_report(self, rec: RunRecord, sim_dir: Path, pkg: DesignPackage, folder: Path, report: dict | None = None) -> Path:
+        from mscopilot.inputs import read_docx
+        from mscopilot.labexpr import Context
+        from mscopilot.labreport import build_lab_report, collect_errors
+
+        images, desc = self.lab_images(rec, pkg, folder)
+        ctx = Context({r.analysis.id: r for r in rec.results}, rec.plan.constants_dict())
+        style = ""
+        if self.s.style_example and Path(self.s.style_example).is_file():
+            try:
+                style = read_docx(Path(self.s.style_example))[0]
+            except Exception as e:
+                self.log(f"Could not read style example: {e}")
+        if report is None:
+            self.log("Asking the AI to write the lab report ...")
+            report, errors = agent.write_lab_report(
+                self.provider(), pkg, rec.plan, rec.results, desc,
+                check=lambda rep: collect_errors(rep, ctx, images), style_example=style, log=self.log,
+            )
+        else:
+            errors = collect_errors(report, ctx, images)
+        (folder / "lab_report.json").write_text(json.dumps(report, indent=2), encoding="utf-8")
+        name = slug(report.get("title") or rec.plan.title) + "_Lab_Report.docx"
+        path, render_errors = build_lab_report(report, ctx, images, self.s.profile(), folder / name)
+        for e in sorted(set(errors + render_errors))[:20]:
+            self.log(f"  lab report: {e}")
+        self.log(f"Lab report written: {path}")
+        return path

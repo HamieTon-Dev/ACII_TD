@@ -71,8 +71,8 @@ def test_decks_contain_analyses():
     p = example_plan()
     ms = multisim_deck(p)
     assert ".op" in ms and ".ac dec 50 10 100000" in ms and ".tran 5e-06 0.01 0.002" in ms and ms.strip().endswith(".end")
-    ng = ngspice_deck(p, {a.id: f"/tmp/{a.id}.txt" for a in p.analyses})
-    assert ".control" in ng and "wrdata /tmp/bode_out.txt v(out) v(in)" in ng
+    ng = ngspice_deck(p, p.analyses)
+    assert ".control" in ng and "wrdata data/bode_out.txt v(out) v(in)" in ng
 
 
 # ------------------------------------------------------------------ results
@@ -211,7 +211,8 @@ class ScriptedProvider:
 def test_full_pipeline_with_revision(tmp_path):
     from mscopilot.pipeline import Pipeline
 
-    s = cfg.Settings(output_root=str(tmp_path), ngspice_path=NGSPICE, max_design_iterations=3, use_multisim_com=False, use_multisim_gui=False)
+    s = cfg.Settings(output_root=str(tmp_path), ngspice_path=NGSPICE, max_design_iterations=3, use_multisim_com=False,
+                     use_multisim_gui=False, report_style="engineering")
     brief = EXAMPLES / "sallen_key_brief.txt"
     pkg = load_package([brief])
     fake = ScriptedProvider()
