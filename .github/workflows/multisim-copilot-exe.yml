@@ -1,0 +1,96 @@
+name: Multisim Copilot (Windows .exe)
+
+# Builds the Multisim Copilot desktop app for Windows and attaches it to the run
+# as a downloadable zip: MultisimCopilot.exe (app), mscopilot-cli.exe (CLI),
+# MultisimWorker.exe (32-bit Multisim COM bridge) and a bundled ngspice engine.
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "multisim-copilot/**"
+      - ".github/workflows/multisim-copilot-exe.yml"
+
+permissions:
+  contents: read
+
+env:
+  NGSPICE_VERSION: "44.2"
+
+jobs:
+  build:
+    runs-on: windows-latest
+    defaults:
+      run:
+        shell: pwsh
+        working-directory: multisim-copilot
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python 3.12 (64-bit, main app)
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          architecture: x64
+
+      - name: Install dependencies
+        run: python -m pip install -r requirements-dev.txt
+
+      - name: Download ngspice
+        continue-on-error: true
+        run: |
+          $url = "https://sourceforge.net/projects/ngspice/files/ng-spice-rework/$env:NGSPICE_VERSION/ngspice-${env:NGSPICE_VERSION}_64.7z/download"
+          curl.exe -L --retry 4 --retry-delay 5 -A "Mozilla/5.0" -o ngspice.7z $url
+          7z x ngspice.7z -ongspice_dl -y | Out-Null
+          Get-ChildItem -Recurse ngspice_dl -Filter ngspice_con.exe | Select-Object -First 1 | ForEach-Object { "NGSPICE_BIN=$($_.DirectoryName)" | Out-File -Append $env:GITHUB_ENV }
+
+      - name: Run tests
+        run: |
+          if ($env:NGSPICE_BIN) { $env:PATH = "$env:NGSPICE_BIN;$env:PATH" }
+          python -m pytest -q
+
+      - name: Build app (PyInstaller)
+        run: python -m PyInstaller --noconfirm packaging/MultisimCopilot.spec
+
+      - name: Set up Python 3.12 (32-bit, COM worker)
+        uses: actions/setup-python@v5
+        id: py32
+        with:
+          python-version: "3.12"
+          architecture: x86
+
+      - name: Build 32-bit Multisim COM worker
+        run: |
+          $py = "${{ steps.py32.outputs.python-path }}"
+          & $py -m pip install -r requirements-worker.txt pyinstaller
+          & $py -m PyInstaller --noconfirm --onefile --console --name MultisimWorker --paths . --distpath build/worker packaging/worker_entry.py
+          Copy-Item build/worker/MultisimWorker.exe dist/MultisimCopilot/
+
+      - name: Bundle ngspice and docs
+        run: |
+          if (Test-Path ngspice_dl) {
+            $spice = Get-ChildItem -Directory -Recurse ngspice_dl -Filter Spice64 | Select-Object -First 1
+            New-Item -ItemType Directory -Force dist/MultisimCopilot/ngspice | Out-Null
+            Copy-Item -Recurse $spice.FullName dist/MultisimCopilot/ngspice/
+          } else {
+            Write-Warning "ngspice download failed; the zip will need ngspice installed separately."
+          }
+          Copy-Item README.md dist/MultisimCopilot/
+          Copy-Item -Recurse examples dist/MultisimCopilot/examples -Force
+
+      - name: Smoke test the CLI
+        run: |
+          ./dist/MultisimCopilot/mscopilot-cli.exe doctor
+          ./dist/MultisimCopilot/mscopilot-cli.exe simulate examples/sallen_key_plan.json --no-multisim -o "$env:RUNNER_TEMP/smoke"
+          if (-not (Get-ChildItem -Recurse "$env:RUNNER_TEMP/smoke" -Filter report.html)) { throw "no report produced" }
+
+      - name: Smoke test the COM worker
+        run: |
+          $out = '{"id":1,"cmd":"ping"}' | ./dist/MultisimCopilot/MultisimWorker.exe
+          Write-Host $out
+          if ($out -notmatch '"bits": 32') { throw "worker is not 32-bit" }
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: MultisimCopilot-windows
+          path: multisim-copilot/dist/MultisimCopilot
+          if-no-files-found: error
