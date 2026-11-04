@@ -8,7 +8,7 @@ import pytest
 
 from mscopilot import config as cfg
 from mscopilot.labexpr import Context, ExprError, fmt_value
-from mscopilot.labreport import build_lab_report, collect_errors, import_profile, open_template, Profile
+from mscopilot.labreport import build_lab_report, collect_errors, open_template, Profile
 from mscopilot.plan import Plan
 
 LAB = Path(__file__).resolve().parent.parent / "examples" / "series_rc_lab"
@@ -55,21 +55,23 @@ def test_example_lab_report_renders(tmp_path):
     plan, results, images, ctx = _simulate(tmp_path)
     report = json.loads((LAB / "lab_report.json").read_text(encoding="utf-8"))
     assert collect_errors(report, ctx, images) == []
-    prof = Profile(course="Electric Circuits Lab", instructor="Dr. Example", student="Pat Student",
-                   honor_pledge="I did this work myself.", references=["Floyd, T. L., & Buchla, D. M. (2019). duplicate"])
+    prof = Profile(course="Circuits Lab", instructor="Dr. Example", student="Pat Student",
+                   references=["NI. (2024). Oscilloscope. duplicate entry", "Example, A. (2020). Extra source."])
     path, errors = build_lab_report(report, ctx, images, prof, tmp_path / "lab.docx")
     assert errors == []
     import docx
 
     d = docx.Document(str(path))
     text = "\n".join(p.text for p in d.paragraphs)
-    for needle in ("Electric Circuits Lab", "Instructor: Dr. Example", "Pat Student", "Honor Pledge", "Abstract",
+    for needle in ("Circuits Lab", "Instructor: Dr. Example", "Pat Student", "Abstract",
                    "Introduction", "Procedures", "Data Presentation & Analysis", "Calculations", "Required Screenshots",
                    "Conclusion", "References", "Table 4: Phase angle and phase lag measurements", "Plot 2: Impedance Phasor",
                    "Figure 4: Screenshot of Waveforms for Part 3 Step 15", "15.\t"):
         assert needle in text, needle
     assert "{{" not in text and "—" not in text
-    assert text.count("Floyd") == 1  # profile reference de-duplicated against the AI's
+    assert text.count("NI. (2024). Oscilloscope") == 1  # settings reference de-duplicated against the AI's
+    assert "Example, A. (2020). Extra source." in text
+    assert "pledge" not in text.lower()
     assert "77.94" in text and "Part I step 5: XC = 1/(2πfC) = 1/(2 × π × 1,000 × 1×10⁻⁷) = 1591.55 Ω" in text
     cells = [c.text for t in d.tables for row in t.rows for c in row.cells]
     assert "532.018 mV" in cells and "0.1852" in cells and "12.059°" in cells
@@ -90,7 +92,8 @@ def test_formatting():
     assert fmt_value(3.1e9, "", "sci3") == "3.100×10⁹"
 
 
-def _report_like_docx(path: Path):
+def _identifying_docx(path: Path):
+    """A previous-report-like file full of things that must never reach a new report."""
     import docx
     from docx.shared import Inches
     from PIL import Image
@@ -98,35 +101,32 @@ def _report_like_docx(path: Path):
     logo = path.parent / "logo.png"
     Image.new("RGB", (80, 40), "blue").save(logo)
     d = docx.Document()
-    d.sections[0].header.paragraphs[0].add_run().add_picture(str(logo), width=Inches(1))
+    hp = d.sections[0].header.paragraphs[0]
+    hp.add_run("Example University").bold = True
+    hp.add_run().add_picture(str(logo), width=Inches(1))
+    d.sections[0].footer.paragraphs[0].add_run("Example University confidential")
+    d.core_properties.author = "Jane Doe"
+    d.core_properties.title = "Week 9 Lab"
     d.add_paragraph().add_run().add_picture(str(logo), width=Inches(1))
-    d.add_paragraph("Electric Circuits Lab")
-    d.add_paragraph("Instructor: Rex Example")
-    d.add_paragraph("Series RC Circuits")
-    d.add_paragraph("Student Name(s):\tAlex Student")
-    d.add_paragraph("Honor Pledge: ")
-    d.add_paragraph("\tI pledge to do my own work.")
-    d.add_paragraph("Date: 1/1/2026")
+    d.add_paragraph("Instructor: Prof. Somebody")
+    d.add_paragraph("Student Name(s):\tJane Doe")
     d.add_heading("Abstract", 1)
     d.add_paragraph("old content")
-    d.add_heading("References", 1)
-    d.add_paragraph("Floyd, T. L., & Buchla, D. M. (2019). Principles of electric circuits.")
     d.save(path)
 
 
-def test_import_profile_and_template_strip_logos(tmp_path):
+def test_style_template_keeps_nothing_identifying(tmp_path):
     src = tmp_path / "old_report.docx"
-    _report_like_docx(src)
-    prof = import_profile(src)
-    assert (prof.course, prof.instructor, prof.student) == ("Electric Circuits Lab", "Rex Example", "Alex Student")
-    assert prof.honor_pledge == "I pledge to do my own work."
-    assert prof.references == ["Floyd, T. L., & Buchla, D. M. (2019). Principles of electric circuits."]
+    _identifying_docx(src)
     doc = open_template(str(src))
     out = tmp_path / "t.docx"
     doc.save(out)
-    names = zipfile.ZipFile(out).namelist()
-    assert not [n for n in names if "media" in n]  # header logo and cover image are gone
-    assert "old content" not in "\n".join(p.text for p in doc.paragraphs)
+    z = zipfile.ZipFile(out)
+    assert not [n for n in z.namelist() if "media" in n]  # header logo and cover image are gone
+    everything = "".join(z.read(n).decode("utf-8", "ignore") for n in z.namelist() if n.endswith(".xml"))
+    for needle in ("Example University", "Jane Doe", "Week 9 Lab", "Prof. Somebody", "old content"):
+        assert needle not in everything, needle
+    assert "PAGE" in z.read("word/footer1.xml").decode()  # page numbers are still there
 
 
 class LabProvider:
@@ -153,7 +153,7 @@ def test_pipeline_lab_mode_with_repair(tmp_path):
     from mscopilot.pipeline import Pipeline
 
     s = cfg.Settings(output_root=str(tmp_path), ngspice_path=NGSPICE, use_multisim_com=False, use_multisim_gui=False,
-                     report_style="lab", course="Electric Circuits Lab", instructor="Dr. Example", student="Pat")
+                     report_style="lab", course="Circuits Lab", instructor="Dr. Example", student="Pat")
     fake = LabProvider()
     pkg = load_package([LAB / "handout.txt"])
     out = Pipeline(s, log=lambda *_: None, provider=fake).run(pkg, input_paths=[LAB / "handout.txt"])

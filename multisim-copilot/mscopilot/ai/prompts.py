@@ -168,9 +168,13 @@ STRUCTURE
   conclusion (2-3 paragraphs comparing calculated vs measured with percent differences \
   computed via {{...}}, explaining trends and discrepancies, what was learned). Write in \
   the first person as the student, plainly, like a careful undergraduate. If a style \
-  example is supplied, match its voice, depth and section lengths.
-- references: APA 7 entries actually used (textbook, handout, NI Multisim docs). The \
-  student's standard references are appended automatically if missing.
+  example is supplied, match its voice, depth and section lengths only.
+- Never include an honor pledge, the names of people, schools, instructors or courses, \
+  logos, or other identifying details from the handout or the style example; the cover \
+  page details come only from the user's settings.
+- references: APA 7 entries for sources the report actually relies on (for example the \
+  NI Multisim documentation for the instruments used). References the user lists in \
+  Settings are appended automatically if missing.
 """
 
 LAB_REPAIR = """\

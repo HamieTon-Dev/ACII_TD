@@ -117,17 +117,12 @@ class SettingsDialog(tk.Toplevel):
         self.style_cb = ttk.Combobox(f, state="readonly", values=list(self.REPORT_STYLES.values()), width=44)
         self.style_cb.set(self.REPORT_STYLES.get(s.report_style, self.REPORT_STYLES["both"]))
         add("Report output", self.style_cb)
-        imp = ttk.Button(f, text="Import from a previous report (.docx)…", command=self._import_profile)
-        add("", imp, sticky="w")
         self.course = tk.StringVar(value=s.course)
         add("Course", ttk.Entry(f, textvariable=self.course, width=46))
         self.instructor = tk.StringVar(value=s.instructor)
         add("Instructor", ttk.Entry(f, textvariable=self.instructor, width=46))
         self.student = tk.StringVar(value=s.student)
         add("Student name(s)", ttk.Entry(f, textvariable=self.student, width=46))
-        self.pledge = tk.Text(f, height=5, width=46, wrap="word", font=("Segoe UI", 9))
-        self.pledge.insert("1.0", s.honor_pledge)
-        add("Honor pledge", self.pledge)
         self.refs = tk.Text(f, height=5, width=46, wrap="word", font=("Segoe UI", 9))
         self.refs.insert("1.0", "\n".join(s.references or []))
         add("Standard references\n(one per line)", self.refs)
@@ -136,40 +131,10 @@ class SettingsDialog(tk.Toplevel):
         self.style_example = tk.StringVar(value=s.style_example)
         add("Writing-style example (.docx)", self._file_row(f, self.style_example))
         ttk.Label(f, foreground="#64748b", wraplength=420, justify="left",
-                  text="The template's fonts, headings, margins and page numbers are reused; its text, pictures and "
-                       "header logos are removed. The writing-style example is a past report whose voice and depth "
-                       "the AI imitates.").grid(row=row, column=0, columnspan=2, sticky="w", pady=(8, 0))
-
-    def _import_profile(self):
-        from mscopilot.labreport import import_profile
-
-        p = filedialog.askopenfilename(parent=self, filetypes=[("Word documents", "*.docx")])
-        if not p:
-            return
-        try:
-            prof = import_profile(p)
-        except Exception as e:
-            messagebox.showerror("Import", f"Could not read that report: {e}", parent=self)
-            return
-        # keep a private copy so the template survives the original being moved
-        dest = cfg.config_dir() / "report_template.docx"
-        dest.parent.mkdir(parents=True, exist_ok=True)
-        import shutil
-
-        shutil.copy2(p, dest)
-        for var, val in ((self.course, prof.course), (self.instructor, prof.instructor), (self.student, prof.student)):
-            if val:
-                var.set(val)
-        if prof.honor_pledge:
-            self.pledge.delete("1.0", "end")
-            self.pledge.insert("1.0", prof.honor_pledge)
-        if prof.references:
-            self.refs.delete("1.0", "end")
-            self.refs.insert("1.0", "\n".join(prof.references))
-        self.template.set(str(dest))
-        self.style_example.set(str(dest))
-        messagebox.showinfo("Import", "Imported course, instructor, student, pledge, references and styles. "
-                            "Review them, then click Save.", parent=self)
+                  text="Optional. A style template's fonts, headings and margins are reused; all of its text, "
+                       "headers, footers, pictures and document properties are removed. A writing-style example is "
+                       "any report whose voice and depth the AI imitates (names and organisations in it are never "
+                       "copied).").grid(row=row, column=0, columnspan=2, sticky="w", pady=(8, 0))
 
     def _file_row(self, parent, var, folder=False):
         fr = ttk.Frame(parent)
@@ -206,7 +171,6 @@ class SettingsDialog(tk.Toplevel):
         s.output_root = self.out.get().strip()
         s.report_style = next(k for k, v in self.REPORT_STYLES.items() if v == self.style_cb.get())
         s.course, s.instructor, s.student = self.course.get().strip(), self.instructor.get().strip(), self.student.get().strip()
-        s.honor_pledge = self.pledge.get("1.0", "end").strip()
         s.references = [ln.strip() for ln in self.refs.get("1.0", "end").splitlines() if ln.strip()]
         s.report_template = self.template.get().strip()
         s.style_example = self.style_example.get().strip()

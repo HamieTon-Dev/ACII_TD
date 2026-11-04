@@ -5,7 +5,6 @@
     MultisimCopilot.exe plan brief.docx -o plan.json      # AI plan only, for review
     MultisimCopilot.exe simulate plan.json                # run a reviewed plan, no AI
     MultisimCopilot.exe doctor                            # check ngspice / Multisim / API key
-    MultisimCopilot.exe import-profile old_report.docx    # reuse cover details + styles
     MultisimCopilot.exe run lab_handout.docx --report lab # write the course lab report
 """
 from __future__ import annotations
@@ -51,26 +50,6 @@ def _print_outputs(out) -> None:
     if out.report_html:
         print(f"Report: {out.report_html}")
     print(f"Folder: {out.folder}")
-
-
-def cmd_import_profile(a) -> int:
-    import shutil
-
-    from mscopilot.labreport import import_profile
-
-    s = cfg.Settings.load()
-    prof = import_profile(a.report)
-    dest = cfg.config_dir() / "report_template.docx"
-    dest.parent.mkdir(parents=True, exist_ok=True)
-    shutil.copy2(a.report, dest)
-    prof.template = str(dest)
-    s.apply_profile(prof)
-    s.style_example = str(dest)
-    s.save()
-    print(f"Course     : {s.course}\nInstructor : {s.instructor}\nStudent    : {s.student}")
-    print(f"Pledge     : {s.honor_pledge[:70]}{'...' if len(s.honor_pledge) > 70 else ''}")
-    print(f"References : {len(s.references)}\nTemplate   : {dest}")
-    return 0
 
 
 def cmd_plan(a) -> int:
@@ -144,10 +123,6 @@ def build_parser() -> argparse.ArgumentParser:
     r.add_argument("-o", "--out", help="output root folder")
     r.add_argument("--report", choices=["lab", "engineering", "both"], help="which report(s) to write (default from settings)")
     r.set_defaults(func=cmd_run)
-
-    ip = sub.add_parser("import-profile", help="take course/instructor/student/pledge/references and styles from a previous report")
-    ip.add_argument("report", help="a previous lab report .docx")
-    ip.set_defaults(func=cmd_import_profile)
 
     pl = sub.add_parser("plan", help="ask the AI for a simulation plan only")
     pl.add_argument("files", nargs="*")

@@ -29,8 +29,8 @@ circuits:
 Give it the lab handout (`.docx`, with its circuit figures) and it produces the full
 report as an editable Word file, in the same structure as a hand-written lab report:
 
-1. **Cover page:** course, instructor, title, student name(s), honor pledge, date. There is
-   no school logo.
+1. **Cover page:** course, instructor, title, student name(s), date. These come only from
+   what you enter in Settings; the fields start empty.
 2. **Contents:** a table of contents that Word fills in when the file is opened.
 3. **Abstract, Introduction, Procedures:** first-person narrative written by the AI.
 4. **The handout's parts:** "Part I: …", with every step numbered continuously and the
@@ -60,12 +60,14 @@ The simulation side covers what these labs measure:
 * oscilloscope period, Δt and phase angle/lag measured from the waveforms
 * Bode resonant frequency from the peak or dip of the response
 
-**Setup, once:** in Settings > Lab report, click **Import from a previous report**, or run
-`mscopilot-cli import-profile old_report.docx`. This fills in the course, instructor,
-student, pledge and standard references. It also uses that report as the **style
-template** (fonts, heading styles, margins, page numbers) and as a **writing-style
-example** for the AI. The template's text, pictures and header logos are removed and
-never copied into new reports.
+**Setup, once:** in Settings > Lab report, enter the cover details you want: course,
+instructor, student name(s), and any references to add to every report. All of them are
+optional and start empty. You can also choose:
+* a **style template**: any `.docx` whose fonts, heading styles and margins you want. Only
+  the styles are kept. Its text, headers, footers, logos, pictures, links, footnotes and
+  document properties (author, company …) are all removed.
+* a **writing-style example**: a report whose voice and depth the AI should imitate. The
+  AI is told never to copy names, schools, courses or pledges from it.
 
 **Each lab:** add the handout and click **Run everything**. To write only the lab report,
 set *Report output* to "Lab report (.docx) only" or use

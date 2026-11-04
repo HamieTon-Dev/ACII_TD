@@ -1,6 +1,6 @@
 """Student-style lab report (.docx) in the classic course format:
 
-  cover page (course, instructor, title, student, honor pledge, date)
+  cover page (course, instructor, title, student, date)
   table of contents
   Abstract · Introduction · Procedures (narrative + the handout's parts and numbered steps
   with circuit figures) · Data Presentation & Analysis (numbered tables and plots) ·
@@ -10,8 +10,9 @@ The AI writes a LabReport JSON (schema below). Every number in it is an expressi
 evaluated against the simulation results (see labexpr), so tables, calculations and
 in-text values always match the simulated data.
 
-Styling comes from a template .docx: the user's own previous report (body and header
-logos stripped automatically) or a built-in template that mimics the same look.
+Styling comes from the built-in template, or optionally from any .docx the user picks as a
+style template: only its styles and page setup are kept - body text, headers, footers,
+pictures and document properties are all removed.
 """
 from __future__ import annotations
 
@@ -143,7 +144,6 @@ class Profile:
     course: str = ""
     instructor: str = ""
     student: str = ""
-    honor_pledge: str = ""
     references: list[str] = field(default_factory=list)
     template: str = ""  # .docx whose styles/page setup are reused
     date: str = ""  # blank -> today
@@ -305,9 +305,10 @@ def _qn(tag: str) -> str:
 def open_template(path: str | None):
     """Return a python-docx Document ready to be filled.
 
-    With a user template (e.g. a previous report), the body is cleared and every image /
-    drawing in headers is removed (logos), keeping styles, numbering, page setup and the
-    footer page numbers. Without one, a built-in look-alike is created.
+    With a user template only styles, numbering and page setup are kept: the body,
+    header and footer content (text, logos, pictures), the glossary and the document
+    properties (author, company, ...) are removed, and a page-number footer is added.
+    Without one, the built-in template is used.
     """
     import docx
 
@@ -317,20 +318,71 @@ def open_template(path: str | None):
         for child in list(body):
             if child.tag != _qn("w:sectPr"):
                 body.remove(child)
+        from docx.enum.text import WD_ALIGN_PARAGRAPH
+
         for sec in doc.sections:
-            for hdr in (sec.header, sec.first_page_header, sec.even_page_header):
-                if hdr.is_linked_to_previous:
+            for hf in (sec.header, sec.first_page_header, sec.even_page_header,
+                       sec.footer, sec.first_page_footer, sec.even_page_footer):
+                if hf.is_linked_to_previous:
                     continue
-                for el in list(hdr._element.iter()):
-                    if el.tag in (_qn("w:drawing"), _qn("w:pict"), _qn("w:object")):
-                        el.getparent().remove(el)
-                _drop_unused_media(hdr.part)
+                el = hf._element
+                for child in list(el):
+                    el.remove(child)
+                el.append(_empty_paragraph())
+                _drop_unused_media(hf.part)
+            fp = sec.footer.paragraphs[0]
+            fp.alignment = WD_ALIGN_PARAGRAPH.RIGHT
+            _field(fp, "PAGE")
         _drop_unused_media(doc.part)
+        _scrub_package(doc)
         _ensure_styles(doc)
         return doc
     doc = docx.Document()
     _builtin_styles(doc)
     return doc
+
+
+def _empty_paragraph():
+    from docx.oxml import OxmlElement
+
+    return OxmlElement("w:p")
+
+
+def _scrub_package(doc) -> None:
+    """Remove anything that could identify where the template came from: document
+    properties, the glossary (saved content-control text), custom XML and comments."""
+    cp = doc.core_properties
+    for attr in ("author", "last_modified_by", "title", "subject", "keywords", "comments", "category",
+                 "content_status", "identifier", "language", "version"):
+        try:
+            setattr(cp, attr, "")
+        except Exception:
+            pass
+    for rid, rel in list(doc.part.rels.items()):
+        kind = rel.reltype.rsplit("/", 1)[-1]
+        if kind in ("glossaryDocument", "customXml", "comments", "commentsExtended", "commentsIds", "people"):
+            del doc.part.rels[rid]
+    # footnotes/endnotes: keep only the separator entries (ids -1 and 0) Word requires
+    for rid, rel in list(doc.part.rels.items()):
+        kind = rel.reltype.rsplit("/", 1)[-1]
+        if kind in ("footnotes", "endnotes") and not rel.is_external:
+            try:
+                from docx.opc.oxml import parse_xml
+
+                root = parse_xml(rel.target_part.blob)
+                tag = _qn("w:footnote" if kind == "footnotes" else "w:endnote")
+                for note in list(root.iter(tag)):
+                    if int(note.get(_qn("w:id"), "0")) > 0:
+                        note.getparent().remove(note)
+                from lxml import etree
+
+                rel.target_part._blob = etree.tostring(root, xml_declaration=True, encoding="UTF-8", standalone=True)
+            except Exception:
+                pass
+    pkg_rels = doc.part.package.rels
+    for rid, rel in list(pkg_rels.items()):
+        if rel.reltype.endswith("/extended-properties") or rel.reltype.endswith("/custom-properties"):
+            del pkg_rels[rid]
 
 
 def _drop_unused_media(part) -> None:
@@ -339,7 +391,8 @@ def _drop_unused_media(part) -> None:
     xml = part._element.xml if hasattr(part, "_element") else ""
     for rid, rel in list(part.rels.items()):
         kind = rel.reltype.rsplit("/", 1)[-1]
-        if kind in ("image", "oleObject", "package", "chart") and f'"{rid}"' not in xml:
+        unused = f'"{rid}"' not in xml
+        if unused and (kind in ("image", "oleObject", "package", "chart", "hyperlink") or rel.is_external):
             del part.rels[rid]
 
 
@@ -523,13 +576,6 @@ class _Writer:
         r = p.add_run(prof.student)
         r.font.name, r.font.size = "Times New Roman", self.Pt(12)
         self.para("")
-        if prof.honor_pledge.strip():
-            p = self.para("Honor Pledge: ", font="Times New Roman", size=12, bold=True, italic=True)
-            p.runs[0].underline = True
-            for chunk in prof.honor_pledge.strip().split("\n"):
-                self.para("\t" + chunk.strip(), font="Times New Roman", size=12, italic=True, align=A.JUSTIFY,
-                          markdown_bold=False)
-            self.para("")
         p = self.para("Date: ", font="Arial", size=12, bold=True, align=A.RIGHT)
         r = p.add_run(prof.date_text())
         r.font.name, r.font.size = "Arial", self.Pt(12)
@@ -744,43 +790,3 @@ def build_lab_report(report: dict, ctx: Context, images: dict[str, Path], profil
         w.references(refs)
     doc.save(str(out_path))
     return out_path, w.errors
-
-
-# =============================================================== profile import
-def import_profile(path: str | Path) -> Profile:
-    """Read course / instructor / student / honor pledge / references from a previous report
-    so new reports reuse them (and use that report as the style template)."""
-    import docx
-
-    doc = docx.Document(str(path))
-    body = doc.element.body
-    paras: list[str] = []
-    for p in body.iter(_qn("w:p")):
-        paras.append("".join(t.text or "" for t in p.iter(_qn("w:t"))))
-    prof = Profile(template=str(path))
-    for i, t in enumerate(paras):
-        s = t.strip()
-        if not s:
-            continue
-        if s.lower().startswith("instructor:") and not prof.instructor:
-            prof.instructor = s.split(":", 1)[1].strip()
-            for back in range(i - 1, -1, -1):
-                if paras[back].strip():
-                    prof.course = paras[back].strip()
-                    break
-        elif s.lower().startswith("student name") and not prof.student:
-            prof.student = s.split(":", 1)[1].strip()
-        elif s.lower().startswith("honor pledge") and not prof.honor_pledge:
-            rest = s.split(":", 1)[1].strip()
-            chunks = [rest] if rest else []
-            for nxt in paras[i + 1 :]:
-                if nxt.strip().lower().startswith("date"):
-                    break
-                if nxt.strip():
-                    chunks.append(nxt.strip())
-            prof.honor_pledge = "\n".join(chunks)
-    # references: paragraphs after the last "References" heading
-    idx = max((i for i, t in enumerate(paras) if t.strip().lower() == "references"), default=None)
-    if idx is not None:
-        prof.references = [t.strip() for t in paras[idx + 1 :] if t.strip()]
-    return prof
